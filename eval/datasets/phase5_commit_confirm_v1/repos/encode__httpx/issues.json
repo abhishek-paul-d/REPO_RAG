@@ -1,0 +1,122 @@
+[
+  {
+    "repo": "encode/httpx",
+    "number": 2906,
+    "title": "Support brotlicffi in tests",
+    "body": "While the package itself can work with either `brotli` or `brotlicffi`, `tests/test_decoders.py` explicitly requires `brotli`. We're currently working on having all packages support `brotlicffi` in Gentoo, since `brotli` doesn't work reliably on PyPy3. Could you please consider making the test accept `brotlicffi` as well?\r\n\r\nI suppose the simplest way would be to reuse the existing logic, i.e.:\r\n\r\n    from httpx._compat import brotli\r\n\r\nI can submit a PR for that.\r\n\r\n---\r\n\r\n- [x] Initially raised as discussion #2903\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/encode/httpx/issues/2906"
+  },
+  {
+    "repo": "encode/httpx",
+    "number": 2666,
+    "title": "httpx 0.24 documentation issue for netrc support",
+    "body": "Thanks to @alexprengere for raising this issue... \r\n\r\n### Discussed in https://github.com/encode/httpx/discussions/2665\r\n\r\n<div type='discussions-op-text'>\r\n\r\n<sup>Originally posted by **alexprengere** April 18, 2023</sup>\r\nFrom the docs: https://www.python-httpx.org/advanced/#netrc-support\r\n```\r\n>>> auth = httpx.NetRCAuth()\r\n>>> client = httpx.Client(auth=auth)\r\n```\r\nUsing that snippet will yield the error:\r\n```\r\n>>> httpx.NetRCAuth()\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\nTypeError: NetRCAuth.__init__() missing 1 required positional argument: 'file'\r\n```\r\nUsing `NetRCAuth(file=None)` fixes the issue, and produces the expected behavior, but perhaps it should be made the default value (I can open a PR).</div>\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/encode/httpx/issues/2666"
+  },
+  {
+    "repo": "encode/httpx",
+    "number": 2314,
+    "title": "Relax `HeaderTypes` type alias definition",
+    "body": "https://github.com/encode/httpx/blob/3aa441015820a41861bff9b0e78d787b1a4f2f68/httpx/_types.py#L46-L47\r\n\r\nCould `Dict` be replaced with `Mapping` in this type definition?\r\n\r\nThis change would placate the type-checker when I do something like the following:\r\n\r\n```python3\r\nfrom collections.abc import Mapping\r\nfrom typing import Final\r\n\r\n_DEFAULT_HEADERS: Final[Mapping[str, str]] = {\r\n    # ...\r\n}\r\n```\r\n\r\nwhen my intent is that the module-level dictionary is intended to be immutable but I don't want to go so far as to write a custom frozen dictionary or wrap it in `types.MappingProxyType`.\r\n\r\nIf this is acceptable, I'm happy to open a PR for the change. I was about to open a patch but your pull request template text made me think twice because this is more than just fixing a typo despite the tiny change.\r\n\r\nThanks!",
+    "state": "CLOSED",
+    "url": "https://github.com/encode/httpx/issues/2314"
+  },
+  {
+    "repo": "encode/httpx",
+    "number": 2126,
+    "title": "`raise_for_status` now raises an exception for 1xx and 3xx responses",
+    "body": "Hi!\r\n\r\nI've just noticed that `response.raise_for_status()` now raises an exception for 1xx and 3xx requests. I don't think it was the case before (namely with version 0.18) and the documentation doesn't seem to have been updated here: https://www.python-httpx.org/exceptions/\r\n\r\n> The HTTPStatusError class is raised by response.raise_for_status() on 4xx and 5xx responses.\r\n\r\n### Steps to reproduce (even though I think this is an intentional behavior, the doc is just not up to date?)\r\n\r\n```python\r\nimport httpx\r\nurl_301 = \"https://stat.pagesjaunes.fr/redirect?target=ETvxvbcLWawl69YzLe_Ph4vo03E_Yj6_Jt1_EvjjbHFaCE3c9RGLEg==&v=2.0&p1=1&p2=1&p3=&p4=RESEAUSOC-SITE-LVS-GRATUIT&p5=LR&p6=1361647273529289141447273529289&p7=06486910&p8=\"\r\nhttpx.get(url_301, follow_redirects=False).raise_for_status()",
+    "state": "CLOSED",
+    "url": "https://github.com/encode/httpx/issues/2126"
+  },
+  {
+    "repo": "encode/httpx",
+    "number": 1418,
+    "title": "Curio is missing in \"Supported async environments\"",
+    "body": "HTTPCore has support for `curio`, but it is not listed yet in the docs: https://www.python-httpx.org/async/#supported-async-environments\r\n\r\nWould be very nice if we added a new sub-section for `curio`, with a similar example usage snippet.",
+    "state": "CLOSED",
+    "url": "https://github.com/encode/httpx/issues/1418"
+  },
+  {
+    "repo": "encode/httpx",
+    "number": 1356,
+    "title": "ASGITransport does not correctly simulate raw_path in the scope",
+    "body": "I'm trying to switch Datasette's internal tests over to using `httpx` with `AsyncClient`.\r\n\r\nThis has almost worked perfectly, but I've run into one problem: it looks like the `ASGITransport` class used by the `AsyncClient(app=asgi_app)` mechanism does not correctly simulate the `raw_path` and `path` keys.\r\n\r\nHere's the code in question: https://github.com/encode/httpx/blob/92ca4d0cc654859fc2257c492e55d8752370d427/httpx/_transports/asgi.py#L82-L97\r\n\r\nAs you can see, it's not populating `raw_path` even though that's part of the ASGI spec.\r\n\r\nThis matters for Datasette because it supports this URL: https://latest.datasette.io/fixtures/table%2Fwith%2Fslashes.csv - which refers to a SQLite database table called `table/with/slashes.csv` (a weird table name but that's test cases for you). The way it does this is through careful decoding of the `raw_path` ASGI scope variable.\r\n\r\nHere are my notes when I first ran into this limitation of ASGITransport: https://github.com/simonw/datasette/pull/1000#issuecomment-705945591",
+    "state": "CLOSED",
+    "url": "https://github.com/encode/httpx/issues/1356"
+  },
+  {
+    "repo": "encode/httpx",
+    "number": 1146,
+    "title": "`allow_redirects` with `httpx.head(...)`",
+    "body": "We've currently got a different `allow_redirects` default on HEAD requests to all other request methods.\r\n\r\nhttps://github.com/encode/httpx/blob/a25d924bb910e85ca597c7b4ed819c6e9e17aecd/httpx/_api.py#L217\r\n\r\nThis is in line with behaviour in `requests`, but I'm not convinced it's something we ought to do. It'd seem to me that we'd do better just to stay consistent rather than have this odd exclusion. I get why it *could* be a reasonable choice, but I think it'd *probably* be better to just stay consistent, and allow the user to switch `allow_redirects=False` if that's their intent.\r\n\r\nFlagging this to be addressed pre-1.0.",
+    "state": "CLOSED",
+    "url": "https://github.com/encode/httpx/issues/1146"
+  },
+  {
+    "repo": "encode/httpx",
+    "number": 1033,
+    "title": "aiter_lines() doesn't return full lines that span multiple chunks",
+    "body": "<https://gist.github.com/scr-oath/aa76d200222a0409d09a0d6feb1a13e2> shows an example setup using cherry.py as server that just outputs two lines - the json is big enough to be sent in two chunks; httpx aiter_lines() gets confused and sends data from the middle of the json line - seems to skip the starting part - which was most likely sent in a chunk without a newline\r\n\r\n### test-httpx.py\r\n```python\r\nimport asyncio\r\nimport json\r\n\r\nimport httpx\r\n\r\n\r\nclass TestHttpx:\r\n    def __init__(self):\r\n        pass\r\n\r\n    async def __call__(self):\r\n        http_client = httpx.AsyncClient()\r\n        async with http_client.stream(method=\"GET\", url='http://localhost:8080/lines') as response:\r\n            is_message = True\r\n            async for line in response.aiter_lines():\r\n                is_message = not is_message\r\n                if is_message:\r\n                    message = json.loads(line)\r\n                    print(message)\r\n\r\n\r\ndef main():\r\n    test_httpx = TestHttpx()\r\n    asyncio.run(test_httpx())\r\n\r\n\r\nif __name__ == '__main__':\r\n    main()\r\n```",
+    "state": "CLOSED",
+    "url": "https://github.com/encode/httpx/issues/1033"
+  },
+  {
+    "repo": "encode/httpx",
+    "number": 822,
+    "title": "KeyError occurs when redirect to custom scheme(ex. market://)",
+    "body": "# Information\r\n\r\nOS platform : mac OS\r\nPython version : 3.7.2\r\nInstalled dependencies and versions : `httpx==0.9.3`\r\nCode snippet\r\n```\r\n    @property\r\n    def port(self) -> int:\r\n        port = self._uri_reference.port\r\n        if port is None:\r\n            return {\"https\": 443, \"http\": 80}[self.scheme]\r\n        return int(port)\r\n```\r\n\r\nError traceback\r\n```\r\n[2020-02-24 14:57:08 +0900] [82150] [ERROR] Exception\r\nTraceback (most recent call last):\r\n  File \"/Users/sym/.pyenv/versions/airbridge-ads-was/lib/python3.7/site-packages/sanic/testing.py\", line 120, in _collect_response\r\n    method, url, *request_args, **request_kwargs\r\n  File \"/Users/sym/.pyenv/versions/airbridge-ads-was/lib/python3.7/site-packages/sanic/testing.py\", line 41, in _local_request\r\n    url, verify=False, *args, **kwargs\r\n  File \"/Users/sym/.pyenv/versions/airbridge-ads-was/lib/python3.7/site-packages/httpx/client.py\", line 671, in get\r\n    trust_env=trust_env,\r\n  File \"/Users/sym/.pyenv/versions/airbridge-ads-was/lib/python3.7/site-packages/httpx/client.py\", line 268, in request\r\n    trust_env=trust_env,\r\n  File \"/Users/sym/.pyenv/versions/airbridge-ads-was/lib/python3.7/site-packages/httpx/client.py\", line 410, in send\r\n    allow_redirects=allow_redirects,\r\n  File \"/Users/sym/.pyenv/versions/airbridge-ads-was/lib/python3.7/site-packages/httpx/client.py\", line 478, in send_handling_redirects\r\n    request = self.build_redirect_request(request, response)\r\n  File \"/Users/sym/.pyenv/versions/airbridge-ads-was/lib/python3.7/site-packages/httpx/client.py\", line 500, in build_redirect_request\r\n    headers = self.redirect_headers(request, url, method)\r\n  File \"/Users/sym/.pyenv/versions/airbridge-ads-was/lib/python3.7/site-packages/httpx/client.py\", line 555, in redirect_headers\r\n    if url.origin != request.url.origin:\r\n  File \"/Users/sym/.pyenv/versions/airbridge-ads-was/lib/python3.7/site-packages/httpx/models.py\", line 215, in origin\r\n    return Origin(self)\r\n  File \"/Users/sym/.pyenv/versions/airbridge-ads-was/lib/python3.7/site-packages/httpx/models.py\", line 287, in __init__\r\n    self.port = url.port\r\n  File \"/Users/sym/.pyenv/versions/airbridge-ads-was/lib/python3.7/site-packages/httpx/models.py\", line 165, in port\r\n    return {\"https\": 443, \"http\": 80}[self.scheme]\r\nKeyError: 'market'\r\n[2020-02-24 14:57:08 +0900] [82150] [INFO] Starting worker [82150]\r\n[2020-02-24 14:57:08 +0900] [82150] [INFO] Stopping worker [82150]\r\n[2020-02-24 14:57:08 +0900] [82150] [INFO] Server Stopped\r\n```\r\n\r\n# Description\r\ni'm using sanic and sanic uses httpx to test web request.\r\nwhen i make a redirect response which goes to \"market://details?id=~~\" (android market url)\", KeyError occurred.\r\nI think it is associated with `port` property method.\r\nIs this the intended behavior?\r\n\r\nThank you.",
+    "state": "CLOSED",
+    "url": "https://github.com/encode/httpx/issues/822"
+  },
+  {
+    "repo": "encode/httpx",
+    "number": 792,
+    "title": "Fix simple typo: conncurrent -> concurrent",
+    "body": "# Issue Type\n\n[x] Bug (Typo)\n\n# Steps to Replicate\n\n1. Examine tests/dispatch/test_connection_pools.py.\n2. Search for `conncurrent`.\n\n# Expected Behaviour\n\n1. Should read `concurrent`.\n\n",
+    "state": "CLOSED",
+    "url": "https://github.com/encode/httpx/issues/792"
+  },
+  {
+    "repo": "encode/httpx",
+    "number": 656,
+    "title": "Drop `Origin` from public API.",
+    "body": "We don't really need to expose `Origin` publically. For the sake of keeping the public API space slim we should...\r\n\r\n* Drop the `url.origin` property.\r\n* Drop `Origin` from the top-level export.\r\n* Move `Origin` into `utils.py`.\r\n* Use `origin = Origin(url)` in our internal usage, rather than `url.origin`.\r\n\r\nMinor breaking change here, although I'm not sure we *document* origin anywhere or not.",
+    "state": "CLOSED",
+    "url": "https://github.com/encode/httpx/issues/656"
+  },
+  {
+    "repo": "encode/httpx",
+    "number": 659,
+    "title": "Rename `concurrency` to `backends`.",
+    "body": "I think we should probably rename our `concurrency` directory to `backends`, so that it mirrors the `backend=...` argument on the Client, right?",
+    "state": "CLOSED",
+    "url": "https://github.com/encode/httpx/issues/659"
+  },
+  {
+    "repo": "encode/httpx",
+    "number": 96,
+    "title": "h11._util.RemoteProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE",
+    "body": "I intermittently got this error when load testing uvicorn endpoint.\r\n\r\nThis error comes from a proxy endpoint where I am also using `encode/http3` to perform HTTP client calls.\r\n\r\n```\r\n  File \"/project/venv/lib/python3.7/site-packages/http3/client.py\", line 365, in post\r\n    timeout=timeout,\r\n  File \"/project/venv/lib/python3.7/site-packages/http3/client.py\", line 497, in request\r\n    timeout=timeout,\r\n  File \"/project/venv/lib/python3.7/site-packages/http3/client.py\", line 112, in send\r\n    allow_redirects=allow_redirects,\r\n  File \"/project/venv/lib/python3.7/site-packages/http3/client.py\", line 145, in send_handling_redirects\r\n    request, verify=verify, cert=cert, timeout=timeout\r\n  File \"/project/venv/lib/python3.7/site-packages/http3/dispatch/connection_pool.py\", line 121, in send\r\n    raise exc\r\n  File \"/project/venv/lib/python3.7/site-packages/http3/dispatch/connection_pool.py\", line 116, in send\r\n    request, verify=verify, cert=cert, timeout=timeout\r\n  File \"/project/venv/lib/python3.7/site-packages/http3/dispatch/connection.py\", line 59, in send\r\n    response = await self.h11_connection.send(request, timeout=timeout)\r\n  File \"/project/venv/lib/python3.7/site-packages/http3/dispatch/http11.py\", line 65, in send\r\n    event = await self._receive_event(timeout)\r\n  File \"/project/venv/lib/python3.7/site-packages/http3/dispatch/http11.py\", line 109, in _receive_event\r\n    event = self.h11_state.next_event()\r\n  File \"/project/venv/lib/python3.7/site-packages/h11/_connection.py\", line 439, in next_event\r\n    exc._reraise_as_remote_protocol_error()\r\n  File \"/project/venv/lib/python3.7/site-packages/h11/_util.py\", line 72, in _reraise_as_remote_protocol_error\r\n    raise self\r\n  File \"/project/venv/lib/python3.7/site-packages/h11/_connection.py\", line 422, in next_event\r\n    self._process_event(self.their_role, event)\r\n  File \"/project/venv/lib/python3.7/site-packages/h11/_connection.py\", line 238, in _process_event\r\n    self._cstate.process_event(role, type(event), server_switch_event)\r\n  File \"/project/venv/lib/python3.7/site-packages/h11/_state.py\", line 238, in process_event\r\n    self._fire_event_triggered_transitions(role, event_type)\r\n  File \"/project/venv/lib/python3.7/site-packages/h11/_state.py\", line 253, in _fire_event_triggered_transitions\r\n    .format(event_type.__name__, role, self.states[role]))\r\nh11._util.RemoteProtocolError: can't handle event type ConnectionClosed when role=SERVER and state=SEND_RESPONSE\r\n```",
+    "state": "CLOSED",
+    "url": "https://github.com/encode/httpx/issues/96"
+  },
+  {
+    "repo": "encode/httpx",
+    "number": 336,
+    "title": "Question: Enforce HTTP version for particular request",
+    "body": "Hey, thanks for sharing this great library with the community. \r\n\r\nIs there a documented way of enforcing particular HTTP protocol version per request?\r\nSay I want to make http/1.1 request to the server and make http/2 request to the same server and validate if the response headers are matching my rules.\r\n\r\nThanks",
+    "state": "CLOSED",
+    "url": "https://github.com/encode/httpx/issues/336"
+  },
+  {
+    "repo": "encode/httpx",
+    "number": 198,
+    "title": "Erroneous Infinite Redirect Loop detected",
+    "body": "Our redirect loop detection or redirects in general is broken somehow because this shouldn't error out:\r\n\r\n```python\r\nfrom httpx import Client\r\n\r\nclient = Client()\r\nr = client.request(\"GET\", \"https://www.howsmyssl.com/a/check\")  # Completes successfully\r\n\r\nr = client.request(\"GET\", \"https://howsmyssl.com/a/check\")  # Sends a redirect to 'www.howsmyssl.com' but then errors?\r\n```",
+    "state": "CLOSED",
+    "url": "https://github.com/encode/httpx/issues/198"
+  }
+]

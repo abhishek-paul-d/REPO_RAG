@@ -1,0 +1,167 @@
+{
+  "repo": "pallets/jinja",
+  "pin": "5ef70112a1ff19c05324ff889dd30405b1002044",
+  "protocol_sha256": "9c73301e83e5c79c8258959bac52d24b1daf347cb46391b74a42f976a9a03df7",
+  "nonmerge_commits": 2175,
+  "fix_candidates": 629,
+  "questions": 86,
+  "groups": 86,
+  "target": 200,
+  "shortfall": 114,
+  "via_pr_lookups": 0,
+  "via_pr_gold_window": "only verified mergeCommit SHAs of the fixed PR search window in the capped nonmerge corpus; other fixes may be unlabelled",
+  "skipped": [
+    {
+      "sha": "676fd8c6b29c8f72a7296d2f6016e9b292942c25",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 454
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "46acbf02ed9ab58c7a92553c95790e75bdc3c930",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 445
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "f22fdd5ffe81aab743f78290071b0aa506705533",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 404
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "1ae49941f8d2c4cb88a8cb952d095a7b1e1a90fe",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 433
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "a1f76f92a182e3afbd7e9d221cf7ece8b89649a6",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 259
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "701e9ada2b6968cf2bc41a3c1d4235922ce164f5",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 238
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "e6c0630249c052f953686a7c8e155e5c5b4b075c",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 152
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "7d268bef0e8f3f12c0acb90f30d67726a3e3f261",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 59
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "898975dd5d02fcbc13dbe19ff65a50b43820df1a",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 64
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "1655b4e4c1dbd213657f3e6aca28f083f7be62af",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 40
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "086174cd846680d6c4fabdf032450813fa160271",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 34
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "5b3f4dcca20184f9edad5e47fee35b25d5c2a5be",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 376
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "5dcb724c92f50574f224da21a622aa81300e6777",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 339
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "604b8468e10c349abcffaf17b0ab8bdcd91cf3ca",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 343
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "874c12e5f4bfdb989dd63c51734796869c6cc185",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 317
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "8efb7ee366250ccc993788aa237b7df53152c58f",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 284
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "a39502eb7173de930e20bf7e03f1bbe548844b18",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 283
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "eec3138d28317e0ccd76640be6e6624675f3e78a",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 238
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "6002ce9940326ffc1254a4db175d8b401be31207",
+      "issue": {
+        "repo": "pallets/jinja",
+        "number": 218
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    }
+  ]
+}

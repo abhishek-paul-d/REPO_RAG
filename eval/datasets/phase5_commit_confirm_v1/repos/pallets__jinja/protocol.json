@@ -1,0 +1,165 @@
+{
+  "version": 2,
+  "written": "2026-10-27",
+  "task": "confirm the retrieval_k=200 candidate-pool effect for commit bug-to-fix search on repositories not used before; issue to its own linked fix, not similar past fixes",
+  "repos": [
+    "pallets/click",
+    "encode/httpx",
+    "pallets/werkzeug",
+    "pallets/jinja"
+  ],
+  "pins": {
+    "pallets/click": "2247b35ea1c47c727d7a06e51fa280e12a863ff6",
+    "encode/httpx": "b5addb64f0161ff6bfe94c124ef76f6a1fba5254",
+    "pallets/werkzeug": "b73dce5a2ce14f7c7fd645699d1d878de48d2948",
+    "pallets/jinja": "5ef70112a1ff19c05324ff889dd30405b1002044"
+  },
+  "selection": {
+    "max_commits": 5000,
+    "target_issues_per_repo": 200,
+    "via_pr_search_max_prs": 200,
+    "direct_repos": [
+      "pallets/click",
+      "encode/httpx",
+      "pallets/werkzeug",
+      "pallets/jinja"
+    ],
+    "via_pr_repos": [],
+    "order": "most recent 5000 non-merge commits at the recorded pin; closed GitHub Issues with nonempty title and body reached by verified direct closing references",
+    "eligibility": "verified GitHub Issue, CLOSED, nonempty title and body; all linked in-corpus non-merge commits for sampled issue form gold; link labels are not independent bug-fix judgements",
+    "shortfalls": "report actual numbers, missing issues and search results outside the pinned 5000-commit corpus; never fabricate 200 pairs",
+    "merge_policy": "merge commits excluded, direct closing refs on merges are not propagated to every branch commit",
+    "historical_overlap": "none of these repositories appears in any earlier evaluation; Werkzeug and Jinja share maintainers and style with Flask, which stays a caveat"
+  },
+  "documents": {
+    "format": "symbols_diff800",
+    "commit_diff_chars": 800,
+    "linked_issue_text": false,
+    "scrub": "remove closing-reference phrase spans only; preserve adjacent description; scrub #N, issue/PR URLs, Issue N, Sphinx issue roles and anchors; redact email-like strings",
+    "is_fix": "message heuristic only in evaluation; assert every gold qualifies independently of links; production may additionally use verified links"
+  },
+  "split": {
+    "dev_fraction": 0.2,
+    "seed": 42,
+    "unit": "connected components of issues and gold commit SHAs, within repository",
+    "tuning": "none; all methods prechosen; headline held-out test and separate pooled descriptive rows"
+  },
+  "models": {
+    "embedding": "Qwen/Qwen3-Embedding-0.6B",
+    "dims": 512,
+    "dtype": "float32",
+    "max_tokens": 2048,
+    "query_instruction": "Instruct: Given a developer question or a description of behaviour, retrieve the code that implements it\nQuery:",
+    "rerankers": [
+      "Qwen/Qwen3-Reranker-4B",
+      "Qwen/Qwen3-Reranker-8B"
+    ]
+  },
+  "retrieval": {
+    "methods": [
+      "bm25",
+      "bm25_2000",
+      "dense",
+      "hybrid",
+      "rerank4b",
+      "rerank8b"
+    ],
+    "retrieval_k": 50,
+    "rerank_candidate_depth": 50,
+    "dense_weight": 1.0,
+    "bm25_weight": 0.3,
+    "rrf_k": 60,
+    "rerank_instruction": "Given a bug report, judge whether this commit's changes fix the reported bug",
+    "instruction_mode": "default",
+    "first_stage_weight": 0.0,
+    "cutoffs": [
+      1,
+      5,
+      10
+    ],
+    "mrr_cutoff": 10
+  },
+  "statistics": {
+    "samples": 10000,
+    "seed": 42,
+    "confidence": 0.95,
+    "paired_unit": "connected evidence group",
+    "multiplicity": "unadjusted exploratory intervals"
+  },
+  "query_budgets": {
+    "bm25": "full query",
+    "bm25_2000": 2000,
+    "dense": "embedding tokenizer max 2048 tokens",
+    "rerank": "first 2000 characters, then pair tokenizer max 2048 tokens",
+    "interpretation": "BM25_2000 is a character-budget sensitivity check, not a matched-token neural comparison",
+    "length_bins_chars": [
+      2000,
+      8000
+    ]
+  },
+  "expected_revisions": {
+    "embedding": "97b0c614be4d77ee51c0cef4e5f07c00f9eb65b3",
+    "rerank8b": "77d193c791ed757ca307ee72715aa132723da912"
+  },
+  "confirm": {
+    "hypothesis": "Building the candidate pool from longer per-signal lists (retrieval_k=200) but still reranking only the fused top 50 raises Hit@5 and MRR@10 for commit search, at no extra reranker cost. Evidence so far is post hoc on the v2 test split (Hit@5 +0.0152 [+0.0037, +0.0309], MRR +0.0113 [-0.0009, +0.0266]).",
+    "judge": "rerank8b",
+    "rerank_depth": 50,
+    "bm25_weight": 0.3,
+    "arms": {
+      "A": 50,
+      "B": 200,
+      "C": 100
+    },
+    "arm_roles": {
+      "A": "control, current default",
+      "B": "hypothesis",
+      "C": "dose point, descriptive only"
+    },
+    "scoring": "all arms run the production search path with one shared score cache per question: a (query, document) pair is scored once, so arms differ only by which candidates enter the reranked top 50. Arm A is scored again from scratch (no cache) to measure GPU rerun noise.",
+    "primary": "B minus A on all fresh questions: Hit@5 and MRR@10, paired evidence-group bootstrap (10,000 samples, seed 42)",
+    "rule": {
+      "min_hit5_gain": 0.01,
+      "min_mrr_delta": 0.0,
+      "lower_bound_floor": -0.01,
+      "repo_guard_min_groups": 30,
+      "max_repo_hit5_loss": 0.02,
+      "max_ci_width_hit5": 0.06,
+      "tentative_below_questions": 100,
+      "noise": "|Hit@5(A rerun) - Hit@5(A)| must not exceed the observed B-A Hit@5 effect, otherwise inconclusive",
+      "outcomes": "keep_50 when a check fails; inconclusive when the checks pass but the interval is wider than max_ci_width_hit5 or the noise check fails; eligible_pending_review otherwise. Nothing changes automatically.",
+      "if_adopted": "add a per-kind commit setting (retrieval_k is shared by code, docs and commits, and only commits were measured); keep code and docs at 50"
+    },
+    "timing": {
+      "questions": 40,
+      "repetitions": 3,
+      "arm_order": "rotate arm order by question index plus repetition",
+      "warmup": "one unmeasured production call per arm and repo",
+      "label": "warm A100 experiment timing, per-repo p50/p95 only; never averaged across repos; not laptop speed"
+    },
+    "dev_use": "none: every fresh question is evaluation data; split labels are ignored"
+  },
+  "supporting": {
+    "dataset": "phase5_bugfix_v2",
+    "split": "dev",
+    "repos": [
+      "psf/requests",
+      "pallets/flask",
+      "fastapi/fastapi"
+    ],
+    "freeze_sha256": {
+      "fastapi__fastapi": "34db2e065fe8be30cc59b9f3aaf7cca963f836b541e45f5ad9dc9eb0bde58905",
+      "pallets__flask": "abfc92cb651429032370e64caeb80f7a51c9ea806abe9ef3463ee00b79efd338",
+      "psf__requests": "c9532588d10aa420b9c90c89965be7e39ac817a0d9a6e118aef720eead41d0a0"
+    },
+    "note": "66 questions; the nested-50 effect was never examined on dev, so this is a small unbiased check, reported separately"
+  },
+  "not_measured": [
+    "generated answer quality",
+    "similar past fix usefulness for a new bug",
+    "independent label review",
+    "laptop or deployment latency",
+    "code and docs retrieval at retrieval_k=200",
+    "other languages"
+  ]
+}

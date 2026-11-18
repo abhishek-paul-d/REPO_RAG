@@ -1,0 +1,22 @@
+{
+  "first_stage": {
+    "qwen3-0.6b@512": {
+      "dim": 512,
+      "index_docs_per_s": 231.5
+    },
+    "qwen3-4b@512": {
+      "dim": 512,
+      "index_docs_per_s": 75.8
+    },
+    "qwen3-4b@full": {
+      "dim": 2560,
+      "index_docs_per_s": 75.8
+    }
+  },
+  "top_k": 50,
+  "doc_format": "symbols_diff800",
+  "n_queries": 144,
+  "n_test": 72,
+  "n_commits": 4882,
+  "reference_nomic_7b_run2_all_ndcg@10": 0.596
+}

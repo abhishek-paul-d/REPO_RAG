@@ -1,0 +1,195 @@
+{
+  "repo": "fastapi/fastapi",
+  "pin": "7a0a3f0b286c6c865cf4398ea0e957a87b8bffa4",
+  "protocol_sha256": "314ab8b93072dac058583f8f4c3054543a62c316828cf2d9afdd129a4762089c",
+  "nonmerge_commits": 5000,
+  "fix_candidates": 2442,
+  "questions": 18,
+  "groups": 18,
+  "target": 200,
+  "shortfall": 182,
+  "via_pr_lookups": 22,
+  "via_pr_gold_window": "only verified mergeCommit SHAs of the fixed PR search window in the capped nonmerge corpus; other fixes may be unlabelled",
+  "skipped": [
+    {
+      "sha": "687065509b047a642acd1d281d6d68c6698509b1",
+      "pr": 347,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "61a8d6720cfcaad8aa4bccfbf4359d3f2199d460",
+      "pr": 9567,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "5100a98ccd42bf1201f6cde093222947facbc616",
+      "pr": 9468,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "375513f11494bc3499050ad2a0d378fb6e37ca98",
+      "pr": 4871,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "cc9a73c3f83fab4f1d9fcb19dfe5b562869d932c",
+      "pr": 2944,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "e4300769ac45c368bcb3a080fdb79890fe413355",
+      "pr": 1540,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "46974c510e89c35456f40ca35d432fe0b94e0f97",
+      "pr": 5659,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "0781a91d194e994eccddae14c2afe892ac0d572b",
+      "pr": 2969,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "eb2e1833612e67c9b9ffd2bb446a672d3dffccf4",
+      "pr": 2606,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "d06b4d7bb88156bf101f4106b3ddecbd9867ef82",
+      "pr": 3382,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "11d0a08acda2f4bbc21ca1c5df92b34d8758c842",
+      "pr": 3372,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "dd963511d699b463b416408a0ad705b3dda0d067",
+      "pr": 538,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "4eada92883e97ea3d01ce716abfa34079c691d84",
+      "pr": 1872,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "dadd6650ed0418722ff3e39364fed53460ec62ea",
+      "pr": 1763,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "8fb755703d34b4d2ae30fd8d5d2bdc8d6983939d",
+      "pr": 1524,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "b79e0026352a757b449446027bad16daba1bf77d",
+      "pr": 1299,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "e26f94018c1a0c2be1c683247749edac2f607951",
+      "pr": 1031,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "02441ff0313d5b471b662293244c53e712f1243f",
+      "pr": 1122,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "c425509d57a47a6d31ca8b0357ea6a68d830065b",
+      "pr": 918,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "874d24181e779ebc6e1c52afb7d6598f863fd6a8",
+      "pr": 856,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "b85b2e39425c9d37d614ce89c056ed77bad7af6d",
+      "pr": 756,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "19c77e35bdde33aeec1eb2cfa680f95016492b69",
+      "pr": 748,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "4e50f534591d2a9c286a33e7eef5463b1fd8a1fd",
+      "pr": 637,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "d6d99b86cbebc12461b62dfca130d6c0e8e49d2e",
+      "pr": 598,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "4cea311e6ef112edfa1e42fde2f63b6ab2d7e413",
+      "pr": 537,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "3025a368c6ea7cc9260fe81c20b8af30e9d8aab5",
+      "pr": 454,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "4642f63a1ebde30da9c9169229bb37a4932cce63",
+      "pr": 493,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "c5817912d2be25bb310bf9da517882f57bbe7bb5",
+      "pr": 439,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "19c53b21c19fc193b070281baa9e585d26cec91c",
+      "pr": 437,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "73dbbeab554b8d94fffd934d951009f026491015",
+      "pr": 435,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "dcc1e1bcf823927817d8c133962bdb7a29e3d797",
+      "pr": 338,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "f0df79aa918798d466e87c2163b2d3e81c51e854",
+      "pr": 320,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "bd407cc4ed81b21e4287735b7d31a30a452e3a9d",
+      "pr": 278,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "01b43e6e25a0bac85f2612cbb44a5237e976d6ed",
+      "pr": 241,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "906cc60f65b41a3b3f6db73d1e44676451620406",
+      "pr": 160,
+      "reason": "merge commit or outside capped pinned corpus"
+    },
+    {
+      "sha": "5c9c088a2a13e888cdb93eb92d7af72058003397",
+      "pr": 17,
+      "reason": "merge commit or outside capped pinned corpus"
+    }
+  ]
+}

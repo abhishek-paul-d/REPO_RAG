@@ -1,0 +1,15 @@
+{
+  "repo": "encode/httpx",
+  "pin": "b5addb64f0161ff6bfe94c124ef76f6a1fba5254",
+  "sha256": {
+    "protocol.json": "9c73301e83e5c79c8258959bac52d24b1daf347cb46391b74a42f976a9a03df7",
+    "records.jsonl": "71850bf0ac64c8ef0ffcee768a98b5d37408870760afc09510474f77fdd9e40e",
+    "pairs.jsonl": "d9edbfe11b1fe51b8bb5406e6ffcace70b78cf431cc104fc444564c92ca78244",
+    "corpus.jsonl": "eb4c618b462fc40887412175e5f2ea3cf677123b126bc58c52cf19fc6fbc5bc5",
+    "links.json": "6fc59e7d68201b1af3ac7d4d8dae8cb8b2c583ed631d6efd3398f372864a521d",
+    "issues.json": "a1373d63ef959ae408ff1f71f2e30c170b858139dbb62e51b0ce80bc186fb0b5",
+    "selection.json": "6ebba47b0906099f94cb10e9a87c59a9a3659b47444eee15692d8f07a3741582",
+    "preparation.json": "b0e96987350ec5aad0592a24220389409b9db1e234d4595e843dddc825c2baec"
+  },
+  "stage": "frozen before any retrieval/model loading"
+}

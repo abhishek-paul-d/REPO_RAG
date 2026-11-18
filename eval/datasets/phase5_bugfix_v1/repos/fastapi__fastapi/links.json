@@ -1,0 +1,170 @@
+[
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "ad03e117c0010a563067740c97cb7ab011cb5174",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 15401,
+    "link_type": "via_pr",
+    "pr_number": 15077
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "c3f54a0794d8acadb0059c55edbb314678253921",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 14680,
+    "link_type": "via_pr",
+    "pr_number": 14681
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "c5fd75a321496b1f8212744bde217ec8ea956154",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 10997,
+    "link_type": "via_pr",
+    "pr_number": 14616
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "97145588f5442aa7c3830173813d5d1a2c893521",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 10719,
+    "link_type": "via_pr",
+    "pr_number": 13920
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "b49435becdf53942be248fc2ffc7f53df5ac313c",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 10127,
+    "link_type": "via_pr",
+    "pr_number": 14794
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "0b5fa563cdfb887e4145d8419ae91b6a40905349",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 14454,
+    "link_type": "via_pr",
+    "pr_number": 14459
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "0ec4bafca204c92dca903437e78514246fe14eac",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 14454,
+    "link_type": "via_pr",
+    "pr_number": 14455
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "982448661630e2f412f18a192eed29d0da4a8fb1",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 10720,
+    "link_type": "via_pr",
+    "pr_number": 9753
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "1c1e584abd5cb98920bf22966f7a8b79d3ec64be",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 5065,
+    "link_type": "via_pr",
+    "pr_number": 5077
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "d68c066246c9a70f179ca165614dac19b8c8beeb",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 13533,
+    "link_type": "via_pr",
+    "pr_number": 13537
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "378ad688b7e57efb190506b3b36be65eb8ad5e6f",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 5623,
+    "link_type": "via_pr",
+    "pr_number": 5624
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "51ad909ffe9f5b2d5c9315554e75e39a8a2d725c",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 10177,
+    "link_type": "via_pr",
+    "pr_number": 13786
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "f97524429d0062bede9158ecdf4cefeee3b47a61",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 12239,
+    "link_type": "via_pr",
+    "pr_number": 14097
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "b51ec36f2e442495de5e4c22ae51a8f5c44917eb",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 9424,
+    "link_type": "via_pr",
+    "pr_number": 9425
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "15dd2b67d3f8763d5cd523b79a1c901c05d48bd7",
+    "issue_repo": "pydantic/pydantic",
+    "issue_number": 11382,
+    "link_type": "via_pr",
+    "pr_number": 13314
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "4f8157588e47f909276e0474f6926740a2e55b9c",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 13022,
+    "link_type": "via_pr",
+    "pr_number": 5823
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "f6819ba5d2d90a898f05cc5c3a7a4d5653b2555f",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 12554,
+    "link_type": "via_pr",
+    "pr_number": 12809
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "6f671b8b5a6b8550f254957a99f28090dc073363",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 12554,
+    "link_type": "via_pr",
+    "pr_number": 12811
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "f0a8f00b41490cd7c54029036a6f2fbd49f78751",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 12554,
+    "link_type": "via_pr",
+    "pr_number": 12807
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "51b625e127982f626886d467122ef85d5772d1db",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 11580,
+    "link_type": "via_pr",
+    "pr_number": 11867
+  },
+  {
+    "repo": "fastapi/fastapi",
+    "commit_sha": "659350e9cd0e1948ce2bdc95cc3ac2ffb5a41238",
+    "issue_repo": "fastapi/fastapi",
+    "issue_number": 10236,
+    "link_type": "via_pr",
+    "pr_number": 10240
+  }
+]

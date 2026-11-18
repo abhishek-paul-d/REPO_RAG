@@ -1,0 +1,26 @@
+{
+  "approved_on": "2026-11-01",
+  "approved_by": "the user, in chat: \"Approve all four\"",
+  "scope": "Download and run these exact revisions for the Phase 7 answer-model bake-off only, on the user's Colab A100 40 GB, under protocol phase7_bakeoff_v1. No other model, revision or use is approved.",
+  "model_proposal_sha256": "fca3e9816c1110e15a36b80fba59393b671046c1272e859db145b7302628f312",
+  "protocol_sha256": "d2d95fe442e7fb83a39cb7c2ce41024bc5aa9c6b40843734552d610d056eb105",
+  "approved_models": [
+    {
+      "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "revision": "cdbee75f17c01a7cc42f958dc650907174af0554"
+    },
+    {
+      "model_id": "allenai/Olmo-3-7B-Instruct",
+      "revision": "6e5971d9eba42665f5bd5a0fcf047f299ce1dccc"
+    },
+    {
+      "model_id": "Qwen/Qwen3-14B",
+      "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18"
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+    }
+  ],
+  "not_decided": "The dev-split amendment Claude recommended in review (extra dev-only facts for the release chain, date-range counts, blame and tag lookup) was not part of this approval. Do it only if the user says so; if done, it is a separately named v2 with a reason, made before any model runs."
+}

@@ -1,0 +1,95 @@
+{
+  "repo": "psf/requests",
+  "pin": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60",
+  "protocol_sha256": "314ab8b93072dac058583f8f4c3054543a62c316828cf2d9afdd129a4762089c",
+  "nonmerge_commits": 4883,
+  "fix_candidates": 1101,
+  "questions": 141,
+  "groups": 138,
+  "target": 200,
+  "shortfall": 59,
+  "via_pr_lookups": 0,
+  "via_pr_gold_window": "only verified mergeCommit SHAs of the fixed PR search window in the capped nonmerge corpus; other fixes may be unlabelled",
+  "skipped": [
+    {
+      "sha": "dc75b3ca0b4c95648eb07b92cb414394d99c13a0",
+      "issue": {
+        "repo": "kennethreitz/requests",
+        "number": 5048
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "2667c772b905aaba37dfefc33835ef769286776c",
+      "issue": {
+        "repo": "kennethreitz/requests",
+        "number": 4024
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "0b41cec7a42682da52a24c87ff6b2c341f101005",
+      "issue": {
+        "repo": "psf/requests",
+        "number": 1846
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "90837359632b43aba7900b65b42744715f0b739a",
+      "issue": {
+        "repo": "kennethreitz/requests",
+        "number": 1434
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "7fc93788953d07bbd8aced1877acd156a8626acd",
+      "issue": {
+        "repo": "psf/requests",
+        "number": 1015
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "8081d7b15cf893435c19ea1c0d5e4392a60fe18f",
+      "issue": {
+        "repo": "psf/requests",
+        "number": 817
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "301d1a838f56c6c8e5e886b7dde3de88656cfae4",
+      "issue": {
+        "repo": "kennethreitz/requests",
+        "number": 790
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "0086f97b6553ac323565e8653eae678e380219ae",
+      "issue": {
+        "repo": "psf/requests",
+        "number": 192
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "03babafc7b16bd84b13f405fd66ccb1751f4aaee",
+      "issue": {
+        "repo": "psf/requests",
+        "number": 186
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "ed160f2d2a25c7f8d307680532751cab3aa0c702",
+      "issue": {
+        "repo": "psf/requests",
+        "number": 141
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    }
+  ]
+}

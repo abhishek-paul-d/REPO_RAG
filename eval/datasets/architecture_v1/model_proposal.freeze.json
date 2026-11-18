@@ -1,0 +1,9 @@
+{
+  "sha256": {
+    "model_proposal.json": "9be37d65903a67a08a288e6bf187f193e68824b73581242696154697d360f494"
+  },
+  "stage": "proposal v2 frozen before any summary model run; approval pending",
+  "supersedes": {
+    "model_proposal_v1.json": "633f206709181bd01defccd2b381fb04f42c5b080bff6496bead380ffc132dc8"
+  }
+}

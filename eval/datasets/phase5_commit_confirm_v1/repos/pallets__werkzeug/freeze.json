@@ -1,0 +1,15 @@
+{
+  "repo": "pallets/werkzeug",
+  "pin": "b73dce5a2ce14f7c7fd645699d1d878de48d2948",
+  "sha256": {
+    "protocol.json": "9c73301e83e5c79c8258959bac52d24b1daf347cb46391b74a42f976a9a03df7",
+    "records.jsonl": "6ac5164f98026d7d06c85d2d6c0cc139c25770080a3696b798b16b36a612b7f8",
+    "pairs.jsonl": "1c629914f6e8b94853fce8a237b39a84c5f0cce7879430e39dcb3cc3e4b0f39e",
+    "corpus.jsonl": "8f2023c0809caec6c20baf7709156e67ece639d515930c2e9ade29747a724487",
+    "links.json": "e900beb353f0243e95a6375da1cff585d0e87538f7d50186dfa57fcf13be22fe",
+    "issues.json": "6035a338176eda1ca9ab4883c88184b9cf8e814b1967c0226e731873e6896454",
+    "selection.json": "ff27d5d576489fe1574e85bfbdd11eeb860ef312038e30279b0172f2e6f2fa14",
+    "preparation.json": "17fdec023a36a9c517d8cd40be44fbb2f379dddf4976761e387a9ccea263e706"
+  },
+  "stage": "frozen before any retrieval/model loading"
+}

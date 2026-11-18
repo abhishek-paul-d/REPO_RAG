@@ -1,0 +1,239 @@
+{
+  "repo": "pallets/flask",
+  "pin": "d086db856be187255b8ec61ef409357393020f32",
+  "protocol_sha256": "314ab8b93072dac058583f8f4c3054543a62c316828cf2d9afdd129a4762089c",
+  "nonmerge_commits": 3829,
+  "fix_candidates": 1181,
+  "questions": 170,
+  "groups": 163,
+  "target": 200,
+  "shortfall": 30,
+  "via_pr_lookups": 0,
+  "via_pr_gold_window": "only verified mergeCommit SHAs of the fixed PR search window in the capped nonmerge corpus; other fixes may be unlabelled",
+  "skipped": [
+    {
+      "sha": "3a8cc3766363a6d4376a08263b70e6a143b32221",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 2476
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "2efb565fbc293c9395e735316024d56e03fb0350",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 2422
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "f7c35bf0d51d1ae02709e39fe29110e12f64fb87",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 2059
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "2a6579430649d6514384ca592730c6995e140c43",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 2059
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "75b85656ddad86cbf0c3adb1128b758242793929",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 1867
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "697f7b9365304c45216e6c8dd307d931ea1506d0",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 1676
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "13754b6d117eb6847cca45475412fdd05025f1b8",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 1538
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "dcfdfc6476b7cce7c32f48e90e6558cdd2c854fb",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 1960
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "6e46d0cd3969f6c13ff61c95c81a975192232fed",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 1841
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "8458cc5cd10bac1dabea3dae86424bce46926a49",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 1849
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "f91aea2aa0c83964cebdd71350318932baffe700",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 1826
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "8482ce6b8ca9f1110b86bff4c3f998655fdecf8a",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 1767
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "6aee9f6d77e0696bd570d6095445d73c48539f8a",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 1596
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "66b4ea91b4f59c40b36ee2c5a5ccd1218387a891",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 1195
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "0d19fa0a061d91f0a6fec5cc60af4a4c1b46aa9b",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 1476
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "78cd4161f0a264df89046b6324446b27011b0930",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 1401
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "2639a23b8875abb6c1dd2889728920cce5d09632",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 1018
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "76e2f9cd0396c71eedf7e3b1dabf60f36585722e",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 921
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "6f44ca705f277580105d8e55a7a3994802ac7e7d",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 924
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "2506c0b9a96d48f14624acfa552fc88e38a542ae",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 930
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "d1d835c02302884b2db1cab099b3ea6a84f41d32",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 798
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "3b393f89f66733f7824a50b33b93eae9999812ad",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 657
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "8339cb35082fc93d3a9c98616aed7fe0c1c642dc",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 535
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "3bec75d230507335eaf9066605d3893e185b9e11",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 447
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "7f8709147435bea69fa15ae0de9a2326ab5dfc41",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 575
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "5b462dd38224648e7a3e533449784a9e236f957d",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 576
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "5b462dd38224648e7a3e533449784a9e236f957d",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 575
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "18413ed1bf08261acf6d40f8ba65a98ae586bb29",
+      "issue": {
+        "repo": "pallets/flask",
+        "number": 582
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    }
+  ]
+}

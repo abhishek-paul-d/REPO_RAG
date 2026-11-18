@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "written": "2026-10-26",
+  "questions": [
+    "Does commit rerank depth 100 or 200 improve over 50?",
+    "Is commits BM25 weight 0.3 appropriate?"
+  ],
+  "input_protocol_sha256": "11910a7b0db2458c0446691b856d2c6a4b8a9bcea976392eeb45f4d615ba1ef8",
+  "input_freeze_sha256": {
+    "fastapi__fastapi": "34db2e065fe8be30cc59b9f3aaf7cca963f836b541e45f5ad9dc9eb0bde58905",
+    "pallets__flask": "abfc92cb651429032370e64caeb80f7a51c9ea806abe9ef3463ee00b79efd338",
+    "psf__requests": "c9532588d10aa420b9c90c89965be7e39ac817a0d9a6e118aef720eead41d0a0"
+  },
+  "repos": [
+    "psf/requests",
+    "pallets/flask",
+    "fastapi/fastapi"
+  ],
+  "models": {
+    "embedding": "Qwen/Qwen3-Embedding-0.6B",
+    "dims": 512,
+    "dtype": "float32",
+    "max_tokens": 2048,
+    "query_instruction": "Instruct: Given a developer question or a description of behaviour, retrieve the code that implements it\nQuery:",
+    "rerankers": [
+      "Qwen/Qwen3-Reranker-4B",
+      "Qwen/Qwen3-Reranker-8B"
+    ]
+  },
+  "statistics": {
+    "samples": 10000,
+    "seed": 42,
+    "confidence": 0.95,
+    "paired_unit": "connected evidence group",
+    "multiplicity": "unadjusted exploratory intervals"
+  },
+  "retrieval": {
+    "methods": [
+      "bm25",
+      "bm25_2000",
+      "dense",
+      "hybrid",
+      "rerank4b",
+      "rerank8b"
+    ],
+    "retrieval_k": 50,
+    "rerank_candidate_depth": 50,
+    "dense_weight": 1.0,
+    "bm25_weight": 0.3,
+    "rrf_k": 60,
+    "rerank_instruction": "Given a bug report, judge whether this commit's changes fix the reported bug",
+    "instruction_mode": "default",
+    "first_stage_weight": 0.0,
+    "cutoffs": [
+      1,
+      5,
+      10
+    ],
+    "mrr_cutoff": 10
+  },
+  "depth": {
+    "depths": [
+      50,
+      100,
+      200
+    ],
+    "retrieval_k": 200,
+    "dense_weight": 1.0,
+    "bm25_weight": 0.3,
+    "rrf_k": 60,
+    "primary_judge": "rerank8b",
+    "secondary_judge": "rerank4b",
+    "scoring": "one production 200-pair call per query per judge; all depth arms reuse its probabilities",
+    "tie_order": "probability descending, original fused rank ascending",
+    "historical": "v2 retrieval_k=50 rerank depth=50 is a separate historical control, not the prefix-50 baseline"
+  },
+  "weight": {
+    "weights": [
+      0.0,
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "retrieval_k": 50,
+    "baseline": 0.3,
+    "min_dev_mrr_gain": 0.01,
+    "selection": "pooled dev questions only; test is descriptive, never selects",
+    "tie_order": "closest to 0.3 then lower weight",
+    "conditional": "if selected !=0.3, run fresh 8B depth50 with selected and 0.3, paired test comparison; no automatic default changes"
+  },
+  "cohorts": {
+    "source_path": "any old/new gold path outside docs/doc/documentation directories, rst/md/txt suffixes and changes/changelog/history/news basename prefixes; localization proxy includes tests/configs; not independent bug-fix labels",
+    "expected_test": 263,
+    "expected_source_test": 208,
+    "link_paths": "overlapping views, not independent experiments"
+  },
+  "rule": {
+    "min_hit5_gain": 0.02,
+    "hit5_ci_lower_above": 0.0,
+    "min_mrr_delta": -0.005,
+    "source_min_hit5_delta": 0.0,
+    "repo_guard_min_groups": 30,
+    "max_repo_hit5_loss": 0.02,
+    "prefer_200_over_100_gain": 0.01,
+    "prefer_200_ci_lower_above": 0.0,
+    "default_changed": false
+  },
+  "query_budgets": {
+    "bm25": "full query",
+    "bm25_2000": 2000,
+    "dense": "embedding tokenizer max 2048 tokens",
+    "rerank": "first 2000 characters, then pair tokenizer max 2048 tokens",
+    "interpretation": "BM25_2000 is a character-budget sensitivity check, not a matched-token neural comparison",
+    "length_bins_chars": [
+      2000,
+      8000
+    ]
+  },
+  "expected_revisions": {
+    "embedding": "97b0c614be4d77ee51c0cef4e5f07c00f9eb65b3",
+    "rerank4b": "22e683669bc0f0bd69640a1354a6d0aebcfeede5",
+    "rerank8b": "77d193c791ed757ca307ee72715aa132723da912"
+  },
+  "timing": {
+    "questions": 60,
+    "order": "first 60 from deterministic round-robin sorted test IDs across sorted repo stems; frozen IDs in cohorts.json",
+    "repetitions": 3,
+    "depth_order": "rotate depth order by question index plus repetition",
+    "judge": "rerank8b",
+    "retrieval_k": 200,
+    "bm25_weight": 0.3,
+    "warmup": "one unmeasured production call at each depth per repo",
+    "label": "warm A100 experiment timing, per-repo p50/p95 and ratios only; never average repository percentiles; shared quality prefix scores do not measure depth latency"
+  },
+  "historical_archive_sha256": "567103abafa662b269ab7a3cd3beea96f844106cff9c8bc4ddf91e892c5b449c",
+  "not_measured": [
+    "generated answer quality",
+    "similar past fix usefulness for a new bug",
+    "independent label review",
+    "manual scale",
+    "laptop/deployment latency",
+    "other repos or languages",
+    "ANN accuracy at scale"
+  ],
+  "no_tuning": "no test-driven selection; original labels reused after inspection, not a fresh holdout; 4B is secondary; exploratory pointwise group CIs without multiplicity adjustment"
+}

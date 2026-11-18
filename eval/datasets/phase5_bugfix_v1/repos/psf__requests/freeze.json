@@ -1,0 +1,15 @@
+{
+  "repo": "psf/requests",
+  "pin": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60",
+  "sha256": {
+    "protocol.json": "314ab8b93072dac058583f8f4c3054543a62c316828cf2d9afdd129a4762089c",
+    "records.jsonl": "15ff401ce331cf3a66c4c5db6f739a6e429346c193253914406c493763204593",
+    "pairs.jsonl": "54f2fba8ffe36fc9d60eec41491cf4eea0615553d57e7e551fbebeef24724b60",
+    "corpus.jsonl": "ec05bdea59eceae350bbad279ccee575fbcf4786009b4c998c31495fce3d8786",
+    "links.json": "4843651ddb298d265aedc9093d435cf69de05462931fcaed653525512e21cb0b",
+    "issues.json": "9b6fcabe7a907706a229a59180564526d00ac30d2fa6b63639587812db02fb38",
+    "selection.json": "7e1bd58f6af228936553c7528a8e2684c0281bf098395160c2ff53cf01618a63",
+    "preparation.json": "5f2d40727fe211e7a4a1e0881b1172f457e341272ba7bea3ed43e4c7446cdbbd"
+  },
+  "stage": "frozen before any retrieval/model loading"
+}

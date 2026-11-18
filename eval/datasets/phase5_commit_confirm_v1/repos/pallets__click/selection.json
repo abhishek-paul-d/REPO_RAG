@@ -1,0 +1,183 @@
+{
+  "repo": "pallets/click",
+  "pin": "2247b35ea1c47c727d7a06e51fa280e12a863ff6",
+  "protocol_sha256": "9c73301e83e5c79c8258959bac52d24b1daf347cb46391b74a42f976a9a03df7",
+  "nonmerge_commits": 2172,
+  "fix_candidates": 668,
+  "questions": 129,
+  "groups": 122,
+  "target": 200,
+  "shortfall": 71,
+  "via_pr_lookups": 0,
+  "via_pr_gold_window": "only verified mergeCommit SHAs of the fixed PR search window in the capped nonmerge corpus; other fixes may be unlabelled",
+  "skipped": [
+    {
+      "sha": "4f9086bf8fd98aca1d804bf742f4f1ceb6c12295",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 951
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "a1235aacb1be55dc66ddcfefbf64dec44b6ab54d",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 2846
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "9caedb9206103dfb5465e1916bc2f13b9c10c0e4",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 2788
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "184d74f8bb721b0e5d6967e23adfdabd094c3d56",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 663
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "1602436cd1bc65841ac0ac3b2ebe9ff94e7d1941",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 533
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "8e7a47a0bf37f11afa452e4d7264880e7346dc17",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 572
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "f9e0dbef6a1fb1e72bc4c1f29bfbfd4cbe2af7f5",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 629
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "7eb990fab5783b32c7028b0aa8a752e6862d0997",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 880
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "570db30db88ec079adae7afdcb5593b521ac08b2",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 918
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "3dfbb984214ff86e35b27672e37b9889eba71004",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 739
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "8780a763aab11f69258acccbcb9d0d97e92ebadb",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 485
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "e850c58571272e24d7169172c0f8086c2f88b5ef",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 626
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "891a22324a9daf2a761763ad82fa5d87884a5028",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 639
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "8af7ec14f3d936e02c2e4ee62d3573593868e07e",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 630
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "d21738256bb965eb09c1ce172def3e678628d0df",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 454
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "69663168ba184591fd474829ac9ab2c04c6284b8",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 340
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "0f20511f41e8d99acd074b063cadaa0b9f8aecf0",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 336
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "3ddc556a9f20267b2c46b5c9ceda6c3d8f26e79b",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 327
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "7c138a659ecf4501c86938c482c75fe851cd570c",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 221
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "af627c2ec72059566614b82827253d7c300f696d",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 196
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "b625654063f03936c65f33d1f5025376f57f4a06",
+      "issue": {
+        "repo": "pallets/click",
+        "number": 185
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    }
+  ]
+}

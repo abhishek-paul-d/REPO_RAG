@@ -1,0 +1,41 @@
+{
+  "name": "phase7_answer_judge_v1",
+  "frozen": "2026-11-10, before any judge output exists",
+  "purpose": "Record the faithfulness and correctness of the agent's code and docs answers with a local open-source LLM judge. Not a gate on answer quality: the judge itself is gated by negative controls.",
+  "repo": "psf/requests",
+  "repo_commit_sha": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60",
+  "judged_types": ["code", "docs"],
+  "seed": 20261110,
+  "judge_model": {
+    "requested_by_user": "Qwen3.7-28B, quantized only",
+    "resolved_to": "Qwen3.8-27B (Hugging Face metadata lists 28B parameters; no model named Qwen3.7-28B was found)",
+    "default": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+    "alternative": "Qwen/Qwen3.8-27B-FP8",
+    "note": "The default is a third-party 4-bit build (compressed-tensors W4A16, group size 32, about 21 GB) that vLLM runs with Marlin kernels on an A100. The alternative is the official block-wise FP8 release, which an A100 has no hardware for (untested). Record whichever ran. Thinking mode is off; each verdict carries a short written reason instead."
+  },
+  "require_quantized": true,
+  "runtime": {"max_model_len": 16384, "gpu_memory_utilization": 0.92, "max_new_tokens": 400,
+    "enforce_eager": true},
+  "limits": {
+    "max_citations": 8,
+    "max_lines_per_citation": 120,
+    "max_evidence_chars": 14000,
+    "max_reference_lines": 160,
+    "max_reference_files": 2,
+    "max_reference_file_chars": 7000
+  },
+  "gates": {
+    "control_rejection_at_least": 0.9,
+    "min_controls_per_kind": 20,
+    "parse_failure_rate_at_most": 0.05
+  },
+  "controls": "Each answer is paired with a different same-type question's evidence (a derangement, seeded). Faithfulness control: the answer with another answer's cited lines, expected `unfaithful`. Correctness control: the answer judged against another question's reference, expected `incorrect`. An unparsable control counts as not rejected.",
+  "retry_note": "Your reply was not valid JSON with an allowed verdict. Reply again with only the JSON object.",
+  "reading_the_result": "If the controls gate fails the judge is not trusted and no answer-quality number is recorded. If it passes, record the rates per type and read every disagreement with the mechanical score before quoting them.",
+  "not_measured": [
+    "Answer quality for history, refs, kind, prsearch, commit and probe questions (scored exactly by eval/agent_eval.py).",
+    "Whether the judge agrees with a person: no human labels exist for these answers.",
+    "Docs correctness uses the start of the reference files only, so it can under-credit answers drawn from later in a file.",
+    "Self-preference: the judge is from the Qwen family like the answer model. Not tested."
+  ]
+}

@@ -1,0 +1,1362 @@
+[
+  {
+    "repo": "pallets/flask",
+    "number": 4834,
+    "title": "Nested blueprints are not respected when mounted on subdomains",
+    "body": "Hello, and thanks for all your work 🙏🏻 \r\n\r\nNested blueprints [as described in the docs](https://flask.palletsprojects.com/en/2.2.x/blueprints/#nesting-blueprints) work perfectly fine when using `url_prefix`. However, when mounting the parent blueprint using a subdomain, the child routes are not accessible.\r\n\r\n```python\r\nfrom flask import Flask\r\nfrom flask import Blueprint\r\n\r\napp = Flask(__name__)\r\napp.config[\"SERVER_NAME\"] = \"localhost:5000\"\r\nparent = Blueprint(\"parent\", __name__)\r\nchild = Blueprint(\"child\", __name__)\r\n\r\n@app.route('/')\r\ndef index():\r\n    return \"index\"\r\n\r\n@parent.route('/')\r\ndef parent_index():\r\n    return \"parent\"\r\n\r\n@child.route('/child/')\r\ndef child_index():\r\n    return \"child\"\r\n\r\nparent.register_blueprint(child)\r\napp.register_blueprint(parent, subdomain=\"api\")\r\n\r\n\r\nif __name__ == '__main__':\r\n    app.run(debug=True)\r\n```\r\n\r\nThe index route works as expected:\r\n\r\n```\r\n❯ http http://localhost:5000/\r\nHTTP/1.1 200 OK\r\nConnection: close\r\nContent-Length: 5\r\nContent-Type: text/html; charset=utf-8\r\nDate: Tue, 04 Oct 2022 10:44:10 GMT\r\nServer: Werkzeug/2.2.2 Python/3.10.4\r\n\r\nindex\r\n```\r\n\r\nSo does the parent route in the subdomain:\r\n\r\n```\r\n❯ http http://api.localhost:5000/\r\nHTTP/1.1 200 OK\r\nConnection: close\r\nContent-Length: 6\r\nContent-Type: text/html; charset=utf-8\r\nDate: Tue, 04 Oct 2022 10:44:06 GMT\r\nServer: Werkzeug/2.2.2 Python/3.10.4\r\n\r\nparent\r\n```\r\n\r\nBut the child responds with a 404:\r\n\r\n```\r\n❯ http http://api.localhost:5000/child/\r\nHTTP/1.1 404 NOT FOUND\r\nConnection: close\r\nContent-Length: 207\r\nContent-Type: text/html; charset=utf-8\r\nDate: Tue, 04 Oct 2022 10:45:42 GMT\r\nServer: Werkzeug/2.2.2 Python/3.10.4\r\n\r\n<!doctype html>\r\n<html lang=en>\r\n<title>404 Not Found</title>\r\n<h1>Not Found</h1>\r\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\r\n```\r\n\r\nIf we change the `subdomain=\"api\"` for `url_prefix=\"/api\"` when registering the blueprint however everything works as expected:\r\n\r\n```\r\n❯ http http://localhost:5000/api/\r\nHTTP/1.1 200 OK\r\nConnection: close\r\nContent-Length: 6\r\nContent-Type: text/html; charset=utf-8\r\nDate: Tue, 04 Oct 2022 10:46:53 GMT\r\nServer: Werkzeug/2.2.2 Python/3.10.4\r\n\r\nparent\r\n\r\n❯ http http://localhost:5000/api/child/\r\nHTTP/1.1 200 OK\r\nConnection: close\r\nContent-Length: 5\r\nContent-Type: text/html; charset=utf-8\r\nDate: Tue, 04 Oct 2022 10:46:59 GMT\r\nServer: Werkzeug/2.2.2 Python/3.10.4\r\n\r\nchild\r\n```\r\n\r\nThis was surprising to me as I expected the same nesting to apply regardless of whether the parent is mounted using a subdomain or a URL prefix. Am I missing something?\r\n\r\nEnvironment:\r\n\r\n- Python version: 3.10\r\n- Flask version: 2.2.2\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/4834"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 4756,
+    "title": "\"removed\" misspelled in deprecation warning",
+    "body": "See: https://github.com/pallets/flask/blob/5775d1e9b1a031c7bc3bf1463acb3289594ab3e4/src/flask/globals.py#L91\r\n\r\nand one more instance a bit below that one.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/4756"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 4485,
+    "title": "save_session does not preserve HttpOnly when deleting the cookie",
+    "body": "When the session modified such that it ends up empty, the session cookie is deleted by sending an expired cookie. This 'deletion cookie' is missing the HttpOnly flag. The bug is [in the call to delete_cookie](https://github.com/pallets/flask/blob/b655a9db30d8e78d2fe1044d6301a432f214a16b/src/flask/sessions.py#L392), which is missing the httponly kwarg. \r\n\r\n```\r\nfrom flask import Flask, session\r\n\r\napp = Flask(__name__)\r\napp.secret_key = \"whatever\"\r\napp.config['SESSION_COOKIE_HTTPONLY'] = True # the default\r\n\r\n@app.route('/')\r\ndef index():\r\n    session['foo'] = 1  # sets session.modified\r\n    session.pop('foo')  # afterwards, the session is empty again\r\n    return \"\"\r\n\r\napp.run()\r\n```\r\n\r\nexpected behavior: the HttpOnly flag should be present on the 'deletion cookie'.\r\n\r\nEnvironment:\r\n\r\n- Python version: 3.10.2\r\n- Flask version: 2.0.3\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/4485"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 3738,
+    "title": "[Docs] Typo in documentation.",
+    "body": "https://github.com/pallets/flask/blob/e071734b4e9f5c21fe65400b167ff327c6c1f7bc/src/flask/blueprints.py#L124\r\n\r\nI think this was supposed to be:\r\n\r\n> By default, the blueprint will automatically **set** this...\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/3738"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 3207,
+    "title": "Convert make_test_environ_builder into EnvironBuilder subclass",
+    "body": "Werkzeug's `EnvironBuilder` gained a `json_dumps` attribute, but Flask doesn't have an `EnvironBuilder` subclass right now to take advantage of that, and there's no way to configure the `Client` to use a different builder class anyway. Might be good to refactor `flask.testing.make_test_environ_builder` to be an `EnvironBuilder` subclass at some point, rather than a factory wrapper.\r\n\r\n_Originally posted by @davidism in https://github.com/pallets/flask/pull/3181#issuecomment-493489553_",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/3207"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 3227,
+    "title": "suspicious unexplained `except: raise`",
+    "body": "The following two lines:\r\nhttps://github.com/pallets/flask/blob/2c68f86336dc8729f58e8e19af0f49c269c1cfaa/flask/_compat.py#L100\r\ndo\r\n```python\r\nexcept:\r\n    raise\r\n```\r\nwhich looks like a no-op. Is this actually doing something? If not remove, if so let's add a comment explaining.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/3227"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 3214,
+    "title": "Better error message when view return type is not supported",
+    "body": "One of the most common errors/questions on Stack Overflow is some variant of \"what does 'dict object is not callable' mean, how do I return JSON?\" Now that #3111 is merged, returning `dict` from a view produces a JSON response. However, there are still plenty of other types that will produce that error, such as returning a `bool`, or a `User` object, or a list of rows from a database query.\r\n\r\n`Flask.make_response` should check whether an otherwise unhandled value is a `BaseResponse` subclass or a `callable` before treating it as such. Then it can raise a more helpful error.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/3214"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 3224,
+    "title": "Blueprint CLIs should not register empty groups",
+    "body": "After #1369, each blueprint has a `cli` group that will be registered with the `flask` command. This should not be registered if no commands were registered with the blueprint, otherwise empty groups show up in the CLI help output.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/3224"
+  },
+  {
+    "repo": "pytest-dev/pytest-flask",
+    "number": 42,
+    "title": "Testing errors when streaming",
+    "body": "I currently have a problem with errors when I try to test a streaming endpoint, namely when I use the `stream_with_context` flask function/decorator to keep the context around, as I am streaming from a database which client is on `current_app`.\n\nEssentially, the test passes, but then pytest-flask errors with a message about it having popped the wrong request context:\n`AssertionError: Popped wrong request context.  (<RequestContext 'http://localhost/stream' [GET] of app> instead of <RequestContext 'http://localhost/' [GET] of app>)`\n\nOr at least I think it's pytest-flask.\n\nI have a small gist that demonstrates the issue: https://gist.github.com/cknv/152d81ffcc4a74be491d, though it might be a little on the primitive side, but for me it does demonstrate the error. If you need some more information, I would of course be more than happy to provide it :)\n\nFor completeness sake, I am running python 3.5.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pytest-dev/pytest-flask/issues/42"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2897,
+    "title": "Define reloader extra_files in `flask run` CLI ",
+    "body": "### Expected Behavior\r\n\r\nI expected to have `FLASK_RUN_EXTRA_FILES` to be processed in the same way of `FLASK_RUN_PORT` and `FLASK_RUN_HOST`\r\n\r\nWhen using the old style `app.run` we can define an `extra_files` to be watched for changes by the reloader, that is useful for example, if you have a static settings file like `settings.toml` (using [dynaconf](https://dynaconf.readthedocs.io/en/latest/guides/flask.html)) or another kind of static config or themed templates loaded from other paths\r\n\r\n### Actual Behavior\r\n\r\nIn the `run` command https://github.com/pallets/flask/blob/master/flask/cli.py#L775 the argument `extra_files` is not being passed to `wekzeug.run_simple` https://github.com/pallets/werkzeug/blob/master/werkzeug/serving.py#L738\r\n\r\n### Suggestion\r\n\r\nAdd `FLASK_RUN_EXTRA_FILES=\"path1,path2,path\"` to flask run command.\r\n\r\nor\r\n\r\nMap all variables from `werkzeug.run_simple` - https://github.com/pallets/werkzeug/blob/master/werkzeug/serving.py#L738\r\n\r\nIn to `FLASK_RUN_*` prefixed env var or `WERKZEUG_RUN_*` prefixed env var.\r\n\r\n\r\n\r\n### Environment\r\n\r\n* Python version: 3.6\r\n* Flask version: 1.0.2\r\n* Werkzeug version:  0.14.1\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2897"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2937,
+    "title": "load_dotenv returns true even if no file exists",
+    "body": "### Expected Behavior\r\n\r\nIf no file is loaded/exists, `flask.cli.load_dotenv` should return False.\r\n\r\n### Actual Behavior\r\n\r\nThis code:\r\n\r\n```python\r\nfrom flask import Flask\r\nfrom flask.cli import load_dotenv\r\n\r\napp = Flask(__name__)\r\nresult = load_dotenv('not-exist')\r\nassert result\r\n```\r\n\r\ndoes not fail.\r\n\r\n### Environment\r\n\r\n* Python version: 3.5.5\r\n* Flask version: 1.0.2\r\n* Werkzeug version: 0.14.1\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2937"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 3022,
+    "title": "cli shouldn't mess with sys.argv",
+    "body": "Just merged https://github.com/pallets/werkzeug/pull/1416 so Werkzeug's reloader detects `python -m module` correctly. All of `flask.cli.main()` can be replaced with:\r\n\r\n```python\r\ndef main(as_module=False):\r\n    cli.main(prog_name=\"python -m flask\" if as_module else None)\r\n```\r\n\r\nNeed to wait until Werkzeug 0.15 has been out for a bit before we can bump Flask's min version.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/3022"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2907,
+    "title": "Remove MongoKit page from \"Patterns for Flask\" docs section",
+    "body": "I was just starting a little project with Flask + Mongo + Python3. \r\n\r\nSince the only reference to Mongo in the official docs is the \"MongoKit in Flask\" page, I went straight to install and create my schema using MongoKit. Just to find out that this lib is not updated since 2015 and has no support for recent versions of PyMongo.\r\n\r\nShouldn't we remove that from the docs?\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2907"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2935,
+    "title": "copy_current_request_context copies old session object",
+    "body": "### Expected Behavior\r\n\r\nWhen using `copy_current_request_context` in the middle of a request, I'm expecting it to copy the current state of `flask.request` and `flask.session` at the time it's called. \r\n\r\n\r\n### Actual Behavior\r\n\r\nThe current state of `flask.request` is copied, but `flask.session` is from before the current request and doesn't contain changes made during the current request, before `copy_current_request_context` was called. To me this seems like unexpected behaviour. If it's not I'd like to understand a bit more about why, and also to find out whether there's any workaround or alternative approach I can take. \r\n\r\n### Example\r\n\r\nHere's a fully functional example you can save and run. It adds a test value to `flask.request` and `flask.session` during the request, then uses `copy_current_request_context` to decorate a method that will retrieve those same values in another thread. Two requests are made; on the first request the copied context can find the new value added to `flask.request` but cannot find the value added to `flask.session`. On the second request, the copied context can find the value added to `flask.request`, and now finds the value that was previously added to `flask.session` in the first request.\r\n\r\n\r\n```python\r\nimport concurrent.futures\r\nimport random\r\n\r\nfrom flask import Flask, copy_current_request_context, request, session\r\n\r\n\r\napp = Flask(__name__)\r\napp.config['SECRET_KEY'] = 'test'\r\nexecutor = concurrent.futures.ThreadPoolExecutor()\r\n\r\n\r\n@app.route('/')\r\ndef session_context():\r\n    test_value = random.randint(1, 1001)\r\n    request.test_value = test_value\r\n    session['TEST_VALUE'] = test_value\r\n\r\n    original_context = (\r\n        ('request', request.test_value),\r\n        ('session', session.get('TEST_VALUE'))\r\n    )\r\n\r\n    @copy_current_request_context\r\n    def debug_session():\r\n        return (\r\n            ('request', request.test_value),\r\n            ('session', session.get('TEST_VALUE'))\r\n        )\r\n\r\n    future = executor.submit(debug_session)\r\n    print('original_context:', original_context)\r\n    print('copied_context:', future.result())\r\n    return 'ok'\r\n\r\n\r\nif __name__ == '__main__':\r\n    client = app.test_client()\r\n    print('### First request ###')\r\n    client.get('/')\r\n    print('### Second request ###')\r\n    client.get('/')\r\n```\r\n\r\nExample output:\r\n\r\n```bash\r\n$ python session_context.py\r\n### First request ###\r\noriginal_context: (('request', 27), ('session', 27))\r\ncopied_context: (('request', 27), ('session', None))\r\n### Second request ###\r\noriginal_context: (('request', 63), ('session', 63))\r\ncopied_context: (('request', 63), ('session', 27))\r\n```\r\n\r\n### Environment\r\n\r\n* Python version: 3.7.0\r\n* Flask version: Flask==1.0.2\r\n* Werkzeug version: Werkzeug==0.14.1\r\n\r\n\r\nAlso, for whatever it's worth: I'm investigating this as part of improving this project: https://github.com/dchevell/flask-executor",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2935"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2802,
+    "title": "Broken link on flask docs",
+    "body": "In `flask/docs/deploying/wsgi-standalone.rst`, https://github.com/pallets/flask/blob/master/docs/deploying/uwsgi.html#starting-your-app-with-uwsgi link which is on `For a more optimized setup, see configuring uWSGI and NGINX.` line is broken.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2802"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2773,
+    "title": "make audit still available, whereas the corresponding setup command is gone",
+    "body": "When the `audit` command was removed (https://github.com/pallets/flask/commit/4fca38c078142744922a8c763bc1468e680a830d), the corresponding shortcut in `Makefile` was not deleted. \r\n\r\n    $ make audit\r\n    \r\n    error: invalid command 'audit'\r\n    make: *** [audit] Error 1\r\n\r\nThe shortcut was never documented, so it is unlikely that anyone will use it, but still...",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2773"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2736,
+    "title": "make_response changes breaks custom response class",
+    "body": "### Expected Behavior\r\n\r\nI should be able to return a single value from my view(that is, not a tuple) and have my value passed to my custom response class. In this case I have a response class that detects whether JSON or pickle data was requested by the client and dumps the return value appropriately. This allows me to simply return a list or dict from my view without having to detect and dump the appropriate type.\r\n\r\n```python\r\n@mod.route('/')\r\ndef return_json_or_pickle():\r\n    return ['foo', 'bar', 'bat']\r\n```\r\n\r\nAs of Flask 0.12.2 this worked - make_response would pass the list to my custom response class and my client would get what it wanted.\r\n\r\n### Actual Behavior\r\n\r\nAs of 1.0, commit #2256 was merged which added an explicit check to see if the return value was a list; treating a list as a tuple return in that case. I now get a typeerror:\r\n\r\n```pytb\r\nTypeError: The view function did not return a valid response tuple. The tuple must have the form (body, status, headers), (body, status), or (body, headers).\r\n```\r\n\r\nIf I change my view function to return a tuple:\r\n\r\n```python\r\n@mod.route('/')\r\ndef return_json_or_pickle():\r\n    return ['foo', 'bar', 'bat'], 200\r\n```\r\nthe previous functionality is restored! This confirms that tuple handling is of course perfectly fine. I have a [pull request](https://github.com/pallets/flask/pull/2737) prepared which should do a very nice job of resolving the issue - it simply omits `list` from the type check in make_response. Since a list is not a valid response anyway, there's no reason I can see for it to be there.\r\n\r\n### Environment\r\n\r\n* Python version: 3.6\r\n* Flask version: 1.0\r\n* Werkzeug version: n/a\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2736"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2713,
+    "title": "Support for more environment variables for Flask CLI",
+    "body": "It would be great to add support for more environment variables for Flask CLI. For example,\r\n```python\r\nFLASK_PORT=8080 flask run\r\n```\r\nshould run the app in port 8080 instead of default. Thus, we can have a single .flaskenv file that sets our environment and just `flask run` without further arguments.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2713"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2627,
+    "title": "Docs are inconsistent on what test_request_context() returns",
+    "body": "Some of the docs say (afaict, correctly) that `app.test_request_context()` returns a `RequestContext`:\r\n\r\n> The test_request_context method can create us a RequestContext:\r\n>\r\n> ```python\r\n> >>> ctx = app.test_request_context('/?next=http://example.com/')\r\n> ```\r\n\r\nfrom http://flask.pocoo.org/docs/0.12/reqcontext/\r\n\r\nHowever, the API reference says that `app.test_request_context()` returns \"a WSGI environment\":\r\n\r\n> Creates a WSGI environment from the given values (see werkzeug.test.EnvironBuilder for more information, this function accepts the same arguments).\r\n\r\nfrom http://flask.pocoo.org/docs/0.12/api/#flask.Flask.test_request_context",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2627"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2526,
+    "title": "Invalid range with send_file() and xsendfile causes ValueError",
+    "body": "```python\r\nfrom flask import Flask, send_file\r\n\r\napp = Flask(__name__)\r\napp.use_x_sendfile = True\r\n\r\n\r\n@app.route('/')\r\ndef index():\r\n    return send_file('/etc/passwd', mimetype='text/plain', conditional=True)\r\n```\r\n\r\n`http get http://127.0.0.1:8009/ Range:bytes=10000-` (the range needs to be invalid, so depending on the file sent the number needs to be higher) fails with this ValueError:\r\n\r\n```pytb\r\nTraceback (most recent call last):\r\n  File \"/home/adrian/dev/indico/env/lib/python2.7/site-packages/flask/app.py\", line 1982, in wsgi_app\r\n    response = self.full_dispatch_request()\r\n  File \"/home/adrian/dev/indico/env/lib/python2.7/site-packages/flask/app.py\", line 1614, in full_dispatch_request\r\n    rv = self.handle_user_exception(e)\r\n  File \"/home/adrian/dev/indico/env/lib/python2.7/site-packages/flask/app.py\", line 1517, in handle_user_exception\r\n    reraise(exc_type, exc_value, tb)\r\n  File \"/home/adrian/dev/indico/env/lib/python2.7/site-packages/flask/app.py\", line 1612, in full_dispatch_request\r\n    rv = self.dispatch_request()\r\n  File \"/home/adrian/dev/indico/env/lib/python2.7/site-packages/flask/app.py\", line 1598, in dispatch_request\r\n    return self.view_functions[rule.endpoint](**req.view_args)\r\n  File \"/home/adrian/dev/indico/src/flasktest.py\", line 10, in index\r\n    return send_file('/etc/passwd', mimetype='text/plain', conditional=True)\r\n  File \"/home/adrian/dev/indico/env/lib/python2.7/site-packages/flask/helpers.py\", line 594, in send_file\r\n    file.close()\r\nAttributeError: 'NoneType' object has no attribute 'close'\r\n```\r\n\r\nProbably just a missing `if file is not None` check.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2526"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2411,
+    "title": "TestClient: EnvironBuilder cannot be passed in",
+    "body": "In a normal test client from werkzeug you can pass the environment builder in. With Flask that is currently not possible. In some situations people might want to interface with the builder directly.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2411"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2400,
+    "title": "setup.cfg code snippet not formatted correctly",
+    "body": "### Expected Behavior\r\n\r\nOn the \"Deploying With Setuptools page\", the [setup.cfg code snippet](http://flask.pocoo.org/docs/0.12/patterns/distribute/#tagging-builds) should look like this:\r\n```\r\n[egg_info]\r\ntag_build = .dev\r\ntag_date = 1\r\n\r\n[aliases]\r\nrelease = egg_info -RDb\r\n```\r\n\r\n\r\n\r\n### Actual Behavior\r\n\r\nInstead it looks like this:\r\n```\r\n[egg_info] tag_build = .dev tag_date = 1\r\n\r\n[aliases] release = egg_info -RDb ”\r\n```\r\nAlso note the  erroneous quotation mark at the end.\r\n### Environment\r\n\r\n* Python version: N/A\r\n* Flask version: N/A\r\n* Werkzeug version: N/A\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2400"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2376,
+    "title": "flask command should auto-detect module",
+    "body": "Even when installed as a package, it can be useful in complex situations to have a `wsgi.py` file for setting the app up to run. The `flask` command should detect this file if no `FLASK_APP` is specified at all.\r\n\r\nAdditionally, it's common to name quick demo apps `app.py`, so that should be detected too.\r\n\r\nFrom discussion in #2375.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2376"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1907,
+    "title": "Jinja templates do not auto reload if Flask app debug enabled solely via app.run(debug=True)",
+    "body": "When enabling debug mode via `app.run(debug=True)`, code changes result in an auto-reload but Jinja templates are cached until the app is manually is restarted.\n\nAt https://github.com/pallets/flask/blob/21d595bee73e65a28201709bd1a8b97c42aff5d2/flask/app.py#L695 Flask checks if the `config[\"TEMPLATE_AUTO_RELOAD\"]` is explicitly set. If not, Jinja's `options[\"auto_reload\"]` is set to `app.debug`.\n\nHowever, if you instantiate your Flask object _then_ call `app.run(debug=True)` without loading a config, template auto reloading is not enabled (`app.debug` was `False` when the Flask app was instantiated).\n\nAt https://github.com/pallets/flask/blob/21d595bee73e65a28201709bd1a8b97c42aff5d2/flask/app.py#L839 we enable reloading code and enable the debugger. My proposed fix would be to also enable template reloading (`jinja_env.auto_reload = self.debug`) here.\n\nThis would result is less confusion (\"Debug is enabled but my templates don't auto reload\") and make the template reloading behaviour consistent with the code reloading behaviour (\"If no config is set or `debug` is not explicitly set in config, and the site calls `app.run(debug=True)`, then enable the relevant auto reloading features\").\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1907"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1809,
+    "title": "flask.Flask.register_blueprint is poorly documented",
+    "body": "http://flask.pocoo.org/docs/0.10/api/#flask.Flask.register_blueprint\n\nThe documentation doesn't list or explain any of the arguments used by `flask.Flask.register_blueprint`.\n\nIt only says:\n\n```\nregister_blueprint(*args, **kwargs)¶\nRegisters a blueprint on the application.\n\nNew in version 0.7.\n```\n\nFor one, I know there should be at least `use_prefix` and maybe (or surely) more than that.\n\n**Note:** All Flask version's documentation seems to be affected by this.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1809"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2174,
+    "title": "Security Considerations Oversight",
+    "body": "Not a bug report, per se, but still should be noted. On the [Security Considerations page](http://flask.pocoo.org/docs/0.12/security/), after describing the XSS remediation that Jinja2 provides, it describes the one caveat that unquoted html attributes are still vulnerable. It follows with a \"correct\" example:\r\n`<a href=\"{{ href }}\">the text</a>`\r\n\r\nHowever that example is also vulnerable to XSS. An attacker could still set `href` to `javascript:alert(1)` to inject javascript into the tag (although it would require a user to click the link).\r\n\r\nPerhaps the example should use a different quoted attribute as the example, like a default value for an input field or something of the like.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2174"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 480,
+    "title": ":inherited-members: does not work for attributes",
+    "body": "I am not sure if this is a bug in Sphinx, but stuff like the `root_path` and `static_url_path` attributes/properties from `_PackageBoundObject` end up not documented in the API page of the docs. `api.rst` just contains this:\n\n```\n.. autoclass:: Flask\n   :members:\n   :inherited-members:\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/480"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2267,
+    "title": "Flask error handler caching leads to inconsistent behavior",
+    "body": "When Flask finds an error handler for a given exception, it caches it in the handler map.  This can lead to incorrect behavior for subclasses of the exception.\r\n\r\nHere is some code demonstrating the problem:\r\n```\r\nfrom flask import Flask\r\nfrom werkzeug.exceptions import InternalServerError\r\n\r\n\r\nclass E1(Exception):\r\n    pass\r\n\r\n\r\nclass E2(Exception):\r\n    pass\r\n\r\n\r\nclass E(E1, E2):\r\n    pass\r\n\r\n\r\napp = Flask(__name__)\r\n\r\n\r\n@app.errorhandler(E2)\r\ndef handle_e2(e):\r\n    return \"E2\", 500\r\n\r\n\r\n@app.errorhandler(Exception)\r\ndef handle_exception(e):\r\n    return \"Exception\", 500\r\n\r\n\r\n@app.route(\"/<exception>\", methods=['POST'])\r\ndef raise_exception(exception):\r\n    exc = globals()[exception]\r\n    raise exc\r\n\r\n\r\ndef test_errorhandler_precedence():\r\n    client = app.test_client()\r\n\r\n    response1 = client.post('/E1')\r\n    assert response1.data == \"Exception\"\r\n\r\n    response2 = client.post('/E')\r\n    assert response2.data == \"E2\"\r\n```\r\n\r\nIn this example, we have two exception classes, `E1` and `E2`, and a third exception `E` that inherits from both.  We register error handlers for `E2` and `Exception`.  When `E` is raised, Flask should invoke the `E2` error handler as `E2` comes before `Exception` in the MRO of `E`.  But if `E1` has been raised in the past, then the `Exception` error handler will be \"cached\" as the handler for `E1`, so that handler will be invoked instead.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2267"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1433,
+    "title": "Should we cache errorhandlers or not?",
+    "body": "Cont. https://github.com/mitsuhiko/flask/pull/1291#discussion_r27856289\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1433"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2357,
+    "title": "python -m flask run raises RuntimeWarning",
+    "body": "### Expected Behavior\r\n\r\nGiven a project with the following structure:\r\n\r\n```\r\nproject/\r\n    my_cool_app/\r\n        __init__.py\r\n```\r\n\r\n```python\r\nfrom flask import Flask\r\n\r\napp = Flask(__name__)\r\n```\r\n\r\nRunning the following should work without warnings:\r\n\r\n```\r\nFLASK_DEBUG=1 FLASK_APP=my_cool_app python -m flask run\r\n```\r\n\r\nI use `python -m flask run` in order to not need `my_cool_app/__init__.py` as `FLASK_APP`, per the discussion around [this issue](https://github.com/pallets/flask/issues/1847).\r\n\r\n### Actual Behavior\r\n\r\nA warning is printed on the console when using the reloader:\r\n\r\n```\r\n/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/runpy.py:125:\r\nRuntimeWarning: 'flask.cli' found in sys.modules after import of package 'flask',\r\nbut prior to execution of 'flask.cli'; this may result in unpredictable behaviour\r\n```\r\n\r\n### Environment\r\n\r\n* Python version: 3.6.1 (MacOS 10.12.5)\r\n* Flask version: 0.12.2\r\n* Werkzeug version: 0.12.2\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2357"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1348,
+    "title": "sessions not saved when streaming",
+    "body": "When streaming, changes to the session object at the start of the request \r\nprocessing are never saved at all, the moment template rendering starts, a new \r\nsession object is created which is then saved.\r\n\r\nThe statement on IRC was first that this is due to the fact that sessions (by default) are stored client side, and can not change anymore after the headers are send.\r\nThis is only true for sessions that are stored client side, if the sessions are server side it should be possible to change (and save) them during the whole request/response.\r\nThe real problem here seems to be that a new session is created when the stream starts.\r\n\r\nWe used the following example to stream contents: http://flask.pocoo.org/docs/0.10/patterns/streaming/\r\n\r\nFor now a workaround is to explicitly save the session after modifying, before rendering the template / starting the stream.\r\n\r\nExpected output is always the same, one time session open and one time session save.\r\nIn the stream example the output is different; 2 sessions are opend, the first one is the one that changes, but the second one (this is opened when the stream starts) is the only one that is saved.\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1348"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1438,
+    "title": "Make TaggedJSONSerializer extensible",
+    "body": "My suggestion would be to add a method to the class that lets you register custom types, e.g. like this:\n\n```\nsession_json_serializer.register_type('md', MultiDict)\n```\n\nThis would use the `' md'` prefix when encountering a `MultiDict` object (`type(x) is MultiDict` as subclasses probably shouldn't be handled). To serialize/deserialize I'd simply use `__getstate__` and `__setstate__`.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1438"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1908,
+    "title": "TaggedJSONSerializer does not preserve int keys in dicts",
+    "body": "The `TaggedJSONSerializer` used for session serialization is rather smart when it comes to preserving types that usually cannot be JSON-encoded. However, it still has the problem that dict keys are converted to strings.\n\n```\n>>> from flask.sessions import TaggedJSONSerializer\n>>> tj = TaggedJSONSerializer()\n>>> tj.loads(tj.dumps({123: u'blah'}))\n{u'123': u'blah'}\n```\n\nI think it would make sense to also tag the key here:\n\n```\nelif isinstance(value, dict):\n    return dict((k, _tag(v)) for k, v in iteritems(value))\n```\n\nThe one drawback I see is that there could be code relying on the implicit conversion right now..\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1908"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1837,
+    "title": "Setting error handler for unknown code fails",
+    "body": "The following code:\n\n```\nflask_app.errorhandler(402)(http_exception_handler)\n```\n\nraises `KeyError: 402` due to missing 402 in default exception. Code works fine with Flask=0.10.1\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1837"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 382,
+    "title": "Set TRAP_BAD_REQUEST_ERRORS to True as the default when debugging is enabled",
+    "body": "When debugging an application, it's surprising to get a simple \"400 Bad Request\" when accessing a form parameter that doesn't exist instead of a full traceback. I always forget that I also need to set TRAP_BAD_REQUEST_ERRORS.\n\nIs there a reason why this isn't set by default when debugging is enabled?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/382"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2345,
+    "title": "Use existing response.vary property to set vary header",
+    "body": "#2288 and #2322 added support for setting `Vary: Cookie` and not clobbering the existing `Vary` header. Unfortunately, there was already built-in support for that, we just missed it. Switch to this:\r\n\r\n~~~python\r\nresponse.vary.add('Cookie')\r\n~~~",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2345"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2033,
+    "title": "failing test for safe_join in windows",
+    "body": "This seems like a bug on windows:\nTest run on windows gave me the following error\n\n```\n\n> py.test tests\\test_helpers.py\n←[1m============================= test session starts ==========================\n===←[0m\nplatform win32 -- Python 2.7.10, pytest-3.0.2, py-1.4.31, pluggy-0.3.1\nrootdir: , inifile: setup.cfg\ncollected 42 items ←[0m←[1m\n←[0m\ntests\\test_helpers.py ........................................F.\n\n================================== FAILURES ===================================\n←[1m←[31m_________________________ TestSafeJoin.test_safe_join _________________\n________←[0m\n\nself = <test_helpers.TestSafeJoin object at 0x02F3F790>\n\n←[1m    def test_safe_join(self):←[0m\n←[1m        # Valid combinations of *args and expected joined paths.←[0m\n←[1m        passing = (←[0m\n←[1m            (('a/b/c', ), 'a/b/c'),←[0m\n←[1m            (('/', 'a/', 'b/', 'c/', ), '/a/b/c'),←[0m\n←[1m            (('a', 'b', 'c', ), 'a/b/c'),←[0m\n←[1m            (('/a', 'b/c', ), '/a/b/c'),←[0m\n←[1m            (('a/b', 'X/../c'), 'a/b/c', ),←[0m\n←[1m            (('/a/b', 'c/X/..'), '/a/b/c', ),←[0m\n←[1m            # If last path is '' add a slash←[0m\n←[1m            (('/a/b/c', '', ), '/a/b/c/', ),←[0m\n←[1m            # Preserve dot slash←[0m\n←[1m            (('/a/b/c', './', ), '/a/b/c/.', ),←[0m\n←[1m            (('a/b/c', 'X/..'), 'a/b/c/.', ),←[0m\n←[1m            # Base directory is always considered safe←[0m\n←[1m            (('../', 'a/b/c'), '../a/b/c'),←[0m\n←[1m            (('/..', ), '/..'),←[0m\n←[1m        )←[0m\n←[1m    ←[0m\n←[1m        for args, expected in passing:←[0m\n←[1m>           assert flask.safe_join(*args) == expected←[0m\n←[1m←[31mE           assert '/a\\\\b\\\\c' == '/a/b/c'←[0m\n←[1m←[31mE             - /a\\\\b\\\\c←[0m\n←[1m←[31mE             + /a/b/c←[0m\n\n←[1m←[31mtests\\test_helpers.py←[0m:803: AssertionError\n←[1m←[31m===================== 1 failed, 41 passed in 1.33 seconds =============\n========←[0m\n```\n\nIn windows the directories on an external location can be accessed using four back-slashes \"\\\\\\\\\" from python code. So I would suggest to return \"\\\\\\\\a\\\\b\\\\c\" if the env is windows. Of course this line of thinking can be naïve and maybe there is a better approach there.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2033"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2007,
+    "title": "Prevent setting `SERVER_NAME` and `SESSION_COOKIE_DOMAIN` to an IP address",
+    "body": "See #1946 and #1906. I think we should prevent setting those things to IP addresses in the first place and only allow `None` and domain names != `localhost`.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2007"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1704,
+    "title": "Remove old version added and changed tags",
+    "body": "Some of these lists are getting a bit long and irrelevant.  We should remove everything that wasn't added or changed in 1.0 for the 1.0 release.  This will reset the baseline that things will be added or changed from in the future.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1704"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1528,
+    "title": "Application/request stack corruption if unhandled exception is raised in session interface",
+    "body": "RequestContext push is called in [wsgi_app method](https://github.com/mitsuhiko/flask/blob/master/flask/app.py#L1952), outside try..finally block. In [push() method](https://github.com/mitsuhiko/flask/blob/master/flask/ctx.py#L332) application's open_session call takes place, which can possibly lead to exception. But, since original call is not in try..finally block, removal of stack top never takes place. This leads to following problems:\n### 1. Application context stack never updates again\n\nRequestContext.push() only [checks](https://github.com/mitsuhiko/flask/blob/master/flask/ctx.py#L316) that application context exists or belongs to current application, but same rules apply to previous context.\n### 2. Request context stack grows\n\nAgain, request context stack is pushed, but never removed. Actually just a memory leak :)\n### 3. Misleading code comment about open_session usage\n\nInspired by [this comment](https://github.com/mitsuhiko/flask/blob/master/flask/ctx.py#L328), i started to develop multi-tenant application, and found nothing but disappointment. **You can't actually access request_context before open_session interface call.** This means, you can't configure which database to use before opening a session.\n## My proposition.\n\nMove open_session call to full_dispatch_request, and add interfaces and methods, similar to before_request - before_open_session, or call before_request before opening session (may break code that depends on session interface)\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1528"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1302,
+    "title": "testing documentation missing \"TESTING\" config",
+    "body": "http://flask.pocoo.org/docs/dev/testing/\n\nIn the first code box there's flaskr.app.config['TESTING'] = True\n\nBut then it goes missing here:\n\nhttp://flask.pocoo.org/docs/dev/testing/#the-first-test\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1302"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1559,
+    "title": "url_for('static', _external=True) gives bogus url with app.url_map.host_matching = True",
+    "body": "``` python\napp = Flask(__name__)\napp.url_map.host_matching = True\napp.url_map._rules_by_endpoint['static'][0].host = 'mydomain.com'  # XXX better way to do this?\nwith app.test_request_context():\n    print url_for('static', filename='foo', _external=True)\n```\n\n=>\n`'http:///static/foo'`\n\nExpected `'http://mydomain.com/static/foo'`.\n\nAm I missing something, or is this a bug?\n\nThanks for looking and for the great work on Flask.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1559"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1286,
+    "title": "send_file fails when filename contains unicode symbols",
+    "body": "Hi.\n\nI've detected an issue with supporting unicode filenames in send_file.\nIf send_file attempts to respond with utf-8 in http headers, the answer is empty, the log contains something like \"http-headers should containbe latin-1\".\nI know that [browser support IS A MESS](http://stackoverflow.com/questions/93551/how-to-encode-the-filename-parameter-of-content-disposition-header-in-http), but it seems, that sending two filenames (`filename=` and `filename*=`) separated by semicolon should work.\n\nI'd like this to be handled by flask or werkzeug. Will you accept such pull request?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1286"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2208,
+    "title": "Do not swallow exceptions if CLI fails to load",
+    "body": "I think the changes introduced in https://github.com/pallets/flask/commit/fa6eded6f572dd4bc23b030f025156cdd1e63305 that swallow ALL exceptions if loading a custom CLI command fails are not good for the general development flow. I often do `flask --help` to see whether my custom command comes up fine and when it doesn't I don't get exceptions and I don't really know what I've done wrong.\r\n\r\nI think this `try-except` should be removed. I really think the CLI _should_ fail loudly instead of ignoring errors. Let's discuss this and if you guys agree I'll make a PR.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2208"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2132,
+    "title": "Flask documentation inconsistent with implementation for form parsing",
+    "body": "Since Werkzeug 0.9, request.form is populated for all requests as long as they contain a Content-Type header (https://github.com/pallets/werkzeug/blob/master/werkzeug/wrappers.py#L328).\r\nThe Flask documentation however implies that request.form is only available with POST and PUT requests, and that is the case with Werkzeug<0.9 (well, 0.8.3 parses for POST, PUT and PATCH).",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2132"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2118,
+    "title": "config.from_pyfile crashes on Python 3 when source isn't encoded in default encoding",
+    "body": "when I read my instance config file, I get an error. \r\n\r\n> exec(compile(config_file.read(), filename, 'exec'), d.__dict__)\r\n> UnicodeDecodeError: 'gbk' codec can't decode byte 0x80 in position 437: illegal multibyte sequence\r\nThen I modify the code of config.from_pyfile to this\r\n\r\n> with open(filename, 'rb') as config_file:\r\nThe problem is resolved. \r\n\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2118"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2087,
+    "title": "Do not use cache when `Request.get_json(cache=False)` is called.",
+    "body": "The `_cached_json` property is used even when arguments change.\r\n\r\nProposal:\r\n```diff\r\n         rv = getattr(self, '_cached_json', _missing)\r\n-        if rv is not _missing:\r\n+        if cache and rv is not _missing:\r\n              return rv\r\n```\r\n\r\nTest case:\r\n```python\r\n# POST with an invalid JSON data\r\nassert request.get_json(silent=True) is None\r\nwith pytest.raises(BadRequest):\r\n    request.get_json(silent=False, cache=False)\r\n```",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2087"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2029,
+    "title": "Zero-padded file modes in repository ",
+    "body": "After cloning this repository with git and you run \"git fsck\" there are multiple errors:\n\n`Checking object directories: 100% (256/256), done.\nwarning in tree 0b404df8c030cdeaca7b373956c3a697efd32f78: contains zero-padded file modes\nwarning in tree 51ea366fd4253b3a618289dc1c0c4bb16a3c2a22: contains zero-padded file modes\nwarning in tree 679afdb340e9e1011927b52d2cd48bd221159131: contains zero-padded file modes\nwarning in tree 77c7430020693d35500ca4fc292cff63fc3e672b: contains zero-padded file modes\nwarning in tree 6a37da079f3bed362608b2558b162617c0c3af5c: contains zero-padded file modes\nChecking objects: 100% (12634/12634), done.`\n\nThis prevents the repository from being push'ed to another git server, for example:\n\n`Counting objects: 12435, done.\nDelta compression using up to 8 threads.\nCompressing objects: 100% (3696/3696), done.\nremote: error: object 0b404df8c030cdeaca7b373956c3a697efd32f78: zeroPaddedFilemode: contains zero-padded file modes\nremote: fatal: Error in object\nerror: pack-objects died of signal 13`\n\nI suggest the repository is rebuilt to correct the corruption in it.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2029"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2056,
+    "title": "Installation documentation for Windows: minor typo",
+    "body": "Where it says,\nIf you are a Windows user, the following command is for you:\n$ venv\\scripts\\activate\n\nThe word 'scripts' should be capitalised, as 'Scripts'.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2056"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2051,
+    "title": "flaskr project (in dev docs and on github) needs to use relative import in __init__.py for Python 3",
+    "body": "Currently, while following the dev docs or cloning the existing flaskr project on GitHub, it will not run in a Python 3 virtualenv. The error when running the cloned flaskr application is:\n\n`Traceback (most recent call last):\n  File \"/home/todd/flaskr/flask/examples/flaskr/env/lib/python3.5/site-packages/flask/_compat.py\", line 33, in reraise\n    raise value\n  File \"/home/todd/flaskr/flask/examples/flaskr/flaskr/__init__.py\", line 1, in <module>\n    from flaskr import app\nImportError: cannot import name 'app'`\n\nThis is the same error when following the docs to recreate the flaskr application. By modifying `flaskr/__init__.py` to include a relative import when using a Python 3 virtualenv, everything works fine.\n\nThat is, in `flaskr/__init__.py`, change:\n`from flaskr import app`\nto:\n`from .flaskr import app`\n\n(note the period)\n\nAt this point, I am still not comfortable contributing, nor do I know if this is the correct solution or if this has any implications for Python 2. Hence the issue, hoping someone else can confirm this is correct, or provide a better solution.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2051"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 2005,
+    "title": "AttributeError: 'DispatchingApp' object has no attribute 'config'",
+    "body": "going through the tutorial on latest master, this exception is raised on `flask run`\n(running inside a virtualenv)\n\n```\n>>> flask --version\nFlask 0.11.2-dev\nPython 3.5.2+ (default, Aug  5 2016, 08:07:14) \n[GCC 6.1.1 20160724]\n>>> which -v flask\n/home/laerus/.venvs/flask/bin/flask (from PATH element 0)\n>>> flask run\n * Serving Flask app \"flaskr\"\n * Forcing debug mode off\nTraceback (most recent call last):\n  File \"/home/laerus/.venvs/flask/bin/flask\", line 9, in <module>\n    load_entry_point('Flask==0.11.2.dev0', 'console_scripts', 'flask')()\n  File \"/home/laerus/.venvs/flask/lib/python3.5/site-packages/flask/cli.py\", line 508, in main\n    cli.main(args=args, prog_name=name)\n  File \"/home/laerus/.venvs/flask/lib/python3.5/site-packages/flask/cli.py\", line 374, in main\n    return AppGroup.main(self, *args, **kwargs)\n  File \"/home/laerus/.venvs/flask/lib/python3.5/site-packages/click/core.py\", line 696, in main\n    rv = self.invoke(ctx)\n  File \"/home/laerus/.venvs/flask/lib/python3.5/site-packages/click/core.py\", line 1060, in invoke\n    return _process_result(sub_ctx.command.invoke(sub_ctx))\n  File \"/home/laerus/.venvs/flask/lib/python3.5/site-packages/click/core.py\", line 889, in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n  File \"/home/laerus/.venvs/flask/lib/python3.5/site-packages/click/core.py\", line 534, in invoke\n    return callback(*args, **kwargs)\n  File \"/home/laerus/.venvs/flask/lib/python3.5/site-packages/click/decorators.py\", line 64, in new_func\n    return ctx.invoke(f, obj, *args[1:], **kwargs)\n  File \"/home/laerus/.venvs/flask/lib/python3.5/site-packages/click/core.py\", line 534, in invoke\n    return callback(*args, **kwargs)\n  File \"/home/laerus/.venvs/flask/lib/python3.5/site-packages/flask/cli.py\", line 433, in run_command\n    passthrough_errors=app.config['PROPAGATE_EXCEPTIONS'])\nAttributeError: 'DispatchingApp' object has no attribute 'config'\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/2005"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1947,
+    "title": "Persona example - deprecated",
+    "body": "From the Mozilla site:\n[\"The persona.org service is shutting down. This service will be unavailable after November 30th, 2016\"](https://wiki.mozilla.org/Identity/Persona_Shutdown_Guidelines_for_Reliers#Why_is_persona.org_being_shut_down.3F)\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1947"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1911,
+    "title": "Wrong import json library",
+    "body": "[This code](https://github.com/pallets/flask/blob/c5900a1adf8e868eca745225f3cf32218cdbbb23/flask/json.py#L23) is always import error.\n(`simplejson` is not included in the `itsdangerous`.)\nSee: https://github.com/pallets/itsdangerous/blob/master/itsdangerous.py\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1911"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1578,
+    "title": "Update docs on the website (at least the python 3 ones)",
+    "body": "The website gives a very outdated view on the python 3 issue:\nhttp://flask.pocoo.org/docs/0.10/python3/\n\nThis seems to be updated to make it a lot more realistic, but is not online:\nhttps://github.com/mitsuhiko/flask/blob/master/docs/python3.rst\n\nThis RST file also seems to give a very different view than the dedicated python3 one:\nhttps://github.com/mitsuhiko/flask/blob/master/docs/advanced_foreword.rst\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1578"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1321,
+    "title": "Make it easier to serve 304 (Not Modified) using a database file.",
+    "body": "Currently, i have to do this if i want to simply reply 304.\n\ngiven an object `f` with the fields `mime`, `modified` and `data`:\n\n``` python\nrv = send_file(BytesIO(f.data), mimetype=f.mime)\nrv.last_modified = f.modified.timestamp()\nreturn rv.make_conditional(request)\n```\n\nusing python 2, this would be worse, as it is most times:\n\n``` python\nrv.last_modified = (f.modified - datetime(1970, 1, 1)).total_seconds()\n```\n\ni’d like to have a way to make use of a `datetime` object or POSIX timestamp in combination with the existing `conditional` argument to `send_file`. a way that one can use without having to discover `last_modified` and `make_conditional` both, e.g. (`last_modified` can be a `datetime` or timestamp):\n\n``` python\nreturn send_file(BytesIO(f.data), mimetype=f.mime,\n                 conditional=True, last_modified=f.modified)\n```\n## Docs\n\nthe documentation to the `conditional` parameter would be extended to mention that `last_timestamp` has to be supplied if the first argument is a file handle instead of a name.\n## Implementation\n\nwe could create a helper function:\n\n``` python\ndef to_timestamp(da_ti):\n    if PY2:\n        epoch = datetime(1970, 1, 1, tzinfo=da_ti.tzinfo)  # use tzinfo to ensure subtractability\n        return (da_ti - epoch).total_seconds()\n    else:  # we do require python 3 >= 3.3, right?\n        return da_ti.timestamp()\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1321"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 836,
+    "title": "Tutorial stores passwords in plaintext",
+    "body": "http://flask.pocoo.org/docs/tutorial/views/#login-and-logout\n\nFlask should not lead new users astray, and should instead make it as easy and obvious as possible to do the right thing.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/836"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1773,
+    "title": "Issue Template",
+    "body": "It would be nice if you could add an issue template to the repository.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1773"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1846,
+    "title": "Add tests target that uses simplejson",
+    "body": "https://github.com/pallets/flask/issues/1602#issuecomment-154127373\n\nShould add tox envs for testing `flask.json` with simplejson installed.  Possibly add this to the travis matrix.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1846"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1817,
+    "title": "Unify versionadded markers (0.11 vs 1.0)",
+    "body": "There are a few `versionadded::` markers that point to 1.0 - those should be changed to 0.11 for that release.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1817"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 170,
+    "title": "jsonify doesn't accept a list",
+    "body": "I was suprised to find that jsonify(['hello', 'world']) will raise a TypeError even though \n\n> [\n>     \"hello\",\n>     \"world\"\n> ]\n\nis valid json.\n\nI think there should be a check to see if the first argument is a list instance and just do a json dump of the first argument if it is or something like that.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/170"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 248,
+    "title": "Review JSON Security",
+    "body": "ECMAscript 5 changed behavior of Array literals. That part of the documentation is outdated by now. We should check what browsers are affected by this and update the docs accordingly.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/248"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 510,
+    "title": "Can jsonify return array?",
+    "body": "as the title says, can i use jsonify as this:\n\njsonify( [ { 'a': 1, 'b': 2 }, { 'c': 3, 'd': 4 } ] )\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/510"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 673,
+    "title": "Can't jsonify list object",
+    "body": "JSON standard (http://json.org/) say, that any entity can be object or array.\nWhen I try:\n\n```\njsonify(['a','b','c', 'd', 'e', 'f'])\n```\n\nI got an error:\n\n```\nValueError: dictionary update sequence element #0 has length 8; 2 is required\n```\n\nI think it is not a correct answer from flask. It should returns a JSON-object with array.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/673"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1177,
+    "title": "Should jsonify() throw an exception when provided a list?",
+    "body": "Consider `jsonify()`cation of a dictionary contained in a list:\n\n``` python\nprint flask.__version__\nprint repr(flask.jsonify([{\"a\": 1, \"b\": 2}]).data)\n```\n\nWith the following output:\n\n``` python\n0.10.1\n'{\\n  \"a\": \"b\"\\n}'\n```\n\n`jsonify()` has -- without complaining -- mangled the data into something really not useful: The original dictionary values are gone, and the `\"b\"` key suddenly is a value.\n\nI appreciate that top-level array elements are not allowed to be created in Flask's `jsonify()` implementation (http://flask.pocoo.org/docs/0.10/security/#json-security). Also, there are for sure straight-forward strategies for solving this in application code, for example by wrapping the list in a dictionary: `jsonify({\"items\": collection})`.\n\nHowever, in the Python world we do not find it very often that an entity accepts invalid input and produces garbled output without complaining. Also, it looks like `jsonify()` once raised an exception when provided a list (at least in 2011 it did raise a `TypeError`: https://github.com/mitsuhiko/flask/issues/170).\n\nShould we raise an exception again or is the current behavior carefully designed with a focus on performance? I mean, it is unlikely that this data mangling ends up in a production environment (a developer really should realize that `jsonify()` produces garbage in this case , like I did).\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1177"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1644,
+    "title": "Please update mod_wsgi documentation to use httpd 2.4 syntax",
+    "body": "This is my own fault as I was looking for other more non-obvious issues with my permissions but the documentation here:\n\nhttp://flask.pocoo.org/docs/0.10/deploying/mod_wsgi/\n\nUses httpd 2.2 syntax for directory permissions.\n\nAt the very least, a note should be added to remind folks to use httpd 2.4 syntax of \"Require All Granted\".\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1644"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1464,
+    "title": "uWSGI / nginx documentation is incorrect",
+    "body": "The Flask documentation for how to use it with uWSGI and nginx is incorrect. As the uWSGI docs say at http://uwsgi-docs.readthedocs.org/en/latest/Nginx.html#hosting-multiple-apps-in-the-same-process-aka-managing-script-name-and-path-info, \"ancient uWSGI versions used to support the so called “uwsgi_modifier1 30” approach. Do not do it. it is a really ugly hack\". The documentation should be updated to talk about the `manage-script-name` and `mount` options instead.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1464"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1477,
+    "title": "Remove Blueprint.view_functions",
+    "body": "https://github.com/mitsuhiko/flask/blob/master/flask/blueprints.py#L104\n\nBlueprint.view_functions should be removed as it does nothing besides potentially confuse people.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1477"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1310,
+    "title": "persona example error ",
+    "body": "Out of the box, running the persona example, you get:\n\nImportError: No module named requests\n\nRemoving the import and replacing \"requests\" with \"request\" appears to resolve the issue.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1310"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1298,
+    "title": "Flask doc unittest error",
+    "body": "Hi everyone. \nI'm new to Flask, and following the tutorial.\nUntill <a href='http://flask.pocoo.org/docs/0.10/testing/#the-first-test'>The First Test</a> of <a href='http://flask.pocoo.org/docs/0.10/testing/#testing'>Testing Flask Applications</a>\nthe code bellow\n\n<pre>\ndef test_empty_db(self):\n    rv = self.app.get('/')\n    assert 'No entries here so far' in rv.data\n</pre>\n\nwent wrong.\n\n<pre>Traceback (most recent call last):\n  File \"D:\\Programming\\Python3_mine\\Flask\\flaskr\\flaskr_tests.py\", line 21, in test_empty_db\n    assert 'No entries here so far' in rv.data\nTypeError: Type str doesn't support the buffer API</pre>\n\nThen I checked the rv.data's type.(rv is a response_class object)\nAnd it's <strong>bytes</strong> type. So I use <em>b'No entries here so far' and it worked</em>.\n\nDid this happen to everyone else?\nI think someone should correct the document to save beginners' time.\n\nAnd I'm still working on my English so forgive me if there're any grammar or spelling mistake.\nThank you for reading!! :)\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1298"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1288,
+    "title": "app.add_url_rule() should look for OPTIONS methods in a case-insensitive manner",
+    "body": "add_url_rule() has logic that says that if the user has not included OPTIONS in their methods, flask will automatically provide an implementation.\n\nUnfortunately, this logic is only triggered if the method string is OPTIONS in all upper case.  So if you've included lower case \"options\" in your methods you will still end up with the flask-provided options functionality.\n\nI think it should be a case-insensitive comparison since all the rest of the routing is all case-insensitive.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1288"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1199,
+    "title": "make runs superfluous tests when using a virtualenv",
+    "body": "Tests unrelated to flask run when I follow the \"living on the edge\" setup instructions (http://flask.pocoo.org/docs/0.10/installation/#living-on-the-edge) and run make. This was especially confusing for someone like me who is new to the project because some of these tests fail.\n\nThey're located in path/to/flask/venv/lib/python2.7/site-packages/setuptools/tests/\n### My setup\n\nos: osx 10.9.5\npython: 2.7.5\nvirtualenv: 1.11.6\npytest: 2.6.3\n### Potential fix\n\n```\ndiff --git a/Makefile b/Makefile\nindex e1835e8..3e1473d 100644\n--- a/Makefile\n+++ b/Makefile\n@@ -3,7 +3,8 @@\n all: clean-pyc test\n\n test:\n-       py.test\n+       py.test examples\n+       py.test tests\n\n tox-test:\n        tox\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1199"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 986,
+    "title": "Remove or downplay Tornado recommendation",
+    "body": "http://flask.pocoo.org/docs/deploying/wsgi-standalone/ talks about Tornado's scaling properties, but does not mention that most of this scalability is lost when the single-threaded asynchronous server is combined with a synchronous WSGI framework like flask.  I see a lot of questions on stackoverflow from people who use Flask on Tornado and are surprised that they are not getting any concurrency.  \n\nI think it would be best to remove Tornado from this page entirely since Tornado is not really focused on being a WSGI container and WSGI apps are nearly always better served by a multi-threaded server like gunicorn or uwsgi.  If you do want to keep a mention of Tornado as a WSGI server, please acknowledge its limitations (single-threaded) and that it really only makes sense when you want to combine a WSGI app with a Tornado-native app in the same process.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/986"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1155,
+    "title": "`pip install flask==dev` does not work.",
+    "body": "I followed the documentation found [on flask's site](http://flask.pocoo.org/docs/0.10/installation/#living-on-the-edge). What I was looking to do was `pip install Flask==dev`. Received the following traceback:\n\n```\n(burddy)crow@ burddy (master)$ pip install Flask==dev\nDownloading/unpacking Flask==dev\n  Could not find a version that satisfies the requirement Flask==dev (from versions: 0.1, 0.10.1, 0.10, 0.2, 0.3.1, 0.3, 0.4, 0.5.1, 0.5.2, 0.5, 0.6.1, 0.6, 0.7.1, 0.7.2, 0.7, 0.8.1, 0.8, 0.9)\nCleaning up...\nNo distributions matching the version for Flask==dev\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1155"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1129,
+    "title": "url_for _external does not use PREFERRED_URL_SCHEME",
+    "body": "To reproduce:\n\n1) set a PREFERRED_URL_SCHEME in the app config != http\n2) Use a url_for with _external=True\n3) Note that the URL does not use the PREFERRED_URL_SCHEME\n\nNotes: I'm using blueprints and Flask version 0.10.1\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1129"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1101,
+    "title": "Python 3 docs are quite outdated",
+    "body": "I've been using Flask with Python 3 from since it was supported. Back then there were definitely some issues with certain libraries that were only compatible on the git repo and not on pypi. But I'm currently running quite a complex website using Python 3 and Flask and haven't had any real problems in like half a year. \n\nI think Python 3 has become mature, especially with Python 3.4, and the general opinion is that new projects should be using Python 3. The current docs quite strongly suggest otherwise. \nI would be happy to rewrite them, but before I do I would like to know if you guys agree.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1101"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 1051,
+    "title": "Docs: cli.rst typos",
+    "body": "There are a couple of typos in cli.rst file.\nThe command 'python -m flask' appears with no space between the m and the f of flask (I presume this is an error).\nIn Script Info section, the first reasons is spelt 'rasons' (OK, not so important I know, but ...)\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/1051"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 968,
+    "title": "GET params discarded by flask test client, when using full url",
+    "body": "Using full URL in flask test client. GET params are silently discarded:\n\n```\nimport unittest\nfrom flask import Flask, request\n\napp = Flask(__name__)\napp.testing = True\n\n@app.route('/action')\ndef action():\n    return \"\"\n\n\nclass MyTestCase(unittest.TestCase):\n\n    def test_get_with_path(self):\n        with app.test_client() as c:\n            rv = c.get('/action?vodka=42')\n            assert 'vodka' in request.args # assertion OK\n\n    def test_get_with_complete_url(self):\n        with app.test_client() as c:\n            rv = c.get('http://domain.com/action?vodka=42')\n            assert 'vodka' in request.args # assertion error\n\n    def test_post_with_complete_url(self):\n        with app.test_client() as c:\n            rv = c.post('http://domain.com/action?vodka=42', data={'gin': 43})\n            assert 'gin' in request.form # assertion OK\n            assert 'vodka' in request.args # assertion error\n\n\nif __name__ == '__main__':\n    unittest.main()\n```\n\nThis may also be considered inconsistent with the behaviour on POST params.\n\nIf this is not the way one should use test client, maybe put a warning in the docs ?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/968"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 922,
+    "title": "Template filter: tojson and sort_keys",
+    "body": "I spent couple of hours yesterday trying to understand why `tojson` output had a different order from `json.dumps` order.\n\nThe thing is that Flask sets `sort_keys` to `True` by default (see https://github.com/mitsuhiko/flask/blob/master/flask/json.py#L102). Is it possible to add something regarding this, and the `JSON_SORT_KEYS` in the doc ?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/922"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 882,
+    "title": "app.test_request_context() is affected by except blocks that happen before it",
+    "body": "To illustrate the issue, see this code snippet:\n\n``` python\nfrom flask import Flask\n\napp = Flask(__name__)\n\n@app.teardown_request\ndef teardown(exc = None):\n    if exc is not None:\n        print \"An exception has occured!\"\n\ntry:\n    raise Exception('dummy')\nexcept:\n    pass\n\n# uncomment this to remove the issue\n# import sys; sys.exc_clear()\n\nwith app.test_request_context():\n    print \"Nothing happening here\"\n\n# Output:\n# Nothing happening here\n# An exception has occured! <== this is unexpected!\n```\n\nThis happens because flask relies on sys.exc_info() to figure out if some exception happened in the request. However, sys.exc_info() gets populated whenever an except block has been executed. This could lead to weird behavior in unit tests, perhaps the **enter** method on RequestContext should contain a sys.exc_clear()?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/882"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 856,
+    "title": "typo in quickstart.rst ",
+    "body": "in following line:\n\nThis behavior allows relative URLs to continue working even if the trailing slash is ommited, consistent with how Apache and other servers work. Also, the URLs will stay unique, which helps search engines avoid indexing the same page twice.\n\n\"ommited\" should be \"omitted\"\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/856"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 815,
+    "title": "methods argument of Flask.route should be validated at import time",
+    "body": "I've seen that people often write `@app.route(..., methods=[\"POST\"])`  as `@app.route(..., methods=\"POST\")`, which won't error immediately, but return a `405` status code later.\n\nWhich is very unfortunate, as people might think the methods parameter is a space or comma separated string with methods. Sometimes i write that myself because i still don't memorize that this part of Flask's API is actually that \"heavy\" on the syntax.\n\nSo what i propose is to add the following normalization code in `Flask.add_url_rule`:\n\n``` python\nif isinstance(methods, str):\n    if ',' in methods:\n        methods = methods.split(',')\n    elif ' ' in methods:\n        methods = methods.split(' ')\n    else:\n        methods = (methods,)\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/815"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 782,
+    "title": "Flaskr tutorial suggestion - Use DATABASE='flaskr' instead of DATABASE='/tmp/flaskr'",
+    "body": "Title says it all.\n1..DATABASE='flaskr'            works for windows and linux\n2..DATABASE='/tmp/flaskr'    only works for linux and probably OS10 \n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/782"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 781,
+    "title": "test_appcontext_signals() fails with blinker installed",
+    "body": "test_appcontext_signals() fails with blinker installed. I use blinker 1.2. This failure occurs with Python 2.6, 2.7 and 3.3.\n\n```\n======================================================================\nFAIL: test_appcontext_signals (flask.testsuite.signals.SignalsTestCase)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/flask/flask/testsuite/signals.py\", line 118, in test_appcontext_signals\n    self.assert_equal(recorded, ['push', 'pop'])\n  File \"/tmp/flask/flask/testsuite/__init__.py\", line 139, in assert_equal\n    return self.assertEqual(x, y)\nAssertionError: Lists differ: ['push', 'push'] != ['push', 'pop']\n\nFirst differing element 1:\npush\npop\n\n- ['push', 'push']\n?            ^^^\n\n+ ['push', 'pop']\n?            ^^\n\n\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/781"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 759,
+    "title": "Broken `g.var is defined` behaviour",
+    "body": "Jinja template test `g.nonexistent_var is defined` returns `True` in Flask latest git version and `False` in Flask 0.9. I think commit 09735369 broke this (`__getitem__` returns `None` instead of raising `AttributeError`).\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/759"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 763,
+    "title": "Documentation for Flask.route() incorrect",
+    "body": "https://github.com/mitsuhiko/flask/blob/master/flask/app.py#L999\n\nThe documentation for Flask.route() seems to show options that don't apply to the decorator.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/763"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 725,
+    "title": "Explicitly state that the jsonify method changes on request",
+    "body": "Hi,\n\nThis drove me crazy, until I took a look at the source code of the jsonify method.\n\nIn the documentation for jsonify, it should state that it uses the request.is_xhr method to render either compact JSON or pretty print JSON depending on the X-Requested-With header.\n\nThanks for Flask.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/725"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 677,
+    "title": "Minor typo in quickstart",
+    "body": "Go to the quickstart guide:\n\nhttp://flask.pocoo.org/docs/quickstart\n\nSearch for \"get the result object\". I suspect it should be \"get the response object\" because the subsequent code fragment is dealing with the response object.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/677"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 661,
+    "title": "@app.teardown_request function doesn't called in debug mode [NOT-A-BUG]",
+    "body": "UPD: not a bug, see https://github.com/mitsuhiko/flask/issues/661#issuecomment-11975645\n\n```\nfrom flask import Flask\n\napp = Flask('teardown')\n\n@app.teardown_request\ndef shutdown_session(err):\n    print repr(err)\n\n@app.route('/')\ndef index():\n    raise ValueError('test exc')\n\nif __name__ == '__main__':\n    app.run()\n```\n\nSo, when I open index page and see 500 error page, console output is `ValueError('test exc')`. But when I start app in debug mode, eg\n\n```\nif __name__ == '__main__':\n    app.run(debug=True)\n```\n\nOutput is `None`, when expected `ValueError('test exc')`.\n\nThis is important for me, because I use `teardown_request` for sqlalchemy transaction management like\n\n```\n@app.teardown_request\ndef shutdown_session(exception):\n    if exception:\n        db.session.rollback()\n    else:\n        db.session.commit()\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/661"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 623,
+    "title": "missing text in url_for() app context RuntimeError message",
+    "body": "In `flask/helpers.py`, near the top of `url_for()` there is this code:\n\n``` python\n    appctx = _app_ctx_stack.top\n    reqctx = _request_ctx_stack.top\n    if appctx is None:\n        raise RuntimeError('Attempted to generate a URL with the application '\n                           'context being pushed.  This has to be executed ')\n```\n\nIt looks like that `RuntimeError` message is cut off.  This has to be executed when? :)\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/623"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 646,
+    "title": "Please improve CGI documentation slightly.",
+    "body": "Please mention on web page that when deploying Flask on CGI, you can not have any random \"print\" in the source code, it will mess up the output.\n\nhttp://stackoverflow.com/a/13799083/193892\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/646"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 618,
+    "title": "Issue #524 was not one and flaskext_compat does not work anymore",
+    "body": "find_module is a method automatically called. Removing the path argument, even if not used, may cause (and causes) error such as: \n\n> from flask.ext.babel import Babel\n> TypeError: find_module() takes exactly 2 arguments (3 given)\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/618"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 611,
+    "title": "Minor typo in Tutorial, but possibly confusing",
+    "body": "There is a minor typo in the Tutorial at this page: [dbinit](http://flask.pocoo.org/docs/tutorial/dbinit/#tutorial-dbinit).\nThe line in question:  \n\n> Just add that function below the connect_db function in flask.py:\n\nOf course the filename should be _flaskr.py_ and not _flask.py_.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/611"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 501,
+    "title": "safe_join with '..'",
+    "body": "Is this a problem?\n\n```\n>>> from flask import safe_join\n>>> safe_join('/foo', '..')\n'/foo/..'\n```\n\nI think it could be if we’re exposing not just files but also directories (maybe making indexes, ...). Should safe_join check for `'..'` and not just `'../'` ?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/501"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 570,
+    "title": "Warn or raise when overriding an endpoint",
+    "body": "It is apparently a common mistake to make multiple/distinct view functions sharing the same endpoint, the last overriding the earlier ones in the `app.view_functions` dict.\n\nWith a decorator: http://stackoverflow.com/questions/11064263/flask-custom-decorator-breaks-the-routing\nWith class-based views: http://stackoverflow.com/questions/11700698/flask-route-query-parameter\n\nIs there an use case to using `app.route()` or `app.add_url_rule()` with an existing endpoint and overriding it? I think it is more often a mistake than not. I suggest that such cases issue a warning or even raise an exception, in order to catch the mistake early. In uncommon scenarios where overriding is actually desired, the user can always use `del app.view_functions[endpoint]` before registering the new function.\n\n(I can provide a patch, but I’d like to discuss the idea first.)\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/570"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 600,
+    "title": "cannot run testsuite on Windows",
+    "body": "Attempting to run tests of Flask itself fails immediately.\n\n```\n(python2.7) C:\\Users\\peter\\repos\\mitsuhiko\\flask.git>python run-tests.py\nError: 'module' object has no attribute 'samefile'\n```\n\nThis is due to a call to os.path.samefile (in flask/testsuite/__init__.py) which is only available on Unix.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/600"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 596,
+    "title": "sdist from master creates \"devdev\" version.",
+    "body": "```\n$ ls ./dist\nFlask-0.10-devdev-20120918.tar.gz\n```\n\nExpected:\n\n```\n$ ls ./dist\nFlask-0.10-dev-20120918.tar.gz\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/596"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 601,
+    "title": "Getting raw POST data for whatever mimetype",
+    "body": "Ok, this issue have been raised twice, but i got an use-case that i don't know how to handle without the raw POST data.\n\nIf you use PubSubHubbub api, you can can give a secret, and any data that you will receive will be signed:\n- When you subscribe to a new hub, you can give a \"secret\"\n- When you get a POST request, you get a `X-Hub-Signature` in the format \"sha1:xxxx\"\n- The signature is based on the secret you give at the subscription + the raw request data\n- The request data are POSTed, and accessible with request.form\n\nTo verify the signature, i think it should be something like:\n\n``` python\nfrom hashlib import sha1\nimport hmac\nsignature = 'sha1:' + hmac.new(my_secret, request.data, sha1).hex_digest()\n```\n\nI've tried to use `json.dumps(request.form)` to get the initial raw data, but it doesn't work, maybe cause of a space or a line break.\n\n(The real use case here is using the PubSubHubbub hook from Github, to get a CIA.vc like service)\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/601"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 605,
+    "title": "Regarding JSON inside <script> tag and HTML5 parser",
+    "body": "A JSON string in an HTML `<script>` tag may cause the parser to enter the [script data double escaped state](http://www.w3.org/TR/html5/tokenization.html#script-data-double-escaped-state), in which `</script>` would not return the parser to the data state as expected.\n\nsample.html:\n\n``` html\n<!doctype html>\n<script>alert({{ v|tojson|safe }});</script>\n```\n\nsample.py:\n\n``` python\nreturn render_template('sample.html', v='<!--<script>')\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/605"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 332,
+    "title": "Flask.template_test()",
+    "body": "While there is template_filter() decorator for creating jinja2 custom filters, it's good idea to add template_test:\n\n```\ndef template_test(self, name=None):\n    def decorator(f):\n        self.jinja_env.tests[name or f.__name__] = f\n        return f\n    return decorator\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/332"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 519,
+    "title": "Quickstart  login example has unclear comment.",
+    "body": "The login example in the quickstart guide has an incorrect or unclear comment at the end.  If the comment is referring to the <code>error = 'Invalid username/password'</code> line, then this code will NOT be executed if the request method was GET.  If the comment is meant to mean that code placed after the comment would execute, then it should be re-worded as such.\n\n```\n@app.route('/login', methods=['POST', 'GET'])\ndef login():\n    error = None\n    if request.method == 'POST':\n        if valid_login(request.form['username'],\n                       request.form['password']):\n            return log_the_user_in(request.form['username'])\n        else:\n            error = 'Invalid username/password'\n    # this is executed if the request method was GET or the\n    # credentials were invalid\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/519"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 364,
+    "title": "Invalid name of converter in API docs",
+    "body": "The API docs of Flask state that there are 4 builtin converters, `unicode`, `int`, `float` and `path`.  While the werkzeug docs state that the `unicode` converter's name is actually `string`. Either change werkzeug name of converter or correct the flask docs.\n\nhttp://werkzeug.pocoo.org/docs/routing/#werkzeug.routing.UnicodeConverter\nhttp://flask.pocoo.org/docs/api/#url-route-registrations\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/364"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 374,
+    "title": "error in view.rst ",
+    "body": "view.rst:\n\napp.add_url_rule('%s<%s:%s>' % (url, **pk, pk_type**), view_func=view_func,\n                     methods=['GET', 'PUT', 'DELETE'])\n\nIt should be: \n\napp.add_url_rule('%s<%s:%s>' % (url, **pk_type, pk**), view_func=view_func,\n                     methods=['GET', 'PUT', 'DELETE'])\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/374"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 370,
+    "title": "Quickstart: Variable Rules Section",
+    "body": "If you paste the code from \"Variable Rules\" into your test app (hello.py), it generates error messages when you go to those URLs. That code needs some fleshing out so that it doesn't break; for example:\n\n@app.route('/user/<username>')\ndef show_user_profile(username):\n    # show the user profile for that user\n    return \"foo %s\" % username\n\n@app.route('/post/int:post_id')\ndef show_post(post_id):\n    # show the post with the given id, the id is an integer\n    return \"bar %d\" % post_id\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/370"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 371,
+    "title": "Quickstart: Unique URLs / Redirection Behaviour",
+    "body": "(And in general in the quickstart) Instead of using \"pass\" which causes the code to break when pasted into hello.py:\n\n@app.route('/projects/')\ndef projects():\n    pass\n\n@app.route('/about')\ndef about():\n    pass\n\nIt would be nice if the code did enough so that the first-time user isn't faced with a non-working system. Even something as simple as:\n\n@app.route('/projects/')\ndef projects():\n    return \"projects\"\n\n@app.route('/about')\ndef about():\n    return \"about\"\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/371"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 351,
+    "title": "session is saved before @after_request callbacks",
+    "body": "This makes it impossible to add data to session in said callbacks. For example, the following code does not work, because session is never stored:\n\n``` python\n@app.before_request\ndef before_request():\n    u = session.get('user')\n    g.user = u and db.User(u) or None\n\n@app.after_request\ndef after_request(response):\n    session['user'] = g.user and dict(g.user) or None\n    return response\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/351"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 310,
+    "title": "Switch to primitive types in the config",
+    "body": "Right now PERMANENT_SESSION_TIMEOUT can only be a datetime.timedelta object which is annoying. Make it possible to set this to an integer.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/310"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 279,
+    "title": "route / add_url_rule Documentation",
+    "body": "The docs are kinda inconsistent between route() and add_url_rule. The former should be documented as a decorator version of the latter which is true since Flask 0.3 at least.\n\nAlso with 0.7 and 0.8 we have some attributes on view functions that can have meanings attached. These now have a separate headline in the API docs, but I guess it would make sense to tidy this up a bit.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/279"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 326,
+    "title": "Move Some Context Preservation Logic into App",
+    "body": "Right now a test client can preserve the context for a little longer, so can exceptions. However there is no information if there is a context \"on hold\" on the stack which leads to the problem that if you continue to trigger exception you build up items on the stack in debug mode for nothing. There should always only be one context on the stack preserved and if another request comes in it should be removed.\n\nThis might also make the test client cleaner.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/326"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 246,
+    "title": "Split up Testsuite",
+    "body": "After the 0.7 release we really should be splitting up the testsuite into more than one file :)\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/246"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 290,
+    "title": "request.json is documented twice",
+    "body": "`flask.request.json` is documented twice in http://flask.pocoo.org/docs/api/#incoming-request-data\n\nThe two descriptions should be merged. Also they should say what happens when the request is not JSON. Is the .json attribute None?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/290"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 299,
+    "title": "make_release.py won't work for August dates",
+    "body": "Hi Armin -\n\nI am using your make_release.py script in Bulbs, and the script was breaking when I was trying to make a release today because the parse_date function was replacing the the \"st\" in August (this may be an issue for other months too):\n\ndef parse_date(string):\n    string = string.replace('th ', ' ').replace('nd ', ' ') \\\n                   .replace('rd ', ' ').replace('st ', ' ')\n    return datetime.strptime(string, '%B %d %Y')\n- James\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/299"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 294,
+    "title": "Traceback logs not available for POST requests",
+    "body": "When the app runs in debug mode, exceptions in handling GET requests would be displayed on the page and logging output. But for POST requests, it only returns \"400 Bad Request\", without any traceback, making debugging difficult. If it's a bad idea to display the traceback in web page, at least it should be displayed in the logging output.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/294"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 278,
+    "title": "Typos in flask.app.Flask docstrings/comments",
+    "body": "Line 85. \"yourapplicaiton\" where it should be \"yourapplication\":\n\n```\n        an SQL query in debug mode.  If the import name is not properly set\n        up, that debugging information is lost.  (For example it would only\n        pick up SQL queries in `yourapplicaiton.app` and not\n        `yourapplication.views.frontend`)\n```\n\nAlso, line 108, \"ocurrs\" where it should be \"occurs\":\n\n```\n    #: The debug flag.  Set this to `True` to enable debugging of the\n    #: application.  In debug mode the debugger will kick in when an unhandled\n    #: exception ocurrs and the integrated server will automatically reload\n    #: the application if changes in the code are detected.\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/278"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 253,
+    "title": "Reports of sessions not working when SERVER_NAME set with port",
+    "body": "Not sure how cookies are supposed to work with ports right now, but we got reports that they don't work with an explicitly set port. Investigate.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/253"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 258,
+    "title": "Make Tests for bluprints with dotted Names",
+    "body": "We want to encourage blueprint names with dots in, make sure they work.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/258"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 234,
+    "title": "logging improperly extending directly from Logger class",
+    "body": "The python logging facility provides a getter for the base logger class, logging.getLoggerClass().  This allows the base class of the logging singleton to be extended multiple times without overriding previous calls to logging.setLoggerClass(),   In my case specifically I'm setting up a base logging facility via an extended Logger,  flask won't play nice with this because its DebugLogger is not extended from the class returned via getLoggerClass().  For a patched version of the create_logging function see https://gist.github.com/981450\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/234"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 227,
+    "title": "get_flashed_messages() always forces session.should_save",
+    "body": "I recently added message flashing to one of my apps, and noticed that it started re-issuing the session cookie on _every_ response.\n\nA bit of digging revealed that `get_flashed_messages()` calls `session.pop('_flashes')` without first checking to see if `session['_flashes']` is missing or empty.  This has a side effect of triggering `ModificationTrackingDict.on_update()`, which in turn marks the session as modified even though it wasn't.  It happens even when no flash messages are set.\n\nThe fix should be easy.  Replace this part of `get_flashed_messages()`:\n\n```\nif flashes is None:\n    _request_ctx_stack.top.flashes = flashes = session.pop('_flashes', [])\n```\n\nWith something like this:\n\n```\nif flashes is None and '_flashes' in session:\n    _request_ctx_stack.top.flashes = flashes = session.pop('_flashes')\nelse:\n    _request_ctx_stack.top.flashes = flashes =  []\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/227"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 224,
+    "title": "Docs should mention that url_for() skips query string args with value=None",
+    "body": "(Related to #20)\n\nI just discovered that, when passing extra arguments to [url_for()](http://flask.pocoo.org/docs/api/#flask.url_for), it skips those whose values are None.  This is a convenient feature.  If it was documented, I would use it without worrying that it might disappear in the next version.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/224"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 164,
+    "title": "Wrong \"Date\" http header, breaks clientside caching for static files, lots of 304 responses",
+    "body": "quoting from flask.helpers.send_file:\n    # if we know the file modification date, we can store it as the\n    # current time to better support conditional requests.  Werkzeug\n    # as of 0.6.1 will override this value however in the conditional\n    # response with the current time.  This will be fixed in Werkzeug\n    # with a new release, however many WSGI servers will still emit\n    # a separate date header.\n    if mtime is not None:\n        rv.date = int(mtime)\n\nThese 2 lines break clientside caching because they emit a wrong Date header.\n\nAs by rfc 2616, the Date header should tell when the Response originated from\nthe server (== current server time), but this code sets it to the mtime of\nthe static file (== some time in the past).\n\nThis obviously at least breaks Firefox 3.6, because it'll always consider its\ncache entry as stale then (even when the Expires date and max-age would\nnormally not lead to staleness).\n\nWrong behaviour:\n1st request -> 200, all further requests (directly afterwards) -> 304\n\nCorrect behaviour (wrong code removed):\n1st request -> 200, \n(NO further requests happening until Expires is reached), \nnext request (after expiry) -> 304\n\nWrong behaviour was introduced after 0.6.2 due to unknown reasons by:\n\nhttps://github.com/mitsuhiko/flask/commit/85ff63c32e7237280bff3293481a371fb3da180c\n\nI don't see how this shall \"better support conditional requests\", it rather\nlooks like breaking caching and doing lots of unneeded requests.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/164"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 148,
+    "title": "Allow custom TestClient",
+    "body": "It would be useful to make the test client class an overridable property (as is currently the case with response_class).\n\nIt would then be possible to insert a custom TestClient class with additional methods (for example, a \"login\" method) in unit tests.\n\nFor example:\n\n```\napp.test_client_class = MyCustomClient\nclient = app.test_client() \n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/148"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 143,
+    "title": "Pointless example for Signal.connected_to",
+    "body": "The example last in [this](http://flask.pocoo.org/docs/signals/#subscribing-to-signals) section is pointless because the `recorded` list is never yielded and it is not reachable from anywhere. `connected_to` yields `None`.\n\n```\ndef captured_templates(app):\n    recorded = []\n    def record(template, context):\n        recorded.append((template, context))\n    return template_rendered.connected_to(record, app)\n```\n\nIt's still a meaningful pattern for like what Flask-Testing does, appending to `self.templates` which in deed is reachable from tests. What would be a sensible rewrite?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/143"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 133,
+    "title": "signals.rst",
+    "body": "This ...\n\n Example subscriber::\n\n```\n    def log_template_renders(sender, template, context):\n        sender.logger.debug('Rendering template \"%s\" with context %s',\n                            template.name or 'string template',\n                            context)\n\n    from flask import request_started\n    request_started.connect(log_template_renders, app)\n```\n\n... the two last lines must be...\n        from flask import template_rendered\n        template_rendered.connect( log_template:renders, app)\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/133"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 108,
+    "title": "`url_for(\"static\", ...)` with `subdomain` problem",
+    "body": "The version is 0.6.\n\nI made a `flask.Module` with `subdomain` option.\n\n```\nfrom flask import Module\napp = Module(__name__, subdomain=\"sub\")\n```\n\nAnd when I use `url_for(\"static\", ...)` in a template, it returns `\"http://example.net/static\"` instead of `\"/static\"`(`\"http://sub.example.net/static\"`). So I added some code for debugging to flask/app.py(line 512).\n\n```\nprint options\n```\n\nResult is:\n\n```\n{'endpoint': 'static'}\n{'subdomain': 'sub', 'endpoint': 'sub.favicon'}\n{'subdomain': 'sub', 'endpoint': 'sub.index'}\n...\n```\n\nThe url rule for `static`, which is added automatically doesn't have a `subdomain` option.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/108"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 106,
+    "title": "Typing error in docs/patterns/fabric.rst",
+    "body": "Inside the deploy method \n\n```\n# upload the source tarball to the temporary folder on the server\nput('sdist/%s.tar.gz' % dist, '/tmp/yourapplication.tar.gz')\n```\n\nshould be\n\n```\n# upload the source tarball to the temporary folder on the server\nput('dist/%s.tar.gz' % dist, '/tmp/yourapplication.tar.gz')\n```\n\n(there is an s before dist)\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/106"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 102,
+    "title": "Wrong import in Errorhandling",
+    "body": "The example at \"Logging to file\" has\n'from logging.handlers import TheHandlerYouWant'\nthough it should be\n'from logging import TheHandlerYouWant'\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/102"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 104,
+    "title": "send_file in flask 0.6 issues",
+    "body": "See there:\n\nhttp://hg.moinmo.in/moin/2.0-dev/rev/58eb8f978188\n\nhttp://hg.moinmo.in/moin/2.0-dev/rev/25de9bb78a9f\n\nPlease apply upstream, having to have patched files is obviously a pain for packaging.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/104"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 105,
+    "title": "`pydoc flask` [or vars(flask)] fails",
+    "body": "Steps to reproduce:\n\n```\n(werk)mini:~ fz$ python\nPython 2.6.1 (r261:67515, Dec 17 2009, 00:59:15) \n[GCC 4.2.1 (Apple Inc. build 5646)] on darwin\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n>>> import pydoc, flask\n>>> pydoc.pager = lambda text: pydoc.pipepager(text, 'cat')\n>>> help(flask)\nHelp on package flask:\n\nflask = <module 'flask' from '/Volumes/Home/FZ/.local/repo/flask/flask/__init__.pyc'>\n>>> \n```\n\nNo top-level documentation! Same problem with help(flask.app), help(flask.globals), help(flask.helpers), also via the pydoc -p web server. I found that it hinges on this:\n\n```\n>>> pydoc.text.docmodule(flask)\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\n  File \"/Volumes/Home/FZ/.local/lib/python2.6/site-packages/pydoc.py\", line 1100, in docmodule\n    contents.append(self.docother(value, key, name, maxlen=70))\n  File \"/Volumes/Home/FZ/.local/lib/python2.6/site-packages/pydoc.py\", line 1299, in docother\n    repr = self.repr(object)\n  File \"/System/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/repr.py\", line 24, in repr\n    return self.repr1(x, self.maxlevel)\n  File \"/Volumes/Home/FZ/.local/lib/python2.6/site-packages/pydoc.py\", line 955, in repr1\n    return cram(stripid(repr(x)), self.maxother)\n  File \"/Volumes/Home/FZ/.local/env/werk/lib/python2.6/site-packages/werkzeug/local.py\", line 321, in __repr__\n    obj = self._get_current_object()\n  File \"/Volumes/Home/FZ/.local/env/werk/lib/python2.6/site-packages/werkzeug/local.py\", line 306, in _get_current_object\n    return self.__local()\n  File \"/Volumes/Home/FZ/.local/repo/flask/flask/globals.py\", line 17, in <lambda>\n    current_app = LocalProxy(lambda: _request_ctx_stack.top.app)\nAttributeError: 'NoneType' object has no attribute 'app'\n>>> \n```\n\nand can be fixed by the following change (which I hope won't cause breakage elsewhere):\n\n```\ndiff --git a/flask/globals.py b/flask/globals.py\nindex aac4655..0a17f56 100644\n--- a/flask/globals.py\n+++ b/flask/globals.py\n@@ -14,7 +14,8 @@ from werkzeug import LocalStack, LocalProxy\n\n # context locals\n _request_ctx_stack = LocalStack()\n-current_app = LocalProxy(lambda: _request_ctx_stack.top.app)\n-request = LocalProxy(lambda: _request_ctx_stack.top.request)\n-session = LocalProxy(lambda: _request_ctx_stack.top.session)\n-g = LocalProxy(lambda: _request_ctx_stack.top.g)\n+_top = _request_ctx_stack.top\n+current_app = LocalProxy(lambda: _top.app if _top else None)\n+request = LocalProxy(lambda: _top.request if _top else None)\n+session = LocalProxy(lambda: _top.session if _top else None)\n+g = LocalProxy(lambda: _top.g if _top else None)\n```\n\nThen one gets as expected, e.g.\n\n```\n>>> help(flask.globals)\nHelp on module flask.globals in flask:\n\nNAME\n    flask.globals\n\nFILE\n    /Volumes/Home/FZ/.local/repo/flask/flask/globals.py\n\nDESCRIPTION\n    flask.globals\n    ~~~~~~~~~~~~~\n\n    Defines all the global objects that are proxies to the current\n    active context.\n\n    :copyright: (c) 2010 by Armin Ronacher.\n    :license: BSD, see LICENSE for more details.\n\nDATA\n    current_app = None\n    g = None\n    request = None\n    session = None\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/105"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 100,
+    "title": "Inconsistency in docs/testing.rst",
+    "body": "The first time the FlaskrTestCase source code is shown the setUp method looks like this:\n\n```\ndef setUp(self):\n    self.db_fd, flaskr.DATABASE = tempfile.mkstemp()\n    self.app = flaskr.app.test_client()\n    flaskr.init_db()\n```\n\nNote `self.db_fd, flaskr.DATABASE = tempfile.mkstemp()`\n\nThe second time it looks like this:\n\n```\ndef setUp(self):\n    self.db_fd, flaskr.app.config['DATABASE'] = tempfile.mkstemp()\n    self.app = flaskr.app.test_client()\n    flaskr.init_db()\n```\n\nNote `self.db_fd, flaskr.app.config['DATABASE'] = tempfile.mkstemp()`\n\nNow I think the first version is not that good because it relies on the settings to be declared inside flaskr.py. I tried to put the settings in another file and load them with `app.config.from_object(settings)` only to find out that my real database is used because obviously blog.DATABASE is not read at all in flaskr.py.\n\nNote that there is the same problem with the `tearDown` method.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/100"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 97,
+    "title": "Automagic OPTIONS: incorrect Allow results for routes with multiple handlers",
+    "body": "If an URL rule has more than one handlers for different HTTP methods (typical for RESTful apps), OPTIONS will incorrectly report only the methods of the first handler.\n\nConsider the following example:\n\n```\n@app.route('/things/<thing>')\ndef one_thing(thing):\n    return \"it's a \" + thing + \"!\"\n\n@app.route('/things/<thing>', methods=['PUT'])\ndef put_thing(thing):\n    return \"Thanks for the thing.\"\n```\n\nPerforming an OPTIONS request on /things/foo incorrectly reports only the methods of the first handler:\n\n```\n$ curl -IXOPTIONS http://localhost:8080/things/foo\nHTTP/1.0 200 OK\nContent-Type: text/html; charset=utf-8\nAllow: HEAD, OPTIONS, GET\n...\n```\n\nWerkzeug gets it right though, if an invalid method is attempted:\n\n```\n$ curl -IXFOO http://localhost:8080/things/foo\nHTTP/1.0 405 METHOD NOT ALLOWED\nContent-Type: text/html\nAllow: PUT, HEAD, OPTIONS, GET\n...\n```\n\nI figure something along the lines of MapAdapter.match() in werkzeug/routing.py is required (loop through all matching handlers and add up the supported methods)\n\nThanks :-)\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/97"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 92,
+    "title": "Improve template documentation",
+    "body": "The template documentation is currently spread out between quickstart and various functions in the api docs.  There should be a template chapter for:\n- how autoescaping works and how it can be controlled (autoescape / safe, filenames) \n- basic jinja introduction and links to jinja docs\n- what global functions and objects are available\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/92"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 90,
+    "title": "Disabling code execution",
+    "body": "When we want to show an error on a webserver to someone, we'd like the webserver to display the error as in debug mode, but not permit arbitrary code execution.\n\nThere should be an option to either disable completely the code execution but show the debug info on the page, or only allow code execution when it comes from localhost\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/90"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 88,
+    "title": "Documentation of server configuration and middleware inclusion",
+    "body": "It would be nice that the (already fairly complete) documentation also hints at how to configure servers for production use (multiple backend servers, apache, nginx, python servers, etc) and how to setup werkzeug and wsgi middlewares in a regular flask application  \n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/88"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 87,
+    "title": "2 little bugs in jqueryexample.py",
+    "body": "I found 2 little bugs in jqueryexample.py:\n1. In import from flask missing jsonify\n2. in template layout.html is \n`<script type=text/javascript src=\"{{ url_for('static', filename='app.js') }}\"></script>`\n, but app.js file is missing.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/87"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 86,
+    "title": "Module.add_url_route and App.add_url_route not consistent  ",
+    "body": "App.add_url_route allows the name of the route to be None, but Module.add_url_route requires all three arguments, but it should not really be necessary\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/86"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 81,
+    "title": "Static URL rule not being added on GAE with static_dir handler",
+    "body": "When app.yaml has `static_dir` point to Flask application's `static/` directory, `os.path.exists` will always return `False` and thus causing `_PackageBoundObject.has_static_dir` to return `False` making static URL rule not being added at initialization. \n\nExample:\n#### app.yaml\n\n```\napplication: demo\nversion: 1\nruntime: python\napi_version: 1\n\nhandlers:\n- url: /static\n  static_dir: static\n\n- url: /.*\n  script: app.py\n```\n#### app.py\n\n```\nfrom google.appengine.ext.webapp.util import run_wsgi_app\nfrom flask import Flask\napp = Flask(__name__)\n\n@app.route('/')\ndef demo():\n    return str(app.has_static_folder)\n\ndef main():\n    run_wsgi_app(app)\n\nif __name__ == '__main__':\n    main()\n```\n\nThis will return `False` but will return `True` once I comment out the static handler. Current workaround is to add static rule myself, using `app.add_url_rule(app.static_path + '/<path:filename>', endpoint='static')` of sort. It would be nice of Flask detects GAE and add the static path anyway.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/81"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 82,
+    "title": "The after_request handlers should be called in reverse order",
+    "body": "This `after_request` handlers should be called in reverse order to ensure the very first registered handler should be called at last.\n\nFor example, I register `after_request` callback to close database session. As my code grows, I register few more `after_request` callbacks expecting that the very first callback registered will be called at last, but it doesn't.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/82"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 79,
+    "title": "If SERVER_NAME is set the cookie does not set itself correctly",
+    "body": "The domain information is not used to set the domain for the cookie of the session. The cookie is only set for path=/ for the current domain. If DOMAIN_NAME is set this should be used for setting session cookies for \".\" + DOMAIN_NAME.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/79"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 77,
+    "title": "Flask broken on 2.5 without simplejson",
+    "body": "It is a regression in the module branch : if json is not available, the framework is broken.\n\n(make test fails with ImportError)\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/77"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 75,
+    "title": "Document that exceptions are swallowed in non-debug Mode",
+    "body": "This also means that use_reloader=True, debug=True works but debug=False, use_debugger=True does not.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/75"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 70,
+    "title": "Documentation has to explain Flask constructor better",
+    "body": "People often do `Flask(__name__)` when the app is not in the `__init__` which is a bad idea. Flask-SQLAlchemy also debugs based on that name so this should definitively be explained.\n\nFurthermore the fact that `__name__` becomes `'__main__'` in modules started from within should be explained.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/70"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 74,
+    "title": "Explain UTF-8 Encoding",
+    "body": "The documentation should explain that Flask assumes utf-8 for templates.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/74"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 73,
+    "title": "Link to Flask-SQLAlchemy and Flask-WTF in the docs",
+    "body": "The docs should link to the Flask-SQLAlchemy and Flask-WTF extensions in the sqlalchemy and wtforms patterns.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/73"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 71,
+    "title": "Document request.endpoint and request.view_args",
+    "body": "They are missing currently but are a stable interface that one can rely on.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/71"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 63,
+    "title": "Update Design Decisions based on recent changes",
+    "body": "The design decisions document is slightly outdated. Things that should be covered:\n- multiple apps\n- register_module()\n- logging maybe\n- what should go into flask and what not\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/63"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 67,
+    "title": "Explain Unicode in Flask",
+    "body": "To avoid confusion the unicode behavior of Python and Flask should be documented.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/67"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 58,
+    "title": "Consider adding a TESTING switch",
+    "body": "Many extensions (like flask-mail) might want to switch to mock-mode for testing. It would be nice to have a central switch like DEBUG to enable that.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/58"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 59,
+    "title": "Response should always be processed.",
+    "body": "If an exception is handled by exception handlers and a valid response is generated then the response should also be processed using `process_response`.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/59"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 56,
+    "title": "`make test` should use flask module in current directory not system-wide module",
+    "body": "Currently tests are run against system-wide flask, which basically loses point of testing during package upgrades on Gentoo.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/56"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 57,
+    "title": "Document flask._request_ctx_stack",
+    "body": "Flask extensions are allowed to access this object, also user code might if it wants to do really magic stuff. The leading underscore however means: try avoid using it, similar to sys._getframe.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/57"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 47,
+    "title": "Document how to generate Secret Keys",
+    "body": "Documentation should contain some infos about how to generate secret keys.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/47"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 49,
+    "title": "Document lazy loading of view functions",
+    "body": "For GAE and some other envs it makes sense not to use decorators but lazily load functions based on name instead. This should be documented as pattern.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/49"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 45,
+    "title": "Mistake in docstring of app.errorhandler",
+    "body": "There is a variable missing in the docstring (and thus in the documentation) in app.errorhandler. \nhttp://github.com/mitsuhiko/flask/blob/master/flask.py#L998\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/45"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 42,
+    "title": "Document URL Redirection Behaviour and how to use it",
+    "body": "There was a length discussion on #pocoo about the redirection behaviour of Werkzeug today. As a result of that discussion I think it should be explained in detail in the documentation.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/42"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 44,
+    "title": "Document app.run() should be in __name__ == '__main__'",
+    "body": "Common problem that breaks on mod_wsgi and other deployments.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/44"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 41,
+    "title": "broken link in doc",
+    "body": "on this page:\nhttp://flask.pocoo.org/docs/patterns/distribute/\n\nthe \"package\" link of this sentence is 404:\nIn this case we assume your application is called yourapplication.py and you are not using a module, but a package. \n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/41"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 39,
+    "title": "Docs/Tests missing in Tarball",
+    "body": "Should be added :)\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/39"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 35,
+    "title": "Support for Flashing Categories",
+    "body": "The new signature for `flash()` should look like this in 0.5:\n\n```\ndef flash(message, category='message'):\n    ...\n```\n\nThe method to fetch messages then will also accept a parameter that allows pulling as tuples with the category as well:\n\n```\ndef get_flashed_messages(with_categories=False):\n    ...\n```\n\nIf invoked with that parameter set to `False` (which is the default) just the strings are returned, otherwise tuples in the form `(category, message)`.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/35"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 25,
+    "title": "Per-module processors",
+    "body": "There should be a @context_processor decorator for modules, so that a processor can be added on a per-module basis, in the same way as @before_request. A processor function defined this way would only be executed in the module space.\n\n[from the mailinglist]\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/25"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 30,
+    "title": "base_url / url docs mixed up",
+    "body": "These two have to be reversed in the API docs.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/30"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 29,
+    "title": "register_module fails when url_prefix not previously set",
+    "body": "The following example (taken from the documentation, simplified) fails to work correctly.\nThe index() function is registered at / instead of /admin.\n\nmyapp/__init__.py:\n    from flask import Flask\n    from myapp.admin import admin\n    app = Flask(**name**)\n    app.register_module(admin, url_prefix='/admin')\n\nmyapp/admin.py\n    from flask import Module\n    admin = Module(**name**)\n    @admin.route('/')\n    def index():\n        return 'This should be at /admin'\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/29"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 24,
+    "title": "None return values from functions fail with wrong error",
+    "body": "They should fail with an explicit error instead especially because the current behavior is just plain wrong.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/24"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 18,
+    "title": "Access session object during unittest",
+    "body": "Can we get the docs updated to include an example to access session object while unit testing.\n\nHere is a potential solution, using unittest for flaskr\n\n```\ndef test_session(self):\n    with flaskr.app.test_request_context('/login', method='POST', data=dict(\n                    username=flaskr.USERNAME, password=flaskr.PASSWORD,)):\n        rv = flaskr.app.dispatch_request()\n        assert flaskr.session['logged_in'] == True\n\n    with flaskr.app.test_request_context('/login', method='POST', data=dict(\n                    username=flaskr.USERNAME+'x', password=flaskr.PASSWORD+'x',)):\n        rv = flaskr.app.dispatch_request()\n        assert not flaskr.session.get('logged_in')\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/18"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 19,
+    "title": "Typo in flaskr tutorial -> testing",
+    "body": "The sentence that reads\n\n```\nNow that you have finished the application and everything works as expected, it’s probably not the best idea to add automated tests to simplify modifications in the future.\n```\n\nShould probably read\n\n```\nNow that you have finished the application and everything works as expected, it’s probably a good idea to add automated tests to simplify modifications in the future.\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/19"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 20,
+    "title": "Docs should mention Query Args for url_for",
+    "body": "Right now the docs to not mention that url_for can generate query arguments as well. That should be fixed.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/20"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 21,
+    "title": "Typo in flask quickstart docs",
+    "body": "In section 'The Request Object' is a typo when doing route definition.\n...\n@app.route('/login', method=['POST', 'GET'])\ndef login():\n...\n\nthe keyword argument should be 'methods' not 'method'.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/21"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 16,
+    "title": "Add easy way to set session expiry ",
+    "body": "It's quite difficult at the moment to set the expiry date for the session. Ideally something like this could work (although it might require subclassing SecureCookie):\n\n```\nif request.form.get('remember_me', False):\n    session.expires = timedelta(days=30)\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/16"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 14,
+    "title": "Documentation Modification (app.run)",
+    "body": "Hi there,\n\nI was reading through the documentation in the tutorial, and I think it may be beneficial to a lot of users (like myself) who develop on remote servers to include information about the optional host parameter in app.run():\n\napp.run(host='your public ip')\n\nIt is listed on Application Setup Code at the bottom, but since the first page, 'Quickstart' demos an application, I think it should be included there (or at least linked).\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/14"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 10,
+    "title": "Flash fails in nonobvious way when secret isn't set",
+    "body": "Here's what fails http://paste.pocoo.org/show/202792/\n\nThe Flash section of the docs should at least mention that app.secret is required but I'm not sure that's enough.\n\nOne idea would be to require secret_key to be explicitly set and fail to run if it isn't. \nFor folks that don't need sessions they could pass a message to that effect to run(). \nMy guess is session/flash will be used by more apps than not.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/10"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 9,
+    "title": "Rename @app.request_init and @app.request_shutdown",
+    "body": "Not a big deal but I think pre_request and post_request have better symmetry than init and shutdown.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/9"
+  },
+  {
+    "repo": "pallets/flask",
+    "number": 8,
+    "title": "Preserve request context on exception in debug mode",
+    "body": "In debug mode the request context should stick around on an exception so that the request object is still valid in the debugger.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/flask/issues/8"
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "approval_status": "pending explicit user approval; neither downloaded nor run",
+  "decoding": {
+    "do_sample": false,
+    "max_new_tokens": 160
+  },
+  "estimated_vram": "8.05 GB bf16 weights; plan 12-16 GB including short-context KV cache and runtime; estimate, not measured",
+  "label_review": "unreviewed by a person",
+  "license": "Apache-2.0",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "parameters": "4.0 billion",
+  "prompt_sha256": "709c8a0b09fef9c05619302925a1240e4f83c42468ddd6a8ba9d2dc307760551",
+  "reason": "non-thinking instruct model; existing transformers supports it; small enough for Colab without quantization or a new dependency",
+  "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "source": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+  "stop_words": [
+    "a",
+    "an",
+    "and",
+    "are",
+    "as",
+    "at",
+    "be",
+    "by",
+    "for",
+    "from",
+    "has",
+    "in",
+    "is",
+    "it",
+    "of",
+    "on",
+    "or",
+    "that",
+    "the",
+    "these",
+    "this",
+    "to",
+    "with"
+  ],
+  "supplements": "architecture_v1/protocol.json E3; model choice requires explicit approval before run"
+}

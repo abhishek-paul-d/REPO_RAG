@@ -1,0 +1,197 @@
+{
+  "version": 1,
+  "researched_on": "2026-11-01",
+  "approval_status": "pending user approval of exact revisions",
+  "inputs_freeze_sha256": "4083a11affc004fe3e80657f60de48ae1c01d8fb7ace1ac510b360e16f0bce46",
+  "research_order": "Protocol, splits and probes frozen and verified before Hugging Face research. Read public API metadata/cards/configs/templates only; no weights, tokenizer vocabularies, model construction or generation.",
+  "candidates": [
+    {
+      "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "parameters_total": 4022468096,
+      "marketed_size_billions": 4,
+      "license": "apache-2.0",
+      "license_source": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507/blob/cdbee75f17c01a7cc42f958dc650907174af0554/LICENSE",
+      "model_card": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507/blob/cdbee75f17c01a7cc42f958dc650907174af0554/README.md",
+      "metadata_api": "https://huggingface.co/api/models/Qwen/Qwen3-4B-Instruct-2507",
+      "architecture": "Qwen3ForCausalLM",
+      "trust_remote_code": false,
+      "runtime": "existing transformers 4.57.6; PyTorch bf16; SDPA; batch 1; explicit .to(cuda), no device_map/Accelerate/new package",
+      "chat_template": {
+        "source": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507/blob/cdbee75f17c01a7cc42f958dc650907174af0554/tokenizer_config.json",
+        "sha256_utf8": "64f85b198065d0fba2a81f37e10ed68161ce2c19a754c7100e67e0ca2ee9c326",
+        "arguments": {
+          "add_generation_prompt": true,
+          "tools": null
+        },
+        "schemas": "Common plain text system message, not template-native tool formatting."
+      },
+      "non_thinking": "Dedicated Instruct checkpoint; no thinking switch/chain-of-thought requested.",
+      "kv_cache": "use_cache=True uniformly; Olmo checkpoint config defaults False, explicitly overridden. Conservative estimate ignores sliding-window savings.",
+      "bf16_weight_GiB_estimate": 7.492,
+      "bf16_KV_GiB_at_8704_tokens_estimate": 1.195,
+      "peak_VRAM_GiB_estimate_range": [
+        12,
+        16
+      ],
+      "peak_VRAM_measured": null,
+      "latency_measured": null,
+      "VRAM_note": "Analytical estimate, NOT measurement: weights + conservative KV + activations/CUDA/allocator headroom and code-embedding model residency. Actual reserved memory can differ. An OOM is a failure; no post-test quantization/context reduction.",
+      "rationale": "Small non-thinking instruct baseline; also permits comparison with the separately approved summary-model family without touching that experiment.",
+      "source_metadata_hashes": {
+        "README.md": "8e3dd0c3b5b11897cc71092ccfe517bb7a9783479baa3665aad73c8d1a2041cd",
+        "config.json": "5beea1a4a34c62782bfb2f911c606741a3bab8f92d80a118fa053c28af12e8ba",
+        "tokenizer_config.json": "a62ff0a2472a0fa1b8eaabcb57c59b58afa42a22831dc141400b6e0cf2b65ce3",
+        "LICENSE": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+      }
+    },
+    {
+      "model_id": "allenai/Olmo-3-7B-Instruct",
+      "revision": "6e5971d9eba42665f5bd5a0fcf047f299ce1dccc",
+      "parameters_total": 7298011136,
+      "marketed_size_billions": 7,
+      "license": "apache-2.0",
+      "license_source": "https://huggingface.co/allenai/Olmo-3-7B-Instruct/blob/6e5971d9eba42665f5bd5a0fcf047f299ce1dccc/README.md",
+      "model_card": "https://huggingface.co/allenai/Olmo-3-7B-Instruct/blob/6e5971d9eba42665f5bd5a0fcf047f299ce1dccc/README.md",
+      "metadata_api": "https://huggingface.co/api/models/allenai/Olmo-3-7B-Instruct",
+      "architecture": "Olmo3ForCausalLM",
+      "trust_remote_code": false,
+      "runtime": "existing transformers 4.57.6; PyTorch bf16; SDPA; batch 1; explicit .to(cuda), no device_map/Accelerate/new package",
+      "chat_template": {
+        "source": "https://huggingface.co/allenai/Olmo-3-7B-Instruct/blob/6e5971d9eba42665f5bd5a0fcf047f299ce1dccc/chat_template.jinja",
+        "sha256_utf8": "f5186d42d99c8a0445d37fd8a6c7ccf07fe3e24a29ce622d8bd245da9507b12b",
+        "arguments": {
+          "add_generation_prompt": true,
+          "tools": null
+        },
+        "schemas": "Common plain text system message, not template-native tool formatting."
+      },
+      "non_thinking": "Dedicated Instruct checkpoint; no thinking switch/chain-of-thought requested.",
+      "kv_cache": "use_cache=True uniformly; Olmo checkpoint config defaults False, explicitly overridden. Conservative estimate ignores sliding-window savings.",
+      "bf16_weight_GiB_estimate": 13.594,
+      "bf16_KV_GiB_at_8704_tokens_estimate": 4.25,
+      "peak_VRAM_GiB_estimate_range": [
+        23,
+        28
+      ],
+      "peak_VRAM_measured": null,
+      "latency_measured": null,
+      "VRAM_note": "Analytical estimate, NOT measurement: weights + conservative KV + activations/CUDA/allocator headroom and code-embedding model residency. Actual reserved memory can differ. An OOM is a failure; no post-test quantization/context reduction.",
+      "rationale": "Newer independent-family instruct/function-calling model; official card supports Transformers >=4.57.0, compatible with installed 4.57.6. Prefer family diversity to a second mid-sized Qwen slot.",
+      "source_metadata_hashes": {
+        "README.md": "9c7c873ea9bd506db7800e61a0535302106bdc393d72b0d2341197330d25a7fe",
+        "config.json": "6282ae812f9e494bd212e9a3233d68dc4d5f1e2569642423d2b79a3e80373ef8",
+        "tokenizer_config.json": "f7a2753a4ff30657e452c8fef02b9a99a3b900ceb4c65a1e3fbea6a3bfab07a6",
+        "chat_template.jinja": "f5186d42d99c8a0445d37fd8a6c7ccf07fe3e24a29ce622d8bd245da9507b12b"
+      }
+    },
+    {
+      "model_id": "Qwen/Qwen3-14B",
+      "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+      "parameters_total": 14768307200,
+      "marketed_size_billions": 14,
+      "license": "apache-2.0",
+      "license_source": "https://huggingface.co/Qwen/Qwen3-14B/blob/40c069824f4251a91eefaf281ebe4c544efd3e18/LICENSE",
+      "model_card": "https://huggingface.co/Qwen/Qwen3-14B/blob/40c069824f4251a91eefaf281ebe4c544efd3e18/README.md",
+      "metadata_api": "https://huggingface.co/api/models/Qwen/Qwen3-14B",
+      "architecture": "Qwen3ForCausalLM",
+      "trust_remote_code": false,
+      "runtime": "existing transformers 4.57.6; PyTorch bf16; SDPA; batch 1; explicit .to(cuda), no device_map/Accelerate/new package",
+      "chat_template": {
+        "source": "https://huggingface.co/Qwen/Qwen3-14B/blob/40c069824f4251a91eefaf281ebe4c544efd3e18/tokenizer_config.json",
+        "sha256_utf8": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+        "arguments": {
+          "add_generation_prompt": true,
+          "tools": null,
+          "enable_thinking": false
+        },
+        "schemas": "Common plain text system message, not template-native tool formatting."
+      },
+      "non_thinking": "enable_thinking=False (native empty think block is in input prefix only)",
+      "kv_cache": "use_cache=True uniformly; Olmo checkpoint config defaults False, explicitly overridden. Conservative estimate ignores sliding-window savings.",
+      "bf16_weight_GiB_estimate": 27.508,
+      "bf16_KV_GiB_at_8704_tokens_estimate": 1.328,
+      "peak_VRAM_GiB_estimate_range": [
+        34,
+        38
+      ],
+      "peak_VRAM_measured": null,
+      "latency_measured": null,
+      "VRAM_note": "Analytical estimate, NOT measurement: weights + conservative KV + activations/CUDA/allocator headroom and code-embedding model residency. Actual reserved memory can differ. An OOM is a failure; no post-test quantization/context reduction.",
+      "rationale": "Upper size-class general instruct baseline; explicitly disable thinking via native template. Test whether extra capacity improves tool selection/grounding.",
+      "source_metadata_hashes": {
+        "README.md": "7ef503e68996a4e32007fedc7d8e198846e9b1f36620d38a79b89934100b1250",
+        "config.json": "e73c3664ca09b10a673fef0c22e8a6b456201d49bd4713c9691f775720e8857a",
+        "tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+        "LICENSE": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+      }
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "revision": "aedcc2d42b622764e023cf882b6652e646b95671",
+      "parameters_total": 14770033664,
+      "marketed_size_billions": 4,
+      "license": "apache-2.0",
+      "license_source": "https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct/blob/aedcc2d42b622764e023cf882b6652e646b95671/LICENSE",
+      "model_card": "https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct/blob/aedcc2d42b622764e023cf882b6652e646b95671/README.md",
+      "metadata_api": "https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-14B-Instruct",
+      "architecture": "Qwen2ForCausalLM",
+      "trust_remote_code": false,
+      "runtime": "existing transformers 4.57.6; PyTorch bf16; SDPA; batch 1; explicit .to(cuda), no device_map/Accelerate/new package",
+      "chat_template": {
+        "source": "https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct/blob/aedcc2d42b622764e023cf882b6652e646b95671/tokenizer_config.json",
+        "sha256_utf8": "cd8e9439f0570856fd70470bf8889ebd8b5d1107207f67a5efb46e342330527f",
+        "arguments": {
+          "add_generation_prompt": true,
+          "tools": null
+        },
+        "schemas": "Common plain text system message, not template-native tool formatting."
+      },
+      "non_thinking": "Dedicated Instruct checkpoint; no thinking switch/chain-of-thought requested.",
+      "kv_cache": "use_cache=True uniformly; Olmo checkpoint config defaults False, explicitly overridden. Conservative estimate ignores sliding-window savings.",
+      "bf16_weight_GiB_estimate": 27.511,
+      "bf16_KV_GiB_at_8704_tokens_estimate": 1.594,
+      "peak_VRAM_GiB_estimate_range": [
+        34,
+        38
+      ],
+      "peak_VRAM_measured": null,
+      "latency_measured": null,
+      "VRAM_note": "Analytical estimate, NOT measurement: weights + conservative KV + activations/CUDA/allocator headroom and code-embedding model residency. Actual reserved memory can differ. An OOM is a failure; no post-test quantization/context reduction.",
+      "rationale": "Code-tuned instruct comparator within the size budget; compatible existing architecture. Older than the other candidates; code specialization is a hypothesis, not a measured advantage.",
+      "source_metadata_hashes": {
+        "README.md": "2bb69760ec931f9adbe560e95b5b9848dc35198508825547ffdc19934fc6f261",
+        "config.json": "9051fe83840dcd3a0f7e9f5b3372fc3927419eb56983273eac2dc635a5da7eae",
+        "tokenizer_config.json": "959e7f1d9a1b7641a6d6ce05ca97b75c7894fcb66cbe5a040406458fb1128ee4",
+        "LICENSE": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+      }
+    }
+  ],
+  "screened_but_not_proposed": [
+    {
+      "model_id": "Qwen/Qwen3-8B",
+      "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+      "reason": "Compatible, but omitted under four-candidate cap: keep 4B cost baseline, upper-size general/code comparators, and newer independent-family Olmo 7B. No claim that 8B performs worse."
+    },
+    {
+      "model_id": "Qwen/Qwen3.5-4B",
+      "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "reason": "Newer Apache-2.0 post-trained model, but qwen3_5 architecture is absent from installed Transformers 4.57.6. Official card requests current Transformers from Git plus vision packages. Requires a separately approved runtime/dependency change; do not load through unreviewed remote code."
+    },
+    {
+      "model_id": "Qwen/Qwen3.5-9B",
+      "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "reason": "Newer Apache-2.0 post-trained model, but qwen3_5 architecture is absent from installed Transformers 4.57.6. Official card requests current Transformers from Git plus vision packages. Requires a separately approved runtime/dependency change; do not load through unreviewed remote code."
+    },
+    {
+      "model_id": "mistralai/Ministral-3-8B-Instruct-2512",
+      "revision": "5b26027e7b19eeb4b7352e1fed3926375dd2cb4d",
+      "reason": "Newer Apache-2.0 instruct model. This official checkpoint is mixed FP8/BF16; its documented Transformers path requests Git main and mistral-common>=1.8.6, not currently installed. Native bf16/dequantization path would require runtime/dependency review. Exclude from this no-new-dependency bf16 proposal; do not assume A100 has native FP8 support."
+    }
+  ],
+  "recommendation": "Approve these four for the measured bakeoff. No answer-model winner selected before test results.",
+  "size_convention": "4B-14B marketed classes; exact full parameter counts above (the 14B checkpoints are 14.768/14.770B including embeddings).",
+  "approval_scope": "Approval of these model runs does not approve new dependencies, paid APIs, production configuration, commits, staging or pushing.",
+  "measured_results": "None. All memory ranges are estimates. A100 40 GB fit is plausible, not measured or guaranteed.",
+  "remaining_work_after_approval": "Harness, common prompt/parser, fake-model tests, source capsule and regenerated Colab notebook; then dev tuning, prompt freeze, test run and independent transcript recomputation."
+}

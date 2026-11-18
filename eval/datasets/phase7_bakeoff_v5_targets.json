@@ -1,0 +1,1399 @@
+{
+ "drawn": {
+  "architecture": 40,
+  "code": 24,
+  "probes": 16
+ },
+ "repos": {
+  "pallets/flask": {
+   "architecture": [
+    {
+     "callee_path": "src/flask/sansio/app.py",
+     "caller_path": "src/flask/templating.py",
+     "calls": [
+      [
+       "DispatchingJinjaLoader._iter_loaders",
+       "iter_blueprints"
+      ],
+      [
+       "DispatchingJinjaLoader.list_templates",
+       "iter_blueprints"
+      ],
+      [
+       "Environment.__init__",
+       "create_global_jinja_loader"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/ctx.py",
+     "caller_path": "src/flask/cli.py",
+     "calls": [
+      [
+       "AppGroup.command",
+       "pop"
+      ],
+      [
+       "AppGroup.group",
+       "setdefault"
+      ],
+      [
+       "FlaskGroup.__init__",
+       "pop"
+      ],
+      [
+       "FlaskGroup.__init__",
+       "setdefault"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/cli.py",
+     "caller_path": "src/flask/__main__.py",
+     "calls": [
+      [
+       "<module>",
+       "main"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/ctx.py",
+     "caller_path": "src/flask/sansio/scaffold.py",
+     "calls": [
+      [
+       "Scaffold.after_request",
+       "setdefault"
+      ],
+      [
+       "Scaffold.before_request",
+       "setdefault"
+      ],
+      [
+       "Scaffold.route.decorator",
+       "pop"
+      ],
+      [
+       "Scaffold.teardown_request",
+       "setdefault"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/ctx.py",
+     "caller_path": "src/flask/sansio/app.py",
+     "calls": [
+      [
+       "App.add_url_rule",
+       "pop"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/ctx.py",
+     "caller_path": "src/flask/json/provider.py",
+     "calls": [
+      [
+       "DefaultJSONProvider.dumps",
+       "setdefault"
+      ],
+      [
+       "DefaultJSONProvider.response",
+       "setdefault"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/ctx.py",
+     "caller_path": "src/flask/json/__init__.py",
+     "calls": [
+      [
+       "dump",
+       "setdefault"
+      ],
+      [
+       "dumps",
+       "setdefault"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/helpers.py",
+     "caller_path": "src/flask/ctx.py",
+     "calls": [
+      [
+       "AppContext.pop",
+       "_CollectErrors"
+      ],
+      [
+       "AppContext.pop",
+       "raise_any"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/cli.py",
+     "caller_path": "src/flask/testing.py",
+     "calls": [
+      [
+       "FlaskCliRunner.invoke",
+       "ScriptInfo"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/helpers.py",
+     "caller_path": "src/flask/cli.py",
+     "calls": [
+      [
+       "ScriptInfo.__init__",
+       "get_load_dotenv"
+      ],
+      [
+       "ScriptInfo.load_app",
+       "get_debug_flag"
+      ],
+      [
+       "run_command",
+       "get_debug_flag"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/json/tag.py",
+     "caller_path": "src/flask/sessions.py",
+     "calls": [
+      [
+       "<module>",
+       "TaggedJSONSerializer"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/globals.py",
+     "caller_path": "src/flask/templating.py",
+     "calls": [
+      [
+       "_default_template_ctx_processor",
+       "_get_current_object"
+      ],
+      [
+       "render_template",
+       "_get_current_object"
+      ],
+      [
+       "render_template_string",
+       "_get_current_object"
+      ],
+      [
+       "stream_template",
+       "_get_current_object"
+      ],
+      [
+       "stream_template_string",
+       "_get_current_object"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/globals.py",
+     "caller_path": "src/flask/cli.py",
+     "calls": [
+      [
+       "FlaskGroup.get_command",
+       "_get_current_object"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/debughelpers.py",
+     "caller_path": "src/flask/app.py",
+     "calls": [
+      [
+       "Flask.raise_routing_exception",
+       "FormDataRoutingRedirect"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/app.py",
+     "caller_path": "src/flask/views.py",
+     "calls": [
+      [
+       "MethodView.dispatch_request",
+       "ensure_sync"
+      ],
+      [
+       "View.as_view.view",
+       "ensure_sync"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/helpers.py",
+     "caller_path": "src/flask/sansio/scaffold.py",
+     "calls": [
+      [
+       "Scaffold.__init__",
+       "get_root_path"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/debughelpers.py",
+     "caller_path": "src/flask/wrappers.py",
+     "calls": [
+      [
+       "Request._load_form_data",
+       "attach_enctype_error_multidict"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/logging.py",
+     "caller_path": "src/flask/sansio/app.py",
+     "calls": [
+      [
+       "App.logger",
+       "create_logger"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/cli.py",
+     "caller_path": "src/flask/blueprints.py",
+     "calls": [
+      [
+       "Blueprint.__init__",
+       "AppGroup"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/helpers.py",
+     "caller_path": "src/flask/wrappers.py",
+     "calls": [
+      [
+       "Request.blueprints",
+       "_split_blueprint_path"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/testing.py",
+     "caller_path": "src/flask/app.py",
+     "calls": [
+      [
+       "Flask.open_instance_resource",
+       "open"
+      ],
+      [
+       "Flask.open_resource",
+       "open"
+      ],
+      [
+       "Flask.test_request_context",
+       "EnvironBuilder"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/json/provider.py",
+     "caller_path": "src/flask/app.py",
+     "calls": [
+      [
+       "Flask.make_response",
+       "response"
+      ],
+      [
+       "Flask.wsgi_app",
+       "response"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/sansio/blueprints.py",
+     "caller_path": "src/flask/helpers.py",
+     "calls": [
+      [
+       "_split_blueprint_path",
+       "extend"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/helpers.py",
+     "caller_path": "src/flask/blueprints.py",
+     "calls": [
+      [
+       "Blueprint.send_static_file",
+       "send_from_directory"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/ctx.py",
+     "caller_path": "src/flask/sansio/blueprints.py",
+     "calls": [
+      [
+       "Blueprint.after_app_request",
+       "setdefault"
+      ],
+      [
+       "Blueprint.app_context_processor",
+       "setdefault"
+      ],
+      [
+       "Blueprint.app_url_defaults",
+       "setdefault"
+      ],
+      [
+       "Blueprint.app_url_value_preprocessor",
+       "setdefault"
+      ],
+      [
+       "Blueprint.before_app_request",
+       "setdefault"
+      ],
+      [
+       "Blueprint.register",
+       "copy"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/testing.py",
+     "caller_path": "src/flask/config.py",
+     "calls": [
+      [
+       "Config.from_file",
+       "open"
+      ],
+      [
+       "Config.from_pyfile",
+       "open"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/testing.py",
+     "caller_path": "src/flask/cli.py",
+     "calls": [
+      [
+       "shell_command",
+       "open"
+      ],
+      [
+       "with_appcontext.decorator",
+       "invoke"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/sessions.py",
+     "caller_path": "src/flask/testing.py",
+     "calls": [
+      [
+       "FlaskClient.session_transaction",
+       "is_null_session"
+      ],
+      [
+       "FlaskClient.session_transaction",
+       "open_session"
+      ],
+      [
+       "FlaskClient.session_transaction",
+       "save_session"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/app.py",
+     "caller_path": "src/flask/templating.py",
+     "calls": [
+      [
+       "_render",
+       "update_template_context"
+      ],
+      [
+       "_stream",
+       "update_template_context"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/app.py",
+     "caller_path": "src/flask/testing.py",
+     "calls": [
+      [
+       "FlaskClient.session_transaction",
+       "test_request_context"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/ctx.py",
+     "caller_path": "src/flask/helpers.py",
+     "calls": [
+      [
+       "get_flashed_messages",
+       "pop"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/json/provider.py",
+     "caller_path": "src/flask/json/__init__.py",
+     "calls": [
+      [
+       "jsonify",
+       "response"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/testing.py",
+     "caller_path": "src/flask/blueprints.py",
+     "calls": [
+      [
+       "Blueprint.open_resource",
+       "open"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/sansio/blueprints.py",
+     "caller_path": "src/flask/sessions.py",
+     "calls": [
+      [
+       "SecureCookieSessionInterface.get_signing_serializer",
+       "extend"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/sansio/blueprints.py",
+     "caller_path": "src/flask/cli.py",
+     "calls": [
+      [
+       "FlaskGroup.__init__",
+       "extend"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/helpers.py",
+     "caller_path": "src/flask/templating.py",
+     "calls": [
+      [
+       "_stream",
+       "stream_with_context"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/ctx.py",
+     "caller_path": "src/flask/testing.py",
+     "calls": [
+      [
+       "FlaskClient.open",
+       "copy"
+      ],
+      [
+       "FlaskClient.open",
+       "from_environ"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/debughelpers.py",
+     "caller_path": "src/flask/templating.py",
+     "calls": [
+      [
+       "DispatchingJinjaLoader._get_source_explained",
+       "explain_template_loading_attempts"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/flask/templating.py",
+     "caller_path": "src/flask/sansio/app.py",
+     "calls": [
+      [
+       "App.create_global_jinja_loader",
+       "DispatchingJinjaLoader"
+      ]
+     ]
+    }
+   ],
+   "code": [
+    {
+     "chunk_id": "5b13a23583b097fdd943da7760c39f1a2355bf7a",
+     "end_line": 301,
+     "path": "src/flask/helpers.py",
+     "start_line": 254,
+     "symbol": "redirect"
+    },
+    {
+     "chunk_id": "5595a768296c68e476fd168468ba89375aa4a3f1",
+     "end_line": 60,
+     "path": "src/flask/helpers.py",
+     "start_line": 1,
+     "symbol": "get_debug_flag"
+    },
+    {
+     "chunk_id": "2bfc1f7c4052c96a00974dc57855bac459fb993f",
+     "end_line": 492,
+     "path": "src/flask/sansio/scaffold.py",
+     "start_line": 443,
+     "symbol": "Scaffold.endpoint"
+    },
+    {
+     "chunk_id": "7b9c123a008244b0a3c2ccc26dd253f74adb7a21",
+     "end_line": 519,
+     "path": "src/flask/sansio/app.py",
+     "start_line": 480,
+     "symbol": "App.make_config"
+    },
+    {
+     "chunk_id": "5007727d1307594386b6883773cb9a516a6140dd",
+     "end_line": 115,
+     "path": "src/flask/ctx.py",
+     "start_line": 93,
+     "symbol": "_AppCtxGlobals.setdefault"
+    },
+    {
+     "chunk_id": "12229c3c978a34cc467493c2c08e03e39e9d5f7c",
+     "end_line": 120,
+     "path": "src/flask/templating.py",
+     "start_line": 98,
+     "symbol": "DispatchingJinjaLoader._iter_loaders"
+    },
+    {
+     "chunk_id": "c584622a815c816df338499fc5084abe6e841552",
+     "end_line": 151,
+     "path": "src/flask/ctx.py",
+     "start_line": 118,
+     "symbol": "after_this_request"
+    },
+    {
+     "chunk_id": "00c1f094f7a00ceb8b29f3e2699720da1b21338c",
+     "end_line": 1019,
+     "path": "src/flask/app.py",
+     "start_line": 992,
+     "symbol": "Flask.full_dispatch_request"
+    },
+    {
+     "chunk_id": "e82017ca46cf36c7527502da10fa085489e1eaa5",
+     "end_line": 90,
+     "path": "src/flask/wrappers.py",
+     "start_line": 59,
+     "symbol": "Request.max_content_length"
+    },
+    {
+     "chunk_id": "5b13c437c83b8223d731a6abb2f09bc60b4c7b3e",
+     "end_line": 586,
+     "path": "src/flask/app.py",
+     "start_line": 560,
+     "symbol": "Flask.raise_routing_exception"
+    },
+    {
+     "chunk_id": "b5ca5bcb87c727e7a8a87ad83f28c85c36143b46",
+     "end_line": 212,
+     "path": "src/flask/templating.py",
+     "start_line": 163,
+     "symbol": "_stream"
+    },
+    {
+     "chunk_id": "59e40115f12969088bbc09b5e01c6157da3ab764",
+     "end_line": 49,
+     "path": "src/flask/sansio/scaffold.py",
+     "start_line": 1,
+     "symbol": "setupmethod"
+    },
+    {
+     "chunk_id": "ee215e16547f6ad2512ff71a28212bef0b65774b",
+     "end_line": 44,
+     "path": "src/flask/json/__init__.py",
+     "start_line": 1,
+     "symbol": "dumps"
+    },
+    {
+     "chunk_id": "5504386fc2d01e296ce784315572289db54c53a2",
+     "end_line": 528,
+     "path": "src/flask/cli.py",
+     "start_line": 493,
+     "symbol": "_env_file_callback"
+    },
+    {
+     "chunk_id": "63183ff25729db4c242ef9ed1b50eb122ff40250",
+     "end_line": 121,
+     "path": "src/flask/json/provider.py",
+     "start_line": 108,
+     "symbol": "_default"
+    },
+    {
+     "chunk_id": "63da4b6ae490fae0fb873277115fc1def5fc158c",
+     "end_line": 160,
+     "path": "src/flask/templating.py",
+     "start_line": 123,
+     "symbol": "_render"
+    },
+    {
+     "chunk_id": "00982dbcd9ee359440f54b1084d4beea70faef5f",
+     "end_line": 335,
+     "path": "src/flask/sessions.py",
+     "start_line": 284,
+     "symbol": "SecureCookieSessionInterface.get_signing_serializer"
+    },
+    {
+     "chunk_id": "1eaedba78e9afe3a0ea3ae68782e6d3b40825d12",
+     "end_line": 302,
+     "path": "src/flask/config.py",
+     "start_line": 256,
+     "symbol": "Config.from_file"
+    },
+    {
+     "chunk_id": "a80df8472df6ed36110b1c760bd190dbead33090",
+     "end_line": 105,
+     "path": "src/flask/json/__init__.py",
+     "start_line": 47,
+     "symbol": "dump"
+    },
+    {
+     "chunk_id": "9f6b67ccd52054072b88481ce55d465de404b059",
+     "end_line": 878,
+     "path": "src/flask/cli.py",
+     "start_line": 828,
+     "symbol": "_validate_key"
+    },
+    {
+     "chunk_id": "91c7a43913e6c4f910d7ef6252a88d95d4a9f64c",
+     "end_line": 79,
+     "path": "src/flask/logging.py",
+     "start_line": 58,
+     "symbol": "create_logger"
+    },
+    {
+     "chunk_id": "227956dd2d26858d2b96f3a2d863bc09435c496d",
+     "end_line": 106,
+     "path": "src/flask/testing.py",
+     "start_line": 97,
+     "symbol": "_get_werkzeug_version"
+    },
+    {
+     "chunk_id": "643d0a853584f211c51740c81370be716091ebf4",
+     "end_line": 197,
+     "path": "src/flask/helpers.py",
+     "start_line": 151,
+     "symbol": "make_response"
+    },
+    {
+     "chunk_id": "2722e0e58c9952b11e51e0cb241d22c735da0df6",
+     "end_line": 1044,
+     "path": "src/flask/cli.py",
+     "start_line": 995,
+     "symbol": "shell_command"
+    }
+   ],
+   "pool_sizes": {
+    "architecture": 39,
+    "code": 124,
+    "probes": 22
+   },
+   "probes": [
+    {
+     "chunk_id": "141d807a6859ad08665ee5687c3ff053777e15bd",
+     "end_line": 92,
+     "path": "src/flask/config.py",
+     "start_line": 50,
+     "symbol": "Config"
+    },
+    {
+     "chunk_id": "670c08e883f108ee2ddde2179d4301c430275514",
+     "end_line": 54,
+     "path": "src/flask/typing.py",
+     "start_line": 1,
+     "symbol": "<module>"
+    },
+    {
+     "chunk_id": "2815172172bfa0c27c7f485066d77b5a917c2a38",
+     "end_line": 253,
+     "path": "src/flask/sansio/blueprints.py",
+     "start_line": 213,
+     "symbol": "Blueprint._check_setup_finished"
+    },
+    {
+     "chunk_id": "b2f8bce079c051a5a8f0c4c26a4ef2047bc5dbb4",
+     "end_line": 17,
+     "path": "src/flask/signals.py",
+     "start_line": 1,
+     "symbol": "<module>"
+    },
+    {
+     "chunk_id": "09c15b6218848b84d2527d5b8d969a3f89256dc2",
+     "end_line": 159,
+     "path": "src/flask/wrappers.py",
+     "start_line": 119,
+     "symbol": "Request.max_form_parts"
+    },
+    {
+     "chunk_id": "289722d090dc21fc6adec8fd75c5dacbdf91f009",
+     "end_line": 64,
+     "path": "src/flask/views.py",
+     "start_line": 16,
+     "symbol": "View"
+    },
+    {
+     "chunk_id": "4ed0f892dbf4a261a23721421ca98346a3ae0c71",
+     "end_line": 32,
+     "path": "src/flask/__init__.py",
+     "start_line": 1,
+     "symbol": "<module>"
+    },
+    {
+     "chunk_id": "131a36e6d2ad8bdea9aba4938f102e57fb4458c6",
+     "end_line": 215,
+     "path": "src/flask/sansio/scaffold.py",
+     "start_line": 186,
+     "symbol": "Scaffold.__init__"
+    },
+    {
+     "chunk_id": "0527dd5f73c1f3d32d1a4f34e73b3b979dad7b3c",
+     "end_line": 262,
+     "path": "src/flask/testing.py",
+     "start_line": 249,
+     "symbol": "FlaskClient.__enter__"
+    },
+    {
+     "chunk_id": "36967d3880c16b0e4e618e5ed11a9d72833f16cb",
+     "end_line": 15,
+     "path": "src/flask/blueprints.py",
+     "start_line": 1,
+     "symbol": "<module>"
+    },
+    {
+     "chunk_id": "01579b852e29cca2e16629ce03bd0a176b3528e3",
+     "end_line": 55,
+     "path": "src/flask/logging.py",
+     "start_line": 1,
+     "symbol": "wsgi_errors_stream"
+    },
+    {
+     "chunk_id": "d049389a71197823ec5045e678cdb0cb4933bb0c",
+     "end_line": 77,
+     "path": "src/flask/globals.py",
+     "start_line": 51,
+     "symbol": "__getattr__"
+    },
+    {
+     "chunk_id": "136762a542c6ed1102afbda4896e0e98796ee617",
+     "end_line": 353,
+     "path": "src/flask/ctx.py",
+     "start_line": 300,
+     "symbol": "AppContext.__init__"
+    },
+    {
+     "chunk_id": "24ffbd5727fea98451e6c0e4fd47b61adb84330d",
+     "end_line": 16,
+     "path": "src/flask/json/provider.py",
+     "start_line": 1,
+     "symbol": "<module>"
+    },
+    {
+     "chunk_id": "01dda5d56095db3b6a68ddb0291c78c1b2d15799",
+     "end_line": 490,
+     "path": "src/flask/cli.py",
+     "start_line": 449,
+     "symbol": "_set_debug"
+    },
+    {
+     "chunk_id": "00982dbcd9ee359440f54b1084d4beea70faef5f",
+     "end_line": 335,
+     "path": "src/flask/sessions.py",
+     "start_line": 284,
+     "symbol": "SecureCookieSessionInterface.get_signing_serializer"
+    }
+   ]
+  },
+  "psf/requests": {
+   "architecture": [
+    {
+     "callee_path": "src/requests/auth.py",
+     "caller_path": "src/requests/adapters.py",
+     "calls": [
+      [
+       "HTTPAdapter.proxy_headers",
+       "_basic_auth_str"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/sessions.py",
+     "caller_path": "src/requests/api.py",
+     "calls": [
+      [
+       "request",
+       "Session"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/exceptions.py",
+     "caller_path": "src/requests/models.py",
+     "calls": [
+      [
+       "PreparedRequest.prepare_body",
+       "InvalidJSONError"
+      ],
+      [
+       "PreparedRequest.prepare_url",
+       "InvalidURL"
+      ],
+      [
+       "PreparedRequest.prepare_url",
+       "MissingSchema"
+      ],
+      [
+       "Response.iter_content",
+       "StreamConsumedError"
+      ],
+      [
+       "Response.iter_content.generate",
+       "ChunkedEncodingError"
+      ],
+      [
+       "Response.iter_content.generate",
+       "ConnectionError"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/_internal_utils.py",
+     "caller_path": "src/requests/auth.py",
+     "calls": [
+      [
+       "_basic_auth_str",
+       "to_native_string"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/_internal_utils.py",
+     "caller_path": "src/requests/models.py",
+     "calls": [
+      [
+       "PreparedRequest.prepare_headers",
+       "to_native_string"
+      ],
+      [
+       "PreparedRequest.prepare_method",
+       "to_native_string"
+      ],
+      [
+       "PreparedRequest.prepare_url",
+       "to_native_string"
+      ],
+      [
+       "PreparedRequest.prepare_url",
+       "unicode_is_ascii"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/cookies.py",
+     "caller_path": "src/requests/adapters.py",
+     "calls": [
+      [
+       "HTTPAdapter.build_response",
+       "extract_cookies_to_jar"
+      ],
+      [
+       "HTTPAdapter.close",
+       "values"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/cookies.py",
+     "caller_path": "src/requests/structures.py",
+     "calls": [
+      [
+       "CaseInsensitiveDict.__init__",
+       "update"
+      ],
+      [
+       "CaseInsensitiveDict.__iter__",
+       "values"
+      ],
+      [
+       "CaseInsensitiveDict.copy",
+       "values"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/_internal_utils.py",
+     "caller_path": "src/requests/sessions.py",
+     "calls": [
+      [
+       "SessionRedirectMixin.get_redirect_target",
+       "to_native_string"
+      ],
+      [
+       "SessionRedirectMixin.resolve_redirects",
+       "to_native_string"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/exceptions.py",
+     "caller_path": "src/requests/utils.py",
+     "calls": [
+      [
+       "_validate_header_part",
+       "InvalidHeader"
+      ],
+      [
+       "rewind_body",
+       "UnrewindableBodyError"
+      ],
+      [
+       "unquote_unreserved",
+       "InvalidURL"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/cookies.py",
+     "caller_path": "src/requests/utils.py",
+     "calls": [
+      [
+       "add_dict_to_cookiejar",
+       "cookiejar_from_dict"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/structures.py",
+     "caller_path": "src/requests/adapters.py",
+     "calls": [
+      [
+       "HTTPAdapter.build_response",
+       "CaseInsensitiveDict"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/utils.py",
+     "caller_path": "src/requests/auth.py",
+     "calls": [
+      [
+       "HTTPDigestAuth.handle_401",
+       "parse_dict_header"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/cookies.py",
+     "caller_path": "src/requests/auth.py",
+     "calls": [
+      [
+       "HTTPDigestAuth.handle_401",
+       "extract_cookies_to_jar"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/exceptions.py",
+     "caller_path": "src/requests/sessions.py",
+     "calls": [
+      [
+       "Session.get_adapter",
+       "InvalidSchema"
+      ],
+      [
+       "SessionRedirectMixin.resolve_redirects",
+       "TooManyRedirects"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/_types.py",
+     "caller_path": "src/requests/utils.py",
+     "calls": [
+      [
+       "extract_zipped_paths",
+       "read"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/_internal_utils.py",
+     "caller_path": "src/requests/cookies.py",
+     "calls": [
+      [
+       "MockRequest.get_full_url",
+       "to_native_string"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/_types.py",
+     "caller_path": "src/requests/models.py",
+     "calls": [
+      [
+       "PreparedRequest.prepare_body",
+       "has_read"
+      ],
+      [
+       "RequestEncodingMixin._encode_files",
+       "has_read"
+      ],
+      [
+       "RequestEncodingMixin._encode_files",
+       "read"
+      ],
+      [
+       "RequestEncodingMixin._encode_params",
+       "has_read"
+      ],
+      [
+       "Response.iter_content.generate",
+       "read"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/_types.py",
+     "caller_path": "src/requests/sessions.py",
+     "calls": [
+      [
+       "SessionRedirectMixin.resolve_redirects",
+       "read"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/structures.py",
+     "caller_path": "src/requests/models.py",
+     "calls": [
+      [
+       "PreparedRequest.prepare_headers",
+       "CaseInsensitiveDict"
+      ],
+      [
+       "Response.__init__",
+       "CaseInsensitiveDict"
+      ]
+     ]
+    },
+    {
+     "callee_path": "src/requests/structures.py",
+     "caller_path": "src/requests/status_codes.py",
+     "calls": [
+      [
+       "<module>",
+       "LookupDict"
+      ]
+     ]
+    }
+   ],
+   "code": [
+    {
+     "chunk_id": "3d65f7f51d1f59101c412fb6c3b3efddf4aa7b79",
+     "end_line": 151,
+     "path": "src/requests/api.py",
+     "start_line": 117,
+     "symbol": "post"
+    },
+    {
+     "chunk_id": "96aa36dfd43d47425acaa8083b1923666a459d38",
+     "end_line": 576,
+     "path": "src/requests/cookies.py",
+     "start_line": 531,
+     "symbol": "morsel_to_cookie"
+    },
+    {
+     "chunk_id": "b4564846f7000e2e56224d86525de877b08b6be4",
+     "end_line": 481,
+     "path": "src/requests/models.py",
+     "start_line": 424,
+     "symbol": "PreparedRequest.prepare"
+    },
+    {
+     "chunk_id": "a324b244a1e4806e237ee51816853cd668b98dba",
+     "end_line": 632,
+     "path": "src/requests/adapters.py",
+     "start_line": 613,
+     "symbol": "HTTPAdapter.proxy_headers"
+    },
+    {
+     "chunk_id": "b5fe776a67a01ca037a86fb2bdd1d337af567bb1",
+     "end_line": 807,
+     "path": "src/requests/utils.py",
+     "start_line": 763,
+     "symbol": "is_valid_cidr"
+    },
+    {
+     "chunk_id": "6da7b3e20a010264b6bc5776ec60bb03e1f647b1",
+     "end_line": 471,
+     "path": "src/requests/utils.py",
+     "start_line": 439,
+     "symbol": "parse_dict_header"
+    },
+    {
+     "chunk_id": "63b1de7a9c75d30b29ebbc7c0bd1f0b9a62489c8",
+     "end_line": 227,
+     "path": "src/requests/cookies.py",
+     "start_line": 191,
+     "symbol": "RequestsCookieJar.get"
+    },
+    {
+     "chunk_id": "c087e27f29c35867bd4303939ebf96a61b531b50",
+     "end_line": 965,
+     "path": "src/requests/models.py",
+     "start_line": 914,
+     "symbol": "Response.iter_content.generate"
+    },
+    {
+     "chunk_id": "04c7a27a9d0ca283d98879755a7caa18e7ddcdfa",
+     "end_line": 291,
+     "path": "src/requests/cookies.py",
+     "start_line": 229,
+     "symbol": "RequestsCookieJar.set"
+    },
+    {
+     "chunk_id": "5996e4fd98a0833a4c989a3da9263ac513df9b46",
+     "end_line": 180,
+     "path": "src/requests/api.py",
+     "start_line": 154,
+     "symbol": "patch"
+    },
+    {
+     "chunk_id": "293c6cc51504b2479517e53a71424ebcd113bcb4",
+     "end_line": 128,
+     "path": "src/requests/status_codes.py",
+     "start_line": 101,
+     "symbol": "_init"
+    },
+    {
+     "chunk_id": "71f3ac1451cc9ffc6eb2ab9ae10989fd8e601fba",
+     "end_line": 472,
+     "path": "src/requests/cookies.py",
+     "start_line": 423,
+     "symbol": "RequestsCookieJar._find_no_duplicates"
+    },
+    {
+     "chunk_id": "0b18c0e5b34adb22b2be2983324fa05245fc7d59",
+     "end_line": 401,
+     "path": "src/requests/adapters.py",
+     "start_line": 365,
+     "symbol": "HTTPAdapter.build_response"
+    },
+    {
+     "chunk_id": "579057a201b4c38456211a2ecf0007ff5ab1439c",
+     "end_line": 436,
+     "path": "src/requests/utils.py",
+     "start_line": 407,
+     "symbol": "parse_list_header"
+    },
+    {
+     "chunk_id": "72281a9c22ab3c477e59f48907db10a54196c6b2",
+     "end_line": 729,
+     "path": "src/requests/models.py",
+     "start_line": 699,
+     "symbol": "PreparedRequest.prepare_cookies"
+    },
+    {
+     "chunk_id": "7a71ab22cf9f0d1d7ed92745f7667860fc670e82",
+     "end_line": 346,
+     "path": "src/requests/cookies.py",
+     "start_line": 293,
+     "symbol": "RequestsCookieJar.items"
+    },
+    {
+     "chunk_id": "521da7eeed88ba1db70eb958dc8790839a8a3162",
+     "end_line": 1089,
+     "path": "src/requests/models.py",
+     "start_line": 1034,
+     "symbol": "Response.content"
+    },
+    {
+     "chunk_id": "06c6c3ae8b8b248c28ad60e4db0bb8b4ce160fa7",
+     "end_line": 132,
+     "path": "src/requests/help.py",
+     "start_line": 67,
+     "symbol": "info"
+    },
+    {
+     "chunk_id": "4efbd3ae9fcd1a251e76dc1b50528163c156f179",
+     "end_line": 368,
+     "path": "src/requests/sessions.py",
+     "start_line": 334,
+     "symbol": "SessionRedirectMixin.rebuild_proxies"
+    },
+    {
+     "chunk_id": "3e1df4aa34252ed70c1ec4327f2aa0688eee10a8",
+     "end_line": 180,
+     "path": "src/requests/models.py",
+     "start_line": 108,
+     "symbol": "RequestEncodingMixin.path_url"
+    },
+    {
+     "chunk_id": "6b74cee8c8270a0fdad943bde87b69bdf72da5f0",
+     "end_line": 64,
+     "path": "src/requests/help.py",
+     "start_line": 35,
+     "symbol": "_implementation"
+    },
+    {
+     "chunk_id": "0ea9d387220418cd6590f68ec2c0ec9b7e243841",
+     "end_line": 114,
+     "path": "src/requests/api.py",
+     "start_line": 74,
+     "symbol": "get"
+    },
+    {
+     "chunk_id": "f894a2e5445389df7af7d2000f1f0b0b9211247b",
+     "end_line": 305,
+     "path": "src/requests/adapters.py",
+     "start_line": 269,
+     "symbol": "HTTPAdapter.proxy_manager_for"
+    },
+    {
+     "chunk_id": "33a38636e9ddab4509d0ea694cdf14c9b121fddc",
+     "end_line": 152,
+     "path": "src/requests/sessions.py",
+     "start_line": 127,
+     "symbol": "SessionRedirectMixin.send"
+    }
+   ],
+   "pool_sizes": {
+    "architecture": 20,
+    "code": 51,
+    "probes": 16
+   },
+   "probes": [
+    {
+     "chunk_id": "6233a9722a887cb0557d0fa0af19a5d7f0d49cbf",
+     "end_line": 162,
+     "path": "src/requests/exceptions.py",
+     "start_line": 102,
+     "symbol": "URLRequired"
+    },
+    {
+     "chunk_id": "281347e1ee5694a84a1732de532610ba7752eee3",
+     "end_line": 175,
+     "path": "src/requests/_types.py",
+     "start_line": 119,
+     "symbol": "BaseRequestKwargs"
+    },
+    {
+     "chunk_id": "32dcaf952c6adc1ff90d5b2958d557b83d6cef19",
+     "end_line": 115,
+     "path": "src/requests/compat.py",
+     "start_line": 83,
+     "symbol": "<module>"
+    },
+    {
+     "chunk_id": "c4184196c1f4922a0b4eb4dd81f42f328df29e8d",
+     "end_line": 51,
+     "path": "src/requests/_internal_utils.py",
+     "start_line": 1,
+     "symbol": "to_native_string"
+    },
+    {
+     "chunk_id": "293c6cc51504b2479517e53a71424ebcd113bcb4",
+     "end_line": 128,
+     "path": "src/requests/status_codes.py",
+     "start_line": 101,
+     "symbol": "_init"
+    },
+    {
+     "chunk_id": "4558ad5e2bcf85732c49ea44cbccdeeeae14517e",
+     "end_line": 48,
+     "path": "src/requests/hooks.py",
+     "start_line": 1,
+     "symbol": "default_hooks"
+    },
+    {
+     "chunk_id": "4c8e643b4cb46ce6a844693be435bffc02144956",
+     "end_line": 130,
+     "path": "src/requests/structures.py",
+     "start_line": 96,
+     "symbol": "LookupDict"
+    },
+    {
+     "chunk_id": "612c39db8efa62435b12c1dd02edcddabf75a382",
+     "end_line": 18,
+     "path": "src/requests/certs.py",
+     "start_line": 1,
+     "symbol": "<module>"
+    },
+    {
+     "chunk_id": "3a05b69af24ed6d8c9433f9de73c9064f4fedfdb",
+     "end_line": 319,
+     "path": "src/requests/auth.py",
+     "start_line": 268,
+     "symbol": "HTTPDigestAuth.handle_redirect"
+    },
+    {
+     "chunk_id": "04c7a27a9d0ca283d98879755a7caa18e7ddcdfa",
+     "end_line": 291,
+     "path": "src/requests/cookies.py",
+     "start_line": 229,
+     "symbol": "RequestsCookieJar.set"
+    },
+    {
+     "chunk_id": "3195b84354721564585aacaadb0aa0d4def4db2f",
+     "end_line": 23,
+     "path": "src/requests/packages.py",
+     "start_line": 1,
+     "symbol": "<module>"
+    },
+    {
+     "chunk_id": "06c6c3ae8b8b248c28ad60e4db0bb8b4ce160fa7",
+     "end_line": 132,
+     "path": "src/requests/help.py",
+     "start_line": 67,
+     "symbol": "info"
+    },
+    {
+     "chunk_id": "0ea9d387220418cd6590f68ec2c0ec9b7e243841",
+     "end_line": 114,
+     "path": "src/requests/api.py",
+     "start_line": 74,
+     "symbol": "get"
+    },
+    {
+     "chunk_id": "1230981990e5971d4ea08de56169aa46904ace66",
+     "end_line": 93,
+     "path": "src/requests/utils.py",
+     "start_line": 85,
+     "symbol": "<module>"
+    },
+    {
+     "chunk_id": "8e21dcdc013bbbe92795d9b99ca94060cb41a1e5",
+     "end_line": 14,
+     "path": "src/requests/__version__.py",
+     "start_line": 1,
+     "symbol": "<module>"
+    },
+    {
+     "chunk_id": "25e21679c4bcf2fbf482a9c1900a4a7319e0b5b9",
+     "end_line": 108,
+     "path": "src/requests/__init__.py",
+     "start_line": 60,
+     "symbol": "check_compatibility"
+    }
+   ]
+  }
+ },
+ "seed": 20261103,
+ "wanted": {
+  "architecture": 16,
+  "code": 16,
+  "probes": 11
+ }
+}

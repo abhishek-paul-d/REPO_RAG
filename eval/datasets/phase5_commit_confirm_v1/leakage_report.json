@@ -1,0 +1,88 @@
+{
+  "repos": {
+    "pallets/click": {
+      "repo": "pallets/click",
+      "questions": 129,
+      "groups": 122,
+      "documents": 668,
+      "violations": {
+        "gold_sha_in_query": 0,
+        "gold_message_empty": 0,
+        "own_issue_reference_in_gold_document": 1,
+        "email_like_text_in_documents": 0,
+        "gold_not_candidate": 0,
+        "empty_query_part": 0
+      },
+      "flagged_questions": [
+        "pallets/click:pallets/click#1047"
+      ],
+      "examples": {
+        "own_issue_reference_in_gold_document": [
+          "pallets/click:pallets/click#1047:b073abe"
+        ]
+      }
+    },
+    "encode/httpx": {
+      "repo": "encode/httpx",
+      "questions": 15,
+      "groups": 15,
+      "documents": 1240,
+      "violations": {
+        "gold_sha_in_query": 0,
+        "gold_message_empty": 0,
+        "own_issue_reference_in_gold_document": 0,
+        "email_like_text_in_documents": 0,
+        "gold_not_candidate": 0,
+        "empty_query_part": 0
+      },
+      "flagged_questions": [],
+      "examples": {}
+    },
+    "pallets/werkzeug": {
+      "repo": "pallets/werkzeug",
+      "questions": 114,
+      "groups": 111,
+      "documents": 1291,
+      "violations": {
+        "gold_sha_in_query": 0,
+        "gold_message_empty": 0,
+        "own_issue_reference_in_gold_document": 0,
+        "email_like_text_in_documents": 0,
+        "gold_not_candidate": 0,
+        "empty_query_part": 0
+      },
+      "flagged_questions": [],
+      "examples": {}
+    },
+    "pallets/jinja": {
+      "repo": "pallets/jinja",
+      "questions": 86,
+      "groups": 86,
+      "documents": 629,
+      "violations": {
+        "gold_sha_in_query": 0,
+        "gold_message_empty": 0,
+        "own_issue_reference_in_gold_document": 1,
+        "email_like_text_in_documents": 0,
+        "gold_not_candidate": 0,
+        "empty_query_part": 0
+      },
+      "flagged_questions": [
+        "pallets/jinja:pallets/jinja#748"
+      ],
+      "examples": {
+        "own_issue_reference_in_gold_document": [
+          "pallets/jinja:pallets/jinja#748:1e71e31"
+        ]
+      }
+    }
+  },
+  "missing_repos": [],
+  "questions": 342,
+  "groups": 334,
+  "tentative": false,
+  "excluded": {
+    "pallets/click:pallets/click#1047": "leakage check: own_issue_reference_in_gold_document",
+    "pallets/jinja:pallets/jinja#748": "leakage check: own_issue_reference_in_gold_document"
+  }
+}

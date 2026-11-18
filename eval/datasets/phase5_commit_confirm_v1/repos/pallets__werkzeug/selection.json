@@ -1,0 +1,607 @@
+{
+  "repo": "pallets/werkzeug",
+  "pin": "b73dce5a2ce14f7c7fd645699d1d878de48d2948",
+  "protocol_sha256": "9c73301e83e5c79c8258959bac52d24b1daf347cb46391b74a42f976a9a03df7",
+  "nonmerge_commits": 4539,
+  "fix_candidates": 1291,
+  "questions": 114,
+  "groups": 111,
+  "target": 200,
+  "shortfall": 86,
+  "via_pr_lookups": 0,
+  "via_pr_gold_window": "only verified mergeCommit SHAs of the fixed PR search window in the capped nonmerge corpus; other fixes may be unlabelled",
+  "skipped": [
+    {
+      "sha": "dfb04fc4e1815c21b08299c19f2bb4a92c0afc95",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 1125
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "36a1444686ba4e4736400d6d94b8d637559fea7b",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 1055
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "a9f3315751f7ebc5da8ccaab35260fdcd4a20544",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 1067
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "c7e3119e1133524708ec3073421747f37064d5bb",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 1829
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "1034edc7f901dd645ec6e462754111b39002bd65",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 1001
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "f8f27d9dba621bb9559732407efd4395f24c57a4",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 991
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "62563b86765f35e1480c799296c539c6dcd70c63",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 894
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "a8fe6af27d97eaf9592a177b4757ee771eb6e36e",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 928
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "4baf7f2580aef7040ab4b420690d16084901fd41",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 753
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "6f809687ce8be362f567d3045374bc00ab02376b",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 912
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "a1717df563a9533b17435a5bf79f43bc7af1ed68",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 904
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "7111a5b6c95869024968dcdcfe370fb79fc5fb39",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 905
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "34fc7793cb1aec828d57160cd58eec69c9c48eb6",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 900
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "681d923fb218e30c63a88b91125d8ca31d5d51fb",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 838
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "681d923fb218e30c63a88b91125d8ca31d5d51fb",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 873
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "ec55428e6b5ff3c0c8cc7ef80ab00fbb8fef4d12",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 834
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "5b6e8fcac228f98b82bb27c2c9ef6cec904493ea",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 725
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "6650f6c7ac4776ff1bac50a900bc74a24135e061",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 204
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "4e2c6746e565eaba7b3bd7489337580b62db610b",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 621
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "56d1127ce85be10c866fbb47a5c5c267a58a543a",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 621
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "0cd2da5d5ca681b821de4afcf1da91aba454701a",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 621
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "8c26eafd3edcfa5974f5872f43e1fedcd3950946",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 469
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "e7dacc0f94174d70dd70d6f1097b1028dccad8aa",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 406
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "5b4c9d6d8a042fe5f1c8c2e7676283e71ff3efd6",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 499
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "5b4c9d6d8a042fe5f1c8c2e7676283e71ff3efd6",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 361
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "3712b989ba744e6d92dcc6dc760ea81e5b50bb19",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 470
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "3712b989ba744e6d92dcc6dc760ea81e5b50bb19",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 425
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "742ae62b3d29e44477ca97e92617be29c7a0d1de",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 406
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "b4d524bc96e0dc9a4e87e924f503b5e656a43d55",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 532
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "4d8ca08957ed4cd31e338b335397e22423566d06",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 520
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "8f65855e443e6c010b7ecc7004fe2bae034c7b0c",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 520
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "4381d6eff5e84f09d5f48d1ed79a3533c9030726",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 547
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "4d127e242cc27a95e8007924acfef60585a5b93a",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 472
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "113841bbbe5aa51311f485077444ec0d17c15f56",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 511
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "9db6a879cab3d8480b4aaaa0150e5ac5783927a9",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 973
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "db00dfb41be37ff34e4014ee4a31d9abac8165e2",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 452
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "db00dfb41be37ff34e4014ee4a31d9abac8165e2",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 758
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "a0cfae1c27086a220bcafcef8ca6ae950907b5ee",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 98
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "eb4355a1e27f1656706e5a88cb7414443553f448",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 252
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "8eba1b3e5672cb2ea96700790890038be79702d3",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 126
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "bc8a767088ec27d0743084fe5aad8263a8bacaa3",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 128
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "67c8b8747ee638c963ef311e2fb733ebe7dd390a",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 129
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "4c230f478c0cf889867c2b44e3eeb4cb0c0164fb",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 115
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "9cb6c6bf9794266c8c90af1e23e6669a04b4b8a6",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 110
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "5763e01d6d739cbddd885dd2b66d615ed9f0d84f",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 112
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "2b10c7717a3b42d4a5633c2806ca7d50b44772d0",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 102
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "3c6c6a59e926b55b5d663c0f4417a1efcf3ed5da",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 304
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "dbb854a1dd10d46cb5d2474c3b1127983764b412",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 473
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "aa9909718f0e7d5308187a2f520c56e4c2012e6a",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 499
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "0b0bf6a6dd9086b962b0cec40b881617bf5ca253",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 445
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "d9a2fe3a0e1f6a395dba128905e52a4390709443",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 335
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "2f24a5c8681eeee8c0b4d397df75cba3cbd83bd7",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 385
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "982c19d5d77491482d7ea463ad58445cd06bb39f",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 432
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "81594edb7ba298b65f92d60797c166b66386377d",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 417
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "39db465ddd8b8577f6f047096d020a23e6f395f6",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 438
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "f80b39f69d97a52bee5887b6b13de8c5f26ef7fe",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 440
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "3868d851c10a255928bef6fc91ec7807d3f474e1",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 394
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "0d91c122f5a9c932dcac4b42e271109c12a67b82",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 357
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "715f8aa0779f9ee89fd216c2cce48a7445891f52",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 292
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "63bee6760113fa14d0e98f4f6445b701744979a2",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 347
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "81818e18996fd5a4161ff88bd29f79b69f2ce712",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 344
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "42935f3c5e1e3ef70f283d160125558806b73817",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 341
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "4ed619799c3ddf1dc2210ab05a5bc3b1daab5bea",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 340
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "cb661a449874ca845be0ce551dcbc8c94da6b2c4",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 336
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "dc54c0dde3b53deccad0c7fd6b7dcc078b0d1530",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 334
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "241c9a5bae3cb12f1172fd6ab7e09495a861e581",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 338
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "ee785eaa8786ebd9f628145b750ce17554caba86",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 320
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "1f323e46b23f523a49bc95bde4bd181e11d452fe",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 318
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "e790ea05a3471ea98e3e3b4628d13936fc4c387e",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 304
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "71ee9d4056a06233fb609028c8882c5460025c35",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 302
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "b54ae5e160c15df9187f023992a967b74b315152",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 294
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "5938e45057ff450958c792e2c85cf93d30eace7b",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 288
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "dcec47a274beb2d303de3bd824df998cf3c40e5d",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 291
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    },
+    {
+      "sha": "9ac0a304848fcb0b46aeefb7b6828683b74ff131",
+      "issue": {
+        "repo": "pallets/werkzeug",
+        "number": 263
+      },
+      "reason": "not closed/nonempty GitHub Issue"
+    }
+  ]
+}

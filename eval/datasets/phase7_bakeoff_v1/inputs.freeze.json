@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "frozen_on": "2026-11-01",
+  "answer_model_loads": 0,
+  "files": {
+    "protocol.json": "d2d95fe442e7fb83a39cb7c2ce41024bc5aa9c6b40843734552d610d056eb105",
+    "probes.jsonl": "e8a75443784c740fe6e61825acabdd805990e2b9189400b8ffce8c376ab7d6ad",
+    "labels.jsonl": "ce20d33aa4af9acb043307af051d7d83b8ca27a7d344f9f4fd3fdce51efe6e1a",
+    "questions.jsonl": "84efd76046b47599dadee530df0de7aa7df3b2429916526917e9c9711a9dac99",
+    "splits.json": "1ee722917ba772457a7eb904083891d96378bd1cf0c93f742a34c8939b66bfd8"
+  },
+  "source_files": {
+    "eval/datasets/httpx_facts.jsonl": "73fe5fd0f34e261c0705c483493ee454e324ab82e1ca75d90491965383093a31",
+    "eval/datasets/requests_qa.jsonl": "fa6d085fc85f674780c51564bec63217d89bebbdab45ac61d527d6a3f2ad54ee",
+    "eval/datasets/architecture_v1/requests.jsonl": "df007e1086da72a42e7a275ccd670e402f68270be44984533ad026fefca92ef7",
+    "eval/datasets/architecture_v1/flask.jsonl": "4dce826006e11585b52be43b563d7e1637f52f899b323ac9e705c0af0f6b6b7f"
+  },
+  "preparer_sha256": "c0b7d35078de74683c32b92c1db0a07f98fbc439cc5087e574a4a1cd5b6e758f",
+  "approval": "pending; no downloads, model runs, harness or notebook until approval"
+}

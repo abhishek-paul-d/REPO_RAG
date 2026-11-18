@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "frozen_on": "2026-11-01",
+  "answer_model_loads": 0,
+  "files": {
+    "protocol.json": "7375c1b385b5795308fd215c465d1372a2915e542bd0549b116721345d5d2fb6",
+    "probes.jsonl": "e8a75443784c740fe6e61825acabdd805990e2b9189400b8ffce8c376ab7d6ad",
+    "labels.jsonl": "131214c9a0c47be894dabf3327163bc72b8ae4641b77601ba99f188b422be2c6",
+    "questions.jsonl": "b63156277812db75b4b9dc2b37db1d2477e8781ab438141053dfa122048d626d",
+    "splits.json": "91f88e056365d69b9422704bf147dd7e7579f49617f6b3f67019dfffee23ba8c"
+  },
+  "source_files": {
+    "eval/datasets/httpx_facts.jsonl": "73fe5fd0f34e261c0705c483493ee454e324ab82e1ca75d90491965383093a31",
+    "eval/datasets/requests_qa.jsonl": "fa6d085fc85f674780c51564bec63217d89bebbdab45ac61d527d6a3f2ad54ee",
+    "eval/datasets/architecture_v1/requests.jsonl": "df007e1086da72a42e7a275ccd670e402f68270be44984533ad026fefca92ef7",
+    "eval/datasets/architecture_v1/flask.jsonl": "4dce826006e11585b52be43b563d7e1637f52f899b323ac9e705c0af0f6b6b7f",
+    "eval/datasets/httpx_facts_dev_extra.jsonl": "25528b44404a92af44d9918988de6c8718ca310415458e0fc31d769c5160b29c"
+  },
+  "preparer_sha256": "5af901b079c69004e9c0c3990adbdd5d717a498ff2aeb6f43679a62c5b05f12e",
+  "supersedes": {
+    "protocol_sha256": "d2d95fe442e7fb83a39cb7c2ce41024bc5aa9c6b40843734552d610d056eb105",
+    "inputs_freeze_sha256": "4083a11affc004fe3e80657f60de48ae1c01d8fb7ace1ac510b360e16f0bce46"
+  },
+  "approval": "models approved (approval.json); no model run, harness or notebook yet"
+}

@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "written": "2026-10-25",
+  "task": "issue title and body to linked non-merge fix commits; link-derived proxy labels",
+  "repos": ["psf/requests", "pallets/flask", "fastapi/fastapi"],
+  "pins": {
+    "psf/requests": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60",
+    "pallets/flask": "d086db856be187255b8ec61ef409357393020f32",
+    "fastapi/fastapi": "7a0a3f0b286c6c865cf4398ea0e957a87b8bffa4"
+  },
+  "selection": {
+    "max_commits": 5000,
+    "target_issues_per_repo": 200,
+    "via_pr_search_max_prs": 200,
+    "direct_repos": ["psf/requests", "pallets/flask"],
+    "via_pr_repos": ["fastapi/fastapi"],
+    "order": "most recent non-merge commits at recorded pinned SHA for direct links; FastAPI merged linked:issue PR search ordered updated-desc, capped at 200 PRs, then verify each in-corpus commit through associatedPullRequests and closingIssuesReferences",
+    "eligibility": "verified GitHub Issue, CLOSED, nonempty title and body; all linked in-corpus non-merge commits for sampled issue form gold; link labels are not independent bug-fix judgements",
+    "shortfalls": "report actual numbers, missing issues and search results outside the pinned 5000-commit corpus; never fabricate 200 pairs",
+    "merge_policy": "merge commits excluded, direct closing refs on merges are not propagated to every branch commit",
+    "historical_overlap": "Requests issues may overlap older T3 benchmarks; this is not an independent fresh holdout"
+  },
+  "documents": {
+    "format": "symbols_diff800",
+    "commit_diff_chars": 800,
+    "linked_issue_text": false,
+    "scrub": "drop complete closing-reference lines, scrub other #N and issue/PR URLs in message and diff; issue text never appended",
+    "is_fix": "broad message heuristic OR verified closing link; apply before both dense and BM25 candidate ranking"
+  },
+  "split": {
+    "dev_fraction": 0.2,
+    "seed": 42,
+    "unit": "connected components of issues and gold commit SHAs, within repository",
+    "tuning": "none; all methods prechosen; headline held-out test and separate pooled descriptive rows"
+  },
+  "models": {
+    "embedding": "Qwen/Qwen3-Embedding-0.6B",
+    "dims": 512,
+    "dtype": "float32",
+    "max_tokens": 2048,
+    "query_instruction": "Instruct: Given a developer question or a description of behaviour, retrieve the code that implements it\nQuery:",
+    "rerankers": ["Qwen/Qwen3-Reranker-4B", "Qwen/Qwen3-Reranker-8B"]
+  },
+  "retrieval": {
+    "methods": ["bm25", "dense", "hybrid", "rerank4b", "rerank8b"],
+    "retrieval_k": 50,
+    "rerank_candidate_depth": 50,
+    "dense_weight": 1.0,
+    "bm25_weight": 0.3,
+    "rrf_k": 60,
+    "rerank_instruction": "Given a bug report, judge whether this commit's changes fix the reported bug",
+    "instruction_mode": "default",
+    "first_stage_weight": 0.0,
+    "cutoffs": [1, 5, 10],
+    "mrr_cutoff": 10
+  },
+  "statistics": {"samples": 10000, "seed": 42, "confidence": 0.95, "paired_unit": "connected evidence group", "multiplicity": "unadjusted exploratory intervals"},
+  "evidence_for_8b_on_commits": {
+    "comparison": "rerank8b minus rerank4b; test split only, pooled across repositories",
+    "min_test_groups": 20,
+    "min_mrr_gain": 0.02,
+    "mrr_ci_lower_above": 0.0,
+    "max_hit5_loss_per_repo_and_link_path": 0.02,
+    "insufficient_data": "inconclusive, not a pass",
+    "deployment": "report only; no automatic production changes; A100 latency does not resolve laptop deployment"
+  },
+  "required_artifacts": ["protocol.json", "freeze.json", "pairs.jsonl", "corpus.jsonl", "records.jsonl", "links.json", "selection.json", "run.json", "per_question.json", "traces.json", "summary.json", "comparisons.json", "summary.md", "source.zip"],
+  "not_measured": ["generated answer quality", "manual scale-tier memory/time", "independent label review", "deployment hardware latency", "call graph or multi-block improvements", "ANN accuracy at scale"]
+}

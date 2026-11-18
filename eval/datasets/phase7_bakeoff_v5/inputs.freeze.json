@@ -1,0 +1,26 @@
+{
+  "version": 5,
+  "frozen_on": "2026-11-03",
+  "answer_model_loads_on_v5": 0,
+  "files": {
+    "protocol.json": "403bfde8b82cbe0fcd6f9395f7aa24be26912da858640dc9670b617e5a9525b5",
+    "labels.jsonl": "1d8517d9063e94deb7502e3fe15a9a9af1f711a4cef3ef7416902f14935649c0",
+    "questions.jsonl": "5c3913a99bfd98e524c3789cd65353f32f10bb0523bf830fdfc206de52da5809",
+    "splits.json": "50bb94f2fda9038a68786effe889a8021a5c94745e997d344b0cba66553017a2"
+  },
+  "source_files": {
+    "eval/datasets/httpx_facts.jsonl": "73fe5fd0f34e261c0705c483493ee454e324ab82e1ca75d90491965383093a31",
+    "eval/datasets/requests_qa.jsonl": "fa6d085fc85f674780c51564bec63217d89bebbdab45ac61d527d6a3f2ad54ee",
+    "eval/datasets/architecture_v1/requests.jsonl": "df007e1086da72a42e7a275ccd670e402f68270be44984533ad026fefca92ef7",
+    "eval/datasets/architecture_v1/flask.jsonl": "4dce826006e11585b52be43b563d7e1637f52f899b323ac9e705c0af0f6b6b7f",
+    "eval/datasets/httpx_facts_dev_extra.jsonl": "25528b44404a92af44d9918988de6c8718ca310415458e0fc31d769c5160b29c",
+    "eval/datasets/httpx_facts_v4_fresh.jsonl": "bded217a20378af20a22f20862694309ab2a2244bc564b2a865c19273b99d2ad",
+    "eval/datasets/phase7_bakeoff_v5_authored.jsonl": "417c062c14726f2618ca28bd04ce84721049e8a832a268bc598dc684581394b3",
+    "eval/datasets/phase7_bakeoff_v5_targets.json": "4be7ce63b7f98a4e3ff9db3623a93bc30e5434808f9155502b89a8f926d879ea"
+  },
+  "preparer_sha256": "7bd9d7d6a64e5c6609879b575f07ff24d3b5d0b00263f2c41633909aab56f624",
+  "supersedes": {
+    "protocol_sha256": "2ef16e10633f92a1816b513ff8bde9f67f4a566d43e10c3c3005d9a362c717ca",
+    "inputs_freeze_sha256": "2a60e8689a9b51c5951c171b5c6de1faf918f3e832466fa3fd5ae45e8e620bad"
+  }
+}

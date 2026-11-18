@@ -1,0 +1,4 @@
+model,hf_id,params,license,commercial_use,dim,mrl_dims,max_context,laptop_cpu_query_ok,index_mb_per_100k_chunks_fp32
+coderankembed,nomic-ai/CodeRankEmbed,137M,MIT,True,768,-,8192,True,307
+qwen3-0.6b,Qwen/Qwen3-Embedding-0.6B,0.6B,Apache-2.0,True,1024,"256,512",32768,True,410
+nomic-embed-code,nomic-ai/nomic-embed-code,7B,Apache-2.0,True,3584,-,32768,False,1434

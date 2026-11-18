@@ -1,0 +1,20 @@
+{"id": "docs-f01", "type": "docs", "question": "How do I send custom headers with a request?", "expect": {"paths": ["docs/user/quickstart.rst"]}}
+{"id": "docs-f02", "type": "docs", "question": "How do I send a JSON body in a POST request?", "expect": {"paths": ["docs/user/quickstart.rst"]}}
+{"id": "docs-f03", "type": "docs", "question": "How do I read the cookies a server sent back?", "expect": {"paths": ["docs/user/quickstart.rst"]}}
+{"id": "docs-f04", "type": "docs", "question": "How do I stream a large download to a file without loading it all into memory?", "expect": {"paths": ["docs/user/quickstart.rst", "docs/user/advanced.rst"]}}
+{"id": "docs-f05", "type": "docs", "question": "How do I turn off following redirects?", "expect": {"paths": ["docs/user/quickstart.rst"]}}
+{"id": "docs-f06", "type": "docs", "question": "How do I use a client side certificate?", "expect": {"paths": ["docs/user/advanced.rst"]}}
+{"id": "docs-f07", "type": "docs", "question": "How do I use HTTP digest authentication?", "expect": {"paths": ["docs/user/authentication.rst", "docs/user/advanced.rst"]}}
+{"id": "docs-f08", "type": "docs", "question": "How do I run my own function on every response?", "expect": {"paths": ["docs/user/advanced.rst"]}}
+{"id": "docs-f09", "type": "docs", "question": "How do I use a custom transport adapter for one website only?", "expect": {"paths": ["docs/user/advanced.rst"]}}
+{"id": "docs-f10", "type": "docs", "question": "How do I inspect and change a request before it is sent?", "expect": {"paths": ["docs/user/advanced.rst"]}}
+{"id": "code-f01", "type": "code", "question": "How does the library turn a cookie jar into a plain dictionary?", "expect": {"gold": [{"path": "src/requests/utils.py", "start_line": 500, "end_line": 508, "symbol": "dict_from_cookiejar"}]}}
+{"id": "code-f02", "type": "code", "question": "How does the library work out which Unicode encoding a JSON body uses?", "expect": {"gold": [{"path": "src/requests/utils.py", "start_line": 1008, "end_line": 1037, "symbol": "guess_json_utf"}]}}
+{"id": "code-f03", "type": "code", "question": "How does the library choose which proxy to use for a request URL?", "expect": {"gold": [{"path": "src/requests/utils.py", "start_line": 885, "end_line": 908, "symbol": "select_proxy"}]}}
+{"id": "code-f04", "type": "code", "question": "How does the library add a missing scheme to a URL?", "expect": {"gold": [{"path": "src/requests/utils.py", "start_line": 1040, "end_line": 1067, "symbol": "prepend_scheme_if_needed"}]}}
+{"id": "code-f05", "type": "code", "question": "How does the library extract a username and password from a URL?", "expect": {"gold": [{"path": "src/requests/utils.py", "start_line": 1070, "end_line": 1084, "symbol": "get_auth_from_url"}]}}
+{"id": "code-f06", "type": "code", "question": "How does the library recompute proxy settings when a redirect is followed?", "expect": {"gold": [{"path": "src/requests/sessions.py", "start_line": 334, "end_line": 368, "symbol": "rebuild_proxies"}]}}
+{"id": "code-f07", "type": "code", "question": "How does the transport adapter build the headers it sends to a proxy?", "expect": {"gold": [{"path": "src/requests/adapters.py", "start_line": 613, "end_line": 632, "symbol": "proxy_headers"}]}}
+{"id": "code-f08", "type": "code", "question": "How does the transport adapter decide between sending the full URL or only the path?", "expect": {"gold": [{"path": "src/requests/adapters.py", "start_line": 565, "end_line": 597, "symbol": "request_url"}]}}
+{"id": "code-f09", "type": "code", "question": "How does a response decide whether it is a redirect?", "expect": {"gold": [{"path": "src/requests/models.py", "start_line": 876, "end_line": 881, "symbol": "is_redirect"}]}}
+{"id": "code-f10", "type": "code", "question": "How does the library decode a streamed response into text chunks?", "expect": {"gold": [{"path": "src/requests/utils.py", "start_line": 594, "end_line": 610, "symbol": "stream_decode_response_unicode"}]}}

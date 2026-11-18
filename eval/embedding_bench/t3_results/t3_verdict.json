@@ -1,0 +1,33 @@
+{
+  "model": "qwen3-0.6b",
+  "selected_on": "dev nDCG@10 at 512 dims",
+  "best": {
+    "instruction": "code_instruction",
+    "doc_format": "diff2000"
+  },
+  "baseline": {
+    "instruction": "baseline",
+    "doc_format": "diff2000"
+  },
+  "test_ndcg@10": {
+    "baseline": 0.4643,
+    "best": 0.4815
+  },
+  "test_hit@5": {
+    "baseline": 0.5278,
+    "best": 0.5417
+  },
+  "all_ndcg@10": {
+    "baseline": 0.4822,
+    "best": 0.5029
+  },
+  "paired_bootstrap_test": {
+    "mean_gain": 0.0172,
+    "ci95_low": -0.0166,
+    "ci95_high": 0.0503,
+    "p_gain_le_0": 0.1616
+  },
+  "n_dev": 72,
+  "n_test": 72,
+  "n_commits": 4882
+}

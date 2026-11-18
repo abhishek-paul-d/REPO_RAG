@@ -1,0 +1,438 @@
+{
+  "schema_version": 2,
+  "tuning": "none; matrix fixed before scoring",
+  "review": "author_checked; independent review outstanding",
+  "datasets": [
+    {
+      "repo": "psf/requests",
+      "commit_sha": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60",
+      "file": "requests_qa.jsonl",
+      "questions": 53,
+      "fresh": 13,
+      "sha256": "c04590aeed61d729ed5e7adc675c855a893858df06054084a76fafbd01173aca",
+      "v1_sha256": "bfd84f242a57be1b6d9850d8a46a3c89df99eda4271eef199cdf7b76d7d668aa"
+    },
+    {
+      "repo": "expressjs/express",
+      "commit_sha": "0dee2c52c7c873498f8ed7d8ee4ddd0a04d3ada8",
+      "file": "express_qa.jsonl",
+      "questions": 53,
+      "fresh": 13,
+      "sha256": "04f5e6fe5457256fe9b63c351bd0e4ddc8efe7fa6f4fa60fbeb4bcac2a6b8701",
+      "v1_sha256": "25b9ac98c7ac01f832655b794bf5956aba881b1cfa343ff3c8bc66396b994993"
+    },
+    {
+      "repo": "pallets/flask",
+      "commit_sha": "d086db856be187255b8ec61ef409357393020f32",
+      "file": "flask_qa.jsonl",
+      "questions": 23,
+      "fresh": 23,
+      "sha256": "bff430b50a407d7a6573dea8d0479cc2d01ca6fed0215e7074d62083c6a7e6b3",
+      "v1_sha256": null
+    }
+  ],
+  "gold_reviews": [
+    {
+      "id": "requests-001",
+      "question": "How are redirects followed, and where is the maximum number of redirects enforced?",
+      "v1_gold": [
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 186,
+          "end_line": 307,
+          "source_sha256": "06c83609199b1c75ab7ba83c0eab6ff186a8f70f377319d54484bbe04c14b28f",
+          "symbol": "SessionRedirectMixin.resolve_redirects"
+        }
+      ],
+      "required": [
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 202,
+          "end_line": 209,
+          "source_sha256": "579d640e4a513abd91155c8fcaef2ee55c69cb84b9ed5b33083b3f9148918777",
+          "symbol": "SessionRedirectMixin.resolve_redirects"
+        },
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 216,
+          "end_line": 219,
+          "source_sha256": "d941576f4d331209ece7024803fdb88a8d565264b03683db1698c1755687d440",
+          "symbol": "SessionRedirectMixin.resolve_redirects"
+        },
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 240,
+          "end_line": 247,
+          "source_sha256": "ed023072cd722ee5c40f0067364fe4b0a6c3c30ebdd7133c9899ea6703229bb3",
+          "symbol": "SessionRedirectMixin.resolve_redirects"
+        },
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 287,
+          "end_line": 307,
+          "source_sha256": "460984a4a2c8345f8fcbf3597c6b3bdc72fe7a2bc52dc1b2b6705e62fdea617a",
+          "symbol": "SessionRedirectMixin.resolve_redirects"
+        }
+      ],
+      "supporting": [
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 186,
+          "end_line": 201,
+          "source_sha256": "ac1af6ae23a364dfbc0b0b415d355acca45e6c78fd996e3a1fa6143166ed1bb6",
+          "symbol": "SessionRedirectMixin.resolve_redirects"
+        },
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 210,
+          "end_line": 215,
+          "source_sha256": "e6177c692b5b36a22233bd61b9f1e46e9051eccf74e07326fb244f45219041fd",
+          "symbol": "SessionRedirectMixin.resolve_redirects"
+        },
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 220,
+          "end_line": 239,
+          "source_sha256": "d0e55808bce414cdb5f6febd3e918e7156f54aeb1d10f056570c641bc0c0de0c",
+          "symbol": "SessionRedirectMixin.resolve_redirects"
+        },
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 248,
+          "end_line": 286,
+          "source_sha256": "e847ec2f551ffa02ad441aac6181656b9dc013c69da063f818013bb6fb066d78",
+          "symbol": "SessionRedirectMixin.resolve_redirects"
+        }
+      ],
+      "rationale": "Required: requested control flow/branch/call site; supporting: remaining implementation context. Source-authored review, not independent human review.",
+      "review_status": "author_checked"
+    },
+    {
+      "id": "requests-007",
+      "question": "How does streaming a download in chunks work?",
+      "v1_gold": [
+        {
+          "path": "src/requests/models.py",
+          "start_line": 914,
+          "end_line": 977,
+          "source_sha256": "4e578a273283d558412be60e2404508f926432911b76fb14c484fd2698705199",
+          "symbol": "Response.iter_content"
+        },
+        {
+          "path": "src/requests/models.py",
+          "start_line": 994,
+          "end_line": 1032,
+          "source_sha256": "cae2d94eec7c898cdb50670cefb2fd6ac5db01fa05b874df46d2513dbb8b0e65",
+          "symbol": "Response.iter_lines"
+        }
+      ],
+      "required": [
+        {
+          "path": "src/requests/models.py",
+          "start_line": 914,
+          "end_line": 977,
+          "source_sha256": "4e578a273283d558412be60e2404508f926432911b76fb14c484fd2698705199",
+          "symbol": "Response.iter_content"
+        }
+      ],
+      "supporting": [
+        {
+          "path": "src/requests/models.py",
+          "start_line": 994,
+          "end_line": 1032,
+          "source_sha256": "cae2d94eec7c898cdb50670cefb2fd6ac5db01fa05b874df46d2513dbb8b0e65",
+          "symbol": "Response.iter_lines"
+        }
+      ],
+      "rationale": "The question asks for chunk streaming; line iteration is supporting rather than required.",
+      "review_status": "author_checked"
+    },
+    {
+      "id": "requests-014",
+      "question": "How are multipart file uploads encoded?",
+      "v1_gold": [
+        {
+          "path": "src/requests/models.py",
+          "start_line": 183,
+          "end_line": 251,
+          "source_sha256": "862ac1de640b330626c6ccba0f915a0c595c98370ac2681f5e2a3b30e7079cdd",
+          "symbol": "RequestEncodingMixin._encode_files"
+        },
+        {
+          "path": "src/requests/models.py",
+          "start_line": 576,
+          "end_line": 652,
+          "source_sha256": "ea5b729f5a4e712432bfd946f72a7a774fc40fd42fc447212a00fde5e2598492",
+          "symbol": "PreparedRequest.prepare_body"
+        }
+      ],
+      "required": [
+        {
+          "path": "src/requests/models.py",
+          "start_line": 183,
+          "end_line": 251,
+          "source_sha256": "862ac1de640b330626c6ccba0f915a0c595c98370ac2681f5e2a3b30e7079cdd",
+          "symbol": "RequestEncodingMixin._encode_files"
+        },
+        {
+          "path": "src/requests/models.py",
+          "start_line": 576,
+          "end_line": 652,
+          "source_sha256": "ea5b729f5a4e712432bfd946f72a7a774fc40fd42fc447212a00fde5e2598492",
+          "symbol": "PreparedRequest.prepare_body"
+        }
+      ],
+      "supporting": [],
+      "rationale": "Retained both ranges: file encoding and request-body preparation together explain multipart construction and integration.",
+      "review_status": "author_checked"
+    },
+    {
+      "id": "requests-018",
+      "question": "How does a session pick which transport adapter handles a URL?",
+      "v1_gold": [
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 870,
+          "end_line": 881,
+          "source_sha256": "2c3fd201c4a9b01210993aca4e5a91ce99a1b10860f2f1dd5b7dee7b0798c3f8",
+          "symbol": "Session.get_adapter"
+        },
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 888,
+          "end_line": 897,
+          "source_sha256": "da461871096efb25c09b21edc6965b4135c5c8f1c0cb8100bccc068534b580c6",
+          "symbol": "Session.mount"
+        }
+      ],
+      "required": [
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 870,
+          "end_line": 881,
+          "source_sha256": "2c3fd201c4a9b01210993aca4e5a91ce99a1b10860f2f1dd5b7dee7b0798c3f8",
+          "symbol": "Session.get_adapter"
+        }
+      ],
+      "supporting": [
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 888,
+          "end_line": 897,
+          "source_sha256": "da461871096efb25c09b21edc6965b4135c5c8f1c0cb8100bccc068534b580c6",
+          "symbol": "Session.mount"
+        }
+      ],
+      "rationale": "Adapter selection requires get_adapter; mount explains registration order as supporting context.",
+      "review_status": "author_checked"
+    },
+    {
+      "id": "requests-020",
+      "question": "How are HTTP header names handled case-insensitively?",
+      "v1_gold": [
+        {
+          "path": "src/requests/structures.py",
+          "start_line": 20,
+          "end_line": 93,
+          "source_sha256": "ca5b5687a78047cc3cc4562cfff1d1b5f36f4e2f8793ddad304d112411e9eee7",
+          "symbol": "CaseInsensitiveDict"
+        }
+      ],
+      "required": [
+        {
+          "path": "src/requests/structures.py",
+          "start_line": 20,
+          "end_line": 93,
+          "source_sha256": "ca5b5687a78047cc3cc4562cfff1d1b5f36f4e2f8793ddad304d112411e9eee7",
+          "symbol": "CaseInsensitiveDict"
+        }
+      ],
+      "supporting": [],
+      "rationale": "Retained class range: the broad question concerns dictionary behaviour across storage, lookup and updates; minimal branch labels need independent review.",
+      "review_status": "author_checked"
+    },
+    {
+      "id": "requests-024",
+      "question": "How are connect and read timeouts passed down to urllib3?",
+      "v1_gold": [
+        {
+          "path": "src/requests/adapters.py",
+          "start_line": 634,
+          "end_line": 748,
+          "source_sha256": "a8b4a1d8c114e29db6aa4658e71ac1f744bfff3f07d2e3181548065ccb79bbbe",
+          "symbol": "HTTPAdapter.send"
+        }
+      ],
+      "required": [
+        {
+          "path": "src/requests/adapters.py",
+          "start_line": 681,
+          "end_line": 707,
+          "source_sha256": "1ff28126e7f71f37e2c2f4d5916f1bbdf4fab24d4a05773c20e90d7273f04416",
+          "symbol": "HTTPAdapter.send"
+        }
+      ],
+      "supporting": [
+        {
+          "path": "src/requests/adapters.py",
+          "start_line": 634,
+          "end_line": 680,
+          "source_sha256": "00ff70cba568a1fab38be550a2df78198e9309fe108bcb4ccbd0ddecaa1ed5e2",
+          "symbol": "HTTPAdapter.send"
+        },
+        {
+          "path": "src/requests/adapters.py",
+          "start_line": 708,
+          "end_line": 748,
+          "source_sha256": "e58c041f10026f3e97744b641e2fecc1a0abb3f09fccfc8280f2276f016fadb1",
+          "symbol": "HTTPAdapter.send"
+        }
+      ],
+      "rationale": "Required: requested control flow/branch/call site; supporting: remaining implementation context. Source-authored review, not independent human review.",
+      "review_status": "author_checked"
+    },
+    {
+      "id": "requests-032",
+      "question": "response.text shows garbled characters for a page that has no charset in its headers",
+      "v1_gold": [
+        {
+          "path": "src/requests/models.py",
+          "start_line": 1054,
+          "end_line": 1089,
+          "source_sha256": "30a483fbe9482a412abc4b0d38d31fc443fd73f6ed8512427671298b671d177a",
+          "symbol": "Response.text"
+        },
+        {
+          "path": "src/requests/models.py",
+          "start_line": 897,
+          "end_line": 904,
+          "source_sha256": "f3e18e7757c1c85dd34eb7f7a9bf9b5886989f9d1ee8e088bb2876c2f8cc1760",
+          "symbol": "Response.apparent_encoding"
+        },
+        {
+          "path": "src/requests/utils.py",
+          "start_line": 569,
+          "end_line": 591,
+          "source_sha256": "732d1beddbc5fd06011072a993b810facb1af6ed9530a6a90ef3df5701a7654a",
+          "symbol": "get_encoding_from_headers"
+        }
+      ],
+      "required": [
+        {
+          "path": "src/requests/models.py",
+          "start_line": 1054,
+          "end_line": 1089,
+          "source_sha256": "30a483fbe9482a412abc4b0d38d31fc443fd73f6ed8512427671298b671d177a",
+          "symbol": "Response.text"
+        },
+        {
+          "path": "src/requests/models.py",
+          "start_line": 897,
+          "end_line": 904,
+          "source_sha256": "f3e18e7757c1c85dd34eb7f7a9bf9b5886989f9d1ee8e088bb2876c2f8cc1760",
+          "symbol": "Response.apparent_encoding"
+        },
+        {
+          "path": "src/requests/utils.py",
+          "start_line": 569,
+          "end_line": 591,
+          "source_sha256": "732d1beddbc5fd06011072a993b810facb1af6ed9530a6a90ef3df5701a7654a",
+          "symbol": "get_encoding_from_headers"
+        }
+      ],
+      "supporting": [],
+      "rationale": "Retained decoding, detection and header parsing as multi-part encoding diagnosis; distinguish optional branches during independent review.",
+      "review_status": "author_checked"
+    },
+    {
+      "id": "requests-034",
+      "question": "I get a TooManyRedirects exception. Where is it raised?",
+      "v1_gold": [
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 186,
+          "end_line": 307,
+          "source_sha256": "06c83609199b1c75ab7ba83c0eab6ff186a8f70f377319d54484bbe04c14b28f",
+          "symbol": "SessionRedirectMixin.resolve_redirects"
+        }
+      ],
+      "required": [
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 216,
+          "end_line": 219,
+          "source_sha256": "d941576f4d331209ece7024803fdb88a8d565264b03683db1698c1755687d440",
+          "symbol": "SessionRedirectMixin.resolve_redirects"
+        }
+      ],
+      "supporting": [
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 186,
+          "end_line": 215,
+          "source_sha256": "07903090c74f8723c85659456073d8330b423a5ec3744fc16754f23ca25497fc",
+          "symbol": "SessionRedirectMixin.resolve_redirects"
+        },
+        {
+          "path": "src/requests/sessions.py",
+          "start_line": 220,
+          "end_line": 307,
+          "source_sha256": "fbc63990581afb964dac276b0bc41f25509f17f9398647315f649f9f40519cea",
+          "symbol": "SessionRedirectMixin.resolve_redirects"
+        }
+      ],
+      "rationale": "Required: requested control flow/branch/call site; supporting: remaining implementation context. Source-authored review, not independent human review.",
+      "review_status": "author_checked"
+    },
+    {
+      "id": "express-010",
+      "question": "How is one route handler registered for every HTTP method?",
+      "v1_gold": [
+        {
+          "path": "lib/application.js",
+          "start_line": 494,
+          "end_line": 503,
+          "source_sha256": "c84bd85ebcc88669dc6fcf702c649038eeb2dada9956fb8f4195f4c3e2cb0764",
+          "symbol": "app.all"
+        }
+      ],
+      "required": [
+        {
+          "path": "lib/application.js",
+          "start_line": 494,
+          "end_line": 503,
+          "source_sha256": "c84bd85ebcc88669dc6fcf702c649038eeb2dada9956fb8f4195f4c3e2cb0764",
+          "symbol": "app.all"
+        }
+      ],
+      "supporting": [],
+      "rationale": "Retained compact implementation range: observed miss is ranking, not excessively broad gold.",
+      "review_status": "author_checked"
+    },
+    {
+      "id": "express-025",
+      "question": "How does setting Content-Type add a charset and reject an array value?",
+      "v1_gold": [
+        {
+          "path": "lib/response.js",
+          "start_line": 670,
+          "end_line": 692,
+          "source_sha256": "5db2955299eb38a09bce9830b20e6820f5a1c45fd9f0db0ed284b5d717d2377e",
+          "symbol": "res.header"
+        }
+      ],
+      "required": [
+        {
+          "path": "lib/response.js",
+          "start_line": 670,
+          "end_line": 692,
+          "source_sha256": "5db2955299eb38a09bce9830b20e6820f5a1c45fd9f0db0ed284b5d717d2377e",
+          "symbol": "res.header"
+        }
+      ],
+      "supporting": [],
+      "rationale": "Retained compact implementation range: observed miss is ranking, not excessively broad gold.",
+      "review_status": "author_checked"
+    }
+  ]
+}

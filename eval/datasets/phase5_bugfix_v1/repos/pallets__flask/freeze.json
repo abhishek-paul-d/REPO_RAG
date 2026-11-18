@@ -1,0 +1,15 @@
+{
+  "repo": "pallets/flask",
+  "pin": "d086db856be187255b8ec61ef409357393020f32",
+  "sha256": {
+    "protocol.json": "314ab8b93072dac058583f8f4c3054543a62c316828cf2d9afdd129a4762089c",
+    "records.jsonl": "8c43539ec90a6f9aab4284d9c8a84e31e2051c495dfee60637f370ead872166e",
+    "pairs.jsonl": "6e913526ec5cef05998cd3a031ad384a06724f028f93d5d903b5de4e4ea38d65",
+    "corpus.jsonl": "da8db877a167c0301f022309080e2ee110eb0be96cd6ebfa61aae666e3d8c2be",
+    "links.json": "50cba50841cbe4869e2836ea76333610038382b6649b2dcbff05fcd3b8585b45",
+    "issues.json": "b08eaafc5adf80ea89ae7de06a778d1d7eb4616323c19e7993b4a18d1bc700d3",
+    "selection.json": "ace87220332775d0874bb4dbf184cd6fc1643f6e05a4c4fbd678568026874878",
+    "preparation.json": "eb55328f44a77b224c404a4d1f261be5ff10d5a26646b7921062ffff32688c42"
+  },
+  "stage": "frozen before any retrieval/model loading"
+}

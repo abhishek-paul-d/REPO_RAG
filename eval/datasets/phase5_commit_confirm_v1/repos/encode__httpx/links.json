@@ -1,0 +1,130 @@
+[
+  {
+    "repo": "encode/httpx",
+    "commit_sha": "f653b2f0cf5aea2a3ad179e5858f248e975d68f9",
+    "issue_repo": "encode/httpx",
+    "issue_number": 2906,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "encode/httpx",
+    "commit_sha": "c1cc6b2462e95b84315c67bd5aefb33df73d06c4",
+    "issue_repo": "encode/httpx",
+    "issue_number": 2666,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "encode/httpx",
+    "commit_sha": "ccd98b1a6de221fa4b497de7f7bdf89b1347024d",
+    "issue_repo": "encode/httpx",
+    "issue_number": 2314,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "encode/httpx",
+    "commit_sha": "781076cb63baa61e269eab18df861fdc901e4e59",
+    "issue_repo": "encode/httpx",
+    "issue_number": 2126,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "encode/httpx",
+    "commit_sha": "f4165e9e091f7ca622a996ce531a2e8638e941a0",
+    "issue_repo": "encode/httpx",
+    "issue_number": 1418,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "encode/httpx",
+    "commit_sha": "ca5f524943cb6266b42c235bcf45b2c0877a1b35",
+    "issue_repo": "encode/httpx",
+    "issue_number": 1356,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "encode/httpx",
+    "commit_sha": "a226c60861f651b9874e31e66b3bb7f0db46c96d",
+    "issue_repo": "encode/httpx",
+    "issue_number": 1146,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "encode/httpx",
+    "commit_sha": "20f4911e805d9cf28b915cc2c7fbae8f27dc2c49",
+    "issue_repo": "encode/httpx",
+    "issue_number": 1033,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "encode/httpx",
+    "commit_sha": "ad5e6eb8b0bd4a23218f835cf70025f2f7897cc0",
+    "issue_repo": "encode/httpx",
+    "issue_number": 1033,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "encode/httpx",
+    "commit_sha": "093cb4250006dc0b73af986f7e6537b8c4395dcf",
+    "issue_repo": "encode/httpx",
+    "issue_number": 822,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "encode/httpx",
+    "commit_sha": "c2eb0bd40f21b1c529c812c20e8aff0bf6af6f3b",
+    "issue_repo": "encode/httpx",
+    "issue_number": 792,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "encode/httpx",
+    "commit_sha": "2b92a78c41544da0891d2c42c7e2a28174783c57",
+    "issue_repo": "encode/httpx",
+    "issue_number": 656,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "encode/httpx",
+    "commit_sha": "e34df7a7a19b5ebdbad59a0b7e1a54b4f011811b",
+    "issue_repo": "encode/httpx",
+    "issue_number": 659,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "encode/httpx",
+    "commit_sha": "f06ca87f9728346ba6b8550315b25a2c15ab8fb8",
+    "issue_repo": "encode/httpx",
+    "issue_number": 96,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "encode/httpx",
+    "commit_sha": "0c4460e622bc9e882650876732b27349254b3b16",
+    "issue_repo": "encode/httpx",
+    "issue_number": 336,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "encode/httpx",
+    "commit_sha": "95dad247b531489f4cf18ac6d8daacf9c4906d18",
+    "issue_repo": "encode/httpx",
+    "issue_number": 198,
+    "link_type": "direct",
+    "pr_number": null
+  }
+]

@@ -1,0 +1,978 @@
+[
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "f88164a271dd3e86a3241389ddc5c53eca4b9e4a",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 3146,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "051fd66352cf8b3f0797249858068dedaead6d39",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 3127,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "f516c4005c7c4510b61ae07969450771b929809d",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 2842,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "89ce5e5a4c59bc9d51d360fd5c205b344ecf06c8",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 2761,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "2cce3252ac7deb1fcaa1c4be75b46f6d17475cfd",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 1875,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "d03b97779720c614287d2aef0f075ee4a1391c5b",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 1797,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "f8442efa50369bc65427c7cfaee00c65ac906edd",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 458,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "29ffda85b44c3df7cdbd840d1c0a6d9ec3b4f920",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 1556,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "d86887b31c95034278156f38b6e0b32bb15c1f33",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 1547,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "0f1e443b04717c6633645464eaac867ca875535f",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 1502,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "63d8c7d7c501ee884272905e4dfd29f79f005bd6",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 1414,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "9bbd1dc5c0e98e37824e371883567cf0a14dd42a",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 1070,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "f18b06a1d4b80c3e40cdbc8326baf49c23566237",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 1043,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "53097705befbd3316ecc427ca01dab4808f35031",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 1213,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "c5a0f223ccd8d32aef04c3d59c78028abd10ff1d",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 1179,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "3737044efc5f5afa53f863831f57d27093d70ff9",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 1091,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "3737044efc5f5afa53f863831f57d27093d70ff9",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 1177,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "e4730eff5d52d335f802992e4bc953e5fee1b586",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 705,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "829a692f9b6a5e4fa8c3184bdb52e08d179063db",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 408,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "d2b373a9ea71d4f19600d3ff388edf602f79e28b",
+    "issue_repo": "pallets/flask",
+    "issue_number": 2220,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "0eda5d2367dc9b07d56eef4f2ec1f42c6376b1c9",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 1084,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "09b330b5b00ef0bcc396ea42f8b894c85c003926",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 993,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "09b330b5b00ef0bcc396ea42f8b894c85c003926",
+    "issue_repo": "pallets/flask",
+    "issue_number": 2194,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "8c2d63ce247ba1345e1b9332a68ceff93b2c07ab",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 1012,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "179decc7ad45ae0e5c0db8754b15f8cd312b40d8",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 1031,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "f8f27d9dba621bb9559732407efd4395f24c57a4",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 979,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "7c07654250461b0f753efd6dc3976df44d3b94f8",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 995,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "62563b86765f35e1480c799296c539c6dcd70c63",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 852,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "7f033e1bfd4d85cb7a20f3c08d3b945679775513",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 963,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "9de33837de9bf5b8d0be4bb8b8b3c3389b37d7a6",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 965,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "d4674c7bb5d56572fb1d93813fd1256ca3a5f5c1",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 932,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "a8fe6af27d97eaf9592a177b4757ee771eb6e36e",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 731,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "0ab6a7462b5fe6f15686aef3004a833a52ea5aad",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 510,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "e50ad44745f891686fc77d9b6ccf03e3db27f8f4",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 929,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "3494f1904362159505e93c0ee0fd2cf14302009f",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 925,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "413a978fa99f64d2abdfb8bddd1da5bf44bc52ec",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 822,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "e22d25c601da7db05ff55e0b4c52d0fbdaf43374",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 124,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "34d6ab9dee2b819e6243f9fdfe28fab71fad0c89",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 851,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "b15c10d26ce7b858df25aa7edc0daad737e76240",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 826,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "3bb963d1aadb9ed1a3e8a876bfc0e4c11a242ff0",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 826,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "ffc565e67b7c78dd626168076b2a72e302067a29",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 835,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "fddf48d3642720eeaa8a07f177859ab9977c861a",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 816,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "7500fd8924c86de92742b8a45860dd2c60e367bd",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 811,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "d46360c606daa0f249cbe364fe7217179d173f3a",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 808,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "f0012580ba565f46763d6d6ad7d98d60661cb5ae",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 805,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "2fa4d8885f01cc604d8e52d345427fb2cb83f540",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 404,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "b2c4a761157d60befbe1fa2055f384ca3008de98",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 751,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "adedcffb4c84b7303cc9626524c1054d76af3328",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 744,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "bba0cdcc67d4a1160d4ed9d3f99aef170a79dd88",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 635,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "bba0cdcc67d4a1160d4ed9d3f99aef170a79dd88",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 428,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "5b6e8fcac228f98b82bb27c2c9ef6cec904493ea",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 550,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "fe91490e2385f3cbe331b98f9eda8cfb1ec1a42e",
+    "issue_repo": "mitsuhiko/flask",
+    "issue_number": 1355,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "80ff4b3fc4af27c0ac7b3216e15fd7a3fd67f4b9",
+    "issue_repo": "mitsuhiko/werkzeug",
+    "issue_number": 612,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "6b975147f655145a2232749c45f1aa8fd0fcfb99",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 682,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "fb9e7c3eeccfdf39670518439dfae154c717ef18",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 712,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "8157695591b26f1bbffe37852aa2f54b7de5cbc1",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 709,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "8155161a5ebb29b199054dc899cd54aaf04305d5",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 688,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "1b4dd19b3ac955f96af67bc2702dc4ad00142c10",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 648,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "f24fe6251969ee5126fa1eeab71b07a2b0e2c190",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 546,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "5f16ce27ec2ccabdb352e25f1af060f0106d1cd6",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 647,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "7dc1a447a838cebf4077a9e5c2a3cdd8052f6da5",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 451,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "cb103813d7d7a18b720228cf07965f2f39c220a6",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 633,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "47ebd964abd8c64a48dd5be66cb0928f5387cfc1",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 629,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "cbec4d1c4b61f0b5af77d0f8668c93b940b16fee",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 611,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "f20faa1125af2e2cb228a2d0b71e26f5cd22d3df",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 605,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "b0c1960de290b725f3a3f51c0d74385a8f3360be",
+    "issue_repo": "mitsuhiko/flask",
+    "issue_number": 541,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "592383026aaadc8d0100d28dde5e3360be0c0141",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 599,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "5b4c9d6d8a042fe5f1c8c2e7676283e71ff3efd6",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 360,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "434df4f703ca896f4e1ce43c06108b2f9783b66d",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 449,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "be2b73665eda1631f6114158b3531cf3ae620636",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 442,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "4d8ca08957ed4cd31e338b335397e22423566d06",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 519,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "8f65855e443e6c010b7ecc7004fe2bae034c7b0c",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 519,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "b488d7ed5c88619191e89acbb642db2c03e13e2c",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 182,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "c4c64b20dc7626324c014281e9d9a978014a1960",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 441,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "7b0edf6cc4bba32d5d6dea6ff766375a3a4672fc",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 539,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "94bea60a1b8e26b586dcd7bc75b162a9909696a3",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 539,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "4d127e242cc27a95e8007924acfef60585a5b93a",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 468,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "2e3887a8dc6578eac95fd300fffa55f1e0473fea",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 468,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "50ba18b85c012acac0000266dbf1c61276a7d5e7",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 498,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "113841bbbe5aa51311f485077444ec0d17c15f56",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 506,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "681e40f2a2ec1127fc378f4ebca990f177cb78ff",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 560,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "e1c3e3e95408daa4e87eac901e3d26fa5f80b925",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 120,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "13218deae25b6ee77d8dbab8af98ff1d38712ae4",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 502,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "40339b42852828db101ac4ef4c6aa2eea82be232",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 460,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "c9422500ff4cfebcd7271c96fa412bb07ac342da",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 456,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "3dcc5a5f14c9a9b1b8c21e1672c4e329805d53ee",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 419,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "e82c010847f44d5771bfd8ca5ab55e70df362fa6",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 400,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "b98631187dd32deecb3d6b4b94665e0599ca9da7",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 177,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "373b1f56d071ddee8367290ddb1ff69d8c3b7bbf",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 393,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "c0606069f62ad38fe23bca8db66b9137fa596f80",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 366,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "75f4d050cb14a4e969dafd6d4a11a1c48d550cdd",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 262,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "955174dd85e47ffe25ce4486aca5f26d150e5229",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 371,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "4d65051ffaf975324bca78ae76272e8e4944522e",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 374,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "537756fffc78887ad25e101a51e4aa19d1c81105",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 271,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "fb584e0bee9bd3374d6faa141f553b142b843d36",
+    "issue_repo": "mitsuhiko/flask",
+    "issue_number": 283,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "fc37d435345d9a6697db625f503e5c8b1e740b66",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 232,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "b05387384a4d25ef2d51187fef36e4dd4c6db916",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 120,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "f34c9b9c13d136a6cd97bd5e7a333a84f7537a4a",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 127,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "1b69f3b1a578586dd04b4a936bcc99c7f4e9246f",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 157,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "88c715aad9cf288c19afb29be6122ff7f29455b7",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 146,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "68e1ba06500914089723a3744a5ab93aa212b3a3",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 130,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "4775c9f75b00d3441a8ce767eef48cf209045666",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 118,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "fdfd1a81b7a6965566e2fa4c06d9e774e242beb1",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 88,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "5639c68489f174aac13fbe6d487cddcf8f2412e1",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 99,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "3495b0d89015c75105fb2f39dba569ee162d5d1b",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 86,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "9c9849e9b33704bca44379593ed74f08239d299b",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 28,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "49340433c46e26f9e67fc4790d5966dc1b906b4c",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 73,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "02d0d64427bfc3bcab4712395817c1ff81b11de0",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 39,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "8a937b3e0d6861b33f6d7f4e26e4f20a7695b3ab",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 61,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "b88319ff568b4672d444f0bfc578a5cd6b10f81b",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 46,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "17cb853d548fdbb36263c1915eda822049556f4d",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 24,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "c7bc345060c8f70a4dade1790572a0c4ddc57d1c",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 408,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "bfd3160b3d7cbe686b16e14466c1b6fe46e23640",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 418,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "92c1a1ce68f7916b56850ed3c5f8ec9b98f83633",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 434,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "0c19c30edb5b8daa4a5a671d717d2de156778aba",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 442,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "25c5cb8b078405ad483951298ec5156d8e3f4379",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 428,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "4a595fc0101f90cae6f668654b4d2ca344acc37a",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 447,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "189e6562adddf9cfcb5731dfc09402ded5eab206",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 436,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "a9e01a9454fb57eb6a5533bebdf08aa5d2b581de",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 415,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "bc263af47960635e6e084c2659b5b1a7eeea8231",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 398,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "1a84485bb422b443723d4547bbdefe4d0f797341",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 290,
+    "link_type": "direct",
+    "pr_number": null
+  },
+  {
+    "repo": "pallets/werkzeug",
+    "commit_sha": "8beb7111bba3abb3ce2c09b037789eb1f596f8ae",
+    "issue_repo": "pallets/werkzeug",
+    "issue_number": 279,
+    "link_type": "direct",
+    "pr_number": null
+  }
+]

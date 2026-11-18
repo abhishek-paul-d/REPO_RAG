@@ -1,0 +1,15 @@
+{
+  "repo": "pallets/click",
+  "pin": "2247b35ea1c47c727d7a06e51fa280e12a863ff6",
+  "sha256": {
+    "protocol.json": "9c73301e83e5c79c8258959bac52d24b1daf347cb46391b74a42f976a9a03df7",
+    "records.jsonl": "3b929e4d54de82c50c639492e9adf8f0d68c3eb7cfaac6fd2f19b2a72f6436e1",
+    "pairs.jsonl": "439acb409885be14e69dfcd204414613e1739c654ebff92ef4649c860063fcc2",
+    "corpus.jsonl": "dcdaf62d12bdbdc8ec2cc81ff336a5bf0a902a314ab8489e0066408f17ebd681",
+    "links.json": "6e998fc7ff67cfa1d294bfd9538603be2f35a1f2cff20cb132cd36feec25e318",
+    "issues.json": "fae35c98aa073674a8d7f74a4071237eded252067687b986cd48701528c559ef",
+    "selection.json": "8bf856d4dacb2937df53a9a9201a7a249ae5c00a831aa745bd560fa88617ad4a",
+    "preparation.json": "023a262ad183aac0af43d361af9459f322eaf43cf172ad3b73b13ba3724efa66"
+  },
+  "stage": "frozen before any retrieval/model loading"
+}

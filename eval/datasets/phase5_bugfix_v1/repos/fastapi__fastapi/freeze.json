@@ -1,0 +1,15 @@
+{
+  "repo": "fastapi/fastapi",
+  "pin": "7a0a3f0b286c6c865cf4398ea0e957a87b8bffa4",
+  "sha256": {
+    "protocol.json": "314ab8b93072dac058583f8f4c3054543a62c316828cf2d9afdd129a4762089c",
+    "records.jsonl": "b5a15c93aebd4ce87666599a8f4e353fee8b6c7d28ce106cf66c05ccb75a575e",
+    "pairs.jsonl": "64e11a398511794c540d9aa950433f382fc7bf992d7f3a2f330c93cac089a055",
+    "corpus.jsonl": "ef2c1d482142720deff7da3923cd920aa75d0e806d7ebf4b525a8e70bcc32bc5",
+    "links.json": "8ae106250ec85af89546944b7353ba952e56d89da656f29c65c32d44604d935f",
+    "issues.json": "5ef66d408e98631f4aa0839107dd53684f42ff68bebe5974db57cd80bfbd49ef",
+    "selection.json": "ffcd6152373e07747ecd191418b03343c59d081be8553ec278a87b10d8844fab",
+    "preparation.json": "ed01c4053ec487a09be52f7fe6cd5e24dcd1ef5f1cec9a66ed0133230ffcd781"
+  },
+  "stage": "frozen before any retrieval/model loading"
+}

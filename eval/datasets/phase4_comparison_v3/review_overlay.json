@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "status": "model review overlay; frozen v3 labels are NOT edited",
+  "reviewer": "Claude (separate session from the label author); not a human reviewer",
+  "applies_to": "phase4_comparison_v3 (90 questions)",
+  "rule": "Each entry ADDS one alternative sufficient proof. All ranges in a proof are jointly required (>= 90% covered), exactly as in the original protocol. No proof was removed or narrowed.",
+  "additions": {
+    "express-comparison-001": {
+      "proof": [{"path": "test/res.redirect.js", "start_line": 22, "end_line": 33}],
+      "why": "The redirect test 'should encode \"url\"' asserts the same percent-encoded Location header as the accepted test in test/res.location.js; it is an equally complete demonstration."
+    },
+    "flask-comparison-008": {
+      "proof": [{"path": "src/flask/helpers.py", "start_line": 63, "end_line": 115}],
+      "why": "The stream_with_context signature and docstring state that request, session and g stay available while the generator runs; it is the same function as the accepted body range."
+    },
+    "flask-comparison-015": {
+      "proof": [
+        {"path": "src/flask/templating.py", "start_line": 163, "end_line": 177},
+        {"path": "src/flask/app.py", "start_line": 601, "end_line": 616}
+      ],
+      "why": "_stream calls update_template_context and sends before/after render signals exactly as _render does; the question does not say 'streaming' or 'non-streaming'."
+    }
+  },
+  "considered_and_not_added": {
+    "flask-comparison-013": "wsgi_app is an entry point but does not show before-request, finalize or process_response internals; label stays.",
+    "express-comparison-018": "Likely over-strict: res.vary and req.accepts are 3-line delegates visible from res.format. Left unchanged here because loosening a multi-block requirement needs a human decision."
+  }
+}

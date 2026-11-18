@@ -1,0 +1,98 @@
+{
+  "E3": {
+    "approval_required_before_run": true,
+    "check": "every identifier token must occur in facts or frozen small stop list; reject paragraph on any violation",
+    "model": null,
+    "proposal": "separate model_proposal.json before run; no model loading without explicit approval",
+    "selection": "best fact variant on dev only"
+  },
+  "arms": [
+    "chunks",
+    "summaries",
+    "fused",
+    "router_file_1",
+    "router_file_2",
+    "router_file_3",
+    "router_dir_1",
+    "router_dir_2",
+    "router_dir_3"
+  ],
+  "author": "Codex",
+  "baseline": "chunks hybrid, same depth and weights; file collapse after chunk ranking",
+  "bootstrap": {
+    "confidence": 0.95,
+    "samples": 10000,
+    "seed": 42,
+    "unit": "repo-qualified question group"
+  },
+  "choice": "pooled DEV Recall@5, then MRR@10; remaining ties use listed arm order; E1 router chosen from router arms only; E2 facts chosen by same dev rule with fixed E1 router; no test or code labels for selection",
+  "default_code_search": "unchanged; summaries excluded",
+  "depth": 50,
+  "embedding": {
+    "dims": 512,
+    "dtype": "float32",
+    "model": "Qwen/Qwen3-Embedding-0.6B"
+  },
+  "empty_router": "empty ranking, no fallback",
+  "fact_variants": {
+    "F1": [
+      "docstrings"
+    ],
+    "F1F2": [
+      "docstrings",
+      "runtime"
+    ],
+    "F1F2F3": [
+      "docstrings",
+      "runtime",
+      "history"
+    ],
+    "F1F2F3F4": [
+      "docstrings",
+      "runtime",
+      "history",
+      "readme"
+    ],
+    "F2": [
+      "runtime"
+    ],
+    "F3": [
+      "history"
+    ],
+    "F4": [
+      "readme"
+    ],
+    "base": []
+  },
+  "label_review": "unreviewed by a person",
+  "limitations": [
+    "30 authored questions; human review pending",
+    "pointwise exploratory intervals, no multiplicity correction",
+    "identifier check measures lexical grounding, not semantic entailment"
+  ],
+  "metrics": [
+    "recall@5",
+    "recall@10",
+    "hit@3",
+    "mrr@10",
+    "directory_hit@3"
+  ],
+  "path_overfetch": 8,
+  "questions": [
+    "Q0 architecture labels",
+    "Q1 router",
+    "Q2 richer facts",
+    "Q3 prose"
+  ],
+  "success": {
+    "code_mrr10_drop_max": 0.01,
+    "each_repo_delta_min": 0,
+    "paired_lower_bound_strictly_above": 0,
+    "pooled_test_recall5_delta_min": 0.05
+  },
+  "summary_caps": {
+    "base": 3000,
+    "facts": 16000
+  },
+  "version": "architecture_v1"
+}

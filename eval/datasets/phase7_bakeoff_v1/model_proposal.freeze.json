@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "frozen_on": "2026-11-01",
+  "answer_model_loads": 0,
+  "files": {
+    "model_proposal.json": "fca3e9816c1110e15a36b80fba59393b671046c1272e859db145b7302628f312",
+    "hf_metadata.json": "057aa95d40768d60d15e325fe4697d6bcc61638ac3e5e44c2c5f9cdc46dc7573"
+  },
+  "inputs_freeze_sha256": "4083a11affc004fe3e80657f60de48ae1c01d8fb7ace1ac510b360e16f0bce46",
+  "approval_status": "pending",
+  "amendments": "Preserve v1; new proposal versions must name supersedes SHA and rationale before any model load."
+}

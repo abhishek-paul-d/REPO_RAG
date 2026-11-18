@@ -1,0 +1,4 @@
+model,load_s,dim,corpus_docs,corpus_encode_s,docs_per_s,tokens_per_s,truncated_pct,query_ms_p50_cuda,query_ms_p95_cuda,peak_gpu_gb,query_ms_p50_cpu,query_ms_p95_cpu
+coderankembed,31.5,768,10642,65.2,163.2,32724,0.0,15.8,16.5,26.82,64.4,70.7
+qwen3-0.6b,13.3,1024,10642,44.5,239.0,38986,0.0,42.5,43.7,9.4,257.9,272.0
+nomic-embed-code,89.7,3584,10642,173.8,61.2,9924,0.0,36.1,36.7,17.08,,

@@ -1,0 +1,274 @@
+{
+  "version": 1,
+  "parent": "phase4_comparison_v3",
+  "authorship": "same assistant as the intent detector; independent review pending",
+  "paraphrases": 30,
+  "datasets": [
+    {
+      "repo": "psf/requests",
+      "commit_sha": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60",
+      "file": "requests_qa.jsonl",
+      "questions": 42,
+      "retained": 5,
+      "added": 25,
+      "strata": {
+        "ambiguous": 12,
+        "multi_block": 6,
+        "test": 6,
+        "implementation": 6
+      },
+      "groups": 28,
+      "paths": 13,
+      "all_corpus_complete_proofs": 30,
+      "sha256": "c63d3c5404c63373308daf3a80032cd9118956ab5828662fbcccb0d7eb5dc50d",
+      "overlap_with_v2": {
+        "requests-comparison-001": [
+          "requests-036"
+        ],
+        "requests-comparison-002": [
+          "requests-028"
+        ],
+        "requests-comparison-003": [
+          "requests-020",
+          "requests-fresh-004"
+        ],
+        "requests-comparison-004": [
+          "requests-021",
+          "requests-fresh-002"
+        ],
+        "requests-comparison-005": [
+          "requests-020",
+          "requests-fresh-005"
+        ],
+        "requests-comparison-006": [
+          "requests-010"
+        ],
+        "requests-comparison-007": [
+          "requests-006",
+          "requests-008",
+          "requests-032"
+        ],
+        "requests-comparison-008": [],
+        "requests-comparison-009": [
+          "requests-013",
+          "requests-026"
+        ],
+        "requests-comparison-010": [
+          "requests-015",
+          "requests-033"
+        ],
+        "requests-comparison-011": [],
+        "requests-comparison-012": [],
+        "requests-comparison-013": [
+          "requests-017"
+        ],
+        "requests-comparison-014": [
+          "requests-002",
+          "requests-031"
+        ],
+        "requests-comparison-015": [
+          "requests-014"
+        ],
+        "requests-comparison-016": [
+          "requests-029"
+        ],
+        "requests-comparison-017": [
+          "requests-006",
+          "requests-032"
+        ],
+        "requests-comparison-018": [
+          "requests-007"
+        ],
+        "requests-comparison-019": [],
+        "requests-comparison-020": [],
+        "requests-comparison-021": [],
+        "requests-comparison-022": [],
+        "requests-comparison-023": [],
+        "requests-comparison-024": [],
+        "requests-comparison-025": [
+          "requests-022"
+        ],
+        "requests-comparison-026": [],
+        "requests-comparison-027": [],
+        "requests-comparison-028": [],
+        "requests-comparison-029": [],
+        "requests-comparison-030": [
+          "requests-009"
+        ]
+      }
+    },
+    {
+      "repo": "expressjs/express",
+      "commit_sha": "0dee2c52c7c873498f8ed7d8ee4ddd0a04d3ada8",
+      "file": "express_qa.jsonl",
+      "questions": 39,
+      "retained": 5,
+      "added": 25,
+      "strata": {
+        "ambiguous": 12,
+        "multi_block": 6,
+        "test": 6,
+        "implementation": 3,
+        "example": 3
+      },
+      "groups": 27,
+      "paths": 25,
+      "all_corpus_complete_proofs": 30,
+      "sha256": "f581b0157b68cd8f1b1b11735234b70d7982c5152a46dacf4a6918118b6617dc",
+      "overlap_with_v2": {
+        "express-comparison-001": [
+          "express-028"
+        ],
+        "express-comparison-002": [
+          "express-036"
+        ],
+        "express-comparison-003": [
+          "express-026",
+          "express-fresh-004"
+        ],
+        "express-comparison-004": [
+          "express-013",
+          "express-fresh-006"
+        ],
+        "express-comparison-005": [
+          "express-032",
+          "express-fresh-007"
+        ],
+        "express-comparison-006": [
+          "express-016",
+          "express-031"
+        ],
+        "express-comparison-007": [
+          "express-033"
+        ],
+        "express-comparison-008": [
+          "express-039"
+        ],
+        "express-comparison-009": [],
+        "express-comparison-010": [
+          "express-027"
+        ],
+        "express-comparison-011": [
+          "express-034",
+          "express-fresh-013"
+        ],
+        "express-comparison-012": [
+          "express-024",
+          "express-fresh-011"
+        ],
+        "express-comparison-013": [
+          "express-011",
+          "express-030"
+        ],
+        "express-comparison-014": [
+          "express-019",
+          "express-020"
+        ],
+        "express-comparison-015": [
+          "express-002",
+          "express-004"
+        ],
+        "express-comparison-016": [
+          "express-015",
+          "express-017"
+        ],
+        "express-comparison-017": [
+          "express-015",
+          "express-018"
+        ],
+        "express-comparison-018": [
+          "express-022",
+          "express-033"
+        ],
+        "express-comparison-019": [],
+        "express-comparison-020": [],
+        "express-comparison-021": [],
+        "express-comparison-022": [],
+        "express-comparison-023": [],
+        "express-comparison-024": [],
+        "express-comparison-025": [
+          "express-009"
+        ],
+        "express-comparison-026": [],
+        "express-comparison-027": [
+          "express-014"
+        ],
+        "express-comparison-028": [],
+        "express-comparison-029": [],
+        "express-comparison-030": []
+      }
+    },
+    {
+      "repo": "pallets/flask",
+      "commit_sha": "d086db856be187255b8ec61ef409357393020f32",
+      "file": "flask_qa.jsonl",
+      "questions": 39,
+      "retained": 5,
+      "added": 25,
+      "strata": {
+        "ambiguous": 12,
+        "multi_block": 6,
+        "test": 6,
+        "implementation": 3,
+        "example": 3
+      },
+      "groups": 28,
+      "paths": 20,
+      "all_corpus_complete_proofs": 30,
+      "sha256": "e9e838ac4ec2a62e582cd52ecda162f170508e667973aff0319a868264034d15",
+      "overlap_with_v2": {
+        "flask-comparison-001": [
+          "flask-fresh-007"
+        ],
+        "flask-comparison-002": [
+          "flask-fresh-013"
+        ],
+        "flask-comparison-003": [
+          "flask-fresh-016"
+        ],
+        "flask-comparison-004": [
+          "flask-fresh-017"
+        ],
+        "flask-comparison-005": [
+          "flask-fresh-015"
+        ],
+        "flask-comparison-006": [
+          "flask-fresh-003",
+          "flask-fresh-012"
+        ],
+        "flask-comparison-007": [],
+        "flask-comparison-008": [],
+        "flask-comparison-009": [
+          "flask-fresh-008"
+        ],
+        "flask-comparison-010": [],
+        "flask-comparison-011": [],
+        "flask-comparison-012": [],
+        "flask-comparison-013": [
+          "flask-fresh-004"
+        ],
+        "flask-comparison-014": [],
+        "flask-comparison-015": [
+          "flask-fresh-005"
+        ],
+        "flask-comparison-016": [],
+        "flask-comparison-017": [
+          "flask-fresh-008"
+        ],
+        "flask-comparison-018": [],
+        "flask-comparison-019": [],
+        "flask-comparison-020": [],
+        "flask-comparison-021": [],
+        "flask-comparison-022": [],
+        "flask-comparison-023": [],
+        "flask-comparison-024": [],
+        "flask-comparison-025": [],
+        "flask-comparison-026": [],
+        "flask-comparison-027": [],
+        "flask-comparison-028": [],
+        "flask-comparison-029": [],
+        "flask-comparison-030": []
+      }
+    }
+  ]
+}

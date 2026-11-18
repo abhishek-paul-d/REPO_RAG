@@ -1,0 +1,141 @@
+{"id": "pr_merged_by:2803", "question": "Who merged #2803?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "pr_merged_by:2652", "question": "Who merged #2652?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "pr_merged_by:3058", "question": "Who merged #3058?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "pr_merged_by:3023", "question": "Who merged #3023?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "pr_merged_by:2986", "question": "Who merged #2986?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "pr_merged_by:2840", "question": "Who merged #2840?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "pr_merged_by:2771", "question": "Who merged #2771?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "pr_merged_by:2747", "question": "Who merged #2747?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "pr_author:3364", "question": "Who opened PR #3364?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "pr_author:3124", "question": "Who opened PR #3124?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "pr_author:2570", "question": "Who opened PR #2570?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "pr_author:2517", "question": "Who opened PR #2517?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "pr_author:2708", "question": "Who opened PR #2708?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "pr_title:2872", "question": "What is the title of PR #2872?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "pr_title:2901", "question": "What is the title of PR #2901?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "pr_title:3270", "question": "What is the title of PR #3270?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "pr_title:3371", "question": "What is the title of PR #3371?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "pr_state:2515", "question": "Is PR #2515 open, closed or merged?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "pr_state:2935", "question": "Is PR #2935 open, closed or merged?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "pr_state:3774", "question": "Is PR #3774 open, closed or merged?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "pr_state:3517", "question": "Is PR #3517 open, closed or merged?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "issue_author:1428", "question": "Who opened issue #1428?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "issue_author:2116", "question": "Who opened issue #2116?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "issue_author:2507", "question": "Who opened issue #2507?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "issue_closed_by:2884", "question": "Which PR closed issue #2884?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "issue_closed_by:1278", "question": "Which PR closed issue #1278?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "issue_closed_by:2670", "question": "Which PR closed issue #2670?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "issue_closed_by:3400", "question": "Which PR closed issue #3400?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "release_first:2675", "question": "Which release first included the change merged in #2675?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "release_first:2708", "question": "Which release first included the change merged in #2708?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "release_first:2836", "question": "Which release first included the change merged in #2836?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "release_first:2852", "question": "Which release first included the change merged in #2852?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "release_first:3122", "question": "Which release first included the change merged in #3122?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "release_first:3187", "question": "Which release first included the change merged in #3187?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "release_first:3288", "question": "Which release first included the change merged in #3288?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "release_first:3478", "question": "Which release first included the change merged in #3478?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "blame_line:httpx/_main.py:49", "question": "Which commit last changed line 49 of httpx/_main.py?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "blame_line:httpx/_decoders.py:71", "question": "Which commit last changed line 71 of httpx/_decoders.py?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "blame_line:httpx/_status_codes.py:89", "question": "Which commit last changed line 89 of httpx/_status_codes.py?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "blame_line:httpx/_transports/asgi.py:125", "question": "Which commit last changed line 125 of httpx/_transports/asgi.py?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "blame_line:httpx/_config.py:114", "question": "Which commit last changed line 114 of httpx/_config.py?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "blame_line:httpx/_multipart.py:66", "question": "Which commit last changed line 66 of httpx/_multipart.py?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "commits_in_month:pyproject.toml@2021-04-01", "question": "How many commits touched pyproject.toml in April 2021?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "commits_in_month:pyproject.toml@2019-04-01", "question": "How many commits touched pyproject.toml in April 2019?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "commits_in_month:pyproject.toml@2023-11-01", "question": "How many commits touched pyproject.toml in November 2023?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "commits_in_month:tests@2019-10-01", "question": "How many commits touched tests in October 2019?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "commits_in_month:tests@2019-12-01", "question": "How many commits touched tests in December 2019?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "commits_in_month:httpx/_client.py@2021-04-01", "question": "How many commits touched httpx/_client.py in April 2021?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "commits_in_month:httpx/_models.py@2021-11-01", "question": "How many commits touched httpx/_models.py in November 2021?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "commits_in_month:httpx@2021-10-01", "question": "How many commits touched httpx in October 2021?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "top_committer:repo@2024", "question": "Who made the most commits in 2024?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "top_committer:httpx@2023", "question": "Who made the most commits touching httpx in 2023?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "top_committer:repo@2022", "question": "Who made the most commits in 2022?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "hot_file:2024", "question": "Which file under httpx/ was changed in the most commits in 2024?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "hot_file:2020", "question": "Which file under httpx/ was changed in the most commits in 2020?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "tag_commit:0.23.2", "question": "Which commit does the tag 0.23.2 point to?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "tag_commit:0.28.1", "question": "Which commit does the tag 0.28.1 point to?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "tag_commit:0.3.1", "question": "Which commit does the tag 0.3.1 point to?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "tag_commit:0.6.4", "question": "Which commit does the tag 0.6.4 point to?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "tag_commit:0.6.5", "question": "Which commit does the tag 0.6.5 point to?", "repo": "encode/httpx", "split": "test", "suite": "facts"}
+{"id": "requests-001", "question": "How are redirects followed, and where is the maximum number of redirects enforced?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-002", "question": "Where is the Authorization header removed when a redirect goes to a different host?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-003", "question": "How does a POST request become a GET after a 303 See Other redirect?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-004", "question": "How are automatic retries configured for the connection pool?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-005", "question": "Where are SSL certificates verified and the CA bundle chosen?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-006", "question": "How is the response body decoded into text when the server sends no charset?", "repo": "psf/requests", "split": "dev", "suite": "code"}
+{"id": "requests-007", "question": "How does streaming a download in chunks work?", "repo": "psf/requests", "split": "dev", "suite": "code"}
+{"id": "requests-008", "question": "How is JSON parsed from a response, and what error is raised if the body is not valid JSON?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-009", "question": "Where is HTTP Digest authentication implemented?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-010", "question": "How is the value of the Basic auth header built?", "repo": "psf/requests", "split": "dev", "suite": "code"}
+{"id": "requests-011", "question": "How does the library decide whether a URL should bypass the proxy?", "repo": "psf/requests", "split": "dev", "suite": "code"}
+{"id": "requests-012", "question": "Where are proxy settings read from environment variables?", "repo": "psf/requests", "split": "dev", "suite": "code"}
+{"id": "requests-013", "question": "How are query parameters URL-encoded into the request URL?", "repo": "psf/requests", "split": "dev", "suite": "code"}
+{"id": "requests-014", "question": "How are multipart file uploads encoded?", "repo": "psf/requests", "split": "dev", "suite": "code"}
+{"id": "requests-015", "question": "How is the Content-Length of a request body computed?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-016", "question": "How are cookies from a response stored in the cookie jar?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-017", "question": "How are session-level settings merged with per-request settings?", "repo": "psf/requests", "split": "dev", "suite": "code"}
+{"id": "requests-018", "question": "How does a session pick which transport adapter handles a URL?", "repo": "psf/requests", "split": "dev", "suite": "code"}
+{"id": "requests-019", "question": "Where are default headers such as User-Agent set?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-020", "question": "How are HTTP header names handled case-insensitively?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-021", "question": "How are event hooks such as the response hook dispatched?", "repo": "psf/requests", "split": "dev", "suite": "code"}
+{"id": "requests-022", "question": "Where is the Link header parsed into a dictionary?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-023", "question": "How does raising for HTTP error status codes build its error message?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-024", "question": "How are connect and read timeouts passed down to urllib3?", "repo": "psf/requests", "split": "dev", "suite": "code"}
+{"id": "requests-025", "question": "Where are credentials loaded from the user's netrc file?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-026", "question": "What does `prepare_url` do with internationalized (IDNA) host names?", "repo": "psf/requests", "split": "dev", "suite": "code"}
+{"id": "requests-027", "question": "What does `requote_uri` do?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-028", "question": "How does `rewind_body` work?", "repo": "psf/requests", "split": "dev", "suite": "code"}
+{"id": "requests-029", "question": "What does `get_connection_with_tls_context` do?", "repo": "psf/requests", "split": "dev", "suite": "code"}
+{"id": "requests-030", "question": "Explain `CaseInsensitiveDict.lower_items`.", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-031", "question": "My Authorization header disappears after the server redirects me. Why?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-032", "question": "response.text shows garbled characters for a page that has no charset in its headers", "repo": "psf/requests", "split": "dev", "suite": "code"}
+{"id": "requests-033", "question": "Uploading a file object that was partially read sends the wrong Content-Length", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-034", "question": "I get a TooManyRedirects exception. Where is it raised?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-035", "question": "Requests ignores my NO_PROXY environment variable", "repo": "psf/requests", "split": "dev", "suite": "code"}
+{"id": "requests-036", "question": "A header value containing a newline raises InvalidHeader", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-037", "question": "How does closing a session release its transport adapters?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-038", "question": "How are outgoing request headers validated and stored case-insensitively?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-039", "question": "How does closing a response release its underlying connection?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-040", "question": "How is a dictionary converted to a cookie jar while respecting overwrite?", "repo": "psf/requests", "split": "test", "suite": "code"}
+{"id": "requests-architecture-06", "question": "Which components jointly retain cookies between calls and attach them to outgoing requests?", "repo": "psf/requests", "split": "test", "suite": "architecture"}
+{"id": "requests-architecture-07", "question": "Trace the redirect cycle, including rebuilding credentials and preserving cookies across the next send.", "repo": "psf/requests", "split": "test", "suite": "architecture"}
+{"id": "requests-architecture-08", "question": "How does persistent client configuration depend on the case-insensitive header container and default settings helpers?", "repo": "psf/requests", "split": "test", "suite": "architecture"}
+{"id": "requests-architecture-09", "question": "Where do authentication strategies live, and how do request preparation and redirect handling invoke them?", "repo": "psf/requests", "split": "test", "suite": "architecture"}
+{"id": "requests-architecture-10", "question": "Which pieces cooperate to choose certificate verification defaults and configure TLS for transport?", "repo": "psf/requests", "split": "test", "suite": "architecture"}
+{"id": "requests-architecture-11", "question": "Which modules cooperate to encode form and multipart upload bodies before network transmission?", "repo": "psf/requests", "split": "test", "suite": "architecture"}
+{"id": "requests-architecture-12", "question": "Trace streamed response data from the raw connection through content decoding and iteration.", "repo": "psf/requests", "split": "test", "suite": "architecture"}
+{"id": "requests-architecture-13", "question": "How are user hooks registered and dispatched around the response lifecycle?", "repo": "psf/requests", "split": "test", "suite": "architecture"}
+{"id": "requests-architecture-14", "question": "How are compatibility shims, dependency checks and the public exception hierarchy separated?", "repo": "psf/requests", "split": "test", "suite": "architecture"}
+{"id": "requests-architecture-15", "question": "Which layers translate connection and timeout failures from the HTTP backend into library-specific errors?", "repo": "psf/requests", "split": "test", "suite": "architecture"}
+{"id": "flask-architecture-06", "question": "How is reusable route grouping divided between its public object, shared setup logic and application registration?", "repo": "pallets/flask", "split": "test", "suite": "architecture"}
+{"id": "flask-architecture-07", "question": "Trace deferred route registration from a reusable route group into the application's URL map.", "repo": "pallets/flask", "split": "test", "suite": "architecture"}
+{"id": "flask-architecture-08", "question": "Which common setup layer is shared by the application and its reusable route groups?", "repo": "pallets/flask", "split": "test", "suite": "architecture"}
+{"id": "flask-architecture-09", "question": "Which components implement context-local application, request and session access and context cleanup?", "repo": "pallets/flask", "split": "test", "suite": "architecture"}
+{"id": "flask-architecture-10", "question": "How does the request lifecycle open a signed cookie session and save it back on the response?", "repo": "pallets/flask", "split": "test", "suite": "architecture"}
+{"id": "flask-architecture-11", "question": "Trace an incoming WSGI request through context creation, view dispatch and response conversion.", "repo": "pallets/flask", "split": "test", "suite": "architecture"}
+{"id": "flask-architecture-12", "question": "Where do error-handler registration, exception dispatch and failure signals fit together?", "repo": "pallets/flask", "split": "test", "suite": "architecture"}
+{"id": "flask-architecture-13", "question": "Which components connect URL-building helpers to the active application and its routing map?", "repo": "pallets/flask", "split": "test", "suite": "architecture"}
+{"id": "flask-architecture-14", "question": "How are application defaults, configuration loading and request-specific limits divided?", "repo": "pallets/flask", "split": "test", "suite": "architecture"}
+{"id": "flask-architecture-15", "question": "Trace command-line application discovery into running the development server.", "repo": "pallets/flask", "split": "test", "suite": "architecture"}
+{"id": "unanswerable-01", "question": "Where does this Requests implementation negotiate HTTP/3 over QUIC?", "repo": "psf/requests", "split": "dev", "suite": "probes"}
+{"id": "unanswerable-02", "question": "Where does this Requests implementation perform the built-in WebSocket upgrade and manage WebSocket frames?", "repo": "psf/requests", "split": "test", "suite": "probes"}
+{"id": "unanswerable-03", "question": "Where does Requests implement its built-in persistent on-disk HTTP response cache and cache eviction?", "repo": "psf/requests", "split": "test", "suite": "probes"}
+{"id": "unanswerable-04", "question": "Where does Requests implement built-in OAuth2 refresh-token rotation and token persistence?", "repo": "psf/requests", "split": "test", "suite": "probes"}
+{"id": "unanswerable-05", "question": "Where does Requests automatically open and commit SQL database transactions around HTTP requests?", "repo": "psf/requests", "split": "test", "suite": "probes"}
+{"id": "unanswerable-06", "question": "Where does Flask implement its built-in ORM schema migration planner and migration execution engine?", "repo": "pallets/flask", "split": "dev", "suite": "probes"}
+{"id": "unanswerable-07", "question": "Where does Flask implement built-in JWT issuance, signing-key rotation and refresh-token storage?", "repo": "pallets/flask", "split": "test", "suite": "probes"}
+{"id": "unanswerable-08", "question": "Where does Flask implement its built-in Redis replication monitor and Sentinel failover algorithm?", "repo": "pallets/flask", "split": "test", "suite": "probes"}
+{"id": "unanswerable-09", "question": "Where does Flask compile a built-in GraphQL schema and execute GraphQL resolvers?", "repo": "pallets/flask", "split": "test", "suite": "probes"}
+{"id": "unanswerable-10", "question": "Where does Flask implement its own HTTP/3 QUIC transport and packet-loss recovery?", "repo": "pallets/flask", "split": "test", "suite": "probes"}
+{"id": "release_first:2732", "question": "Which release first included the change merged in #2732?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "release_first:2799", "question": "Which release first included the change merged in #2799?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "commits_in_month:httpx/_models.py@2022-11-01", "question": "How many commits touched httpx/_models.py in November 2022?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "commits_in_month:httpx/_models.py@2019-12-01", "question": "How many commits touched httpx/_models.py in December 2019?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "blame_line:httpx/_transports/mock.py:37", "question": "Which commit last changed line 37 of httpx/_transports/mock.py?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "blame_line:httpx/_transports/base.py:83", "question": "Which commit last changed line 83 of httpx/_transports/base.py?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "tag_commit:0.11.0", "question": "Which commit does the tag 0.11.0 point to?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "tag_commit:0.20.0", "question": "Which commit does the tag 0.20.0 point to?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "issue_closed_by:3614", "question": "Which PR closed issue #3614?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "issue_closed_by:3140", "question": "Which PR closed issue #3140?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}
+{"id": "hot_file:2023", "question": "Which file under httpx/ was changed in the most commits in 2023?", "repo": "encode/httpx", "split": "dev", "suite": "facts"}

@@ -1,0 +1,690 @@
+[
+  {
+    "repo": "pallets/jinja",
+    "number": 1732,
+    "title": "FIlter documentation doesn't mention arguments",
+    "body": "This documentation here: https://jinja.palletsprojects.com/en/3.1.x/templates/#id11\r\n\r\n> Filter sections allow you to apply regular Jinja filters on a block of template data. Just wrap the code in the special *filter* section:\r\n> ```html+jinja\r\n> {% filter upper %}\r\n>     This text becomes uppercase\r\n> {% endfilter %}\r\n> ```\r\n\r\nNot mentioned is that you can also pass arguments, like this:\r\n\r\n```html+jinja\r\n{% filter center(100) %}This will be centered{% endfilter %}\r\n```",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/1732"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 1526,
+    "title": "Python 3.11 traceback format changed, tests fail",
+    "body": "When running jinja's tests with Python 3.11.0a1, two tests fail because the exception format has changed.\r\n\r\n<!--\r\nDescribe how to replicate the bug.\r\n\r\nInclude a minimal reproducible example that demonstrates the bug.\r\nInclude the full traceback if there was an exception.\r\n-->\r\n\r\nTo reproduce, run tox:\r\n\r\n```\r\n$ tox -e py311\r\n```\r\nAlternativelly, you can limit the number of tests:\r\n\r\n```\r\n$ tox -e py311 -- tests/test_debug.py\r\n```\r\n\r\n<!--\r\nDescribe the expected behavior that should have happened but didn't.\r\n-->\r\n\r\nExpected behavior: tests pass.\r\n\r\nActual behavior:\r\n\r\n```\r\nGLOB sdist-make: .../jinja/setup.py\r\npy311 inst-nodeps: .../jinja/.tox/.tmp/package/1/Jinja2-3.1.0.dev0.zip\r\npy311 installed: attrs==21.2.0,iniconfig==1.1.1,Jinja2 @ file://.../jinja/.tox/.tmp/package/1/Jinja2-3.1.0.dev0.zip,MarkupSafe==2.0.1,packaging==21.2,pluggy==1.0.0,py @ https://github.com/pytest-dev/py/archive/refs/heads/master.zip,pyparsing==2.4.7,pytest==6.2.5,toml==0.10.2\r\npy311 run-test-pre: PYTHONHASHSEED='705390215'\r\npy311 run-test: commands[0] | pytest -v --tb=short --basetemp=.../jinja/.tox/py311/tmp tests/test_debug.py\r\n============================= test session starts ==============================\r\nplatform linux -- Python 3.11.0a1, pytest-6.2.5, py-1.10.1, pluggy-1.0.0 -- .../jinja/.tox/py311/bin/python\r\ncachedir: .tox/py311/.pytest_cache\r\nrootdir: .../jinja, configfile: setup.cfg\r\ncollecting ... collected 7 items\r\n\r\ntests/test_debug.py::TestDebug::test_runtime_error FAILED                [ 14%]\r\ntests/test_debug.py::TestDebug::test_syntax_error PASSED                 [ 28%]\r\ntests/test_debug.py::TestDebug::test_regular_syntax_error FAILED         [ 42%]\r\ntests/test_debug.py::TestDebug::test_pickleable_syntax_error PASSED      [ 57%]\r\ntests/test_debug.py::TestDebug::test_include_syntax_error_source PASSED  [ 71%]\r\ntests/test_debug.py::TestDebug::test_local_extraction PASSED             [ 85%]\r\ntests/test_debug.py::TestDebug::test_get_corresponding_lineno_traceback PASSED [100%]\r\n\r\n=================================== FAILURES ===================================\r\n_________________________ TestDebug.test_runtime_error _________________________\r\ntests/test_debug.py:35: in test_runtime_error\r\n    self.assert_traceback_matches(\r\ntests/test_debug.py:26: in assert_traceback_matches\r\n    assert (\r\nE   AssertionError: Traceback did not match:\r\nE     \r\nE     Traceback (most recent call last):\r\nE       File \".../jinja/tests/test_debug.py\", line 22, in assert_traceback_matches\r\nE         callback()\r\nE         ^^^^^^^^^^\r\nE       File \".../jinja/tests/test_debug.py\", line 32, in test\r\nE         tmpl.render(fail=lambda: 1 / 0)\r\nE         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nE       File \".../jinja/.tox/py311/lib/python3.11/site-packages/jinja2/environment.py\", line 1304, in render\r\nE         self.environment.handle_exception()\r\nE         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nE       File \".../jinja/.tox/py311/lib/python3.11/site-packages/jinja2/environment.py\", line 925, in handle_exception\r\nE         raise rewrite_traceback_stack(source=source)\r\nE         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nE       File \".../jinja/tests/res/templates/broken.html\", line 2, in <module>\r\nE         {{ fail() }}\r\nE         ^^^^^^^^^^^^\r\nE       File \".../jinja/tests/test_debug.py\", line 32, in <lambda>\r\nE         tmpl.render(fail=lambda: 1 / 0)\r\nE                                  ~~^~~\r\nE     ZeroDivisionError: division by zero\r\nE     \r\nE     expected:\r\nE     \r\nE       File \".*?broken.html\", line 2, in (top-level template code|<module>)\r\nE         \\{\\{ fail\\(\\) \\}\\}\r\nE       File \".*debug?.pyc?\", line \\d+, in <lambda>\r\nE         tmpl\\.render\\(fail=lambda: 1 / 0\\)\r\nE     ZeroDivisionError: (int(eger)? )?division (or modulo )?by zero\r\nE     \r\nE   assert None is not None\r\n_____________________ TestDebug.test_regular_syntax_error ______________________\r\ntests/test_debug.py:65: in test_regular_syntax_error\r\n    self.assert_traceback_matches(\r\ntests/test_debug.py:26: in assert_traceback_matches\r\n    assert (\r\nE   AssertionError: Traceback did not match:\r\nE     \r\nE     Traceback (most recent call last):\r\nE       File \".../jinja/tests/test_debug.py\", line 22, in assert_traceback_matches\r\nE         callback()\r\nE         ^^^^^^^^^^\r\nE       File \".../jinja/tests/test_debug.py\", line 63, in test\r\nE         raise TemplateSyntaxError(\"wtf\", 42)\r\nE         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nE     jinja2.exceptions.TemplateSyntaxError: wtf\r\nE       line 42\r\nE     \r\nE     expected:\r\nE     \r\nE       File \".*debug.pyc?\", line \\d+, in test\r\nE         raise TemplateSyntaxError\\(\"wtf\", 42\\)\r\nE     (jinja2\\.exceptions\\.)?TemplateSyntaxError: wtf\r\nE       line 42\r\nE   assert None is not None\r\n=========================== short test summary info ============================\r\nFAILED tests/test_debug.py::TestDebug::test_runtime_error - AssertionError: T...\r\nFAILED tests/test_debug.py::TestDebug::test_regular_syntax_error - AssertionE...\r\n========================= 2 failed, 5 passed in 0.03s ==========================\r\nERROR: InvocationError for command .../jinja/.tox/py311/bin/pytest -v --tb=short --basetemp=.../jinja/.tox/py311/tmp tests/test_debug.py (exited with code 1)\r\n___________________________________ summary ____________________________________\r\nERROR:   py311: commands failed\r\n```\r\n\r\nEnvironment:\r\n\r\n- Python version: 3.11.0a1\r\n- Jinja version: main branch @ f72597b8ccce73f963eafec2cdcd5a51b4b3e2ad as well as 3.0.1 or 3.0.2 version with https://github.com/pallets/jinja/pull/1525 applied to see the actual difference in the traebacks\r\n\r\n\r\nI will look at a possible fixer.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/1526"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 1448,
+    "title": "containment should only fail for `StrictUndefined`, not regular `Undefined`",
+    "body": "### Summary\r\nHello, I'm looking into a change of behaviour between jinja2-2.11.x (and previous... this section of our template has been around for a long time) and jinja2-3.0.x.  I have a feeling it was a bug in 2.11 that got fixed but since I don't see the behaviour change spelled out in the changelog I decided to report it in case it was an unintended side effect of a different bugfix.\r\n\r\nWith jinja2-2.11.x, certain `{% if x in dictionary[key] %}` constructs will evaluate False if key is not present in the dictionary.  In jinja2-3.0.x, the construct will raise an UndefinedException instead. \r\n\r\n### Reproducer\r\n\r\nHere's a small template that triggers the behaviour:\r\n``` jinja\r\n{# Called with d = {'test': {}} #}\r\nStart\r\n{% for entry, value in d.items() %}\r\n{%     if 'n' in value.a %}\r\n    Condition triggered\r\n{%     endif %}\r\n{% endfor %}\r\nEnd\r\n```\r\nAnd here's my test script with the template embedded in a python string:\r\n``` python\r\n#!/usr/bin/python3    \r\n    \r\nimport jinja2    \r\ndata = \"\"\"    \r\n{# Called with d = {'test': {}} #}\r\nStart\r\n{% for entry, value in d.items() %}\r\n{%     if 'n' in value.a %} \r\nCondition triggered\r\n{%     endif %}\r\n{% endfor %}\r\nEnd\r\n\"\"\"    \r\nt = jinja2.Template(data)    \r\nprint(t.render(d={'test': {}}))\r\n```\r\n\r\n#### Behaviour in 2.11\r\n```\r\n    \r\n\r\nStart\r\n\r\n\r\n\r\nEnd\r\n```\r\n\r\n#### Behaviour in 3.0\r\n\r\n```\r\nTraceback (most recent call last):\r\n  File \"/srv/ansible/jinja2-3.x-bug/test2.py\", line 15, in <module>\r\n    print(t.render(d={'test': {}}))\r\n  File \"/home/badger/.local/lib/python3.9/site-packages/jinja2/environment.py\", line 1304, in render\r\n    self.environment.handle_exception()\r\n  File \"/home/badger/.local/lib/python3.9/site-packages/jinja2/environment.py\", line 925, in handle_exception\r\n    raise rewrite_traceback_stack(source=source)\r\n  File \"<template>\", line 5, in top-level template code\r\njinja2.exceptions.UndefinedError: 'dict object' has no attribute 'a'\r\n```\r\n### Additional information\r\n\r\nI have done a little bit of experimentation and the change is caused by https://github.com/pallets/jinja/pull/1204/ (If I remove that change from a jinja2-3.0.1 install, it reverts to the 2.11.x behaviour).  However, since my template does not traceback with a TypeError in 2.11.x (which is the bug being fixed by that PR: https://github.com/pallets/jinja/issues/1198  ), I'm unsure if the new behaviour is desired or not.\r\n\r\nPersonally, I feel the new behaviour is more intuitive and want to point it out to people as a reason they should normalize their data before passing it off to be rendered but I just wanted to make sure it was an intended change before I open my big mouth ;-)\r\n\r\n\r\nEnvironment:\r\n\r\n- Python version: Tested in both 3.9 and 3.8\r\n- Jinja version: 2.11.2 versus 3.0.1\r\n\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/1448"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 1335,
+    "title": "test_nativetypes failure with Python 3.10",
+    "body": "There is currently one remaining failure with Python 3.10.0a4 (see https://bugzilla.redhat.com/show_bug.cgi?id=1907442):\r\n```\r\n================================================= FAILURES =================================================\r\n_______________________________________ test_undefined_native_return _______________________________________\r\n\r\nenv = <jinja2.nativetypes.NativeEnvironment object at 0x7ff4469a0d00>\r\n\r\n    def test_undefined_native_return(env):\r\n        t = env.from_string(\"{{ missing }}\")\r\n>       assert isinstance(t.render(), Undefined)\r\n\r\ntests/test_nativetypes.py:23:\r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\nsrc/jinja2/nativetypes.py:92: in render\r\n    return self.environment.handle_exception()\r\nsrc/jinja2/environment.py:790: in handle_exception\r\n    raise rewrite_traceback_stack(source=source)\r\nsrc/jinja2/nativetypes.py:33: in native_concat\r\n    return literal_eval(raw)\r\n/usr/lib64/python3.10/ast.py:108: in literal_eval\r\n    return _convert(node_or_string)\r\n/usr/lib64/python3.10/ast.py:107: in _convert\r\n    return _convert_signed_num(node)\r\n/usr/lib64/python3.10/ast.py:81: in _convert_signed_num\r\n    return _convert_num(node)\r\n/usr/lib64/python3.10/ast.py:72: in _convert_num\r\n    _raise_malformed_node(node)\r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\r\n\r\nnode = Undefined\r\n\r\n    def _raise_malformed_node(node):\r\n        msg = \"malformed node or string\"\r\n>       if lno := getattr(node, 'lineno', None):\r\nE       jinja2.exceptions.UndefinedError: 'missing' is undefined\r\n\r\n/usr/lib64/python3.10/ast.py:67: UndefinedError\r\n```\r\nEnvironment:\r\n\r\n- Python version: 3.10.0a4\r\n- Jinja version: 2.11.2\r\n\r\nThe failure is caused by a change introduced in https://github.com/python/cpython/pull/23677 (see also https://bugs.python.org/issue28964): Lib/ast.py now calls `gettattr(node, 'lineno', None)` in `_raise_malformed_node(node)`.\r\nNow, the test case in question renders \"{{ missing }}\" and expects it to return a Jinja `Undefined` object.  However, the Jinja `Undefined` object raises `UndefinedError` in `__getattr__()`, so `render()` will also raise instead of returning `Undefined`.\r\n\r\nThis minimal patch fixes the issue:\r\n\r\n```diff\r\ndiff --git a/src/jinja2/runtime.py b/src/jinja2/runtime.py\r\nindex 950f620..316c901 100644\r\n--- a/src/jinja2/runtime.py\r\n+++ b/src/jinja2/runtime.py\r\n@@ -733,6 +733,8 @@ class Undefined:\r\n     def __getattr__(self, name):\r\n         if name[:2] == \"__\":\r\n             raise AttributeError(name)\r\n+        if name == 'lineno':  # Python 3.10\r\n+            raise AttributeError(name)\r\n         return self._fail_with_undefined_error()\r\n\r\n     __add__ = __radd__ = __sub__ = __rsub__ = _fail_with_undefined_error\r\n```\r\n\r\nWould this be acceptable as a PR, or is there a better solution?",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/1335"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 1138,
+    "title": "lstrip_blocks doesn't preserve space before end block on the same line",
+    "body": "Look at the following template code:\r\n\r\n```jinja2\r\nset_property verilog_define {\r\n  {%- for k, v in vlogdefine.items() %}{{ k }}={{ v|param_value_str }} {% endfor -%}\r\n  } [get_filesets sources_1]\r\n```\r\n\r\nhttps://github.com/olofk/edalize/blob/bdb6c9ccc666e9f60333279ad53ed09cda88b3dc/edalize/templates/vivado/vivado-project.tcl.j2#L27-L29\r\n\r\nUp to Jinja2 2.10.3 this would result in something like\r\n\r\n```\r\nset_property verilog_define {vlogdefine_bool=1 vlogdefine_int=42 vlogdefine_str=hello } [get_filesets sources_1]\r\n```\r\nhttps://github.com/olofk/edalize/blob/bdb6c9ccc666e9f60333279ad53ed09cda88b3dc/tests/test_vivado/test_vivado_0.tcl#L10\r\n\r\n[The code](https://github.com/olofk/edalize/blob/bdb6c9ccc666e9f60333279ad53ed09cda88b3dc/edalize/edatool.py#L81) has `lstrip_blocks = True`.\r\n\r\nNow with 2.11.0 the code is rendered like this:\r\n\r\n```\r\nset_property verilog_define {vlogdefine_bool=1vlogdefine_int=42vlogdefine_str=hello} [get_filesets sources_1]\r\n```\r\n\r\n@towoe bisected the behavior change down to https://github.com/pallets/jinja/commit/7d00a40465c89bee141ab5a3db545a20e7d30509 (by @petee-d in https://github.com/pallets/jinja/issues/857)\r\n\r\nAccording to the [documentation](https://jinja.palletsprojects.com/en/2.11.x/api/)\r\n\r\n> lstrip_blocks\r\n>    If this is set to True leading spaces and tabs are stripped from the start of a line to a block. Defaults to False.\r\n\r\nI don't think the whitespace should be removed before the `endfor`, since that's not whitespace \"from the beginning of the line\". Am I misunderstanding that, or does the new version introduce an unexpected change in behavior?\r\n\r\nPython 3.7.3 (but also happens on 3.5 in CI)",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/1138"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 1145,
+    "title": "Check that contextfunction, etc. is True",
+    "body": "In order to determine if the context should be passed to a function or filter, Jinja has the `contextfunction` and `contextfilter` decorators which set corresponding attributes on the functions. However, they're checked with `if getattr(f, \"contextfunction\", 0)`, which causes issues for objects that are callable and have permissive `__getattr__` functions, such as `Mock`.\r\n\r\nChanging everything to default to `False` and check `is True`, would be good for consistency. \r\n\r\nThe full list is `contextfunction`, `evalcontextfunction`, `environmentfunction`, `contextfilter`, `evalcontextfilter`, and `environmentcontextfilter`.\r\n\r\n_Extracted from https://github.com/pallets/jinja/issues/1139_",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/1145"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 1141,
+    "title": "'coroutine' object is not subscriptable in async template",
+    "body": "## Expected Behavior\r\nRendering was succesfull with Jinja2 2.10.3\r\n\r\n## Actual Behavior\r\nWhen upgrading from 2.10.3 to 2.11.0, our async Quart application breaks, HTTP ERROR 500 thrown at user.\r\n\r\n## Template Code\r\nhere, Candidate is a Quart Model which we loop over to show all Candidates in a Demand. I tried extracting the relevant part of the template:\r\n\r\n`simple.html`\r\n```jinja\r\n{% extends \"base.html\" %}\r\n\r\nPaste the template code (ideally a minimal example) that causes the issue\r\n {% for item in candidates %}\r\n <form>\r\n   <div class=\"row result-row\">\r\n   <div class=\"col-6\">\r\n     <h4>\r\n         <a href=\"{{ item.domain }}\" target=\"_blank\">{{ item.unified_domain }}</a>\r\n        <span class=\"badge badge-primary\" title=\"Relevance Score. {{ item.score_message }}\"><small>{{ item.score|round|int }}</small></span>\r\n     </h4>\r\n     <div>\r\n\r\n         {% if item.data['findings'] %}\r\n         <span class=\"badge badge-info\" title=\"Matches\"><small>Google Matches ({{ item.data['findings']|length }})</small></span>\r\n         {% endif  %}\r\n     </div>\r\n\r\n     <div style=\"overflow: hidden; margin-bottom: 10px;\">\r\n\r\n      {% for finding in item.data['findings'][:1] %}\r\n        <b>{{ finding['title'] }}</b>\r\n        <br/>\r\n        <a  target=\"_blank\" href=\"{{ finding['url'] }}\"><small>{{ finding['url'] }}</small></a>\r\n        <br/>\r\n        <p class=\"text-muted\">{{ finding['description'] }}</p>\r\n      {% endfor %}\r\n\r\n     </div>\r\n\r\n   </div>\r\n   </div>\r\n   </form>\r\n {% endfor %}\r\n```\r\n\r\ncalled in Quart via [`quart.render_template`](https://github.com/pgjones/quart/blob/0.10.0/quart/templating.py#L79)\r\n```py\r\nreturn await quart.render_template(\r\n    \"simple.html\",\r\n    demand=demand,\r\n    candidates=candidates,\r\n)\r\n```\r\n\r\n## Full Traceback\r\n```pytb\r\n//templates/simple.html:178: RuntimeWarning: coroutine 'auto_await' was never awaited\r\n\r\nRuntimeWarning: Enable tracemalloc to get the object allocation traceback\r\nERROR:quart.app:Exception on request GET /demand/96\r\nTraceback (most recent call last):\r\nFile \"/usr/local/lib/python3.7/site-packages/quart/app.py\", line 1524, in handle_request\r\nreturn await self.full_dispatch_request(request_context)\r\nFile \"/usr/local/lib/python3.7/site-packages/quart/app.py\", line 1546, in full_dispatch_request\r\nresult = await self.handle_user_exception(error)\r\nFile \"/usr/local/lib/python3.7/site-packages/quart/app.py\", line 957, in handle_user_exception\r\nraise error\r\nFile \"/usr/local/lib/python3.7/site-packages/quart/app.py\", line 1544, in full_dispatch_request\r\nresult = await self.dispatch_request(request_context)\r\nFile \"/usr/local/lib/python3.7/site-packages/quart/app.py\", line 1592, in dispatch_request\r\nreturn await handler(**request_.view_args)\r\nFile \"server.py\", line 318, in view_demand\r\nall_score_keywords=[x.strip() for x in demand.score_keywords.split(\"\\n\")],\r\nFile \"/usr/local/lib/python3.7/site-packages/quart/templating.py\", line 89, in render_template\r\nreturn await _render(template, context)\r\nFile \"/usr/local/lib/python3.7/site-packages/quart/templating.py\", line 107, in _render\r\nrendered_template = await template.render_async(context)\r\nFile \"/usr/local/lib/python3.7/site-packages/jinja2/asyncsupport.py\", line 65, in render_async\r\nreturn self.environment.handle_exception()\r\nFile \"/usr/local/lib/python3.7/site-packages/jinja2/environment.py\", line 832, in handle_exception\r\nreraise(*rewrite_traceback_stack(source=source))\r\nFile \"/usr/local/lib/python3.7/site-packages/jinja2/_compat.py\", line 28, in reraise\r\nraise value.with_traceback(tb)\r\nFile \"/usr/local/lib/python3.7/site-packages/jinja2/asyncsupport.py\", line 25, in concat_async\r\nawait collect()\r\nFile \"/usr/local/lib/python3.7/site-packages/jinja2/asyncsupport.py\", line 22, in collect\r\nasync for event in async_gen:\r\nFile \"//templates/simple.html\", line 1, in top-level template code\r\n{% extends \"base.html\" %}\r\nFile \"//templates/base.html\", line 43, in top-level template code\r\n{% block content %}\r\nFile \"//templates/simple.html\", line 286, in block \"content\"\r\n{% for finding in item.data['findings'][:1] %}\r\nTypeError: 'coroutine' object is not subscriptable\r\n```\r\n\r\n## Your Environment\r\n* Python version: 3.7.5\r\n* Jinja version: 2.11.0\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/1141"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 1068,
+    "title": "Show some equivalent list comprehensions in filter examples",
+    "body": "I'm willing to write a pull-request for this, but I just want to see what people think before I write it.\r\n\r\nSo the issue is this.\r\nI'm very familiar with python.\r\nI'm new to Jinja2.\r\n\r\nOften I find myself with complex data structures in my Ansible playbook (e.g. list of dicts with a list inside that), and I want to do some basic filtering, mapping etc.\r\n\r\nI think\r\n\r\n> I could do this in one line in python. I'm sure it's possible in Jinja, but I just can't figure out how. \r\n\r\nLooking up how `map`, `selectattr` etc work, then playing around with trial and errors takes a long time, especially when you're combining them.\r\n\r\nSo what if we had a \"quick start\" page, or another FAQ answer, which just listed a few list comprehension statements in python, and their equivalent in Jinja?\r\n\r\nHow do people feel about that?\r\n(Feel free to correct my draft, or propose new examples.)\r\n\r\n# Draft\r\n\r\n## List Comprehension with a filter or getting the attribute\r\n\r\nIn python\r\n\r\n```\r\ndata = [\r\n    {\r\n        'c': 'A',\r\n        'x': 1\r\n    },\r\n    {\r\n        'c': 'B',\r\n        'x': 2\r\n    },\r\n    {\r\n        'c': 'C',\r\n        'x': 1\r\n    },\r\n    {\r\n        'c': 'D',\r\n        'x': 1\r\n    }\r\n]\r\n\r\n# filter out all elements not with x > 5\r\na = [el for el in data if el['x'] > 5]\r\n\r\n# get all the 'c' attributes as a list\r\nb = [el['c'] for el in data]\r\n\r\n# get all the 'c' attributes for the elements with x > 5\r\nc = [el['c'] for el in data if el['x'] > 5]\r\n```\r\n\r\nIn Jinja2:\r\n\r\n```\r\na: {{ data | selectattr('x', 'gt', 5) | list }}\r\nb: {{ data | map(attribute='c') | list }} \r\nc: {{ data | selectattr('x', 'gt', 5) | map(attribute='c') | list }} \r\n```\r\n\r\n## Reversing\r\n\r\nIn python \r\n\r\n```\r\nx = [1, 2, 3]\r\ny = x[::-1]\r\n```\r\n\r\nIn Ansible\r\n\r\n```\r\ny: {{ x | reverse }}\r\n```\r\n\r\n\r\n## Json and Yaml\r\n\r\nIn python:\r\n\r\n```\r\nimport json\r\nd = {'a':'b'}\r\ns = json.dumps(d)\r\nx = json.loads(s)\r\n```\r\n\r\nIn Jinja2, to convert to json, just print as string.\r\n\r\n```\r\n{{ d }}\r\n```\r\n\r\nTo convert to yaml use\r\n\r\n```\r\n{{ d | to_yaml }}\r\n```\r\n\r\nIn Jinja2, to load from json, just use \r\n\r\n```\r\n{{ d | from_json }}\r\n```\r\n\r\nIn Jinja2, to load from yaml, use\r\n\r\n```\r\n{{ d | from_yaml }}\r\n```\r\n\r\n## Load from file\r\n\r\nIn python\r\n\r\n```\r\nwith open('file.txt', 'r') as f:\r\n  s = f.read()\r\n```\r\n\r\nIn Jinja2:\r\n\r\n```\r\n{{ lookup('file', 'file.txt') }}\r\n```\r\n\r\nTo read a yaml file into a variable, use\r\n\r\n```\r\nx: {{ lookup('file', 'file.yaml') | from_yaml }}\r\n```\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/1068"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 762,
+    "title": "[docs] add doc that contextfunction is the same thing as passing ContextReference as the first argument",
+    "body": "document that within a jinja extension these two are equivalent:\r\n\r\n```python\r\ndef parse(self, parser):\r\n    ...\r\n    ctx_ref = nodes.ContextReference()\r\n    args = [ctx_ref]\r\n    node = self.call_method('_my_context_aware_method', args, lineno=lineno)\r\n    return nodes.CallBlock(node, [], [], body).set_lineno(lineno)\r\n\r\ndef _my_context_aware_method(self, context, caller):\r\n    name = context['name']\r\n    return \"Hello \" + name\r\n```\r\n\r\n```python\r\ndef parse(self, parser):\r\n    ...\r\n    args = []\r\n    node = self.call_method('_my_context_aware_method', args, lineno=lineno)\r\n    return nodes.CallBlock(node, [], [], body).set_lineno(lineno)\r\n\r\n@jinja2.contextfunction\r\ndef _my_context_aware_method(self, context, caller):\r\n    name = context['name']\r\n    return \"Hello \" + name\r\n```\r\n\r\nlooking at the docs, it was hard for me to understand that these are the same. \r\n\r\nhappy to submit a PR if you think this is worth documenting",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/762"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 566,
+    "title": "Remove format filter and instead point folks toward '%'",
+    "body": "Opening this for long-term discussion, as it'd be a backward-incompatible change so couldn't land until the next major version. \n\nAs outlined by @snoack in https://github.com/pallets/jinja/issues/70#issuecomment-2545521 and https://github.com/pallets/jinja/issues/70#issuecomment-2566285, both readability and compiled performance seem to be better when using `%` rather than `format`. I'd be fine with removing the `format` filter, or at the very least have the docs recommend using `%`.\n\nOpinions from others?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/566"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 547,
+    "title": "Update recommendation re file extensions",
+    "body": "The template designer documentation says:\n\n> A Jinja template is simply a text file. Jinja can generate any text-based format (HTML, XML, CSV, LaTeX, etc.). A Jinja template doesn’t need to have a specific extension: .html, .xml, or any other extension is just fine.\n\nWhile this is all true, I think it implies a bad recommendation, and makes things harder for the ecosystem around Jinja2. I think Jinja2 should recommend (but not require) a single file extension for Jinja2 templates.\n\nA Jinja2 template for an HTML file is not the same thing as an HTML file. The Jinja2 template may not even be valid HTML until rendered, and it certainly shouldn't be syntax highlighted as simply HTML, or served by a static-files web server as `text/html`. It is a distinct type of file, and deserves its own file extension to indicate that.\n\nPersonally, I use the `.j2` extension, and I often \"stack\" extensions to indicate what the intended type of the rendered template is; e.g. `foo.html.j2` is \"a Jinja2 template that will be an HTML file when rendered.\" (This is inspired by existing precedent for stacked extensions, e.g. `.tar.gz` is a \"a gzip file that will be a tar file when unzipped\").\n\nI would be happy to put together a small pull request for the documentation recommending this approach (while still making it clear that Jinja2 itself enforces no such convention), if the concept is accepted.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/547"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 423,
+    "title": "Blocks inside If/Else and includes",
+    "body": "As I had to find out through <a href=\"https://stackoverflow.com/questions/22655031/jinja2-how-to-put-a-block-in-an-if-statemen\">stackexchange</a> blocks ({% block %}) can not be inside a else/if block. This is really confusing -- never did I see anything that is not obeying an if statement -- especially since the documentation does not mention this. \n\nAnother problem that I encountered which is (not clearly enough?) documented: if a block is embedded in a file, which is included, for example into base.html, which than is extended by index.html, the index.html can not modify the content of the mentioned block.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/423"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 273,
+    "title": "Documentation: Make it clear string methods are available",
+    "body": "Based on:\n\nhttps://github.com/mitsuhiko/jinja2/pull/247\n\nPlain string methods are available on string variables. Please make this abundantly clear in the documentation:\n\nhttp://jinja.pocoo.org/docs/templates/\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/273"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 748,
+    "title": "Cannot use the plus sign(+) for whitespace control: tag name expected",
+    "body": "## Expected Behavior\r\n\r\nAssuming `trim_blocks` is always `False`.\r\n\r\nWhen `lstrip_blocks` is set to `True`, jinja should output\r\n```html\r\n<!-- 1 -->\r\n    <!-- 2 -->\r\nfoo<!-- 3 -->\r\n<!-- 4 -->\r\n<!-- 5 -->\r\n```\r\n\r\nAnd when it's `False`, jinja should output\r\n```html\r\n    <!-- 1 -->\r\n    <!-- 2 -->\r\n    foo<!-- 3 -->\r\n    <!-- 4 -->\r\n    <!-- 5 -->\r\n```\r\n\r\n## Actual Behavior\r\n\r\nIn either case,\r\n\r\n> jinja2.exceptions.TemplateSyntaxError: tag name expected\r\n\r\n## Template Code\r\n```jinja\r\n    <!-- 1 -->\r\n    {%+ if True %}<!-- 2 -->\r\n    foo<!-- 3 -->\r\n    {% endif %}<!-- 4 -->\r\n    <!-- 5 -->\r\n```\r\n\r\nThe following template also has a similar issue:\r\n\r\n```jinja\r\n    <!-- 1 -->\r\n    {% if True %}<!-- 2 -->\r\n    foo<!-- 3 -->\r\n    {%+ endif %}<!-- 4 -->\r\n    <!-- 5 -->\r\n```\r\n\r\n## Full Traceback\r\n```pytb\r\nTraceback (most recent call last):\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/flask/app.py\", line 1997, in __call__\r\n    return self.wsgi_app(environ, start_response)\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/flask/app.py\", line 1985, in wsgi_app\r\n    response = self.handle_exception(e)\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/flask/app.py\", line 1540, in handle_exception\r\n    reraise(exc_type, exc_value, tb)\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/flask/_compat.py\", line 33, in reraise\r\n    raise value\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/flask/app.py\", line 1982, in wsgi_app\r\n    response = self.full_dispatch_request()\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/flask/app.py\", line 1614, in full_dispatch_request\r\n    rv = self.handle_user_exception(e)\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/flask/app.py\", line 1517, in handle_user_exception\r\n    reraise(exc_type, exc_value, tb)\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/flask/_compat.py\", line 33, in reraise\r\n    raise value\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/flask/app.py\", line 1612, in full_dispatch_request\r\n    rv = self.dispatch_request()\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/flask/app.py\", line 1598, in dispatch_request\r\n    return self.view_functions[rule.endpoint](**req.view_args)\r\n  File \"/home/sunqingyao/PycharmProjects/microblog/app/views.py\", line 22, in index\r\n    posts=posts\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/flask/templating.py\", line 133, in render_template\r\n    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/jinja2/environment.py\", line 869, in get_or_select_template\r\n    return self.get_template(template_name_or_list, parent, globals)\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/jinja2/environment.py\", line 830, in get_template\r\n    return self._load_template(name, self.make_globals(globals))\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/jinja2/environment.py\", line 804, in _load_template\r\n    template = self.loader.load(self, name, globals)\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/jinja2/loaders.py\", line 125, in load\r\n    code = environment.compile(source, name, filename)\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/jinja2/environment.py\", line 591, in compile\r\n    self.handle_exception(exc_info, source_hint=source_hint)\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/jinja2/environment.py\", line 780, in handle_exception\r\n    reraise(exc_type, exc_value, tb)\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/jinja2/_compat.py\", line 37, in reraise\r\n    raise value.with_traceback(tb)\r\n  File \"/home/sunqingyao/PycharmProjects/microblog/app/templates/demo.html\", line 2, in template\r\n    {%+ if True %}<!-- 2 -->\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/jinja2/environment.py\", line 497, in _parse\r\n    return Parser(self, source, name, encode_filename(filename)).parse()\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/jinja2/parser.py\", line 896, in parse\r\n    result = nodes.Template(self.subparse(), lineno=1)\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/jinja2/parser.py\", line 878, in subparse\r\n    rv = self.parse_statement()\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/jinja2/parser.py\", line 125, in parse_statement\r\n    self.fail('tag name expected', token.lineno)\r\n  File \"/home/sunqingyao/Envs/flask-mega/lib/python3.6/site-packages/jinja2/parser.py\", line 59, in fail\r\n    raise exc(msg, lineno, self.name, self.filename)\r\njinja2.exceptions.TemplateSyntaxError: tag name expected\r\n```\r\n\r\n## Your Environment\r\n* Python version: 3.6.1+\r\n* Jinja version: Jinja2==2.9.6\r\n\r\n\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/748"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 670,
+    "title": "Allow multiple attributes in `sort` filter",
+    "body": "`foo|sort(attribute='name,id')` is quite useful in some cases.\r\n\r\nThe current workaround (using the fact that sorting is stable) looks extreme awful and is not intuitive: `foo|sort(attribute='id')|sort(attribute='name')`",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/670"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 999,
+    "title": "LRUCache's itervalue method should be renamed itervalues",
+    "body": "The LRUCache class in jinja2.utils has a method called `itervalue`. To be consistent with its functionality and the language as a whole, it should be updated to `itervalues`.\r\n\r\nI don't believe it's ever used in the package and is currently untested (I'm adding a test for it live). To avoid breaking functionality, I believe we should for now create an `itervalues` method that does the same thing, and add a deprecation warning to `itervalue`.\r\n\r\n## Snippet Code\r\n```python\r\nclass LRUCache(object):\r\n    \"\"\"A simple LRU Cache implementation.\"\"\"\r\n\r\n    def items(self):\r\n        \"\"\"Return a list of items.\"\"\"\r\n        result = [(key, self._mapping[key]) for key in list(self._queue)]\r\n        result.reverse()\r\n        return result\r\n\r\n    def iteritems(self):\r\n        \"\"\"Iterate over all items.\"\"\"\r\n        return iter(self.items())\r\n\r\n    def values(self):\r\n        \"\"\"Return a list of all values.\"\"\"\r\n        return [x[1] for x in self.items()]\r\n\r\n    def itervalue(self):\r\n        \"\"\"Iterate over all values.\"\"\"\r\n        return iter(self.values())\r\n\r\n    def keys(self):\r\n        \"\"\"Return a list of all keys ordered by most recent usage.\"\"\"\r\n        return list(self)\r\n\r\n    def iterkeys(self):\r\n        \"\"\"Iterate over all keys in the cache dict, ordered by\r\n        the most recent usage.\r\n        \"\"\"\r\n        return reversed(tuple(self._queue))\r\n```\r\n\r\n## Your Environment\r\n* Python version: 3.7.3\r\n* Jinja version: 2.10.1",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/999"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 242,
+    "title": "doc: link to Jinja1 is broken",
+    "body": "the link to Jinja1 is broken in the documentation.\nhttp://jinja.pocoo.org/docs/faq/#why-is-there-no-python-2-3-support\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/242"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 857,
+    "title": "Template parsing (lexing) can have quadratic time complexity",
+    "body": "## Expected Behavior\r\nParsing the following template should have linear complexity and be done in reasonable time.\r\n```\r\nfrom jinja2 import Environment\r\nEnvironment().from_string(' ' * 20000)\r\n```\r\n\r\n## Actual Behavior\r\nIt has quadratic complexity and takes a few seconds at 20000, a minute at 100k.\r\n\r\n**In general, it appears any large segments of whitespace (\" \\t\\n\") without jinja tags that consume whitespace will degrade template parsing performance significantly.**\r\n\r\n```\r\n# This parses quickly due to \"-\"\r\nEnvironment().from_string('{{ 0 -}}' + ' ' * 20000)\r\nEnvironment().from_string(' ' * 20000 + '{{- 0 }}')\r\n# This is very slow\r\nEnvironment().from_string('{{ 0 }}' + ' ' * 20000)\r\nEnvironment().from_string(' ' * 20000 + '{{ 0 }}')\r\n```\r\n\r\n## Cause\r\nI investigated the cause of the slow rendering and it lies in two pathological regular expressions used in Jinja lexer, \"root\" and TOKEN_RAW_BEGIN (not illustrated in examples but suffers from the same issue). In the **extremely simplified** version of the root lexer regex shown below, notice whitespace may be consumed either by `(.*?)` or by `\\s*`, with the latter having priority due to being greedy, but only in case the block of whitespace is followed by variable (or block/comment) opening tag with the \"-\" modifier (that forces left-stripping whitespace). This is a pathological case for the built-in Python `re` module and will have quadratic complexity due to backtracking done after consuming every single whitespace character (don't quote me on that though).\r\n```\r\nr'(.*?)(?:(?P<variable_begin>\\s*{{-|{{))'\r\n```\r\nJinja lexer does that to implement the whitespace stripping feature on the left side of tags, but this approach is extremely inefficient with built in Python `re` module (note the `regex` library doesn't suffer from this, but it is slower in general). \r\n\r\n## Proposed fix\r\nI created a fix for this issue by re-implementing the way striping whitespace on the left side of tags is done (including the lstrip_blocks environment flag) by doing this outside of regular expressions, which in my opinion simply are not the right tool for this task. I didn't change the implementation of striping whitespace to the right of tags as the \"-\" character is matched **before** any whitespace, changing the state of the regex automaton before any backtracking needs to be done.\r\n\r\nhttps://github.com/pallets/jinja/pull/858\r\n\r\n## Implications\r\nThe most significant implication is Jinja being extremely slow when parsing templates with segments of whitespace in tens of thousands. Such templates should be rare, but may occur. The application where I discovered this issue has almost 100k Jinja templates created by semi-technical users and a few of them contained such large segments of whitespace, most likely added by accident.\r\n\r\nThe more frequent implication is Jinja template parsing being sub optimal, as most Jinja templates will contains blocks of whitespace in tens or hundreds of characters. The performance impact of quadratic complexity on such small scale won't be that dramatic, but I measured over 2x average improvement in template parsing speeds after applying the fix on the above mentioned almost 100k different templates. I will post a histogram in the PR description.\r\n\r\n## Environment\r\n* Python version: tested with 2.7, 3.6, apparently any Python version\r\n* Jinja version: 2.8.1, current master, apparently any Jinja version in last few years",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/857"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 833,
+    "title": "ext/jinja.el is GPL, not BSD",
+    "body": "\r\n## Expected Behavior\r\nFiles should not be GPLv2 (or v3) licensed as (I think) that implies all of Jinja2 is GPL.\r\n\r\n## Actual Behavior\r\nThe file ext/jinja.el is GPL v2 licensed.  It says you can use later versions but still of GPL.  As such, Jinja2 is expected to include a copy of the GPL along with the other software/licenses.\r\n\r\n## Template Code\r\n```jinja\r\n;; This program is free software; you can redistribute it and/or\r\n;; modify it under the terms of the GNU General Public License as\r\n;; published by the Free Software Foundation; either version 2, or\r\n;; (at your option) any later version.\r\n;;\r\n;; This program is distributed in the hope that it will be useful,\r\n;; but WITHOUT ANY WARRANTY; without even the implied warranty of\r\n;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\r\n;; General Public License for more details.\r\n;;\r\n;; You should have received a copy of the GNU General Public License\r\n;; along with this program; see the file COPYING.  If not, write to\r\n;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth\r\n;; Floor, Boston, MA 02110-1301, USA.\r\n```\r\n\r\n## Full Traceback\r\n```pytb\r\nN/A\r\n```\r\n\r\n## Your Environment\r\n* Python version: 3\r\n* Jinja version: 2.10 (but that file hasn't been touched in 7 years so likely everything for the last 7 years?)\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/833"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 765,
+    "title": "[Request] Could importing asyncio optional?",
+    "body": "After #731 is merged, importing jinja2 on Python 3 get dramatically faster.\r\nFor now, over 40% of import time is caused by asyncio support.\r\n\r\n```\r\n      - asyncio 36.123 [ms]\r\n    - jinja2.asyncsupport 36.397 [ms]\r\n    - jinja2.asyncfilters 0.297 [ms]\r\n  - jinja2 84.312 [ms]\r\n```\r\n\r\n(See [this gist](https://gist.github.com/methane/1ab97181e74a33592314c7619bf34233#file-3-default-asyncio-txt) for detail)\r\n\r\n[Jinja2's document says](http://jinja.pocoo.org/docs/2.9/api/#async-support):\r\n\r\n> First you need to be aware that by default async support is disabled as enabling it will generate different template code behind the scenes which passes everything through the asyncio event loop. \r\n\r\nBut even when user doesn't use async support, `jinja2.asyncsupport` is imported:\r\n\r\nhttps://github.com/pallets/jinja/blob/b73cb489c57cfe0c713699c6f7c153406cb28269/jinja2/__init__.py#L74-L82\r\n\r\nWould you make importing asyncio optional to improve import time of jinja2?\r\n\r\nFor example, faster import time is beneficial on GAE/Python.\r\nAnd less import means less memory footprint too.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/765"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 800,
+    "title": "docs/templates#if-expression code isn't formatted well",
+    "body": "As you can see on website docs (http://jinja.pocoo.org/docs/dev/templates/#if-expression), code there isn't well formatted. Simple to fix I think, but I'm very new here so just reporting. I think it's related to https://github.com/pallets/jinja/commit/5ffbf8e5715bb4512b14427ba237b61f484a39c4#diff-0f54a58b39617a700a0b750e7a8bf07e\r\n\r\nSorry for bad English and issue formatting...",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/800"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 486,
+    "title": "Block Assignment Filters",
+    "body": "2.8's block assignments have been incredibly useful, but I've found myself doing the following a lot...\n\n``` jinja\n{% set title %}\n    <h1>{{ value }}</h1>\n{% endset %}\n{% set title = title | safe %}\n```\n\nWould it be possible to allow moving the filter call into the block assignment call, such as with the following syntax?\n\n``` jinja\n{% set title | safe %}\n    <h1>{{ value }}</h1>\n{% endset %}\n```\n\n(There might be a better / more generally flexible syntax, that's just the one that first occurred to me to try).\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/486"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 759,
+    "title": "Jinja2 fails to render template with more than 98 if/elif statements",
+    "body": "## Expected Behavior\r\n\r\nNo errors on rendering a template.\r\n\r\n## Actual Behavior\r\n\r\nHaving the following jinja template (``this.jinja2`` ) with 99 ``if/elif`` statements lines; when the template is rendered it shows the following error:\r\n```\r\nIndentationError: too many levels of indentation\r\n```\r\nOn the other hand, if one of the ``elif`` statements line is removed (keeping 98 ``elif``) the template is rendered correctly without any error.\r\n\r\nIt seems that there is a hard limit on the number of ``if/elif`` statements.\r\n\r\n## Template Code\r\n**this.jinja2**\r\n```jinja\r\n{% if name == 'server0' %}\r\n{% elif name == 'server1' %}\r\n{% elif name == 'server2' %}\r\n{% elif name == 'server3' %}\r\n....\r\n{% elif name == 'server96' %}\r\n{% elif name == 'server97' %}\r\n{% elif name == 'server98' %}\r\n{% endif %}\r\n```\r\n**this.py**\r\n```\r\nimport os\r\nimport jinja2\r\ndef render(tpl_path, context):\r\n    path, filename = os.path.split(tpl_path)\r\n    return jinja2.Environment(\r\n        loader=jinja2.FileSystemLoader(path or './')\r\n    ).get_template(filename).render(context)\r\n\r\nprint(render('./this.jinja2', {'name': 'test'}))\r\n```\r\n## Full Traceback\r\n```pytb\r\nTraceback (most recent call last):\r\n  File \"this.py\", line 9, in <module>\r\n    print(render('./this.jinja2', {'name': 'test'}))\r\n  File \"this.py\", line 7, in render\r\n    ).get_template(filename).render(context)\r\n  File \"/usr/lib/python2.7/dist-packages/jinja2/environment.py\", line 791, in get_template\r\n    return self._load_template(name, self.make_globals(globals))\r\n  File \"/usr/lib/python2.7/dist-packages/jinja2/environment.py\", line 765, in _load_template\r\n    template = self.loader.load(self, name, globals)\r\n  File \"/usr/lib/python2.7/dist-packages/jinja2/loaders.py\", line 125, in load\r\n    code = environment.compile(source, name, filename)\r\n  File \"/usr/lib/python2.7/dist-packages/jinja2/environment.py\", line 551, in compile\r\n    return self._compile(source, filename)\r\n  File \"/usr/lib/python2.7/dist-packages/jinja2/environment.py\", line 512, in _compile\r\n    return compile(source, filename, 'exec')\r\n  File \"./this.jinja2\", line 499\r\n    if 0: yield None\r\n                   ^\r\nIndentationError: too many levels of indentation\r\n```\r\n\r\n## Your Environment\r\n* Python version: 2.7.6\r\n* Jinja version: 2.7.2-2\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/759"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 603,
+    "title": "Variables set with `{% set %}` not available in templates included within blocks",
+    "body": "``` python\nfrom jinja2 import DictLoader, Environment\nloader = DictLoader({\n    'a.html': '''\n        {%- set foo = 'bar' -%}\n        without block: {% include 'x.html' -%}\n    ''',\n    'b.html': '''\n        {%- set foo = 'bar' -%}\n        with block: {% block test %}{% include 'x.html' %}{% endblock -%}\n        ''',\n    'c.html': '''\n        {%- set foo = 'bar' -%}\n        with set inside block: {% block test %}{% set foo = foo %}{% include 'x.html' %}{% endblock -%}\n    ''',\n    'x.html': '''{{ foo -}} | {{- test }}'''\n})\n\nenv = Environment(loader=loader)\nprint env.get_template('a.html').render(test='x')\nprint env.get_template('b.html').render(test='x')\nprint env.get_template('c.html').render(test='x')\n```\n\nOutput:\n\n```\nwithout block: bar|x\nwith block: |x\nwith set inside block: bar|x\n```\n\nWhile it's easy to work around I'm not sure if this behavior is intended. Getting `bar|x` in all three cases would be more straightforward for sure.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/603"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 664,
+    "title": "Create tests for all Operators",
+    "body": "It would be nice if one could do `foo|selectattr('attr', '==', 42)` instead of `foo|selecattr('attr', 'equalto' 42)` which is not discoverable and limited to simple equal cases. We should have > and friends as well there.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/664"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 504,
+    "title": "collapse whitespace in trans blocks",
+    "body": "One of the things I have difficulties with is the fact that the `trans` block has no way to collapse whitespace in the text. It strips leading and trailing whitespace and that's great, but if you do paragraphs of text in an HTML template, then you end up with something like this:\n\n```\n...\n        <div>\n          {% trans url='someurl' %}\n            This is some text in a paragraph.\n            Yay.\n          {% endtrans %}\n        </div>\n...\n```\n\nIt's nice to indent the various levels of HTML because it makes it more readable. However, the msgid for that string ends up with spaces and newlines in it that have no substantive meaning to the string. This creates a couple of problems:\n1. Translators get confused about the whitespace--is it significant? do they need to maintain it? what happens to line length? etc.\n2. If we ever change the structure of the HTML, that might change the indentation and then we have a new msgid and that breaks translations.\n\nDjango added a \"trimmed' flag to their blocktrans tag in Django 1.7 for similar reasons:\n\nhttps://code.djangoproject.com/ticket/5849\n\nRight now, we have code that extends InternationalizationExtension and overrides `_parse_block` to always collapse whitespace in the text. That sort of works, but it's got some issues and I'd rather it were implemented in Jinja2 proper.\n\nIs there any interest in a \"trimmed\" flag or something similar? Does it already exist in Jinja and I just haven't seen it, yet?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/504"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 720,
+    "title": "Vim syntax file and jinja parser handle nested comments differently",
+    "body": "## Expected Behavior\r\nJinja parser and the shipped Vim plugin have the same interpretation of comment blocks.\r\n\r\n## Actual Behavior\r\nThey interpret them differently!\r\nThe jinja parser does not support nested comments. The vim syntax file apparently thinks it does.\r\n\r\n## Template Code\r\n```jinja\r\n{# stuff.txt #}\r\n1. This is a jinja document!\r\n{#\r\n2. This section was commented out recently.\r\n{# 3. This section was commented out a long time ago.\r\n4. This is the end of the newly-commented-out section.\r\n#}\r\n5. This section is supposed to appear, but Vim thinks it is a comment.\r\n{# vim: ft=jinja\r\n#}\r\n```\r\nAttempting to render:\r\n```pycon\r\n>>> import jinja2, sys\r\n>>> with open('stuff.txt') as f: print jinja2.Template(f.read()).render()\r\n...\r\n\r\n1. This is a jinja document!\r\n\r\n5. This section is supposed to appear, but Vim thinks it is a comment.\r\n\r\n>>> print sys.version\r\n2.7.13 (default, Dec 18 2016, 07:03:39)\r\n[GCC 4.2.1 Compatible Apple LLVM 8.0.0 (clang-800.0.42.1)]\r\n>>> print jinja2.__version__\r\n2.9.5\r\n```\r\nVim screenshot:\r\n![screen shot 2017-06-01 at 1 04 52 pm](https://cloud.githubusercontent.com/assets/6754005/26691397/f3b1552e-46ca-11e7-8d50-a0e7770e9159.png)\r\n\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/720"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 709,
+    "title": "tojson not marking items as safe per docs",
+    "body": "## Expected Behavior\r\n\r\nFrom the jinja docs:\r\n\r\n\"Note that this is available in templates through the |tojson filter which will also mark the result as safe. \"\r\n\r\n## Actual Behavior\r\n\r\ntojson doesn't seem to be marking the output as safe, so if we establish the jinja\r\nenvironment with autoescape enabled, and then use tojson, we must add \"|safe\"\r\nat the end.\r\n\r\n## Your Environment\r\n* Python version: 3.5.3\r\n* Jinja version: 2.9.6\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/709"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 675,
+    "title": "2.9.5: Inheriting from a template containing  {{ .. }} fails with a custom Context class",
+    "body": "Minimal example:\r\n\r\n```python\r\nfrom jinja2 import DictLoader, Environment\r\nfrom jinja2.runtime import Context\r\n\r\n\r\nclass MyContext(Context):\r\n    pass\r\n\r\n\r\nclass MyEnvironment(Environment):\r\n    context_class = MyContext\r\n\r\n\r\nloader = DictLoader({'base': '{{ foobar }}',\r\n                     'test': '{% extends \"base\" %}'})\r\nenv = MyEnvironment(loader=loader)\r\nprint env.get_template('test').render(foobar='test')\r\n```\r\n\r\nTraceback:\r\n```pytb\r\nTraceback (most recent call last):\r\n  File \"test.py\", line 16, in <module>\r\n    print env.get_template('test').render(foobar='test')\r\n  File \"/home/adrian/dev/indico/env/lib/python2.7/site-packages/jinja2/environment.py\", line 1008, in render\r\n    return self.environment.handle_exception(exc_info, True)\r\n  File \"/home/adrian/dev/indico/env/lib/python2.7/site-packages/jinja2/environment.py\", line 780, in handle_exception\r\n    reraise(exc_type, exc_value, tb)\r\n  File \"<template>\", line 1, in top-level template code\r\n  File \"<template>\", line 1, in top-level template code\r\nTypeError: resolve_or_missing() takes at least 2 arguments (1 given)\r\n```\r\n\r\nAs you can see just having a custom Context class, even without changing anything in there, breaks as soon as the base template contains a variable. This is most likely caused by the metaclass added in c6ddeb7d5f64789ed0bbc1ffef8596a79bc06fd9.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/675"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 671,
+    "title": "macro doesn't work in async mode if autoescape is enabled",
+    "body": "## Expected Behavior\r\nThe macro call should render correctly.\r\n\r\n## Actual Behavior\r\nThe macro call is rendered as a coroutine object repr (`<coroutine object macro at 0x10ce50728>`).\r\n\r\n## Python Code\r\n```python\r\nimport asyncio\r\n\r\nfrom jinja2 import Template\r\n\r\nloop = asyncio.get_event_loop()\r\n\r\nasync def main():\r\n    print(await render())\r\n\r\nasync def render():\r\n    t = Template('{% macro foo(x) %}{{ x }}{% endmacro %}{{ foo(42) }}',\r\n                 enable_async=True, autoescape=True)\r\n    return await t.render_async()\r\n\r\nloop.run_until_complete(main())\r\n```\r\n\r\n## Full Traceback\r\n```pytb\r\n/Users/mohamed/.virtualenvs/item.tf/lib/python3.6/site-packages/jinja2/runtime.py:501: RuntimeWarning: coroutine 'macro' was never awaited\r\n  rv = Markup(rv)\r\n```\r\n\r\n## Your Environment\r\n* Python version: 3.6\r\n* Jinja version: 2.9.4",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/671"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 666,
+    "title": "jinja2._stringdefs uses much RAM",
+    "body": "`jinja2._stringdefs` makes large strings for each unicode category.\r\nThey eat 100KB+ RAM.  But none of them are used.\r\n\r\nOnly `xid_start` and `xid_continue` are used by `jinja2.lexer`.\r\nWould you remove category strings?\r\n\r\n## Your Environment\r\n* Python version: Python 3.6\r\n* Jinja version: 2.9.4\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/666"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 668,
+    "title": "`extends` keyword not working in async mode",
+    "body": "## Expected Behavior\r\nThe `extends` keyword should work in async mode.\r\n\r\n## Actual Behavior\r\nThis error happens: `SyntaxError: 'yield from' inside async function`.\r\n\r\n## Template Code\r\n```jinja\r\n{% extends 'base.html' %}\r\n```\r\n\r\n## Full Traceback\r\n```pytb\r\nException occurred while handling uri: \"/1\"\r\nTraceback (most recent call last):\r\n  File \"/Users/mohamed/.virtualenvs/item.tf/lib/python3.6/site-packages/sanic/sanic.py\", line 208, in handle_request\r\n    response = await response\r\n  File \"/opt/local/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/asyncio/coroutines.py\", line 109, in __next__\r\n    return self.gen.send(None)\r\n  File \"main.py\", line 88, in item\r\n    description=' | '.join(desc_list))\r\n  File \"/opt/local/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/asyncio/coroutines.py\", line 109, in __next__\r\n    return self.gen.send(None)\r\n  File \"main.py\", line 307, in render\r\n    template = jinja_env.get_template(template)\r\n  File \"/Users/mohamed/.virtualenvs/item.tf/lib/python3.6/site-packages/jinja2/environment.py\", line 833, in get_template\r\n    return self._load_template(name, self.make_globals(globals))\r\n  File \"/Users/mohamed/.virtualenvs/item.tf/lib/python3.6/site-packages/jinja2/environment.py\", line 807, in _load_template\r\n    template = self.loader.load(self, name, globals)\r\n  File \"/Users/mohamed/.virtualenvs/item.tf/lib/python3.6/site-packages/jinja2/loaders.py\", line 125, in load\r\n    code = environment.compile(source, name, filename)\r\n  File \"/Users/mohamed/.virtualenvs/item.tf/lib/python3.6/site-packages/jinja2/environment.py\", line 590, in compile\r\n    return self._compile(source, filename)\r\n  File \"/Users/mohamed/.virtualenvs/item.tf/lib/python3.6/site-packages/jinja2/environment.py\", line 552, in _compile\r\n    return compile(source, filename, 'exec')\r\n  File \"templates/item.html\", line 15\r\n    \r\n    ^\r\nSyntaxError: 'yield from' inside async function\r\n```\r\n\r\n## Your Environment\r\n* Python version: 3.6\r\n* Jinja version: 2.9.4\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/668"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 669,
+    "title": "2.9 regression: SyntaxError in recursive for loop with else clause",
+    "body": "Linux Mint 17.3 64-bit\r\nPython 2.7.6\r\n\r\nJinja 2.8.1:\r\n```\r\n>>> import jinja2\r\n>>> jinja2.Template('{% for value in values recursive %}1{% else %}0{% endfor %}').render(values=[])\r\nu'0'\r\n```\r\n\r\nJinja 2.9-2.9.4:\r\n```\r\n>>> import jinja2\r\n>>> jinja2.Template('{% for value in values recursive %}1{% else %}0{% endfor %}').render(values=[])\r\nTraceback (most recent call last):\r\n  File \"<stdin>\", line 1, in <module>\r\n  File \"/home/ustr/environ/local/lib/python2.7/site-packages/jinja2/environment.py\", line 945, in __new__\r\n    return env.from_string(source, template_class=cls)\r\n  File \"/home/ustr/environ/local/lib/python2.7/site-packages/jinja2/environment.py\", line 880, in from_string\r\n    return cls.from_code(self, self.compile(source), globals, None)\r\n  File \"/home/ustr/environ/local/lib/python2.7/site-packages/jinja2/environment.py\", line 588, in compile\r\n    return self._compile(source, filename)\r\n  File \"/home/ustr/environ/local/lib/python2.7/site-packages/jinja2/environment.py\", line 551, in _compile\r\n    return compile(source, filename, 'exec')\r\n  File \"<template>\", line 25\r\nSyntaxError: 'return' with argument inside generator\r\n```",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/669"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 654,
+    "title": "groupby filter returns _GroupTuple instead of tuple",
+    "body": "## Expected Behavior\r\nIn jinja < 2.9, the groupby filter returns its data as a tuple.\r\n\r\n## Actual Behavior\r\nIn jinja >= 2.9, the groupby filter returns its data as a namedtuple.\r\n\r\n## Template Code\r\nHere's what I'm using along with Ansible right now:\r\n```yaml\r\n---\r\n\r\n- hosts: all\r\n  vars:\r\n    fruits:\r\n      - name: apple\r\n        enjoy: yes\r\n      - name: orange\r\n        enjoy: no\r\n      - name: strawberry\r\n        enjoy: yes\r\n  tasks:\r\n\r\n    - name: Loop through my fruits\r\n      debug:\r\n        msg: |\r\n          {% set fruit_list = [] %}\r\n          {% for fruit_dict in item[1] %}\r\n          {{ fruit_dict.name }}\r\n          {% endfor %}\r\n      with_items:\r\n        - \"{{ fruits | groupby('enjoy') }}\"\r\n```\r\n\r\nIn jinja 2.8, the result of the groupby() is a tuple and Ansible is able to parse it with python's AST module without an issue. In jinja 2.9 and later, the groupby() returns a namedtuple and this cannot be parsed with AST. This causes an exception in Ansible.\r\n\r\nThis may not be considered a bug within jinja, but this change is fairly disruptive for downstream users.\r\n\r\nAnsible bug: ansible/ansible#20098\r\n\r\n## Your Environment\r\n* Python version: 2.7.12\r\n* Jinja version: 2.9.4\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/654"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 651,
+    "title": "IndentationError: expected an indented block on updating to 2.9.3",
+    "body": "```python-traceback\r\nTraceback (most recent call last):\r\n  File \"/Users/garito/TimeFounder/App/0.3/env/lib/python2.7/site-packages/flask/app.py\", line 1994, in __call__\r\n    return self.wsgi_app(environ, start_response)\r\n  File \"/Users/garito/TimeFounder/App/0.3/env/lib/python2.7/site-packages/flask/app.py\", line 1985, in wsgi_app\r\n    response = self.handle_exception(e)\r\n  File \"/Users/garito/TimeFounder/App/0.3/env/lib/python2.7/site-packages/flask/app.py\", line 1540, in handle_exception\r\n    reraise(exc_type, exc_value, tb)\r\n  File \"/Users/garito/TimeFounder/App/0.3/env/lib/python2.7/site-packages/flask/app.py\", line 1982, in wsgi_app\r\n    response = self.full_dispatch_request()\r\n  File \"/Users/garito/TimeFounder/App/0.3/env/lib/python2.7/site-packages/flask/app.py\", line 1614, in full_dispatch_request\r\n    rv = self.handle_user_exception(e)\r\n  File \"/Users/garito/TimeFounder/App/0.3/env/lib/python2.7/site-packages/flask/app.py\", line 1517, in handle_user_exception\r\n    reraise(exc_type, exc_value, tb)\r\n  File \"/Users/garito/TimeFounder/App/0.3/env/lib/python2.7/site-packages/flask/app.py\", line 1612, in full_dispatch_request\r\n    rv = self.dispatch_request()\r\n  File \"/Users/garito/TimeFounder/App/0.3/env/lib/python2.7/site-packages/flask_debugtoolbar/__init__.py\", line 125, in dispatch_request\r\n    return view_func(**req.view_args)\r\n  File \"/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py\", line 149, in runcall\r\n    return func(*args, **kw)\r\n  File \"/Users/garito/TimeFounder/App/0.3/TimeFounder/__init__.py\", line 491, in tree\r\n    method = getattr(obj, action)\r\n  File \"/Users/garito/TimeFounder/App/0.3/TimeFounder/paper.py\", line 42, in __getattr__\r\n    return getattr(self, runner[\"method\"])(runner[\"runner\"], name)\r\n  File \"/Users/garito/TimeFounder/App/0.3/TimeFounder/paper.py\", line 322, in run_view\r\n    runned = runner(context)\r\n  File \"/Users/garito/TimeFounder/App/0.3/TimeFounder/runner.py\", line 75, in __call__\r\n    result = getattr(self, deal)(node, context) if deal else self._noDeal(node, context)\r\n  File \"/Users/garito/TimeFounder/App/0.3/TimeFounder/runner.py\", line 349, in Factory\r\n    return getattr(model, action)\r\n  File \"/Users/garito/TimeFounder/App/0.3/TimeFounder/paper.py\", line 42, in __getattr__\r\n    return getattr(self, runner[\"method\"])(runner[\"runner\"], name)\r\n  File \"/Users/garito/TimeFounder/App/0.3/TimeFounder/paper.py\", line 343, in run_view\r\n    return self.run_form(runner, runned, preRun, context, name, security)\r\n  File \"/Users/garito/TimeFounder/App/0.3/TimeFounder/paper.py\", line 489, in run_form\r\n    result = current_app.jinja_env.get_template(\"stepsForm.html\" if hasattr(form, \"tfGroups\") and form.tfGroups else \"simpleForm.html\")\r\n  File \"/Users/garito/TimeFounder/App/0.3/env/lib/python2.7/site-packages/jinja2/environment.py\", line 830, in get_template\r\n    return self._load_template(name, self.make_globals(globals))\r\n  File \"/Users/garito/TimeFounder/App/0.3/env/lib/python2.7/site-packages/jinja2/environment.py\", line 804, in _load_template\r\n    template = self.loader.load(self, name, globals)\r\n  File \"/Users/garito/TimeFounder/App/0.3/env/lib/python2.7/site-packages/jinja2/loaders.py\", line 125, in load\r\n    code = environment.compile(source, name, filename)\r\n  File \"/Users/garito/TimeFounder/App/0.3/env/lib/python2.7/site-packages/jinja2/environment.py\", line 588, in compile\r\n    return self._compile(source, filename)\r\n  File \"/Users/garito/TimeFounder/App/0.3/env/lib/python2.7/site-packages/jinja2/environment.py\", line 551, in _compile\r\n    return compile(source, filename, 'exec')\r\nFile \"/Users/garito/TimeFounder/App/0.3/TimeFounder/templates/stepsForm.html\", line 57\r\n    if ('csss' in (undefined(name='assets') if l_0_assets is missing else l_0_assets) and environment.getitem((undefined(name='assets') if l_0_assets is missing else l_0_assets), 'csss')):\r\n     ^\r\nIndentationError: expected an indented block\r\n```\r\n\r\nThis traceback is from an error that appeared after updating to version 2.9.3.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/651"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 649,
+    "title": "Jinja2 2.9 introduces change with free variables in loops that breaks Lektor",
+    "body": "Using Lektor 2.3; If you have a project with a sitemap (using the template suggested by the Lektor docs):\r\n```\r\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\r\n  {%- for page in [site.root] if page != this recursive %}\r\n  <url><loc>{{ page|url(external=true) }}</loc></url>\r\n  {{- loop(page.children) }}\r\n  {%- endfor %}\r\n</urlset>\r\n```\r\nand you have jinja2 2.9 - 2.9.3, in your environment, you get a build error:\r\n```\r\n(lektor) hammer:pybee.org rkm$ lektor build\r\nStarted build\r\nU ar_AR/sitemap.xml\r\nE ar_AR/sitemap.xml (NameError: free variable 'l_1_this' referenced before assignment in enclosing scope)\r\nU sitemap.xml\r\nE sitemap.xml (NameError: free variable 'l_1_this' referenced before assignment in enclosing scope)\r\nU pt_BR/sitemap.xml\r\nE pt_BR/sitemap.xml (NameError: free variable 'l_1_this' referenced before assignment in enclosing scope)\r\nU zh_TW/sitemap.xml\r\nE zh_TW/sitemap.xml (NameError: free variable 'l_1_this' referenced before assignment in enclosing scope)\r\n```\r\nDowngrading to Jinja2 2.8.1 seems to resolve the problem.\r\n\r\nReporting there because it would seem to be a regression in Jinja2; however, it's also been reported as lektor/lektor#343 in case it's a usage error.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/649"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 650,
+    "title": "Bytecode cache does not invalidate old items, leading to spurious errors after 2.8->2.9 upgrade",
+    "body": "I've performed a 2.8.1->2.9.3 upgrade and experienced inexplicable macro errors*. When debugging these, the errors went away, and it turned out they were caused by the bytecode cache. Entries generated with Jinja 2.8 stayed in the cache and were found by 2.9.\r\n\r\nThe documentation or changelog makes no mention of a necessity for cleaning the bytecode during a version upgrade, so I would consider it a bug Jinja does not invalidate entries made using a previous version automatically. Thoughts?\r\n\r\n\r\n* For example, the macro argument count would be identified incorrectly, leading to runtime errors such as this:\r\n```\r\n    {{ abc.ABC(request, \"one\", \"two\") }}\r\nTypeError: macro() takes exactly 3 arguments (4 given)\r\n```\r\n\r\neven when the macro is defined as\r\n```\r\n{% macro ABC(request, class_one=\"\", class_two=\"\") %}\r\n```\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/650"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 646,
+    "title": "\"invalid escape sequence\" DeprecationWarnings with Python 3.6",
+    "body": "I get these while running my project's testsuite with all warnings turned on and Python 3.6:\r\n\r\n```\r\n.../jinja2/nodes.py:716: DeprecationWarning: invalid escape sequence \\s\r\n         \"\"\"\r\n       \r\n.../jinja2/runtime.py:111: DeprecationWarning: invalid escape sequence \\s\r\n         \"\"\"\r\n       \r\n.../jinja2/lexer.py:294: DeprecationWarning: invalid escape sequence \\s\r\n         \"\"\"\r\n       \r\n.../jinja2/lexer.py:503: DeprecationWarning: invalid escape sequence \\-\r\n         (c('(?:\\-%s\\s*|%s)%s' % (\r\n       \r\n.../jinja2/lexer.py:511: DeprecationWarning: invalid escape sequence \\-\r\n         (c('\\-%s\\s*|%s' % (\r\n       \r\n.../jinja2/lexer.py:518: DeprecationWarning: invalid escape sequence \\s\r\n         (c('(.*?)((?:\\s*%s\\-|%s)\\s*endraw\\s*(?:\\-%s\\s*|%s%s))' % (\r\n```\r\n\r\nIt looks like it's mostly `\\s` in (non-raw) docstrings and `\\-` in regexes. For some odd reason I can't reproduce this when running pylint's testsuite with `pytest-warnings` though, so I don't know if there's more.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/646"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 645,
+    "title": "Jinja2-2.9 and Python3 generate <generator> tag",
+    "body": "With 2.9, 2.9.1 and 2.9.2, Jinja2 generates `<generator>` tag for macro having blocks.\r\n\r\nExample code:\r\n```\r\nimport sys\r\nimport jinja2\r\nfrom jinja2 import Template\r\n\r\ntemplate = \"\"\"\r\n{%- macro hello() %}\r\n  Hello, {% block name %}jinja2{% endblock %}!\r\n{%- endmacro %}\r\n{{ hello() }}\r\n\"\"\"\r\n```\r\n\r\nResult:\r\n```\r\nPython vesion: 3.5.2 (default, Oct 11 2016, 17:23:55)\r\n[GCC 4.2.1 Compatible Apple LLVM 7.3.0 (clang-703.0.31)]\r\nJinja2 vesion: 2.9.2\r\n\r\n<generator object macro at 0x10ffe2468>\r\n```\r\n\r\nBut this works fine on python2.7.\r\n```\r\nPython vesion: 2.7.13 (default, Dec 20 2016, 13:27:09)\r\n[GCC 4.2.1 Compatible Apple LLVM 7.3.0 (clang-703.0.31)]\r\nJinja2 vesion: 2.9.2\r\n\r\n\r\n  Hello, jinja2!\r\n```\r\n\r\nNote: result of 2.8 and py27, py35.\r\n```\r\nPython vesion: 2.7.13 (default, Dec 20 2016, 13:27:09)\r\n[GCC 4.2.1 Compatible Apple LLVM 7.3.0 (clang-703.0.31)]\r\nJinja2 vesion: 2.8.1\r\n\r\n\r\n  Hello, jinja2!\r\n```\r\n```\r\nPython vesion: 3.5.2 (default, Oct 11 2016, 17:23:55)\r\n[GCC 4.2.1 Compatible Apple LLVM 7.3.0 (clang-703.0.31)]\r\nJinja2 vesion: 2.8.1\r\n\r\n\r\n  Hello, jinja2!\r\n```",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/645"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 642,
+    "title": "2.9.1 incompatibility with flask admin",
+    "body": "We have jinja2 in Airflow and it throws an error that seems tied to our usage of flask-admin:\r\n\r\n```\r\n======================================================================\r\nERROR: test_dag_views (tests.WebUiTests)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"/home/travis/build/apache/incubator-airflow/tests/core.py\", line 1423, in test_dag_views\r\n    '/admin/airflow/graph?dag_id=example_bash_operator')\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/werkzeug/test.py\", line 778, in get\r\n    return self.open(*args, **kw)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/flask/testing.py\", line 127, in open\r\n    follow_redirects=follow_redirects)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/werkzeug/test.py\", line 751, in open\r\n    response = self.run_wsgi_app(environ, buffered=buffered)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/werkzeug/test.py\", line 668, in run_wsgi_app\r\n    rv = run_wsgi_app(self.application, environ, buffered=buffered)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/werkzeug/test.py\", line 871, in run_wsgi_app\r\n    app_rv = app(environ, start_response)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/flask/app.py\", line 1994, in __call__\r\n    return self.wsgi_app(environ, start_response)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/flask/app.py\", line 1985, in wsgi_app\r\n    response = self.handle_exception(e)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/flask/app.py\", line 1540, in handle_exception\r\n    reraise(exc_type, exc_value, tb)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/flask/app.py\", line 1982, in wsgi_app\r\n    response = self.full_dispatch_request()\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/flask/app.py\", line 1614, in full_dispatch_request\r\n    rv = self.handle_user_exception(e)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/flask/app.py\", line 1517, in handle_user_exception\r\n    reraise(exc_type, exc_value, tb)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/flask/app.py\", line 1612, in full_dispatch_request\r\n    rv = self.dispatch_request()\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/flask/app.py\", line 1598, in dispatch_request\r\n    return self.view_functions[rule.endpoint](**req.view_args)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/flask_admin/base.py\", line 69, in inner\r\n    return self._run_view(f, *args, **kwargs)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/flask_admin/base.py\", line 368, in _run_view\r\n    return fn(self, *args, **kwargs)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/flask_login.py\", line 755, in decorated_view\r\n    return func(*args, **kwargs)\r\n  File \"/home/travis/build/apache/incubator-airflow/airflow/www/utils.py\", line 221, in view_func\r\n    return f(*args, **kwargs)\r\n  File \"/home/travis/build/apache/incubator-airflow/airflow/www/utils.py\", line 125, in wrapper\r\n    return f(*args, **kwargs)\r\n  File \"/home/travis/build/apache/incubator-airflow/airflow/www/views.py\", line 1438, in graph\r\n    edges=json.dumps(edges, indent=2),)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/flask_admin/base.py\", line 308, in render\r\n    return render_template(template, **kwargs)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/flask/templating.py\", line 134, in render_template\r\n    context, ctx.app)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/flask/templating.py\", line 116, in _render\r\n    rv = template.render(context)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/jinja2/environment.py\", line 1008, in render\r\n    return self.environment.handle_exception(exc_info, True)\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/jinja2/environment.py\", line 780, in handle_exception\r\n    reraise(exc_type, exc_value, tb)\r\n  File \"/home/travis/build/apache/incubator-airflow/airflow/www/templates/airflow/graph.html\", line 19, in top-level template code\r\n    {% import 'admin/lib.html' as lib with context %}\r\n  File \"/home/travis/build/apache/incubator-airflow/.tox/py27-cdh-airflow_backend_sqlite/lib/python2.7/site-packages/jinja2/environment.py\", line 551, in _compile\r\n    return compile(source, filename, 'exec')\r\nSyntaxError: duplicate argument 'l_1_caller' in function definition (lib.html, line 255)\r\n```",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/642"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 640,
+    "title": "Regression: can't reuse a variable name in a {% for %} loop",
+    "body": "Hi, I bisected the introduction of some failures in [Django's test suite](https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/unit-tests/) to 1205e641ed9d1c4eb581b50ab3cc5313b9950773:\r\n```\r\n$ ./tests/runtests.py forms_tests.widget_tests.test_multiplehiddeninput.MultipleHiddenInputTest.test_render_attrs\r\n\r\nTraceback (most recent call last):\r\n  File \"/var/lib/jenkins/workspace/django-security-master/database/postgres/python/python3.6/tests/forms_tests/widget_tests/test_splithiddendatetimewidget.py\", line 21, in test_render_value\r\n    '<input type=\"hidden\" name=\"date_0\" value=\"2007-09-17\" />'\r\n  File \"/var/lib/jenkins/workspace/django-security-master/database/postgres/python/python3.6/tests/forms_tests/widget_tests/base.py\", line 23, in check_html\r\n    output = widget.render(name, value, attrs=attrs, renderer=self.jinja2_renderer, **kwargs)\r\n  File \"/var/lib/jenkins/workspace/django-security-master/database/postgres/python/python3.6/django/forms/widgets.py\", line 222, in render\r\n    return self._render(self.template_name, context, renderer)\r\n  File \"/var/lib/jenkins/workspace/django-security-master/database/postgres/python/python3.6/django/forms/widgets.py\", line 227, in _render\r\n    return mark_safe(renderer.render(template_name, context))\r\n  File \"/var/lib/jenkins/workspace/django-security-master/database/postgres/python/python3.6/django/forms/renderers.py\", line 32, in render\r\n    return template.render(context, request=request).strip()\r\n  File \"/var/lib/jenkins/workspace/django-security-master/database/postgres/python/python3.6/django/template/backends/jinja2.py\", line 81, in render\r\n    return self.template.render(context)\r\n  File \"/var/lib/jenkins/workspace/django-security-master/database/postgres/python/python3.6/tests/.env/lib/python3.6/site-packages/jinja2/asyncsupport.py\", line 76, in render\r\n    return original_render(self, *args, **kwargs)\r\n  File \"/var/lib/jenkins/workspace/django-security-master/database/postgres/python/python3.6/tests/.env/lib/python3.6/site-packages/jinja2/environment.py\", line 1008, in render\r\n    return self.environment.handle_exception(exc_info, True)\r\n  File \"/var/lib/jenkins/workspace/django-security-master/database/postgres/python/python3.6/tests/.env/lib/python3.6/site-packages/jinja2/environment.py\", line 780, in handle_exception\r\n    reraise(exc_type, exc_value, tb)\r\n  File \"/var/lib/jenkins/workspace/django-security-master/database/postgres/python/python3.6/tests/.env/lib/python3.6/site-packages/jinja2/_compat.py\", line 37, in reraise\r\n    raise value.with_traceback(tb)\r\n  File \"/var/lib/jenkins/workspace/django-security-master/database/postgres/python/python3.6/django/forms/jinja2/django/forms/widgets/splithiddendatetime.html\", line 1, in top-level template code\r\n    {% include 'django/forms/widgets/multiwidget.html' %}\r\n  File \"/var/lib/jenkins/workspace/django-security-master/database/postgres/python/python3.6/django/forms/jinja2/django/forms/widgets/multiwidget.html\", line 1, in top-level template code\r\n    {% for widget in widget.subwidgets %}{% include widget.template_name %}{% endfor %}\r\nUnboundLocalError: local variable 'l_1_widget' referenced before assignment\r\n```\r\nLet me know if I can help or provide additional info.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/640"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 401,
+    "title": "Multiple Custom Tests in Condition Not Parsed Correctly",
+    "body": "It appears that conditions with multiple custom tests aren't parsed as a user would expect. For example, if you define an `is_matching` test as follows\n\n```\ndef is_matching(string, pattern):\n  return match(pattern, string) is not None\n```\n\nthen the following custom test should succeed.\n\n```\n{% if 'us-west-1' is matching '(us-east-1|ap-northeast-1)' or 'stage' is matching '(dev|stage)' %}\n  ...\n{% endif %}\n```\n\nshould be met but its not.\n\nHere's a [runnable example](http://runnable.com/VMlOjoR7mw4_m0cu) that demonstrates the issue. \n\n```\n'us-west-1' == 'us-east-1' or 'stage' is matching '(dev|stage)'\n  => True # should be True\n\n'stage' is matching '(dev|stage)' or 'us-west-1' == 'us-east-1'\n  => True # should be True\n\n'us-west-1' is matching '(us-east-1|ap-northeast-1)' or 'stage' is matching '(dev|stage)'\n  => False # should be True\n```\n\nAs you can see, the custom test works if there is only one in the condition. However, it appears that the second custom test condition (following the `or`) is never executed if the first isn't met. (This can be seen in the output of the runnable, where I've printed the arguments to the custom test function for each invocation.)\n\nI suspect that this is due to the expected order of operations not being respected. For example\n\n```\n'stage' is matching '(dev|stage)' and 'us-west-1' is matching '(us-east-1|ap-northeast-1)'\n```\n\nresults in an exception for my custom test:\n\n```\nTraceback (most recent call last):\n  File \"/Users/codyaray/dev/brighttag/ops/management/haproxygen/bug.py\", line 20, in <module>\n    print template.render()\n  File \"/Users/codyaray/.virtualenv/haproxygen/lib/python2.7/site-packages/jinja2/environment.py\", line 969, in render\n    return self.environment.handle_exception(exc_info, True)\n  File \"/Users/codyaray/.virtualenv/haproxygen/lib/python2.7/site-packages/jinja2/environment.py\", line 742, in handle_exception\n    reraise(exc_type, exc_value, tb)\n  File \"/Users/codyaray/dev/brighttag/ops/management/haproxygen/templates/buggy.txt\", line 18, in top-level template code\n    => {{ 'stage' is matching '(dev|stage)' and 'us-west-1' is matching '(us-east-1|ap-northeast-1)' }} # should be False\n  File \"/Users/codyaray/dev/brighttag/ops/management/haproxygen/bug.py\", line 13, in is_matching\n    return match(pattern, string) is not None\n  File \"/Users/codyaray/.virtualenv/haproxygen/lib/python2.7/re.py\", line 137, in match\n    return _compile(pattern, flags).match(string)\n  File \"/Users/codyaray/.virtualenv/haproxygen/lib/python2.7/re.py\", line 238, in _compile\n    raise TypeError, \"first argument must be string or compiled pattern\"\nTypeError: first argument must be string or compiled pattern\n```\n\nPrinting the args to the custom function shows that it was called as `is_matching('stage', False)` instead of the expected `is_matching('stage', '(dev|stage)')` invocation. It seems like the second condition is actually tested here, resulting in False, which is then `and`ed with the search string '(dev|stage)' which yields a logical False to the next invocation of the custom test function.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/401"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 392,
+    "title": "Support Unicode literals in templates",
+    "body": "Sometimes, it makes sense to format a character in a string literal--\n\n```\n{{ \"{0} is fantastic\".format(user.full_name) }}\n```\n\nHowever, this will fail with a UnicodeEncodeError if user.full_name is a Unicode string with non-ASCII characters in it.\n\nJinja2 does not support unicode string literals, so one must work around this problem like so--\n\n```\n{{ \"{0} is fantastic\".decode(\"utf8\").format(user.full_name) }}\n```\n\nThis is icky. Could Jinja2 be changed in the future to support the Unicode literal? Our example code would look like this--\n\n```\n{{ u\"{0} is fantastic\".format(user.full_name) }}\n```\n\nThis mirrors what you would likely do in a Python script, which I think is what Jinja2 is going for.\n\nAside: I think you might be wondering what the real use case is for this. Obviously, in the example I've used it would be easy to just write this:\n\n```\n{{ user.full_name }} is fantastic!\n```\n\nOne example of where a unicode literal makes sense is encoding a querystring. For example, imagine we have a mailto link with some default body and subject text, which we want to format. This pattern makes sense:\n\n```\n{% set mailto_dict = {\n    \"body\": \"{0} is fantastic!\".decode(\"utf8\").format(user.full_name),\n    \"subject\": \"And this is some example text! Sincerely, {0}\".decode(\"utf8\").format(business.full_name),\n} %}\n<a href=\"mailto:?{{ mailto_dict|urlencode }}\">Send an email</a>\n```\n\nBut all those `decode(\"utf8\")` are icky. It would be much nicer to use a Unicode literal.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/392"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 548,
+    "title": "Bug (and fix) in nodes.py that affects custom filters",
+    "body": "According to http://jinja.pocoo.org/docs/dev/api/#writing-filters we can use the decorator @environmentfilter on a custom filter function:\n\n> \"...for marking environment dependent filters. The current Environment is passed to the filter as first argument.\"\n\nHowever a bug in nodes.py (see Filter.as_const at approx. line 568) causes the Environment to be passed as the SECOND parameter under certain conditions.  Specifically, when the filter is called on a static string, the as_const() method does not work properly.\n\nThe solution is simple:\n1. Immediately after the line:\n   `args = [x.as_const(eval_ctx) for x in self.args]`\n   - Add two new lines:\n   - `main_args = []`\n   - `main_args.insert(0, obj)`\n2. Then replace the line:\n   -`args.insert(0, eval_ctx)`\n   - Replace with::\n   - `main_args.insert(0, eval_ctx))`\n3. Then replace the line:\n   -`args.insert(0, self.environment)`\n   - Replace with::\n   - `main_args.insert(0, self.environment)`\n4. Then replace the line:\n   -`return filter_(obj, *args, **kwargs)`\n   - Replace with::\n   - `return filter_(main_args, *args, **kwargs)`\n\nThis seems to solve the problem.\n\nYou can easily see the error in the original code:  `return filter_(obj, *args, **kwargs)` is not going to pass in the Environment as the first argument.\n\nThe fix simply uses a new local variable main_args to properly sequence `obj`, `eval_ctx` and `_self.environment` as needed, and use these in the call to `filter_()`.  Separately. `*args` and `**kwargs` are passed through as well.\n\nIf I am misunderstanding something, please let me know.\n\nOtherwise, please consider including this fix in a future release.  I am currently using Jinja 2.8\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/548"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 490,
+    "title": "Should set blocks be safe by default?",
+    "body": "Right now this testcase would fail:\n\n``` python\n    def test_set_block(self):\n        env = Environment(extensions=['jinja2.ext.autoescape'],\n                          autoescape=True)\n        tmpl = env.from_string('{% set foo %}<br>{% endset %}{{ foo }}')\n        assert tmpl.render() == '<br>'\n```\n\n```\n>       assert tmpl.render() == '<br>'\nE       assert '&lt;br&gt;' == '<br>'\nE         - &lt;br&gt;\nE         + <br>\n```\n\nThe contents of a set block is very similar to a macro though, so I think this behavior is not what you'd expect. Especially since you easily get double escaping, as shown in an extended version of the testcase above:\n\n``` python\n    def test_set_block(self):\n        env = Environment(extensions=['jinja2.ext.autoescape'],\n                          autoescape=True)\n        tmpl = env.from_string('{% set foo %}{{ bar }}<br>{% endset %}'\n                               '{{ foo }}')\n>       assert tmpl.render(bar='<hr>') == '&lt;hr&gt;<br>'\nE       assert '&amp;lt;hr&amp;gt;&lt;br&gt;' == '&lt;hr&gt;<br>'\nE         - &amp;lt;hr&amp;gt;&lt;br&gt;\nE         + &lt;hr&gt;<br>\n```\n\nIf I add the `safe` filter to my set block (added in #489) the testcase passes fine, but I think this is the most common use case and thus shouldn't require a filter.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/490"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 458,
+    "title": "add filter `tojson`",
+    "body": "It would be very useful to add builtin filter to convert values to json.\n\nActually there is already an implementation in flask http://flask.pocoo.org/docs/0.10/templating/#standard-filters\n\nIf you guys agree I could work on a pull-request for that.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/458"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 565,
+    "title": "Inconsistent escaping of Macro output.",
+    "body": "Macro output is supposed to be safe, but it is not in some circumstances.  For instance:\n\n```\n>>> env = jinja2.Environment(autoescape=False, extensions=[jinja2.ext.autoescape])                 \n>>> template = \"{% macro m() %}<html>{% endmacro %}\"\n>>> template += \"{% autoescape true %}{{ m() }}{% endautoescape %}\"\n>>> env.from_string(template).render()\nu'&lt;html&gt;'\n```\n\nAlso:\n\n```\n>>> env = jinja2.Environment(autoescape=False)                 \n>>> template = \"{% macro m() %}<html>{% endmacro %}{{ m()|e }}\"\n>>> env.from_string(template).render()\nu'&lt;html&gt;'\n```\n\nOnly by changing the global autoescape value to true, is the macro output now safe:\n\n```\n>>> env = jinja2.Environment(autoescape=True, extensions=[jinja2.ext.autoescape])\n>>> template = \"{% macro m() %}<html>{% endmacro %}\"\n>>> template += \"{% autoescape true %}{{ m() }}{% endautoescape %}\"\n>>> env.from_string(template).render()\nu'<html>'\n```\n\nAnd:\n\n```\n>>> env = jinja2.Environment(autoescape=True)                 \n>>> template = \"{% macro m() %}<html>{% endmacro %}{{ m()|e }}\"\n>>> env.from_string(template).render()\nu'<html>'\n```\n\nInterestingly, this problem doesn't exist if the macro definition occurs inside the autoescape block:\n\n```\n>>> env = jinja2.Environment(autoescape=False, extensions=[jinja2.ext.autoescape])\n>>> template = \"{% autoescape true %}{% macro m() %}<html>{% endmacro %}\"\n>>> template += \"{{ m() }}{% endautoescape %}\"\n>>> env.from_string(template).render()\nu'<html>'\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/565"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 638,
+    "title": "ImportError: cannot import name EscapeFormatter",
+    "body": "Hi, I'm getting now\r\n```\r\nImportError: cannot import name EscapeFormatter\r\nException occurred:\r\n  File \"/home/jenkins/workspace/eggs/Jinja2-2.8.1-py2.7.egg/jinja2/sandbox.py\", line 25, in <module>\r\n    from markupsafe import EscapeFormatter\r\nImportError: cannot import name EscapeFormatter\r\n```\r\nShould some min version for Markupsafe be specified in setup.py?\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/638"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 575,
+    "title": "\"map(filter)\" returns confusing error message",
+    "body": "If someone accidentally types:\n\n```\n{{ my_list|map(myfilter) }}\n```\n\nInstead of:\n\n```\n{{ my_list|map('myfilter') }}\n```\n\nThe error message is:\n\n``` python\n  File \"template.html\", line 93, in block \"content\"\n    {{ my_list|map(myfilter) }}\n  File \"venv/lib/python3.5/site-packages/jinja2/filters.py\", line 750, in do_list\n    return list(value)\n  File \"venv/lib/python3.5/site-packages/jinja2/filters.py\", line 850, in do_map\n    yield func(item)\n  File \"venv/lib/python3.5/site-packages/jinja2/filters.py\", line 846, in <lambda>\n    name, item, args, kwargs, context=context)\n  File \"venv/lib/python3.5/site-packages/jinja2/environment.py\", line 424, in call_filter\n    raise TemplateRuntimeError('no filter named %r' % name)\njinja2.exceptions.TemplateRuntimeError: no filter named Undefined\n```\n\nIt would be good if this error message were clearer.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/575"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 631,
+    "title": "AttributeError on getting attrs from old-style classes",
+    "body": "**The problem:**\r\n\r\nWhen the templates refer to the old-style classes, the `AttributeError` raises when trying to retrieve or filter or group by attributes (both existing & non-existing), while only `TypeError` & `LookupError` are expected.\r\n\r\n**Code sample:**\r\n\r\n```\r\nfrom jinja2 import Template\r\n\r\n\r\nclass NewStyle(object):\r\n    pass\r\n    # myattr = None\r\n\r\n\r\nclass OldStyle:\r\n    pass\r\n    # myattr = None\r\n\r\n\r\ntpl = Template(u'''\r\n============== BEGIN {{mode}}\r\n{% for item in items|selectattr('myattr') %}\r\n    * {{item}}: {{item.myattr}}\r\n{% endfor -%}\r\n============== END\r\n''')\r\n\r\nprint(tpl.render(mode='NewStyled', items=[NewStyle() for _ in xrange(5)]))\r\nprint(tpl.render(mode='OldStyled', items=[OldStyle() for _ in xrange(5)]))\r\n```\r\n\r\n**Actual behaviour:**\r\n\r\n```\r\n============== BEGIN NewStyled\r\n============== END\r\nTraceback (most recent call last):\r\n  File \"j.py\", line 23, in <module>\r\n    print(tpl.render(mode='OldStyled', items=[OldStyle() for _ in xrange(5)]))\r\n  File \".../lib/python2.7/site-packages/jinja2/environment.py\", line 989, in render\r\n    return self.environment.handle_exception(exc_info, True)\r\n  File \".../lib/python2.7/site-packages/jinja2/environment.py\", line 754, in handle_exception\r\n    reraise(exc_type, exc_value, tb)\r\n  File \"<template>\", line 3, in top-level template code\r\n  File \".../lib/python2.7/site-packages/jinja2/filters.py\", line 942, in _select_or_reject\r\n    if modfunc(func(transfunc(item))):\r\n  File \".../lib/python2.7/site-packages/jinja2/filters.py\", line 62, in <lambda>\r\n    return lambda x: environment.getitem(x, attribute)\r\n  File \".../lib/python2.7/site-packages/jinja2/environment.py\", line 389, in getitem\r\n    return obj[argument]\r\nAttributeError: OldStyle instance has no attribute '__getitem__'\r\n```\r\n\r\n**Expected behaviour:**\r\n\r\nBoth rendering cases return the same output (with or without the list, depending on the presence of the attribute in the classes).\r\n\r\n**Cause:**\r\n\r\nThe error is caused by this fragment in the code (both in `Environment` & `SandboxedEnvironment`):\r\n\r\n```\r\n    def getitem(self, obj, argument):\r\n        try:\r\n            return obj[argument]\r\n        except (TypeError, LookupError):\r\n            ………\r\n```\r\n\r\nFor new-style classes, the `TypeError` is raised when accessing an item when the class does not support those. For old-style classes, the `AttributeError` is raised, and it is not expected here:\r\n\r\n```\r\n>>> NewStyle()['x']\r\nTypeError: 'NewStyle' object has no attribute '__getitem__'\r\n\r\n>>> OldStyle()['x']\r\nAttributeError: OldStyle instance has no attribute '__getitem__'\r\n```\r\n\r\n**Affected cases:**\r\n\r\nInitially detected while using `autoapi` extension for Sphinx with custom Jinja2 templates and custom pytest \"marks\" to be auto-documented — but this should be irrelevant.\r\n\r\nThis also happens when the objects to be rendered (or checked) are python's built-in `_Feature` (as in `from __future__ import absolute_imports`), python modules, etc. Python2.7 still has a lot of old-style objects internally and in its stdlib.\r\n\r\nIt seems that support for the old-style classes should be expected in Jinja, rather than the absence of the old-style should be expected in the arbitrary libraries or in python itself. Hence, the bug is for Jinja, not for `pytest` or `autoapi`.\r\n\r\n\r\n**Notes:**\r\n\r\nPython 2.7.10\r\nJinja 2.8 (the most recent one)",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/631"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 539,
+    "title": "Unintuitive behavior when length < len(end) in do_truncate",
+    "body": "In:\n\n``` python\ndef do_truncate(s, length=255, killwords=False, end='...'):\n    \"\"\"Return a truncated copy of the string. The length is specified\n    with the first parameter which defaults to ``255``. If the second\n    parameter is ``true`` the filter will cut the text at length. Otherwise\n    it will discard the last word. If the text was in fact\n    truncated it will append an ellipsis sign (``\"...\"``). If you want a\n    different ellipsis sign than ``\"...\"`` you can specify it using the\n    third parameter.\n    .. sourcecode:: jinja\n        {{ \"foo bar baz\"|truncate(9) }}\n            -> \"foo ...\"\n        {{ \"foo bar baz\"|truncate(9, True) }}\n            -> \"foo ba...\"\n    \"\"\"\n    if len(s) <= length:\n        return s\n    elif killwords:\n        return s[:length - len(end)] + end\n\n    result = s[:length - len(end)].rsplit(' ', 1)[0]\n    if len(result) < length:\n        result += ' '\n    return result + end\n```\n\nHere's the unintuitive behavior which fails the principle of least surprise:\n\n```\nIn [10]: do_truncate('a' * 20, length=2, killwords=True)\nOut[10]: 'aaaaaaaaaaaaaaaaaaa...'\n```\n\nThis is because `length - len(end) == -1`, which means the that whole string is taken. This behavior changed in 3c75c961b4fbdf8a6bede3aa5ef80efdbcb9c80a I think. With 2.7.3 it would do: `do_truncate('b' * 20, 2, True) == 'bb...'`.\n\nWhen `length == len(end)`:\n\n```\nIn [11]: do_truncate('a' * 20, length=3, killwords=True)\nOut[11]: '...'\n```\n\nThere are two possibilities:\n- Raise an exception when `length < len(end)`.\n- Force `length` to be at least equal to `len(end)` (my preferred solution)\n\nThoughts?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/539"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 543,
+    "title": "There is no 'sudo' command in the documentation",
+    "body": "From Installation part of the documentation:\n(If you are installing from the Windows command line OMIT THE SUDO and make sure to run the command as user with administrator rights)\n\nBut there is no sudo command, there is only\neasy_install Jinja2\npip install Jinja2\n\nWhich sudo i need to omit? Can you add it to easy_install and pip?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/543"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 544,
+    "title": "Word true need to be `true`",
+    "body": "In the line https://github.com/mitsuhiko/jinja2/blob/master/jinja2/environment.py#L182 the word true should be `True`\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/544"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 515,
+    "title": "urlencode doesn't escape slashes",
+    "body": "This was raised in #444, but [this code](https://github.com/mitsuhiko/jinja2/commit/46acbf02ed9ab58c7a92553c95790e75bdc3c930#diff-8f76b794bd641afb7bd92eba51f332f3R298) always evaluates to `b'/'` on Python 3.4.1, so slashes still not escaped.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/515"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 431,
+    "title": "Support a context finalize",
+    "body": "Jinja2 has the ability to configure a `finalize` function which will be called right before a value is finally rendered to do any last minute changes to the values. This hooks into the exact place that I need something, however it has one problem... it doesn't have access to the context.\n\nLooking at the code, it appears that it wouldn't be very difficult to make the change so that the context is passed into the `finalize` function (infact I've got a proof of [concept branch](https://github.com/mitsuhiko/jinja2/compare/master...dstufft:contextfinalize)) but it has one major snag. If I understand the code, for nodes that can be rendered as a constant value the `finalize` function is called at compile time instead of at render time, which means that their is no context available at that time.\n\nI see a few possible solutions to this problem:\n- Add an `Environment().contextfinalize` function which is only called as a finalize function in the situations where we have a context available.\n- Make the `Environment().finalize` function able to be decorated by the `@contextfunction` decorator, and pass `None` for the context if we're doing the finalize during the compilation step.\n- Make the `Environment().finalize` function able to be decorated by the `@contextfunction` decorator, and disable the finalize during compilation step optimization if it wants a context.\n\nOf these, I prefer passing a `None` as a context, this can degrade into the final option by simply raising an exception in the finalize function which will skip the optimization for that node and can be made to act like the first one by just doing a check for `None` and returning early in that case.\n\nThoughts?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/431"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 427,
+    "title": "Get doctests running",
+    "body": "During #426 it was noticed that the doctests currently fail. I'm not sure whether they were ever run at all, given that the failures don't seem to be induced by py.test\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/427"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 364,
+    "title": "Default parameters aren't tracked properly",
+    "body": "I was looking through the parser and noticed that default arguments for macro/call parameters aren't attached to the parameter they were defined with. This can lead to unexpected behaviour:\n\n``` python\n>>> import jinja2\n>>> jinja2.Template(\"{% macro a(b, c=1, d) %}b={{b}},c={{c}},d={{d}}{% endmacro %} {{ a() }}\").render()\nu' b=,c=,d=1'\n```\n\nHere you can see that the default was applied to parameter `d` instead of `c`. There are two fixes for this: \n- Tie the defaults to the parameter they were defined from\n- Throw a synxtax error like python does: `SyntaxError: non-default argument follows default argument\n  `\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/364"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 320,
+    "title": "truncate filter docs inaccurate",
+    "body": "http://jinja.pocoo.org/docs/templates/#list-of-builtin-filters gives the following as the example for the `truncate` filter:\n\n```\n{{ \"foo bar baz\"|truncate(9) }}\n    -> \"foo ba...\"\n{{ \"foo bar baz\"|truncate(9, True) }}\n    -> \"foo ...\"\n```\n\nAnd yet when I try it the latest version I get the rendered output:\n\n```\nfoo bar ...\nfoo bar b... \n```\n\nSo (i) the `killwords` param either works, or is documented, the inverse way;\n(ii) the number of characters shown in the doc's output are too few.\n\nI would submit a PR to the docs but I'm confused by what `killwords` is supposed to do.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/320"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 244,
+    "title": "Loop properties revindex and revindex0 not behaving correctly in Jinja2 2.7",
+    "body": "In Jinja2 2.7 both `loop.revindex` and `loop.revindex0` give incorrect values.\n\n`loop.revindex` should be 1-based, but instead is 0-based.\n`loop.revindex0` should be 0-based, but instead is -1-based (it has value -1 in last loop iteration).\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/244"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 251,
+    "title": "Title filter bahavior.",
+    "body": "Hi!\n\nThe title filter behavior is different than Python's .title() string method when you pass it a string that is all uppercase. In Python we have this:\n\n> > > 'SOMETHING ELSE'.title()\n> > > 'Something Else'\n\nBut using the tilte filter we get 'SOMETHING ELSE' as the result.\n\nThere's two possible solutions in my opinion. \n\nThe first solution would be change the behavior to match Python's. This would be my choice and the implementation would be as simple as the implementation of the other filters who transform the cases (lower, upper and capitalize). Just a return soft_unicode(s).title().\n\nThe second solution would be change the documentation to state that behavior. In the case this solution is chosen I would try to rename it to something else and make a title filter that behaves like Python's.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/251"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 224,
+    "title": "DeprecationWarning: Overriding __eq__ blocks inheritance of __hash__ in 3.x",
+    "body": "I'm running my python with -3 and I'm getting the following two warnings:\n\n```\n/usr/local/lib/python2.7/dist-packages/jinja2/nodes.py:73: DeprecationWarning: Overriding __eq__ blocks inheritance of __hash__ in 3.x\n  return type.__new__(cls, name, bases, d)\n\n/usr/local/lib/python2.7/dist-packages/jinja2/runtime.py:545: DeprecationWarning: Overriding __eq__ blocks inheritance of __hash__ in 3.x\n  class StrictUndefined(Undefined):\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/224"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 243,
+    "title": "Allowing block overrides in include tags causes unexpected behavior.",
+    "body": "See https://github.com/mitsuhiko/jinja2/pull/84#issuecomment-19208621 for details.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/243"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 79,
+    "title": "Syntax error in generated python with double {% extends %}",
+    "body": "Using more than one `{% extends %}` is not allowed, but the error message and location could be more explicit:\n\n```\n>>> jinja2.Template('{% extends \"a\" %}{% extends \"b\" %}')\n  File \"<template>\", line 13\nSyntaxError: 'yield' outside function (<template>, line 13)\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/79"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 100,
+    "title": "TemplateSyntaxError: expected token 'name', got ')'",
+    "body": "I get this error when writign a macro with a trailing comma:\n\n{% macro foo (\n  bar,\n)%}\n...\n{% endmacro %}\n\nAlthough it's not strictly required to make the macro work (I can just drop the trailing comma), it's quite convenient VCS-wise: if I add another parameter, I don't get a diff on the last existing parameter just because I need to add a comma.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/100"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 52,
+    "title": "Line statements eat newlines",
+    "body": "Line statements eat not only the spaces until the beginning of the line as documented at  http://jinja.pocoo.org/docs/templates/#whitespace-control , but also all the previous newlines.\r\n\r\nAs of  2.7-dev, the following code generates no empty lines:\r\n\r\n```\r\n%% for i in range(3)\r\n{{i}}, next line should be empty\r\n\r\n%% endfor\r\n```\r\n\r\nThis is an issue in languages where newlines matter (generated LaTeX).\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/52"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 8,
+    "title": "Concurrency bug in LRUCache",
+    "body": "I think the LRUCache class in Jinja2 has a bug.  The problem is that the \"**getitem**\" method may mutate the cache, but that method does not acquire the write lock, \"_wlock\".\n\nFor example, here's one scenario:\n- Thread A calls \"getitem\" with the key \"K\".\n- \"K\" is not the last element of the queue, so Thread A removes it.\n- Thread A is suspended before it appends \"K\" to the queue.\n- Thread B calls \"setitem\" with the key \"K\".\n- Thread B finds \"K\" in the \"mapping\" dictionary.\n- Thread B tries to remove \"K\" from the queue.\n- The queue raises an exception, because it does not contain \"K\".\n\nIn my project I've seen the \"**setitem**\" method raise a KeyError.  I assume that there's a similar execution scenario behind those exceptions, but I could be wrong.\n\nIn any case, I think \"**getitem**\" clearly needs to acquire \"_wlock\" before it removes and appends keys.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/8"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 181,
+    "title": "MemcachedBytecodeCache has no exception handling for memcached errors",
+    "body": "If the site uses the MemcachedBytecodeCache, it will go down if memcached is unavailable. The inability to cache bytecode should be handled more gracefully, without bringing the site down.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/181"
+  },
+  {
+    "repo": "mitsuhiko/jinja2",
+    "number": 115,
+    "title": "Documentation fails to build with Python 3",
+    "body": "Sphinx >=1.1 supports Python 3. docs/conf.py of Jinja specifies usage of jinjaext extension, which does not support Python 3. 2to3 generates changes sufficient for Python 3. Changes related to .next() / next() (in last hunk) should be made conditional on Python version.\n\n```\n$ PYTHONPATH=\"../build/lib\" make html\nsphinx-build -b html -d _build/doctrees   . _build/html\nRunning Sphinx v1.1.3\nloading pickled environment... not yet created\nbuilding [html]: targets for 12 source files that are out of date\nupdating environment: 12 added, 0 changed, 0 removed\nreading sources... [ 25%] extensions                                                                                                                         \nException occurred:\n  File \"/tmp/jinja2/docs/jinjaext.py\", line 148, in walk\n    for key, name in node.__dict__.iteritems():\nAttributeError: 'dict_proxy' object has no attribute 'iteritems'\nThe full traceback has been saved in /tmp/sphinx-err-z2mao4.log, if you want to report the issue to the developers.\nPlease also report this if it was a user error, so that a better error message can be provided next time.\nEither send bugs to the mailing list at <http://groups.google.com/group/sphinx-dev/>,\nor report them in the tracker at <http://bitbucket.org/birkenfeld/sphinx/issues/>. Thanks!\nmake: *** [html] Error 1\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/115"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 131,
+    "title": "3 test failures on Python 3.3",
+    "body": "```\n[last: 0] marca@SCML-MarcA:~/dev/git-repos/jinja2$ PAGER=cat git log -n 1\ncommit a21f2edfc9536c918bae0ef654f9f3ffb1c2b508\nAuthor: Christoph Zwerschke <cito@online.de>\nDate:   Sun Oct 23 18:23:58 2011 +0200\n\n    Fix typos.\n\n[last: 0] marca@SCML-MarcA:~/dev/git-repos/jinja2$ .tox/py33/bin/python setup.py test -q\nrunning test\nrunning build_py\nrunning egg_info\nwriting dependency_links to Jinja2.egg-info/dependency_links.txt\nwriting Jinja2.egg-info/PKG-INFO\nwriting entry points to Jinja2.egg-info/entry_points.txt\nwriting requirements to Jinja2.egg-info/requires.txt\nwriting top-level names to Jinja2.egg-info/top_level.txt\nreading manifest file 'Jinja2.egg-info/SOURCES.txt'\nreading manifest template 'MANIFEST.in'\nwarning: no previously-included files matching '*.pyc' found under directory 'docs'\nwarning: no previously-included files matching '*.pyo' found under directory 'jinja2'\nwarning: no previously-included files matching '*.pyo' found under directory 'docs'\nwriting manifest file 'Jinja2.egg-info/SOURCES.txt'\nrunning egg_info\nwriting dependency_links to /Users/marca/dev/git-repos/jinja2/build/lib/Jinja2.egg-info/dependency_links.txt\nwriting /Users/marca/dev/git-repos/jinja2/build/lib/Jinja2.egg-info/PKG-INFO\nwriting entry points to /Users/marca/dev/git-repos/jinja2/build/lib/Jinja2.egg-info/entry_points.txt\nwriting requirements to /Users/marca/dev/git-repos/jinja2/build/lib/Jinja2.egg-info/requires.txt\nwriting top-level names to /Users/marca/dev/git-repos/jinja2/build/lib/Jinja2.egg-info/top_level.txt\nreading manifest file '/Users/marca/dev/git-repos/jinja2/build/lib/Jinja2.egg-info/SOURCES.txt'\nreading manifest template 'MANIFEST.in'\nwarning: no previously-included files matching '*.pyc' found under directory 'docs'\nwarning: no previously-included files matching '*.pyo' found under directory 'jinja2'\nwarning: no previously-included files matching '*.pyo' found under directory 'docs'\nwriting manifest file '/Users/marca/dev/git-repos/jinja2/build/lib/Jinja2.egg-info/SOURCES.txt'\nrunning build_ext\n.......................................................................................................................................EE...E............................................................................................................................\n======================================================================\nERROR: test_byte_compilation (jinja2.testsuite.loader.ModuleLoaderTestCase)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/marca/dev/git-repos/jinja2/build/lib/jinja2/testsuite/loader.py\", line 180, in test_byte_compilation\n    tmpl1 = self.mod_env.get_template('a/test.html')\n  File \"/Users/marca/dev/git-repos/jinja2/build/lib/jinja2/environment.py\", line 720, in get_template\n    return self._load_template(name, self.make_globals(globals))\n  File \"/Users/marca/dev/git-repos/jinja2/build/lib/jinja2/environment.py\", line 694, in _load_template\n    template = self.loader.load(self, name, globals)\n  File \"/Users/marca/dev/git-repos/jinja2/build/lib/jinja2/loaders.py\", line 464, in load\n    mod = __import__(module, None, None, ['root'])\n  File \"<frozen importlib._bootstrap>\", line 1015, in _find_and_load\nValueError: bad marshal data (unknown type code)\n\n======================================================================\nERROR: test_choice_loader (jinja2.testsuite.loader.ModuleLoaderTestCase)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/marca/dev/git-repos/jinja2/build/lib/jinja2/testsuite/loader.py\", line 194, in test_choice_loader\n    tmpl1 = self.mod_env.get_template('a/test.html')\n  File \"/Users/marca/dev/git-repos/jinja2/build/lib/jinja2/environment.py\", line 720, in get_template\n    return self._load_template(name, self.make_globals(globals))\n  File \"/Users/marca/dev/git-repos/jinja2/build/lib/jinja2/environment.py\", line 694, in _load_template\n    template = self.loader.load(self, name, globals)\n  File \"/Users/marca/dev/git-repos/jinja2/build/lib/jinja2/loaders.py\", line 397, in load\n    return loader.load(environment, name, globals)\n  File \"/Users/marca/dev/git-repos/jinja2/build/lib/jinja2/loaders.py\", line 464, in load\n    mod = __import__(module, None, None, ['root'])\n  File \"<frozen importlib._bootstrap>\", line 1015, in _find_and_load\nValueError: bad marshal data (unknown type code)\n\n======================================================================\nERROR: test_prefix_loader (jinja2.testsuite.loader.ModuleLoaderTestCase)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/marca/dev/git-repos/jinja2/build/lib/jinja2/testsuite/loader.py\", line 208, in test_prefix_loader\n    tmpl1 = self.mod_env.get_template('MOD/a/test.html')\n  File \"/Users/marca/dev/git-repos/jinja2/build/lib/jinja2/environment.py\", line 720, in get_template\n    return self._load_template(name, self.make_globals(globals))\n  File \"/Users/marca/dev/git-repos/jinja2/build/lib/jinja2/environment.py\", line 694, in _load_template\n    template = self.loader.load(self, name, globals)\n  File \"/Users/marca/dev/git-repos/jinja2/build/lib/jinja2/loaders.py\", line 354, in load\n    return loader.load(environment, local_name)\n  File \"/Users/marca/dev/git-repos/jinja2/build/lib/jinja2/loaders.py\", line 464, in load\n    mod = __import__(module, None, None, ['root'])\n  File \"<frozen importlib._bootstrap>\", line 1015, in _find_and_load\nValueError: bad marshal data (unknown type code)\n\n----------------------------------------------------------------------\nRan 265 tests in 1.696s\n\nFAILED (errors=3)\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/131"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 35,
+    "title": "no built in test for is 'mapping' type",
+    "body": "jinja has built in tests for testing if a variable is a string, a unicode string, a sequence, a number, or an iterable, but no built-in test for if an object is a map/dict.  \n\nAs one of the basic python types, it might make sense to have a builtin test for this type.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/35"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 22,
+    "title": "debug.py doesn't work on IronPython 2.7",
+    "body": "When running jinja2 under IronPython everything works fine, until you have mistakes in your templates. We had a template file with UTF-8 BOM, which causes an exception in jinja2, but this exception can not be processed as expected (i guess it has something to do with the ctypes stuff going on there), all that bubbles up to the IronPython environment is a \"AccessViolationException\". This is true for all other mistakes in the templates too, so finding errors in templates becomes really painfull.\n\nThe problem is caused in debug.py line 313 (brings bad luck doesn' it?): \n             obj.tb_next = ctypes.POINTER(_Traceback)()\n\nBut i dont understand this part of jinja2 ...\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/22"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 4,
+    "title": "seg fault when rendering template under Python 2.7 with Jinja2 2.5.5",
+    "body": "I have a template that starts out like this:\n\n<html>\n<head>\n</head>\n<body style=\"font:13px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif\">\n\nWhen it tries to render I get a seg fault.  I switched to an older version of Jinja2 (2.2.1) that the template had previously rendered with and I got this error:\n\n\"/usr/local/lib/python2.7/site-packages/Jinja2-2.2.1-py2.7.egg/jinja2/environment.py\",\nline 839, in from_code\n   exec code in namespace\n File \"/var/www/templates/post_alert.html\", line 1, in\n<module>\n   <html>\nTypeError: an integer is required\n\nAnd I also saw the same traceback but with the exception \"ImportError: No module named division\" but I'm not sure how to duplicate that.  My setup uses a FileSystemLoader with a MemcachedBytecodeCache and autoescape=True, auto_reload=True, line_statement_prefix='#'\n\nI had previously been using Python 2.6 to render this template with no problems using Jinja2 2.2.1.\n\nIn any case, my hack to fix this problem was to change the body style:   font:13px/1.5\nto just: font:13px\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/4"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 10,
+    "title": "groupby not supporting more than one dot",
+    "body": "The groupby builtin filter currently do not support more that one dot.\n\nFor instance, if I have articles that I want to group by year, so I need to access `item.date.year` in the groupby filter, it is not possible by now, because jinja2 looks for the `date.year` attributes which do not exists.\n\nThis can probably be fixed by using operator.attrgetter in the filter.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/10"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 6,
+    "title": "Bad interaction with AppStats module on AppEngine ",
+    "body": "Using jinja2 as part of the tipfy framework, the provided appstats middleware causes a bad interaction with jinja2, resulting in an UndefinedError from jinja2. See http://code.google.com/p/tipfy-ext-appstats/issues/detail?id=1 for details.\n\nI believe that this is weakly a bug on both sides. Appstats should catch the error, but jinja2 should not throw it when the undefined variable is not being used for in-template display. Thus, I think that **getattr** on runtime.Undefined should raise AttributeError, not UndefinedError, if the attribute is pseudo-private (starts with \"_\"). Here's the temporary patch I'm using starting at line 460 of runtime.py; please check this patch (Am I using @internalcode correctly? Do you agree with my reasoning?) and use it if appropriate:\n\n```\n__add__ = __radd__ = __mul__ = __rmul__ = __div__ = __rdiv__ = \\\n__truediv__ = __rtruediv__ = __floordiv__ = __rfloordiv__ = \\\n__mod__ = __rmod__ = __pos__ = __neg__ = __call__ = \\\n__getitem__ = __lt__ = __le__ = __gt__ = __ge__ = \\\n__int__ = __float__ = __complex__ = __pow__ = __rpow__ = \\\n    _fail_with_undefined_error\n\n@internalcode\ndef __getattr__(self,attr):\n    if attr.startswith(\"_\"):\n        raise AttributeError\n    else:\n        self._fail_with_undefined_error()\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/6"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 384,
+    "title": "Tests fail under pypy/pypy3 due to reliance on garbage collection policies.",
+    "body": "https://github.com/mitsuhiko/jinja2/blob/master/jinja2/testsuite/utils.py#L59-L70 duplicates the test from markupsafe pretty much exactly; like markupsafe#39 this is corrected by the conditional execution of `gc.collect()` prior to the addition of the count.\n\nSame argument that this is testing runtime garbage collection policy is is a bit of a non-portable test.\n\nDownstream bug: https://bugs.gentoo.org/show_bug.cgi?id=529934\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/384"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 368,
+    "title": "Jinja2 dictsort method  accepts a reverse keyword",
+    "body": "Before:\n\n``` python\ndictsort(value, case_sensitive=False, by='key')\n```\n\nAfter:\n\n``` python\ndictsort(value, case_sensitive=False, by='key', reverse=False):\n```\n\nWhy not Jinja2 dictsort method support reverse keyword?\nSome guy gave the code: [http://www.ifnamemain.com/posts/2014/Jul/04/jinja_pelican_dict_sort/](http://www.ifnamemain.com/posts/2014/Jul/04/jinja_pelican_dict_sort/)\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/368"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 358,
+    "title": "No way to test type",
+    "body": "We need a way to be able to test the type of an object is equal to one another. \n\nAn example use case is when trying to print a certain type of form element based on the type of a given object.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/358"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 367,
+    "title": "Any built-in filter that concatenates paths in a way similar to the os.path.join()?",
+    "body": "Dear All,\n\nI'm looking to improve on a script through using Jinja2's templating engine to allow us to render new files (lua script files) from a given template stored in a text file. One filter that we would need to have is a filter that concatenates paths (which are embedded as variables within the original template), and although the 'join' filter does fulfill this requirement somewhat as we can specify for it to connect paths with either a / or a \\, this would make our code platform bounded (if we tell the join filter to use a / , then we can only run our code on a Unix-based platform; if a \\, then only windows).\n\nIs there any built-in filter in Jinja2 that has a behavior similar to that of python's standard os.path.join, and that will know when it should use a / or a \\ depending on the platform it is running in?\n\nOtherwise, we might have to define our own filter, but I have not been able to find any documentation on that from the official Jinja2 website thus far; could someone point me to where the documentation is?\n\nThank you!\n\nBest,\nAugustine\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/367"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 323,
+    "title": "Link rot correction:  \"The Jinja2 template engine  http://jinja.pocoo.org/2/\"",
+    "body": "At the top of https://github.com/mitsuhiko/jinja2 the following shows :  \n \"The Jinja2 template engine  http://jinja.pocoo.org/2/\" \n\n and that link leads to a \"404, Page Not Found    The requested page,\n    cannot be found —    We're sorry.\"\n\nSuggest updating it to \"http://jinja.pocoo.org\"\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/323"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 325,
+    "title": "Installing Jinja2 using easy_intall",
+    "body": "Hi,\n\nI get the following error when installing jinja2. How do we resolve it.\n\nD:\\Documents and Settings\\aaaa>easy_install jinja2\nSearching for jinja2\nReading https://pypi.python.org/simple/jinja2/\nDownload error on https://pypi.python.org/simple/jinja2/: timed out -- Some pac\nages may not be found!\nCouldn't find index page for 'jinja2' (maybe misspelled?)\nScanning index of all packages (this may take a while)\nReading https://pypi.python.org/simple/\nDownload error on https://pypi.python.org/simple/: timed out -- Some packages m\ny not be found!\nNo local packages or download links found for jinja2\nerror: Could not find suitable distribution for Requirement.parse('jinja2')\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/325"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 297,
+    "title": "Using operator overloaded objects in Jinja2 expressions raises TypeError",
+    "body": "Objects using operator overloading aren't working properly in Jinja2 expressions.\n\nHere is a contrived example isolating the issue:\n\n``` python\nfrom jinja2 import Environment\n\nenv = Environment()\n\nclass Item(object):\n    def __init__(self):\n        self.value = \"one\"\n    def __div__(self, path):\n        return getattr(self, path)\n\n# works\nassert Item() / 'value' == \"one\"\n\nt = env.from_string(\"\"\"{{item / 'value'}}\"\"\")\nassert t.render(item=Item()) == \"one\"\n```\n\nResulting in:\n\n```\nTraceback (most recent call last):\n  ...\n  File \"<template>\", line 1, in top-level template code\nTypeError: unsupported operand type(s) for /: 'Item' and 'str'\n```\n\n(My real use case is for rendering RDFLib graphs with Jinja2, involving use of its [property path feature](https://rdflib.readthedocs.org/en/latest/utilities.html#sparql-paths), which is based on operator overloading. Workarounds using e.g. the functions from the `operator` module become quite unreadable, so I really need to make this work.)\n\nI did not find any way to configure this, so I presume it is a limitation in Jinja2. (If anyone can point me in the right direction I'll have a go at a patch.)\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/297"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 277,
+    "title": "i18n + utf-8 encoded PO",
+    "body": "Hi! I'm using UTF-8 encoded PO/MO files with Gettext, and in a template saying:\n\n`{{gettext(\"message\")}}`\n\nThis yields \n\n`UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 6: ordinal not in range(128)`\n\nwhen using languages where \"message\"'s translation contains non-ascii characters. \n\nSetting Jinja2/i18n up with:\n\n```\n    env = Environment(loader=FileSystemLoader('%s' % theme_path),\n                      extensions=['jinja2.ext.i18n', 'jinja2.ext.with_',\n                                  'mailpile.jinjaextensions.MailpileCommand'])\n    env.install_gettext_translations(config.get_i18n_translation(), newstyle=True)\n```\n\nand config.get_i18n_translation essentially returns: `gettext.translation(\"mailpile\", \"locale\", [language])`\n\nNot sure how to fix this, but it appears to be a Jinja-side bug, since I'm not having problems when I use gettext() directly elsewhere (outside of the templating)..\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/277"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 281,
+    "title": "Failure loading corrupt bytecode file",
+    "body": "There seems to be an edge case in the cache where if the stored bytecode is truncated or corrupted it will throw an exception.  When this happens it should be perfectly fine to reload the template code from scratch in order to render, but instead jinja2 continues throwing exceptions until the key/file is manually removed.\n\nIn my specific case, a disk filled up and the end of the cache file was truncated.  This means it passed the magic number test that checks for jinja2 and python version, but continually failed to render.  \n\nPull request coming.  \n\nHere is a sample program to reproduce:\n\n```\nfrom jinja2 import Environment, FileSystemLoader, FileSystemBytecodeCache\nimport os\n\ntemplate_name = 'reproduce_bug.jinja2'\nfilename = '/tmp/' + template_name\n\ndef try_render(env):\n    try:\n        template = env.get_template(template_name)\n        template.render(name='world')\n        print 'Render Success'\n    except: \n        print 'Render Failure'\n\nif __name__ == '__main__':\n\n    # create an example jinja file\n    with open(filename,'w') as fh:\n        fh.write('hello {{ name }}')\n\n    # create an example jinja environment\n    fsloader = FileSystemLoader(['/tmp'])\n    cache = FileSystemBytecodeCache('/tmp','__jinja_%s.cache')\n    env = Environment(loader=fsloader, cache_size=-1, bytecode_cache=cache)\n\n    # Try a render, this one will work\n    try_render(env)\n\n    # simulate a truncated file\n    cache_filename = cache._get_cache_filename(cache.get_bucket(env, template_name, filename, open(filename).read()))\n    cache_contents = open(cache_filename).read()\n    with open(cache_filename,'w') as fh:\n        fh.write(cache_contents[:-20])\n\n    # reset the environment so it forces a reload\n    env.cache = {}\n\n    # this one will fail\n    try_render(env)\n\n    # clean up after ourselves\n    cache.clear()\n    os.unlink(filename)\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/281"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 1,
+    "title": "Compiled docs in 2.5.4 tarball",
+    "body": "There are compiled docs als HTML, LaTeX and PDF in the 2.5.4 tarball. The file is almost three times as big as 2.5.3.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/1"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 276,
+    "title": "Wrong line number for UndefinedError exceptions",
+    "body": "When using `jinja2.StrictUndefined` and rendering a template, the line numbers seem to be off when an `UndefinedError` exception is triggered:\n\n``` python\nPython 2.7.5 (default, Sep  6 2013, 09:55:21)\n[GCC 4.8.1 20130725 (prerelease)] on linux2\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n>>> import jinja2\n>>> template = '''Hello world!\n... {{ missing }}\n... {{ exists }}\n... '''\n>>> jinja_env = jinja2.Environment(undefined=jinja2.StrictUndefined)\n>>> print jinja_env.from_string(template).render(exists='foo')\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\n  File \"/usr/lib/python2.7/site-packages/jinja2/environment.py\", line 969, in render\n    return self.environment.handle_exception(exc_info, True)\n  File \"/usr/lib/python2.7/site-packages/jinja2/environment.py\", line 742, in handle_exception\n    reraise(exc_type, exc_value, tb)\n  File \"<template>\", line 3, in top-level template code\njinja2.exceptions.UndefinedError: 'missing' is undefined\n```\n\nThe `missing` variable is on line 2, not line 3. However, when the variables are properly defined, the value for the `missing` variable is on line 2 like you would expect.\n\n``` python\n>>> print jinja_env.from_string(template).render(exists='foo', missing='bar')\nHello world!\nbar\nfoo\n>>>\n```\n\nThe same line number mismatch is seen when loading the template from a file, as well:\n\n``` python\nPython 2.7.5 (default, Sep  6 2013, 09:55:21)\n[GCC 4.8.1 20130725 (prerelease)] on linux2\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n>>> import jinja2\n>>> jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader('/home/erik'), undefined=jinja2.StrictUndefined)\n>>> print jinja_env.get_template('template.txt').render(exists='foo')\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\n  File \"/usr/lib/python2.7/site-packages/jinja2/environment.py\", line 969, in render\n    return self.environment.handle_exception(exc_info, True)\n  File \"/usr/lib/python2.7/site-packages/jinja2/environment.py\", line 742, in handle_exception\n    reraise(exc_type, exc_value, tb)\n  File \"/home/erik/template.txt\", line 3, in top-level template code\n    {{ exists }}\njinja2.exceptions.UndefinedError: 'missing' is undefined\n```\n\nSo, `missing` is undefined, yet the traceback shows the `exists` line.\n\nThe above testing was done using version 2.7.1.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/276"
+  },
+  {
+    "repo": "pallets/jinja",
+    "number": 249,
+    "title": "Add Bitwise operators",
+    "body": "For completeness, the bitwise operators should be allowed. Currently, one has to do the following in order to perform a shift on an integer.\n\n``` django\n\n{{ (12).__rshift__(other) }}\n\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/jinja/issues/249"
+  }
+]

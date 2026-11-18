@@ -1,0 +1,1034 @@
+[
+  {
+    "repo": "pallets/click",
+    "number": 3822,
+    "title": "`click.Path` should be generic on `path_type`",
+    "body": "Click 8.5.0 made `click.prompt` and `click.ParamType` generic, so the return type of `click.prompt` is now normally clever enough to reveal the actual type of the value as converted from raw input.\n\nHowever, `click.Path` has a `path_type` parameter to which the input is converted, but  that information is not reflected in the return type of `click.Path.convert`, so it's always typed as `str | bytes | os.PathLike[str]`, regardless of the value of `path_type`.\n\n```python\n# mre.py\nimport pathlib\n\nfrom typing_extensions import assert_type\n\nimport click\n\nmy_type = click.Path(file_okay=False, path_type=pathlib.Path)\npath = click.prompt(\"Enter a name\", type=my_type)\n\n# expected: pathlib.Path, actual: str | bytes | os.PathLike[str]\nassert_type(path, pathlib.Path)\n```\n\nI checked the above MRE with mypy and pyright, as well as ty for completeness, on a local clone of the repo @ `main`:\n\n```console\n$ uv run mypy mre.py\nmre.py:12: error: Expression is of type \"str | bytes | PathLike[str]\", not \"Path\"  [assert-type]\n    assert_type(path, pathlib.Path)\n    ^\nFound 1 error in 1 file (checked 1 source file)\n```\n\n```console\n$ uv run pyright mre.py\nWARNING: there is a new pyright version available (v1.1.408 -> v1.1.411).\nPlease install the new version or set PYRIGHT_PYTHON_FORCE_VERSION to `latest`\n\n/Users/edgarramirez/Contrib/pallets/click/mre.py\n  /Users/edgarramirez/Contrib/pallets/click/mre.py:12:13 - error: \"assert_type\" mismatch: expected \"Path\" but received \"str | bytes | PathLike[str]\" (reportAssertTypeFailure)\n1 error, 0 warnings, 0 informations\n```\n\n```console\n$ uv run ty check mre.py\nerror[type-assertion-failure]: Argument does not have asserted type `Path`\n  --> mre.py:12:1\n   |\n12 | assert_type(path, pathlib.Path)\n   | ^^^^^^^^^^^^----^^^^^^^^^^^^^^^\n   |             |\n   |             Inferred type is `str | bytes | PathLike[str]`\ninfo: `Path` and `str | bytes | PathLike[str]` are not equivalent types\n\nFound 1 diagnostic\n```\n\nI expect the return type of `click.prompt` to match the `path_type` value passed to `click.Path`.\n\nEnvironment:\n\n- Python version: 3.14\n- Click version: 8.5.0\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3822"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 1054,
+    "title": "Use function both as API and click function?",
+    "body": "I am trying to reduce boilerplate code and it was my idea to just decorate an existing function with click decorators to make it available via click. It's unclear to me from the documentation if this use case is supported. I also search the issues for the below error message and couldn't find anything related.\r\n\r\nWhen I decorate a function with click, I am not able to use it as a function within Python:\r\n\r\nHere's the function code:\r\n\r\n```python\r\n@click.command()\r\n@click.argument('datestr')\r\ndef nasa_date_to_iso(datestr):\r\n    \"\"\"Convert the day-number based NASA format to ISO.\r\n\r\n    Parameters\r\n    ----------\r\n    datestr : str\r\n        Date string in the form Y-j\r\n\r\n    Returns\r\n    -------\r\n    Datestring in ISO standard yyyy-mm-ddTHH:MM:SS.MMMMMM\r\n    \"\"\"\r\n    date = dt.datetime.strptime(datestr, nasa_date_format)\r\n    click.echo(date.isoformat())\r\n    return date.isoformat()\r\n```\r\n\r\nSimple enough, right?\r\nI install it via setup.py like so:\r\n```\r\n    entry_points={\r\n        \"console_scripts\": [\r\n            'nasa_date_to_iso = planetpy.utils:nasa_date_to_iso',\r\n        ]\r\n    },\r\n```\r\nbut when I call it within ipython I get this:\r\n```python\r\nIn [1]: from planetpy.utils import nasa_date_to_iso\r\n\r\nIn [2]: nasa_date_to_iso('2017-090')\r\nUsage: ipython [OPTIONS] DATESTR\r\n\r\nError: Got unexpected extra arguments (0 1 7 - 0 9 0)\r\nAn exception has occurred, use %tb to see the full traceback.\r\n\r\nSystemExit: 2\r\n\r\n/Users/klay6683/miniconda3/envs/stable/lib/python3.6/site-packages/IPython/core/interactiveshell.py:2971: UserWarning: To exit: use 'exit', 'quit', or Ctrl-D.\r\n  warn(\"To exit: use 'exit', 'quit', or Ctrl-D.\", stacklevel=1)\r\n```\r\n\r\nSo, is it not possible to have the same function both as a click-cli function and an python-internal API?\r\n\r\nSystem: Py3.6 via conda on macOS 10.12.6, click version 6.7",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/1054"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 173,
+    "title": "tab completion during interactive prompts",
+    "body": "It would be nice if click would support tab completion when prompting for files and paths.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/173"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3135,
+    "title": "Add support for partial shell completion options like in Path",
+    "body": "When tab completing a path on the shell, the options only display a part and ommit the prefix path, making it much easier to read. I.e. completing \"/home/user\" will offer\n\n`Documents    Downloads    Pictures`\n\nrather than\n\n`/home/user/Documents    /home/user/Downloads    /home/user/Pictures`\n\nWhile click already supports this for paths, it would be nice if a similar feature would be implemented for custom parameters (i.e. comma separated values).\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3135"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3802,
+    "title": "`KeyboardInterrupt` during `click.prompt()` can race",
+    "body": "## Bug\n\nWhen a user uses Ctrl-C during `click.prompt()`, this may cause an unhandled exception. Seen during CI on an Ubuntu 22.04 arm github runner. The same test on Ubuntu 22.04 x64, macOS arm, Windows x64/arm succeeded. This is likely to be a race that doesn't pop up every time\n\n```\n    | --- tty: Ctrl+C aborts at a prompt ---\n    | spawn /home/runner/work/ethstaker-deposit-cli/ethstaker-deposit-cli/ethstaker_deposit-cli-c082a10-linux-arm64/deposit --language english --ignore_connectivity generate-mnemonic\n    | Please choose the language of the mnemonic word list [1. 简体中文, 2. 繁體中文, 3. čeština, 4. English, 5. Français, 6. Italiano, 7. 日本語, 8. 한국어, 9. Português, 10. Español]:  [english]: ^CTraceback (most recent call last):\n    |   File \"click/core.py\", line 1490, in main\n    |   File \"click/core.py\", line 1968, in invoke\n    |   File \"click/core.py\", line 1300, in make_context\n    |   File \"click/core.py\", line 1311, in parse_args\n    |   File \"click/core.py\", line 2686, in handle_parse_result\n    |   File \"click/core.py\", line 3508, in consume_value\n    |   File \"ethstaker_deposit/utils/click.py\", line 62, in prompt_for_value\n    |   File \"click/core.py\", line 3372, in prompt_for_value\n    |   File \"click/termui.py\", line 218, in prompt\n    |   File \"click/termui.py\", line 201, in prompt_func\n    | click.exceptions.Abort\n    | \n    | During handling of the above exception, another exception occurred:\n    | \n    | Traceback (most recent call last):\n    |   File \"deposit.py\", line 128, in <module>\n    |   File \"deposit.py\", line 121, in run\n    |   File \"click/core.py\", line 1569, in __call__\n    |   File \"click/core.py\", line 1532, in main\n    |   File \"click/utils.py\", line 337, in echo\n    |   File \"click/_compat.py\", line 509, in should_strip_ansi\n    |   File \"click/_compat.py\", line 578, in isatty\n    | KeyboardInterrupt\n    | [PYI-3853:ERROR] Failed to execute script 'deposit' due to unhandled exception!\n    | \n    | [TEST FAIL] Unexpected EOF while waiting for: Aborted\n```\n\n## Replication\n\nProbably a `click.prompt()` with Ctrl-C on a slower machine, run often enough to eventually trigger this race condition. In our case it was the free github `ubuntu-22.04-arm` runner.\n\n## Expected\n\nclick handles the KeyboardInterrupt exception gracefully, regardless of timing or architecture.\n\nEnvironment:\n\n- Python version: 3.14\n- Click version: 8.4.2\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3802"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2582,
+    "title": "The `edit` utility does not work on Windows for Visual Studio Code",
+    "body": "A new editor tab opens with the temporary file but the file is immediately deleted. To reproduce:\r\n\r\n1. Install Visual Studio Code\r\n2. Set the `EDITOR` environment variable to `code`\r\n\r\nEnvironment:\r\n\r\n- Python version: 3.11\r\n- Click version: 8.1.6\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2582"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2121,
+    "title": "`UnicodeEncodeError` on Windows when there are Unicode chars in the help message ",
+    "body": "I have come across an error when I try to print the help message for my app (`--help`) on Windows (using bash, cmd, and powershell). My help message has unicode characters in it (the project name) which is what seems to be causing the problem:\r\n\r\n* https://github.com/leouieda/nene/blob/main/nene/cli.py#L72\r\n\r\nThis PR tests running the app with `--help` and it fails on Windows and Python 3.6 and 3.10: https://github.com/leouieda/nene/pull/12\r\n\r\nHere is a minimum example that fails:\r\n\r\n```python\r\n# example.py\r\nimport click\r\n\r\n@click.command(context_settings={\"help_option_names\": [\"-h\", \"--help\"]})\r\ndef main():\r\n    \"\"\"\r\n    App description with Unicode ‣\r\n    \"\"\"\r\n    pass\r\n\r\nif __name__ == '__main__':\r\n    main()\r\n```\r\n\r\n```\r\n$ python example.py -h\r\nTraceback (most recent call last):\r\n  File \"example.py\", line 11, in <module>\r\n    main()\r\n  File \"C:\\hostedtoolcache\\windows\\Python\\3.6.8\\x64\\lib\\site-packages\\click\\core.py\", line 1128, in __call__\r\n    return self.main(*args, **kwargs)\r\n  File \"C:\\hostedtoolcache\\windows\\Python\\3.6.8\\x64\\lib\\site-packages\\click\\core.py\", line 1052, in main\r\n    with self.make_context(prog_name, args, **extra) as ctx:\r\n  File \"C:\\hostedtoolcache\\windows\\Python\\3.6.8\\x64\\lib\\site-packages\\click\\core.py\", line 914, in make_context\r\n    self.parse_args(ctx, args)\r\n  File \"C:\\hostedtoolcache\\windows\\Python\\3.6.8\\x64\\lib\\site-packages\\click\\core.py\", line 1370, in parse_args\r\n    value, args = param.handle_parse_result(ctx, opts, args)\r\n  File \"C:\\hostedtoolcache\\windows\\Python\\3.6.8\\x64\\lib\\site-packages\\click\\core.py\", line 2347, in handle_parse_result\r\n    value = self.process_value(ctx, value)\r\n  File \"C:\\hostedtoolcache\\windows\\Python\\3.6.8\\x64\\lib\\site-packages\\click\\core.py\", line 2309, in process_value\r\n    value = self.callback(ctx, self, value)\r\n  File \"C:\\hostedtoolcache\\windows\\Python\\3.6.8\\x64\\lib\\site-packages\\click\\core.py\", line 1270, in show_help\r\n    echo(ctx.get_help(), color=ctx.color)\r\n  File \"C:\\hostedtoolcache\\windows\\Python\\3.6.8\\x64\\lib\\site-packages\\click\\utils.py\", line 298, in echo\r\n    file.write(out)  # type: ignore\r\n  File \"C:\\hostedtoolcache\\windows\\Python\\3.6.8\\x64\\lib\\encodings\\cp1252.py\", line 19, in encode\r\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\r\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u2023' in position 62: character maps to <undefined>\r\n```\r\nI can confirm that it's the Unicode characters in the docstring of the function wrapped with the main `@click.command` that causes the issue. Removing them fixes the problem (the second CI run on https://github.com/leouieda/nene/pull/12). This issue does not happen on Linux and Mac.\r\n\r\nFor now, I'll remove the unicode characters so I'm not pushing a broken package but it would be great to be able to include the proper spelling of the package name in the future.\r\n\r\n<!--\r\nDescribe the expected behavior that should have happened but didn't.\r\n-->\r\n\r\nEnvironment:\r\n\r\n- Python version: 3.6 and 3.10\r\n- Click version: 8.0.3\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2121"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2869,
+    "title": "Support pathlib.Path in edit filename",
+    "body": "Would you welcome a PR to avoid this?\n\n```\nArgument of type \"Path\" cannot be assigned to parameter \"filename\" of type \"str | None\" in function \"edit\"\n  Type \"Path\" is not assignable to type \"str | None\"\n    \"Path\" is not assignable to \"str\"\n    \"Path\" is not assignable to \"None\"Pylance[reportArgumentType](https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportArgumentType)\n```\n\nEasy workaround with:\n```py\nclick.edit(filename=str(export_common.path))\n```\n\nbut would be nice if didn't need `str`.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2869"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3571,
+    "title": "`click.progressbar` doesn't show full completion when using `show_pos=True` combined with `update_min_steps`",
+    "body": "Using a `click.progressbar` with:\n- `update_min_steps` which isn't a divisor of `length`\n- `show_pos=True`\n\nwon't show full completion at the end. This can be reproduced as follows:\n\n```python\nimport time\n\nimport click\n\nwith click.progressbar(\n    range(20),\n    show_pos=True,\n    update_min_steps=7,\n) as bar:\n    for i in bar:\n        time.sleep(0.1)\n```\n\nwith (final) output in the terminal\n\n```text\n  [####################################]  14/20          \n```\n\n**Expected behaviour**: I had expected the output to show `20/20` at the end.\nThis would be consistent with the default percentage formatting, as can be seen by commenting the line `show_pos=True` and re-running the reproduction:\n\n```text\n  [####################################]  100%          \n```\n\nEnvironment:\n\n- Python version: tested with 3.12.3 and 3.14.3\n- Click version: 8.4.1\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3571"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3766,
+    "title": "docs/contributing.md describes .github/workflows/test-flask.yaml, which was removed in 97b300c",
+    "body": "`docs/contributing.md` (line 28) tells contributors:\r\n\r\n> -   A CI workflow (`.github/workflows/test-flask.yaml`) runs Flask's test suite to catch downstream regressions.\r\n\r\nThat workflow no longer exists. It was removed in 97b300c (\"add zizmor to scan workflows\", 2026-04-03); the same commit modified `lock.yaml`, `pre-commit.yaml`, `publish.yaml` and `tests.yaml` and added `zizmor.yaml`, but `test-flask.yaml` was deleted rather than updated, and the commit message doesn't mention it. The current workflow set is `lock`, `nightly`, `pre-commit`, `publish`, `tests`, `zizmor`, and none of them run Flask's suite as far as I can see.\r\n\r\nSo the docs describe a downstream safety net that isn't running. Two different fixes depending on intent, which is why I'm asking rather than sending a patch:\r\n\r\n- **If dropping it was deliberate**: happy to open a PR removing that bullet from `docs/contributing.md`.\r\n- **If it was collateral** in the zizmor pass, then the Flask downstream regression check has been off since April and the docs are the only thing that noticed.\r\n\r\nFound this with a tool I'm building that verifies documentation claims against the repository and its git history; the \"documented file was deleted and never restored\" check is what flagged it. Happy to send either patch, or neither if you'd rather handle it.\r\n\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3766"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3700,
+    "title": "Deprecate `isolated_filesystem()`",
+    "body": "As @davidism pointed out in https://github.com/pallets/click/issues/3123#issuecomment-3433922728 :\n\n> Nowadays you can also use `pytest` directly for this, or use with `tempfile.TemporaryDirectory()`. I don't think we'd add `isolated_filesystem` today, I think it was added before Python 3 and `pytest` were in common use.\n\nRelates to: https://github.com/pallets/click/issues/3501",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3700"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3572,
+    "title": "ANSI codes not stripped from click.confirm after upgrading to click 8.4",
+    "body": "<!--\nThis issue tracker is a tool to address bugs in Click itself. Please use\nGitHub Discussions or the Pallets Discord for questions about your own code.\n\nReplace this comment with a clear outline of what the bug is.\n-->\nI had failing unit tests after upgrading to click 8.4.1. I was able to address some \nby using `runner.invoke(cmd, color=False)`, but that didn't help for commands\nthat use `click.confirm()`\n\n<!--\nDescribe how to replicate the bug.\n\nInclude a minimal reproducible example that demonstrates the bug.\nInclude the full traceback if there was an exception.\n-->\n\nThis test script `test_repro.py` replicates the issue.\n```\nimport click\nfrom click.testing import CliRunner\n\n\n@click.command()\ndef cmd():\n    click.echo(click.style('Hello World!', fg='green'))\n\n\n@click.command()\ndef cmd_confirm():\n    click.confirm(click.style('Hello World!', fg='green'), abort=True)\n\n\ndef test_echo_strips_ansi_with_color_false():\n    runner = CliRunner()\n    result = runner.invoke(cmd, color=False)\n    assert result.output == \"Hello World!\\n\"\n\n\ndef test_confirm_strips_ansi_with_color_false():\n    runner = CliRunner()\n    result = runner.invoke(cmd_confirm, input=\"Y\", color=False)\n    assert result.output == \"Hello World! [y/N]: Y\\n\"  # FAILS: ANSI codes present\n```\n\nWith click 8.3.3 both tests pass. With click 8.4.0 and 8.4.1, the `test_confirm_strips_ansi_with_color_false` test fails:\n\n```\nuvx --with click==8.4 pytest test_repro.py\n...\n================================================ FAILURES ================================================\n_______________________________ test_confirm_strips_ansi_with_color_false ________________________________\n\n    def test_confirm_strips_ansi_with_color_false():\n        runner = CliRunner()\n        result = runner.invoke(cmd_confirm, input=\"Y\", color=False)\n>       assert result.output == \"Hello World! [y/N]: Y\\n\"  # FAILS: ANSI codes present\n```\n\n<!--\nDescribe the expected behavior that should have happened but didn't.\n-->\nThe ansi codes should be stripped when running click.confirm, as they are for click.echo.\n\nEnvironment:\n\n- Python version: 3.13\n- Click version: 8.4.1\n- MacOS\n\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3572"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2877,
+    "title": "[Python forward compat] click.types.Path.covert: BytesWarning: Comparison between bytes and string",
+    "body": "So I've hit this through pip-tools' `pip-compile` executable some time ago but forgot to report immediately.\n\nI tend to run Python with strictness like `python -I -s -E -bb -Werror -m piptools compile --some --args`. And that's how I've found this warning. I imagine, it's easy to address by changing the check here: https://github.com/pallets/click/blob/c9f7d9d/src/click/types.py#L929C64-L929C75. Perhaps, by converting the data type.\n\nHere's a minimal repro. In needs a modern enough Python for `-bb` IIRC.\n```console\n$ python -Im pip install Click\n$ python -bb -Werror\nPython 3.12.9 (main, Feb 22 2025, 21:46:24) [GCC 14.2.1 20241221] on linux\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n>>> from click.types import Path\n>>> Path(allow_dash=True).convert('', '', '')\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\n  File \"/path/to/venv/lib/python3.12/site-packages/click/types.py\", line 865, in convert\n    is_dash = self.file_okay and self.allow_dash and rv in (b\"-\", \"-\")\n                                                     ^^^^^^^^^^^^^^^^^\nBytesWarning: Comparison between bytes and string\n```\n\nEnvironment:\n\n- Python version: 3.12.9\n- Click version: 8.1.8\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2877"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3476,
+    "title": "`test_flag_group_competition_duplicate_option_name` relies on `-Werror`",
+    "body": "The following test fails when the test suite of click-8.4.0 is run with `-Wdefault`:\n\n```pytb\n$ pytest -Wdefault tests/test_options.py::test_flag_group_competition_duplicate_option_name\n========================================================= test session starts =========================================================\nplatform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0\nrootdir: /tmp/click-8.4.0\nconfigfile: pyproject.toml\ncollected 1 item                                                                                                                      \n\ntests/test_options.py F                                                                                                         [100%]\n\n============================================================== FAILURES ===============================================================\n__________________________________________ test_flag_group_competition_duplicate_option_name __________________________________________\n\nrunner = <click.testing.CliRunner object at 0x7fa0db07e660>\n\n    def test_flag_group_competition_duplicate_option_name(runner):\n        \"\"\"The same option name declared twice on the same command is a user\n        error.\n        \"\"\"\n    \n        @click.command()\n        @click.option(\"--xyz\", default=\"first\")\n        @click.option(\"--xyz\", default=\"second\")\n        def cli(xyz):\n            click.echo(repr(xyz), nl=False)\n    \n        result = runner.invoke(cli, [])\n>       assert result.exit_code == 1\nE       assert 0 == 1\nE        +  where 0 = <Result okay>.exit_code\n\ntests/test_options.py:3248: AssertionError\n========================================================== warnings summary ===========================================================\ntests/test_options.py::test_flag_group_competition_duplicate_option_name\n  /tmp/click-8.4.0/src/click/core.py:1262: UserWarning: The parameter --xyz is used more than once. Remove its duplicate as parameters should be unique.\n    parser = self.make_parser(ctx)\n\ntests/test_options.py::test_flag_group_competition_duplicate_option_name\n  /tmp/click-8.4.0/src/click/core.py:1255: UserWarning: The parameter --xyz is used more than once. Remove its duplicate as parameters should be unique.\n    self.parse_args(ctx, args)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================================================= short test summary info =======================================================\nFAILED tests/test_options.py::test_flag_group_competition_duplicate_option_name - assert 0 == 1\n==================================================== 1 failed, 2 warnings in 0.13s ====================================================\n```\n\nWe are running tests with `-Wdefault`, since it is important that they don't regress over unrelated warnings. If they expect a warning, they should check for a warning rather than rely on the pytest invocation implicitly turning warnings into exceptions.\n\nEnvironment:\n\n- Python version: 3.13.13\n- Click version: 8.4.0\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3476"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3242,
+    "title": "Flush `stdin` after writing to a pager",
+    "body": "I would love to see text immediately in this toy example:\n```python\nimport click\nimport os\nimport time\n\ndef _generator():\n    for i in range(10000):\n        time.sleep(0.01)\n        yield f\"{i+1:07}\\n\"\n\n@click.command\ndef main():\n    os.environ.setdefault(\"LESS\", \"-XFR\")\n    click.echo_via_pager(_generator())\n\nmain()\n```\nAs it is currently, nothing will show until 512 lines have been `yield`ed.\nI suspect a flush after this line would do the trick:\nhttps://github.com/pallets/click/blob/cdab890e57a30a9f437b88ce9652f7bfce980c1f/src/click/_termui_impl.py#L468\n\nRelated: #2542 ☹️",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3242"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2542,
+    "title": "`echo_via_pager` not working as expected with generators",
+    "body": "This issue tracker is a tool to address bugs in Click itself. Please use\r\nPallets Discord or Stack Overflow for questions about your own code.\r\n\r\necho_via_pager not working as expected with generators\r\n<!--\r\n\r\n-->\r\n`\r\nimport time\r\ndef count():\r\n  for i in range(10)\r\n   time.sleep(1)\r\n   yield  \"\\ncount {i}\"\r\n`\r\n<!--\r\n\r\nclick.echo_with_pager(count)\r\n`\r\n-->\r\nExpected: The output should be printed one by one\r\nOriginal: The output is printed in one shot, and the screen is blank for about 10 seconds\r\n<!--\r\n\r\n-->\r\n\r\nEnvironment:\r\n\r\n- Python version: 3.10\r\n- Click version: 8.1.3\r\n<!--\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2542"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2634,
+    "title": "`tests/test_types.py::test_file_surrogates` test is missing the `skipif not _non_utf8_filenames_supported` marker",
+    "body": "The title says it all. There are a bunch of tests in [`tests/test_types.py`](https://github.com/pallets/click/blob/ca5e1c3d75e95cbc70fa6ed51ef263592e9ac0d0/tests/test_types.py#L147) that do some checks with non-utf8 filenames. Some filesystems don't support non-utf8 filenames, so the main `test_path_surrogates` test is conditionally disabled with\r\n\r\n```python\r\n@pytest.mark.skipif(\r\n    not _non_utf8_filenames_supported(),\r\n    reason=\"The current OS or FS doesn't support non-UTF-8 filenames.\",\r\n)\r\n```\r\n\r\nHowever, the next two tests (`test_file_surrogates` and `test_file_error_surrogates`) are missing these marks.\r\n\r\nThe fix should be pretty simple - add the above-mentioned decorator to these tests as well.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2634"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2983,
+    "title": "Add `help` to argument parameter",
+    "body": "We are now open to a PR for adding a help kwarg to arguments in the same way that there is for options and adjusting the help pages to account for this. \n\n[Help Pages](https://click.palletsprojects.com/en/stable/documentation/#help-pages)\n\n\n```\n@click.command()\n@click.argument('name', help='The name to print')\n@click.option('--count', default=1, help='number of greetings')\ndef hello(name: str, count: int):\n    \"\"\"This script prints hello and a name one or more times.\"\"\"\n    for x in range(count):\n        if name:\n            click.echo(f\"Hello {name}!\")\n        else:\n            click.echo(\"Hello!\")\n```",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2983"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3059,
+    "title": "With `invoke_without_command` set, commands are not marked as optional",
+    "body": "Having\n\n```python\n@click.group(invoke_without_command=True)\ndef main():\n    if ctx.invoked_subcommand is not None:\n        return\n    # do something by default\n```\n\nI expect `--help` to output:\n\n```\nUsage: app.py [OPTIONS] [COMMAND] [ARGS]...\n```\n\nBut it outputs:\n\n```\nUsage: app.py [OPTIONS] COMMAND [ARGS]...\n```\n\nEnvironment:\n\n- Python version: 3.11.8\n- Click version: 8.2.0\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3059"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3043,
+    "title": "Multi-line help text is not handled correctly in fish",
+    "body": "Multi-line help text (e.g. `help=\"\\b\\nAttachment with explicit mimetype,\\n--at image.jpg image/jpeg\"`) causes error when doing shell completion in fish.\n\n# How to replicate\n\nFrom [simonw/llm](https://github.com/simonw/llm/blob/921fae9a0ad3d664a872e35e4639b16089b61c1d/llm/cli.py#L365-L373):\n\n```py\n@click.option(\n    \"attachment_types\",\n    \"--at\",\n    \"--attachment-type\",\n    type=(str, str),\n    multiple=True,\n    callback=attachment_types_callback,\n    help=\"\\b\\nAttachment with explicit mimetype,\\n--at image.jpg image/jpeg\",\n)\n```\n\nType `llm --`, then press <kbd>Tab</kbd> to complete, observe the following error output:\n\n```shellsession\n$ llm --\nstring split: --at image.jpg image/jpeg: unknown option\n\n/opt/homebrew/share/fish/vendor_completions.d/llm.fish (line 1):\nstring split \",\" $completion\n^\nin command substitution\n\tcalled on line 5 of file /opt/homebrew/share/fish/vendor_completions.d/llm.fish\nin function '_llm_completion'\nin command substitution\n\n(Type 'help string' for related documentation)\ntest: Missing argument at index 3\n= dir\n      ^\n/opt/homebrew/share/fish/vendor_completions.d/llm.fish (line 7):\n        if test $metadata[1] = \"dir\";\n           ^\nin function '_llm_completion'\nin command substitution\ntest: Missing argument at index 3\n= file\n       ^\n/opt/homebrew/share/fish/vendor_completions.d/llm.fish (line 9):\n        else if test $metadata[1] = \"file\";\n                ^\nin function '_llm_completion'\nin command substitution\ntest: Missing argument at index 3\n= plain\n        ^\n/opt/homebrew/share/fish/vendor_completions.d/llm.fish (line 11):\n        else if test $metadata[1] = \"plain\";\n                ^\nin function '_llm_completion'\nin command substitution\nstring split: --at image.jpg image/jpeg: unknown option\n\n/opt/homebrew/share/fish/vendor_completions.d/llm.fish (line 1):\nstring split \",\" $completion\n^\nin command substitution\n\tcalled on line 5 of file /opt/homebrew/share/fish/vendor_completions.d/llm.fish\nin function '_llm_completion'\nin command substitution\n\n(Type 'help string' for related documentation)\ntest: Missing argument at index 3\n= dir\n      ^\n/opt/homebrew/share/fish/vendor_completions.d/llm.fish (line 7):\n        if test $metadata[1] = \"dir\";\n           ^\nin function '_llm_completion'\nin command substitution\ntest: Missing argument at index 3\n= file\n       ^\n/opt/homebrew/share/fish/vendor_completions.d/llm.fish (line 9):\n        else if test $metadata[1] = \"file\";\n                ^\nin function '_llm_completion'\nin command substitution\ntest: Missing argument at index 3\n= plain\n        ^\n/opt/homebrew/share/fish/vendor_completions.d/llm.fish (line 11):\n        else if test $metadata[1] = \"plain\";\n                ^\nin function '_llm_completion'\nin command substitution\n```\n\n# Analysis\n\nObtaining raw completion from click:\n\n```shellsession\n$ env _LLM_COMPLETE=fish_complete COMP_WORDS='llm --' COMP_CWORD='--' llm\nplain,--system\tSystem prompt to use\nplain,--model\tModel to use\nplain,--database\tPath to log database\nplain,--query\tUse first model matching these strings\nplain,--attachment\tAttachment path or URL or -\nplain,--at\nAttachment with explicit mimetype,\n--at image.jpg image/jpeg\nplain,--attachment-type\nAttachment with explicit mimetype,\n--at image.jpg image/jpeg\nplain,--tool\tName of a tool to make available to the model\nplain,--functions\tPython code block or file path defining functions to register as tools\nplain,--td\tShow full details of tool executions\nplain,--tools-debug\tShow full details of tool executions\nplain,--ta\tManually approve every tool execution\nplain,--tools-approve\tManually approve every tool execution\nplain,--cl\tHow many chained tool responses to allow, default 5, set 0 for unlimited\nplain,--chain-limit\tHow many chained tool responses to allow, default 5, set 0 for unlimited\nplain,--option\tkey/value options for the model\nplain,--schema\tJSON schema, filepath or ID\nplain,--schema-multi\tJSON schema to use for multiple results\nplain,--fragment\tFragment (alias, URL, hash or file path) to add to the prompt\nplain,--sf\tFragment to add to system prompt\nplain,--system-fragment\tFragment to add to system prompt\nplain,--template\tTemplate to use\nplain,--param\tParameters for template\nplain,--no-stream\tDo not stream output\nplain,--no-log\tDon't log to database\nplain,--log\tLog prompt and response to the database\nplain,--continue\tContinue the most recent conversation.\nplain,--cid\tContinue the conversation with the given ID.\nplain,--conversation\tContinue the conversation with the given ID.\nplain,--key\tAPI key to use\nplain,--save\tSave prompt with this template name\nplain,--async\tRun prompt asynchronously\nplain,--usage\tShow token usage\nplain,--extract\tExtract first fenced code block\nplain,--xl\tExtract last fenced code block\nplain,--extract-last\tExtract last fenced code block\nplain,--help\tShow this message and exit.\n```\n\nObserve that option with multi-line help text is not escaped/handled:\n\n```\nplain,--at\nAttachment with explicit mimetype,\n--at image.jpg image/jpeg\nplain,--attachment-type\nAttachment with explicit mimetype,\n--at image.jpg image/jpeg\n```\n\nWhich causes unexpected arguments passed to `string split`, causing the error:\n\nhttps://github.com/pallets/click/blob/9b13d463a4e2b455310f39122d5e6135abf3835e/src/click/shell_completion.py#L183\n\n# Environment\n\n- Python version: 3.13.7\n- Click version: 8.2.1\n- Fish version: 4.0.2",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3043"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3502,
+    "title": "fish completion is broken in 8.4.1",
+    "body": "Commit 19fd4d6 (#3126) broke fish completion.\n\n## Unquoted `\\n`\n\n```diff\n-        set -l metadata (string split \",\" $completion);\n+        set -l metadata (string split \\n $completion);\n```\nWithout quotes, `\\n` is evaluated as a literal newline, which splits the command across lines in the generated script:\n```\n        set -l metadata (string split\n $completion);\n```\n\n## Command substitution flattens newlines\n\nEven if quoted, `\\n` fails as a separator. The Python side outputs:\n```python\n        return f\"{item.type}\\n{value}\\n{help_escaped}\"\n```\nBut when captured via command substitution in Fish, the newlines are flattened:\n```fish\n    set -l response (env %(complete_var)s=fish_complete COMP_WORDS=(commandline -cp) \\\nCOMP_CWORD=(commandline -t) %(prog_name)s);\n```\n\n---\n\nTo support multi-line, maybe we just need to escape `\\n` in help message while keeping the old separator? Not 100% sure.\n\nEither way, we should probably revert this change first to fix the broken completion",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3502"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3489,
+    "title": "Advanced Patterns example uses Python 2 `urllib.urlopen`",
+    "body": "The examples in the **\"Parameter Modifications\"** section of the *Advanced Patterns* guide (`docs/advanced.md`) use `urllib.urlopen(...)`, which is a Python 2 API. It was removed in Python 3, where the function lives at `urllib.request.urlopen`.\n\n### Where\n\nPage: https://click.palletsprojects.com/en/stable/advanced/#parameter-modifications\nSource: `docs/advanced.md`, \"Parameter Modifications\" section.\n\n```python\nimport urllib\n\ndef open_url(ctx, param, value):\n    if value is not None:\n        ctx.params['fp'] = urllib.urlopen(value)\n    return value\n```\n\nThe same `urllib.urlopen` call also appears in the second example of that section.\n\n### Reproduce\n\nCopy the snippet and run it on any Python 3 interpreter:\n\n```pycon\n>>> import urllib\n>>> urllib.urlopen(\"https://example.com\")\nAttributeError: module 'urllib' has no attribute 'urlopen'\n```\n\n### Expected\n\nThe examples should use `import urllib.request` and `urllib.request.urlopen(value)`, so they run on the supported Python versions.\n\n### Also (minor wording)\n\nIn the **\"Forwarding Unknown Options\"** section, one sentence reads:\n\n> If the command would be **ignored** with `-va` then the `-v` part would be handled by Click ...\n\nGiven the context (the `-v` option *is* recognized and handled), this should read \"**invoked** with `-va`\".\n\nI'd be happy to open a PR with these changes.\n\nEnvironment:\n\n- Python version: any 3.x\n- Click version: docs on `main` (and current stable docs)",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3489"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3360,
+    "title": "Empty output from `HelpFormatter.write_usage` for a program without arguments",
+    "body": "If no `args` are passed to `HelpFormatter.write_usage`, the Usage line is not printed.\n\n### Reproduction\n\n```python\nimport click\n\nf = click.HelpFormatter()\nf.write_usage(\"program\")\nprint(f.getvalue())\n```\n<!--\nDescribe how to replicate the bug.\n\nInclude a minimal reproducible example that demonstrates the bug.\nInclude the full traceback if there was an exception.\n-->\n\n### Expected output\n```\nUsage: program\n```\n\n### Actual output\n(an empty line)\n\n### Environment\n\n- Python version: 3.12.3\n- Click version: 8.3.1\n\n### Additional information\n\nWe use `click` for a CLI program with interactive mode. We are about to use `click.HelpFormatter` to print help for internal commands, some of which do not accept any arguments (`exit`, for example).",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3360"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3384,
+    "title": "Click 8.3.3 breaks `pytest` when stream `fd` is duplicated",
+    "body": "Starting from Click 8.3.3, I've noticed that it breaks pytest when the standard stream is duplicated with `os.dup2`.\n\nI guess the related change is: https://github.com/pallets/click/pull/3244\n\nI am not sure if this is an expected behaviro of that change, but for me it was a bit surprising behavior, hence reporting.\n\n__Reproducer__\n\n```python\n\"\"\"\nPasses on click <=8.3.2, crashes pytest on click 8.3.3.\n\n    pip install click==8.3.3 pytest\n    pytest test_click_fileno_regression.py  # OSError: Illegal seek\n\n    pip install click==8.3.2\n    pytest test_click_fileno_regression.py   # passes\n\"\"\"\n\nimport io\nimport os\nimport sys\n\nimport click\nfrom click.testing import CliRunner\n\n\n@click.command()\ndef cmd():\n    # Many libraries (build tools, logging tees, subprocess wrappers)\n    # use os.dup2 on sys.stdout.fileno() to redirect output at the\n    # fd level.\n    #\n    # On click <=8.3.2, sys.stdout.fileno() inside CliRunner raises\n    # UnsupportedOperation.\n    #\n    # On click 8.3.3, sys.stdout.fileno() returns the original\n    # stream's fd\n    try:\n        stdout_fd = sys.stdout.fileno()\n    except io.UnsupportedOperation:\n        click.echo(\"fileno() not available (click <=8.3.2)\")\n        return\n\n    r, w = os.pipe()\n    os.dup2(w, stdout_fd)\n    os.close(w)\n    os.close(r)\n    click.echo(\"hello\")\n\n\ndef test_invoke():\n    runner = CliRunner()\n    result = runner.invoke(cmd)\n    assert result.exit_code == 0\n```\n\n```pytb\nTraceback (most recent call last):\n  File \"/Users/gyeongjae/Desktop/github/pyodide/fork/pyodide-build/.venv/bin/pytest\", line 10, in <module>\n    sys.exit(console_main())\n             ^^^^^^^^^^^^^^\n  File \"/Users/gyeongjae/Desktop/github/pyodide/fork/pyodide-build/.venv/lib/python3.12/site-packages/_pytest/config/__init__.py\", line 223, in console_main\n    code = main()\n           ^^^^^^\n  File \"/Users/gyeongjae/Desktop/github/pyodide/fork/pyodide-build/.venv/lib/python3.12/site-packages/_pytest/config/__init__.py\", line 199, in main\n    ret: ExitCode | int = config.hook.pytest_cmdline_main(config=config)\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/gyeongjae/Desktop/github/pyodide/fork/pyodide-build/.venv/lib/python3.12/site-packages/pluggy/_hooks.py\", line 512, in __call__\n    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/gyeongjae/Desktop/github/pyodide/fork/pyodide-build/.venv/lib/python3.12/site-packages/pluggy/_manager.py\", line 120, in _hookexec\n    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/gyeongjae/Desktop/github/pyodide/fork/pyodide-build/.venv/lib/python3.12/site-packages/pluggy/_callers.py\", line 167, in _multicall\n    raise exception\n  File \"/Users/gyeongjae/Desktop/github/pyodide/fork/pyodide-build/.venv/lib/python3.12/site-packages/pluggy/_callers.py\", line 121, in _multicall\n    res = hook_impl.function(*args)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/gyeongjae/Desktop/github/pyodide/fork/pyodide-build/.venv/lib/python3.12/site-packages/_pytest/main.py\", line 365, in pytest_cmdline_main\n    return wrap_session(config, _main)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/gyeongjae/Desktop/github/pyodide/fork/pyodide-build/.venv/lib/python3.12/site-packages/_pytest/main.py\", line 360, in wrap_session\n    config._ensure_unconfigure()\n  File \"/Users/gyeongjae/Desktop/github/pyodide/fork/pyodide-build/.venv/lib/python3.12/site-packages/_pytest/config/__init__.py\", line 1171, in _ensure_unconfigure\n    self._cleanup_stack.close()\n  File \"/Users/gyeongjae/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/contextlib.py\", line 618, in close\n    self.__exit__(None, None, None)\n  File \"/Users/gyeongjae/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/contextlib.py\", line 610, in __exit__\n    raise exc_details[1]\n  File \"/Users/gyeongjae/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/contextlib.py\", line 595, in __exit__\n    if cb(*exc_details):\n       ^^^^^^^^^^^^^^^^\n  File \"/Users/gyeongjae/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/contextlib.py\", line 478, in _exit_wrapper\n    callback(*args, **kwds)\n  File \"/Users/gyeongjae/Desktop/github/pyodide/fork/pyodide-build/.venv/lib/python3.12/site-packages/_pytest/capture.py\", line 778, in stop_global_capturing\n    self._global_capturing.pop_outerr_to_orig()\n  File \"/Users/gyeongjae/Desktop/github/pyodide/fork/pyodide-build/.venv/lib/python3.12/site-packages/_pytest/capture.py\", line 659, in pop_outerr_to_orig\n    out, err = self.readouterr()\n               ^^^^^^^^^^^^^^^^^\n  File \"/Users/gyeongjae/Desktop/github/pyodide/fork/pyodide-build/.venv/lib/python3.12/site-packages/_pytest/capture.py\", line 706, in readouterr\n    out = self.out.snap() if self.out else \"\"\n          ^^^^^^^^^^^^^^^\n  File \"/Users/gyeongjae/Desktop/github/pyodide/fork/pyodide-build/.venv/lib/python3.12/site-packages/_pytest/capture.py\", line 591, in snap\n    self.tmpfile.seek(0)\nOSError: [Errno 29] Illegal seek\n```\n\nEnvironment:\n\n- Python version: 3.12.3\n- Click version: 8.3.3\n\n---\n\n\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3384"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2779,
+    "title": "Wrong error message when wrong multicharacter short option is passed",
+    "body": "Sometime it is usefull to have not only single char short option like `-d` but something like `-dbg`.\r\n\r\nThey are already working as-is (even though not documented), but when passing a wrong option such as `-dbgwrong`, the error displays: `No such option: -d` instead of `No such option: -dbg`.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2779"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3403,
+    "title": "\"default\" behaviour in Click 8.3.x changes with enable/disable boolean flag pair",
+    "body": "In click 8.2.1, defining a boolean option with both a \"enable\" and \"disable\" flag option works with the following logic:\n```\nimport click\n\n@click.command(\"foo\")\n@click.option(\"--without-xyz\", \"enable_xyz\", flag_value=False)\n@click.option(\"--with-xyz\", \"enable_xyz\", flag_value=True, default=True)\ndef foo(enable_xyz):\n    print(f\"enable_xyz = {enable_xyz}\")\n\nfoo()\n```\n\nWith this code, using click 8.2.1:\n* `python foo.py --with-xyz` returns True\n* `python foo.py --without-xyz` returns False\n* `python foo.py --with-xyz --without-xyz` returns False\n* `python foo.py --without-xyz --with-xyz` returns True\n* `python foo.py` returns False\n\nIn click 8.3.0, the output is the same for every case except the \"default\"  case - `python foo.py` returns True.\n\nThis is an extension of #3111; this [pattern is used in MkDocs](https://github.com/mkdocs/mkdocs/blob/2862536793b3c67d9d83c33e0dd6d50a791928f8/mkdocs/__main__.py#L257) (as of MkDocs 1.6.1) (see mkdocs/mkdocs#4032).\n\nHowever, the fix for #3111 (#3239) doesn't fix this edge case.\n\nThe Properdocs fork of MkDocs [has worked around the issue](https://github.com/ProperDocs/properdocs/pull/14/files).\n\nEnvironment:\n\n- Python version: 3.12, 3.13, 3.14\n- Click version: 8.3.0, 8.3.3\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3403"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2745,
+    "title": "Modifying `default_map` in callback behaves differently between click 7.1.2 and 8.0.0",
+    "body": "Hi,\r\n\r\nI'm trying to upgrade an application from click 7 to click 8 but I'm running into issues.\r\nI was able to reduce the issue to a minimal reproducible example.\r\n\r\nThe following program behaves differently in 7.1.2 and 8.0.0\r\n\r\n```\r\nimport click\r\n\r\ndef load_settings(ctx, param, value):\r\n    # breakpoint()\r\n    if (value is not None):\r\n        ctx.default_map['general_foo'] = value + 'foo'\r\n        ctx.default_map['general_bar'] = value + 'bar'\r\n\r\ndef sanitize_foo(ctx, param, val):\r\n    click.echo('sanitizing foo')\r\n    return val\r\n\r\ndef sanitize_bar(ctx, param, val):\r\n    click.echo('sanitizing bar')\r\n    return val\r\n\r\ndef print_help(ctx, param, value):\r\n    if value:\r\n        ctx.exit()\r\n\r\n@click.command()\r\n@click.option('--general-foo', '--foo', default=None, nargs=2, callback=sanitize_foo)\r\n@click.option('--general-bar', '--bar', default=None, callback=sanitize_bar)\r\n@click.option('--settings', callback=load_settings, default=None, is_eager=True)\r\n@click.pass_context\r\ndef hello(ctx, settings, general_bar, general_foo):\r\n    click.echo(general_foo)\r\n    click.echo(general_bar)\r\n\r\n@click.group()\r\n@click.option('--settings', hidden=True)\r\n@click.pass_context\r\ndef cli(ctx, settings):\r\n    ctx.default_map['hello'] = { 'settings': settings }\r\n\r\ncli.add_command(hello)\r\n\r\nif __name__ == '__main__':\r\n    cli(default_map={})\r\n```\r\n\r\nIn click 7.1.2:\r\n```\r\n(.venv) dezsiszabi@SZABI-PC:~/projects/click-test$ python3 main.py hello --settings hello\r\nsanitizing foo\r\nsanitizing bar\r\n('h', 'e', 'l', 'l', 'o', 'f', 'o', 'o')\r\nhellobar\r\n```\r\n\r\nIn click 8.0.0 (and later):\r\n```\r\n(.venv) dezsiszabi@SZABI-PC:~/projects/click-test$ python3 main.py hello --settings hello\r\nUsage: main.py hello [OPTIONS]\r\nTry 'main.py hello --help' for help.\r\n\r\nError: Invalid value for '--general-foo' / '--foo': Value must be an iterable.\r\n```\r\n\r\nI assume this difference was introduced intentionally, but I'm having a hard time adapting my code and even after reading the changelog multiple times I'm not sure which change in 8.0.0 is causing it exactly.\r\n\r\nNote: the application is basically trying to do this https://jwodder.github.io/kbits/posts/click-config/\r\nI assume the original developer of the application used this guide as well, but unfortunately this is now breaking with 8.0.0 :)\r\n\r\nAny help is appreciated.\r\n\r\nEnvironment:\r\n\r\n- Python version: 3.12.3\r\n- Click version: 8.0.0 to latest\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2745"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2790,
+    "title": "Nested command option shadowing `-h` prints wrong suggestion",
+    "body": "<!--\nThis issue tracker is a tool to address bugs in Click itself. Please use\nGitHub Discussions or the Pallets Discord for questions about your own code.\n\nReplace this comment with a clear outline of what the bug is.\n-->\n\nClick prints an incorrect suggestion when using a combination of nested command and required argument. This happens when the nested command shadows the `-h` option shortcut of the main command which Click apparently tolerates.\n\n<!--\nDescribe how to replicate the bug.\n\nInclude a minimal reproducible example that demonstrates the bug.\nInclude the full traceback if there was an exception.\n-->\n\n## Replication\n\nSee https://github.com/tumidi/click-subcommand-help-message.\n\n```shell-session\n$ click-test-cli foo\nUsage: click-test-cli foo [OPTIONS] REQUIRED_ARG\nTry 'click-test-cli foo -h' for help.\n\nError: Missing argument 'REQUIRED_ARG'.\n```\n\nBut, actually running the suggested `click-test-cli foo -h` prints\n\n```shell-session\n$ click-test-cli foo -h\nError: Option '-h' requires an argument.\n```\n\nInterestingly, Click correctly detects the shadowing of the option when printing the foo command help and prints a consistent help page.\n\n```shell-session\n$ click-test-cli foo --help\nUsage: click-test-cli foo [OPTIONS] REQUIRED_ARG\n\nOptions:\n  -h, --host TEXT\n  --help           Show this message and exit.\n```\n\n### Python code\n\n```py\n@click.group(context_settings={\"help_option_names\": [\"-h\", \"--help\"]})\ndef cli():\n    pass\n\n\n@click.command()\n@click.argument(\"required_arg\")\n@click.option(\"--host\", \"-h\", \"host\", default=\"localhost\")\ndef foo(required_arg, host):\n    click.echo(f\"Foo command required_arg={required_arg} host={host}\")\n\n\ncli.add_command(foo)\n```\n\n<!--\nDescribe the expected behavior that should have happened but didn't.\n-->\n\n## Possible solutions\n\nFix the generated message, so it prints `Try 'click-test-cli foo --help' for help.` in this case.\n\nEnvironment:\n\n- Python version: 3.12.6\n- Click version: 8.2.0.dev0 d73083e\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2790"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2012,
+    "title": "`flag_value` is passed through `ParamType.convert`",
+    "body": "In upgrading from click 7.1.2 to 8.0.1, our click-based CLI started failing with type errors. We have click options whose default values are classes, and as of 8.0.1 they're being converted to strings.\n\nThis script is able to reproduce the behavior change:\n\n```python\nimport click\n\nclass Class1:\n    pass\n\nclass Class2:\n    pass\n\n@click.command()\n@click.option(\"--cls1\", \"config_cls\", flag_value=Class1, default=True)\n@click.option(\"--cls2\", \"config_cls\", flag_value=Class2)\ndef test(config_cls):\n    print(config_cls)\n    print(type(config_cls))\n\nif __name__ == \"__main__\":\n    test()\n\n```\n\nBehavior with click 7.1.2:\n```shell-session\n# pip freeze | grep click\nclick==7.1.2\n# python test.py\n<class '__main__.Class1'>\n<class 'type'>\n```\n\nBehavior with 8.0.1:\n```shell-session\n# pip freeze | grep click\nclick==8.0.1\n# python test.py\n<class '__main__.Class1'>\n<class 'str'>\n```\n\nThe type of `config_cls` should be the class we specified, not 'str'.\n\n\nEnvironment:\n\n- Python version: 3.9\n- Click version: 8.0.1\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2012"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2879,
+    "title": "Reorder ParameterSource",
+    "body": "Please consider sorting ParameterSource in order of \"explicitness\", as this\nwould make it easier to test for how explicit a parameter is.\n\nCurrently, the values are:\n\n1. COMMANDLINE\n2. ENVIRONMENT\n3. DEFAULT\n4. DEFAULT_MAP\n5. PROMPT\n\nIf I want to test whether a parameter has been explicitly provided, I need to\ntest whether that is not `DEFAULT` and not `DEFAULT_MAP`.\n\nConsider this order instead:\n\n1. PROMPT\n2. COMMANDLINE\n3. ENVIRONMENT\n4. DEFAULT_MAP\n5. DEFAULT\n\nNow I can test `x < DEFAULT_MAP`. And if https://github.com/pallets/click/discussions/2878 goes anywhere, `CONFIGFILE` could be slotted in before `DEFAULT_MAP`.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2879"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2865,
+    "title": "`CliRunner` terminates with `io.UnsupportedOperation` when using `faulthandler`",
+    "body": "It looks like the output redirection for `CliRunner` doesn't play nicely with Python's `faulthandler` library, as it terminates prematurely with the following backtrace (slightly modified to hide local filesystem details):\n\n```pytb\nTraceback (most recent call last):\n  File \"$CONDA_PREFIX/lib/python3.11/site-packages/click/testing.py\", line 408, in invoke\n    return_value = cli.main(args=args or (), prog_name=prog_name, **extra)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"$CONDA_PREFIX/lib/python3.11/site-packages/click/core.py\", line 1078, in main\n    rv = self.invoke(ctx)\n         ^^^^^^^^^^^^^^^^\n  File \"$CONDA_PREFIX/lib/python3.11/site-packages/click/core.py\", line 1434, in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"$CONDA_PREFIX/lib/python3.11/site-packages/click/core.py\", line 783, in invoke\n    return __callback(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./test_click.py\", line 12, in main\n    faulthandler.enable()\nio.UnsupportedOperation: fileno\n```\n\nCode for `test_click.py` that replicates the problem:\n\n```python\nimport click\nfrom click.testing import CliRunner\nimport faulthandler\nimport traceback\n\n@click.command()\n@click.option('--flag', type=bool, default=True)\ndef main(flag):\n    print(\"Executing main function...\")\n    if flag:\n      print(\"Registering faulthandler\")\n      faulthandler.enable()\n    print(\"Finished executing main function.\")\n\nif __name__ == '__main__':\n    flag_value = True\n    runner = CliRunner()\n    result = runner.invoke(main, [\"--flag\", flag_value])\n    print(\"Exit code = %d; contents of stdout:\\n%s\" % (result.exit_code, result.stdout))\n    if result.exit_code != 0:\n        traceback.print_exception(result.exc_info[1])\n```\n\nThe code was then executed by running `python test_click.py`\n\nI assume the problem is that the `CliRunner` redirected stderr doesn't implement some details that are required by the `faulthandler` signal handler registration. Ideally, it should just work; or at least, it should avoid crashing and just do nothing (and perhaps be documented somewhere).\n\nEnvironment:\n\n- Python version: 3.11.10\n- Click version: 8.1.7\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2865"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 654,
+    "title": "`click.testing` is not properly proxying `stdout`",
+    "body": "For example, you cannot set `import pdb; pdb.set_trace()` in your code, or drop into debugger on exceptions.\n\nThis works:\n\n``` python\nfrom io import StringIO\nimport sys\n\nfrom contextlib import contextmanager\n\nclass StreamWrapper(object):\n\n    def __init__(self, stream):\n        self.stream = stream\n        self._stringio_ = StringIO()\n\n    def __getattr__(self, name):\n        return getattr(self.stream, name)\n\n    def write(self, s, *args, **kw):\n        self.stream.write(s)\n        self._stringio_.write(s)\n\n    @classmethod\n    @contextmanager\n    def stdout(cls):\n        __stdout__ = sys.stdout\n        sys.stdout = cls(sys.stdout)\n        yield sys.stdout._stringio_\n        sys.stdout = __stdout__\n\ndef invoke(cmd, args=()):\n    with StreamWrapper.stdout() as c:\n        cmd(standalone_mode=False, args=args)\n    return c.getvalue()\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/654"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 824,
+    "title": "ValueError: I/O operation on closed file in testing",
+    "body": "I am getting a `ValueError` when using `CliRunner` to test my CLI tool. Unfortunately I can't isolate, but I can give a reproduction:\r\n\r\n```bash\r\npip install git+git://github.com/ResidentMario/datablocks.git@d6601c8321e7fb050bb62760067dc63ca4600003\r\npip install pytest\r\ncd datablocks/tests\r\npytest cli_tests.py\r\n```\r\n\r\nWhich raises the following traceback:\r\n\r\n```\r\n=================================== FAILURES ===================================\r\n_________________________ TestLink.test_depositor_link _________________________\r\n\r\nself = <cli_tests.TestLink testMethod=test_depositor_link>\r\n\r\n    def test_depositor_link(self):\r\n>       result = runner.invoke(cli.link, [\"test_depositor.py\", \"--outputs\", \"['bar2.txt']\"])\r\n\r\ncli_tests.py:41: \r\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \r\n\r\nself = <click.testing.CliRunner object at 0x7f2c833a6cc0>\r\ncli = <click.core.Command object at 0x7f2c82e7a5f8>\r\nargs = ['test_depositor.py', '--outputs', \"['bar2.txt']\"], input = None\r\nenv = None, catch_exceptions = True, color = False, extra = {}\r\nexc_info = (<class 'SystemExit'>, SystemExit(0,), <traceback object at 0x7f2c82e1eb08>)\r\nout = <_io.BytesIO object at 0x7f2c82e0a5c8>, exception = None, exit_code = 0\r\n\r\n    def invoke(self, cli, args=None, input=None, env=None,\r\n               catch_exceptions=True, color=False, **extra):\r\n        \"\"\"Invokes a command in an isolated environment.  The arguments are\r\n            forwarded directly to the command line script, the `extra` keyword\r\n            arguments are passed to the :meth:`~clickpkg.Command.main` function of\r\n            the command.\r\n    \r\n            This returns a :class:`Result` object.\r\n    \r\n            .. versionadded:: 3.0\r\n               The ``catch_exceptions`` parameter was added.\r\n    \r\n            .. versionchanged:: 3.0\r\n               The result object now has an `exc_info` attribute with the\r\n               traceback if available.\r\n    \r\n            .. versionadded:: 4.0\r\n               The ``color`` parameter was added.\r\n    \r\n            :param cli: the command to invoke\r\n            :param args: the arguments to invoke\r\n            :param input: the input data for `sys.stdin`.\r\n            :param env: the environment overrides.\r\n            :param catch_exceptions: Whether to catch any other exceptions than\r\n                                     ``SystemExit``.\r\n            :param extra: the keyword arguments to pass to :meth:`main`.\r\n            :param color: whether the output should contain color codes. The\r\n                          application can still override this explicitly.\r\n            \"\"\"\r\n        exc_info = None\r\n        with self.isolation(input=input, env=env, color=color) as out:\r\n            exception = None\r\n            exit_code = 0\r\n    \r\n            try:\r\n                cli.main(args=args or (),\r\n                         prog_name=self.get_default_prog_name(cli), **extra)\r\n            except SystemExit as e:\r\n                if e.code != 0:\r\n                    exception = e\r\n    \r\n                exc_info = sys.exc_info()\r\n    \r\n                exit_code = e.code\r\n                if not isinstance(exit_code, int):\r\n                    sys.stdout.write(str(exit_code))\r\n                    sys.stdout.write('\\n')\r\n                    exit_code = 1\r\n            except Exception as e:\r\n                if not catch_exceptions:\r\n                    raise\r\n                exception = e\r\n                exit_code = -1\r\n                exc_info = sys.exc_info()\r\n            finally:\r\n                sys.stdout.flush()\r\n>               output = out.getvalue()\r\nE               ValueError: I/O operation on closed file.\r\n\r\n../../../miniconda3/envs/datablocks-dev/lib/python3.6/site-packages/click/testing.py:299: ValueError\r\n========================== 1 failed in 37.10 seconds ===========================\r\n```\r\n\r\nThis is on Ubuntu 16.04.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/824"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 843,
+    "title": "`click.testing.CliRunner.invoke` prevents use of `pdb`",
+    "body": "Will someone please re-open #138.  It's still a problem with Click 6.7.  In particular, my stack trace ends with:\r\n\r\n```\r\n  File \"/home/rsyring/projects/agari-adm-src/agariadm/cli.py\", line 64, in batch\r\n    import pdb; pdb.set_trace()\r\n  File \"/usr/lib/python3.5/bdb.py\", line 52, in trace_dispatch\r\n    return self.dispatch_return(frame, arg)\r\n  File \"/usr/lib/python3.5/bdb.py\", line 96, in dispatch_return\r\n    if self.quitting: raise BdbQuit\r\nbdb.BdbQuit\r\n```\r\n\r\nAnd there is explanation about why this is happening in the related issue.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/843"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3298,
+    "title": "semver.Version as default causing an error",
+    "body": "Any instance of `semver.Version` set as `default` in an option will lead to an error when Click tries to show it in the help text.\nThe problem seems to be that `Version` allows comparison to strings, and Click, when building the help text, tries to check the default value against an empty string `\"\"`, which cannot be parsed by `semver.Version`:\n\n```\n  File \".venv/lib/python3.12/site-packages/click/core.py\", line 3091, in get_help_extra\n    elif default_value == \"\":\n         ^^^^^^^^^^^^^^^^^^^\n  File \".venv/lib/python3.12/site-packages/semver/version.py\", line 52, in wrapper\n    return operator(self, other)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \".venv/lib/python3.12/site-packages/semver/version.py\", line 467, in __eq__\n    return self.compare(other) == 0\n           ^^^^^^^^^^^^^^^^^^^\n  File \".venv/lib/python3.12/site-packages/semver/version.py\", line 394, in compare\n    other = cls.parse(other)\n            ^^^^^^^^^^^^^^^^\n  File \".venv/lib/python3.12/site-packages/semver/version.py\", line 644, in parse\n    raise ValueError(f\"{version} is not valid SemVer string\")\nValueError:  is not valid SemVer string\n```\n\nThis can be replicated with the following code by trying to print the help text:\n\n<details>\n\n```python\nimport click\nfrom semver import Version\n\n\nclass SemverType(click.ParamType):\n    name = \"semver\"\n\n    def convert(self, value: str | Version, param: click.Parameter | None, ctx: click.Context | None) -> Version:\n        if isinstance(value, Version):\n            return value\n\n        try:\n            return Version.parse(value)\n        except ValueError as e:\n            raise self.fail(str(e), param, ctx) from e\n\n\n@click.command()\n@click.option(\n    \"--version\",\n    type=SemverType(),\n    default=Version(1, 0, 0),\n    show_default=True,\n)\ndef cli(version: Version | None) -> None:\n    print(version)\n\n\nif __name__ == \"__main__\":\n    cli()\n```\n\n</details>\n\nBy quickly inspecting the code, I'd say this could be fixed by checking whether `default_value` is actually a string before comparing it to `\"\"`. \n\nEnvironment:\n\n- Python version: 3.12\n- Click version: 8.3.1\n- semver version: 3.0.4\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3298"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3121,
+    "title": "Using a class as a `flag_value` causes the default to be instantiated in click 8.3.0",
+    "body": "Consider the following code:\n\n```python\nimport click\n\nclass Foo:\n    pass\n\nclass Bar:\n    pass\n\n@click.command()\n@click.option(\"--foo\", \"ty\", flag_value=Foo, type=click.UNPROCESSED, default=True)\n@click.option(\"--bar\", \"ty\", flag_value=Bar, type=click.UNPROCESSED)\ndef main(ty):\n    click.echo(repr(ty))\n\nif __name__ == \"__main__\":\n    main()\n```\n\nWhen run with no arguments using click 8.3.0, this prints `<__main__.Foo object at 0x10bed92b0>`, indicating that `Foo` has been instantiated, which is not what I want.  When using an older version of click, the script outputs `<class '__main__.Foo'>`, which is what I want.\n\nIf the script is passed an explicit `--foo` or `--bar` option, a class is output, indicating that the problem lies with the default handling.\n\nChanging the `default=True` to `default=Foo` does not help.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3121"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3110,
+    "title": "CliRunner.invoke raises a \"ValueError: I/O operation on closed file\"",
+    "body": "Hi,\nI am a maintainer of [subliminal](https://github.com/Diaoul/subliminal) that uses `click` for its CLI. Some tests for the CLI are failing since the upgrade to click 8.3.0.\nI tracked the failures to a regression in click 8.3.0 due to #2991. Reverting this commit makes my tests pass with click 8.3.0.\n\nThe failing pytest tests are of the following form:\n\n```\ndef test_cli_download(tmp_path: os.PathLike[str]) -> None:\n    runner = CliRunner()\n\n    result = runner.invoke(subliminal_cli, ['download', '-l', 'en', '-p', 'podnapisi', 'video.mkv'])\n\n    # Curiously this test is not failing, subtitle is even downloaded\n    assert result.exit_code == 0\n\n    # The following two asserts are failing because `result.output` show a long error message.\n    assert result.output.startswith('Collecting videos')\n    assert result.output.endswith('Downloaded 1 subtitle\\n')\n\n```\n\nWhen I only run this test function with `pytest`, all the assertions pass, but when I run the whole file that has plenty of test functions with the same structure, all the functions fail at the `result.output` assert (although not consistently...)\n\nThe error message in `result.output` is like this:\n \n```\n--- Logging error ---\nTraceback (most recent call last):\n  File \"/usr/lib/python3.13/logging/__init__.py\", line 1154, in emit\n    stream.write(msg + self.terminator)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nValueError: I/O operation on closed file.\n[...]\n  File \"src/subliminal/score.py\", line 157, in compute_score\n    logger.debug('Found matches %r', matches)\nMessage: 'Found matches %r'\nArguments: ({'country', 'episode', 'season', 'series', 'year'},)\n```\n\nIt seems the logging files are closed after one `CliRunner.invoke` call and its giving rise to failures in the other tests.\n\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3110"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3145,
+    "title": "`lookup_default` returns `Sentinel.UNSET` instead of `None`",
+    "body": "Upgrading click to 8.3.0 or 8.3.1 causes a regression in lookup_default\n\n# Reproduce\n\nChange the click dependency in the below reproduce case to 8.2.1 and the assertion does not fail.\n\nInstall uv.  Run with `uv run repro_click_unset_regression.py` or simply `repro_click_unset_regression.py'.\n \n```python\n#!/usr/bin/env -S uv run\n# /// script\n# dependencies = [\"click==8.3.1\"]\n# ///\n\"\"\"\nRun with uv installed:\n  repro_click_unset_regression.py\nExpected (pre 8.3.0): lookup_default returns the prefix-level default string or None.\nActual (8.3.0+): returns Sentinel.UNSET instead of None.\n\"\"\"\nimport importlib.metadata\nimport sys\nimport click\n\nclass CustomClickContext(click.Context):\n    def lookup_default(self, name: str, call: bool = False):\n        if call:\n            default = super().lookup_default(name, call=True)  # call: Literal[True]\n        else:\n            default = super().lookup_default(name, call=False)  # call: Literal[False]\n\n        # Original logic (kept to reproduce): treats any non-None (including sentinel) as a real default.\n        if default is not None:\n            return default\n        prefix = name.split(\"_\", 1)[0]\n        group = getattr(self, \"default_map\", {}).get(prefix)\n        if group:\n            return group.get(name)\n        return default\n\ndef describe(value):\n    cls = value.__class__\n    return {\n        \"repr\": repr(value),\n        \"type\": f\"{cls.__module__}.{cls.__qualname__}\",\n        \"has_name_attr\": hasattr(value, \"name\"),\n        \"name_attr\": getattr(value, \"name\", None),\n    }\n\ndef main():\n    default_map = {\"app\": {\"email\": \"prefix-param-level@example.com\"}}\n    cmd = click.Command(\"get-views\")\n    ctx = CustomClickContext(cmd, info_name=None)\n    ctx.default_map = default_map\n\n    val = ctx.lookup_default(\"email\", False)\n    info = describe(val)\n    print(f\"click version (importlib.metadata): {importlib.metadata.version('click')}\")\n    print(\"lookup_default raw:\", info)\n    # This assert fails under ≥ 8.3.0 because val is the internal Sentinel.UNSET object.\n    assert val is None, (\n        f\"Regression: got {info['repr']} ({info['type']}) instead of expected builtins.NoneType\"\n    )\n\nif __name__ == \"__main__\":\n    try:\n        main()\n    except AssertionError as e:\n        print(\"AssertionError:\", e)\n        sys.exit(1)\n\n```\n\n# Expected\nReturn None instead of internal Sentinel.UNSET detail.\n\nEnvironment:\n\n- Python version: 3.14\n- Click version: 8.30, 8.3.1\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3145"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3084,
+    "title": "Bug: Optional value not optional anymore",
+    "body": "### Outline\n\nAs stated in [official documentation](https://click.palletsprojects.com/en/stable/options/#optional-value): \n> Setting `is_flag=False, flag_value=value` tells Click that the option can still be passed a value, but if only the flag is given, the value will be `flag_value`.\n\nSince 8.3.0 this doesn't work anymore, instead `SystemExit` with \"Error: Option '--xyz' requires an argument.\" is thrown.\n\n### Replication of bug\n\nExample taken from documentation:\n```python\n@click.command()\n@click.option(\"--name\", is_flag=False, flag_value=\"Flag\", default=\"Default\")\ndef hello(name):\n    click.echo(f\"Hello, {name}!\")\n```\n\n```shell\n$ hello --name\nError: Option '--name' requires an argument.\n```\n\n### Expected behavior\n\nThe code example above should work as\n```shell\n$ hello --name\nHello, Flag!\n```\n\nIt's not even working in the generated documentation anymore: while [documentation up to Sep, 10th](https://web.archive.org/web/20250910222023/https://click.palletsprojects.com/en/stable/options/#optional-value) shows the expected and correct behavior, [current documentation](https://click.palletsprojects.com/en/stable/options/#optional-value) demonstrates the bug.\n\n- Python version: 3.11\n- Click version: 8.3.0\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3084"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3136,
+    "title": "Sentinel available in context during option callbacks",
+    "body": "Sentinel is an implementation detail that is not intentionally exposed. However, it is in the context params during a callback: sentinel_in_callback.py\n\n```\nimport click\n\ndef _validate(ctx, param, value):\n\n    you_sentinel = ctx.params.get(\"you\")\n    you_too_sentinel = ctx.params.get(\"you_too\")\n    print(f\"you: {you_sentinel}\")\n    print(f\"you_too: {you_too_sentinel}\")\n    print(f\"param: {param}\")\n    print(f\"value: {value}\")\n    return value\n\n@click.group()\ndef basic():\n    pass\n\n@basic.command()\n@click.argument('you', required=False)\n@click.option('--you-too', )\n@click.option('--yall', callback=_validate)\n@click.pass_context\ndef hello(ctx, you, you_too, yall):\n    click.echo('Hello World!')\n\nif __name__ == '__main__':\n    basic()\n    # python -m sentinel_in_callback hello\n``` \n\n``` \n> python -m sentinel_in_callback hello\nyou: Sentinel.UNSET\nyou_too: Sentinel.UNSET\nparam: <Option yall>\nvalue: None\nHello World!\n```",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3136"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3069,
+    "title": "`Sentinel` is passed to `type_cast_value`",
+    "body": "Starting in version 8.3.0, a `Sentinel` object is passed in to the `type_cast_value` function of the `Parameter` class and its derivatives if no value is supplied.\n\nReproduction:\n\n```python\n# cli_bug.py\nimport click\n\n\nclass CSVOption(click.Option):\n    def type_cast_value(self, ctx, value):\n        if value:\n            return value.split(\",\")\n        return value\n\n\n@click.command(name=\"run\")\n@click.option(\"--csv\", cls=CSVOption)\ndef main(csv):\n    click.echo(f\"{csv!r}\")\n\nif __name__ == \"__main__\":\n    main()\n```\n\n```shell\n$ uv run --with 'click==8.3.0' cli_bug.py\n\nInstalled 1 package in 1ms\nTraceback (most recent call last):\n  File \"/home/coder/workspace/scratch/click-8_3_0-bug/cli_bug.py\", line 17, in <module>\n    main()\n  File \"/home/coder/.cache/uv/archive-v0/9Q5N3REh-YZUOJbO3iHRv/lib/python3.10/site-packages/click/core.py\", line 1462, in __call__\n    return self.main(*args, **kwargs)\n  File \"/home/coder/.cache/uv/archive-v0/9Q5N3REh-YZUOJbO3iHRv/lib/python3.10/site-packages/click/core.py\", line 1382, in main\n    with self.make_context(prog_name, args, **extra) as ctx:\n  File \"/home/coder/.cache/uv/archive-v0/9Q5N3REh-YZUOJbO3iHRv/lib/python3.10/site-packages/click/core.py\", line 1206, in make_context\n    self.parse_args(ctx, args)\n  File \"/home/coder/.cache/uv/archive-v0/9Q5N3REh-YZUOJbO3iHRv/lib/python3.10/site-packages/click/core.py\", line 1217, in parse_args\n    _, args = param.handle_parse_result(ctx, opts, args)\n  File \"/home/coder/.cache/uv/archive-v0/9Q5N3REh-YZUOJbO3iHRv/lib/python3.10/site-packages/click/core.py\", line 2516, in handle_parse_result\n    value = self.process_value(ctx, value)\n  File \"/home/coder/.cache/uv/archive-v0/9Q5N3REh-YZUOJbO3iHRv/lib/python3.10/site-packages/click/core.py\", line 2401, in process_value\n    value = self.type_cast_value(ctx, value)\n  File \"/home/coder/workspace/scratch/click-8_3_0-bug/cli_bug.py\", line 7, in type_cast_value\n    return value.split(\",\")\nAttributeError: 'Sentinel' object has no attribute 'split'\n```\n\n```shell\nuv run --with 'click<8.3.0' cli_bug.py\nNone\n```\n\nBased on comments in #3065 and #3068 it would make sense to pass through `None` here given that this function is public. At a minimum, a changelog denoting the new behavior would be nice.\n\nEnvironment:\n\n- Python version: 3.10\n- Click version: 8.3.0\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3069"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3071,
+    "title": "`default=True` on feature flags is order-sensitive",
+    "body": "The following code:\n\n```python\nimport click\n\n\n@click.command()\n@click.option(\"--red\", \"color\", flag_value=\"red\")\n@click.option(\"--green\", \"color\", flag_value=\"green\", default=True)\n@click.option(\"--blue\", \"color\", flag_value=\"blue\")\ndef main(color: str) -> None:\n    print(repr(color))\n\n\nif __name__ == \"__main__\":\n    main()\n```\n\nwhen run with no arguments using click 8.2.1 outputs `'green'`, which is what I expect.  If click 8.3.0 is used instead, then it outputs `None` — but if the `--green` option is moved above the `--red` option in the script, click 8.3.0 will output `'green'`.\n\nI believe that the script should output `'green'` regardless of the declaration order of the options.\n\nEnvironment:\n\n- Python version: 3.13.7\n- Click version: 8.2.1 and 8.3.0",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3071"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3040,
+    "title": "Missing changes entries for 8.3.0",
+    "body": "Missing entries for #3013 and #3023.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3040"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 1992,
+    "title": "Binary flags vs `default=None`: semantics and issue with prompt",
+    "body": "The current behavior is:\r\n- if `default` is not provided, the option default is set to `False`\r\n- if `default` is set to `None`, default is set to `None`.\r\n\r\nI think this may be accidental behavior but it's not senseless: settings `default=None` you can force the prompt to require an explicit value to be provided (it'll be `[y/n]` rather than `[y/N]`). \r\n\r\nNonetheless, I noticed that if you provide `default=None` to a flag not having a secondary option, the prompt message is broken: it won't include \"[y/n]\" at the end.\r\n\r\n_Originally posted by @janluke in https://github.com/pallets/click/issues/1965#issuecomment-873600435_",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/1992"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 3019,
+    "title": "click.prompt and click.confirm argument prompt_suffix no longer works when suffix is empty",
+    "body": "After #1836 and #2093 were merged the behavior of the `prompt_suffix` argument in the `click.prompt` and `click.confirm` functions changed.\n\n# Before these changes in click version 7.1.2\n\nPrior to the #1836 and #2093 PRs when an empty `prompt_suffix` was passed, no suffix was applied to the prompt.\n\nHere's how `prompt` used to behave\n\n```python\n>>> import click\n>>> click.prompt(\"test\", prompt_suffix=\"\")\ntestfoo\n'foo'\n>>> click.prompt(\"test\", prompt_suffix=\" \")\ntest foo\n'foo'\n```\n\nNotice that when a `prompt_suffix of `\"\"` is passed, there is no suffix after the prompt text of `test`. This is illustrated by how the text typed by the user (in this case `foo`) displays immediately after the prompt without a space character.\n\n# Current behavior in click 8.0.0 and newer\n\n```python\n>>> import click\n>>> click.prompt(\"test\", prompt_suffix=\"\")\ntest foo\n'foo'\n>>> click.prompt(\"test\", prompt_suffix=\" \")\ntest foo\n'foo'\n```\n\nNotice now that if you tell `prompt` to use no suffix, it still applies a space character suffix.\n\nThis is because the fixes in #1836 and #2093 presumes that the last character of the prompt is a space character. It then [`rstrip`s the space character and adds the space character back in](https://github.com/pallets/click/pull/1836/files#diff-1f88635ce1d1f86bb7f9de29ef053bf8fc628a13530d1d2c6a69d0ad637e32cdR130-R133). This doesn't work if the last character of the prompt is not a space character though.\n\nThis matters because it makes it impossible to do prompts like the following example\n\n# Example\n\n```python\nimport click\nclick.prompt(\"What IP address would you like? : 192.168.1.\", prompt_suffix=\"\")\n```\n\nThis would have the user enter the last octet of an IP and make it clear that they can only set something within the displayed subnet. The problem is that the resulting display looks like this\n\n```\nWhat IP address would you like? : 192.168.1. 123\n```\n\n# Note\n\nThe fixes in these two PRs can't just be reverted because the `readline` behavior that inspired them still exists.\n\nEnvironment:\n\n- Python version: 3.13\n- Click version: 8.0.3\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/3019"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2860,
+    "title": "Add tests for `Parameter.__init__` in `src/click/core.py` to improve coverage",
+    "body": "The function `Parameter.__init__` in `src/click/core.py` does not have 100% coverage.\n\nTwo new test cases could be added.\n\n1. Test this `raise ValuError` (where `nargs != self.type.arity`):\n\nhttps://github.com/pallets/click/blob/5dd628854c0b61bbdc07f22004c5da8fa8ee9481/src/click/core.py#L2112-L2115\n\n2. Test this `raise ValuError` which happens when `_check_iter(check_default)` raises `TypeError`.\n\nhttps://github.com/pallets/click/blob/5dd628854c0b61bbdc07f22004c5da8fa8ee9481/src/click/core.py#L2131-L2143",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2860"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2777,
+    "title": "Incorrect type hint for `param_hint` in `BadParameter` exception",
+    "body": "The documentation and the type annotations don't quite match for `click.BadParameter`, specifically for the `param_hint` argument.  The documentation says:\r\n\r\n>  If it is a string it's used as such, if it's a list then each item is quoted and separated.\r\n\r\nBut the type annotation says:\r\n```python\r\nparam_hint: str | None = None\r\n```\r\n\r\nTo reproduce, create code like:\r\n```python\r\nraise click.BadParameter(\"FOOBIE BLETCH\", param_hint=[\"HACKEM\", \"MUCHE\"])\r\n```\r\nthen run `mypy` on said code.\r\n\r\nExpected: `mypy` gives no error\r\n\r\nActual behaviour: `mypy` says:\r\n```\r\nfoo.py:2: error: Argument \"param_hint\" to \"BadParameter\" has incompatible type \"list[str]\"; expected \"str | None\"  [arg-type]\r\n```\r\n\r\nEasy to fix, just need to update the type hint for `param_hint` to the one already used in [`_join_param_hints`](https://github.com/pallets/click/blob/4a758f5c38636ecd9d030356d85bcca3d8fbd0ca/src/click/exceptions.py#L18C35-L18C66):\r\n```python\r\ncabc.Sequence[str] | str | None\r\n```\r\n\r\nEnvironment:\r\n\r\n- Python version: 3.11.2\r\n- Click version: 8.1.7\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2777"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2952,
+    "title": "Flag value is always true when setting any envvar",
+    "body": "Click 8.2.1 includes fixes related to boolean flags.\n\nWe’re encountering a specific issue described in [this comment](https://github.com/pallets/click/issues/2897#issuecomment-2873272069). The comment appears in the thread for a different but related issue ([#2897](https://github.com/pallets/click/issues/2897)), focused on a separate aspect of boolean flag handling. Maybe the issue was overlooked because the discussion centered on the main issue.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2952"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2939,
+    "title": "Click 8.2.1 CliRunner raises SystemExit(1) when using click.File's stdin support",
+    "body": "In Click 8.2.1, when testing the behavior of a command-line which uses `click.File`'s stdin as an argument, `CliRunner.invoke()` always throws a `SystemExit(1)` with `Aborted !` on stderr.\n\nSeems like a regression introduced by the change in #2934, as this `Aborted!` is generated when the main Click endpoint raises an `EofError`.\n\nReproducer :\n\n```python\n#!/usr/bin/env python3\n\nimport click\nfrom click.testing import CliRunner\n\n\n@click.command()\n@click.argument(\"file_input\", type=click.File(\"r\"))\ndef cli(file_input):\n    for line in file_input.readlines():\n        print(line.rstrip())\n\n\ndef test_cli():\n    result = CliRunner().invoke(cli, [\"-\"], input=\"test\\n\")\n    assert result.exit_code == 0, str(result)\n    assert result.output == \"test\\n\"\n\n\nif __name__ == \"__main__\":\n    cli()\n```\n\n``` shell\nnicolasd@pythagore:~/tmp/repro$ uv venv -p python3.13 venv\nUsing CPython 3.13.3 interpreter at: /usr/bin/python3\nCreating virtual environment at: venv\nActivate with: source venv/bin/activate\nnicolasd@pythagore:~/tmp/repro$ . ./venv/bin/activate\n(venv) nicolasd@pythagore:~/tmp/repro$ uv pip install pytest Click==8.2.1\nResolved 5 packages in 5ms\nInstalled 5 packages in 6ms\n + click==8.2.1\n + iniconfig==2.1.0\n + packaging==25.0\n + pluggy==1.6.0\n + pytest==8.3.5\n(venv) nicolasd@pythagore:~/tmp/repro$ echo foo | python3 test_repro.py -\nfoo\n(venv) nicolasd@pythagore:~/tmp/repro$ pytest test_repro.py \n===================================================================== test session starts =====================================================================\nplatform linux -- Python 3.13.3, pytest-8.3.5, pluggy-1.6.0\nrootdir: /home/nicolasd/tmp/repro\ncollected 1 item                                                                                                                                              \n\ntest_repro.py F                                                                                                                                         [100%]\n\n========================================================================== FAILURES ===========================================================================\n__________________________________________________________________________ test_cli ___________________________________________________________________________\n\n    def test_cli():\n        result = CliRunner().invoke(cli, [\"-\"], input=\"test\\n\")\n>       assert result.exit_code == 0, str(result)\nE       AssertionError: <Result SystemExit(1)>\nE       assert 1 == 0\nE        +  where 1 = <Result SystemExit(1)>.exit_code\n\ntest_repro.py:16: AssertionError\n=================================================================== short test summary info ===================================================================\nFAILED test_repro.py::test_cli - AssertionError: <Result SystemExit(1)>\n====================================================================== 1 failed in 0.09s ======================================================================\n(venv) nicolasd@pythagore:~/tmp/repro$ uv pip install Click==8.2.0\nResolved 1 package in 3ms\nUninstalled 1 package in 1ms\nInstalled 1 package in 1ms\n - click==8.2.1\n + click==8.2.0\n(venv) nicolasd@pythagore:~/tmp/repro$ pytest test_repro.py \n===================================================================== test session starts =====================================================================\nplatform linux -- Python 3.13.3, pytest-8.3.5, pluggy-1.6.0\nrootdir: /home/nicolasd/tmp/repro\ncollected 1 item                                                                                                                                              \n\ntest_repro.py .                                                                                                                                         [100%]\n\n====================================================================== 1 passed in 0.09s ======================================================================\n```\n\nEnvironment:\n\n- Python version: 3.13\n- Click version: 8.2.1",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2939"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2832,
+    "title": "Regression: Help option subclassing no longer works with verion 8.1.8 ",
+    "body": "Click 8.18 has a regression wrt. to help with Option subclasses.\r\n\r\nThis was found in this issue originally:\r\n- https://github.com/aboutcode-org/scancode-toolkit/issues/4044\r\n\r\nThis was introduced in this PR by @kdeldycke :wave: :\r\n- https://github.com/pallets/click/pull/2563\r\n\r\nIt breaks code that uses option subclasses. \r\n\r\n\r\n- This code works in 8.1.7 and  8.1.8 with no custom class\r\n```Python\r\nimport click\r\n\r\n@click.command()\r\n@click.help_option(\"-h\", \"--help\")\r\ndef scancode():\r\n    \"\"\"OK in pkg:pypi/click@8.1.8 and pkg:pypi/click@8.1.7\"\"\"\r\n    pass\r\n\r\n\r\nif __name__ == \"__main__\":\r\n    scancode()\r\n```\r\nand then with 8.1.7 and 8.1.8:\r\n```\r\n$ python  works.py --help\r\nUsage: works.py [OPTIONS]\r\n\r\n  Regression in pkg:pypi/click@8.1.8\r\n\r\nOptions:\r\n  -h, --help  Show this message and exit.\r\n```\r\n\r\n\r\n\r\n\r\n- This code works in 8.1.7 and fails in 8.1.8 with a custom class\r\n```Python\r\nimport click\r\n\r\n\r\nclass PluggableCommandLineOption(click.Option):\r\n    pass\r\n\r\n\r\n@click.command()\r\n@click.help_option(\"-h\", \"--help\", cls=PluggableCommandLineOption)\r\ndef scancode():\r\n    \"\"\"Regression in pkg:pypi/click@8.1.8\"\"\"\r\n    pass\r\n\r\n\r\nif __name__ == \"__main__\":\r\n    scancode()\r\n```\r\n\r\nand then with 8.1.7\r\n```\r\n python  failing.py --help\r\nUsage: failing.py [OPTIONS]\r\n\r\n  Regression in pkg:pypi/click@8.1.8\r\n\r\nOptions:\r\n  -h, --help  Show this message and exit.\r\n\r\n\r\n$ python  failing.py -h\r\nUsage: failing.py [OPTIONS]\r\n\r\n  Regression in pkg:pypi/click@8.1.8\r\n\r\nOptions:\r\n  -h, --help  Show this message and exit.\r\n\r\n```\r\n\r\nand then with 8.1.8\r\n```\r\n$ python  failing.py -h\r\nError: Option '-h' requires an argument.\r\n\r\n\r\n$ python  failing.py --help\r\nError: Option '--help' requires an argument.\r\n\r\n\r\n```\r\n\r\n\r\n\r\n- This code works more or less in 8.1.7 and 8.1.8 with custom class and no \"--help\" option\r\n```Python\r\nimport click\r\n\r\n\r\nclass PluggableCommandLineOption(click.Option):\r\n    pass\r\n\r\n\r\n@click.command()\r\n@click.help_option(\"-h\", cls=PluggableCommandLineOption)\r\ndef scancode():\r\n    \"\"\"Regression in pkg:pypi/click@8.1.8\"\"\"\r\n    pass\r\n\r\n\r\nif __name__ == \"__main__\":\r\n    scancode()\r\n\r\n```\r\nand then with 8.1.7\r\n```\r\n$ python  works2.py -h\r\nUsage: works2.py [OPTIONS]\r\n\r\n  Regression in pkg:pypi/click@8.1.8\r\n\r\nOptions:\r\n  -h      Show this message and exit.\r\n  --help  Show this message and exit.\r\n```\r\n\r\nand then with 8.1.7\r\n```\r\n$ python  works2.py --help\r\nUsage: works2.py [OPTIONS]\r\n\r\n  Regression in pkg:pypi/click@8.1.8\r\n\r\nOptions:\r\n  -h      Show this message and exit.\r\n  --help  Show this message and exit\r\n```\r\n\r\nand then with 8.1.8\r\n```\r\n$ python  works2.py -h\r\nError: Option '-h' requires an argument.\r\n\r\n```\r\nand then with 8.1.8 note the changes in `-h TEXT`\r\n```\r\n$ python  works2.py --help\r\nUsage: works2.py [OPTIONS]\r\n\r\n  Regression in pkg:pypi/click@8.1.8\r\n\r\nOptions:\r\n  -h TEXT\r\n  --help   Show this message and exit.\r\n\r\n```\r\n\r\n\r\n\r\n\r\n\r\nEnvironment:\r\n\r\n- Python version: 3.9 to 3.11\r\n- Click version: 8.1.8\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2832"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2713,
+    "title": "Docs wrongly links PRs and Issues to flask",
+    "body": "![image](https://github.com/pallets/click/assets/13086194/cc68ea55-7c69-4e24-a2dd-f296d54a9c61)\r\n\r\nEnvironment:\r\n\r\n- Python version: N/A\r\n- Click version: N/A\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2713"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 2707,
+    "title": "Broken code example in docs under Advanced Patterns",
+    "body": "In the Managing Resources section of Advanced Patterns, there is [a code example](https://github.com/pallets/click/blob/f8857cb03268b5b952b88b2acb3e11d9f0f7b6e4/docs/advanced.rst?plain=1#L437-L447) where a `Repo` class is used as a context manager to be passed to `Context.with_resource`. \r\n```python\r\n    class Repo:\r\n        def __init__(self, home=None):\r\n            self.home = os.path.abspath(home or \".\")\r\n            self.db = None\r\n\r\n        def __enter__(self):\r\n            path = os.path.join(self.home, \"repo.db\")\r\n            self.db = open_database(path)\r\n\r\n        def __exit__(self, exc_type, exc_value, tb):\r\n            self.db.close()\r\n```\r\n\r\nThe `__enter__` method on `Repo` currently returns `None`, which means that the [code snippet below](https://github.com/pallets/click/blob/f8857cb03268b5b952b88b2acb3e11d9f0f7b6e4/docs/advanced.rst?plain=1#L453-L454) is broken since `repo` is `None` (the result of `__enter__()`).\r\n```python\r\n    with Repo() as repo:\r\n        repo.db.query(...)\r\n```\r\n\r\nIn the [snippet below that](https://github.com/pallets/click/blob/f8857cb03268b5b952b88b2acb3e11d9f0f7b6e4/docs/advanced.rst?plain=1#L469), we are also assigning `None` to `ctx.obj`, since `ctx.with_resource` returns the result of calling the resource’s `__enter__()` method.\r\n```python\r\n    @click.group()\r\n    @click.option(\"--repo-home\", default=\".repo\")\r\n    @click.pass_context\r\n    def cli(ctx, repo_home):\r\n        ctx.obj = ctx.with_resource(Repo(repo_home))\r\n```\r\n\r\nThe fix is to have `Repo.__enter__` return `self`.\r\n\r\n\r\n- Click version: 8.1.7\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/2707"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 945,
+    "title": "Documentation doesn't describe \"lazy loading of subcommands at runtime\"",
+    "body": "The documentation [home page](http://click.pocoo.org/5/) includes:\r\n> Click in three points:\r\n> - arbitrary nesting of commands\r\n> - automatic help page generation\r\n> - **supports lazy loading of subcommands at runtime**\r\n\r\nHow is \"lazy-loading of subcommands at runtime\" supported? The various methods of creating command groups and attaching sub-commands described in [the quickstart guide](http://click.pocoo.org/5/quickstart/#nesting-commands) all require importing the sub-command first.\r\n\r\nThe closest I can find is a demonstration of how lazy-loading of commands from plugins *might* be implemented [with a custom multi-command class](http://click.pocoo.org/5/commands/#custom-multi-commands). Is this the \"lazy loading of subcommands at runtime\" which the documentation describes?",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/945"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 1925,
+    "title": "Option.is_bool_flag is set to True even if the option is not a flag",
+    "body": "This is relevant only for Click 8.0.1, since the following line was introduced in PR https://github.com/pallets/click/pull/1913:\r\n\r\nhttps://github.com/pallets/click/blob/af0af571cbbd921d3974a0ff9cf58a4b26bb852b/src/click/core.py#L2531\r\n\r\nThe solution is as easy as:\r\n\r\n```python\r\nself.is_bool_flag = self.is_flag and isinstance(self.type, types.BoolParamType)\r\n```\r\nAvailable to open a PR.\r\n\r\n## Demonstration code\r\n```python\r\nimport click\r\n\r\n@click.command()\r\n@click.option('--switch', type=bool)\r\ndef f(switch):\r\n    print(switch)\r\n\r\n\r\nif __name__ == '__main__':\r\n    assert not f.params[0].is_flag\r\n    assert f.params[0].is_bool_flag\r\n    f('--switch'.split())\r\n```\r\n```\r\nError: Option '--switch' requires an argument.\r\n```",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/1925"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 1138,
+    "title": "Progressbar regression: label no longer printed if output is not to a tty",
+    "body": "The progressbar documentation says:\r\n\r\n```\r\n    :param file: the file to write to.  If this is not a terminal then\r\n                 only the label is printed.\r\n```\r\n\r\nHowever, this is no longer the case with newer click versions. Take the following test script:\r\n```python\r\n#!/usr/bin/env python3\r\nimport click\r\nfrom time import sleep\r\n\r\nwith click.progressbar(range(100), label=\"Foo\") as pb:\r\n    for _ in pb:\r\n        sleep(0.01)\r\n\r\n```\r\n\r\nIn click 5.0:\r\n\r\n```\r\n$ ./ayy.py \r\nFoo  [####################################]  100%          \r\n$ echo \"$(./ayy.py)\"\r\nFoo\r\nFoo\r\n```\r\n\r\nIn click 7.0:\r\n\r\n```\r\n$ ./ayy.py \r\nFoo  [####################################]  100%          \r\n$ echo \"$(./ayy.py)\"\r\n\r\n```",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/1138"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 1629,
+    "title": "BOOL should accept \"on\" and \"off\"",
+    "body": "The `BOOL` parameter type should accept & convert the strings \"on\" and \"off\".  With this change, `BOOL` would support all of the boolean strings that `configparser` supports.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/1629"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 1376,
+    "title": "open_file(…, 'w', atomic=True) sets or resets permissions to 600, ignoring umask",
+    "body": "Files are normally created with permission `666 & umask` as expected:\r\n\r\n```pycon\r\n>>> click.open_file('/tmp/test1', 'w').close()\r\n>>> oct(os.stat('/tmp/test1').st_mode)\r\n'0o100644'\r\n```\r\n\r\nHowever, opening a new or existing file with `atomic=True` sets or resets its permissions to `600` unconditionally:\r\n\r\n```python\r\n>>> click.open_file('/tmp/test2', 'w', atomic=True).close()\r\n>>> oct(os.stat('/tmp/test2').st_mode)\r\n'0o100600'\r\n>>> click.open_file('/tmp/test1', 'w', atomic=True).close()\r\n>>> oct(os.stat('/tmp/test1').st_mode)\r\n'0o100600'\r\n```\r\n\r\nI’d expect a new file created with `atomic=True` to be created with the usual permission `666 & umask`, and an existing file opened with `atomic=True` to have the previous permissions preserved. (There’s probably no way to preserve permissions atomically; taking the previous permissions at the time of the initial open is fine.)",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/1376"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 1125,
+    "title": "Progressbar object is no more an iterator",
+    "body": "Hi,\r\n\r\nWith Click < 7.0, iterating on the bar object was possible:\r\n```\r\nIn [8]: with click.progressbar(range(10)) as bar:\r\n   ...:     next(bar)\r\n   ...:     next(bar)\r\n   ...:     \r\n  [#######-----------------------------]   20%\r\n```\r\n\r\nWith Click 7.0, this is broken:\r\n```\r\nIn [2]: with click.progressbar(range(10)) as bar:\r\n   ...:     next(bar)\r\n   ...:     next(bar)\r\n   ...:     \r\n---------------------------------------------------------------------------\r\nTypeError                                 Traceback (most recent call last)\r\n<ipython-input-2-85d302084fbb> in <module>()\r\n      1 with click.progressbar(range(10)) as bar:\r\n----> 2     next(bar)\r\n      3     next(bar)\r\n      4 \r\n\r\nTypeError: 'ProgressBar' object is not an iterator\r\n```\r\n\r\nIs it on purpose ? Seems related to https://github.com/pallets/click/pull/487/commits/82f9c626ffedb284eafe67235b5592be6919106d (#487)",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/1125"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 1065,
+    "title": "Incorrect OSError raised when redirecting to NUL on Windows",
+    "body": "Reproducible for both Python 3.6 and 3.7. I did not test against older versions.\r\n\r\nTested on the Click 6.x series. Windows 10, Build 17134.\r\n\r\nSteps to reproduce:\r\n\r\n```python\r\n# t.py\r\nimport click\r\n\r\n@click.command()\r\ndef main():\r\n    click.echo('run')\r\n\r\nif __name__ == '__main__':\r\n    main()\r\n```\r\n\r\n```\r\n> python t.py\r\nrun\r\n\r\n> python t.py >NUL\r\nTraceback (most recent call last):\r\n  File \"t.py\", line 10, in <module>\r\n    main()\r\n  File \".venv\\lib\\site-packages\\click\\core.py\", line 722, in __call__\r\n    return self.main(*args, **kwargs)\r\n  File \".venv\\lib\\site-packages\\click\\core.py\", line 697, in main\r\n    rv = self.invoke(ctx)\r\n  File \".venv\\lib\\site-packages\\click\\core.py\", line 895, in invoke\r\n    return ctx.invoke(self.callback, **ctx.params)\r\n  File \".venv\\lib\\site-packages\\click\\core.py\", line 535, in invoke\r\n    return callback(*args, **kwargs)\r\n  File \"t.py\", line 6, in main\r\n    click.echo('run')\r\n  File \".venv\\lib\\site-packages\\click\\utils.py\", line 259, in echo\r\n    file.write(message)\r\n  File \".venv\\lib\\site-packages\\click\\_winconsole.py\", line 180, in write\r\n    return self._text_stream.write(x)\r\n  File \".venv\\lib\\site-packages\\click\\_winconsole.py\", line 164, in write\r\n    raise OSError(self._get_error_message(GetLastError()))\r\nOSError: Windows error 1\r\n```\r\n\r\nI believe the problem is that Click tries to be helpful, and raises an error when there are not bytes written when there should be. This is, however, exactly what is expected to happen when you redirect things to `NUL` on Windows.\r\n\r\nCuriously, however, Windows seems to act a little differently for stderr. `2>NUL` works as expected.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/1065"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 1338,
+    "title": "OSError on MinGW64 with MSYS2 on Windows 8.1",
+    "body": "A most basic script containing:\r\n\r\n    import click\r\n    click.echo('run')\r\n\r\nProduces the following stacktrace:\r\n\r\n    Traceback (most recent call last):\r\n      File \"t.py\", line 3, in <module>\r\n        click.echo('run')\r\n      File \"C:/msys64/mingw64/lib/python3.7/site-packages\\click\\utils.py\", line 260, in echo\r\n        file.write(message)\r\n      File \"C:/msys64/mingw64/lib/python3.7/site-packages\\click\\_compat.py\", line 630, in _safe_write\r\n        return _write(s)\r\n      File \"C:/msys64/mingw64/lib/python3.7/site-packages\\colorama\\ansitowin32.py\", line 41, in write\r\n        self.__convertor.write(text)\r\n      File \"C:/msys64/mingw64/lib/python3.7/site-packages\\colorama\\ansitowin32.py\", line 164, in write\r\n        self.wrapped.write(text)\r\n      File \"C:/msys64/mingw64/lib/python3.7/site-packages\\click\\_winconsole.py\", line 180, in write\r\n        return self._text_stream.write(x)\r\n      File \"C:/msys64/mingw64/lib/python3.7/site-packages\\click\\_winconsole.py\", line 164, in write\r\n        raise OSError(self._get_error_message(GetLastError()))\r\n    OSError: Windows error 1\r\n\r\n\r\nI am running under a MinGW64 bash shell installed through MSYS2 on a Windows 8.1 machine. \r\nThis is with Python 3.7, colorama 0.4.1, and Click 7.0, but the error goes back to 6.0, whereas it does not occur on 5.1. Python 2 does not exhibit the error.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/1338"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 624,
+    "title": "Add issue template",
+    "body": "I see a lot of questions, suggestions and comments in the issue tracker - maybe it would be an idea to move this away to a https://www.discourse.org/ discussion forum and have the issue tracker be for identified tasks/bugs?\n\nJust a suggestion to help you cut down on the amount of issues.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/624"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 1185,
+    "title": "ipython notebook support fo colored output",
+    "body": "hi, currently click strips colors when used in code invoked by ipython notebooks\r\n\r\nafter a short chat on the ipython notebook channel i learned that a commonly suggested workaround is \r\n\r\n`click.utils.should_strip_ansi = lambda *k, **kw: False` and that a reasonably reliable way to detect such a stream is `stream.__class__.__module__.startswith('ipykernel.')`\r\n\r\ni propose setting up isatty to check this in the exception case (aka no tty attribute as the jupyter streams dont have one\r\n\r\nadditional help will be needed from someone with a windows system, as to me it is not clear whether its required to alter the stream wrapping that is used on win32\r\n\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/1185"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 1156,
+    "title": "explicitly print help when no arguments are given",
+    "body": "Hi,\r\n\r\nI would like to explicitly print **full** help for my script if no arguments are given. The code:\r\n```python\r\n@click.command()\r\n@click.argument('input_dir', type=click.Path(exists=True))\r\n@click.argument('output_dir', type=click.Path(exists=True))\r\n@click.option('-fc', 'fix_coord_chars', is_flag=True, help='fix wrong characters used in coordinates definitions')\r\n@click.option('-fl', 'fix_lon_lat', is_flag=True, help='enable swapping of lon and lat if switched. Configure list of accepted values in config.py')\r\n@click.option('-c', 'check_lon_lat', is_flag=True, help='check that longitude and latitude are in defined ranges. Configure list of accepted values in config.py')\r\n@click.option('-v', 'verbose', is_flag=True, help='enable verbose output')\r\ndef cli(input_dir, output_dir, fix_coord_chars, fix_lon_lat, check_lon_lat, verbose):\r\n  \"\"\"This script converts institution.xml files to json v2 format.\r\n  It requires positional parameters input_dir and output_dir.\r\n  input_dir specifies the input directory with institution.xml files.\r\n  output_dir specifies the output directory for json files.\r\n  \"\"\"\r\n\r\n  main(input_dir, output_dir, { \"fix_coord_chars\" : fix_coord_chars, \"fix_lon_lat\" : fix_lon_lat,\r\n                                \"check_lon_lat\" : check_lon_lat, \"verbose\" : verbose })\r\n\r\nif __name__ == \"__main__\":\r\n  cli()\r\n```\r\n\r\nI'm not getting just:\r\n```bash\r\n$ ./converter.py \r\nUsage: converter.py [OPTIONS] INPUT_DIR OUTPUT_DIR\r\n\r\nError: Missing argument \"input_dir\".\r\n```\r\n\r\nThis is not acceptable for me. Also anyone using the script needs to run it explicitly with `--help` to view full help.\r\n\r\nThere is way to explicitly call help for defined command, composed together is looks like this:\r\n```python\r\ndef print_help_msg(command):\r\n  with click.Context(command) as ctx:\r\n    click.echo(command.get_help(ctx))\r\n\r\n  sys.exit(1)\r\n\r\n# ==============================================================================\r\n@click.command()\r\n@click.argument('input_dir', type=click.Path(exists=True), default=print_help_msg(cli))\r\n@click.argument('output_dir', type=click.Path(exists=True), default=print_help_msg(cli))\r\n@click.option('-fc', 'fix_coord_chars', is_flag=True, help='fix wrong characters used in coordinates definitions')\r\n@click.option('-fl', 'fix_lon_lat', is_flag=True, help='enable swapping of lon and lat if switched. Configure list of accepted values in config.py')\r\n@click.option('-c', 'check_lon_lat', is_flag=True, help='check that longitude and latitude are in defined ranges. Configure list of accepted values in config.py')\r\n@click.option('-v', 'verbose', is_flag=True, help='enable verbose output')\r\ndef cli(input_dir, output_dir, fix_coord_chars, fix_lon_lat, check_lon_lat, verbose):\r\n  \"\"\"This script converts institution.xml files to json v2 format.\r\n  It requires positional parameters input_dir and output_dir.\r\n  input_dir specifies the input directory with institution.xml files.\r\n  output_dir specifies the output directory for json files.\r\n  \"\"\"\r\n\r\n  main(input_dir, output_dir, { \"fix_coord_chars\" : fix_coord_chars, \"fix_lon_lat\" : fix_lon_lat,\r\n                                \"check_lon_lat\" : check_lon_lat, \"verbose\" : verbose })\r\n\r\n```\r\n\r\nThis code is unfortunately unusable because the function referenced in arguments does not exist yet.\r\n\r\nI've managed to achieve the functionality i need, but the code is rubbish:\r\n```python\r\n@click.command()\r\n@click.argument('input_dir', type=click.Path(exists=True))\r\n@click.argument('output_dir', type=click.Path(exists=True))\r\n@click.option('-fc', 'fix_coord_chars', is_flag=True, help='fix wrong characters used in coordinates definitions')\r\n@click.option('-fl', 'fix_lon_lat', is_flag=True, help='enable swapping of lon and lat if switched. Configure list of accepted values in config.py')\r\n@click.option('-c', 'check_lon_lat', is_flag=True, help='check that longitude and latitude are in defined ranges. Configure list of accepted values in config.py')\r\n@click.option('-v', 'verbose', is_flag=True, help='enable verbose output')\r\ndef cli(input_dir, output_dir, fix_coord_chars, fix_lon_lat, check_lon_lat, verbose):\r\n  \"\"\"This script converts institution.xml files to json v2 format.\r\n  It requires positional parameters input_dir and output_dir.\r\n  input_dir specifies the input directory with institution.xml files.\r\n  output_dir specifies the output directory for json files.\r\n  \"\"\"\r\n\r\n  main(input_dir, output_dir, { \"fix_coord_chars\" : fix_coord_chars, \"fix_lon_lat\" : fix_lon_lat,\r\n                                \"check_lon_lat\" : check_lon_lat, \"verbose\" : verbose })\r\n\r\n# ==============================================================================\r\ndef print_help_msg(command):\r\n  with click.Context(command) as ctx:\r\n    click.echo(command.get_help(ctx))\r\n\r\n  sys.exit(1)\r\n\r\n# ==============================================================================\r\n# duplicated here to define default for arguments\r\n# ==============================================================================\r\n@click.command()\r\n@click.argument('input_dir', type=click.Path(exists=True), default=print_help_msg(cli))\r\n@click.argument('output_dir', type=click.Path(exists=True), default=print_help_msg(cli))\r\n@click.option('-fc', 'fix_coord_chars', is_flag=True, help='fix wrong characters used in coordinates definitions')\r\n@click.option('-fl', 'fix_lon_lat', is_flag=True, help='enable swapping of lon and lat if switched. Configure list of accepted values in config.py')\r\n@click.option('-c', 'check_lon_lat', is_flag=True, help='check that longitude and latitude are in defined ranges. Configure list of accepted values in config.py')\r\n@click.option('-v', 'verbose', is_flag=True, help='enable verbose output')\r\ndef cli(input_dir, output_dir, fix_coord_chars, fix_lon_lat, check_lon_lat, verbose):\r\n  \"\"\"This script converts institution.xml files to json v2 format.\r\n  It requires positional parameters input_dir and output_dir.\r\n  input_dir specifies the input directory with institution.xml files.\r\n  output_dir specifies the output directory for json files.\r\n  \"\"\"\r\n\r\n  main(input_dir, output_dir, { \"fix_coord_chars\" : fix_coord_chars, \"fix_lon_lat\" : fix_lon_lat,\r\n                                \"check_lon_lat\" : check_lon_lat, \"verbose\" : verbose })\r\n\r\n\r\nif __name__ == \"__main__\":\r\n  cli()\r\n\r\n```\r\n\r\n\r\nCan you please provide a clean way to solve this?",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/1156"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 825,
+    "title": "\"IOError: [Errno 12] Not enough space\" on Windows 7 and Python 2",
+    "body": "This is caused by [click/_winconsole.py:268-272](https://github.com/pallets/click/blob/5701c4000c39b5a90c45f1083c0cbf4e00731e81/click/_winconsole.py#L268-L272). It seems that switching the standard streams to binary mode reveals the underlying limit of the Windows console of limiting a single write to 64K (I think this limit was lifted in Windows 8). This affects `print`, `sys.stdout.write` and `click.echo`.\r\n\r\nIt seems that many libraries and Python itself limit a single write to 32767 bytes to workaround this. Python 3 for example: [Python/fileutils.c:1244-1250](https://github.com/python/cpython/blob/f7eae0adfcd4c50034281b2c69f461b43b68db84/Python/fileutils.c#L1244-L1250). It doesn't seem like Python 2 has this hack though.\r\n\r\nWe will have to either:\r\n1. Don't set the streams to binary and read/write to dupped stream fds (and file objects) that are set to binary.\r\n2. Wrap the standard streams and workaround this.\r\n3. Submit a patch to Python 2 which I'm not sure will ever be accepted.\r\n4. Other?\r\n\r\nTo reproduce:\r\n```py\r\nimport sys\r\nimport click\r\n\r\nclick.echo(\"spam\")\r\n\r\nprint('A' * 100000) # or\r\nsys.stdout.write('A' * 100000) # or\r\nclick.echo('A' * 100000)\r\n```\r\n\r\nWindows 7 SP1 x64\r\nPython: 2.7.10\r\nClick: 6.7",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/825"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 1047,
+    "title": "Allow sorting of completions based on custom types",
+    "body": "Currently completion candidates returned by click are sorted in ZSH based on alphanumeric rules. This means that completions ['1', '2', '10'] would be displayed out of natural sort order as ['1', '10', '2']. Update the completion script to bring the sorting into Python where custom types can be sorted more appropriately. Note that the version of bash that ships with OS X is v3.2. The nosort option for `complete` was introduced in v4.4 This change should support both.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/1047"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 667,
+    "title": "standalone_mode does not affect the help option",
+    "body": "If we use `standalone_mode=True` passing arguments to command execution will not call `sys.exit`, except if the argument to the command is `[\"--help\"]`.\n\nFrom inside ipython:\n\n> In [12]: import click\n> \n> In [13]: @click.command()\n>     ...: def hello():\n>     ...:     print(\"hello, world\")\n>     ...:\n> \n> In [14]: hello.main([], standalone_mode=False)\n> hello, world\n> \n> In [15]: hello.main(['wrong_arg'], standalone_mode=False)\n> ---\n> \n> UsageError                                Traceback (most recent call last)\n> <ipython-input-15-c2bf17950330> in <module>()\n> ...\n> UsageError: Got unexpected extra argument (wrong_arg)\n> \n> In [16]: hello.main(['--help'], standalone_mode=False)\n> Usage: ipython [OPTIONS]\n> \n> Options:\n>   --help  Show this message and exit.\n> An exception has occurred, use %tb to see the full traceback.\n> \n> SystemExit: 0\n> \n> /Users/malkarouri/Library/Python/2.7/lib/python/site-packages/IPython/core/interactiveshell.py:2889: UserWarning: To exit: use 'exit', 'quit', or Ctrl-D.\n>   warn(\"To exit: use 'exit', 'quit', or Ctrl-D.\", stacklevel=1)\n\nExpected:\n`--help` parameter in standalone mode does not call `sys.exit`.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/667"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 1056,
+    "title": "LazyFile isn't lazy for mode 'r'",
+    "body": "The documentation for the `File` type states:\r\n\r\n> The lazy flag controls if the file should be opened immediately or upon first IO. The default is to be non lazy for standard input and output streams as well as files opened for reading, lazy otherwise.\r\n\r\nHowever, this isn't true if the file-mode is `r`. There is an explicit check\r\nhttps://github.com/pallets/click/blob/ef93b49174540e72c16ad194c39947974f3d5c29/click/utils.py#L89-L93\r\nthat tries to open and close the file in lazy mode. \r\n\r\nThis prevents using a `lazy` `File` to access files that may only come into existence later.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/1056"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 786,
+    "title": "make_pass_decorator strips argument",
+    "body": "The inner most wrapper of make_pass_decorator invokes a function with `*args[1:]` which strips an argument.\r\n\r\nA smaller example could be made but the following is the [invoking other commands](http://click.pocoo.org/6/advanced/#invoking-other-commands) example from the docs modified to also take in a custom config object.\r\n\r\nThe only difference between `dist_working` and `dist_broken` is the order of the decorators and consequently the parameters they take.\r\n\r\nIn my opinion they should both be valid and work.  What happens in `dist_broken` is, like the title says, the `make_pass_decorator` wrapper invokes the function with `*args[1:]` which removes the context object put there by the previous decorator.\r\n\r\n```python\r\nimport click\r\n\r\n\r\nclass MyConfig(object):\r\n    def __init__(self, verbose):\r\n        self.verbose = verbose\r\n\r\n\r\npass_config = click.make_pass_decorator(MyConfig)\r\n\r\n\r\n@click.group()\r\n@click.option('--verbose', '-v', is_flag=True)\r\n@click.pass_context\r\ndef cli(ctx, verbose):\r\n    ctx.obj = MyConfig(verbose=verbose)\r\n\r\n\r\n@cli.command()\r\n@click.option('--count', default=1)\r\ndef test(count):\r\n    click.echo('Count: %d' % count)\r\n\r\n\r\n@cli.command('dist-working')\r\n@click.option('--count', default=1)\r\n@pass_config\r\n@click.pass_context\r\ndef dist_working(ctx, cfg, count):\r\n    if cfg.verbose:\r\n        click.echo('about to forward')\r\n    ctx.forward(test)\r\n    if cfg.verbose:\r\n        click.echo('about to invoke')\r\n    ctx.invoke(test, count=42)\r\n\r\n\r\n@cli.command('dist-broken')\r\n@click.option('--count', default=1)\r\n@click.pass_context\r\n@pass_config\r\ndef dist_broken(cfg, ctx, count):\r\n    if cfg.verbose:\r\n        click.echo('about to forward')\r\n    ctx.forward(test)\r\n    if cfg.verbose:\r\n        click.echo('about to invoke')\r\n    ctx.invoke(test, count=42)\r\n```\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/786"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 925,
+    "title": "Bash completion is broken when a default value is specified for a Choice Argument",
+    "body": "Adding a default value to an argument of the Choice type will hose autocompletion. Can be tested as follows:\r\n \r\nSlightly modifying test_argument_choice test example in test_bashcomplete.py to add a default argument:\r\n```\r\ndef test_argument_choice():\r\n    @click.command()\r\n    @click.argument('arg1', required=False, type=click.Choice(['arg11', 'arg12']))\r\n    @click.argument('arg2', required=False, type=click.Choice(['arg21', 'arg22']), default='arg21')\r\n    @click.argument('arg3', required=False, type=click.Choice(['arg', 'argument']))\r\n    def cli():\r\n        pass\r\n\r\n    assert list(get_choices(cli, 'lol', [], '')) == ['arg11', 'arg12']\r\n    assert list(get_choices(cli, 'lol', [], 'arg')) == ['arg11', 'arg12']\r\n    assert list(get_choices(cli, 'lol', ['arg11'], '')) == ['arg21', 'arg22']\r\n    assert list(get_choices(cli, 'lol', ['arg12', 'arg21'], '')) == ['arg', 'argument']\r\n    assert list(get_choices(cli, 'lol', ['arg12', 'arg21'], 'argu')) == ['argument']\r\n```\r\n\r\nResult:\r\n```\r\nTraceback (most recent call last):\r\n  File \"test_compl.py\", line 19, in <module>\r\n    test_argument_choice()\r\n  File \"test_compl.py\", line 14, in test_argument_choice\r\n    assert list(get_choices(cli, 'lol', ['arg11'], '')) == ['arg21', 'arg22']\r\nAssertionError\r\n```",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/925"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 919,
+    "title": "Completion of subcommand options after last argument does not work",
+    "body": "* Install latest `HEAD` version of `click`:\r\n```\r\n$ pip3 install -e git+git://github.com/pallets/click.git@132d66ac7d69a2b0e8f218a4cd39e50be3e0bcb9#egg=click\r\n```\r\n* Save the following in a file called `foo` on your `PATH`, ensuring it's executable:\r\n```python\r\n#!/usr/bin/env python3\r\n\r\nimport click\r\n\r\ndef _complete(ctx, args, incomplete):\r\n    return ['abc', 'def', 'ghi', 'jkl', 'mno', 'pqr', 'stu', 'vwx', 'yz']\r\n\r\n@click.group()\r\ndef entrypoint():\r\n    pass\r\n\r\n@click.command()\r\n@click.option('--opt', autocompletion=_complete)\r\n@click.argument('arg', nargs=-1)\r\ndef subcommand(opt, arg):\r\n    pass\r\n\r\nentrypoint.add_command(subcommand)\r\n\r\nentrypoint()\r\n```\r\n* Source completion code\r\n```sh\r\nsource <(_FOO_COMPLETE=source foo)\r\n```\r\n---\r\n**Expected Behaviour**\r\n```\r\n$ foo subcommand --opt <TAB>\r\nabc  def  ghi  jkl  mno  pqr  stu  vwx  yz\r\n\r\n$ foo subcommand whatever --opt <TAB>\r\nabc  def  ghi  jkl  mno  pqr  stu  vwx  yz\r\n```\r\n**Actual Behaviour**\r\n```\r\n# WORKS\r\n$ foo subcommand --opt <TAB>\r\nabc  def  ghi  jkl  mno  pqr  stu  vwx  yz\r\n\r\n# BROKEN\r\n$ foo subcommand whatever --opt <TAB>\r\n<list of files in current directory (i.e. fallback when no results)>\r\n```\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/919"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 569,
+    "title": "Case Insensitive Choice Type",
+    "body": "I've been converting a sprawling argparse CLI over to Click (and enjoying the improvements, btw), and I've run into a bit of an incompatibility between the two that I think should be easy for click to solve.\nIn short, this is a feature request for a case insensitive variant of `click.Choice`, or a general solution that handles that use case well.\n\nI had case insensitive choice options like this before:\n\n``` python\nparser.add_argument('--foo', type=str.lower, choices=('apple', 'orange'))\n```\n\nWhich means we could do commands like\n\n``` shell\n$ mycmd --foo ORANGE\n...\n$ mycmd --foo apple\n```\n\nAs far as I can tell, `click.Choices` doesn't support case insensitivity on the strings you use to choose.\n\nThis is easily implemented with a small custom type:\n\n``` python\nclass CaseInsensitiveChoice(click.Choice):\n    def convert(self, value, param, ctx):\n        if value is None:\n            return None\n        return super(CaseInsensitiveChoice, self).convert(\n            value.lower(), param, ctx)\n```\n\nHowever, I was a bit surprised that this was necessary -- I would expect Click to handle this with a keyword argument of some kind, off the shelf.\n\nThis could be a special case for doing string preprocessing, but it's maybe more justifiable as a feature on `ParamType`, something like `argument_preprocessor=func`, which would allow all `ParamType`s to hook in some kind of user-supplied function.\n\nI'm thinking of a final result something like `click.Choice(('apple', 'orange'), argument_preprocessor=str.lower)` for my own use case, but also supporting other potentially interesting things.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/569"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 616,
+    "title": "CliRunner.invoke(..., prog_name) not working",
+    "body": "Trying to call [CliRunner.invoke](http://click.pocoo.org/5/api/#click.testing.CliRunner.invoke) with   the prog_name argument fails for me, any ideas? Thanks!\n\n``` python\nfrom click import argument, command, echo\nfrom click.testing import CliRunner\n\n\n@command()\n@argument('greeting')\ndef main(greeting):\n    echo(greeting)\n```\n\n``` shell\n>>> runner = CliRunner().invoke(main, args=['hello'])\n>>> runner.exit_code\n0\n>>> runner.output\n'hello\\n'\n```\n\n``` shell\n>>> runner = CliRunner().invoke(main, args=['hello'], prog_name='foobar')\n>>> runner.exit_code\n-1\n>>> runner.output\n''\n```\n\nPython 3.5.2 with click 6.6.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/616"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 704,
+    "title": "\"Missing argument\" message uses arg name, not metavar",
+    "body": "If one defines the metavar different from the argument name, like in:\r\n```\r\n@adapter_group.command('list')\r\n@click.argument('CPC-NAME', type=str, metavar='CPC')\r\n@click.pass_obj\r\ndef adapter_list(cmd_obj, cpc_name):\r\n```\r\nthe usage line in the help text correctly uses the metavar:\r\n```\r\nUsage: zhmc adapter list [OPTIONS] CPC\r\n```\r\nbut the error message when invoked without arguments incorrectly uses the argument name:\r\n```\r\nError: Missing argument \"CPC-NAME\".\r\n```\r\n\r\nI suggest that the metavar is used consistently in all display to the user.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/704"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 598,
+    "title": "Argument metavar parameter not used with exception message",
+    "body": "#273 exists (again/still) in Click 6.6:\n# Code\n\n``` python\nimport click\nprint click.__version__\n\n@click.command()\n@click.argument('to_say', metavar='message')\ndef foo(to_say):\n    print to_say\n\n\nif __name__ == '__main__':\n    foo()\n```\n# Expected Output\n\n```\n6.6\nUsage: foo.py [OPTIONS] message\n\nError: Missing argument \"message\".\n```\n# Observed Output\n\n```\n6.6\nUsage: foo.py [OPTIONS] message\n\nError: Missing argument \"to_say\".\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/598"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 719,
+    "title": "Can't build documentation with python 3",
+    "body": "```\r\n> make html\r\n...\r\nException occurred:\r\n  File \"/home/user/click-6.7/docs/clickdoctools.py\", line 73, in isolation\r\n    if isinstance(input, unicode):\r\nNameError: name 'unicode' is not defined\r\n```\r\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/719"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 873,
+    "title": "Variable precedence",
+    "body": "Playing with `click`'s ability to read environment variables and provide default values, I noticed that the order in which the variables are looked up seems wrong.\r\n\r\nHere is what I expected (first variable found wins):\r\n\r\n1. Retrieve the value from the CLI\r\n2. Retrieve the value from the environment\r\n3. Retrieve the default value\r\n\r\nBut here is what happened:\r\n\r\n1. Retrieve the value from the CLI\r\n2. Retrieve the default value\r\n3. Retrieve the value from the environment\r\n\r\nThis seems wrong because the fact that I set default values should not prevent the environment lookup to happen.\r\n\r\n## How to reproduce\r\n\r\nCreate the `precedence.py` file:\r\n\r\n```python\r\nimport click\r\n\r\n@click.command()\r\n@click.option('--name', help=\"Specify a name\")\r\ndef prec(name):\r\n    \"\"\"Greet the world.\"\"\"\r\n    click.echo(f'Hey {name}!')\r\n\r\n\r\nif __name__ == '__main__':\r\n    prec(auto_envvar_prefix='CLICK', default_map={'name': 'Stranger'})\r\n```\r\nThen run:\r\n```\r\n$ export CLICK_NAME=Tiger\r\n$ python precedence.py --name Joe\r\nHey Joe!\r\n$ python precedence.py\r\nHey Stranger!\r\n```\r\n\r\nThen remove the `default_map` argument from the command call and you get:\r\n```\r\n$ export CLICK_NAME=Tiger\r\n$ python precedence.py --name Joe\r\nHey Joe!\r\n$ python precedence.py\r\nHey Tiger!\r\n```\r\n\r\n## Versions\r\nPython: 3.6.3\r\nClick: 6.7",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/873"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 409,
+    "title": "stream to echo_via_pager",
+    "body": "There should be a possibility to launch the pager while still generating the data it is supposed to show. Proposed API:\n\n```\nwith echo_via_pager() as f:\n    f.write('foobar')\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/409"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 813,
+    "title": "Typo? `Synching` vs `Syncing`",
+    "body": "https://english.stackexchange.com/questions/681/synced-or-synched\r\n\r\nMany of them seem to think `sync` is more common than `synch`.\r\n\r\n```python\r\n@cli.command()\r\ndef sync():\r\n    click.echo('Synching')\r\n```\r\nhttps://github.com/pallets/click/blob/b5239afafe6e36f53defabb392ac5264e0f5eb6b/docs/commands.rst#callback-invocation",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/813"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 816,
+    "title": "Python 3.6 on Windows click.echo() truncates output click v6.7, unable to duplicate in test",
+    "body": "There appears to be a limit of ~16 383 character output when using click.echo() on a windows environment (Windows 7 64-bit) in python 3.6.0.  Similar behavior is **not** present using python 2.7.11.  This behavior seems to include escape characters to varying degrees.  I've checked it using the following:\r\n\r\n```\r\nimport click\r\n\r\ndef string_construct(string):\r\n    string_list = []\r\n    for i in range(17000):\r\n        string_list.append(string)\r\n    return string_list\r\n\r\n@click.command()\r\n@click.option('--first', '-1', default=False, is_flag=True)\r\n@click.option('--second', '-2', default=False, is_flag=True)\r\n@click.option('--third', '-3', default=False, is_flag=True)\r\n@click.option('--fourth', '-4', default=False, is_flag=True)\r\ndef main(first, second, third, fourth):\r\n    if first:\r\n        s = ''.join(string_construct('t'))\r\n        print(len(s))\r\n        click.echo(s)\r\n    elif second:\r\n        s = ''.join(string_construct('\\tt'))\r\n        print(len(s))\r\n        click.echo(s)\r\n    elif third:\r\n        n = 'A somewhat longer string to constrain console output\\n'\r\n        s = ''.join(string_construct(n))\r\n        print(len(s))\r\n        click.echo(s)\r\n    elif fourth:\r\n        s = ''.join(string_construct(' '))\r\n        print(len(s))\r\n        click.echo(s)\r\n```\r\n\r\nlist1:\r\n - output: 16 383 characters\r\n - no escaped\r\n\r\nlist2:\r\n - output: 8 191 characters\r\n - with tabs as 1 character: 16 382\r\n\r\nlist3:\r\n - output: 15 799 characters (spaces included)\r\n - with newline as 1 character: 16 092\r\n - with newline as 2 characters: 16 385\r\n\r\nlist4:\r\n - output: 16 235 characters\r\n\r\nI copied the output over to word to check character counts, which is probably were the discrepancies come from.  The output of `len(s)` is always what you would expect.   I've started working on a patch in `_compat.py` in an `elif WIN:` block below the following block:\r\n\r\n```\r\n# The io module is a place where the Python 3 text behavior\r\n    # was forced upon Python 2, so we need to unbreak\r\n    # it to look like Python 2.\r\n    if PY2:\r\n        def write(self, x):\r\n            if isinstance(x, str) or is_bytes(x):\r\n                try:\r\n                    self.flush()\r\n                except Exception:\r\n                    pass\r\n                return self.buffer.write(str(x))\r\n            return io.TextIOWrapper.write(self, x)\r\n\r\n        def writelines(self, lines):\r\n            for line in lines:\r\n                self.write(line)\r\n```\r\n\r\nRight now I have a working patch using the following code (extending the above if):\r\n\r\n```\r\nelif WIN:\r\n        def write(self, x):\r\n            MAX_LEN = 16000\r\n            message_len = len(x)\r\n            if message_len > MAX_LEN:\r\n                self.write(x[0:MAX_LEN])\r\n                return self.write(x[MAX_LEN:message_len])\r\n            else:\r\n                return io.TextIOWrapper.write(self, x)\r\n```\r\n\r\nI've tried to write a valid test, the trouble is that `runner` and `capsys.readouterr()` are both showing the output at the correct length.  I've double checked and my patch works to correct the error, I just can't duplicate the error in the test environment.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/816"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 703,
+    "title": "Support for bright colors",
+    "body": "It would be nice to support bright ANSI colors as well. I have a use case where the bright color scheme, particularly for a standard Windows Command Prompt would be beneficial. I am happy to work on a Pull Request if this is something that you would consider adding. ",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/703"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 793,
+    "title": "Incorrect names being picked",
+    "body": "Docs state `By default, the name of the parameter is the first long option defined; otherwise the first short one is used`.\r\n\r\nThe implementation of this is in `_parse_decls` method of `Option` which has a line...\r\n\r\n```python\r\npossible_names.sort(key=lambda x: len(x[0]))\r\nname = possible_names[-1][1].replace('-', '_').lower()\r\n```\r\n\r\n... currently [here](https://github.com/pallets/click/blob/master/click/core.py#L1570)\r\n\r\nThis invocation of `list.sort` with `key=` essentially makes every short option equal to each other and every long option equal to each other.  The original order they were defined in is subject to change.\r\n\r\nIn fact... even if it were to maintain that order, the code would actually be grabbing the __*last*__ long parameter.\r\n\r\nFix coming soon... I'll submit it.  I'll change the code to match the docs.",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/793"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 744,
+    "title": "click does not work in windows console",
+    "body": "Hi, I tried using your library but when I tried running under windows I got the following error:\r\n\r\n`Traceback (most recent call last):`\r\n`  File \"test.py\", line 12, in <module>`\r\n`    click.echo('Continue? [yn] ', nl=False)`\r\n`  File \"xxx\\Lib\\site-packages\\click\\utils.py\", line 217, in echo`\r\n`    file = _default_text_stdout()`\r\n`  File \"xxx\\Lib\\site-packages\\click\\_compat.py\", line 621, in func`\r\n`    rv = wrapper_func()`\r\n`  File \"xxx\\Lib\\site-packages\\click\\_compat.py\", line 385, in get_text_stdout`\r\n`    rv = _get_windows_console_stream(sys.stdout, encoding, errors)`\r\n`  File \"xxx\\Lib\\site-packages\\click\\_winconsole.py\", line 264, in _get_windows_console_stream`\r\n`    f = getattr(f, 'buffer')`\r\n`AttributeError: 'TextTranscodingWrapper' object has no attribute 'buffer'`",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/744"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 711,
+    "title": "Click errors out when running on Windows with the GAE development server sandbox",
+    "body": "This prevents Flask 0.12 from running under the GAE development server on Windows. See this issue: https://github.com/pallets/flask/issues/2139\r\n\r\nProbably the pragmatic solution here is:\r\n\r\n- add a try/catch around importing msvcrt: https://github.com/pallets/click/blob/master/click/_compat.py#L166\r\n- if the import fails, log a warning (error?) and just use `set_binary_mode = lambda x: x`\r\n- or perhaps we can be stricter and say that `set_binary_mode` won't work in this case and use `set_binary_mode = lambda _: None`?",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/711"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 651,
+    "title": "Progress bar should advance at end of loop",
+    "body": "I'm using the progress bar with a piece of code like this:\n\n``` python\nwith click.progressbar(some_list) as bar:\n    for element in bar:\n        element.long_calculation\n```\n\nIt seems that the progress bar updates every time it enters the loop, which for the last element means the bar shows everything has been completed, although the last computation just started. It would be great if it would show the progress in terms of results, not as an iterator.\n\nI looked briefly at the implementation in [_termui_impl.py](https://github.com/pallets/click/blob/master/click/_termui_impl.py), but the rendering seems to be closely linked to the `pos` attribute and I don't feel comfortable to mess with that. 😒\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/651"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 674,
+    "title": "Argument.make_metavar ignores ParamType.get_metavar ; is not configurable to fix",
+    "body": "If you do the following, you get bad behavior:\n\n``` python\nclass MyType(click.ParamType):\n    def get_metavar(self, param):\n        return \"MY_TYPE\"\n\n@click.command(\"foo\")\n@click.help_option()\n@click.argument(\"param\", type=MyType())\ndef foo_command(param):\n    pass\n```\n\n`foo --help` produces a metavar of `PARAM` instead of the more logically correct `MY_TYPE`.\n\nThis is because `Argument.make_metavar` never looks at `self.type.get_metavar(self)`.\n\nEither this should be fixed so that `Argument.make_metavar` uses the type metavar by default, or `Argument.make_metavar` should take a parameter that lets you toggle between the default \"name\" metavar and the type's default metavar.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/674"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 625,
+    "title": "Handling of SIGPIPE",
+    "body": "The simple example from the front page of click:\n\n```\nimport click\n\n@click.command()\n@click.option('--count', default=1, help='Number of greetings.')\n@click.option('--name', prompt='Your name',\n              help='The person to greet.')\ndef hello(count, name):\n    \"\"\"Simple program that greets NAME for a total of COUNT times.\"\"\"\n    for x in range(count):\n        click.echo('Hello %s!' % name)\n\nif __name__ == '__main__':\n    hello()\n```\n\nwhen piped to a command that closes the pipe prematurely, produces an ugly python stack trace:\n\n```\n$ python ./test-click.py --name ob --count 1000 | head -1\nHello ob!\nTraceback (most recent call last):\n  File \"./test-click.py\", line 13, in <module>\n    hello()\n  File \"/Users/obonilla/o/click/click/core.py\", line 716, in __call__\n    return self.main(*args, **kwargs)\n  File \"/Users/obonilla/o/click/click/core.py\", line 696, in main\n    rv = self.invoke(ctx)\n  File \"/Users/obonilla/o/click/click/core.py\", line 889, in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n  File \"/Users/obonilla/o/click/click/core.py\", line 534, in invoke\n    return callback(*args, **kwargs)\n  File \"./test-click.py\", line 10, in hello\n    click.echo('Hello %s!' % name)\n  File \"/Users/obonilla/o/click/click/utils.py\", line 259, in echo\n    file.write(message)\n  File \"/Users/obonilla/o/click/click/_compat.py\", line 63, in write\n    return io.TextIOWrapper.write(self, x)\nIOError: [Errno 32] Broken pipe\n```\n\nPython maps the handling of SIGPIPE to an exception that I believe click.echo is not catching.\nIt seems it should silently exit in this particular case.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/625"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 577,
+    "title": "CHANGES missing version 6.6",
+    "body": "What happened in 6.6? 🎅 \n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/577"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 551,
+    "title": "UnboundLocalError when combining allow_dash and dir_okay",
+    "body": "``` python\nimport click\n\n@click.command()\n@click.argument('filename', type=click.Path(dir_okay=False, allow_dash=True))\ndef foo(filename):\n    pass\n\nif __name__ == '__main__':\n    foo()\n```\n\nWhen this script is invoked with the argument '-' I see the following error:\n\n```\n  File \"boo.py\", line 10, in <module>\n    foo()\n  File \"/home/david/projects/structureshrink/foo/lib/python3.5/site-packages/click-6.4-py3.5.egg/click/core.py\", line 716, in __call__\n    return self.main(*args, **kwargs)\n  File \"/home/david/projects/structureshrink/foo/lib/python3.5/site-packages/click-6.4-py3.5.egg/click/core.py\", line 695, in main\n    with self.make_context(prog_name, args, **extra) as ctx:\n  File \"/home/david/projects/structureshrink/foo/lib/python3.5/site-packages/click-6.4-py3.5.egg/click/core.py\", line 620, in make_context\n    self.parse_args(ctx, args)\n  File \"/home/david/projects/structureshrink/foo/lib/python3.5/site-packages/click-6.4-py3.5.egg/click/core.py\", line 874, in parse_args\n    value, args = param.handle_parse_result(ctx, opts, args)\n  File \"/home/david/projects/structureshrink/foo/lib/python3.5/site-packages/click-6.4-py3.5.egg/click/core.py\", line 1390, in handle_parse_result\n    value = self.full_process_value(ctx, value)\n  File \"/home/david/projects/structureshrink/foo/lib/python3.5/site-packages/click-6.4-py3.5.egg/click/core.py\", line 1359, in full_process_value\n    value = self.process_value(ctx, value)\n  File \"/home/david/projects/structureshrink/foo/lib/python3.5/site-packages/click-6.4-py3.5.egg/click/core.py\", line 1349, in process_value\n    return self.type_cast_value(ctx, value)\n  File \"/home/david/projects/structureshrink/foo/lib/python3.5/site-packages/click-6.4-py3.5.egg/click/core.py\", line 1338, in type_cast_value\n    return _convert(value, (self.nargs != 1) + bool(self.multiple))\n  File \"/home/david/projects/structureshrink/foo/lib/python3.5/site-packages/click-6.4-py3.5.egg/click/core.py\", line 1336, in _convert\n    return self.type(value, self, ctx)\n  File \"/home/david/projects/structureshrink/foo/lib/python3.5/site-packages/click-6.4-py3.5.egg/click/types.py\", line 38, in __call__\n    return self.convert(value, param, ctx)\n  File \"/home/david/projects/structureshrink/foo/lib/python3.5/site-packages/click-6.4-py3.5.egg/click/types.py\", line 426, in convert\n    if not self.dir_okay and stat.S_ISDIR(st.st_mode):\n```\n\nI am running Python 3.5.1 and using click version 6.4.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/551"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 471,
+    "title": "Bash completion for MultiCommands returns subcommands twice until it stops.",
+    "body": "Python 2.7.10\nbroken in click >= 6\nok in click (5.1)\n\n```\nmanage hello hello world world\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/471"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 494,
+    "title": "Python 3.4.3 on OS X: _unicodefun: TypeError: 'str' does not support the buffer interface",
+    "body": "I have an OS X / Python 3.4.3 user in https://github.com/ludios/grab-site/issues/64 seeing:\n\n```\nTraceback (most recent call last):\n  File \"/Volumes/Macintosh HD/Users/user/Library/Python/3.4/bin/grab-site\", line 4, in <module>\n    main.main()\n  File \"/Volumes/Macintosh HD/Users/user/Library/Python/3.4/lib/python/site-packages/click/core.py\", line 716, in __call__\n    return self.main(*args, **kwargs)\n  File \"/Volumes/Macintosh HD/Users/user/Library/Python/3.4/lib/python/site-packages/click/core.py\", line 675, in main\n    _verify_python3_env()\n  File \"/Volumes/Macintosh HD/Users/user/Library/Python/3.4/lib/python/site-packages/click/_unicodefun.py\", line 69, in _verify_python3_env\n    if locale.lower().endswith(('.utf-8', '.utf8')):\nTypeError: 'str' does not support the buffer interface\n```\n\ncaused by https://github.com/mitsuhiko/click/blob/8c6c1505adf8ef701f6006a6749a0a493a67fbef/click/_unicodefun.py#L69\n\nI believe the `.strip()` and `.lower()` are operating on bytes instead of unicode, leading to a failure like this:\n\n```\n>>> b\"ab\".strip().lower().endswith((\"b\", \"a\"))\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\nTypeError: 'str' does not support the buffer interface\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/494"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 477,
+    "title": "Argument parsing broken on Windows",
+    "body": "When running with `python -mfoobar` (as opposed to `python -m foobar` - note the extra space) click 6.0 doesn't see any arguments.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/477"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 474,
+    "title": "BadOptionUsage exception no longer takes option_name argument",
+    "body": "During [this change](https://github.com/mitsuhiko/click/commit/5f98f570c08a11e607cccfd9c1b787c69a6a67b7#diff-f391f677ae94d58e508e7af268fdb718R168), `BadOptionUsage`'s `__init__` signature was changed to remove the `option_name` parameter. This seems to be an undocumented breaking change that makes the class less useful programmatically (it removes programmatic access to the attribute that's being used incorrectly). If this was an intentional change, it should be documented in the changelog; otherwise, it's a bug and should be fixed. I'm happy to submit a pull request with the correct change. Can a maintainer clarify what the correct behavior should be?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/474"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 470,
+    "title": "local variable 'line_len' referenced before assignment with PyPI v6.1",
+    "body": "I'm getting errors running rq's unit tests since the release of click 6.1.\n\nsee https://travis-ci.org/nvie/rq/jobs/93515080\n\nLook at [_termui_impl.py line 222](https://github.com/mitsuhiko/click/blob/6fcda3e5fcddd9001b314e83a1e0546bd22c78c2/click/_termui_impl.py#L222) it does indeed look like `line_len` is referenced when it might not be assigned.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/470"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 469,
+    "title": "Check for None in exceptions.py ",
+    "body": "Hi, \n\nYou have forgotten to check for None in click/exceptions.py line 119 for self.param.\n\nKalman\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/469"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 464,
+    "title": "UnboundLocalError: local variable 'clear_width' referenced before assignment",
+    "body": "Got the following error since version 6.0:\n\n```\nFile \"/click/_termui_impl.py\", line 222, in render_progress\n    buf.append(' ' * (clear_width - line_len))\nUnboundLocalError: local variable 'clear_width' referenced before assignment\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/464"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 463,
+    "title": "defaults for arguments with nargs>1 not picked up",
+    "body": "Hi,\n\nconsider the following program\n\n```\n#!/usr/bin/env python\nimport click\n@click.command()\n@click.argument('one',nargs = 2, default = (1,2))\ndef cmd(one):\n  print \"  => one: {}\".format(one)\n\nif __name__ == '__main__':\n  cmd()\n```\n\nif you run it without parameters click maps  `(None,None)` to  `one`, while I would have expected `one` to have the value `(1,2)`\n\nis this intentional?\n\nThanks,\nLukas\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/463"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 444,
+    "title": "Mapping of '-' to stdout fails when resolve_path=True",
+    "body": "Using this code:\n\n```\n@click.option('-o', '--outfile',\n    help='Output file for codes (will clobber).',\n    required=True,\n    default='-',\n    type=click.Path(file_okay=True, dir_okay=False, writable=True, resolve_path=True),\n    )\n```\n\nthen later\n\n```\nf_out = click.open_file(outfile, 'w')\n```\n\nand invoking with defaults results in a file named '-' being created in the current directory.\n\nChanging the option to use `resolve_path=False` results in stdout being used, as expected.\n\nThe desired behavior would be to always interpret '-' as stdin or stdout, regardless of option parameters used.  In the current situation, a custom callback is required to work around the issue.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/444"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 420,
+    "title": "Make it easier to only specify off flag",
+    "body": "Hi, I couldn’t find a way to easily get click to support having only a verbose on-flag and a verbose and short off-flag.\n\n``` py\n@option('--warnings/--no-warnings', '/-w', default=True)\n```\n\nthis will not work as intended. I want to see the following help string:\n\n```\n--warnings / -w, --no-warnings\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/420"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 412,
+    "title": "Context is closed *after* it is poped",
+    "body": "this prevents cleanup functions from referring to the current setup\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/412"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 415,
+    "title": "Chain doesn't work with nested groups",
+    "body": "If a group has chain set as true, the commands of a sub-group can't be executed.\n\nMinimal exmaple cli.py\n\n```\nimport click\n\n@click.group(chain=True)\ndef cli():\n    pass\n\n@cli.group()\ndef gp():\n    pass\n\n@gp.command()\ndef cmd():\n    pass\n\ncli()\n```\n\nThen\n\n```\n$ python cli.py gp cmd\nUsage: cli.py [OPTIONS] COMMAND1 [ARGS]... [COMMAND2 [ARGS]...]...\n\nError: No such command \"cmd\".\n```\n\nMaybe this isn't resolvable, but the docs say \"When using multi command chaining you can only have one command (the last) use nargs=-1 on an argument. Other than that there are no restrictions on how they work.\" at http://click.pocoo.org/5/commands/#multi-command-chaining\n\nUsing Python 3.4.3 and Click 5.1\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/415"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 418,
+    "title": "ProgressBar should flush only when necessary",
+    "body": "Current ProgressBar implementation enforces the output is flushed in every iteration step, regardless of whether the bar UI needs to be updated. This can result in significantly high IO overhead.\n\nFor example, the following code takes up to minutes to run while the same iteration without using a progress bar takes milliseconds.\n\n``` python\nwith click.progressbar(xrange(10 ** 6)) as pb:\n    for i in pb:\n        # do the work\n        pass\n```\n\nThe issue is worse in a remote ssh session, in which case bandwidth is also wasted.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/418"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 403,
+    "title": "Crash when PAGER=\"\"",
+    "body": "In pgcli, click crashes when I set PAGER to be empty.\n\n``` python\nTraceback (most recent call last):\n  File \"/home/jonathan/env/pt/bin/pgcli\", line 9, in <module>\n    load_entry_point('pgcli==0.19.0', 'console_scripts', 'pgcli')()\n  ...\n  File \"/home/jonathan/git/pgcli/pgcli/main.py\", line 353, in run_cli\n    click.echo_via_pager('\\n'.join(output))\n  File \"/home/jonathan/env/pt/lib/python3.4/site-packages/click-4.1-py3.4.egg/click/termui.py\", line 203, in echo_via_pager\n    return pager(text + '\\n', color)\n  File \"/home/jonathan/env/pt/lib/python3.4/site-packages/click-4.1-py3.4.egg/click/_termui_impl.py\", line 263, in pager\n    return _pipepager(text, os.environ['PAGER'], color)\n  File \"/home/jonathan/env/pt/lib/python3.4/site-packages/click-4.1-py3.4.egg/click/_termui_impl.py\", line 292, in _pipepager\n    if color is None and cmd_detail[0] == 'less':\nIndexError: list index out of range\n```\n\n`PipePager` is called with an empty `os.environ['PAGER']`: https://github.com/mitsuhiko/click/blob/dbd40696e31409a50eb4722c806b4ac1c527ca8c/click/_termui_impl.py#L263\n\nSo, splitting an empty string makes `cmd_detail` an empty list. `[0]` gives that `IndexError`:\nhttps://github.com/mitsuhiko/click/blob/dbd40696e31409a50eb4722c806b4ac1c527ca8c/click/_termui_impl.py#L292\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/403"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 316,
+    "title": "multiple argument, wrong order",
+    "body": "```\n@click.command()\n@click.argument('src', type=click.Path(exists=True), nargs=-1)\n@click.argument('abstract', type=click.File('w', encoding='utf-8'), nargs=1)\n@click.argument('body', type=click.File('w', encoding='utf-8'), nargs=1)\ndef cli(src, abstract, body):\n```\n\nwith above code, when I call:\n`mycli input.txt abs.txt body.txt` I suppose in my cli function, `abstract` is the file of `abs.txt` and `body` is the file of `body.txt`.\nBut the fact is what I got `abstract` is `body.txt` and `body` is `abs.txt`\n\nSo, I reverse the `abstract` and `body` declaration like this:\n\n```\n@click.command()\n@click.argument('src', type=click.Path(exists=True), nargs=-1)\n@click.argument('body', type=click.File('w', encoding='utf-8'), nargs=1)\n@click.argument('abstract', type=click.File('w', encoding='utf-8'), nargs=1)\ndef cli(src, abstract, body):\n```\n\nNow my function getting the right files. But when I run `mycli --help` it shows:\n\n```\nUsage: mycli [OPTIONS] [SRC]... BODY ABSTRACT\n```\n\nWhich the sequence is wrong again.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/316"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 377,
+    "title": "How should I test subcommands?",
+    "body": "Hello, I'm having a question about testing `click` applications. E.g. a simple application with subcommands. Some options are global.\n\n``` python\n@click.group()\n@click.option('--startdir', default=None)\n@click.pass_context\ndef cli(ctx, startdir):\n    ctx.obj = {'STARTDIR': startdir}\n\n@cli.command()\n@cli.pass_context\ndef sync(ctx):\n    click.echo(ctx.obj['STARTDIR'])\n```\n\nWhen I pass `sync` to `CliRunner.invoke`, the whole group will not be executed, so context will not be initialized. When I pass `cli` to `CliRunner.invoke`, I can't specify which subcommand I want to test. The documentation lacks information about that.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/377"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 339,
+    "title": "`click.echo`'s '\\n' generates error on writing to unicode-encoded files.",
+    "body": "Reproducing:\n\n``` python\n# coding: utf-8\nimport click\n\n@click.command()\n@click.option('--log', type=click.File('a', encoding='utf-8'))\ndef main(**kwargs):\n    click.echo(u'Something to log…', nl=True, file=log)\n```\n\nError:\n\n``` python-traceback\nTraceback (most recent call last):\n  File \"/Users/mktums/.virtualenvs/test/lib/python2.7/site-packages/click/utils.py\", line 295, in echo\n    file.write('\\n')\nTypeError: must be unicode, not str\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/339"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 355,
+    "title": "Error when sys.getfilesystemencoding() returns None",
+    "body": "While `sys.getfilesystemencoding()` is usually not `None`, it seems that `None` is actually a valid return value for this according to the docs at https://docs.python.org/2/library/sys.html#sys.getfilesystemencoding.\n\nThe error happens on this line when `sys.getfilesystemencoding()` returns `None` – https://github.com/mitsuhiko/click/blob/master/click/utils.py#L93 – resulting in `TypeError: decode() argument 1 must be string, not None`.\n\nI think an OK fix would be to catch both `UnicodeError` and `TypeError` on the following line, or check for `None` first and then falling back to the default case.\n\nThanks for the awesome library!\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/355"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 357,
+    "title": "Opening a File for reading with atomic=True truncates file",
+    "body": "Python 2.7.1 (OS X 10.7), Click 4.0\n\n```\nimport click\n\n@click.command()\n@click.argument(\"file\", type=click.File(mode=\"r+\", atomic=True))\ndef clobber(file):\n    # This should be a read-only operation, but the file is empty on exit.\n    # File is already empty by the time read() is called on it.\n    click.echo(file.read())\n    return\n\nif __name__ == \"__main__\":\n    clobber()\n```\n\nMy use case is opening a file that needs to be read from and then optionally written to. However, opening the file with mode `r` or `r+` truncates the file for `atomic=True`. What is the best way to update a file? \n\nIn any case, having your file clobbered with mode `r` is certainly not expected.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/357"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 344,
+    "title": "Python 3.* & py.test:  codecs.lookup... TypeError",
+    "body": "Python Versions: 3.2, 3.3, and 3.4, on Linux.\n\n`is_ascii_encoding` is setup to catch  a `LookupError`, but I'm getting a `TypeError` instead:\n\n``` python\n.tox/py34/lib/python3.4/site-packages/click/_compat.py:29: TypeError\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nencoding = None\n\n    def is_ascii_encoding(encoding):\n        \"\"\"Checks if a given encoding is ascii.\"\"\"\n        try:\n>           return codecs.lookup(encoding).name == 'ascii'\nE           TypeError: must be str, not None\n\n\n```\n\nThis originates from calls to `.echo` and `.secho`. Encoding is returning `None`. Then the property `.name` is called on that `None`.\n\nI've tried setting the environment variables, with no effect, as described here: http://click.pocoo.org/4/python3/#python3-surrogates\n\nMy app works just fine, but this is failing my tests.\n\nHere's the monkeypatch hack I've been using for py.test (for anyone else who runs into this): **edit:** just to be clear, this fixes the problem:\n\n``` python\n@pytest.fixture(autouse=True)\ndef setup(monkeypatch):\n    import codecs\n\n    def is_ascii_encoding(encoding):\n        \"\"\"Checks if a given encoding is ascii.\"\"\"\n        try:\n\n            return codecs.lookup(encoding).name == 'ascii'\n        except (LookupError, TypeError):\n            return False\n\n    # monkeypatch.setattr('click.getchar', lambda: 'A')\n    # monkeypatch.setattr('click.confirm', lambda _: True)\n    monkeypatch.setattr('click._compat.is_ascii_encoding', is_ascii_encoding)\n```\n\nAn example traceback (without the patch):\n\n``` python-traceback\n.tox/py34/lib/python3.4/site-packages/click/_compat.py:29: TypeError\n______________________________ test_flash_message ______________________________\n\ngame = <Mock spec='Hangman' id='139711558786464'>\ncapsys = <_pytest.capture.CaptureFixture object at 0x7f1121d51b00>\npresenter = <hangman.presenter.Presenter object at 0x7f1121d519b0>\n\n    def test_flash_message(game, capsys, presenter):\n        message = 'This test is a success'\n>       presenter.write(game=game, message=message)\n\ntests/test_presenter.py:225: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nbuild/lib/hangman/presenter.py:22: in wrapper\n    return func(self, *args, **kwargs)\nbuild/lib/hangman/presenter.py:129: in write\n    self.click.secho('{0:45s}'.format(message), bold=True, fg='yellow')\n.tox/py34/lib/python3.4/site-packages/click/termui.py:409: in secho\n    return echo(style(text, **styles), file=file, nl=nl, err=err, color=color)\n.tox/py34/lib/python3.4/site-packages/click/utils.py:257: in echo\n    file = _default_text_stdout()\n.tox/py34/lib/python3.4/site-packages/click/_compat.py:543: in func\n    rv = wrapper_func()\n.tox/py34/lib/python3.4/site-packages/click/_compat.py:356: in get_text_stdout\n    return _force_correct_text_writer(sys.stdout, encoding, errors)\n.tox/py34/lib/python3.4/site-packages/click/_compat.py:309: in _force_correct_text_writer\n    if encoding is None and not _stream_is_misconfigured(text_writer):\n.tox/py34/lib/python3.4/site-packages/click/_compat.py:258: in _stream_is_misconfigured\n    return is_ascii_encoding(getattr(stream, 'encoding', None))\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nencoding = None\n\n    def is_ascii_encoding(encoding):\n        \"\"\"Checks if a given encoding is ascii.\"\"\"\n        try:\n>           return codecs.lookup(encoding).name == 'ascii'\nE           TypeError: must be str, not None\n\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/344"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 239,
+    "title": "Different types for multi value options",
+    "body": "I'd like to use a multi value options but with different types for each value, e.g. :\n\n``` python\n@click.option('--foo', nargs=2, type=(int, str))\n```\n\n``` console\n$ python foo.py --foo 3 bar\n```\n\nAlso, it should work with `multiple=True`. I haven't found a way to do that in the documentation. Could this be implemented with a custom `ParamType` that does that ? For example :\n\n``` python\n@click.option('--foo', nargs=2, type=CompositeType(int, str))\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/239"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 268,
+    "title": "there is an error when build doc html ?",
+    "body": "enviroment: sphinxv1.2.2  git-bash(windows7), mingw32\nthere is an error  when use mingw32-make html  \n\n```\n# Sphinx version: 1.2.2\n# Python version: 2.7.8\n# Docutils version: 0.12 release\n# Jinja2 version: 2.7.3\n# Loaded extensions:\n#   sphinx.ext.autodoc from c:\\Python27\\lib\\site-packages\\sphinx-1.2.2-py2.7.egg\\sphinx\\ext\\autodoc.pyc\n#   sphinx.ext.intersphinx from c:\\Python27\\lib\\site-packages\\sphinx-1.2.2-py2.7.egg\\sphinx\\ext\\intersphinx.pyc\n#   sphinx.ext.oldcmarkup from c:\\Python27\\lib\\site-packages\\sphinx-1.2.2-py2.7.egg\\sphinx\\ext\\oldcmarkup.pyc\n#   clickdoctools from F:\\github\\click\\docs\\clickdoctools.pyc\nTraceback (most recent call last):\n  File \"c:\\Python27\\lib\\site-packages\\sphinx-1.2.2-py2.7.egg\\sphinx\\cmdline.py\", line 254, in main\n    app.build(force_all, filenames)\n  File \"c:\\Python27\\lib\\site-packages\\sphinx-1.2.2-py2.7.egg\\sphinx\\application.py\", line 212, in build\n    self.builder.build_update()\n  File \"c:\\Python27\\lib\\site-packages\\sphinx-1.2.2-py2.7.egg\\sphinx\\builders\\__init__.py\", line 214, in build_update\n    'out of date' % len(to_build))\n  File \"c:\\Python27\\lib\\site-packages\\sphinx-1.2.2-py2.7.egg\\sphinx\\builders\\__init__.py\", line 234, in build\n    purple, length):\n  File \"c:\\Python27\\lib\\site-packages\\sphinx-1.2.2-py2.7.egg\\sphinx\\builders\\__init__.py\", line 134, in status_iterator\n    for item in iterable:\n  File \"c:\\Python27\\lib\\site-packages\\sphinx-1.2.2-py2.7.egg\\sphinx\\environment.py\", line 477, in update_generator\n    self.read_doc(docname, app=app)\n  File \"c:\\Python27\\lib\\site-packages\\sphinx-1.2.2-py2.7.egg\\sphinx\\environment.py\", line 624, in read_doc\n    pub.publish()\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\core.py\", line 217, in publish\n    self.settings)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\readers\\__init__.py\", line 72, in read\n    self.parse()\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\readers\\__init__.py\", line 78, in parse\n    self.parser.parse(self.input, document)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\parsers\\rst\\__init__.py\", line 172, in parse\n    self.statemachine.run(inputlines, document, inliner=self.inliner)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\parsers\\rst\\states.py\", line 170, in run\n    input_source=document['source'])\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\statemachine.py\", line 239, in run\n    context, state, transitions)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\statemachine.py\", line 460, in check_line\n    return method(match, context, next_state)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\parsers\\rst\\states.py\", line 2726, in underline\n    self.section(title, source, style, lineno - 1, messages)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\parsers\\rst\\states.py\", line 327, in section\n    self.new_subsection(title, lineno, messages)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\parsers\\rst\\states.py\", line 395, in new_subsection\n    node=section_node, match_titles=True)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\parsers\\rst\\states.py\", line 282, in nested_parse\n    node=node, match_titles=match_titles)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\parsers\\rst\\states.py\", line 195, in run\n    results = StateMachineWS.run(self, input_lines, input_offset)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\statemachine.py\", line 239, in run\n    context, state, transitions)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\statemachine.py\", line 460, in check_line\n    return method(match, context, next_state)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\parsers\\rst\\states.py\", line 2726, in underline\n    self.section(title, source, style, lineno - 1, messages)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\parsers\\rst\\states.py\", line 327, in section\n    self.new_subsection(title, lineno, messages)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\parsers\\rst\\states.py\", line 395, in new_subsection\n    node=section_node, match_titles=True)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\parsers\\rst\\states.py\", line 282, in nested_parse\n    node=node, match_titles=match_titles)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\parsers\\rst\\states.py\", line 195, in run\n    results = StateMachineWS.run(self, input_lines, input_offset)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\statemachine.py\", line 239, in run\n    context, state, transitions)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\statemachine.py\", line 460, in check_line\n    return method(match, context, next_state)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\parsers\\rst\\states.py\", line 2299, in explicit_markup\n    nodelist, blank_finish = self.explicit_construct(match)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\parsers\\rst\\states.py\", line 2311, in explicit_construct\n    return method(self, expmatch)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\parsers\\rst\\states.py\", line 2054, in directive\n    directive_class, match, type_name, option_presets)\n  File \"c:\\Python27\\lib\\site-packages\\docutils\\parsers\\rst\\states.py\", line 2103, in run_directive\n    result = directive_instance.run()\n  File \"c:\\Python27\\lib\\site-packages\\sphinx-1.2.2-py2.7.egg\\sphinx\\domains\\__init__.py\", line 190, in run\n    return BaseDirective.run(self)\n  File \"F:\\github\\click\\docs\\clickdoctools.py\", line 245, in run\n    rv = runner.run('\\n'.join(self.content))\n  File \"F:\\github\\click\\docs\\clickdoctools.py\", line 186, in run\n    'isolated_filesystem': isolated_filesystem,\n  File \"<docs>\", line 1, in <module>\n  File \"F:\\github\\click\\docs\\clickdoctools.py\", line 175, in invoke\n    **extra)\n  File \"c:\\Python27\\lib\\site-packages\\click-4.0_dev-py2.7.egg\\click\\core.py\", line 643, in main\n    rv = self.invoke(ctx)\n  File \"c:\\Python27\\lib\\site-packages\\click-4.0_dev-py2.7.egg\\click\\core.py\", line 836, in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n  File \"c:\\Python27\\lib\\site-packages\\click-4.0_dev-py2.7.egg\\click\\core.py\", line 463, in invoke\n    return callback(*args, **kwargs)\n  File \"<docs>\", line 6, in info\nAttributeError: 'module' object has no attribute 'uname'\n```\n\nreason:  window python2.7 os  module don't supoort os.uname.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/268"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 222,
+    "title": "unexpected behaviour with options and argument with nargs=-1",
+    "body": "Example of the unexpected behaviour:\n\n``` python\nimport click\n\n\n@click.command()\n@click.option('--option', nargs=-1)\n@click.option('--foo', nargs=-1)\n@click.argument('args', nargs=-1)\ndef test(args, option, foo):\n    print('args: ', args)\n    print('option: ', option)\n    print('foo: ', foo)\n\ntest()\n```\n\n```\n$ naval --foo 1 2 3 --bar 4 5\nbar:  ()\nfoo:  (u'1', u'2', u'3', u'--bar', u'4')\nargs:  (u'5',)\n```\n\nI would have expected to get:\n\n```\nbar:  (u'4', u'5')\nfoo:  (u'1', u'2', '3')\nargs:  ()\n```\n\nIf options and an argument with nargs=-1 should be able to coexist, I think arguments should only be accepted after an `--`\n\n```\n$ naval --foo 1 2 3 --bar 4 5 -- 6 7\nbar:  (u'4', u'5',)\nfoo:  (u'1', u'2', u'3',)\nargs:  (u'6', u'7')\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/222"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 216,
+    "title": "HelpFormatter width unnecessarily(?) constrained to 78 characters",
+    "body": "The HelpFormatter limits the maximum width to 78 characters.\nThis appears rather unnecessary as the default terminal width on most systems is 80 characters anyway and this limit makes it impossible to take advantage of a wider terminal window.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/216"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 205,
+    "title": "ctx.invoked_subcommand is always None",
+    "body": "The example from http://click.pocoo.org/commands/#group-invocation-without-command:\n\n```\n$ python test.py sync\nI was invoked without subcommand\nThe subcommand\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/205"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 201,
+    "title": "Ability to invoke a subcommand with defaults",
+    "body": "I don't want to specify the default values of a subcommand i am invoking, because i don't know which parameters that command is taking.\n\n```\ndef test_other_command_invoke_with_defaults(runner):\n    @click.command()\n    @click.pass_context\n    def cli(ctx):\n        return ctx.invoke(other_cmd)\n\n    @click.command()\n    @click.option('--foo', type=click.INT, default=42)\n    def other_cmd(foo):\n        click.echo(foo)\n\n    result = runner.invoke(cli, [])\n    assert not result.exception\n    assert result.output == '42\\n'\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/201"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 200,
+    "title": "Setting context object inside function doesn't pass the new object to subcommands",
+    "body": "I used to write the example from http://click.pocoo.org/commands/#nested-handling-and-contexts like this:\n\n```\n@click.group()\n@click.option('--debug/--no-debug', default=False)\n@click.pass_context\ndef cli(ctx, debug):\n    if ctx.obj is None:  # Doesn't work as of 3.0\n        ctx.obj = {}\n    ctx.obj['DEBUG'] = debug\n\n@cli.command()\n@click.pass_context\ndef sync(ctx):\n    click.echo('Debug is %s' % (ctx.obj['DEBUG'] and 'on' or 'off'))\n\nif __name__ == '__main__':\n    cli()\n```\n\nAs of version 3.0, `ctx.obj` inside `sync` seems to be always `None`. Is this an intended behavior change?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/200"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 186,
+    "title": "Can't pad progress bars labels from the left",
+    "body": "https://github.com/mitsuhiko/click/blob/master/click/_termui_impl.py#L177\nIs `strip` needed?\n\nI want to draw:\n\n```\n   MY CLI\n   ------\n   loading [###-------] 30%\n```\n\nBut right now the best I can do is:\n\n```\n   MY CLI\n   ------\n.  loading [###-------] 30%\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/186"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 168,
+    "title": "progressbar does not display on first iteration",
+    "body": "The documentation indicates that \"When the context manager is entered the progress bar is already displayed.\"  However, this does not appear to be the case, as a bar indicating 0% is never displayed.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/168"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 165,
+    "title": "Issues with dots '.' in the method documentation",
+    "body": "I have a function as follows:\n\n```\n@click.command()\ndef login():\n    \"\"\"Login and store the token in ~/.netrc\"\"\"\n```\n\nThe resulting documentation is:\n\n```\nUsage: igor auth [OPTIONS] COMMAND [ARGS]...\n\n  Authentication operations\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  login  Login and store the token in ~/.\n```\n\nAs you can see, the `netrc` after the `.` has been deleted.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/165"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 164,
+    "title": "`click.progressbar` doesn't work in PyPy",
+    "body": "The `termui progress` example doesn't display the progressbar with PyPy 2.3.1.\n\n```\n$ /usr/local/bin/pypy --version\nPython 2.7.6 (32f35069a16d, Jun 06 2014, 20:12:47)\n[PyPy 2.3.1 with GCC 4.2.1 Compatible Apple LLVM 5.0 (clang-500.2.79)]\n```\n\n```\n$ termui progress  # with PyPy\nProcessing accounts\nCommitting transaction\nCounting\n```\n\n```\n$ termui progress # with CPython 2.7\nProcessing accounts  [####################################]  100%\nCommitting transaction  [####################################]\nCounting  ████████████████████████████████████ | 100%\n[#####################################################################]\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/164"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 142,
+    "title": "complex example does not run under python 3",
+    "body": "```\n(env)$ python --version\nPython 3.4.1\n(env)$ complex \nTraceback (most recent call last):\n  File \"/home/carl/Projects/github.com/click/examples/complex/env/bin/complex\", line 9, in <module>\n    load_entry_point('click-example-complex==1.0', 'console_scripts', 'complex')()\n  File \"/home/carl/Projects/github.com/click/examples/complex/env/lib/python3.4/site-packages/click/core.py\", line 488, in __call__\n    return self.main(*args, **kwargs)\n  File \"/home/carl/Projects/github.com/click/examples/complex/env/lib/python3.4/site-packages/click/core.py\", line 473, in main\n    with self.make_context(prog_name, args, **extra) as ctx:\n  File \"/home/carl/Projects/github.com/click/examples/complex/env/lib/python3.4/site-packages/click/core.py\", line 403, in make_context\n    self.parse_args(ctx, args)\n  File \"/home/carl/Projects/github.com/click/examples/complex/env/lib/python3.4/site-packages/click/core.py\", line 719, in parse_args\n    echo(ctx.get_help())\n  File \"/home/carl/Projects/github.com/click/examples/complex/env/lib/python3.4/site-packages/click/core.py\", line 306, in get_help\n    return self.command.get_help(self)\n  File \"/home/carl/Projects/github.com/click/examples/complex/env/lib/python3.4/site-packages/click/core.py\", line 580, in get_help\n    self.format_help(ctx, formatter)\n  File \"/home/carl/Projects/github.com/click/examples/complex/env/lib/python3.4/site-packages/click/core.py\", line 595, in format_help\n    self.format_options(ctx, formatter)\n  File \"/home/carl/Projects/github.com/click/examples/complex/env/lib/python3.4/site-packages/click/core.py\", line 697, in format_options\n    self.format_commands(ctx, formatter)\n  File \"/home/carl/Projects/github.com/click/examples/complex/env/lib/python3.4/site-packages/click/core.py\", line 705, in format_commands\n    cmd = self.get_command(ctx, subcommand)\n  File \"/home/carl/Projects/github.com/click/examples/complex/complex/cli.py\", line 46, in get_command\n    name.encode('ascii', 'replace'),\nTypeError: Can't convert 'bytes' object to str implicitly\n```\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/142"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 122,
+    "title": "Automatically dedent help text of options?",
+    "body": "```\nimport click\n\n@click.command()\n@click.option('--foo', help=\"\"\"\n    heyho\n\n    i am\n\n    multiline\n\"\"\")\ndef cli(foo):\n    click.echo(foo)\n\ncli()\n```\n\nThis currently does not remove the leading whitespace from each paragraph in the help text for `--foo`:\n\n```\nuntitaker@untibox:~/projects/click, branch master\n$ python lol.py --help\nUsage: lol.py [OPTIONS]\n\nOptions:\n  --foo TEXT\n                  heyho\n\n                  i am\n\n                  multiline\n  --help      Show this message and exit.\n```\n\nAlthough i am not sure if help texts for options are even supposed to get that\ncomplex.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/122"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 120,
+    "title": "add option for displaying full help when missing required args",
+    "body": "When a required choice is not present, the message is not very helpful for a new user:\n\n```\npython.exe test3.py\nUsage: test3.py [OPTIONS] [ARG1]...\n\nError: Missing option \"-o1\" / \"--option1\".\n```\n\nSo he would have to pass something for it:\n\n```\npython.exe test3.py -o1 abc\nUsage: test3.py [OPTIONS] [ARG1]...\n\nError: Invalid value for \"-o1\" / \"--option1\": invalid choice: abc. (choose from QA, UAT, PROD)\n```\n\nIs it possible to show the full help (that includes the valid options for the required choice) below the existing usage/error message?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/120"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 107,
+    "title": "_tempfilepager typo",
+    "body": "It appears as if\n\n```\nwith open_stream(filename, 'w')[1] as f:\n```\n\nshould be\n\n```\nwith open_stream(filename, 'w')[0] as f:\n```\n\nAlso, I'm not sure whether you want to deal with the other return value which I guess you know will be False.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/107"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 103,
+    "title": "Write argument errors to stderr",
+    "body": "Currently errors are written to stdout. Is this intentional?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/103"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 87,
+    "title": "Multiple options passed via environment variables are split by character",
+    "body": "An option with `multiple=True` yields unexpected (i.e., not useful) behavior when it is specified via an environment variable.\n\nHere's a simple example script:\n\n```\nimport click\n\n@click.command()\n@click.option('--arg', multiple=True)\ndef cmd(arg):\n    print(arg)\n\nif __name__ == '__main__':\n    cmd(auto_envvar_prefix='TEST')\n```\n\nIt works as expected when `arg` is specified with an ordinary command-line option:\n\n```\n$ python3 test.py --arg foo\n('foo',)\n```\n\nBut when we use an environment variable instead, Click splits the string into characters:\n\n```\n$ TEST_ARG=foo python3 test.py\n('f', 'o', 'o')\n```\n\nThis is the classic Python iterating-over-a-string-when-you-thought-you-had-a-list failure mode. (These examples were run with click 0.7 from PyPI.)\n\nI can see two reasonable resolutions here: split environment variables on whitespace or don't split them at all. The latter is probably more predictable but the former is more flexible.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/87"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 77,
+    "title": "File arguments documentation is confusing",
+    "body": "I couldn't understand [File arguments](http://click.pocoo.org/arguments/#file-arguments) documentation:\n\n>  Command line tools are more fun if they work with files the unix way which is to accept `-` as a special file that refers to stdin/stdout.\n> Click supports this through the `click.File` type which intelligently handles files for you.\n\nOk, sounds good. Now let's see how to read/write `-` files:\n\n```\n$ python inout.py - hello.txt\nUsage: inout.py [OPTIONS] INPUT OUTPUT\n\nError: no such option: -.  Did you mean --help?\n```\n\nI'm lost, why does documentation shows script that says \"Error: no such option\" instead of it trying to read from stdin?\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/77"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 42,
+    "title": "Feature: override defaults from a config file",
+    "body": "A lot of command line tools include support to override defaults from one (or more) config files (e.g. [coverage](https://bitbucket.org/ned/coveragepy/src/d0812ed8a1cfcb0f9f6a42cfdf1064b76e894956/coverage/control.py?at=default#cl-96)). It would be really great if click supports this out of the box.\n\nProof of concept (with configobj): https://gist.github.com/schlamar/11400688\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/42"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 53,
+    "title": "Help doesn't show up if help is a longer string?",
+    "body": "Hey Armin, great work on this library :smile: \n\nIt seems that longer help strings don't show up at all:\n\ne.g.\n\n``` python\n#!/usr/bin/env python\nimport click\n\n\n@click.group()\ndef cli():\n    pass\n\n\n@click.command(help='generate a set of LESS and Coffeescript assets')\n@click.argument('asset')\ndef asset(name):\n    click.echo('Generating a asset')\n\ncli.add_command(asset)\n\n\nif __name__ == '__main__':\n    cli()\n```\n\nProduces the output:\n\n```\nUsage: clicker2.py [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  asset\n```\n\nHowever, if I shorten the help string:\n\n``` python\n@click.command(help='generate a set of assets')\n```\n\nThen it works:\n\n```\nUsage: clicker2.py [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  asset  generate a set of assets.\n```\n\nCheers\nFotis\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/53"
+  },
+  {
+    "repo": "pallets/click",
+    "number": 38,
+    "title": "optparse optimizations break gettext",
+    "body": "The recent optimizations for `gettext` in `_optparse` cause problems if click is imported before another library which uses `gettext`, like `ipdb`. \n\nThe problem is we're setting `sys.modules['gettext']` to `None`, which isn't the same as it being unset. We can fix this by using `del`.\n",
+    "state": "CLOSED",
+    "url": "https://github.com/pallets/click/issues/38"
+  }
+]

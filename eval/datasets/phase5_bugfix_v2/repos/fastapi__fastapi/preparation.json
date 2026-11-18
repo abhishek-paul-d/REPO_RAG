@@ -1,0 +1,8 @@
+{
+  "repo": "fastapi/fastapi",
+  "pin": "7a0a3f0b286c6c865cf4398ea0e957a87b8bffa4",
+  "parent_freeze_sha256": "12a5e8e8dadde008dd8fb1bb38b6a26c29b452e1c6abda3fc18b69bd77f22e66",
+  "protocol_sha256": "11910a7b0db2458c0446691b856d2c6a4b8a9bcea976392eeb45f4d615ba1ef8",
+  "reuse": "v1 source records, queries, labels, groups and splits; no new API calls",
+  "candidate_pool": "message heuristic only; every gold independently eligible"
+}

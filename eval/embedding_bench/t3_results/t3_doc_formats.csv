@@ -1,0 +1,5 @@
+doc_format,median_tokens,encode_s,docs_per_s
+diff2000,121,27.8,175.6
+symbols_diff800,129,19.4,252.1
+symbols,24,8.4,581.8
+message,7,8.0,612.0

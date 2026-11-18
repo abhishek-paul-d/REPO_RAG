@@ -1,0 +1,433 @@
+task,model,variant,q,type,hit@1,hit@5,hit@10,mrr@10,ndcg@10
+T2_dev_questions,coderankembed,dense,"How are redirects followed, and where is the maximum number of redirects enforced?",nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,dense,Where is the Authorization header removed when a redirect goes to a different host?,nl,0.0,0.0,1.0,0.1,0.17723928678404774
+T2_dev_questions,coderankembed,dense,How does a POST request become a GET after a 303 See Other redirect?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,dense,How are automatic retries configured for the connection pool?,nl,0.0,0.0,1.0,0.1,0.2890648263178879
+T2_dev_questions,coderankembed,dense,Where are SSL certificates verified and the CA bundle chosen?,nl,0.0,0.0,1.0,0.14285714285714285,0.3333333333333333
+T2_dev_questions,coderankembed,dense,How is the response body decoded into text when the server sends no charset?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,dense,How does streaming a download in chunks work?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,dense,"How is JSON parsed from a response, and what error is raised if the body is not valid JSON?",nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,coderankembed,dense,Where is HTTP Digest authentication implemented?,nl,1.0,1.0,1.0,1.0,0.32597358003346427
+T2_dev_questions,coderankembed,dense,How is the value of the Basic auth header built?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,dense,How does the library decide whether a URL should bypass the proxy?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,coderankembed,dense,Where are proxy settings read from environment variables?,nl,0.0,0.0,1.0,0.1111111111111111,0.14126697285982898
+T2_dev_questions,coderankembed,dense,How are query parameters URL-encoded into the request URL?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,dense,How are multipart file uploads encoded?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,dense,How is the Content-Length of a request body computed?,nl,0.0,0.0,1.0,0.14285714285714285,0.20438239758848611
+T2_dev_questions,coderankembed,dense,How are cookies from a response stored in the cookie jar?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2_dev_questions,coderankembed,dense,How are session-level settings merged with per-request settings?,nl,1.0,1.0,1.0,1.0,0.6131471927654584
+T2_dev_questions,coderankembed,dense,How does a session pick which transport adapter handles a URL?,nl,1.0,1.0,1.0,1.0,0.6131471927654584
+T2_dev_questions,coderankembed,dense,Where are default headers such as User-Agent set?,nl,1.0,1.0,1.0,1.0,0.8315546295836225
+T2_dev_questions,coderankembed,dense,How are HTTP header names handled case-insensitively?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,dense,How are event hooks such as the response hook dispatched?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,dense,Where is the Link header parsed into a dictionary?,nl,0.0,1.0,1.0,0.5,0.5912352048230277
+T2_dev_questions,coderankembed,dense,How does raising for HTTP error status codes build its error message?,nl,0.0,1.0,1.0,0.25,0.43067655807339306
+T2_dev_questions,coderankembed,dense,How are connect and read timeouts passed down to urllib3?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,dense,Where are credentials loaded from the user's netrc file?,nl,0.0,0.0,1.0,0.125,0.31546487678572877
+T2_dev_questions,coderankembed,dense,What does `prepare_url` do with internationalized (IDNA) host names?,ident,0.0,1.0,1.0,0.25,0.45749452618986164
+T2_dev_questions,coderankembed,dense,What does `requote_uri` do?,ident,1.0,1.0,1.0,1.0,0.8772153153380493
+T2_dev_questions,coderankembed,dense,How does `rewind_body` work?,ident,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222
+T2_dev_questions,coderankembed,dense,What does `get_connection_with_tls_context` do?,ident,1.0,1.0,1.0,1.0,0.6131471927654584
+T2_dev_questions,coderankembed,dense,Explain `CaseInsensitiveDict.lower_items`.,ident,0.0,1.0,1.0,0.3333333333333333,0.5
+T2_dev_questions,coderankembed,dense,My Authorization header disappears after the server redirects me. Why?,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,dense,response.text shows garbled characters for a page that has no charset in its headers,symptom,0.0,0.0,1.0,0.14285714285714285,0.15642624200758548
+T2_dev_questions,coderankembed,dense,Uploading a file object that was partially read sends the wrong Content-Length,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,dense,I get a TooManyRedirects exception. Where is it raised?,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,dense,Requests ignores my NO_PROXY environment variable,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,dense,A header value containing a newline raises InvalidHeader,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,hybrid_bm25,"How are redirects followed, and where is the maximum number of redirects enforced?",nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,hybrid_bm25,Where is the Authorization header removed when a redirect goes to a different host?,nl,0.0,1.0,1.0,0.5,0.6052602440527057
+T2_dev_questions,coderankembed,hybrid_bm25,How does a POST request become a GET after a 303 See Other redirect?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,hybrid_bm25,How are automatic retries configured for the connection pool?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2_dev_questions,coderankembed,hybrid_bm25,Where are SSL certificates verified and the CA bundle chosen?,nl,0.0,1.0,1.0,0.25,0.43067655807339306
+T2_dev_questions,coderankembed,hybrid_bm25,How is the response body decoded into text when the server sends no charset?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,hybrid_bm25,How does streaming a download in chunks work?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,hybrid_bm25,"How is JSON parsed from a response, and what error is raised if the body is not valid JSON?",nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,coderankembed,hybrid_bm25,Where is HTTP Digest authentication implemented?,nl,1.0,1.0,1.0,1.0,0.4070299183478662
+T2_dev_questions,coderankembed,hybrid_bm25,How is the value of the Basic auth header built?,nl,0.0,0.0,1.0,0.1111111111111111,0.3010299956639812
+T2_dev_questions,coderankembed,hybrid_bm25,How does the library decide whether a URL should bypass the proxy?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,coderankembed,hybrid_bm25,Where are proxy settings read from environment variables?,nl,0.0,1.0,1.0,0.25,0.499800561367962
+T2_dev_questions,coderankembed,hybrid_bm25,How are query parameters URL-encoded into the request URL?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,hybrid_bm25,How are multipart file uploads encoded?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,hybrid_bm25,How is the Content-Length of a request body computed?,nl,1.0,1.0,1.0,1.0,0.8315546295836225
+T2_dev_questions,coderankembed,hybrid_bm25,How are cookies from a response stored in the cookie jar?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,coderankembed,hybrid_bm25,How are session-level settings merged with per-request settings?,nl,1.0,1.0,1.0,1.0,0.8772153153380493
+T2_dev_questions,coderankembed,hybrid_bm25,How does a session pick which transport adapter handles a URL?,nl,0.0,0.0,1.0,0.125,0.19342640361727081
+T2_dev_questions,coderankembed,hybrid_bm25,Where are default headers such as User-Agent set?,nl,1.0,1.0,1.0,1.0,0.9197207891481876
+T2_dev_questions,coderankembed,hybrid_bm25,How are HTTP header names handled case-insensitively?,nl,0.0,0.0,1.0,0.14285714285714285,0.07336392209936005
+T2_dev_questions,coderankembed,hybrid_bm25,How are event hooks such as the response hook dispatched?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,hybrid_bm25,Where is the Link header parsed into a dictionary?,nl,0.0,1.0,1.0,0.5,0.6240505200038379
+T2_dev_questions,coderankembed,hybrid_bm25,How does raising for HTTP error status codes build its error message?,nl,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222
+T2_dev_questions,coderankembed,hybrid_bm25,How are connect and read timeouts passed down to urllib3?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,hybrid_bm25,Where are credentials loaded from the user's netrc file?,nl,0.0,0.0,1.0,0.125,0.31546487678572877
+T2_dev_questions,coderankembed,hybrid_bm25,What does `prepare_url` do with internationalized (IDNA) host names?,ident,0.0,1.0,1.0,0.3333333333333333,0.5706417189553201
+T2_dev_questions,coderankembed,hybrid_bm25,What does `requote_uri` do?,ident,1.0,1.0,1.0,1.0,0.8503449055347546
+T2_dev_questions,coderankembed,hybrid_bm25,How does `rewind_body` work?,ident,0.0,1.0,1.0,0.3333333333333333,0.5
+T2_dev_questions,coderankembed,hybrid_bm25,What does `get_connection_with_tls_context` do?,ident,1.0,1.0,1.0,1.0,0.6131471927654584
+T2_dev_questions,coderankembed,hybrid_bm25,Explain `CaseInsensitiveDict.lower_items`.,ident,0.0,1.0,1.0,0.3333333333333333,0.5
+T2_dev_questions,coderankembed,hybrid_bm25,My Authorization header disappears after the server redirects me. Why?,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,hybrid_bm25,response.text shows garbled characters for a page that has no charset in its headers,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,hybrid_bm25,Uploading a file object that was partially read sends the wrong Content-Length,symptom,0.0,1.0,1.0,0.5,0.38685280723454163
+T2_dev_questions,coderankembed,hybrid_bm25,I get a TooManyRedirects exception. Where is it raised?,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,coderankembed,hybrid_bm25,Requests ignores my NO_PROXY environment variable,symptom,0.0,1.0,1.0,0.25,0.45749452618986164
+T2_dev_questions,coderankembed,hybrid_bm25,A header value containing a newline raises InvalidHeader,symptom,0.0,0.0,1.0,0.1,0.17723928678404774
+T2r_dev_questions_in_repo,coderankembed,dense,"How are redirects followed, and where is the maximum number of redirects enforced?",nl,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222
+T2r_dev_questions_in_repo,coderankembed,dense,Where is the Authorization header removed when a redirect goes to a different host?,nl,0.0,1.0,1.0,0.25,0.2640681225725909
+T2r_dev_questions_in_repo,coderankembed,dense,How does a POST request become a GET after a 303 See Other redirect?,nl,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,coderankembed,dense,How are automatic retries configured for the connection pool?,nl,0.0,1.0,1.0,0.2,0.38685280723454163
+T2r_dev_questions_in_repo,coderankembed,dense,Where are SSL certificates verified and the CA bundle chosen?,nl,0.0,0.0,1.0,0.14285714285714285,0.3333333333333333
+T2r_dev_questions_in_repo,coderankembed,dense,How is the response body decoded into text when the server sends no charset?,nl,0.0,1.0,1.0,0.5,0.38685280723454163
+T2r_dev_questions_in_repo,coderankembed,dense,How does streaming a download in chunks work?,nl,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,coderankembed,dense,"How is JSON parsed from a response, and what error is raised if the body is not valid JSON?",nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,coderankembed,dense,Where is HTTP Digest authentication implemented?,nl,1.0,1.0,1.0,1.0,0.5378234547049087
+T2r_dev_questions_in_repo,coderankembed,dense,How is the value of the Basic auth header built?,nl,0.0,0.0,1.0,0.14285714285714285,0.3333333333333333
+T2r_dev_questions_in_repo,coderankembed,dense,How does the library decide whether a URL should bypass the proxy?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,coderankembed,dense,Where are proxy settings read from environment variables?,nl,0.0,0.0,1.0,0.14285714285714285,0.15642624200758548
+T2r_dev_questions_in_repo,coderankembed,dense,How are query parameters URL-encoded into the request URL?,nl,0.0,0.0,1.0,0.125,0.19342640361727081
+T2r_dev_questions_in_repo,coderankembed,dense,How are multipart file uploads encoded?,nl,0.0,1.0,1.0,0.25,0.2640681225725909
+T2r_dev_questions_in_repo,coderankembed,dense,How is the Content-Length of a request body computed?,nl,0.0,0.0,1.0,0.16666666666666666,0.41183384043543503
+T2r_dev_questions_in_repo,coderankembed,dense,How are cookies from a response stored in the cookie jar?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2r_dev_questions_in_repo,coderankembed,dense,How are session-level settings merged with per-request settings?,nl,1.0,1.0,1.0,1.0,0.6131471927654584
+T2r_dev_questions_in_repo,coderankembed,dense,How does a session pick which transport adapter handles a URL?,nl,1.0,1.0,1.0,1.0,0.6131471927654584
+T2r_dev_questions_in_repo,coderankembed,dense,Where are default headers such as User-Agent set?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,coderankembed,dense,How are HTTP header names handled case-insensitively?,nl,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,coderankembed,dense,How are event hooks such as the response hook dispatched?,nl,0.0,1.0,1.0,0.25,0.43067655807339306
+T2r_dev_questions_in_repo,coderankembed,dense,Where is the Link header parsed into a dictionary?,nl,1.0,1.0,1.0,1.0,0.9197207891481876
+T2r_dev_questions_in_repo,coderankembed,dense,How does raising for HTTP error status codes build its error message?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2r_dev_questions_in_repo,coderankembed,dense,How are connect and read timeouts passed down to urllib3?,nl,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,coderankembed,dense,Where are credentials loaded from the user's netrc file?,nl,0.0,1.0,1.0,0.25,0.43067655807339306
+T2r_dev_questions_in_repo,coderankembed,dense,What does `prepare_url` do with internationalized (IDNA) host names?,ident,1.0,1.0,1.0,1.0,0.9197207891481876
+T2r_dev_questions_in_repo,coderankembed,dense,What does `requote_uri` do?,ident,1.0,1.0,1.0,1.0,0.8772153153380493
+T2r_dev_questions_in_repo,coderankembed,dense,How does `rewind_body` work?,ident,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222
+T2r_dev_questions_in_repo,coderankembed,dense,What does `get_connection_with_tls_context` do?,ident,1.0,1.0,1.0,1.0,0.6131471927654584
+T2r_dev_questions_in_repo,coderankembed,dense,Explain `CaseInsensitiveDict.lower_items`.,ident,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,coderankembed,dense,My Authorization header disappears after the server redirects me. Why?,symptom,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,coderankembed,dense,response.text shows garbled characters for a page that has no charset in its headers,symptom,1.0,1.0,1.0,1.0,0.6257049680303419
+T2r_dev_questions_in_repo,coderankembed,dense,Uploading a file object that was partially read sends the wrong Content-Length,symptom,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,coderankembed,dense,I get a TooManyRedirects exception. Where is it raised?,symptom,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,coderankembed,dense,Requests ignores my NO_PROXY environment variable,symptom,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,coderankembed,dense,A header value containing a newline raises InvalidHeader,symptom,0.0,0.0,1.0,0.1111111111111111,0.18457569677956817
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,"How are redirects followed, and where is the maximum number of redirects enforced?",nl,0.0,1.0,1.0,0.2,0.38685280723454163
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,Where is the Authorization header removed when a redirect goes to a different host?,nl,0.0,1.0,1.0,0.5,0.6509209298071326
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How does a POST request become a GET after a 303 See Other redirect?,nl,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How are automatic retries configured for the connection pool?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,Where are SSL certificates verified and the CA bundle chosen?,nl,0.0,1.0,1.0,0.25,0.43067655807339306
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How is the response body decoded into text when the server sends no charset?,nl,0.0,1.0,1.0,0.5,0.6934264036172708
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How does streaming a download in chunks work?,nl,0.0,1.0,1.0,0.3333333333333333,0.3065735963827292
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,"How is JSON parsed from a response, and what error is raised if the body is not valid JSON?",nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,Where is HTTP Digest authentication implemented?,nl,1.0,1.0,1.0,1.0,0.5245526930551089
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How is the value of the Basic auth header built?,nl,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How does the library decide whether a URL should bypass the proxy?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,Where are proxy settings read from environment variables?,nl,0.0,1.0,1.0,0.3333333333333333,0.5780136823717548
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How are query parameters URL-encoded into the request URL?,nl,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How are multipart file uploads encoded?,nl,0.0,0.0,1.0,0.1,0.17723928678404774
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How is the Content-Length of a request body computed?,nl,0.0,1.0,1.0,0.5,0.6509209298071326
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How are cookies from a response stored in the cookie jar?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How are session-level settings merged with per-request settings?,nl,1.0,1.0,1.0,1.0,0.9197207891481876
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How does a session pick which transport adapter handles a URL?,nl,0.0,0.0,1.0,0.16666666666666666,0.21840743681816419
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,Where are default headers such as User-Agent set?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How are HTTP header names handled case-insensitively?,nl,0.0,0.0,1.0,0.14285714285714285,0.07336392209936005
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How are event hooks such as the response hook dispatched?,nl,0.0,1.0,1.0,0.25,0.43067655807339306
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,Where is the Link header parsed into a dictionary?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How does raising for HTTP error status codes build its error message?,nl,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How are connect and read timeouts passed down to urllib3?,nl,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,Where are credentials loaded from the user's netrc file?,nl,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,What does `prepare_url` do with internationalized (IDNA) host names?,ident,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,What does `requote_uri` do?,ident,1.0,1.0,1.0,1.0,0.8503449055347546
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,How does `rewind_body` work?,ident,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,What does `get_connection_with_tls_context` do?,ident,1.0,1.0,1.0,1.0,0.7977228895450266
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,Explain `CaseInsensitiveDict.lower_items`.,ident,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,My Authorization header disappears after the server redirects me. Why?,symptom,0.0,0.0,1.0,0.14285714285714285,0.20438239758848611
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,response.text shows garbled characters for a page that has no charset in its headers,symptom,1.0,1.0,1.0,1.0,0.6713860725233041
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,Uploading a file object that was partially read sends the wrong Content-Length,symptom,0.0,1.0,1.0,0.5,0.38685280723454163
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,I get a TooManyRedirects exception. Where is it raised?,symptom,0.0,1.0,1.0,0.25,0.43067655807339306
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,Requests ignores my NO_PROXY environment variable,symptom,0.0,1.0,1.0,0.25,0.46845052016107697
+T2r_dev_questions_in_repo,coderankembed,hybrid_bm25,A header value containing a newline raises InvalidHeader,symptom,0.0,0.0,1.0,0.16666666666666666,0.4227898344066503
+T2_dev_questions,qwen3-0.6b,dense,"How are redirects followed, and where is the maximum number of redirects enforced?",nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,qwen3-0.6b,dense,Where is the Authorization header removed when a redirect goes to a different host?,nl,0.0,1.0,1.0,0.3333333333333333,0.4911492931622974
+T2_dev_questions,qwen3-0.6b,dense,How does a POST request become a GET after a 303 See Other redirect?,nl,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222
+T2_dev_questions,qwen3-0.6b,dense,How are automatic retries configured for the connection pool?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,qwen3-0.6b,dense,Where are SSL certificates verified and the CA bundle chosen?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2_dev_questions,qwen3-0.6b,dense,How is the response body decoded into text when the server sends no charset?,nl,0.0,0.0,1.0,0.1111111111111111,0.18457569677956817
+T2_dev_questions,qwen3-0.6b,dense,How does streaming a download in chunks work?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,qwen3-0.6b,dense,"How is JSON parsed from a response, and what error is raised if the body is not valid JSON?",nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,qwen3-0.6b,dense,Where is HTTP Digest authentication implemented?,nl,1.0,1.0,1.0,1.0,0.46169129645612966
+T2_dev_questions,qwen3-0.6b,dense,How is the value of the Basic auth header built?,nl,0.0,1.0,1.0,0.3333333333333333,0.5
+T2_dev_questions,qwen3-0.6b,dense,How does the library decide whether a URL should bypass the proxy?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,qwen3-0.6b,dense,Where are proxy settings read from environment variables?,nl,0.0,1.0,1.0,0.25,0.5173087569496825
+T2_dev_questions,qwen3-0.6b,dense,How are query parameters URL-encoded into the request URL?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,qwen3-0.6b,dense,How are multipart file uploads encoded?,nl,0.0,1.0,1.0,0.25,0.2640681225725909
+T2_dev_questions,qwen3-0.6b,dense,How is the Content-Length of a request body computed?,nl,1.0,1.0,1.0,1.0,0.8315546295836225
+T2_dev_questions,qwen3-0.6b,dense,How are cookies from a response stored in the cookie jar?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,qwen3-0.6b,dense,How are session-level settings merged with per-request settings?,nl,1.0,1.0,1.0,1.0,0.8315546295836225
+T2_dev_questions,qwen3-0.6b,dense,How does a session pick which transport adapter handles a URL?,nl,1.0,1.0,1.0,1.0,0.6131471927654584
+T2_dev_questions,qwen3-0.6b,dense,Where are default headers such as User-Agent set?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,qwen3-0.6b,dense,How are HTTP header names handled case-insensitively?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,qwen3-0.6b,dense,How are event hooks such as the response hook dispatched?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2_dev_questions,qwen3-0.6b,dense,Where is the Link header parsed into a dictionary?,nl,1.0,1.0,1.0,1.0,0.8772153153380493
+T2_dev_questions,qwen3-0.6b,dense,How does raising for HTTP error status codes build its error message?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,qwen3-0.6b,dense,How are connect and read timeouts passed down to urllib3?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,qwen3-0.6b,dense,Where are credentials loaded from the user's netrc file?,nl,0.0,1.0,1.0,0.3333333333333333,0.5
+T2_dev_questions,qwen3-0.6b,dense,What does `prepare_url` do with internationalized (IDNA) host names?,ident,1.0,1.0,1.0,1.0,0.8315546295836225
+T2_dev_questions,qwen3-0.6b,dense,What does `requote_uri` do?,ident,1.0,1.0,1.0,1.0,0.9197207891481876
+T2_dev_questions,qwen3-0.6b,dense,How does `rewind_body` work?,ident,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,qwen3-0.6b,dense,What does `get_connection_with_tls_context` do?,ident,1.0,1.0,1.0,1.0,0.8315546295836225
+T2_dev_questions,qwen3-0.6b,dense,Explain `CaseInsensitiveDict.lower_items`.,ident,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,qwen3-0.6b,dense,My Authorization header disappears after the server redirects me. Why?,symptom,0.0,1.0,1.0,0.2,0.41443699955334395
+T2_dev_questions,qwen3-0.6b,dense,response.text shows garbled characters for a page that has no charset in its headers,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,qwen3-0.6b,dense,Uploading a file object that was partially read sends the wrong Content-Length,symptom,0.0,1.0,1.0,0.25,0.2640681225725909
+T2_dev_questions,qwen3-0.6b,dense,I get a TooManyRedirects exception. Where is it raised?,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,qwen3-0.6b,dense,Requests ignores my NO_PROXY environment variable,symptom,0.0,1.0,1.0,0.5,0.5802792108518124
+T2_dev_questions,qwen3-0.6b,dense,A header value containing a newline raises InvalidHeader,symptom,0.0,1.0,1.0,0.3333333333333333,0.5706417189553201
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,"How are redirects followed, and where is the maximum number of redirects enforced?",nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,Where is the Authorization header removed when a redirect goes to a different host?,nl,0.0,1.0,1.0,0.3333333333333333,0.5706417189553201
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How does a POST request become a GET after a 303 See Other redirect?,nl,0.0,1.0,1.0,0.3333333333333333,0.5
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How are automatic retries configured for the connection pool?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,Where are SSL certificates verified and the CA bundle chosen?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How is the response body decoded into text when the server sends no charset?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How does streaming a download in chunks work?,nl,0.0,1.0,1.0,0.3333333333333333,0.3065735963827292
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,"How is JSON parsed from a response, and what error is raised if the body is not valid JSON?",nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,Where is HTTP Digest authentication implemented?,nl,1.0,1.0,1.0,1.0,0.4199990716259791
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How is the value of the Basic auth header built?,nl,0.0,0.0,1.0,0.14285714285714285,0.3333333333333333
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How does the library decide whether a URL should bypass the proxy?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,Where are proxy settings read from environment variables?,nl,1.0,1.0,1.0,1.0,0.7777061538487877
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How are query parameters URL-encoded into the request URL?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How are multipart file uploads encoded?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How is the Content-Length of a request body computed?,nl,1.0,1.0,1.0,1.0,0.8503449055347546
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How are cookies from a response stored in the cookie jar?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How are session-level settings merged with per-request settings?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How does a session pick which transport adapter handles a URL?,nl,0.0,1.0,1.0,0.2,0.23719771276929622
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,Where are default headers such as User-Agent set?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How are HTTP header names handled case-insensitively?,nl,0.0,1.0,1.0,0.2,0.08514311764162098
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How are event hooks such as the response hook dispatched?,nl,0.0,1.0,1.0,0.2,0.38685280723454163
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,Where is the Link header parsed into a dictionary?,nl,1.0,1.0,1.0,1.0,0.8772153153380493
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How does raising for HTTP error status codes build its error message?,nl,0.0,0.0,1.0,0.14285714285714285,0.3333333333333333
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How are connect and read timeouts passed down to urllib3?,nl,0.0,0.0,1.0,0.125,0.31546487678572877
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,Where are credentials loaded from the user's netrc file?,nl,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,What does `prepare_url` do with internationalized (IDNA) host names?,ident,1.0,1.0,1.0,1.0,0.9197207891481876
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,What does `requote_uri` do?,ident,1.0,1.0,1.0,1.0,0.8772153153380493
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,How does `rewind_body` work?,ident,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,What does `get_connection_with_tls_context` do?,ident,1.0,1.0,1.0,1.0,0.9197207891481876
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,Explain `CaseInsensitiveDict.lower_items`.,ident,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,My Authorization header disappears after the server redirects me. Why?,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,response.text shows garbled characters for a page that has no charset in its headers,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,Uploading a file object that was partially read sends the wrong Content-Length,symptom,0.0,1.0,1.0,0.5,0.38685280723454163
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,I get a TooManyRedirects exception. Where is it raised?,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,Requests ignores my NO_PROXY environment variable,symptom,1.0,1.0,1.0,1.0,0.8772153153380493
+T2_dev_questions,qwen3-0.6b,hybrid_bm25,A header value containing a newline raises InvalidHeader,symptom,0.0,1.0,1.0,0.25,0.2640681225725909
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,"How are redirects followed, and where is the maximum number of redirects enforced?",nl,0.0,0.0,1.0,0.1111111111111111,0.3010299956639812
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,Where is the Authorization header removed when a redirect goes to a different host?,nl,0.0,1.0,1.0,0.5,0.6934264036172708
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How does a POST request become a GET after a 303 See Other redirect?,nl,0.0,1.0,1.0,0.2,0.38685280723454163
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How are automatic retries configured for the connection pool?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,Where are SSL certificates verified and the CA bundle chosen?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How is the response body decoded into text when the server sends no charset?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How does streaming a download in chunks work?,nl,0.0,1.0,1.0,0.5,0.6934264036172708
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,"How is JSON parsed from a response, and what error is raised if the body is not valid JSON?",nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,Where is HTTP Digest authentication implemented?,nl,1.0,1.0,1.0,1.0,0.6471574720816632
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How is the value of the Basic auth header built?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How does the library decide whether a URL should bypass the proxy?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,Where are proxy settings read from environment variables?,nl,0.0,1.0,1.0,0.5,0.7122630665145961
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How are query parameters URL-encoded into the request URL?,nl,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How are multipart file uploads encoded?,nl,1.0,1.0,1.0,1.0,0.6131471927654584
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How is the Content-Length of a request body computed?,nl,1.0,1.0,1.0,1.0,0.8772153153380493
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How are cookies from a response stored in the cookie jar?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How are session-level settings merged with per-request settings?,nl,1.0,1.0,1.0,1.0,0.8503449055347546
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How does a session pick which transport adapter handles a URL?,nl,1.0,1.0,1.0,1.0,0.7977228895450266
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,Where are default headers such as User-Agent set?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How are HTTP header names handled case-insensitively?,nl,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How are event hooks such as the response hook dispatched?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,Where is the Link header parsed into a dictionary?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How does raising for HTTP error status codes build its error message?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How are connect and read timeouts passed down to urllib3?,nl,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,Where are credentials loaded from the user's netrc file?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,What does `prepare_url` do with internationalized (IDNA) host names?,ident,1.0,1.0,1.0,1.0,0.9197207891481876
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,What does `requote_uri` do?,ident,1.0,1.0,1.0,1.0,0.9197207891481876
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,How does `rewind_body` work?,ident,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,What does `get_connection_with_tls_context` do?,ident,1.0,1.0,1.0,1.0,0.8772153153380493
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,Explain `CaseInsensitiveDict.lower_items`.,ident,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,My Authorization header disappears after the server redirects me. Why?,symptom,0.0,1.0,1.0,0.3333333333333333,0.5437713091520254
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,response.text shows garbled characters for a page that has no charset in its headers,symptom,1.0,1.0,1.0,1.0,0.9469024295259745
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,Uploading a file object that was partially read sends the wrong Content-Length,symptom,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,I get a TooManyRedirects exception. Where is it raised?,symptom,0.0,0.0,1.0,0.125,0.31546487678572877
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,Requests ignores my NO_PROXY environment variable,symptom,0.0,1.0,1.0,0.5,0.5802792108518124
+T2r_dev_questions_in_repo,qwen3-0.6b,dense,A header value containing a newline raises InvalidHeader,symptom,0.0,1.0,1.0,0.3333333333333333,0.5706417189553201
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,"How are redirects followed, and where is the maximum number of redirects enforced?",nl,0.0,1.0,1.0,0.2,0.38685280723454163
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,Where is the Authorization header removed when a redirect goes to a different host?,nl,0.0,1.0,1.0,0.5,0.6934264036172708
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How does a POST request become a GET after a 303 See Other redirect?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How are automatic retries configured for the connection pool?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,Where are SSL certificates verified and the CA bundle chosen?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How is the response body decoded into text when the server sends no charset?,nl,1.0,1.0,1.0,1.0,0.9197207891481876
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How does streaming a download in chunks work?,nl,1.0,1.0,1.0,1.0,0.6131471927654584
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,"How is JSON parsed from a response, and what error is raised if the body is not valid JSON?",nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,Where is HTTP Digest authentication implemented?,nl,1.0,1.0,1.0,1.0,0.49795794896684503
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How is the value of the Basic auth header built?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How does the library decide whether a URL should bypass the proxy?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,Where are proxy settings read from environment variables?,nl,1.0,1.0,1.0,1.0,0.8854598815714874
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How are query parameters URL-encoded into the request URL?,nl,0.0,1.0,1.0,0.25,0.45749452618986164
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How are multipart file uploads encoded?,nl,0.0,0.0,1.0,0.14285714285714285,0.3889580943680543
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How is the Content-Length of a request body computed?,nl,1.0,1.0,1.0,1.0,0.9197207891481876
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How are cookies from a response stored in the cookie jar?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How are session-level settings merged with per-request settings?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How does a session pick which transport adapter handles a URL?,nl,0.0,0.0,1.0,0.16666666666666666,0.40298313359773236
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,Where are default headers such as User-Agent set?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How are HTTP header names handled case-insensitively?,nl,0.0,0.0,1.0,0.16666666666666666,0.07839826897867533
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How are event hooks such as the response hook dispatched?,nl,0.0,1.0,1.0,0.25,0.43067655807339306
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,Where is the Link header parsed into a dictionary?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How does raising for HTTP error status codes build its error message?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How are connect and read timeouts passed down to urllib3?,nl,0.0,1.0,1.0,0.25,0.43067655807339306
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,Where are credentials loaded from the user's netrc file?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,What does `prepare_url` do with internationalized (IDNA) host names?,ident,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,What does `requote_uri` do?,ident,1.0,1.0,1.0,1.0,0.8503449055347546
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,How does `rewind_body` work?,ident,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,What does `get_connection_with_tls_context` do?,ident,1.0,1.0,1.0,1.0,0.9197207891481876
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,Explain `CaseInsensitiveDict.lower_items`.,ident,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,My Authorization header disappears after the server redirects me. Why?,symptom,0.0,1.0,1.0,0.25,0.2640681225725909
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,response.text shows garbled characters for a page that has no charset in its headers,symptom,0.0,1.0,1.0,0.5,0.7122630665145961
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,Uploading a file object that was partially read sends the wrong Content-Length,symptom,0.0,1.0,1.0,0.5,0.6052602440527057
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,I get a TooManyRedirects exception. Where is it raised?,symptom,0.0,1.0,1.0,0.25,0.43067655807339306
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,Requests ignores my NO_PROXY environment variable,symptom,1.0,1.0,1.0,1.0,0.8503449055347546
+T2r_dev_questions_in_repo,qwen3-0.6b,hybrid_bm25,A header value containing a newline raises InvalidHeader,symptom,0.0,1.0,1.0,0.25,0.46845052016107697
+T2_dev_questions,nomic-embed-code,dense,"How are redirects followed, and where is the maximum number of redirects enforced?",nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,dense,Where is the Authorization header removed when a redirect goes to a different host?,nl,0.0,0.0,1.0,0.1111111111111111,0.18457569677956817
+T2_dev_questions,nomic-embed-code,dense,How does a POST request become a GET after a 303 See Other redirect?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,dense,How are automatic retries configured for the connection pool?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2_dev_questions,nomic-embed-code,dense,Where are SSL certificates verified and the CA bundle chosen?,nl,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222
+T2_dev_questions,nomic-embed-code,dense,How is the response body decoded into text when the server sends no charset?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,dense,How does streaming a download in chunks work?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,dense,"How is JSON parsed from a response, and what error is raised if the body is not valid JSON?",nl,0.0,0.0,1.0,0.1,0.2890648263178879
+T2_dev_questions,nomic-embed-code,dense,Where is HTTP Digest authentication implemented?,nl,1.0,1.0,1.0,1.0,0.41042277291186013
+T2_dev_questions,nomic-embed-code,dense,How is the value of the Basic auth header built?,nl,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222
+T2_dev_questions,nomic-embed-code,dense,How does the library decide whether a URL should bypass the proxy?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,nomic-embed-code,dense,Where are proxy settings read from environment variables?,nl,0.0,0.0,1.0,0.1111111111111111,0.14126697285982898
+T2_dev_questions,nomic-embed-code,dense,How are query parameters URL-encoded into the request URL?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,dense,How are multipart file uploads encoded?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,dense,How is the Content-Length of a request body computed?,nl,0.0,1.0,1.0,0.25,0.2640681225725909
+T2_dev_questions,nomic-embed-code,dense,How are cookies from a response stored in the cookie jar?,nl,0.0,1.0,1.0,0.2,0.38685280723454163
+T2_dev_questions,nomic-embed-code,dense,How are session-level settings merged with per-request settings?,nl,1.0,1.0,1.0,1.0,0.6131471927654584
+T2_dev_questions,nomic-embed-code,dense,How does a session pick which transport adapter handles a URL?,nl,0.0,1.0,1.0,0.5,0.38685280723454163
+T2_dev_questions,nomic-embed-code,dense,Where are default headers such as User-Agent set?,nl,1.0,1.0,1.0,1.0,0.7903864795495061
+T2_dev_questions,nomic-embed-code,dense,How are HTTP header names handled case-insensitively?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,dense,How are event hooks such as the response hook dispatched?,nl,0.0,0.0,1.0,0.1,0.2890648263178879
+T2_dev_questions,nomic-embed-code,dense,Where is the Link header parsed into a dictionary?,nl,0.0,1.0,1.0,0.25,0.45749452618986164
+T2_dev_questions,nomic-embed-code,dense,How does raising for HTTP error status codes build its error message?,nl,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222
+T2_dev_questions,nomic-embed-code,dense,How are connect and read timeouts passed down to urllib3?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,dense,Where are credentials loaded from the user's netrc file?,nl,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222
+T2_dev_questions,nomic-embed-code,dense,What does `prepare_url` do with internationalized (IDNA) host names?,ident,0.0,0.0,1.0,0.1,0.17723928678404774
+T2_dev_questions,nomic-embed-code,dense,What does `requote_uri` do?,ident,0.0,1.0,1.0,0.5,0.5640920940185894
+T2_dev_questions,nomic-embed-code,dense,How does `rewind_body` work?,ident,0.0,1.0,1.0,0.25,0.43067655807339306
+T2_dev_questions,nomic-embed-code,dense,What does `get_connection_with_tls_context` do?,ident,1.0,1.0,1.0,1.0,0.6131471927654584
+T2_dev_questions,nomic-embed-code,dense,Explain `CaseInsensitiveDict.lower_items`.,ident,0.0,1.0,1.0,0.3333333333333333,0.5
+T2_dev_questions,nomic-embed-code,dense,My Authorization header disappears after the server redirects me. Why?,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,dense,response.text shows garbled characters for a page that has no charset in its headers,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,dense,Uploading a file object that was partially read sends the wrong Content-Length,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,dense,I get a TooManyRedirects exception. Where is it raised?,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,dense,Requests ignores my NO_PROXY environment variable,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,dense,A header value containing a newline raises InvalidHeader,symptom,0.0,0.0,1.0,0.16666666666666666,0.4227898344066503
+T2_dev_questions,nomic-embed-code,hybrid_bm25,"How are redirects followed, and where is the maximum number of redirects enforced?",nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,hybrid_bm25,Where is the Authorization header removed when a redirect goes to a different host?,nl,0.0,1.0,1.0,0.5,0.6934264036172708
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How does a POST request become a GET after a 303 See Other redirect?,nl,0.0,0.0,1.0,0.125,0.31546487678572877
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How are automatic retries configured for the connection pool?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,nomic-embed-code,hybrid_bm25,Where are SSL certificates verified and the CA bundle chosen?,nl,0.0,1.0,1.0,0.3333333333333333,0.5
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How is the response body decoded into text when the server sends no charset?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How does streaming a download in chunks work?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,hybrid_bm25,"How is JSON parsed from a response, and what error is raised if the body is not valid JSON?",nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,nomic-embed-code,hybrid_bm25,Where is HTTP Digest authentication implemented?,nl,1.0,1.0,1.0,1.0,0.3525683241217281
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How is the value of the Basic auth header built?,nl,0.0,0.0,1.0,0.125,0.31546487678572877
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How does the library decide whether a URL should bypass the proxy?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,nomic-embed-code,hybrid_bm25,Where are proxy settings read from environment variables?,nl,0.0,1.0,1.0,0.2,0.4843542209360027
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How are query parameters URL-encoded into the request URL?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How are multipart file uploads encoded?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How is the Content-Length of a request body computed?,nl,1.0,1.0,1.0,1.0,0.8503449055347546
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How are cookies from a response stored in the cookie jar?,nl,1.0,1.0,1.0,1.0,1.0
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How are session-level settings merged with per-request settings?,nl,1.0,1.0,1.0,1.0,0.8503449055347546
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How does a session pick which transport adapter handles a URL?,nl,0.0,1.0,1.0,0.2,0.23719771276929622
+T2_dev_questions,nomic-embed-code,hybrid_bm25,Where are default headers such as User-Agent set?,nl,1.0,1.0,1.0,1.0,0.8772153153380493
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How are HTTP header names handled case-insensitively?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How are event hooks such as the response hook dispatched?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,hybrid_bm25,Where is the Link header parsed into a dictionary?,nl,0.0,1.0,1.0,0.5,0.6240505200038379
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How does raising for HTTP error status codes build its error message?,nl,0.0,0.0,1.0,0.1111111111111111,0.3010299956639812
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How are connect and read timeouts passed down to urllib3?,nl,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,hybrid_bm25,Where are credentials loaded from the user's netrc file?,nl,0.0,0.0,1.0,0.14285714285714285,0.3333333333333333
+T2_dev_questions,nomic-embed-code,hybrid_bm25,What does `prepare_url` do with internationalized (IDNA) host names?,ident,0.0,1.0,1.0,0.25,0.48247555939075504
+T2_dev_questions,nomic-embed-code,hybrid_bm25,What does `requote_uri` do?,ident,0.0,1.0,1.0,0.5,0.6509209298071326
+T2_dev_questions,nomic-embed-code,hybrid_bm25,How does `rewind_body` work?,ident,0.0,1.0,1.0,0.5,0.6309297535714575
+T2_dev_questions,nomic-embed-code,hybrid_bm25,What does `get_connection_with_tls_context` do?,ident,1.0,1.0,1.0,1.0,0.7903864795495061
+T2_dev_questions,nomic-embed-code,hybrid_bm25,Explain `CaseInsensitiveDict.lower_items`.,ident,0.0,1.0,1.0,0.3333333333333333,0.5
+T2_dev_questions,nomic-embed-code,hybrid_bm25,My Authorization header disappears after the server redirects me. Why?,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,hybrid_bm25,response.text shows garbled characters for a page that has no charset in its headers,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,hybrid_bm25,Uploading a file object that was partially read sends the wrong Content-Length,symptom,0.0,1.0,1.0,0.3333333333333333,0.3065735963827292
+T2_dev_questions,nomic-embed-code,hybrid_bm25,I get a TooManyRedirects exception. Where is it raised?,symptom,0.0,0.0,0.0,0.0,0.0
+T2_dev_questions,nomic-embed-code,hybrid_bm25,Requests ignores my NO_PROXY environment variable,symptom,0.0,0.0,1.0,0.125,0.3706656904013186
+T2_dev_questions,nomic-embed-code,hybrid_bm25,A header value containing a newline raises InvalidHeader,symptom,0.0,1.0,1.0,0.2,0.41443699955334395
+T2r_dev_questions_in_repo,nomic-embed-code,dense,"How are redirects followed, and where is the maximum number of redirects enforced?",nl,0.0,0.0,1.0,0.16666666666666666,0.3562071871080222
+T2r_dev_questions_in_repo,nomic-embed-code,dense,Where is the Authorization header removed when a redirect goes to a different host?,nl,0.0,1.0,1.0,0.3333333333333333,0.4911492931622974
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How does a POST request become a GET after a 303 See Other redirect?,nl,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How are automatic retries configured for the connection pool?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2r_dev_questions_in_repo,nomic-embed-code,dense,Where are SSL certificates verified and the CA bundle chosen?,nl,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How is the response body decoded into text when the server sends no charset?,nl,0.0,1.0,1.0,0.3333333333333333,0.4911492931622974
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How does streaming a download in chunks work?,nl,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,nomic-embed-code,dense,"How is JSON parsed from a response, and what error is raised if the body is not valid JSON?",nl,0.0,1.0,1.0,0.2,0.38685280723454163
+T2r_dev_questions_in_repo,nomic-embed-code,dense,Where is HTTP Digest authentication implemented?,nl,1.0,1.0,1.0,1.0,0.5484194258886879
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How is the value of the Basic auth header built?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How does the library decide whether a URL should bypass the proxy?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,nomic-embed-code,dense,Where are proxy settings read from environment variables?,nl,0.0,0.0,1.0,0.16666666666666666,0.16716045496620227
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How are query parameters URL-encoded into the request URL?,nl,0.0,0.0,1.0,0.1111111111111111,0.18457569677956817
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How are multipart file uploads encoded?,nl,0.0,1.0,1.0,0.3333333333333333,0.3065735963827292
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How is the Content-Length of a request body computed?,nl,0.0,1.0,1.0,0.5,0.5714285040141098
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How are cookies from a response stored in the cookie jar?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How are session-level settings merged with per-request settings?,nl,1.0,1.0,1.0,1.0,0.6131471927654584
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How does a session pick which transport adapter handles a URL?,nl,0.0,1.0,1.0,0.5,0.38685280723454163
+T2r_dev_questions_in_repo,nomic-embed-code,dense,Where are default headers such as User-Agent set?,nl,1.0,1.0,1.0,1.0,0.9197207891481876
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How are HTTP header names handled case-insensitively?,nl,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How are event hooks such as the response hook dispatched?,nl,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,nomic-embed-code,dense,Where is the Link header parsed into a dictionary?,nl,1.0,1.0,1.0,1.0,0.9197207891481876
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How does raising for HTTP error status codes build its error message?,nl,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How are connect and read timeouts passed down to urllib3?,nl,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,nomic-embed-code,dense,Where are credentials loaded from the user's netrc file?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2r_dev_questions_in_repo,nomic-embed-code,dense,What does `prepare_url` do with internationalized (IDNA) host names?,ident,0.0,1.0,1.0,0.25,0.5012658353418871
+T2r_dev_questions_in_repo,nomic-embed-code,dense,What does `requote_uri` do?,ident,0.0,1.0,1.0,0.5,0.6240505200038379
+T2r_dev_questions_in_repo,nomic-embed-code,dense,How does `rewind_body` work?,ident,0.0,1.0,1.0,0.25,0.43067655807339306
+T2r_dev_questions_in_repo,nomic-embed-code,dense,What does `get_connection_with_tls_context` do?,ident,1.0,1.0,1.0,1.0,0.6131471927654584
+T2r_dev_questions_in_repo,nomic-embed-code,dense,Explain `CaseInsensitiveDict.lower_items`.,ident,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,nomic-embed-code,dense,My Authorization header disappears after the server redirects me. Why?,symptom,0.0,1.0,1.0,0.2,0.4415801103577823
+T2r_dev_questions_in_repo,nomic-embed-code,dense,response.text shows garbled characters for a page that has no charset in its headers,symptom,0.0,1.0,1.0,0.25,0.20210734650054757
+T2r_dev_questions_in_repo,nomic-embed-code,dense,Uploading a file object that was partially read sends the wrong Content-Length,symptom,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,nomic-embed-code,dense,I get a TooManyRedirects exception. Where is it raised?,symptom,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,nomic-embed-code,dense,Requests ignores my NO_PROXY environment variable,symptom,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,nomic-embed-code,dense,A header value containing a newline raises InvalidHeader,symptom,0.0,1.0,1.0,0.2,0.45560514958746035
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,"How are redirects followed, and where is the maximum number of redirects enforced?",nl,0.0,1.0,1.0,0.2,0.38685280723454163
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,Where is the Authorization header removed when a redirect goes to a different host?,nl,0.0,1.0,1.0,0.5,0.6934264036172708
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How does a POST request become a GET after a 303 See Other redirect?,nl,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How are automatic retries configured for the connection pool?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,Where are SSL certificates verified and the CA bundle chosen?,nl,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How is the response body decoded into text when the server sends no charset?,nl,0.0,1.0,1.0,0.5,0.6934264036172708
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How does streaming a download in chunks work?,nl,0.0,0.0,1.0,0.16666666666666666,0.21840743681816419
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,"How is JSON parsed from a response, and what error is raised if the body is not valid JSON?",nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,Where is HTTP Digest authentication implemented?,nl,1.0,1.0,1.0,1.0,0.498860241511514
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How is the value of the Basic auth header built?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How does the library decide whether a URL should bypass the proxy?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,Where are proxy settings read from environment variables?,nl,0.0,1.0,1.0,0.3333333333333333,0.4367467095119258
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How are query parameters URL-encoded into the request URL?,nl,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How are multipart file uploads encoded?,nl,0.0,0.0,1.0,0.16666666666666666,0.21840743681816419
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How is the Content-Length of a request body computed?,nl,1.0,1.0,1.0,1.0,0.8772153153380493
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How are cookies from a response stored in the cookie jar?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How are session-level settings merged with per-request settings?,nl,1.0,1.0,1.0,1.0,0.8772153153380493
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How does a session pick which transport adapter handles a URL?,nl,0.0,0.0,1.0,0.125,0.3706656904013186
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,Where are default headers such as User-Agent set?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How are HTTP header names handled case-insensitively?,nl,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How are event hooks such as the response hook dispatched?,nl,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,Where is the Link header parsed into a dictionary?,nl,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How does raising for HTTP error status codes build its error message?,nl,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How are connect and read timeouts passed down to urllib3?,nl,0.0,0.0,0.0,0.0,0.0
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,Where are credentials loaded from the user's netrc file?,nl,0.0,1.0,1.0,0.5,0.6309297535714575
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,What does `prepare_url` do with internationalized (IDNA) host names?,ident,1.0,1.0,1.0,1.0,1.0
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,What does `requote_uri` do?,ident,0.0,1.0,1.0,0.5,0.6509209298071326
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,How does `rewind_body` work?,ident,0.0,1.0,1.0,0.5,0.6309297535714575
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,What does `get_connection_with_tls_context` do?,ident,1.0,1.0,1.0,1.0,0.8175295903539445
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,Explain `CaseInsensitiveDict.lower_items`.,ident,0.0,1.0,1.0,0.3333333333333333,0.5
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,My Authorization header disappears after the server redirects me. Why?,symptom,0.0,0.0,1.0,0.14285714285714285,0.20438239758848611
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,response.text shows garbled characters for a page that has no charset in its headers,symptom,1.0,1.0,1.0,1.0,0.8179809735263114
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,Uploading a file object that was partially read sends the wrong Content-Length,symptom,0.0,1.0,1.0,0.3333333333333333,0.3065735963827292
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,I get a TooManyRedirects exception. Where is it raised?,symptom,0.0,1.0,1.0,0.25,0.43067655807339306
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,Requests ignores my NO_PROXY environment variable,symptom,0.0,0.0,1.0,0.16666666666666666,0.41183384043543503
+T2r_dev_questions_in_repo,nomic-embed-code,hybrid_bm25,A header value containing a newline raises InvalidHeader,symptom,0.0,1.0,1.0,0.2,0.4415801103577823

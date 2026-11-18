@@ -1,0 +1,27 @@
+{
+  "status": "source-authored, same-assistant review; not independently reviewed",
+  "selection": "post-hoc stress questions on previously inspected behaviours, not independent fresh evidence",
+  "datasets": [
+    {
+      "repo": "psf/requests",
+      "commit_sha": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60",
+      "file": "requests_qa.jsonl",
+      "questions": 5,
+      "sha256": "dda86182608a883bae5ba9b13ba3ec2663caea55242c0082f4f446f610012374"
+    },
+    {
+      "repo": "expressjs/express",
+      "commit_sha": "0dee2c52c7c873498f8ed7d8ee4ddd0a04d3ada8",
+      "file": "express_qa.jsonl",
+      "questions": 5,
+      "sha256": "331554a1789c115e0afac23ebfcae75156360bd5fdbd20ce64e7adb186a2740a"
+    },
+    {
+      "repo": "pallets/flask",
+      "commit_sha": "d086db856be187255b8ec61ef409357393020f32",
+      "file": "flask_qa.jsonl",
+      "questions": 5,
+      "sha256": "60d87fc994c69c64c52764b8dfd491b9f0af636b3b1242aeb372bdcd4519fa66"
+    }
+  ]
+}

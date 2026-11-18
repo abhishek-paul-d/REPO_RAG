@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "status": "frozen before fresh retrieval; hashed on disk, not git-committed because the user forbids commits",
+  "authorship": "Codex source-authored and author-checked; independent label review pending",
+  "methods": [
+    "plain",
+    "callee",
+    "both"
+  ],
+  "primary_comparison": "callee minus plain on new30; both is secondary and cannot replace a rejected primary",
+  "retrieval": {
+    "version": 3,
+    "status": "frozen before expanded retrieval scoring; no tuning",
+    "questions": 90,
+    "per_repo": 30,
+    "retained_from_15_question_set": 15,
+    "newly_authored_additions": 75,
+    "strata": {
+      "ambiguous": 36,
+      "multi_block": 18,
+      "test": 18,
+      "implementation": 12,
+      "example": 6
+    },
+    "methods": [
+      "hybrid",
+      "rerank20",
+      "rerank50"
+    ],
+    "primary_comparison": "rerank50 minus rerank20 on all90; also compare each against hybrid",
+    "mandatory_views": [
+      "each repo",
+      "pooled equal-repo all90",
+      "each target stratum",
+      "added75",
+      "retained15"
+    ],
+    "embedding_model": "Qwen/Qwen3-Embedding-0.6B",
+    "embedding_dims": 512,
+    "embedding_dtype": "float32",
+    "embedding_max_tokens": 2048,
+    "reranker_model": "Qwen/Qwen3-Reranker-4B",
+    "rerank_max_tokens": 2048,
+    "code_rerank_instruction": "Given a developer question, retrieve the code that implements the requested behaviour",
+    "embedding_query_instruction": "Instruct: Given a developer question or a description of behaviour, retrieve the code that implements it\nQuery:",
+    "max_chunk_chars": 1500,
+    "retrieval_k": 50,
+    "dense_weight": 1.0,
+    "bm25_weight": 0.3,
+    "rrf_k": 60,
+    "rerank_candidate_depths": [
+      20,
+      50
+    ],
+    "cutoffs": [
+      1,
+      5,
+      10
+    ],
+    "primary_metrics": [
+      "mrr@10",
+      "any_complete_proof@10"
+    ],
+    "proof_rule": "Any one labelled sufficient evidence set; at least 90 percent of every required range in that set. Do not combine partial pieces of different alternatives into a complete proof.",
+    "bootstrap": {
+      "unit": "connected evidence group",
+      "samples": 10000,
+      "seed": 42,
+      "confidence": 0.95,
+      "multiplicity_adjusted": false
+    },
+    "quality_repetition": 0,
+    "timing_repetitions": 3,
+    "timing": "Independent actual production calls, rotated ordering, warm synchronized p50/p95 separately per repo. Do not average percentiles. Repetitions are not independent questions.",
+    "hardware": "A100 for experiments only; deployment hardware undecided",
+    "authorship": "Source-authored and reviewed by the same assistant; independent review pending",
+    "prior_exposure": "Retained15 plus newly authored75; overlap with previously assessed v2 evidence is recorded per question. New wording is not independent code or training-data freshness.",
+    "decision": "No automatic policy/default selection. A CI spanning zero is inconclusive, not equivalence. Inspect MRR, complete proof and test/example guards with latency. Independent review and eventual deployment timing remain required.",
+    "scope": "Answerable questions over code in three pinned repositories/two languages; not a random production-query distribution, ANN scale test, abstention test or generated-answer accuracy benchmark. No character-vs-AST causal comparison."
+  },
+  "expansion": {
+    "keep": 5,
+    "seeds": 3,
+    "per_seed": 2,
+    "max_definers": 3,
+    "scope": "after reranked code top10 only; no hybrid/CPU expansion; same number of chunks; first five retained; insertions are unscored"
+  },
+  "success_rule": {
+    "min_fresh_proof_gain": 0.05,
+    "fresh_proof_lower_bound": "strictly greater than zero, paired group 95% CI",
+    "max_regression_loss": 0.02,
+    "regression_guard_strata": [
+      "ambiguous",
+      "multi_block",
+      "implementation",
+      "test",
+      "example"
+    ],
+    "regression_guard_unit": "pooled per stratum across original120, point-estimate losses in MRR@10 and any_complete_proof@10; per-repo diagnostics also reported",
+    "max_text_growth": 0.1,
+    "text_growth_unit": "ratio of total returned characters including headers to plain minus one; each of fresh30 and regression120 must meet the cap",
+    "failure_action": "leave expansion off; proceed to Phase 5 without iterating on these labels"
+  },
+  "quality_only": true,
+  "score_sharing": "one resident code-instruction scorer with exact cache by instruction/query/candidate text; all methods still call actual production search and store-backed expansion; not timing evidence",
+  "expected_questions": {
+    "fresh": 30,
+    "regression": 120
+  },
+  "fresh_distribution": {
+    "psf/requests": 6,
+    "expressjs/express": 6,
+    "pallets/flask": 6,
+    "pallets/click": 12
+  },
+  "fresh_groups": 26,
+  "labels": "single sufficient proof per new question with jointly required ranges; original120 copied byte-for-byte; independent review pending",
+  "source_only_validation": "all30 proofs are corpus-answerable and none is complete in a single production chunk; no query search or expansion output consulted while authoring",
+  "preflight": "any later local BM25/preflight output is diagnostic only; never substitutes for the actual GPU primary comparison",
+  "hardware": "A100 experiments only; deployment undecided",
+  "limits": [
+    "name matching, not actual resolved calls",
+    "no expansion on unreranked lists",
+    "ambiguous/common names skipped above three defining chunks",
+    "Express call-style getters not added",
+    "no answer-generation measurement, independently authored holdout, or inference about ANN scale",
+    "prior source overlap on the old repos is recorded; new question wording is not guaranteed unseen code"
+  ]
+}

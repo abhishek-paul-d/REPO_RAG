@@ -1,0 +1,12 @@
+{
+  "approved_on": "2026-11-03",
+  "models": "two of the four revisions approved in phase7_bakeoff_v1/approval.json",
+  "approved_by": "the user, in chat: \"Yes, design v5\" then \"Approve, build it\"",
+  "v1_approval_sha256": "d05ee70b2ae60a8c8b85539792fbe75572ef980b3ad954f8dca3238f5151169d",
+  "v2_approval_sha256": "210465504888d8e33ab73c5d8952d600489e41fca8bcb68ee87ef18ea96cdd9e",
+  "v3_approval_sha256": "1bf92d35ba245945ce8209e90cbcaaa426f9ee12c5016867c2938b9507dfdccc",
+  "v4_approval_sha256": "d665d074916609edbdc4d45df128cad53cae922539f936b815d4ba601eabb0bf",
+  "model_proposal_sha256": "fca3e9816c1110e15a36b80fba59393b671046c1272e859db145b7302628f312",
+  "design": "docs/PHASE7_BAKEOFF_V5_DESIGN.md",
+  "scope": "Changes no model, revision or tool. No answer model has run on v5."
+}

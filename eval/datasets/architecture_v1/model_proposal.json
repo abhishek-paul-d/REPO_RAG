@@ -1,0 +1,21 @@
+{
+  "amendment": "v2, before any model run: v1 rejected every word absent from the facts, which discards faithful natural English and ignores invented numbers (tested 2026-11-01); see model_proposal_v1.json",
+  "approval_status": "pending explicit user approval; neither downloaded nor run",
+  "check_rules": "reject a paragraph that contains a code-like name (dotted, slashed, snake_case, camelCase, backticked, followed by '(', or a capitalised word inside a sentence) or a number that is not in the facts; plain lowercase words are free",
+  "check_version": "identifiers-numbers-v2",
+  "decoding": {
+    "do_sample": false,
+    "max_new_tokens": 160
+  },
+  "estimated_vram": "8.05 GB bf16 weights; plan 12-16 GB including short-context KV cache and runtime; estimate, not measured",
+  "label_review": "unreviewed by a person",
+  "license": "Apache-2.0",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "parameters": "4.0 billion",
+  "prompt_sha256": "a3d74d51dbe54e4fee73755f899cfbfa573d3e2a387519cb1f1eadd807a085a4",
+  "reason": "non-thinking instruct model; existing transformers supports it; small enough for Colab without quantization or a new dependency",
+  "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "source": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+  "supersedes_sha256": "633f206709181bd01defccd2b381fb04f42c5b080bff6496bead380ffc132dc8",
+  "supplements": "architecture_v1/protocol.json E3; model choice requires explicit approval before run"
+}

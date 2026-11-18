@@ -1,0 +1,8 @@
+{
+  "approved_on": "2026-11-01",
+  "models": "unchanged from phase7_bakeoff_v1/approval.json (same four revisions)",
+  "approved_by": "the user, in chat: \"Approve all four\" and, later, \"Amend dev split\"",
+  "v1_approval_sha256": "d05ee70b2ae60a8c8b85539792fbe75572ef980b3ad954f8dca3238f5151169d",
+  "model_proposal_sha256": "fca3e9816c1110e15a36b80fba59393b671046c1272e859db145b7302628f312",
+  "scope": "The user asked for this dev-split amendment after approving the models. It changes no model, revision, gate or test question, so the model approval carries over to protocol v2. No answer model has been loaded."
+}

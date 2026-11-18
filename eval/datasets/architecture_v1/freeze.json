@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-10-30T19:58:04.542603+00:00",
+  "sha256": {
+    "flask.jsonl": "4dce826006e11585b52be43b563d7e1637f52f899b323ac9e705c0af0f6b6b7f",
+    "protocol.json": "1d9cc08c9b5fd7658fb2039da1494efda34169573e61f3dfc2e66d3ee4b2bd75",
+    "requests.jsonl": "df007e1086da72a42e7a275ccd670e402f68270be44984533ad026fefca92ef7",
+    "requests_code_regression.jsonl": "fa6d085fc85f674780c51564bec63217d89bebbdab45ac61d527d6a3f2ad54ee"
+  },
+  "stage": "frozen before any architecture retrieval or model loading"
+}

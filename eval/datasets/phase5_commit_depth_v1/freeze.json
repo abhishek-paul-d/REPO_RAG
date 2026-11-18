@@ -1,0 +1,26 @@
+{
+  "stage": "pre-registered before new retrieval and GPU inference",
+  "sha256": {
+    "cohorts.json": "562dec59da3bd7108f08bf9914c43d261e3e1b3c1cf435702339b81ccf500e82",
+    "historical/fastapi__fastapi/rerank4b/per_question.json": "52383d1edcedf401182aab1779ddf0912427ab12eaaa1ea771492f0e12843c5c",
+    "historical/fastapi__fastapi/rerank4b/run.json": "df83e9cca1780a45593ab28bed0df8ce10a788962e089db9c32d875a34d4ca3f",
+    "historical/fastapi__fastapi/rerank4b/traces.json": "f813c0a9add7492b8a7dfd8ae9c0f57c372a1c773f37dfcf211d2cfc84a54671",
+    "historical/fastapi__fastapi/rerank8b/per_question.json": "0dfbda8716edf4575dc7bf29d9462e68a72ef1fb1a0fa4c328289cec73d26486",
+    "historical/fastapi__fastapi/rerank8b/run.json": "1f265adbebc8f9122c361a4c07e70a47e7fc13b582a0f6b62fe1a644a0c4c1f8",
+    "historical/fastapi__fastapi/rerank8b/traces.json": "fe9b7978293f50cbf4119edaa3638a26fff57522144df633127b6c4258a9f9d4",
+    "historical/pallets__flask/rerank4b/per_question.json": "c3350634d5d2ed772f48400ce9c10d0f5b33ec268a9c2957e9819578c8aa21e5",
+    "historical/pallets__flask/rerank4b/run.json": "8e54bc075d8d3b52aa9cad8087a9c5ce025aee8a8e3a62f3fee0f50d844700eb",
+    "historical/pallets__flask/rerank4b/traces.json": "eb2e89eee3d217b2d206f0192cf27b8503116cd907ca503c2d47065ad9131f0d",
+    "historical/pallets__flask/rerank8b/per_question.json": "e3bc5a34696934d938b6fa45a5ffd616af12b37d85c3b4a28f7af4082285a534",
+    "historical/pallets__flask/rerank8b/run.json": "4a8c2a0b59577367d2f9fd218380366b5e0621a46272cda1c72a9fbb4ccfb2dc",
+    "historical/pallets__flask/rerank8b/traces.json": "46b004f1ef7d89170532e6932616402c2e611d3d0ef419ea8175e5657db57221",
+    "historical/psf__requests/rerank4b/per_question.json": "918e76ebae316ee5f627ad297abf1d2b9a585b2edda6c73606e8007df8784381",
+    "historical/psf__requests/rerank4b/run.json": "823604729b5e235551bc5ebc9bf834baa4e0dadfbc9abf971d354592e4c22065",
+    "historical/psf__requests/rerank4b/traces.json": "f5107e66dc0976052b8af3c812849f409ecce3b3867a7e55ab8837e1e21540c4",
+    "historical/psf__requests/rerank8b/per_question.json": "17fc8fc1032e1b2748e0b88d5d63919fa75077b196e5f0b5b2c34a15fd465f20",
+    "historical/psf__requests/rerank8b/run.json": "06582c4f6b7c8d0ee31501076f1b831428219d3dfdcb9e03de4a8f98d67062dc",
+    "historical/psf__requests/rerank8b/traces.json": "4ae9076249fa72bf7e7790b3f99b321d27fa95399818e716f8d0090df38396be",
+    "historical/source.zip": "38858edb6061b375db74779b8ddf1a4362cefcade26930a8e91ccdccc6523b82",
+    "protocol.json": "87181ddde8e33032ffa0d83f35f68d9c0f1925410116a271abbb0e163f693d17"
+  }
+}

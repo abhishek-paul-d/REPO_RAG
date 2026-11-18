@@ -1,0 +1,27 @@
+{
+  "repos": {
+    "psf/requests": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60",
+    "pallets/flask": "d086db856be187255b8ec61ef409357393020f32",
+    "encode/httpx": "b5addb64f0161ff6bfe94c124ef76f6a1fba5254"
+  },
+  "max_seq_tokens": 2048,
+  "corpus_chunks": 2880,
+  "tasks": {
+    "T1_docstring_to_code": {
+      "queries": 499,
+      "docs": 2880
+    },
+    "T2_dev_questions": {
+      "queries": 36,
+      "docs": 2880
+    },
+    "T2r_dev_questions_in_repo": {
+      "queries": 36,
+      "docs": 2880
+    },
+    "T3_bug_to_fix": {
+      "queries": 144,
+      "docs": 4882
+    }
+  }
+}

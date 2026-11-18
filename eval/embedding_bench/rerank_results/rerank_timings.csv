@@ -1,0 +1,4 @@
+reranker,pairs_scored,pairs_per_s,ms_per_query_top50
+qwen3-reranker-0.6b,11470,63.5,584.6
+qwen3-reranker-4b,11470,21.3,1833.8
+bge-reranker-v2-m3,11470,314.7,160.1

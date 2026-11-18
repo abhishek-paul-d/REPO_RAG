@@ -1,0 +1,8 @@
+{
+  "repo": "psf/requests",
+  "pin": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60",
+  "parent_freeze_sha256": "237f2734f5db5646f33e75c9d192c16b2a1ed1c07819a9c2e719c54752d0731a",
+  "protocol_sha256": "11910a7b0db2458c0446691b856d2c6a4b8a9bcea976392eeb45f4d615ba1ef8",
+  "reuse": "v1 source records, queries, labels, groups and splits; no new API calls",
+  "candidate_pool": "message heuristic only; every gold independently eligible"
+}

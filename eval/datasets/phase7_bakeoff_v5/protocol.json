@@ -1,0 +1,246 @@
+{
+  "version": "phase7_bakeoff_v5",
+  "frozen_on": "2026-11-03",
+  "status": "pre-model protocol v5 (fresh questions, tuned prompt arms); models approved",
+  "questions": {
+    "Q1": "Choose typed read-only tools and arguments from the question, then quote exact tool values.",
+    "Q2": "Answer code/architecture questions with citations to retrieved evidence, abstaining without relevant context.",
+    "Q3": "Measure latency, generation throughput and peak GPU memory on the user's Colab A100 40 GB. These are experiment costs, not deployment measurements."
+  },
+  "scope": {
+    "model_count_max": 4,
+    "total_parameters_billions": [
+      4,
+      14.99
+    ],
+    "parameter_convention": "Marketed 4B-14B dense models; publish exact parameter counts, including embeddings. No MoE with total parameters above this size class.",
+    "models": "Permissively licensed local open weights; pinned revisions; bf16 on one A100 40 GB; no paid API.",
+    "approval_gate": "Before downloading/loading any answer model, or implementing the harness, fake-model tests or notebook.",
+    "dependencies": "No new dependency without user approval; current transformers 4.57.6, constrained <5 by the existing embedding benchmark.",
+    "summary_experiment": "Separate approved summary model; do not modify or run that experiment here.",
+    "production": "No default retrieval or model changes; summaries excluded; no serving/deployment implementation. Full Phase 7 remains incomplete."
+  },
+  "inputs": {
+    "facts": "Guard only: the 45 v4 test facts (seen). No dev facts; the facts rate is not part of the dev choice.",
+    "facts_limit": "Seen facts cannot support a claim; they detect regression.",
+    "code": "Fresh: per repo 16 methods/functions from src/ drawn by a fixed seed from the capsule chunks, excluding every v3/v4 gold file+symbol. Dev 4 + test 12 per repo.",
+    "architecture": "Fresh: cross-file call pairs from the capsule call table, excluding every v3/v4 gold file pair. Requests 3 dev + 8 test, Flask 4 dev + 13 test (the unused pool is smaller than the design's 32; the split is skewed to Flask and the report says so).",
+    "probes": "Fresh: boundary-anchored unanswerable questions, 3 dev + 8 test per repo; every probe term is checked absent from the indexed src/ text.",
+    "model_visibility": "Only question text, common system prompt, tool schemas and preceding executed tool results. No id/type/split/gold paths/expected/tool/args/label notes or evaluator messages. Repository is an out-of-band tool binding; reset all state between questions. Never interpolate labels into prompts.",
+    "label_storage": "questions.jsonl has routing metadata; pass ONLY its question field to the model. labels.jsonl and probes.jsonl are scorer-only. Freeze input/source hashes before candidate research or any model load.",
+    "total": 127,
+    "dev": 21,
+    "test": 106
+  },
+  "tools": {
+    "allowlist": [
+      "get_pr",
+      "get_issue_meta",
+      "prs_closing_issue",
+      "find_prs",
+      "count_commits",
+      "top_contributors",
+      "change_frequency",
+      "releases_containing",
+      "blame",
+      "get_tag",
+      "search_code",
+      "get_symbol",
+      "find_callers"
+    ],
+    "implementation": "Thin typed wrappers over existing read-only metadata/git/symbol/hybrid search functions only; no raw SQL, network tools or new capability. Repository and checkout are bound, not model-supplied. Redact emails before model exposure or logging.",
+    "facts_mapping": "get_pr/get_issue_meta: expected field is a scorer-only projection, NOT a hidden argument in schemas. Normal call(number) returns full redacted record. blame: hidden line maps to start=end=line; optional ref must be pinned HEAD. top_contributors/change_frequency: require supplied filters and first row, permit limit >=1 (default 3). get_tag(name): quote sha. count_commits: exact count string. release_first is NOT a tool: get_pr(number) -> merge_commit_sha -> releases_containing(sha); choose first release tag, or 'none' for empty list. All other argument fields must equal frozen labels; dates use the existing typed tool semantics. Tool-name/argument scores include this predefined chain only; no post-hoc alternative discovery.",
+    "tool_name_accuracy": "Fraction of facts with all required names in executed calls; release_first requires get_pr and releases_containing. Extra allowed calls reported separately. A disallowed or malformed call fails the question.",
+    "argument_accuracy": "Fraction of facts with the required correctly bound calls/filters, including release chain SHA equal to the actually returned merge_commit_sha; scorer ignores field projections and permits harmless limit/default conventions described above. Conditional argument accuracy also reported.",
+    "code_retrieval": "Existing hybrid AST code search, top_k=5, retrieval depth=50, existing BM25/vector weights, no reranker/query rewriting/expansion/summaries. Bind pinned original indexes or deterministically rebuild identical settings without answer labels. Record index/source/embedding revisions and hashes before testing. All candidates use identical cached question-independent index, no answer-model-specific retrieval settings.",
+    "evidence": "Log exact tool results sent to model, not just untrimmed results. search_code returns whole chunks with scalar provenance; symbol/caller rows carry path/range but do not count as retrieved code content for prose grounding. A code answer needs search_code evidence. Do not inject gold paths or snippets.",
+    "record_projection": {
+      "tools": [
+        "get_pr",
+        "get_issue_meta",
+        "find_prs",
+        "prs_closing_issue"
+      ],
+      "field": "body",
+      "max_chars": 2000,
+      "marker": "...[body truncated: N more characters]",
+      "rule": "A `body` string longer than max_chars is replaced by its first max_chars characters followed by the marker with N set to the number of characters removed. Applied before redaction and before the result budget. Every other field, and the 12,000-character cumulative budget, is unchanged. No fact in the registered sets asks for a PR or issue body."
+    }
+  },
+  "generation": {
+    "dtype": "bfloat16",
+    "quantization": "none",
+    "batch_size": 1,
+    "do_sample": false,
+    "max_input_tokens": 8192,
+    "max_new_tokens_per_turn": 512,
+    "max_tool_calls": 4,
+    "max_generation_turns": 5,
+    "tool_result_chars_per_question": 12000,
+    "context_policy": "Serialize redacted JSON deterministically; retain complete ranked chunks/records within the 12000-character cumulative result budget, report omitted entries. Never cut source text mid-chunk or silently remove prior turns. If native-template input exceeds 8192 tokens or output hits cap before valid JSON, record budget failure and score failure. No retry/repaired JSON. The same limits apply to all models.",
+    "template": "Each pinned model's native chat template; schemas as identical plain text, not model-specific tool fine-tuning formats. Explicit non-thinking mode where available. Reject reasoning blocks, markdown fences, prefixes, extra text, invalid schema, or multiple objects as parse failures; do not strip/retry.",
+    "tool_envelope": {
+      "type": "tool_call",
+      "name": "allowed tool name",
+      "arguments": {}
+    },
+    "final_envelope": {
+      "type": "final",
+      "answer": "string or string list for set facts",
+      "abstain": false
+    },
+    "prompt_tuning": "After approval implement common prompts only in agent/prompts.py. Tune wording on dev only, at most two shared revisions after initial prompt. Evaluate all approved candidates on every revision, choose revision by pooled dev fact accuracy then citation completeness/validity then probe abstention, retain earliest on tie. Same frozen prompt/parser/config for every test run; record hashes before opening test labels for scoring. No candidate-specific prompt changes. Fixed threshold and splits never tuned."
+  },
+  "scoring": {
+    "judge": "Mechanical only; no model judge or subjective semantic-correctness claims.",
+    "facts": "Use eval/run_facts.py matches() unchanged: exact Python equality or sorted list equality for compare=set. No new case folding, whitespace normalization, fuzzy name/date matching or SHA-prefix relaxation. Final answer is a string/list in the envelope. Credit requires the predefined correctly argued successful tool call/chain AND value projected/quoted from its actual result. A memorized correct value without this trace is a failure. Report raw answer match separately from grounded exactness, tool names, arguments, parse/budget/tool failures.",
+    "citations": "Extract path:start-end and 7-40 hex SHA references from final answer; remove presentation backticks only. Case-sensitive POSIX repository path must equal an actually transmitted search_code chunk path in this question's bound repo/pin, integers start<=end and closed ranges must overlap. SHA must prefix an actually transmitted commit SHA, minimum 7 hex. Each occurrence counts, even duplicates. Citation presence/validity checks provenance, not entailment or coverage of all claims.",
+    "invalid_citation_rate": "Invalid references / all references across the 44 answerable Q2 test answers. If no references at all, rate=1. Report answers with zero citations separately, including abstentions, as count/44. Do not mistake zero invalid references for citation completeness; completeness is reported and used for tie-breaking but no unregistered extra eligibility gate is added.",
+    "citation_validity_tiebreak": "Fraction of answerable questions with at least one citation and zero invalid references. Then per-reference validity if still tied.",
+    "probes": "Success requires valid final JSON, abstain=true, at least one frozen abstention phrase in casefolded whitespace-collapsed answer text, and zero citation references. No lexical allowance based on expected feature names. Any factual feature explanation accompanying the phrase remains a limitation of this mechanical test; report raw text for review.",
+    "abstention_phrases": [
+      "not found in the retrieved context",
+      "no relevant code was found",
+      "no relevant implementation was found",
+      "insufficient evidence in the retrieved context"
+    ],
+    "answerable_abstention": "On 44 Q2 answerable test questions, count abstain=true OR any frozen abstention phrase. Parse/budget/tool failures count as misses and as answerable abstentions, to prevent malformed output avoiding the gate.",
+    "lexical_grounding": "Use summaries.prose.violations(answer, actually transmitted code facts) excluding citation substrings. Report per-answer rejected identifiers/numbers and checker version. This is a rough lexical diagnostic only; it does not prove entailment or correctness and is not an eligibility gate.",
+    "retrieval_diagnostics": "Report retrieved file/range hits against existing gold; separate code and architecture, and label architecture unreviewed. Do not score model-written semantic answers as correct based only on citation validity.",
+    "uncertainty": "95% Wilson intervals for fact accuracy, probe abstention, answerable abstention and citation-complete answer fractions. Per-reference citation rate is descriptive because repeated references are dependent. No interval-based extra eligibility gate; show numerator/denominator, including small probe n=8.",
+    "v4_corrections": {
+      "path_prefix": "Path-like tool arguments (`path`, `path_prefix`) compare equal after removing one trailing slash: `httpx` and `httpx/` are the same prefix.",
+      "blame_sha": "A blame answer is correct if it equals the 12-character gold or is a full 40-hex SHA that starts with it. No shorter prefix is accepted.",
+      "single_member_set": "For compare=set facts whose gold has exactly one member, a bare string equal to that member is accepted. Multi-member sets keep exact sorted-list equality.",
+      "reporting": "Every report prints the strict v3 score (`fact_ok_strict`) and the corrected score (`fact_ok`) per model. Eligibility and dev selection use the corrected score. No case folding, whitespace normalisation or fuzzy matching is added."
+    },
+    "v5_answer_check": "Reported beside the raw score, never instead of it: for a non-abstaining answer with no citation, `path:start-end` is attached for each retrieved search_code chunk whose file path occurs in the answer or whose symbol's last component (4+ characters) occurs as a whole word. The attached references are validated like model-written ones. The check cannot rescue an abstention, a failure, a probe, or a malformed citation."
+  },
+  "selection": {
+    "split": "test only, after common prompt/parser frozen on dev",
+    "gates": {
+      "grounded_fact_exactness_min": 0.95,
+      "invalid_citation_rate_max": 0.05,
+      "test_probe_abstention_min": 0.875,
+      "answerable_Q2_abstention_max": 0.09,
+      "citation_complete_min": 0.75
+    },
+    "discrete_thresholds": "Subject model on the selected arm, test split: at least 43/45 facts (guard), at most 5% invalid citation references, at least 14/16 probes, at most 4/45 answerable abstentions, and at least 34/45 answerable questions with a valid citation in the raw output (the answer check is reported separately and is not a gate).",
+    "ranking": "Dev only, subject model: probe abstention rate, then citation-complete rate, then fewer answerable abstentions, then lower invalid citation rate, then the lower revision. Test runs the selected arm and the unchanged baseline (revision 0) once. The control model is reported, not gated. If the subject fails a gate nothing is adopted or relaxed.",
+    "interpretation": "These gates are necessary selection rules, not proof of semantic quality. Missing citations, unreviewed labels, lexical blind spots and prior retrieval tuning must be explicit in review. Any deployment decision follows measured evidence separately.",
+    "dev_rank": "v5"
+  },
+  "timing": {
+    "hardware": "Record actual nvidia-smi GPU name, total VRAM, CUDA/torch/transformers versions and model/config/template hashes. Require A100 40 GB for registered cost comparison; otherwise label other hardware and withhold A100 claim.",
+    "warmup": "One identical synthetic non-dataset question per loaded model, unscored, with no label. Record cold load time separately. Reset CUDA peak statistics per scored question; synchronize before/after timed generation and whole question.",
+    "reported": "p50/p95 end-to-end seconds/question (including tool/parse time, excluding load), generation-only output tokens/sec, peak allocated and peak reserved VRAM, and device-level peak if sampled. Report by suite and pooled, test separate from dev; include failures and raw per-question timestamps/tokens. No CPU or rented-GPU estimates disguised as measurements.",
+    "order": "Same seeded shuffled question order per split for every candidate (seed 42); one model resident at a time, unload before next. No batching. Tool query caches disabled or reset equivalently, shared prebuilt index permitted. Record cache policy."
+  },
+  "artifacts_after_approval": [
+    "model-agnostic harness and fake-model offline tests",
+    "generated Colab notebook and redacted metadata/Git/index capsule",
+    "common prompt/parser freeze before test",
+    "raw per-turn question-only prompts/tool calls/results/finals/timings and failures",
+    "independent mechanical recomputation CLI and report",
+    "pytest/ruff/mypy and dated handoff/log"
+  ],
+  "amendments": "Preserve this v1 freeze. Any change to protocol, questions or splits requires a separately named version, supersedes hash, reason and explicit pre/post-model timing. Never overwrite frozen v1. Candidate proposal has its own hash freeze; approval records exact approved revisions. No commit/stage/push. Never log credentials or author emails.",
+  "amendment_v2": {
+    "reason": "v1 put only pr_author, pr_state, issue_author and top_committer in dev, so the common prompt (at most two revisions) could not be tuned on the tool patterns the 41/45 gate depends on: the release chain, date-range counts, blame, tag lookup, set answers and rankings.",
+    "supersedes_protocol_sha256": "d2d95fe442e7fb83a39cb7c2ce41024bc5aa9c6b40843734552d610d056eb105",
+    "supersedes_inputs_freeze_sha256": "4083a11affc004fe3e80657f60de48ae1c01d8fb7ace1ac510b360e16f0bce46",
+    "made_before_any_answer_model_load": true,
+    "selection_rule": "build_facts.py seed 20261101 on the frozen snapshot and checkout; drop facts whose (type, args) or id is among the 60; keep the first 2 per type in builder order for release_first, commits_in_month, blame_line, tag_commit, issue_closed_by, hot_file. hot_file had one fresh fact.",
+    "extra_ids": [
+      "release_first:2732",
+      "release_first:2799",
+      "commits_in_month:httpx/_models.py@2022-11-01",
+      "commits_in_month:httpx/_models.py@2019-12-01",
+      "blame_line:httpx/_transports/mock.py:37",
+      "blame_line:httpx/_transports/base.py:83",
+      "tag_commit:0.11.0",
+      "tag_commit:0.20.0",
+      "issue_closed_by:3614",
+      "issue_closed_by:3140",
+      "hot_file:2023"
+    ],
+    "entity_overlap_with_test": [
+      "commits_in_month:httpx/_models.py@2019-12-01 shares path httpx/_models.py with a test fact",
+      "commits_in_month:httpx/_models.py@2022-11-01 shares path httpx/_models.py with a test fact"
+    ],
+    "changed": [
+      "dev split (+11 facts)",
+      "protocol inputs text and totals"
+    ],
+    "unchanged": [
+      "all 97 test questions and labels",
+      "gates, scoring, generation, tools, timing",
+      "the four approved candidate revisions"
+    ]
+  },
+  "amendment_v3": {
+    "reason": "In the capsule database 35 of 500 httpx PR records and 10 of 500 issue records exceed the 12,000-character per-question tool-result budget when returned whole, almost entirely because of `body`. The v2 context policy then omits the whole record, so author, merged_by, merge_commit_sha and state vanish for every model alike. The bound-tool audit on v2 dev passed 25/26 (issue_author:1428 omitted); the 41/45 test gate allows four misses. Prompt wording cannot fix this and the budget cannot be raised without hitting the 8,192-token input cap.",
+    "supersedes_protocol_sha256": "7375c1b385b5795308fd215c465d1372a2915e542bd0549b116721345d5d2fb6",
+    "supersedes_inputs_freeze_sha256": "4015868d62cfc59e3adccbf9613085abd1b4507905e4848d33b8e886191779d4",
+    "made_before_any_answer_model_load": true,
+    "changed": [
+      "tools.record_projection (PR/issue body bounded)"
+    ],
+    "unchanged": [
+      "all 141 questions, labels and splits (byte-identical copies of v2)",
+      "gates, scoring, generation limits and result budget, timing",
+      "the four approved candidate revisions"
+    ]
+  },
+  "amendment_v4": {
+    "reason": "The v3 run found no qualifying model. Format-driven failures dominated (missing `abstain`, tool name in `type`, abstaining without searching, no citations), two hot_file gold arguments disagree with the question wording, and the run skipped the registered dev prompt revisions. The v3 test failures were seen, so v3 test facts cannot be a clean test.",
+    "supersedes_protocol_sha256": "d28050aa68f667d224ed724d89085e245adea367da57e1be2e9929bf6588be2a",
+    "supersedes_inputs_freeze_sha256": "5331fc1458f382225a05e8c4a4ba2bf49a68fa3011765b4b612eed13afe83fb6",
+    "made_before_any_answer_model_ran_on_v4": true,
+    "made_after_seeing_v3_results": true,
+    "v3_results": "eval/facts_results/answer_bakeoff_v3/",
+    "changed": [
+      "dev = v3 dev + v3 test facts",
+      "test facts = 45 fresh httpx facts",
+      "scoring.v4_corrections (strict and corrected reported together)",
+      "common prompt gains worked examples; dev revisions are used, test is gated by CONFIRM_FREEZE in the notebook"
+    ],
+    "unchanged": [
+      "gates, selection rule, tools and result bounds, generation limits, timing",
+      "the four approved candidate revisions",
+      "texts and labels of the reused code, architecture and probe questions"
+    ]
+  },
+  "subject": "Qwen/Qwen2.5-Coder-14B-Instruct",
+  "models": [
+    "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "Qwen/Qwen3-14B"
+  ],
+  "arms": {
+    "0": "Unchanged v4 prompt, no reminder (paired baseline).",
+    "1": "R2: rewritten code section (re-search before abstaining, citation per sentence) plus a fixed reminder user message after each search_code result.",
+    "2": "R3: R2 plus a stricter citation sentence and a shorter reminder.",
+    "where": "src/repo_rag/agent/prompts.py BAKEOFF_ARMS; revision number selects the arm."
+  },
+  "amendment_v5": {
+    "reason": "v4 chose no model. On its 44 answerable test questions Qwen2.5-Coder-14B cited 14, named a file without a line range on 13, named no file on 11 and abstained on 6 (limit 4); Qwen3-14B cited 38 but answered 3 of 8 probes it should have refused. 21 of Coder's 24 answered-but-uncited answers name a retrieved symbol or file, and 5 of its 6 abstentions come after a single search on architecture questions. The v4 test questions were read to diagnose this, so claims about a tuned prompt need questions nobody has seen.",
+    "supersedes_protocol_sha256": "2ef16e10633f92a1816b513ff8bde9f67f4a566d43e10c3c3005d9a362c717ca",
+    "supersedes_inputs_freeze_sha256": "2a60e8689a9b51c5951c171b5c6de1faf918f3e832466fa3fd5ae45e8e620bad",
+    "made_before_any_answer_model_ran_on_v5": true,
+    "made_after_seeing_v4_results": true,
+    "v4_results": "eval/facts_results/answer_bakeoff_v4_test/",
+    "design": "docs/PHASE7_BAKEOFF_V5_DESIGN.md",
+    "changed": [
+      "questions: fresh seeded code/architecture/probe sets; facts are a guard only",
+      "models: Coder (subject) and Qwen3-14B (control)",
+      "arms: prompt revisions 0/1/2 in agent/prompts.py; reminder after search_code",
+      "gates scaled to rates for 45 answerable / 16 probes, plus citation presence",
+      "answer check reported beside the raw score"
+    ],
+    "unchanged": [
+      "tools and result bounds, generation limits, timing, the approved revisions",
+      "strict single-JSON envelope; no repair and no retry",
+      "mechanical scoring only"
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "authorship": "Codex source-authored and author-checked; independent review pending",
+  "selection": "30 newly authored multi-block implementation questions before any new retrieval; 12 Click and 6 per earlier repo; not a random or independent holdout",
+  "fresh_questions": 30,
+  "regression_questions": 120,
+  "datasets": [
+    {
+      "repo": "psf/requests",
+      "commit_sha": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60",
+      "file": "requests_qa.jsonl",
+      "questions": 6,
+      "role": "fresh",
+      "sha256": "2a84bc8951b8435fed5e7bab3bd5e906ee7d2032ed9d2229a00016af1564a8f3",
+      "groups": 6,
+      "previous_regression_evidence_overlap": {
+        "requests-expansion-001": [],
+        "requests-expansion-002": [],
+        "requests-expansion-003": [
+          "requests-comparison-013"
+        ],
+        "requests-expansion-004": [],
+        "requests-expansion-005": [
+          "requests-comparison-018"
+        ],
+        "requests-expansion-006": []
+      }
+    },
+    {
+      "repo": "psf/requests",
+      "commit_sha": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60",
+      "file": "requests_regression.jsonl",
+      "questions": 42,
+      "role": "regression",
+      "sha256": "c63d3c5404c63373308daf3a80032cd9118956ab5828662fbcccb0d7eb5dc50d",
+      "groups": 28
+    },
+    {
+      "repo": "expressjs/express",
+      "commit_sha": "0dee2c52c7c873498f8ed7d8ee4ddd0a04d3ada8",
+      "file": "express_qa.jsonl",
+      "questions": 6,
+      "role": "fresh",
+      "sha256": "efc6aa3e07697617101524b9992659e9ace43484adabeea20d6c54b049a24a06",
+      "groups": 4,
+      "previous_regression_evidence_overlap": {
+        "express-expansion-001": [],
+        "express-expansion-002": [],
+        "express-expansion-003": [],
+        "express-expansion-004": [],
+        "express-expansion-005": [
+          "express-comparison-001"
+        ],
+        "express-expansion-006": []
+      }
+    },
+    {
+      "repo": "expressjs/express",
+      "commit_sha": "0dee2c52c7c873498f8ed7d8ee4ddd0a04d3ada8",
+      "file": "express_regression.jsonl",
+      "questions": 39,
+      "role": "regression",
+      "sha256": "f581b0157b68cd8f1b1b11735234b70d7982c5152a46dacf4a6918118b6617dc",
+      "groups": 27
+    },
+    {
+      "repo": "pallets/flask",
+      "commit_sha": "d086db856be187255b8ec61ef409357393020f32",
+      "file": "flask_qa.jsonl",
+      "questions": 6,
+      "role": "fresh",
+      "sha256": "42359dcd8471cac9ab1cb2ad060ff47f860372035681e7593ac31ec9b3aca17a",
+      "groups": 6,
+      "previous_regression_evidence_overlap": {
+        "flask-expansion-001": [],
+        "flask-expansion-002": [],
+        "flask-expansion-003": [],
+        "flask-expansion-004": [],
+        "flask-expansion-005": [],
+        "flask-expansion-006": [
+          "flask-comparison-007"
+        ]
+      }
+    },
+    {
+      "repo": "pallets/flask",
+      "commit_sha": "d086db856be187255b8ec61ef409357393020f32",
+      "file": "flask_regression.jsonl",
+      "questions": 39,
+      "role": "regression",
+      "sha256": "e9e838ac4ec2a62e582cd52ecda162f170508e667973aff0319a868264034d15",
+      "groups": 28
+    },
+    {
+      "repo": "pallets/click",
+      "commit_sha": "2247b35ea1c47c727d7a06e51fa280e12a863ff6",
+      "file": "click_qa.jsonl",
+      "questions": 12,
+      "role": "fresh",
+      "sha256": "b91c839c9c768b643291cd104d99c8b0b1569a872b74c70993780fe4aeb14a99",
+      "groups": 10,
+      "previous_regression_evidence_overlap": {
+        "click-expansion-001": [],
+        "click-expansion-002": [],
+        "click-expansion-003": [],
+        "click-expansion-004": [],
+        "click-expansion-005": [],
+        "click-expansion-006": [],
+        "click-expansion-007": [],
+        "click-expansion-008": [],
+        "click-expansion-009": [],
+        "click-expansion-010": [],
+        "click-expansion-011": [],
+        "click-expansion-012": []
+      }
+    }
+  ]
+}

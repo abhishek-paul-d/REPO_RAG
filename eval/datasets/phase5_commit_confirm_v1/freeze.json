@@ -1,0 +1,69 @@
+{
+  "stage": "frozen after sampling and leakage checks, before any retrieval or model use",
+  "sha256": {
+    "protocol.json": "9c73301e83e5c79c8258959bac52d24b1daf347cb46391b74a42f976a9a03df7",
+    "protocol.freeze.json": "c984c684e78440bf786d76b67d8f43af638784eb7d979027ddfb40ca01273a10",
+    "leakage_report.json": "c524aca2f7bb6b69ac824addaacd4fdfb349aeb9bfee84f3e2fa990934361bbf"
+  },
+  "dataset_freeze_sha256": {
+    "pallets__click": "4c7818703678d9a3eaa8c481c2b968b560e77b590dc1c1692452e6bc31f94292",
+    "encode__httpx": "dbbfd88728b91a10140c02f0b64357b1061291b2fda6adb1d3e51e8b18fcaa16",
+    "pallets__werkzeug": "83ae8c62e498836bde7479260402d4abd80fde90a8edeacd5af3344c928c60b5",
+    "pallets__jinja": "7002fdc38c7e2c0a57c374b09441e88fba2dc309d18a14447c3aa3568ca20bac"
+  },
+  "excluded": {
+    "pallets/click:pallets/click#1047": "leakage check: own_issue_reference_in_gold_document",
+    "pallets/jinja:pallets/jinja#748": "leakage check: own_issue_reference_in_gold_document"
+  },
+  "deviations": [
+    "Direct closing references from commits that fail the message fix heuristic are ignored: those commits are not in the candidate pool, and prepare() otherwise aborts a repository (werkzeug tripped it). Decided after the abort, before any retrieval; click and httpx had no such links, so their output is unchanged."
+  ],
+  "counts": {
+    "pallets__click": 128,
+    "encode__httpx": 15,
+    "pallets__werkzeug": 114,
+    "pallets__jinja": 85
+  },
+  "timing_ids": [
+    "encode/httpx:encode/httpx#1033",
+    "pallets/click:pallets/click#103",
+    "pallets/jinja:mitsuhiko/jinja2#115",
+    "pallets/werkzeug:mitsuhiko/flask#1355",
+    "encode/httpx:encode/httpx#1146",
+    "pallets/click:pallets/click#1054",
+    "pallets/jinja:pallets/jinja#1",
+    "pallets/werkzeug:mitsuhiko/flask#283",
+    "encode/httpx:encode/httpx#1356",
+    "pallets/click:pallets/click#1056",
+    "pallets/jinja:pallets/jinja#10",
+    "pallets/werkzeug:mitsuhiko/flask#541",
+    "encode/httpx:encode/httpx#1418",
+    "pallets/click:pallets/click#1065",
+    "pallets/jinja:pallets/jinja#100",
+    "pallets/werkzeug:mitsuhiko/werkzeug#612",
+    "encode/httpx:encode/httpx#198",
+    "pallets/click:pallets/click#107",
+    "pallets/jinja:pallets/jinja#1068",
+    "pallets/werkzeug:pallets/flask#2194",
+    "encode/httpx:encode/httpx#2126",
+    "pallets/click:pallets/click#1125",
+    "pallets/jinja:pallets/jinja#1138",
+    "pallets/werkzeug:pallets/flask#2220",
+    "encode/httpx:encode/httpx#2314",
+    "pallets/click:pallets/click#1138",
+    "pallets/jinja:pallets/jinja#1141",
+    "pallets/werkzeug:pallets/werkzeug#1012",
+    "encode/httpx:encode/httpx#2666",
+    "pallets/click:pallets/click#1156",
+    "pallets/jinja:pallets/jinja#1145",
+    "pallets/werkzeug:pallets/werkzeug#1031",
+    "encode/httpx:encode/httpx#2906",
+    "pallets/click:pallets/click#1185",
+    "pallets/jinja:pallets/jinja#131",
+    "pallets/werkzeug:pallets/werkzeug#1043",
+    "encode/httpx:encode/httpx#336",
+    "pallets/click:pallets/click#120",
+    "pallets/jinja:pallets/jinja#1335",
+    "pallets/werkzeug:pallets/werkzeug#1070"
+  ]
+}

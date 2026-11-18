@@ -1,0 +1,15 @@
+{
+  "repo": "pallets/jinja",
+  "pin": "5ef70112a1ff19c05324ff889dd30405b1002044",
+  "sha256": {
+    "protocol.json": "9c73301e83e5c79c8258959bac52d24b1daf347cb46391b74a42f976a9a03df7",
+    "records.jsonl": "25e8db038ee3e592741834d1d6cb81c38d20d8c3f8016a87fa683eb6483ffeef",
+    "pairs.jsonl": "722526e6fcef831ac2e3f472772d6ed44075d103565f652cb263f0b13cfe4a4e",
+    "corpus.jsonl": "814cc3a286f32607098572474dcbb9d7b86ef7d4197f32029db252977ab818ee",
+    "links.json": "1fe18596fc617c693bc88fac8b2fb28327b33536162997c40509ef958aa93fe4",
+    "issues.json": "a19397c5be2a3ef8839f4dd8cccb97161c135f415a1521d0d4d8fd5be3084f9b",
+    "selection.json": "3f01a0f6a660d94823eea72356b12f10ca18b63d6623d08794b21b4331adf106",
+    "preparation.json": "7be4c826256b90443b2034771947eb8676b2fd91abb6a0cf83682d1491d4e879"
+  },
+  "stage": "frozen before any retrieval/model loading"
+}
