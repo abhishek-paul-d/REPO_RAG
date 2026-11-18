@@ -1,0 +1,3735 @@
+{
+ "dataset": "agent_eval_v1.jsonl",
+ "dataset_sha256": "d8bf41dcb3a665e23a0dbc8fb88c20702d5bfc5cbe2fdf457706bb0841d3cb79",
+ "toolset": "production",
+ "prompt_variant": "history_grounded",
+ "commit_query": "model",
+ "commit_fix_only": false,
+ "extra_files": 3,
+ "skip_tests": true,
+ "tool_result_chars": 24000,
+ "max_input_tokens": "12288",
+ "citation_snap": true,
+ "abstain_retries": 1,
+ "tool_error_retries": 1,
+ "server": {
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+  "hardware": "NVIDIA A100-SXM4-40GB",
+  "max_input_tokens": "12288",
+  "decode_mode": "cuda-graphs + mtp3"
+ },
+ "rerank_used": false,
+ "rerank_failures": 0,
+ "llm_model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+ "table": {
+  "code": {
+   "n": 40,
+   "passed": 40,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  },
+  "docs": {
+   "n": 12,
+   "passed": 11,
+   "abstained": 0,
+   "failed": 0,
+   "missed": [
+    "docs-051"
+   ]
+  },
+  "history": {
+   "n": 11,
+   "passed": 11,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  },
+  "refs": {
+   "n": 10,
+   "passed": 10,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  },
+  "kind": {
+   "n": 5,
+   "passed": 5,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  },
+  "probe": {
+   "n": 5,
+   "passed": 5,
+   "abstained": 5,
+   "failed": 0,
+   "missed": []
+  },
+  "prsearch": {
+   "n": 10,
+   "passed": 10,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  }
+ },
+ "rows": [
+  {
+   "id": "code-001",
+   "type": "code",
+   "question": "How are redirects followed, and where is the maximum number of redirects enforced?",
+   "answer": "Redirects are followed by SessionRedirectMixin.resolve_redirects, a generator that loops while a redirect target exists: it copies the prepared request, appends the previous response to history, consumes/releases the connection, normalizes the URL (handling scheme-less '//', case, and fragment per RFC 1808/7231), then either yields the new PreparedRequest (yield_requests=True) or calls self.send with allow_redirects=False and extracts cookies before yielding the response (src/requests/sessions.py:186-235, src/requests/sessions.py:282-307). The redirect target is obtained from get_redirect_target, which returns the 'location' header (re-encoded latin1→utf8) when resp.is_redirect, else None (src/requests/sessions.py:127-152). The maximum number of redirects is enforced inside resolve_redirects: if len(resp.history) >= self.max_redirects it raises TooManyRedirects (src/requests/sessions.py:186-235); TooManyRedirects is defined in src/requests/exceptions.py:102-162. Session.send drives this by calling resolve_redirects when allow_redirects is true and collecting the history (src/requests/sessions.py:801-829).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "redirects maximum number follow redirect"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 6,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 27.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-002",
+   "type": "code",
+   "question": "Where is the Authorization header removed when a redirect goes to a different host?",
+   "answer": "The Authorization header is removed in SessionRedirectMixin.rebuild_auth, which deletes headers[\"Authorization\"] when should_strip_auth returns True for a redirect to a different host (src/requests/sessions.py:309-332). The decision to strip is made in should_strip_auth, which returns True when the old and new hostnames differ (src/requests/sessions.py:154-184).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Authorization header removed redirect different host"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 4.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-003",
+   "type": "code",
+   "question": "How does a POST request become a GET after a 303 See Other redirect?",
+   "answer": "When a redirect response is received, SessionRedirectMixin.resolve_redirects copies the original prepared request and calls self.rebuild_method(prepared_request, resp) to adjust the method (src/requests/sessions.py:237-280). rebuild_method checks the response status code and, per RFC 7231 section 6.4.4, if the status is 303 See Other and the original method is not HEAD, it sets the method to GET (src/requests/sessions.py:370-392). After the method is changed, resolve_redirects also purges the Content-Length, Content-Type, and Transfer-Encoding headers and sets the body to None for redirects other than 307/308, so the new GET request is sent without the original POST body (src/requests/sessions.py:237-280).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "303 See Other redirect POST GET method change"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-004",
+   "type": "code",
+   "question": "How are automatic retries configured for the connection pool?",
+   "answer": "Automatic retries for the connection pool are configured through the HTTPAdapter's max_retries parameter. In HTTPAdapter.__init__, if max_retries equals DEFAULT_RETRIES, self.max_retries is set to Retry(0, read=False), meaning no retries by default; otherwise it is converted via Retry.from_int(max_retries) (src/requests/adapters.py:201-237). The class docstring explains that max_retries is the maximum number of retries each connection should attempt, applying only to failed DNS lookups, socket connections and connection timeouts, never to requests where data has made it to the server, and that by default Requests does not retry failed connections; for granular control you import urllib3's Retry class and pass it instead (src/requests/adapters.py:158-199). The pool itself is created in init_poolmanager, which builds a urllib3 PoolManager with num_pools, maxsize and block, but retries are not passed there—they are handled by the adapter's max_retries (src/requests/adapters.py:239-267).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "automatic retries connection pool retry configuration"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-005",
+   "type": "code",
+   "question": "Where are SSL certificates verified and the CA bundle chosen?",
+   "answer": "SSL certificate verification is performed in HTTPAdapter.cert_verify, which sets conn.cert_reqs to CERT_REQUIRED for https URLs when verify is truthy, and chooses the CA bundle from the user-supplied verify path if given, otherwise from DEFAULT_CA_BUNDLE_PATH, setting conn.ca_certs for a file or conn.ca_cert_dir for a directory (src/requests/adapters.py:307-363). The default CA bundle is provided by the certifi package via where() in src/requests/certs.py:1-18.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "SSL certificate verification CA bundle"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 4.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-006",
+   "type": "code",
+   "question": "How is the response body decoded into text when the server sends no charset?",
+   "answer": "When the server sends no charset, Response.text falls back to self.apparent_encoding, which guesses the encoding using charset_normalizer or chardet, and then decodes the bytes with that encoding (or utf-8 if still None) using errors='replace' (src/requests/models.py:1055-1089). The header-based encoding is obtained via get_encoding_from_headers, which returns None when there is no content-type or no charset parameter, and only defaults to ISO-8859-1 for text/* or utf-8 for application/json (src/requests/utils.py:569-587).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "decode response body charset text encoding"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-007",
+   "type": "code",
+   "question": "How does streaming a download in chunks work?",
+   "answer": "Streaming a download in chunks is done by calling Response.iter_content with stream=True on the request, which avoids reading the whole response into memory (src/requests/models.py:914-965). The chunk_size argument is the number of bytes to read into memory at a time, and is not necessarily the length of each yielded item because decoding can take place (src/requests/models.py:914-965). Internally, a generate() helper yields from self.raw.stream(chunk_size, decode_content=True) for urllib3 responses, or repeatedly calls self.raw.read(chunk_size) for standard file-like objects until an empty chunk is returned, then marks the content as consumed (src/requests/models.py:914-965). If the content was already consumed, it instead simulates small chunks by slicing the stored bytes with iter_slices (src/requests/models.py:967-977). When decode_unicode is True, the chunks are passed through stream_decode_response_unicode, which uses an incremental decoder for the response encoding and yields decoded text (src/requests/utils.py:593-607). For line-oriented streaming, iter_lines wraps iter_content and splits each chunk into lines, carrying over a pending partial line across chunks (src/requests/models.py:979-1032).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "streaming download chunks"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 6,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-008",
+   "type": "code",
+   "question": "How is JSON parsed from a response, and what error is raised if the body is not valid JSON?",
+   "answer": "Response.json decodes the body with complexjson.loads (an alias for the json/simplejson module). If no encoding is set and the content is longer than 3 bytes, it first guesses the UTF variant via guess_json_utf and tries to decode the raw bytes; a UnicodeDecodeError is swallowed and it falls back to self.text, while a JSONDecodeError is re-raised as RequestsJSONDecodeError. Otherwise it calls complexjson.loads(self.text, **kwargs), and if that raises JSONDecodeError it raises RequestsJSONDecodeError(e.msg, e.doc, e.pos) (src/requests/models.py:1091-1142). The raised error is requests.exceptions.JSONDecodeError, which subclasses both InvalidJSONError and the compat JSONDecodeError (src/requests/exceptions.py:42-66).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "parse JSON from response body invalid JSON error"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-009",
+   "type": "code",
+   "question": "Where is HTTP Digest authentication implemented?",
+   "answer": "HTTP Digest authentication is implemented in the HTTPDigestAuth class in src/requests/auth.py:124-155, with its digest header construction in src/requests/auth.py:157-266 and its 401/redirect handling in src/requests/auth.py:268-319.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "HTTP Digest authentication"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 4.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-010",
+   "type": "code",
+   "question": "How is the value of the Basic auth header built?",
+   "answer": "The Basic auth header value is built by _basic_auth_str, which first coerces non-string username/password to str (with a deprecation warning), then encodes any str username and password to bytes using latin1, joins them with a colon, base64-encodes the result, strips whitespace, converts it to a native string, and prefixes it with 'Basic ' (src/requests/auth.py:34-82). HTTPBasicAuth.__call__ assigns this value to the Authorization header, and HTTPProxyAuth.__call__ assigns it to Proxy-Authorization (src/requests/auth.py:85-121).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Basic auth header build base64"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 4.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-011",
+   "type": "code",
+   "question": "How does the library decide whether a URL should bypass the proxy?",
+   "answer": "The decision is made by should_bypass_proxies(url, no_proxy) in src/requests/utils.py:810-870. It first parses the URL and returns True immediately if the URL has no hostname (e.g. file:// URLs). If a no_proxy value is provided (or read from the NO_PROXY/no_proxy environment variable, preferring lowercase), it splits it on commas and checks the hostname: for IPv4 addresses it matches either a CIDR network via address_in_network or an exact plain-IP match; for other hosts it compares the hostname (and hostname:port when a port is present) against each entry, both as an exact match and as a suffix match after prepending a dot (so '.example.com' matches 'sub.example.com'). If no no_proxy match is found, it falls back to the platform proxy_bypass(hostname) (on Windows this checks the registry ProxyOverride, src/requests/utils.py:96-146), returning True if that reports a bypass. This function is used by get_environ_proxies (src/requests/utils.py:873-908), which returns an empty dict when bypassing, and by resolve_proxies (src/requests/utils.py:911-962), which skips adding environment proxies when should_bypass_proxies is True.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "bypass proxy URL no_proxy should bypass"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 6.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-012",
+   "type": "code",
+   "question": "Where are proxy settings read from environment variables?",
+   "answer": "Proxy settings are read from environment variables in get_environ_proxies, which calls getproxies() (src/requests/utils.py:873-908). This is used by Session.merge_environment_settings to set the environment's proxies when trust_env is true (src/requests/sessions.py:831-886), and by resolve_proxies to merge environment proxies into the request's proxy mapping (src/requests/utils.py:911-962). The underlying getproxies and getproxies_environment functions are imported from urllib.request in src/requests/compat.py:83-115.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "proxy settings environment variables"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 4.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-013",
+   "type": "code",
+   "question": "How are query parameters URL-encoded into the request URL?",
+   "answer": "Query parameters are URL-encoded by PreparedRequest.prepare_url, which calls _encode_params on the params (src/requests/models.py:544-563). _encode_params converts the data into a list of (key, value) byte pairs via to_key_val_list, encoding each key and value as UTF-8, then returns urlencode(result, doseq=True) (src/requests/models.py:108-180). The resulting encoded string is appended to the existing query with an '&' separator if a query already exists, otherwise it becomes the query, and the full URL is rebuilt with urlunparse and passed through requote_uri (src/requests/models.py:544-563). urlencode is imported from urllib.parse (src/requests/compat.py:83-115).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "URL encode query parameters request URL"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-014",
+   "type": "code",
+   "question": "How are multipart file uploads encoded?",
+   "answer": "Multipart file uploads are encoded as multipart/form-data. When files are provided, prepare_body calls _encode_files, which builds the body and returns the content type (src/requests/models.py:603-630). _encode_files converts each file into a RequestField, calls make_multipart on it, and then calls encode_multipart_formdata to produce the final body and content type (src/requests/models.py:182-251). The multipart content type constant is defined as \"multipart/form-data\" (src/requests/auth.py:1-31).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "multipart file upload encoding"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 4.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-015",
+   "type": "code",
+   "question": "How is the Content-Length of a request body computed?",
+   "answer": "The Content-Length is computed by PreparedRequest.prepare_content_length, which calls super_len(body) and, if a length is returned, sets the Content-Length header to that value; if the body is None and the method is not GET or HEAD, it sets Content-Length to 0 (src/requests/models.py:654-697). super_len determines the length by first encoding strings to UTF-8 (for urllib3 2.x+), then using len(o) if the object has __len__, else o.len if it has a len attribute, else os.fstat(fileno).st_size if it has fileno, with a warning if the file is not opened in binary mode (src/requests/utils.py:160-199). For streamed/iterable bodies, prepare_body calls super_len(data) and sets Content-Length if a length is available, otherwise sets Transfer-Encoding: chunked (src/requests/models.py:603-652).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Content-Length request body compute"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-016",
+   "type": "code",
+   "question": "How are cookies from a response stored in the cookie jar?",
+   "answer": "Cookies from a response are stored by extract_cookies_to_jar, which wraps the response's original HTTPMessage headers in a MockResponse and the PreparedRequest in a MockRequest, then calls jar.extract_cookies(res, req) so http.cookiejar parses and stores the Set-Cookie headers into the jar (src/requests/cookies.py:114-161).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "store cookies from response in cookie jar"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 4.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-017",
+   "type": "code",
+   "question": "How are session-level settings merged with per-request settings?",
+   "answer": "Session-level and per-request settings are merged by the merge_setting function, which prefers the explicit per-request value: if the session setting is None it returns the request setting, if the request setting is None it returns the session setting, and if both are mappings it builds a new dict from the session setting then updates it with the request setting, finally removing any keys whose value is None (src/requests/sessions.py:76-124). Session.prepare_request applies this to headers, params and auth, and uses merge_hooks for hooks (src/requests/sessions.py:505-555), while Session.merge_environment_settings applies merge_setting to proxies, stream, verify and cert (src/requests/sessions.py:831-886).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "session-level settings merged with per-request settings"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-018",
+   "type": "code",
+   "question": "How does a session pick which transport adapter handles a URL?",
+   "answer": "A session picks the transport adapter by iterating over its mounted adapters in order and returning the first one whose prefix matches the start of the URL, comparing case-insensitively; if none match it raises InvalidSchema (src/requests/sessions.py:831-886). Adapters are registered via mount, which stores the adapter under its prefix and reorders the adapters dict so longer prefixes come first, ensuring the most specific prefix is checked first (src/requests/sessions.py:888-905).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "session pick transport adapter URL"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 4.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-019",
+   "type": "code",
+   "question": "Where are default headers such as User-Agent set?",
+   "answer": "Default headers such as User-Agent are built by default_headers() in src/requests/utils.py:911-962, which returns a CaseInsensitiveDict containing User-Agent (from default_user_agent()), Accept-Encoding, Accept, and Connection. These are assigned to a Session's headers in Session.__init__ at src/requests/sessions.py:442-488, where self.headers = default_headers().",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "default headers User-Agent set"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 4.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-020",
+   "type": "code",
+   "question": "How are HTTP header names handled case-insensitively?",
+   "answer": "HTTP header names are handled case-insensitively by the CaseInsensitiveDict class, which stores each header using its lowercased name as the lookup key while preserving the original cased key alongside the value (src/requests/structures.py:20-74). When a header is set, __setitem__ uses key.lower() for the store key but keeps the actual key in the tuple (src/requests/structures.py:66-69). Lookups, deletion, and containment tests use key.lower(), so querying with any casing returns the stored value (src/requests/structures.py:70-74). Iteration and keys/items return the original cased keys (src/requests/structures.py:71-74), and lower_items provides all-lowercase keys (src/requests/structures.py:76-78). Equality comparison is case-insensitive by comparing lower_items (src/requests/structures.py:79-85). PreparedRequest.prepare_headers creates a CaseInsensitiveDict and stores each header name converted via to_native_string (src/requests/models.py:565-574).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "HTTP header name case-insensitive"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 7,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 6.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-021",
+   "type": "code",
+   "question": "How are event hooks such as the response hook dispatched?",
+   "answer": "Event hooks are dispatched by dispatch_hook, which looks up the hook list for the given event key in the hooks dictionary, normalizes a single callable into a list, then calls each hook in order with the hook data (the Response) and any extra kwargs, replacing the data with the hook's return value when it is not None, and finally returning the resulting data (src/requests/hooks.py:31-48). The only supported event is 'response' (src/requests/hooks.py:22-22). Hooks are registered on a request via RequestHooksMixin.register_hook, which appends a callable or extends with an iterable of callables for a known event, raising ValueError for unsupported events (src/requests/models.py:254-281). During a request, Session.send obtains the request's hooks and, after the adapter produces the response, calls dispatch_hook('response', hooks, r, **kwargs) to run the response hooks (src/requests/sessions.py:752-799).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "event hooks response hook dispatch"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-022",
+   "type": "code",
+   "question": "Where is the Link header parsed into a dictionary?",
+   "answer": "The Link header is parsed into a dictionary by the `links` property on `Response`, which calls `parse_header_links` and builds a dict keyed by `rel` or `url` (src/requests/models.py:1091-1142). The underlying parsing into per-link dicts happens in `parse_header_links` (src/requests/utils.py:965-1005).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Link header parsed into dictionary"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 4.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-023",
+   "type": "code",
+   "question": "How does raising for HTTP error status codes build its error message?",
+   "answer": "raise_for_status builds the message by first normalizing self.reason: if it is bytes it tries to decode as utf-8 and falls back to iso-8859-1 on UnicodeDecodeError, otherwise it uses the reason as-is (src/requests/models.py:1144-1184). It then sets http_error_msg to an f-string of the form \"{status_code} Client Error: {reason} for url: {url}\" when 400 <= status_code < 500, or \"{status_code} Server Error: {reason} for url: {url}\" when 500 <= status_code < 600 (src/requests/models.py:1144-1184). If the message is non-empty it raises HTTPError with that message and the response attached (src/requests/models.py:1144-1184).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "raise HTTP error status code error message"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 6.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-024",
+   "type": "code",
+   "question": "How are connect and read timeouts passed down to urllib3?",
+   "answer": "In HTTPAdapter.send, the timeout argument is normalized into a urllib3 Timeout object (imported as TimeoutSauce from urllib3.util): if it is a tuple, the two values are unpacked as connect and read and passed to TimeoutSauce(connect=connect, read=read); if it is already a TimeoutSauce it is used as-is; otherwise a single value is used for both connect and read (src/requests/adapters.py:681-693). The resulting resolved_timeout is then passed to conn.urlopen as timeout=resolved_timeout (src/requests/adapters.py:695-748).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "connect read timeout urllib3"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-025",
+   "type": "code",
+   "question": "Where are credentials loaded from the user's netrc file?",
+   "answer": "Credentials are loaded from the user's netrc file by get_netrc_auth, which checks the NETRC environment variable first and otherwise looks for ~/.netrc or ~/.netrc (NETRC_FILES) in the user's home directory (src/requests/utils.py:231-287).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "netrc credentials load"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-026",
+   "type": "code",
+   "question": "What does `prepare_url` do with internationalized (IDNA) host names?",
+   "answer": "prepare_url IDNA-encodes the host when it contains non-ASCII characters: it checks unicode_is_ascii(host), and if false it calls self._get_idna_encoded_host(host), which runs idna.encode(host, uts46=True).decode(\"utf-8\") and raises UnicodeError (surfaced as InvalidURL \"URL has an invalid label.\") on idna.IDNAError; for ASCII hosts it only rejects labels starting with \"*\" or \".\" (src/requests/models.py:483-542, src/requests/models.py:424-481).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "prepare_url IDNA internationalized host name"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-027",
+   "type": "code",
+   "question": "What does `requote_uri` do?",
+   "answer": "requote_uri re-quotes a URI by passing it through an unquote/quote cycle so it is fully and consistently quoted: it first unquotes only unreserved characters via unquote_unreserved, then quotes only illegal characters while keeping reserved, unreserved and '%' characters safe (src/requests/utils.py:704-723). If the URI cannot be unquoted (InvalidURL), it quotes the original URI directly, treating '%' as unsafe so any unquoted percent signs are properly escaped (src/requests/utils.py:716-723). It is used to normalize URLs, e.g. in PreparedRequest.prepare_url (src/requests/models.py:544-563) and when resolving redirects (src/requests/sessions.py:237-280).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "requote_uri"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-028",
+   "type": "code",
+   "question": "How does `rewind_body` work?",
+   "answer": "rewind_body moves a file-like request body's pointer back to its recorded starting position so it can be read again on redirect (src/requests/utils.py:1098-1155). It gets the body's seek method via getattr(prepared_request.body, \"seek\", None); if that exists and prepared_request._body_position is an integer, it calls body_seek(prepared_request._body_position), raising UnrewindableBodyError if an OSError occurs; otherwise it raises UnrewindableBodyError because the body cannot be rewound (src/requests/utils.py:1098-1155). The _body_position value is recorded in prepare_body by calling body.tell() before reading, or set to object() if tell() fails (src/requests/models.py:603-652). It is called from resolve_redirects when the request is rewindable, i.e. _body_position is not None and the headers contain Content-Length or Transfer-Encoding (src/requests/sessions.py:237-280, src/requests/sessions.py:282-307).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "rewind_body"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 5,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-029",
+   "type": "code",
+   "question": "What does `get_connection_with_tls_context` do?",
+   "answer": "get_connection_with_tls_context returns a urllib3 HTTPConnectionPool for a given PreparedRequest and TLS settings; it is intended only for subclassing HTTPAdapter, not direct user code (src/requests/adapters.py:455-510). It asserts the request is prepared, selects a proxy via select_proxy, builds host and pool-key attributes through build_connection_pool_key_attributes (raising InvalidURL on ValueError), and then obtains the connection either from a proxy manager (validating the proxy URL and raising InvalidProxyURL if the host is missing) or from the default poolmanager (src/requests/adapters.py:455-510). The TLS-related pool key attributes are produced by _urllib3_request_context, which sets cert_reqs to CERT_NONE when verify is False, sets ca_certs or ca_cert_dir when verify is a string, and sets cert_file/key_file when a client certificate is provided (src/requests/adapters.py:70-119).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "get_connection_with_tls_context"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-030",
+   "type": "code",
+   "question": "Explain `CaseInsensitiveDict.lower_items`.",
+   "answer": "CaseInsensitiveDict.lower_items returns an iterator of (lowercased_key, value) tuples, like items() but with all keys lowercased (src/requests/structures.py:76-78). It works by iterating over self._store.items(), where each entry is a (lowerkey, (original_key, value)) pair, and yields (lowerkey, value) (src/requests/structures.py:76-78). The _store is an OrderedDict keyed by the lowercased key, with the original cased key stored alongside the value (src/requests/structures.py:55-57). It is used by __eq__ to compare two CaseInsensitiveDicts case-insensitively by comparing dict(self.lower_items()) to dict(other_dict.lower_items()) (src/requests/structures.py:79-85).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_symbol",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "get_symbol",
+     "arguments": {
+      "symbol": "CaseInsensitiveDict.lower_items"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "CaseInsensitiveDict lower_items"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-031",
+   "type": "code",
+   "question": "My Authorization header disappears after the server redirects me. Why?",
+   "answer": "requests deliberately strips the Authorization header on redirects to avoid leaking credentials. When a redirect happens, rebuild_auth checks whether the header should be removed via should_strip_auth and, if so, deletes it from the prepared request (src/requests/sessions.py:309-332). should_strip_auth returns True whenever the hostname changes, and also when the port or scheme changes on the same host, except for the special case of an http (port 80/None) to https (port 443/None) redirect on the same host, which is kept for backwards compatibility (src/requests/sessions.py:154-184). So if your redirect goes to a different host, or changes scheme/port (other than the http->https same-host case), the Authorization header is removed.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Authorization header redirect strip remove"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-032",
+   "type": "code",
+   "question": "response.text shows garbled characters for a page that has no charset in its headers",
+   "answer": "When the response headers carry no charset, Response.text falls back to self.apparent_encoding (auto-detected via charset_normalizer/chardet) and decodes with errors=\"replace\", which can produce garbled characters if the guess is wrong (src/requests/models.py:1034-1089). The header-based encoding is obtained by get_encoding_from_headers, which returns None when there is no content-type or charset, and only defaults to ISO-8859-1 for text/* or utf-8 for application/json (src/requests/utils.py:569-630). To fix garbled output, set r.encoding to the correct encoding before accessing r.text, since the encoding is determined solely from HTTP headers (src/requests/models.py:1034-1089).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "response.text charset garbled characters encoding"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-033",
+   "type": "code",
+   "question": "Uploading a file object that was partially read sends the wrong Content-Length",
+   "answer": "The Content-Length for a partially read file-like object is computed by super_len, which reads the current position with o.tell(), seeks to the end to get the total length, seeks back to the original position, and returns max(0, total_length - current_position) (src/requests/utils.py:160-228). prepare_body then sets the Content-Length header to that value, or falls back to Transfer-Encoding: chunked if the length is zero (src/requests/models.py:603-652).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 1,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "upload file object partially read Content-Length"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "partially read file-like object seek current_position total_length super_len"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 7.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-034",
+   "type": "code",
+   "question": "I get a TooManyRedirects exception. Where is it raised?",
+   "answer": "TooManyRedirects is raised in SessionRedirectMixin.resolve_redirects when the number of redirects in resp.history reaches self.max_redirects (src/requests/sessions.py:186-235). The exception class itself is defined in src/requests/exceptions.py:102-162.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "TooManyRedirects exception raise"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 4.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-035",
+   "type": "code",
+   "question": "Requests ignores my NO_PROXY environment variable",
+   "answer": "Requests does honor NO_PROXY, but only when the session trusts the environment (trust_env=True, the default). The check is done in should_bypass_proxies, which reads the no_proxy environment variable (lowercase preferred over uppercase) and returns True if the URL's hostname matches an entry in the comma-separated no_proxy list (exact host, host:port, or a suffix match), or if the platform's proxy_bypass reports a bypass (src/requests/utils.py:810-870). get_environ_proxies returns an empty dict when should_bypass_proxies is true, so no proxy is applied (src/requests/utils.py:873-882). resolve_proxies only consults environment proxies when trust_env is true and the URL is not bypassed, and it also honors a 'no_proxy' key passed in the proxies dict (src/requests/utils.py:911-937). If you set trust_env=False, or pass an explicit proxies dict that overrides the scheme, the NO_PROXY environment variable will not be applied, which is the usual reason it appears to be ignored (src/requests/sessions.py:334-368).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "NO_PROXY environment variable proxy"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-036",
+   "type": "code",
+   "question": "A header value containing a newline raises InvalidHeader",
+   "answer": "A header value containing a newline (\\r or \\n) fails the value regex, so check_header_validity raises InvalidHeader. The value validators are _VALID_HEADER_VALUE_RE_STR = re.compile(r\"^\\S[^\\r\\n]*\\Z|^\\Z\") and _VALID_HEADER_VALUE_RE_BYTE = re.compile(rb\"^\\S[^\\r\\n]*\\Z|^\\Z\") (src/requests/_internal_utils.py:1-51). check_header_validity calls _validate_header_part for the name (index 0) and value (index 1) (src/requests/utils.py:1040-1095). _validate_header_part raises InvalidHeader with the message \"Invalid leading whitespace, reserved character(s), or return character(s) in header value: ...\" when the validator does not match (src/requests/utils.py:1098-1155). This is invoked from PreparedRequest.prepare_headers, which calls check_header_validity for each header (src/requests/models.py:565-574). The InvalidHeader exception is defined as a subclass of RequestException and ValueError (src/requests/exceptions.py:102-162).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "InvalidHeader newline header value"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 5,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-037",
+   "type": "code",
+   "question": "How does closing a session release its transport adapters?",
+   "answer": "Session.close() iterates over the values of self.adapters and calls close() on each one, which disposes of the adapter's internal state (src/requests/sessions.py:883-886). For the default HTTPAdapter, close() clears the pool manager and every active proxy manager, which closes any pooled connections (src/requests/adapters.py:556-563). The base BaseAdapter.close() is the hook that subclasses override to clean up adapter-specific items (src/requests/adapters.py:152-155).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "close session release transport adapters"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 4.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-038",
+   "type": "code",
+   "question": "How are outgoing request headers validated and stored case-insensitively?",
+   "answer": "Outgoing request headers are validated and stored case-insensitively in PreparedRequest.prepare_headers, which creates a CaseInsensitiveDict, iterates over the provided header items, calls check_header_validity on each (name, value) pair, and stores the value under to_native_string(name) (src/requests/models.py:565-574). The case-insensitive storage is provided by CaseInsensitiveDict, which remembers the case of the last key set but performs lookups and contains tests case-insensitively (src/requests/structures.py:20-74). The actual per-part validation is done by _validate_header_part, which selects a str or bytes regex validator for the header name or value and raises InvalidHeader if the part contains invalid leading whitespace, reserved characters, or return characters (src/requests/utils.py:1098-1155).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "outgoing request headers validated case-insensitive"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-039",
+   "type": "code",
+   "question": "How does closing a response release its underlying connection?",
+   "answer": "Response.close() releases the connection by first closing the underlying raw stream if the content has not been consumed, then calling the raw object's release_conn method to return the connection to the pool (src/requests/models.py:1173-1184).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "close response release underlying connection"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 4.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-040",
+   "type": "code",
+   "question": "How is a dictionary converted to a cookie jar while respecting overwrite?",
+   "answer": "cookiejar_from_dict builds a RequestsCookieJar (or uses the provided jar), collects the names of cookies already in the jar, then for each key in the dictionary it calls set_cookie with create_cookie only when overwrite is True or the name is not already present in the jar (src/requests/cookies.py:579-601).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "dictionary converted to cookie jar overwrite"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 4.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-041",
+   "type": "docs",
+   "question": "Which Python versions does requests officially support?",
+   "answer": "Requests officially supports Python 3.10+ (README.md:30-38).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "Python versions officially supported"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 2.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-042",
+   "type": "docs",
+   "question": "How do I install requests?",
+   "answer": "Run `python -m pip install requests` in your terminal (docs/user/install.rst:10-15). Alternatively, clone the source from GitHub and install it with `python -m pip install .` (docs/user/install.rst:17-36).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "install requests"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 2.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-043",
+   "type": "docs",
+   "question": "What are the runtime dependencies of requests?",
+   "answer": "The runtime dependencies are charset_normalizer>=2,<4, idna>=2.5,<4, urllib3>=1.26,<3, and certifi>=2023.5.7 (pyproject.toml:1-24).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "runtime dependencies requests"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-044",
+   "type": "docs",
+   "question": "How do I run the test suite?",
+   "answer": "Run the test suite with `make test`, which executes `python -m pytest tests` (Makefile:1-27). For CI-style runs with a JUnit report, use `make ci`, which runs `python -m pytest tests --junitxml=report.xml` (Makefile:1-27). You can also run coverage with `make coverage` (Makefile:1-27).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "run test suite"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 3.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-045",
+   "type": "docs",
+   "question": "How do I set a timeout on a request?",
+   "answer": "Pass the timeout parameter to the request call. A single value applies to both the connect and read timeouts, e.g. requests.get('https://github.com', timeout=5) (docs/user/advanced.rst:1086-1117). To set them separately, pass a tuple (connect, read), e.g. requests.get('https://github.com', timeout=(3.05, 27)) (docs/user/advanced.rst:1086-1117). You can also pass timeout=None to wait forever (docs/user/advanced.rst:1119-1137). The timeout is not a limit on the entire response download; an exception is raised if no bytes are received on the socket for timeout seconds (docs/user/quickstart.rst:529-549).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "set a timeout on a request"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 3.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-046",
+   "type": "docs",
+   "question": "How do I use HTTP basic authentication?",
+   "answer": "Use the HTTPBasicAuth class or a simple (username, password) tuple as the auth argument. Example: from requests.auth import HTTPBasicAuth; basic = HTTPBasicAuth('user', 'pass'); requests.get('https://httpbin.org/basic-auth/user/pass', auth=basic) (docs/user/authentication.rst:13-33). The shorthand requests.get('https://httpbin.org/basic-auth/user/pass', auth=('user', 'pass')) is exactly the same as the HTTPBasicAuth example (docs/user/authentication.rst:13-33). If no auth argument is given, Requests will try to read credentials for the hostname from the user's netrc file and send the request with HTTP Basic Auth (docs/user/authentication.rst:36-56).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "HTTP basic authentication"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 3.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-047",
+   "type": "docs",
+   "question": "How do I configure proxies?",
+   "answer": "You can configure proxies in three ways. Per request, pass a proxies dict to any request method, e.g. requests.get('http://example.org', proxies={'http': 'http://10.10.1.10:3128', 'https': 'http://10.10.1.10:1080'}) (docs/user/advanced.rst:578-614). For a whole session, do session = requests.Session(); session.proxies.update(proxies) then session.get(...) (docs/user/advanced.rst:578-614); note that session.proxies values may be overwritten by environmental proxies, so explicitly passing proxies on each request is safer (docs/user/advanced.rst:578-614). Or set standard environment variables http_proxy, https_proxy, no_proxy, all_proxy (uppercase variants also supported), e.g. export HTTP_PROXY=\"http://10.10.1.10:3128\" (docs/user/advanced.rst:614-645). For HTTP Basic Auth use the http://user:password@host/ syntax in the proxy URL (docs/user/advanced.rst:614-645). For a specific scheme and host use the scheme://hostname form as the key, e.g. proxies = {'http://10.20.1.128': 'http://10.10.1.10:5323'} (docs/user/advanced.rst:647-691). Proxy URLs must include the scheme (docs/user/advanced.rst:647-691). For HTTPS through a proxy, trust the proxy's root certificate by setting REQUESTS_CA_BUNDLE (or CURL_CA_BUNDLE) to a certificate file (docs/user/advanced.rst:647-691). SOCKS proxies are supported via the optional requests[socks] extra, e.g. proxies = {'http': 'socks5://user:pass@host:port'}; use socks5h to resolve DNS on the proxy server (docs/user/advanced.rst:647-695).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "configure proxies"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 9,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 5.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-048",
+   "type": "docs",
+   "question": "Which Python versions does the CI test against?",
+   "answer": "The CI test matrix runs against Python 3.10, 3.11, 3.12, 3.13, 3.14, 3.14t, 3.15-dev, and pypy-3.11 (.github/workflows/run-tests.yml:1-45).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "CI Python versions test matrix"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 3.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-049",
+   "type": "docs",
+   "question": "What license is requests released under?",
+   "answer": "Apache 2.0 (docs/api.rst:193-202, pyproject.toml:26-56).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "license requests released under"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-050",
+   "type": "docs",
+   "question": "How do I verify SSL certificates or turn verification off?",
+   "answer": "Requests verifies SSL certificates for HTTPS requests by default, and will throw an SSLError if it cannot verify the certificate (docs/user/advanced.rst:211-244). To verify against a specific CA, pass verify the path to a CA_BUNDLE file or a directory of trusted CA certificates, e.g. requests.get('https://github.com', verify='/path/to/certfile'), or set it persistently on a session with s.verify = '/path/to/certfile' (docs/user/advanced.rst:211-244). If verify points to a directory, it must have been processed with the c_rehash utility from OpenSSL (docs/user/advanced.rst:211-244). The trusted CA list can also be set via the REQUESTS_CA_BUNDLE environment variable, with CURL_CA_BUNDLE as a fallback (docs/user/advanced.rst:211-244). To turn verification off, set verify to False, e.g. requests.get('https://kennethreitz.org', verify=False); note this accepts any TLS certificate and ignores hostname mismatches and expired certificates, making the application vulnerable to man-in-the-middle attacks, so it is only recommended for local development or testing (docs/user/advanced.rst:243-252).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "verify SSL certificates turn verification off"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 5,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 4.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-051",
+   "type": "docs",
+   "question": "What is a Session object and why would I use one?",
+   "answer": "A Session object is a Requests session that provides cookie persistence, connection-pooling, and configuration (src/requests/sessions.py:395-440). You would use one to keep cookies, headers, auth, proxies, and other settings consistent across multiple requests, and it can be used as a context manager that closes itself on exit (src/requests/sessions.py:505-555).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Session class object"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 4.4,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "docs-052",
+   "type": "docs",
+   "question": "How do I contribute a change to requests?",
+   "answer": "To contribute a change to requests, first read the Contributor's Guide and the AI Policy before opening any issues or proposing pull requests (.github/CONTRIBUTING.md:1-8). The Contributor's Guide lays out guidelines and advice for contributing, and is split into sections based on the type of contribution you're thinking of making (docs/dev/contributing.rst:1-23). Note that maintainers have the last word on whether a contribution is suitable, and contributions may be rejected if they do not suit the project's current goals (docs/dev/contributing.rst:49-59). When submitting a pull request, you certify that you are the author or have the legal right to submit it, hold the copyright or have authorization, understand the code, and accept full responsibility for it (.github/AI_POLICY.md:1-27).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "contribute a change contribution guide"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "seconds": 3.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-053",
+   "type": "history",
+   "question": "Who merged PR #6640 in psf/requests?",
+   "answer": "sigmavirus24",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 6640
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-054",
+   "type": "history",
+   "question": "Who merged PR #5206 in psf/requests?",
+   "answer": "sethmlarson",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 5206
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-055",
+   "type": "history",
+   "question": "Who merged PR #1276 in psf/requests?",
+   "answer": "kennethreitz",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1276
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-056",
+   "type": "history",
+   "question": "Who merged PR #2076 in psf/requests?",
+   "answer": "kennethreitz",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2076
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-057",
+   "type": "history",
+   "question": "Who merged PR #2442 in psf/requests?",
+   "answer": "sigmavirus24",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2442
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-058",
+   "type": "history",
+   "question": "Who authored PR #3697 in psf/requests?",
+   "answer": "hussaintamboli",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 3697
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-059",
+   "type": "history",
+   "question": "Who authored PR #4683 in psf/requests?",
+   "answer": "martindurant",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 4683
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-060",
+   "type": "history",
+   "question": "Who authored PR #137 in psf/requests?",
+   "answer": "monkeython",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 137
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-061",
+   "type": "history",
+   "question": "Which issues does PR #1810 in psf/requests close?",
+   "answer": "- 1800",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1810
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "history-062",
+   "type": "history",
+   "question": "Which issues does PR #2271 in psf/requests close?",
+   "answer": "- 2250",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2271
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "history-063",
+   "type": "history",
+   "question": "Which issues does PR #1001 in psf/requests close?",
+   "answer": "- 1000",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1001
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-064",
+   "type": "refs",
+   "question": "Which other PRs or issues does #265 in psf/requests mention in its title or body?",
+   "answer": "- 174",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 265
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-065",
+   "type": "refs",
+   "question": "Which other PRs or issues does #5500 in psf/requests mention in its title or body?",
+   "answer": "- 5443\n- 5492\n- 5496",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 5500
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-066",
+   "type": "refs",
+   "question": "Which other PRs or issues does #1097 in psf/requests mention in its title or body?",
+   "answer": "- 1096",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 1097
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-067",
+   "type": "refs",
+   "question": "Which other PRs or issues does #3032 in psf/requests mention in its title or body?",
+   "answer": "- 3028",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 3032
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-068",
+   "type": "refs",
+   "question": "Which other PRs or issues does #4960 in psf/requests mention in its title or body?",
+   "answer": "- 4959",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 4960
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-069",
+   "type": "refs",
+   "question": "Which PRs or issues in psf/requests mention #6557 in their title or body?",
+   "answer": "- 6561\n- 7090",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 6557
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-070",
+   "type": "refs",
+   "question": "Which PRs or issues in psf/requests mention #5888 in their title or body?",
+   "answer": "- 5893\n- 5924\n- 7615",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 5888
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-071",
+   "type": "refs",
+   "question": "Which PRs or issues in psf/requests mention #6242 in their title or body?",
+   "answer": "- 6243\n- 6244",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 6242
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-072",
+   "type": "refs",
+   "question": "Which PRs or issues in psf/requests mention #3780 in their title or body?",
+   "answer": "- 3783",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 3780
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-073",
+   "type": "refs",
+   "question": "Which PRs or issues in psf/requests mention #2718 in their title or body?",
+   "answer": "- 6875",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 2718
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "kind-074",
+   "type": "kind",
+   "question": "Is #1517 in psf/requests a pull request or an issue?",
+   "answer": "issue",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "get_issue_meta"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1517
+     }
+    },
+    {
+     "name": "get_issue_meta",
+     "arguments": {
+      "number": 1517
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "kind-075",
+   "type": "kind",
+   "question": "Is #1983 in psf/requests a pull request or an issue?",
+   "answer": "issue",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "get_issue_meta"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1983
+     }
+    },
+    {
+     "name": "get_issue_meta",
+     "arguments": {
+      "number": 1983
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "kind-076",
+   "type": "kind",
+   "question": "Is #7165 in psf/requests a pull request or an issue?",
+   "answer": "issue",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "get_issue_meta"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 7165
+     }
+    },
+    {
+     "name": "get_issue_meta",
+     "arguments": {
+      "number": 7165
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "kind-077",
+   "type": "kind",
+   "question": "Is #1637 in psf/requests a pull request or an issue?",
+   "answer": "pull request",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1637
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "kind-078",
+   "type": "kind",
+   "question": "Is #1669 in psf/requests a pull request or an issue?",
+   "answer": "pull request",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1669
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "probe-089",
+   "type": "probe",
+   "question": "How does requests integrate with Django's ORM?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 1,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Django ORM integration"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Django ORM"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "probe-090",
+   "type": "probe",
+   "question": "Where does requests implement GraphQL query batching?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 1,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "GraphQL query batching"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "GraphQL batch queries"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "probe-091",
+   "type": "probe",
+   "question": "How does requests implement a WebSocket client?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 1,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "WebSocket client implementation"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "websocket ws upgrade connection"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "probe-092",
+   "type": "probe",
+   "question": "Which function deploys requests to a Kubernetes cluster?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 1,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "deploy requests to Kubernetes cluster"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "kubernetes cluster deploy"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "probe-093",
+   "type": "probe",
+   "question": "How does requests map responses onto SQLAlchemy models?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 1,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "map response onto SQLAlchemy model"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "SQLAlchemy model"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-094",
+   "type": "prsearch",
+   "question": "In psf/requests, which pull request is about: \"handle multiple qop types\"? Give its number.",
+   "answer": "- 1602",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "handle multiple qop types"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-095",
+   "type": "prsearch",
+   "question": "In psf/requests, which pull request is about: \"made .history type consistent (tuples only)\"? Give its number.",
+   "answer": "- 1898",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "made .history type consistent (tuples only)"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-096",
+   "type": "prsearch",
+   "question": "In psf/requests, which pull request is about: \"proof of concept async requests via futures\"? Give its number.",
+   "answer": "- 1247",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "proof of concept async requests via futures"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-097",
+   "type": "prsearch",
+   "question": "In psf/requests, which pull request is about: \"🛠 fix: adapter overwrite passed-in retry\"? Give its number.",
+   "answer": "- 6395",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "fix: adapter overwrite passed-in retry"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-098",
+   "type": "prsearch",
+   "question": "In psf/requests, which pull request is about: \"add to authors and fix case\"? Give its number.",
+   "answer": "- 2172",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "add to authors and fix case"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-099",
+   "type": "prsearch",
+   "question": "In psf/requests, which issue is about: \"when a response with status code 204 is received the package still tries to parser its bytes and get an exception\"? Give its number.",
+   "answer": "3794",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "find_issues"
+   ],
+   "calls": [
+    {
+     "name": "find_issues",
+     "arguments": {
+      "title_contains": "204"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-100",
+   "type": "prsearch",
+   "question": "In psf/requests, which issue is about: \"requests does not support encoding headers to ascii?\"? Give its number.",
+   "answer": "2637",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "find_issues"
+   ],
+   "calls": [
+    {
+     "name": "find_issues",
+     "arguments": {
+      "title_contains": "encoding headers to ascii"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-101",
+   "type": "prsearch",
+   "question": "In psf/requests, which issue is about: \"\"content-type header: application/x-www-form-urlencoded\" won't be overridden\"? Give its number.",
+   "answer": "1608",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "find_issues"
+   ],
+   "calls": [
+    {
+     "name": "find_issues",
+     "arguments": {
+      "title_contains": "content-type header: application/x-www-form-urlencoded"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-102",
+   "type": "prsearch",
+   "question": "In psf/requests, which issue is about: \"pypi website description is showing html\"? Give its number.",
+   "answer": "5539",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "pypi website description is showing html"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-103",
+   "type": "prsearch",
+   "question": "In psf/requests, which issue is about: \"how to add parameters --groups x25519\"? Give its number.",
+   "answer": "6197",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "how to add parameters --groups x25519"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  }
+ ]
+}

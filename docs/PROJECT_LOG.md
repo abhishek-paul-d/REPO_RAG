@@ -22,8 +22,8 @@ copied from real command output, never estimated.
 | 4. Eval harness | Evaluation complete; rerank default pending | Real expansion A100 matrix audited/rejected by frozen rule; keep none, no further tuning on these cases; Phase 5 next, independent review/deployment remain open |
 | 5 | **Done 2026-11-02** (ticked): keep depth 50, weight 0.3; Hit@5 requests 0.8584, flask 0.9779; Pandas scale tier measured; independent labels and similar-fix usefulness open as caveats | Frozen 50/100/200 shared scores, dev-only weight selection and separate timing; docs/COMMIT_DEPTH_BUILD_REVIEW.md |
 | 5b | Done | Git tools, GitHub sync, `metadata.db`, identities, exact commit tools, PR/issue collections; 60/60 auto-generated facts pass through the tools on httpx; issue->PR Hit@5 BM25 0.600, hybrid 0.800 (45 pairs, GPU run) |
-| 6 | **Done 2026-11-18** (ticked by the user's decision) | Architecture-answer gate met with the 27B (vLLM, CUDA graphs + MTP): 13/15 and fresh 8/10, code 39/40, docs 11/12; proxy metric, labels not human-reviewed, fresh set has no margin; E1/E2 evaluation audited earlier, no summary change qualifies |
-| 7 | In progress; all 50 saved code/docs answers reviewed by Codex on 2026-11-11 | AI review: 29 faithful, 30 correct; 2 correctness marks provisional because reference sections are missing. Judge output and independent human calibration remain pending; see eval/review/answer_review_v1/review_summary.md. Phase 7 stays unchecked. |
+| 6 | **Done 2026-11-18** (ticked by the user's decision) | Architecture-answer gate met with the 27B (vLLM, CUDA graphs + MTP): 13/15 and fresh 8/10, code 39/40, docs 11/12; proxy metric, labels reviewed by the owner (provenance unverified; flask labels not applied), fresh set has no margin; E1/E2 evaluation audited earlier, no summary change qualifies |
+| 7 | **Closed with known gaps 2026-11-18** (ticked by the user's decision) | 27B: facts 59/60 (98.3%), section 1 1 of 32 flagged by the automatic checks (pr-3 data limit), regression held (code 40/40, docs 11/12, commit 5/10, probes 5/5); manual check of the 19 exact answers found 5 wrong, 4 fixed, bug-3 still weak; judge not run on 27B answers, no human labels, guards/snapping/`history_grounded` not default |
 | 8–9 | Not started | See plan.md |
 
 Git: repo initialized on `main`, **nothing committed yet**.
@@ -3303,6 +3303,154 @@ Reading (a diagnosis from stand-in queries, not a measurement of the agent's own
   MTP. Acceptance rate not read (no metrics endpoint is exposed through the tunnel). **Adopted by the user on 2026-11-18
   as the 27B notebook default (decision log); eager stays available through the two switches.** File: `..._chars24000_in12288_20261118T024701.json`.
 
+### 2026-11-18: architecture gold labels reviewed (`docs/ARCHITECTURE_LABEL_REVIEW.md`)
+
+Claude drafted a verdict for each of the 40 labels and the user accepted them as the review ("the human review is
+done"); the reviewer's own checking is not recorded, so provenance is owner-submitted, unverified. A (15) and B (10)
+were checked against the psf/requests clone at `611c6162cb`. C (flask, 15) was judged without opening the source
+(there is no flask clone). 34 kept. Changes: **A-11** drop `adapters.py` (it only forwards the encoded body);
+**B-004** drop `status_codes.py` (`raise_for_status` uses numeric ranges, not `codes`); **B-002** add `models.py`
+(`prepare_auth` wraps the netrc tuple in `HTTPBasicAuth`, models.py:685); **B-006** add `sessions.py` (`Session.send`
+dispatches the digest `handle_401` hook, sessions.py:791); **B-009** add `adapters.py` (`build_response` sets
+`encoding`, adapters.py:385). Need 1 → 2 for A-04 and C-15. C-09/10/11 assume the merged `AppContext` model;
+not confirmed at `d086db856b`.
+**Applied (same day):** the A and B changes are in `eval/agent_eval.py` (`ARCH_LABEL_REVIEW` for the original set, the
+`ARCH_FRESH` edits and `ARCH_FRESH_NEED` for the fresh set; A-04 need 2; A-11 gold `models.py` + `utils.py`, need 2)
+and the two datasets were regenerated (`agent_eval_architecture_v1.jsonl` sha256 `7ed2a1c55719`,
+`agent_eval_architecture_fresh_v1.jsonl` sha256 `403f135f5445`); `tests/test_agent_eval.py` updated. The frozen
+`architecture_v1/` set is untouched. The 27B gate numbers (13/15 and 8/10) did not change with the new labels.
+**Not applied:** the flask (C) changes, because the flask labels were never checked against source. A-11 need 2 was my
+choice, not the reviewer's. Saved result files were not rewritten; they keep the labels they were scored with.
+
+### 2026-11-18: finished experiments archived under `experiments/`
+
+The user chose to move finished experiment code out of the live tree (and did the file moves under `experiments/`
+themselves; nothing committed).
+- **Builders moved** (as they were, paths not adjusted, so they are not runnable from there): `notebooks/build_answer_bakeoff.py`,
+  `build_answer_judge.py`, `build_commit_depth_resume.py`, `build_summary_prose_eval.py` now live in `experiments/notebooks/`.
+- **Tests:** complete copies of the five affected test files are in `experiments/tests/`. In `tests/`, the 13 tests
+  that check archived artifacts were removed, and `tests/test_commit_depth_resume.py` and
+  `tests/test_answer_bakeoff_notebook.py` were deleted (the latter imported a builder that moved). `tests/` now holds
+  only tests of live code.
+- **Result files** moved to `experiments/eval/agent_eval_results/`. `eval/agent_eval.py` still has
+  `RESULTS_DIR = eval/agent_eval_results`, and another session wrote a result into that old path after the move; which
+  path should be the default is not decided.
+- **Suite state:** the last full run failed only on notebook and zip freshness tests (serve, retrieval, policy, judge,
+  pr-search notebooks), because `src` files (`config.py`, `graph.py`, `prompts.py`, `tools.py`, `git_tools.py`,
+  `bakeoff.py`) were edited by another session after the notebooks were rebuilt. The zip hash recorded earlier
+  (`554b0f10`) is stale. **Next:** rebuild every `notebooks/build_*.py`, run ruff, mypy and the full suite once
+  `src` stops changing, then re-upload `repo_rag_ask_source.zip` and the changed notebooks to Drive.
+
+### 2026-11-18 (later): commit questions, 57/113 to 70/113: wider shortlist (k=15) and a longer commit-only tool-call cap (6)
+
+Goal: raise the weak spot, bug report to fix commit (5/10 on the old 10-question set). Everything below is psf/requests,
+Qwen3.8-27B on the Colab A100 40 GB (CUDA graphs + MTP), production toolset, `--extra-files 3 --skip-tests
+--tool-chars 24000 --max-input-tokens 12288`, single runs.
+- **Where the old failures were.** Replaying the model's own `search_commits` queries against the local index: of the 5
+  misses, 4 had the gold commit outside the top 5 (retrieval), one was a selection failure (gold at rank 4).
+- **Retrieval check** (`eval/commit_retrieval_check.py`, results in `eval/commit_retrieval_results/`, 141 pairs, bug text as
+  the query, a proxy because the agent writes its own query): gold in the top 5 for 79 (56%), top 10 for 94 (67%),
+  top 20 for 106 (75%), top 50 for 119 (84%); 22 beyond 50. Sweeps of BM25 weight (0.1 to 1.0), title fusion and
+  dense-only moved the count by at most 3 pairs: within noise, nothing adopted; BM25 weight 1.0 hurts (74 at top 5).
+  PR-text enrichment is untestable here: only 8 of 141 gold commits have a PR. Showing more candidates is the lever.
+- **New 113-question set** `eval/datasets/agent_eval_commit_full_v1.jsonl` (all test pairs, sha256 da7d08dd0509; the old
+  10-question commit set is unchanged). Build with `eval/agent_eval.py build-commit-full`; run with `--dataset`.
+- **Shortlist** `agent_commit_k` (5 to 30): the first 5 hits in full, the rest as one line (short SHA, subject, files,
+  symbols; `commit_brief` in `agent/tools.py`), so 15 candidates cost about what 5 full ones do.
+- **Bug found by the run:** with k above 5 the citation check in `agent/graph.py` raised `KeyError: 'text'` on the one-line
+  rows; the first k=15 and k=20 runs crashed and are discarded. Fixed (uses `text` or `subject`), regression test added.
+- **Results (113 questions):**
+
+  | Setting | Passed | Abstained | Failed (all "budget") |
+  |---|---|---|---|
+  | k=5, 4 tool calls (before) | 57 (50%) | 8 | 12 |
+  | k=15, 4 tool calls | 65 (58%) | 8 | 13 |
+  | k=20, 4 tool calls | 65 (58%) | 8 | 15 |
+  | k=15, 6 tool calls | 70 (62%) | 14 | 1 |
+  | k=15, 8 tool calls | 70 (62%) | 14 | 0 |
+  | k=15, 10 tool calls | 70 (62%) | 14 | 0 |
+  | k=15, commit cap 6 as default (end to end) | 70 (62%) | 14 | 1 |
+
+  k=5 to 15: 11 questions gained, 3 lost. k=15 to 20: 4 gained, 4 lost (noise), so 15. Cap 4 to 6: 5 gained, none lost;
+  6 to 8 and 10: no question changed. Mean time 4.2 s to 4.4 s per question. Most "failed" rows were the model asking for
+  a fifth tool call (`Tool-call cap`), not a token or character budget.
+- **Applied:** `agent_commit_k` default 15; `agent_commit_max_tool_calls` default 6, in force only once the model has
+  called `search_commits` (there is no question-type router), other questions keep `agent_max_tool_calls` = 4. The cap for
+  other question types was not re-measured, and no other type was run with the new defaults in this entry.
+- **Not measured:** about 40 of 113 still fail, mostly wrong commits (28) and abstentions; the 10-question commit set
+  (5/10) was not re-run with the new defaults; `--max-tool-calls` in the eval overrides only the global cap.
+- **Side fixes:** mypy error in `metadata_db.top_contributors` (explicit types); `tests/test_retrieval_followup.py` and
+  `eval/analyze_retrieval_failures.py` point at the archived `experiments/eval/retrieval_results/colab_full/` zip.
+- **Next:** the summary pilot (LLM-written commit summaries added to the indexed text; cheap pilot on the 141 gold commits
+  plus about 1,000 others first; needs a GPU), then the exact-SHA reranker measurement at depth 50.
+
+### 2026-11-18 (later): commit-summary pilot built, NOT yet run
+
+Tests whether a short plain-English `Summary:` line (written by the 27B from the commit's own message and diff only, no bug
+report, issue or PR) makes the gold fix commit rank higher. Cheap first: 1,143 commits (all 143 gold shas of the 141 pairs, found
+in the local index, plus 1,000 random others, seed 20261118) instead of all 4,883.
+- **Files:** `eval/commit_summary_pilot.py` (`prepare`, `summarize`, `package`, `score`; resumable; data in
+  `eval/commit_summary_pilot/`), `notebooks/build_commit_summary_pilot.py` -> `commit_summary_pilot_on_colab.ipynb`
+  (embeds `src/repo_rag` and the script; you upload `pilot_input.zip`), `tests/test_commit_summary_pilot.py` (12 tests).
+- **Design:** the summary line goes before `Files:` so the 2,048-token embedder cap never cuts it. Gold and random commits get
+  the same prompt. `score` compares dense-only and the agent's hybrid (dense + BM25, weighted RRF) with and without the summary,
+  hit@1/5/10/20, MRR, and how many gold commits moved up or down. Ranks are inside a 1,143-commit corpus, so they show
+  direction only; a gain must be re-measured through the agent.
+- **Checked offline:** `prepare` on the real index (143 of 143 gold found, 141 of 141 pairs usable), `package` and `score` with
+  fake summaries and random vectors. The summary prompt was NOT tried on the model (the Colab server had timed out), so summary
+  quality is unseen.
+- **To run:** a 27B server session for `summarize` (about 1,143 x 4 s, one request at a time), then a GPU session for the
+  notebook, then `score`. Go to the full 4,883 commits only if the pilot clearly helps.
+
+### 2026-11-18 (later): Claude reviewed the 27B's 52 code and docs answers (replaces the 27B judge for this run)
+
+The user asked for Claude, not the 27B, to be the judge. I read all 52 answers of the 27B run `..._101342` (guards on,
+see `eval/claude_review_27b/README.md`) against the cited lines from `eval/judge_answers.py prepare`, and against the
+pinned source (`611c6162cb`) wherever the extracted evidence was cut off. Checked and found right where I first doubted
+them: `super_len` (urllib3 2.x encoding), the proxy bypass rules, the `\Z` header regex, `Response.close`.
+- **Faithful 50/52 (2 partial), correct 49/52 (3 partial).** Code 38/40 correct, docs 11/12. Mechanical score was 40/40 and 11/12.
+- **Not both top:** code-006 and code-032 (no charset: the answer says `text` falls back to `apparent_encoding`, but for
+  `text/*` the encoding is ISO-8859-1 from `get_encoding_from_headers`, so detection runs only when the encoding is None;
+  code-032 is the garbled-text question and misleads the most); code-025 (says "~/.netrc or ~/.netrc" and cites
+  `NETRC_FILES` at line 74, it is line 78); docs-051 (accurate but misses the main reason, connection reuse).
+- **Reading:** the mechanical score is close to Claude's on this run (40/40 against 38/40 correct), far closer than on the
+  earlier answers (mechanical pass overstated: 33/50 correct then). Not a fair before/after: different model (27B, those were
+  the 14B), different reviewer, and these 52 are the questions the system was tuned on, so expect lower on new questions.
+  Claude is one AI reader; no human labels exist. Verdicts: `eval/claude_review_27b/verdicts.json`.
+- **Checker blind spot:** a citation to a file without an extension (`Makefile:1-27`) is not resolved by the judge tooling's
+  citation regex, so docs-044 reached the judge with no evidence.
+
+### 2026-11-18 (later): Claude reviewed the exact-fact and commit answers (files in `eval/claude_review_27b/`)
+
+- **Exact facts** (15 answers of S1 run `..._115543`, checked against git and `metadata.db`): 10 correct, 4 partial (hist-1 titles only and a merge commit listed as a change; people-3 "Kenneth Reitz" by count with no recency; pr-2 a bare "- 5797"; rel-1 skips the security fix), pr-3 a right abstention worded as a retrieval failure. hist-2, people-1/2/4, pr-1, issue-1 (10 open issues with timeout in the title, matches the database), rel-2/3, stats-1/2 verified. **I first thought the database was truncated (4,883 of 6,495 commits) and was wrong:** the 1,612 missing are merge commits, excluded by design (`git rev-list --no-merges --count` = 4,883); stats-1 matches `git shortlog --no-merges` exactly. The `identities` table has 0 rows, so aliases such as "Ian Stapleton Cordasco" (21 commits) are not merged; the order does not change.
+- **Commit questions** (113, run `..._ck15_20261118T171718`): 70 strict passes. Reading the 43 others with git: 6 are valid alternatives to the gold (011 and 106 fix the same issue the same day, 019 is the code fix where the gold only edits the test, 041 and 110 are one-line attempts and follow-ups at the same place, 077 is the merge commit of the gold's PR), so about **76/113 (67%)** by this reader; 051 and 060 have release commits as gold (label noise). **039 is misleading:** the answer names `c3444f8c7` as an earlier fix, but it introduced the redirect cache that caused the bug. 14 abstentions all use the generic "No relevant implementation was found".
+- **The main finding:** 67 of the 70 passing commit answers are a bare SHA (median 12 characters), so the user gets no reason and no confidence. That is a product gap the score does not show.
+- Limits: one AI reader; alternatives judged from messages and diffs, not by running the code.
+
+### 2026-11-18 (later): commit answers carry facts and leads; `commit_explain` prompt variant (built, NOT measured live)
+
+Response to the review above (67 of 70 passing commit answers were a bare SHA, 14 abstentions were the generic sentence).
+- **`src/repo_rag/agent/commit_answer.py`**, on by default (`agent_answer_facts`): under the model's text, for each commit it names, date, author, subject, rank among the search results and "a text match, not confirmed against the code"; for an abstention after `search_commits`, the 3 closest candidates as "unverified leads" (`abstain` stays true); for count tools a note that merge commits are not counted. All from tool rows, never from the model.
+- **Scoring is unchanged by construction:** the result keeps `model_answer` and `eval/agent_eval.py` scores that; abstentions still fail. Test: leads containing the gold SHA do not pass.
+- `search_commits` rows now also carry `date` and `author` (about 500 characters over 15 rows), which could shift which commit the model picks; unmeasured.
+- **Prompt:** the first attempt edited the shared commit paragraph and `tests/test_prompt_variants.py` failed (the baseline prompt hash is pinned). It is now the variant `commit_explain` (`commit_pr_commits` plus "SHA plus one sentence why" and "review comments are not in the data"); the default stays `commit_pr_commits`.
+- Full suite, ruff and mypy pass. Zip hash `b63296e8`. **Next:** one server run of the 113 commit questions with `--variant commit_explain` (and one with the default) to check the score is still about 70 and the answers now explain.
+
+### 2026-11-18 (later): fresh question set `agent_eval_fresh_v2` (73 questions, NOT yet run)
+
+Every number so far is on questions the system was developed against. This set is new, written after the others were frozen, and
+built by `eval/build_fresh_v2.py` (deterministic; sha256 b4f215712346): **code 30, docs 10, history 14, refs 4, kind 4,
+prsearch 6, probes 5**. Same record format as `agent_eval_v1`, so `eval/agent_eval.py run --dataset eval/datasets/agent_eval_fresh_v2.jsonl` scores it as is.
+- **Checks in the builder and `tests/test_fresh_v2.py` (5 tests):** no question text and no code gold range appears in `agent_eval_v1`,
+  `agent_eval_fresh_v1` or `requests_qa` (one planned question was dropped for overlapping a gold range); code gold is a whole definition from the
+  symbol table at `611c6162cb` with its source hash; each docs file is checked to contain its topic; facts come from git and `metadata.db`, and
+  the busiest-author-per-year answers were checked against `git shortlog --no-merges`. New docs topics avoid the ten of `agent_eval_fresh_v1`.
+- **No `commit` questions:** all 141 bug to fix pairs were used for tuning or selection, so there is no unseen gold for that type.
+- **Limits:** written by Claude, one author, no human check of the questions; the author had read parts of the repository in this session, so the questions
+  are new to the system but not blind. The mechanical scorer is the same as before (cited range overlaps gold; docs path named), so it has the same optimism:
+  read a sample of the answers as well. The code questions use whole definitions, a different spread of files from the tuned set.
+- **Next:** one server run on this set with the default settings, then read about 20 answers; compare the pass rate per type with `agent_eval_v1`.
+
 ## 3. Decision log
 
 
@@ -3387,8 +3535,11 @@ Reading (a diagnosis from stand-in queries, not a measurement of the agent's own
 | 2026-10-25 | Freeze 329 real pairs and a fixed 4B/8B matrix, report actual shortfalls | Both linking paths verified; no tuning on test or fabricated 200/repo counts | Retune weights on legacy questions |
 | 2026-11-10 | Phase 7 answer-quality judge: quantized Qwen3.8-27B (FP8 default, INT4 fallback), gated by negative controls | User decision D3 ("Qwen3.7-28B quantized only", resolved to Qwen3.8-27B); the Phase 4 judge is a reranker and cannot grade answers | Prompt-only manual check; MiniCheck-7B (faithfulness only); a second cross-family judge |
 | 2026-11-11 | Label the filled 50-answer sheet as AI review by Codex; retain independent human calibration as open | User requested Codex review of every answer; AI marks must not be presented as a person's independent evidence. Two correctness marks are provisional due to missing reference topics | Treat AI labels as human validation or declare the judge trusted without its output |
+| 2026-11-18 | `agent_commit_k` = 15 and `agent_commit_max_tool_calls` = 6 (commit questions only: in force once `search_commits` has been called) | 113 bug to fix questions on the 27B: 57/113 before, 65 with k=15, 70 with k=15 and 6 calls; k=20 and 8 or 10 calls add nothing; other question types keep 4 calls and were not re-measured | k=20 (no gain, more failures); a global cap of 6 (not measured on the other types); BM25 or title-fusion tuning (within noise) |
 | 2026-11-18 | The 27B serve notebook defaults to CUDA graphs + MTP (3 draft tokens) with `--max-num-seqs 8` (`ENFORCE_EAGER = False`, `MTP_TOKENS = 3`); `server_command` itself still defaults to eager | User decision after measuring: mean 4.2 s per question vs 23 s in eager mode, all Phase 6 and regression gates still met on the 128 questions (architecture 13/15 and 8/10, code 39/40, docs 11/12, prsearch 10/10, probes 5/5; commit 5/10, one question below the eager run); about 4 to 6 minutes of startup compile; not bit-identical to eager, a few answers move either way | Eager (23 s, `ENFORCE_EAGER = True`, `MTP_TOKENS = 0`, still available as the two switches); CUDA graphs without MTP (5.0 s) |
 | 2026-11-18 | Defaults become the Qwen3.8-27B profile: `llm_model` = `cyankiwi/Qwen3.8-27B-AWQ-INT4` (revision `e3a70090`), `agent_code_extra_files` 3, `agent_code_skip_tests` True, `agent_tool_result_chars` 24000, `agent_max_input_tokens` 12288; Phase 6 ticked; the 14B stays as `LOCAL_14B_MODEL/REVISION` and the two notebooks that load it pin it | User decision after the 27B met every gate (architecture 13/15 and 8/10, code 39/40, docs 11/12, prsearch 10/10, probes 5/5); the laptop agent never loads the model, the 27B cannot be loaded locally | Keep the 14B default and the old limits (14B fails the architecture gate: 9/15 and 6/10) |
+| 2026-11-18 | Default prompt variant becomes `commit_pr_commits` (`docs_hint_narrow` plus one paragraph: when `get_pr` returns `pr_commits`, name the matching PR commit, never the merge commit) | User decision (option A). Measured on the 27B in eager mode: commit 7/10 vs 6/10 (088 fixed; both counts include the commit-083 label), code 40/40, docs 11/12, prsearch 10/10, probes 5/5, history 11/11, refs 10/10, kind 5/5. n = 10 for commit, one run; **not re-measured on graphs + MTP**, where the last full run used `docs_hint_narrow` (commit 5/10, 088 a miss) | Keep `docs_hint_narrow` (088 stays a miss) |
+| 2026-11-18 | No fallback model: the 14B (`Qwen2.5-Coder-14B-Instruct`) is unsupported under the current 27B defaults (user decision). Its settings stay in `config.py` as `LOCAL_14B_*` and its notebooks pin it explicitly, but it was not re-measured under the new limits. | The 27B profile met every gate; keeping a second model would need a full re-measure for no stated need. |
 
 ---
 
@@ -4186,3 +4337,78 @@ Written (ruff clean; `tests/test_prompt_variants.py` and `tests/test_agent_graph
 ### 2026-11-16 (later): tests for the section 1 fixes; suite state
 
 `tests/test_agent_guards.py` (8 tests: abstain guard on/off/once, tool-error recovery, `file_history` offered only in `history_grounded`, bare-symbol resolution and error messages) pass; `file_history` is listed in `HISTORY_TOOLS`, not `ADDED_TOOLS` (a test pins the default production tool set). `agent_eval.py` and `section1_check.py` take `--abstain-retries` / `--tool-error-retries`; `docs/A100_RUN_PLAN.md` has Round 2 (runs F, G, H) with its pass rule. Notebooks regenerated. The last full run had two failures that are not from these changes: another session is adding 27B/32B serve notebooks (`tests/test_serve_notebook.py` expects `notebooks/serve_model_27b_on_colab.ipynb`, not generated yet) and was editing `config.py` and `local_llm.py` while the suite ran (one freshness race, passed on rerun). Rerun the full suite once that session settles.
+
+### 2026-11-18: A100 run plan rewritten for the 27B
+
+`docs/A100_RUN_PLAN.md` now covers the 27B only (section 1, the fact set, then the guards, `file_history` and snapping behind a rule fixed in advance). The 14B plan (first session and Round 2) was moved to `experiments/docs/A100_RUN_PLAN.md` in the repository reorganisation and is historical. Nothing was run; the times in the plan are estimates from earlier 27B runs. The 14B's section 1 and fact results are under `experiments/eval/`.
+
+### 2026-11-18: section 1 and fact set on the 27B; root causes and fixes (Colab A100 40 GB, vLLM, CUDA graphs + MTP)
+
+Server: `cyankiwi/Qwen3.8-27B-AWQ-INT4`, `max_input_tokens` 12288. Agent on the laptop with the production defaults (3 extra files, tests skipped, 24,000 tool characters). All single runs; the automatic section 1 flags are not a correctness check, and I (an AI reader) did not verify every unflagged answer.
+
+- **S1 baseline** (`section1_docs_hint_narrow_20261118T093045`): 6 of 32 flagged (14B: 13). Failures: arch-2 (parse), hist-1 (budget), hist-2 (budget), pr-3 and rel-1 (abstained); nav-1 cited a range that does not show `DEFAULT_REDIRECT_LIMIT`.
+- **Root causes** (re-asking the failing questions with full traces):
+  - arch-2: the first two `search_code` results used 23,625 of the 24,000 tool characters, the next two came back as `{"value": [], "omitted": N}` with no reason, and the model searched blind until the turn cap. Separately the 27B often ends a tool call with one `}` too many, which cost a parse retry and, when it repeated, the question (three `parse` failures at 1.6 s).
+  - hist-1: `blame` on a 81-line range returned 10,550 characters; the third reply (a correct per-commit summary) hit the 512-token output cap, so the JSON was invalid. That cap is applied on the server and was left unchanged.
+  - hist-2: no tool lists a file's recent commits; the model tried `count_commits` with invented dates and hit the 4-call cap.
+  - rel-1: the `tags` table in `data/metadata.db` was empty for psf/requests (162 tags exist in git), and there was no tool for "what changed between two tags".
+  - pr-3: `pr_reviews` holds reviewer, state and time only, no review text; not fixable by tuning (the abstention is correct, its wording is generic).
+- **Changes:** `file_history` now takes a line range from the symbol table (`git log -L :name:` cannot find an indented method: "no match" on `prepare_url`); new `compare_refs` tool (commit count and newest 15 between two refs; reads no blobs, so no fetches on the blobless clone), offered only in `history_grounded`; setting `agent_budget_note` (off by default, `REPO_RAG_AGENT_BUDGET_NOTE=true`) adds a note to a result emptied by the budget; tolerant parsing accepts extra closing braces after a complete JSON object (production only, strict bake-off parsing unchanged); `eval/agent_facts.py` falls back to `experiments/data_scratch/answer_bakeoff_capsule` (the capsule moved). Data: `repo-rag index-facts psf/requests` loaded 162 tags and 139 author-login links into `data/metadata.db` (the run was slow: the batch lookup falls back to one `git log` per missing commit, each fetched from GitHub by the partial clone, about 1.7 s each).
+- **S3** (guards + snapping + `history_grounded`): 5 flagged; hist-2 fixed by `file_history`; hist-1 failed on the `-L` bug above.
+- **Reruns after each fix:** 4 flagged (hist-1, hist-2 answered), then 3 (arch-2 answered after the brace fix), then **1 of 32 flagged, 2 abstained**: pr-3 (data limit) and oos-1 (correct). rel-1 now answers via `compare_refs`: 5 commits, cited by SHA and PR number (not checked against git by me). nav-1 was not flagged in the last run; nothing was changed for it, so it may flip.
+- **S2 facts on the 27B: 59/60 (98.3%)**, target 90% (14B: 57/60). The 14B's misses (blame_line, tags 0.28.1 and 0.6.4) now pass; one miss: `commits_in_month:tests@2019-12-01` (used `change_frequency` after two `count_commits`).
+- **Regression with all guards on** (`history_grounded`, snapping, abstain/tool-error retries 1, budget note; code, docs, prsearch, probe, history, refs, kind): code 39/40 then 40/40 and 40/40, docs 11/12 (docs-051 missed in every run), prsearch 10/10, history 11/11, refs 10/10, kind 5/5, probes 5/5 all abstained; baseline code 39/40. By the rule in `docs/A100_RUN_PLAN.md` no pass was lost. The code 39 to 40 change is one question and is not credited to a fix.
+- **Not changed:** defaults stay off (guards, snapping, `history_grounded`, budget note); adopting them is the user's decision. Phase 7 stays unticked: the judge has not run on 27B answers, no person has labelled answers, and sensible-answer review of section 1 is by flags plus partial AI reading. Files: `eval/section1_results/section1_*_20261118T0930..1007*`, `eval/agent_eval_results/agent_facts_20261118T094552.json` and the three `..._20261118T094233 / 095807 / 101342` regression files. Nothing committed.
+
+### 2026-11-18 (later): the 19 exact-fact section 1 answers checked against git and `metadata.db` (S1 run `..._20261118T100718`)
+
+Offline check by an AI reader (script in the session scratchpad, not in the repo): each answer compared with `git` at the pinned commit `611c6162cb` and the database. The automatic section 1 flags (1 of 32) do not test correctness, and this check shows they overstate quality for exact questions. Code and docs answers were not re-verified beyond the automatic citation checks.
+- **Verified correct (9):** rel-1 (the 5 commits and their SHAs match `git log v2.30.0..v2.31.0`), rel-2 (v2.27.0, first tag containing PR #5856's merge commit), rel-3 (2.4.2, first tag containing the commit that added `json=`), people-2 (Joren Hammudoglu, newest commit on lines 40-80), people-4 (opener, reviewers, merger match the database), stats-1 (top 5 match `git shortlog`: 2209, 329, 234, 203, 65 commits), hist-2 (three newest commits match), pr-1 (description matches the PR body), pr-2 (PR 5797 is the charset_normalizer switch, but the answer is a bare "- 5797").
+- **Accurate but incomplete or loosely relevant (3):** hist-1 lists the newest 8 of about 50 commits touching the function, in git's order, and does not say it is truncated; bug-1 cites 497695864b48, which is a 2012 HISTORY.rst line recording the fix, not the code change; bug-2 returns 8 bare SHAs, of which several do not touch proxy and timeout handling (docs wording, urllib3 vendoring), and gives no explanation.
+- **Wrong or misleading (5):** people-1 and people-3 ("Nate Prewitt"): the path-based tools count commits only under the current path, which does not follow the 2023 move to `src/`, so on `src/requests/auth.py` Nate Prewitt has 4 commits, while with the old path included Kenneth Reitz has 33 (auth.py) and 118 (sessions.py); stats-2 lists the pre-move paths (`requests/models.py`, `test_requests.py`) for the same reason; issue-1 says no open bugs about timeouts, but the database holds 10 open issues that mention timeout (for example #7639, #7631); bug-3 names 470af31f4a5e (2013-11-24, "Handle 301s 'properly'"), which is already in v2.1.0, so it is not a v2.3 change (the v2.3.0 notes concern Authorization headers on redirects).
+- **Unanswerable:** pr-3 (no review text in the data), abstained.
+- **Causes, not yet fixed:** `top_contributors`, `change_frequency` and `count_commits` filter by the stored path and do not follow renames; `search_prs` returns the newest few issues and the model generalised from them; bug-3 was answered from a search hit without checking which release contains the commit. Phase 7 stays unticked.
+
+### 2026-11-18 (later): fixes for the five wrong exact answers; tests pass, NOT yet measured on the live model
+
+All inside the `history_grounded` variant, so the default fact set path is unchanged.
+- **Renames (people-1, people-3, stats-2):** `git_tools.exact_renames` (100%-identical renames over the pinned history, 34 found on psf/requests in 0.3 s, `GIT_NO_LAZY_FETCH` so a blobless clone fetches nothing); `MetadataDB.count_commits`/`top_contributors` take `alt_paths` (older names of a file, counted together), `change_frequency` takes `renames` (counts under the latest name, a commit touching two names counts once); `ProductionTools._following` applies them. Checked on `data/metadata.db`: `src/requests/auth.py` top authors went from Nate Prewitt 4 to Kenneth Reitz 30, Nate Prewitt 9, Ian Cordasco 8 (raw `git shortlog` says Kenneth Reitz 33: the index holds fewer commits than git, so the ranking agrees and the counts do not); `sessions.py` Kenneth Reitz 97, Ian Cordasco 48, Cory Benfield 24; most-changed files `src/requests/models.py` 735, `tests/integration/test_requests.py` 368, `src/requests/sessions.py` 346. Limit: a file moved and edited in the same commit is not followed.
+- **issue-1:** new `find_issues` tool (total matches plus the newest 10, no bodies). On the data, open issues with "timeout" in the title: 10 (7639, 7631, 7350, 5544, 5430, ...).
+- **bug-3 and truncation:** prompt guidance only (`_PROD_HISTORY`): confirm with `releases_containing` which release first contains a commit before naming it as the change in a release; say when a `file_history` or `compare_refs` list is partial; use `find_issues` for open/closed issue questions. Prompt guidance is unmeasured until a live run.
+- **Tests:** `tests/test_git_facts.py` (aliases, renames, scoped counts), `tests/test_git_tools.py` (exact vs edited renames), `tests/test_agent_guards.py` (find_issues, dispatch, tool listing); the 6 touched test files pass. Full suite after regenerating the 16 notebooks: one failure, `tests/test_retrieval_followup.py::test_v1_frozen_and_v2_question_mix_and_gold_review`, which opens `eval/retrieval_results/colab_full/phase4_v1_source.zip`, now under `experiments/eval/retrieval_results/` after the repository reorganisation (not from this work).
+- **Next:** a live S1 and regression run on the 27B (needs a new Colab session), then re-check people-1, people-3, stats-2, issue-1 and bug-3 against git again. Phase 7 stays unticked. Nothing committed.
+
+### 2026-11-18 (later): live run of the rename, issue and release fixes (27B, new Colab session)
+
+Same setup as the earlier runs (`history_grounded`, snapping, abstain and tool-error retries 1, budget note on). Files: `eval/section1_results/section1_history_grounded_snap_abst1_toolerr1_20261118T114337.{md,json}` and `eval/agent_eval_results/agent_eval_production_history_grounded_extra3_notests_chars24000_in12288_snap_abst1_toolerr1_20261118T114949.json`.
+- **S1: 4 of 32 flagged, 3 abstained** (pr-3 data limit, oos-1 correct, bug-3). Flags: explain-4 (docstring cites `models.py:654-670`, which shows none of the functions it names; it was unflagged in the previous run, so run-to-run variation), bug-3, nav-1, pr-3.
+- **Re-checked against git and `metadata.db`:** people-1 and people-3 now answer Kenneth Reitz (git also ranks him first: 33 commits on auth.py, 118 on the sessions code); stats-2 now lists `src/requests/models.py` (735), `tests/integration/test_requests.py` (368), `src/requests/sessions.py` (346), identical to the database query; issue-1 now says 10 open issues about timeouts (#7639, #7631, #7350, #5544, #5430, #5263, #5185, #4914, #4590, #2392), correct for a title match (20 open issues mention timeout in title or body; only #2392 carries the Bug label). bug-2 now explains each commit (its claims were not verified). bug-3 now abstains instead of naming a wrong commit; the model never called `releases_containing`, so the prompt guidance did not change its behaviour. hist-1 still lists the newest 8 of about 50 commits without saying so; that prompt line had no effect.
+- **Regression (93 questions):** code 40/40, docs 11/12 (docs-051), prsearch 10/10, history 11/11, refs 10/10, kind 5/5, probes 5/5 all abstained. No pass lost against the 27B baseline (code 39/40).
+- **Left open:** bug-3 (abstains), hist-1 (partial list not disclosed), nav-1 and explain-4 (citation ranges), pr-3 (data). The 19 exact answers were not all re-checked after this run: the five fixed ones were. Phase 7 stays unticked; nothing committed.
+
+### 2026-11-18 (later): `first_release` on commit hits and a partial-list note; live S1 and regression (27B)
+
+Changes (only in `history_grounded`): `search_commits` hits carry `first_release` (earliest tag containing the commit, `unreleased`, or empty when git cannot say; about 0.3 s per hit); `file_history` asks git for one entry more than it shows and appends `{"note": "only the newest 8 changes are shown; older ones exist: say it is partial"}` when more exist; the prompt tells the model not to name a commit whose `first_release` predates the release asked about. 6 touched test files pass.
+- **S1** (`section1_..._20261118T115543`): **1 of 32 flagged** (pr-3, data limit), 2 abstained (pr-3, oos-1). hist-1 now says the list is partial ("newest 8 ... older ones exist") and the commits still match git.
+- **bug-3 is not fixed.** It now names 969195ad55f9, which git puts first in v2.3.0, but the commit is a 2014 `HISTORY.rst` line about a change from 1.2.1 ("301 and 302 redirects now change the verb to GET"), not a v2.3 change; the v2.3.0 notes list different redirect changes (Authorization and Proxy-Authorization no longer exposed on redirect, CVE-2014-1829 and -1830). The question is vague ("the redirect behaviour change in v2.3"). Recorded as a known weak answer.
+- **Regression** (`..._20261118T120311`, 103 questions, includes the commit questions): code 40/40, docs 11/12 (docs-051), prsearch 10/10, history 11/11, refs 10/10, kind 5/5, probes 5/5 all abstained, **commit 5/10** (misses 079, 080, 085, 087, 088; 2 abstained, 1 failed), the same count as the 27B baseline (5/10, misses 079, 080, 083, 085, 088; 087 had flipped in earlier runs). No pass lost.
+- Phase 7 stays unticked; nothing committed.
+
+
+### 2026-11-18: Phase 7 closed with known gaps (user decision)
+
+Ticked in `plan.md` with a status note listing the gaps (bug-3 weak, pr-3 unanswerable from the data, commit questions 5/10, judge not run on 27B answers, no human labels, code and docs answers checked only by the automatic citation checks, guards and `history_grounded` not default). Open items carried forward: decide whether to make `history_grounded`, snapping, the retries and the budget note the defaults (the regression rule was met with them on); run the judge on 27B answers; a person to label a sample; Phase 9.
+
+### 2026-11-18: Phase 8 (API and UI) checked live, one stale caption fixed
+
+Phase 8 was ticked by the user's decision (criterion reworded: build the index in Colab, import the zip, chat in the UI). No model server was running (the Colab session had been released), so the live check covers everything except a real answer.
+- **Tests:** `tests/test_api.py`, `test_api_rerank_default.py`, `test_ui_api_client.py`, `test_ui_app.py`: 35 passed before and after the change below.
+- **API** (`uv run uvicorn repo_rag.api.server:app`, run locally): `GET /health` 200; `GET /repos` lists `psf/requests` at `611c6162cb` with embedding `Qwen3-Embedding-0.6B_512`, chunks code 274, commits 4883, docs 282, issues 4186, pull_requests 3086, `searchable: true`; `POST /ask` for an unindexed repo gives 404, with no model configured gives 503 with the setup message, with an empty question gives 422; `POST /repos/import` with an empty body gives 400, with a non-zip body gives 400 ("can't open the upload"). The streaming `/ask` and a real import were not run against a live model or a Colab zip today (covered by the offline tests with scripted agents).
+- **UI** (Streamlit on localhost, in the in-app browser, pointed at the API): the sidebar shows the API URL, a repository picker (`psf/requests`) and "Connected to the API: 1 repo(s) searchable"; with the API down it says "Could not reach the API" and how to start it; a question with no model configured ends in a collapsed "Failed" box whose expanded text is the 503 message (the reason is hidden until the box is opened).
+- **Fixed:** the sidebar caption was hard-coded to "Qwen2.5-Coder-14B (provisional)"; it now names `settings.llm_model` (shows `Qwen3.8-27B-AWQ-INT4`). Verified in the browser.
+- **Not verified:** a real answer with the sources panel and GitHub permalinks against the live 27B; the UI after a real `POST /repos/import`.
+- The notebook-freshness tests fail while another session edits `src/repo_rag/history/metadata_db.py`; regenerate the 16 notebooks after that session settles. Nothing committed.
+
+### 2026-11-18 (later): Phase 8 real answer through the API
+- Ran the API against the live Colab 27B (A100, cuda-graphs + mtp3). POST /ask on psf/requests, 'How does Session.send decide which adapter to use?': stream start, prestep, answer, check, remember, result. The answer cites src/requests/sessions.py ranges for send, get_adapter, mount and __init__, plus 8 sources. The get_adapter range 831-886 is one chunk that also holds merge_environment_settings (get_adapter is at line 870), so the source label names the other function.
+- Not run: the Streamlit UI rendering of this answer (covered only by the scripted-agent tests). Server stopped.

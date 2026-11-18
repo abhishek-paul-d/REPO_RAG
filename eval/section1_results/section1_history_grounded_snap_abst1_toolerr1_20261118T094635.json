@@ -1,0 +1,978 @@
+{
+ "variant": "history_grounded",
+ "citation_snap": true,
+ "server": {
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+  "hardware": "NVIDIA A100-SXM4-40GB",
+  "max_input_tokens": "12288",
+  "decode_mode": "cuda-graphs + mtp3"
+ },
+ "llm_model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+ "rows": [
+  {
+   "id": "arch-1",
+   "category": "architecture",
+   "kind": "code",
+   "question": "Give me a high-level overview of this repo's architecture. What are the main modules and how do they talk to each other?",
+   "answer": "This is the psf/requests library, a Python HTTP client. Its architecture is organized around a few core modules under src/requests/. The public API lives in src/requests/api.py:1-21, which implements the top-level request functions (get, post, etc.) by delegating to a Session. The Session class in src/requests/sessions.py:1-73 manages and persists settings across requests (cookies, auth, proxies) and is the central orchestrator: it builds a PreparedRequest, dispatches hooks, and hands the request to a transport adapter. The transport layer is in src/requests/adapters.py:158-199, where HTTPAdapter (a BaseAdapter) provides the general-case interface for contacting HTTP/HTTPS URLs by wrapping urllib3 connection pools. Supporting modules include src/requests/models.py (Request/Response/PreparedRequest, re-exported in sessions.py), src/requests/cookies.py (cookie handling), src/requests/auth.py (authentication), src/requests/exceptions.py (error hierarchy), src/requests/status_codes.py (HTTP status codes), src/requests/structures.py (CaseInsensitiveDict), and src/requests/utils.py (helpers like proxy resolution and header defaults). Compatibility and packaging concerns are handled in src/requests/compat.py:1-82 (urllib3 version detection, character-detection library resolution, json/simplejson) and src/requests/packages.py:1-23 (backwards-compatible re-exposure of urllib3/idna/chardet). The package entry point src/requests/__init__.py:188-219 re-exports the public names (Session, Response, the verb functions, codes, etc.). In short, the flow is: api.py -> Session (sessions.py) -> HTTPAdapter (adapters.py) -> urllib3, with models, cookies, auth, exceptions, status_codes, structures and utils providing the data types and helpers that these layers share.",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "src/requests/sessions.py:1-73 <module>",
+    "src/requests/__init__.py:188-219 <module>",
+    "docs/conf.py:108-158 <module>",
+    "src/requests/packages.py:1-23 <module>",
+    "src/requests/compat.py:1-82 _resolve_char_detection",
+    "src/requests/api.py:1-21 <module>",
+    "src/requests/help.py:67-132 info",
+    "src/requests/adapters.py:158-199 HTTPAdapter"
+   ],
+   "citations": {
+    "checked": true,
+    "valid": 6,
+    "removed": [
+     "sessions.py:36-41"
+    ],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "tools": [
+    "search_code"
+   ],
+   "unverified_shas": [],
+   "seconds": 36.1,
+   "flags": []
+  },
+  {
+   "id": "arch-2",
+   "category": "architecture",
+   "kind": "code",
+   "question": "How does a request flow from Session.request to the network connection?",
+   "answer": "No answer could be produced: the model's reply was not valid within the limits.",
+   "abstain": true,
+   "failure": "parse",
+   "sources": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [],
+   "unverified_shas": [],
+   "seconds": 1.7,
+   "flags": [
+    "run failed: parse",
+    "abstained"
+   ]
+  },
+  {
+   "id": "arch-3",
+   "category": "architecture",
+   "kind": "code",
+   "question": "Where is authentication handled, and what happens to the request before it is sent?",
+   "answer": "Authentication is handled in src/requests/auth.py, which contains the authentication handlers (src/requests/auth.py:1-31). Before a request is sent, the auth data is prepared by PreparedRequest.prepare_auth, which sets the Authorization header (src/requests/models.py:654-697). For example, HTTPBasicAuth.__call__ attaches the Authorization header to the PreparedRequest (src/requests/auth.py:85-121), and HTTPProxyAuth.__call__ attaches the Proxy-Authorization header (src/requests/auth.py:85-121). On redirects, SessionRedirectMixin.rebuild_auth strips or reapplies authentication to avoid leaking credentials (src/requests/sessions.py:309-332).",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "src/requests/auth.py:85-121 HTTPBasicAuth",
+    "src/requests/sessions.py:309-332 SessionRedirectMixin.rebuild_auth",
+    "src/requests/auth.py:124-155 HTTPDigestAuth.__init__",
+    "src/requests/auth.py:1-31 <module>",
+    "src/requests/sessions.py:442-488 Session.__init__",
+    "src/requests/models.py:654-697 PreparedRequest.prepare_content_length",
+    "src/requests/adapters.py:565-611 HTTPAdapter.request_url",
+    "src/requests/cookies.py:31-87 MockRequest.__init__"
+   ],
+   "citations": {
+    "checked": true,
+    "valid": 5,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "tools": [
+    "search_code"
+   ],
+   "unverified_shas": [],
+   "seconds": 6.5,
+   "flags": []
+  },
+  {
+   "id": "arch-4",
+   "category": "architecture",
+   "kind": "code",
+   "question": "What design pattern do the transport adapters use?",
+   "answer": "The transport adapters use the Strategy pattern: a common BaseAdapter interface defines send and close, and concrete adapters like HTTPAdapter implement it so a Session can swap the transport strategy per URL prefix (src/requests/adapters.py:122-155, src/requests/adapters.py:158-199, src/requests/sessions.py:888-905).",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "src/requests/adapters.py:122-155 BaseAdapter",
+    "src/requests/adapters.py:158-199 HTTPAdapter",
+    "src/requests/sessions.py:888-905 Session.mount",
+    "src/requests/adapters.py:1-67 <module>",
+    "src/requests/sessions.py:831-886 Session.merge_environment_settings",
+    "src/requests/auth.py:85-121 HTTPBasicAuth",
+    "src/requests/models.py:72-105 <module>",
+    "src/requests/utils.py:85-93 <module>"
+   ],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "tools": [
+    "search_code"
+   ],
+   "unverified_shas": [],
+   "seconds": 4.5,
+   "flags": []
+  },
+  {
+   "id": "explain-1",
+   "category": "explain",
+   "kind": "code",
+   "question": "Explain what `rebuild_auth` does, step by step, and why it might be written this way.",
+   "answer": "rebuild_auth is a method on SessionRedirectMixin that handles authentication when a request is redirected, to avoid leaking credentials while preserving them where safe (src/requests/sessions.py:309-332). Step by step: (1) It takes the prepared redirect request and the response that caused the redirect, and asserts both are prepared, then reads the original request from response.request (src/requests/sessions.py:309-332). (2) It extracts the prepared request's headers and both the original and new URLs (src/requests/sessions.py:309-332). (3) If the request has an Authorization header and should_strip_auth(original_url, url) is true — meaning the redirect crosses to a different host — it deletes the Authorization header so credentials are not sent to a new host (src/requests/sessions.py:309-332). (4) It then checks .netrc for credentials for the new host via get_netrc_auth(url), but only if self.trust_env is set; if found, it reapplies them with prepared_request.prepare_auth(new_auth) (src/requests/sessions.py:309-332). It is written this way because a redirect to a different origin could otherwise leak the original credentials to an untrusted host, so the method strips auth on cross-host redirects while still allowing .netrc-based auth to be re-applied for the new host when the environment is trusted (src/requests/sessions.py:309-332).",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "src/requests/sessions.py:309-332 SessionRedirectMixin.rebuild_auth",
+    "src/requests/auth.py:321-354 HTTPDigestAuth.__call__",
+    "src/requests/auth.py:124-155 HTTPDigestAuth.__init__",
+    "src/requests/auth.py:268-319 HTTPDigestAuth.handle_redirect",
+    "src/requests/auth.py:85-121 HTTPBasicAuth",
+    "src/requests/models.py:654-697 PreparedRequest.prepare_content_length",
+    "src/requests/adapters.py:403-440 HTTPAdapter.build_connection_pool_key_attributes",
+    "src/requests/utils.py:1040-1095 prepend_scheme_if_needed"
+   ],
+   "citations": {
+    "checked": true,
+    "valid": 6,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "tools": [
+    "search_code"
+   ],
+   "unverified_shas": [],
+   "seconds": 7.1,
+   "flags": []
+  },
+  {
+   "id": "explain-2",
+   "category": "explain",
+   "kind": "code",
+   "question": "Who calls `get_environ_proxies`, and what happens if it raises?",
+   "answer": "get_environ_proxies is called by Session.merge_environment_settings (src/requests/sessions.py:831-886), by resolve_proxies (src/requests/utils.py:911-962), and by the tests TestGetEnvironProxies.test_bypass, test_not_bypass, test_bypass_no_proxy_keyword, and test_not_bypass_no_proxy_keyword (tests/test_utils.py:242, 253, 265, 282). If it raises, the exception is not caught by any of these callers: in merge_environment_settings the call is made directly inside the trust_env branch (src/requests/sessions.py:831-886) and in resolve_proxies it is called directly when trust_env is true and the URL is not bypassed (src/requests/utils.py:911-962), so the exception propagates up to the caller of those functions. The function itself (src/requests/utils.py:873-908) only returns {} when should_bypass_proxies is true, otherwise returns getproxies(); it has no internal try/except, so any error from getproxies() or should_bypass_proxies propagates unchanged.",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "src/requests/utils.py:873-908 get_environ_proxies",
+    "src/requests/utils.py:911-962 resolve_proxies",
+    "src/requests/sessions.py:831-886 Session.merge_environment_settings",
+    "src/requests/utils.py:810-870 should_bypass_proxies",
+    "src/requests/sessions.py:334-368 SessionRedirectMixin.rebuild_proxies",
+    "src/requests/adapters.py:512-563 HTTPAdapter.get_connection",
+    "src/requests/compat.py:83-115 <module>",
+    "src/requests/__init__.py:188-219 <module>"
+   ],
+   "citations": {
+    "checked": true,
+    "valid": 5,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "tools": [
+    "find_callers",
+    "search_code"
+   ],
+   "unverified_shas": [],
+   "seconds": 8.1,
+   "flags": []
+  },
+  {
+   "id": "explain-3",
+   "category": "explain",
+   "kind": "code",
+   "question": "What's the difference between `Session.send` and `Session.request`?",
+   "answer": "Session.request is the high-level entry point: it takes a method, URL and optional parameters (params, data, json, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert), constructs a Request, prepares it with the session's settings, and then sends it, returning a Response (src/requests/sessions.py:557-600). Session.send is the lower-level method: it accepts an already-constructed PreparedRequest (raising ValueError if given a plain Request), applies session defaults (stream, verify, cert, proxies), dispatches the request through the appropriate adapter, runs response hooks, persists cookies, and resolves redirects, returning a Response (src/requests/sessions.py:752-829). In short, request builds and prepares the request for you, while send transmits a PreparedRequest you have already prepared (src/requests/models.py:378-422).",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "src/requests/sessions.py:752-799 Session.send",
+    "src/requests/sessions.py:801-829 Session.send",
+    "src/requests/sessions.py:695-740 Session.post",
+    "src/requests/sessions.py:505-555 Session.__enter__",
+    "src/requests/sessions.py:557-600 Session.request",
+    "src/requests/api.py:48-71 request",
+    "src/requests/models.py:378-422 PreparedRequest.__init__",
+    "src/requests/adapters.py:634-679 HTTPAdapter.send"
+   ],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "tools": [
+    "search_code"
+   ],
+   "unverified_shas": [],
+   "seconds": 6.4,
+   "flags": []
+  },
+  {
+   "id": "explain-4",
+   "category": "explain",
+   "kind": "code",
+   "question": "`super_len` has no docstring. Write one based on how it's used.",
+   "answer": "\"\"\"Return the length of a request body, supporting strings, bytes, file-like objects, and other objects with a known size. It determines the total length via __len__, a .len attribute, or os.fstat on a fileno, then subtracts the current position (from .tell(), or by seeking to the end for seekable objects) and returns max(0, total_length - current_position), falling back to 0 when the length cannot be determined (src/requests/utils.py:160-228). It is used to compute the Content-Length header for request bodies (src/requests/models.py:654-697, src/requests/models.py:603-652).\"\"\"",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "src/requests/utils.py:160-199 super_len",
+    "src/requests/utils.py:201-228 super_len",
+    "src/requests/models.py:654-697 PreparedRequest.prepare_content_length",
+    "src/requests/models.py:72-105 <module>",
+    "src/requests/models.py:603-652 PreparedRequest.prepare_body",
+    "src/requests/_types.py:1-64 SupportsRead",
+    "src/requests/auth.py:34-82 _basic_auth_str",
+    "src/requests/compat.py:1-82 _resolve_char_detection"
+   ],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "tools": [
+    "get_symbol",
+    "search_code"
+   ],
+   "unverified_shas": [],
+   "seconds": 6.8,
+   "flags": []
+  },
+  {
+   "id": "bug-1",
+   "category": "bug report",
+   "kind": "exact",
+   "question": "Users report that response.text shows garbled characters for a page with no charset in its headers. Has something like this been fixed before?",
+   "answer": "Yes. When no charset is present in the headers, Response.text falls back to an auto-detected encoding: if self.encoding is None it uses self.apparent_encoding (guessed via charset_normalizer or chardet), then decodes with errors=\"replace\" (src/requests/models.py:1034-1089). This behavior was added in a fix noted in the history: 'If no Response.encoding is specified and chardet is available, Response.text will guess an encoding' (commit 497695864b48).",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "src/requests/models.py:1034-1089 Response.content",
+    "src/requests/utils.py:1008-1037 guess_json_utf",
+    "src/requests/utils.py:569-630 get_encoding_from_headers",
+    "src/requests/utils.py:522-566 get_encodings_from_content",
+    "src/requests/help.py:1-32 <module>",
+    "src/requests/compat.py:1-82 _resolve_char_detection",
+    "src/requests/__init__.py:1-57 <module>",
+    "src/requests/cookies.py:114-161 MockResponse",
+    "commit a89530aef59a explain binary response data",
+    "commit fd13816d015c Revert \"Fix for response with UTF-8 BOM \"",
+    "commit 19cff44ec1b8 fix response with utf8 bom",
+    "commit 497695864b48 Beautiful history.",
+    "commit 79f56e2e7e9c fix documentation for utils.get_unicode_from_response() :)"
+   ],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "unverified_shas": [],
+   "seconds": 7.4,
+   "flags": []
+  },
+  {
+   "id": "bug-2",
+   "category": "bug report",
+   "kind": "exact",
+   "question": "Timeouts are ignored when proxies are set. Find commits that touched proxy and timeout handling.",
+   "answer": "c93419f5125b, c64c0ab12151, c2aeaa3959b5, dfa41afd43a1, d2d576b6b110",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "commit c93419f5125b TimeoutSauce!",
+    "commit 6d0315f78fb2 Clarify timeout behavior in quickstart doc",
+    "commit 58e3dd9de85c fix urllib3 bug",
+    "commit d2d576b6b110 Update urllib3 to a27758625e4169330fcf965652b1093faf5aaaa2",
+    "commit c64c0ab12151 prototype for new urllib3 timeouts",
+    "commit c2aeaa3959b5 Add support for connect timeouts",
+    "commit c64c0ab12151 prototype for new urllib3 timeouts",
+    "commit dfa41afd43a1 Document Timeout behaviour",
+    "commit d2d576b6b110 Update urllib3 to a27758625e4169330fcf965652b1093faf5aaaa2",
+    "commit 8f9ce13e4330 ConnectTimeout multiple inheritance"
+   ],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [
+    "search_commits",
+    "search_commits"
+   ],
+   "unverified_shas": [],
+   "seconds": 4.8,
+   "flags": []
+  },
+  {
+   "id": "bug-3",
+   "category": "bug report",
+   "kind": "exact",
+   "question": "Which commit introduced the redirect behaviour change in v2.3?",
+   "answer": "470af31f4a5e",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "commit 969195ad55f9 Clarify our 1.2.1 behaviour change.",
+    "commit 9968a10fcfad Typo in changelog.",
+    "commit 470af31f4a5e Handle 301s 'properly'.",
+    "commit 679ab5bc20d0 Initial 2.3.0 changelog.",
+    "commit f24d56a1ce65 Consolidate logic for changing method during redirects"
+   ],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "unverified_shas": [],
+   "seconds": 2.7,
+   "flags": []
+  },
+  {
+   "id": "nav-1",
+   "category": "navigational",
+   "kind": "code",
+   "question": "Where is `DEFAULT_REDIRECT_LIMIT` defined and where is it used?",
+   "answer": "DEFAULT_REDIRECT_LIMIT is defined in src/requests/models.py:72-105 as `DEFAULT_REDIRECT_LIMIT: int = 30`. It is used as the default value for the `max_redirects` attribute of the Session class (src/requests/sessions.py:395-440), which is then checked in `SessionRedirectMixin.resolve_redirects` to raise `TooManyRedirects` when the redirect count is exceeded (src/requests/sessions.py:186-235).",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "src/requests/sessions.py:127-152 SessionRedirectMixin.send",
+    "src/requests/sessions.py:186-235 SessionRedirectMixin.resolve_redirects",
+    "src/requests/models.py:72-105 <module>",
+    "src/requests/auth.py:268-319 HTTPDigestAuth.handle_redirect",
+    "src/requests/sessions.py:395-440 Session",
+    "src/requests/utils.py:85-93 <module>",
+    "src/requests/adapters.py:239-267 HTTPAdapter.init_poolmanager",
+    "src/requests/status_codes.py:101-128 _init",
+    "src/requests/sessions.py:186-235 SessionRedirectMixin.resolve_redirects",
+    "src/requests/sessions.py:127-152 SessionRedirectMixin.send",
+    "src/requests/sessions.py:395-440 Session",
+    "src/requests/auth.py:268-319 HTTPDigestAuth.handle_redirect"
+   ],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "tools": [
+    "get_symbol",
+    "search_code",
+    "find_callers",
+    "search_code"
+   ],
+   "unverified_shas": [],
+   "seconds": 9.6,
+   "flags": [
+    "src/requests/sessions.py:395-440: no cited range shows DEFAULT_REDIRECT_LIMIT"
+   ]
+  },
+  {
+   "id": "nav-2",
+   "category": "navigational",
+   "kind": "code",
+   "question": "Show me all the places that read environment variables.",
+   "answer": "Places that read environment variables: set_environ reads os.environ.get(env_name) (src/requests/utils.py:763-807); get_netrc_auth reads os.environ.get(\"NETRC\") (src/requests/utils.py:231-287); Session.merge_environment_settings reads os.environ for verify/cert settings (src/requests/sessions.py:831-886).",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "src/requests/utils.py:763-807 is_valid_cidr",
+    "src/requests/utils.py:873-908 get_environ_proxies",
+    "src/requests/utils.py:911-962 resolve_proxies",
+    "src/requests/utils.py:231-287 get_netrc_auth",
+    "src/requests/utils.py:96-146 <module>",
+    "src/requests/sessions.py:831-886 Session.merge_environment_settings",
+    "docs/conf.py:108-158 <module>",
+    "src/requests/_types.py:1-64 SupportsRead",
+    "src/requests/utils.py:763-807 is_valid_cidr",
+    "src/requests/utils.py:873-908 get_environ_proxies",
+    "src/requests/utils.py:231-287 get_netrc_auth",
+    "src/requests/utils.py:911-962 resolve_proxies"
+   ],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "unverified_shas": [],
+   "seconds": 9.4,
+   "flags": []
+  },
+  {
+   "id": "impact-1",
+   "category": "impact",
+   "kind": "code",
+   "question": "What breaks if I change the signature of `Session.send`?",
+   "answer": "Changing the signature of Session.send (def send(self, request: PreparedRequest, **kwargs: Any) -> Response, src/requests/sessions.py:752-799) would break its internal callers and the public API: Session.request calls self.send (src/requests/sessions.py:557-600), and SessionRedirectMixin.resolve_redirects calls self.send (src/requests/sessions.py:292). It also breaks external callers that pass a PreparedRequest plus kwargs such as stream/verify/cert/proxies/allow_redirects, e.g. the tests that call s.send / session.send (tests/test_requests.py:325, tests/test_requests.py:622, tests/test_requests.py:630, tests/test_requests.py:639, tests/test_requests.py:2652). The method relies on **kwargs to set defaults (stream, verify, cert, proxies) and to pop allow_redirects (src/requests/sessions.py:752-799), so removing or renaming those parameters would break request dispatch, redirect resolution and hook dispatch.",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "src/requests/sessions.py:752-799 Session.send",
+    "src/requests/sessions.py:695-740 Session.post",
+    "src/requests/sessions.py:801-829 Session.send",
+    "src/requests/sessions.py:908-920 session",
+    "src/requests/sessions.py:557-600 Session.request",
+    "src/requests/adapters.py:681-693 HTTPAdapter.send",
+    "src/requests/models.py:378-422 PreparedRequest.__init__",
+    "src/requests/auth.py:321-354 HTTPDigestAuth.__call__"
+   ],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "tools": [
+    "search_code",
+    "find_callers"
+   ],
+   "unverified_shas": [],
+   "seconds": 8.1,
+   "flags": []
+  },
+  {
+   "id": "impact-2",
+   "category": "impact",
+   "kind": "docs",
+   "question": "Which third-party libraries does requests depend on, and which versions are pinned?",
+   "answer": "requests depends on four third-party libraries, all with version ranges (not exact pins): charset_normalizer>=2,<4, idna>=2.5,<4, urllib3>=1.26,<3, and certifi>=2023.5.7 (pyproject.toml:1-24). None are pinned to an exact version; they use minimum/maximum bounds. The docs build pins Sphinx==7.2.6 (docs/requirements.txt:1-3), and dev/test dependencies include pytest-httpbin==2.1.0 and httpbin~=0.10.0 (requirements-dev.txt:1-7, pyproject.toml:58-115).",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "docs/requirements.txt:1-3 requirements.txt",
+    "requirements-dev.txt:1-7 requirements-dev.txt",
+    "README.md:30-38 Requests > Installing Requests and Supported Versions",
+    "pyproject.toml:1-24 pyproject.toml",
+    "pyproject.toml:58-115 pyproject.toml"
+   ],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "unverified_shas": [],
+   "seconds": 4.0,
+   "flags": []
+  },
+  {
+   "id": "hist-1",
+   "category": "change history",
+   "kind": "exact",
+   "question": "Show me the history of `prepare_url`: who changed it and what each change did.",
+   "answer": "History of prepare_url in src/requests/models.py (newest first): 561e4b6889f5 by Nate Prewitt (2026-05-03, PR #7272) 'Add inline types to Requests'; bda7f0171f8b by Sergey Lyapustin (2022-06-29, PR #6188) 'Fixed warnings message to suggest using secure protocol'; 2a6f290bc093 by Nate Prewitt (2022-04-29, PR #6095) 'Add automatic code formatting to Requests'; 8bce583b9547 by Nate Prewitt (2022-03-25) 'Farewell, sweet Concorde!'; d09659997cd1 by Ian Stapleton Cordasco (2021-12-28) 'Merge pull request #5414 from mondeja/5367'; 658c10e84a46 by Álvaro Mondéjar (2020-04-05) 'Raise InvalidURL if hosts starts with \".\" as was reported at #5367'; 4246792b818c by Nate Prewitt (2021-12-28) 'Fix erroneous use of \"schema\" instead of \"scheme\"'; 9cdf29410778 by Nihaal (2019-08-13) 'Updated references to previous requests/requests GitHub path'.",
+   "abstain": false,
+   "failure": "",
+   "sources": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [
+    "file_history",
+    "file_history"
+   ],
+   "unverified_shas": [],
+   "seconds": 5.1,
+   "flags": []
+  },
+  {
+   "id": "hist-2",
+   "category": "change history",
+   "kind": "exact",
+   "question": "What were the three most recent changes to src/requests/adapters.py?",
+   "answer": "1) 661970d171d9 by Joren Hammudoglu on 2026-06-08: Disable commonly ignored Pyright linting rules (#7497). 2) fd628095d7b9 by typhon8 on 2026-05-10: Preserve leading slashes in request path_url (#7315). 3) 561e4b6889f5 by Nate Prewitt on 2026-05-03: Add inline types to Requests (#7272).",
+   "abstain": false,
+   "failure": "",
+   "sources": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [
+    "file_history"
+   ],
+   "unverified_shas": [],
+   "seconds": 2.6,
+   "flags": []
+  },
+  {
+   "id": "people-1",
+   "category": "people",
+   "kind": "exact",
+   "question": "Who wrote most of src/requests/auth.py?",
+   "answer": "Nate Prewitt",
+   "abstain": false,
+   "failure": "",
+   "sources": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [
+    "top_contributors"
+   ],
+   "unverified_shas": [],
+   "seconds": 1.7,
+   "flags": []
+  },
+  {
+   "id": "people-2",
+   "category": "people",
+   "kind": "exact",
+   "question": "Who last touched lines 40-80 of src/requests/sessions.py?",
+   "answer": "Joren Hammudoglu",
+   "abstain": false,
+   "failure": "",
+   "sources": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [
+    "blame"
+   ],
+   "unverified_shas": [],
+   "seconds": 2.2,
+   "flags": []
+  },
+  {
+   "id": "people-3",
+   "category": "people",
+   "kind": "exact",
+   "question": "Who knows the sessions code best?",
+   "answer": "Nate Prewitt",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "src/requests/sessions.py:908-920 session",
+    "src/requests/sessions.py:1-73 <module>",
+    "src/requests/sessions.py:395-440 Session",
+    "src/requests/sessions.py:490-503 Session.__init__",
+    "src/requests/sessions.py:888-905 Session.mount",
+    "src/requests/cookies.py:191-227 RequestsCookieJar.get",
+    "src/requests/api.py:1-21 <module>",
+    "src/requests/auth.py:124-155 HTTPDigestAuth.__init__"
+   ],
+   "citations": {
+    "checked": true,
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": true,
+    "snapped": []
+   },
+   "tools": [
+    "top_contributors",
+    "search_code",
+    "top_contributors"
+   ],
+   "unverified_shas": [],
+   "seconds": 5.1,
+   "flags": []
+  },
+  {
+   "id": "people-4",
+   "category": "people",
+   "kind": "exact",
+   "question": "Who opened, who reviewed and who merged PR #5856?",
+   "answer": "Opened by steveberdy, reviewed by sigmavirus24 and nateprewitt, merged by nateprewitt.",
+   "abstain": false,
+   "failure": "",
+   "sources": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "unverified_shas": [],
+   "seconds": 2.0,
+   "flags": []
+  },
+  {
+   "id": "pr-1",
+   "category": "pull requests",
+   "kind": "exact",
+   "question": "What's PR #7272 about? Give me its description.",
+   "answer": "PR #7272, titled \"Add inline types to Requests\", adds inline type annotations throughout the Requests library to codify the type contract alongside the code. It is a path for what inline typing in Requests could look like, aiming to establish which APIs are intended to support, make more reasoned decisions about code changes, and make using Requests in a modern development environment easier. The package passes strict type checking with pyright (0 errors), with a few internal decisions deferred for maintainer/community discussion. Key design decisions include using cast() over assert/isinstance for type narrowing to avoid breaking downstream code at runtime, a new _types.py module centralizing Protocols, type aliases, and TypeVars, SupportsRead/SupportsItems as @runtime_checkable Protocols replacing hasattr checks, is_prepared() as a TypeIs guard that is a no-op at runtime (always returns True), and about 100 documented type suppressions. It is related to issue #7271 (RFC: Adding inline type annotations to Requests).",
+   "abstain": false,
+   "failure": "",
+   "sources": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "unverified_shas": [],
+   "seconds": 3.4,
+   "flags": []
+  },
+  {
+   "id": "pr-2",
+   "category": "pull requests",
+   "kind": "exact",
+   "question": "Which PR switched the chardet dependency to charset_normalizer?",
+   "answer": "- 5797",
+   "abstain": false,
+   "failure": "",
+   "sources": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "unverified_shas": [],
+   "seconds": 3.2,
+   "flags": []
+  },
+  {
+   "id": "pr-3",
+   "category": "pull requests",
+   "kind": "exact",
+   "question": "What did reviewers push back on in #5856?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "sources": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [
+    "get_pr",
+    "get_references",
+    "search_prs"
+   ],
+   "unverified_shas": [],
+   "seconds": 5.6,
+   "flags": [
+    "abstained"
+   ]
+  },
+  {
+   "id": "issue-1",
+   "category": "issues",
+   "kind": "exact",
+   "question": "Are there open bugs about timeouts?",
+   "answer": "No open bugs about timeouts were found; all matching timeout issues are closed.",
+   "abstain": false,
+   "failure": "",
+   "sources": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "unverified_shas": [],
+   "seconds": 2.7,
+   "flags": []
+  },
+  {
+   "id": "rel-1",
+   "category": "releases",
+   "kind": "exact",
+   "question": "What changed between v2.30.0 and v2.31.0?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "sources": [
+    "src/requests/__init__.py:60-108 check_compatibility",
+    "src/requests/__version__.py:1-14 <module>",
+    "src/requests/auth.py:34-82 _basic_auth_str",
+    "src/requests/compat.py:1-82 _resolve_char_detection",
+    "src/requests/help.py:1-32 <module>",
+    "src/requests/_types.py:1-64 SupportsRead",
+    "src/requests/sessions.py:76-124 merge_setting",
+    "src/requests/packages.py:1-23 <module>"
+   ],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [
+    "get_tag",
+    "get_tag",
+    "search_code"
+   ],
+   "unverified_shas": [],
+   "seconds": 5.0,
+   "flags": [
+    "abstained"
+   ]
+  },
+  {
+   "id": "rel-2",
+   "category": "releases",
+   "kind": "exact",
+   "question": "Which release first contained the fix in PR #5856?",
+   "answer": "v2.27.0",
+   "abstain": false,
+   "failure": "",
+   "sources": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "unverified_shas": [],
+   "seconds": 2.7,
+   "flags": []
+  },
+  {
+   "id": "rel-3",
+   "category": "releases",
+   "kind": "exact",
+   "question": "When did the `json=` parameter ship?",
+   "answer": "2.4.2",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "src/requests/models.py:1091-1142 Response.json",
+    "src/requests/_types.py:177-188 GetKwargs",
+    "src/requests/models.py:576-602 PreparedRequest.prepare_body",
+    "src/requests/api.py:117-151 post",
+    "src/requests/exceptions.py:42-99 JSONDecodeError",
+    "src/requests/utils.py:1008-1037 guess_json_utf",
+    "src/requests/cookies.py:531-576 morsel_to_cookie",
+    "src/requests/compat.py:1-82 _resolve_char_detection",
+    "commit 39446def3956 Clarify behaviour of `json` parameter.",
+    "commit 35af0b077f28 add comment about json parameter changing content-type",
+    "commit ab38e2c72608 Make the `data` vs `json` parameters more clear ()",
+    "commit b1de7e728721 Changed phrasing to be a little clearer.",
+    "commit 5a9097dc4b8c Update quickstart.rst"
+   ],
+   "citations": {
+    "checked": true,
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": true,
+    "snapped": []
+   },
+   "tools": [
+    "search_code",
+    "search_commits"
+   ],
+   "unverified_shas": [],
+   "seconds": 5.0,
+   "flags": []
+  },
+  {
+   "id": "stats-1",
+   "category": "stats",
+   "kind": "exact",
+   "question": "Who are the top 5 contributors?",
+   "answer": "Kenneth Reitz, Cory Benfield, Nate Prewitt, Ian Cordasco, dependabot[bot]",
+   "abstain": false,
+   "failure": "",
+   "sources": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [
+    "top_contributors"
+   ],
+   "unverified_shas": [],
+   "seconds": 1.2,
+   "flags": []
+  },
+  {
+   "id": "stats-2",
+   "category": "stats",
+   "kind": "exact",
+   "question": "Which files change most often?",
+   "answer": "requests/models.py, test_requests.py, requests/sessions.py",
+   "abstain": false,
+   "failure": "",
+   "sources": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [
+    "change_frequency"
+   ],
+   "unverified_shas": [],
+   "seconds": 0.9,
+   "flags": []
+  },
+  {
+   "id": "onboard-1",
+   "category": "onboarding",
+   "kind": "docs",
+   "question": "How do I install requests and run its tests?",
+   "answer": "To install Requests, run `python -m pip install requests` (docs/user/install.rst:10-15, README.md:30-38). To run its tests, use the Makefile targets: `make init` installs dev dependencies via `python -m pip install -r requirements-dev.txt`, and `make test` runs `python -m pytest tests` (Makefile:1-27).",
+   "abstain": false,
+   "failure": "",
+   "sources": [
+    "docs/user/install.rst:10-15 Installation of Requests > $ python -m pip install requests",
+    "docs/user/install.rst:1-7 Installation of Requests",
+    "README.md:30-38 Requests > Installing Requests and Supported Versions",
+    "docs/user/quickstart.rst:1-17 Quickstart",
+    "Makefile:1-27 Makefile"
+   ],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "snapped": []
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "unverified_shas": [],
+   "seconds": 2.4,
+   "flags": []
+  },
+  {
+   "id": "oos-1",
+   "category": "out of scope",
+   "kind": "out_of_scope",
+   "question": "Show me all the places we write to the cache.",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "sources": [
+    "src/requests/structures.py:20-74 CaseInsensitiveDict.__init__",
+    "src/requests/cookies.py:229-291 RequestsCookieJar.set",
+    "src/requests/cookies.py:579-625 cookiejar_from_dict",
+    "src/requests/cookies.py:348-399 RequestsCookieJar.__iter__",
+    "src/requests/cookies.py:479-528 _copy_cookie_jar",
+    "src/requests/status_codes.py:1-59 <module>",
+    "src/requests/utils.py:290-338 extract_zipped_paths",
+    "src/requests/sessions.py:888-905 Session.mount",
+    "src/requests/cookies.py:474-476 RequestsCookieJar.get_policy",
+    "src/requests/cookies.py:423-472 RequestsCookieJar._find_no_duplicates",
+    "src/requests/auth.py:124-155 HTTPDigestAuth.__init__",
+    "src/requests/adapters.py:239-267 HTTPAdapter.init_poolmanager"
+   ],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "unverified_shas": [],
+   "seconds": 6.9,
+   "flags": []
+  }
+ ]
+}

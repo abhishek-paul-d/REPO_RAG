@@ -1,6 +1,13 @@
 # Architecture label review (for a human)
 
-These are the gold labels behind the Phase 6 architecture-answer check. **No person has reviewed any of them yet**: they were written by an AI reading the source (the requests and flask sets say `Codex (source inspection, no retrieval)`; the fresh set was written and checked against the source by the same kind of reader). The pass/fail numbers in `docs/PROJECT_LOG.md` are only as good as these labels.
+> **Status: human reviewed (2026-11-18).** The verdicts below were drafted by Claude and accepted by the user as written.
+> Sections A and B were checked against the psf/requests clone at `611c6162cb`. Section C was judged from knowledge of
+> Flask's layout, without opening the pinned lines (there is no flask clone in `data/repos`).
+> Result: 34 of 40 labels kept. Changes: A-11 (drop `adapters.py`), B-004 (drop `status_codes.py`), B-002 (add `models.py`),
+> B-006 (add `sessions.py`), B-009 (add `adapters.py`). Need should go from 1 to 2 for A-04 and C-15.
+> **The dataset files have not been changed yet,** and the saved runs have not been re-scored.
+
+These are the gold labels behind the Phase 6 architecture-answer check. Before the review above, no person had reviewed any of them: they were written by an AI reading the source (the requests and flask sets say `Codex (source inspection, no retrieval)`; the fresh set was written and checked against the source by the same kind of reader). The pass/fail numbers in `docs/PROJECT_LOG.md` are only as good as these labels.
 
 ## What you are being asked to do
 
@@ -42,11 +49,11 @@ Agent-eval ids are `architecture-NNN` (same questions, in the order below).
 - `src/requests/adapters.py`  -  anchor `HTTPAdapter`, lines 158-748  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/adapters.py#L158-L748)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: `__init__`/`api` = public interface, `sessions` = state, `adapters` = transport.
 
 ### requests-architecture-02  ·  agent id `architecture-002`  ·  type `flow`  ·  split `dev`
 
@@ -59,11 +66,11 @@ Agent-eval ids are `architecture-NNN` (same questions, in the order below).
 - `src/requests/adapters.py`  -  anchor `HTTPAdapter.send`, lines 634-748  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/adapters.py#L634-L748)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: api.request -> Session.request -> HTTPAdapter.send -> urllib3 pool.
 
 ### requests-architecture-03  ·  agent id `architecture-003`  ·  type `dependency`  ·  split `dev`
 
@@ -77,11 +84,11 @@ Agent-eval ids are `architecture-NNN` (same questions, in the order below).
 - `src/requests/adapters.py`  -  anchor `HTTPAdapter`, lines 158-748  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/adapters.py#L158-L748)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: api -> sessions -> models.PreparedRequest -> adapters is the real chain.
 
 ### requests-architecture-04  ·  agent id `architecture-004`  ·  type `responsibility`  ·  split `dev`
 
@@ -93,11 +100,11 @@ Agent-eval ids are `architecture-NNN` (same questions, in the order below).
 - `src/requests/sessions.py`  -  anchor `Session.prepare_request`, lines 511-555  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/sessions.py#L511-L555)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Files are right, but need=1 lets an answer naming only models.py pass without saying who coordinates. Raise need to 2.
 
 ### requests-architecture-05  ·  agent id `architecture-005`  ·  type `flow`  ·  split `dev`
 
@@ -110,11 +117,11 @@ Agent-eval ids are `architecture-NNN` (same questions, in the order below).
 - `src/requests/sessions.py`  -  anchor `Session.send`, lines 752-829  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/sessions.py#L752-L829)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: build_response creates the Response; Session.send runs hooks, cookies and redirects on it.
 
 ### requests-architecture-06  ·  agent id `architecture-006`  ·  type `responsibility`  ·  split `test`
 
@@ -127,11 +134,11 @@ Agent-eval ids are `architecture-NNN` (same questions, in the order below).
 - `src/requests/sessions.py`  -  anchor `Session.prepare_request`, lines 511-555  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/sessions.py#L511-L555)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Cookie jar, prepare_cookies, and the session merging cookies in prepare_request.
 
 ### requests-architecture-07  ·  agent id `architecture-007`  ·  type `flow`  ·  split `test`
 
@@ -144,11 +151,11 @@ Agent-eval ids are `architecture-NNN` (same questions, in the order below).
 - `src/requests/models.py`  -  anchor `PreparedRequest`, lines 378-729  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/models.py#L378-L729)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: resolve_redirects calls extract_cookies_to_jar, rebuild_auth and prepare_cookies.
 
 ### requests-architecture-08  ·  agent id `architecture-008`  ·  type `dependency`  ·  split `test`
 
@@ -161,11 +168,11 @@ Agent-eval ids are `architecture-NNN` (same questions, in the order below).
 - `src/requests/utils.py`  -  anchor `default_headers`, lines 951-962  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/utils.py#L951-L962)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Session.__init__ uses default_headers(), which returns a CaseInsensitiveDict.
 
 ### requests-architecture-09  ·  agent id `architecture-009`  ·  type `responsibility`  ·  split `test`
 
@@ -178,11 +185,11 @@ Agent-eval ids are `architecture-NNN` (same questions, in the order below).
 - `src/requests/sessions.py`  -  anchor `SessionRedirectMixin.rebuild_auth`, lines 309-332  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/sessions.py#L309-L332)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: AuthBase, prepare_auth and rebuild_auth are the three places.
 
 ### requests-architecture-10  ·  agent id `architecture-010`  ·  type `dependency`  ·  split `test`
 
@@ -196,11 +203,11 @@ Agent-eval ids are `architecture-NNN` (same questions, in the order below).
 - `src/requests/sessions.py`  -  anchor `Session.merge_environment_settings`, lines 831-868  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/sessions.py#L831-L868)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: cert_verify, certs.where() -> DEFAULT_CA_BUNDLE_PATH, merge_environment_settings reading REQUESTS_CA_BUNDLE.
 
 ### requests-architecture-11  ·  agent id `architecture-011`  ·  type `responsibility`  ·  split `test`
 
@@ -215,9 +222,9 @@ Agent-eval ids are `architecture-NNN` (same questions, in the order below).
 **Your review of this label**
 - [ ] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
-- [ ] A listed file should not be required (name it):
+- [x] A listed file should not be required (name it): `src/requests/adapters.py`
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Encoding happens in models.py (_encode_params, _encode_files, urllib3 encode_multipart_formdata) and utils.py (to_key_val_list, guess_filename). HTTPAdapter.send only passes the finished body on (adapters.py:699). Today models + adapters passes with no encoding helper named.
 
 ### requests-architecture-12  ·  agent id `architecture-012`  ·  type `flow`  ·  split `test`
 
@@ -230,11 +237,11 @@ Agent-eval ids are `architecture-NNN` (same questions, in the order below).
 - `src/requests/utils.py`  -  anchor `stream_decode_response_unicode`, lines 594-610  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/utils.py#L594-L610)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: build_response stores raw; iter_content streams it; stream_decode_response_unicode decodes it.
 
 ### requests-architecture-13  ·  agent id `architecture-013`  ·  type `responsibility`  ·  split `test`
 
@@ -247,11 +254,11 @@ Agent-eval ids are `architecture-NNN` (same questions, in the order below).
 - `src/requests/sessions.py`  -  anchor `Session.send`, lines 752-829  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/sessions.py#L752-L829)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: register_hook registers, Session.send calls dispatch_hook (sessions.py:791), hooks.py holds dispatch_hook/default_hooks.
 
 ### requests-architecture-14  ·  agent id `architecture-014`  ·  type `layout`  ·  split `test`
 
@@ -264,11 +271,11 @@ Agent-eval ids are `architecture-NNN` (same questions, in the order below).
 - `src/requests/exceptions.py`  -  anchor `RequestException`, lines 20-35  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/exceptions.py#L20-L35)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: compat, check_compatibility and exceptions are the three areas named.
 
 ### requests-architecture-15  ·  agent id `architecture-015`  ·  type `dependency`  ·  split `test`
 
@@ -280,11 +287,11 @@ Agent-eval ids are `architecture-NNN` (same questions, in the order below).
 - `src/requests/exceptions.py`  -  anchor `ConnectionError`, lines 70-71  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/exceptions.py#L70-L71)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: need=1 is lenient (exceptions.py alone passes) but acceptable: it is the error hierarchy asked about.
 
 ---
 
@@ -303,11 +310,11 @@ Written on 2026-11-10 after the first 15 scored 5/15, on topics the first set do
 - `src/requests/adapters.py`  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/adapters.py)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: utils decides (resolve_proxies, select_proxy, should_bypass_proxies), sessions merges (rebuild_proxies, merge_environment_settings), adapters applies (proxy_manager_for).
 
 ### archfresh-002  ·  type `architecture`
 
@@ -321,10 +328,10 @@ Written on 2026-11-10 after the first 15 scored 5/15, on topics the first set do
 
 **Your review of this label**
 - [ ] Right: these files are what a good answer must name
-- [ ] A needed file is missing (name it):
+- [x] A needed file is missing (name it): `src/requests/models.py`
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: get_netrc_auth -> Session.prepare_request (sessions.py:538) gives a tuple; PreparedRequest.prepare_auth turns it into HTTPBasicAuth (models.py:685). Add as a 4th file, keep need=2.
 
 ### archfresh-003  ·  type `architecture`
 
@@ -337,11 +344,11 @@ Written on 2026-11-10 after the first 15 scored 5/15, on topics the first set do
 - `src/requests/exceptions.py`  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/exceptions.py)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: prepare_url in models, requote_uri/unquote_unreserved in utils, MissingSchema/InvalidURL in exceptions.
 
 ### archfresh-004  ·  type `architecture`
 
@@ -356,9 +363,9 @@ Written on 2026-11-10 after the first 15 scored 5/15, on topics the first set do
 **Your review of this label**
 - [ ] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
-- [ ] A listed file should not be required (name it):
+- [x] A listed file should not be required (name it): `src/requests/status_codes.py`
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: raise_for_status compares numeric ranges and never uses `codes` (models only uses codes for redirect sets, lines 96-100, 887). models + status_codes passes with no HTTPError. Use models + exceptions, need=2.
 
 ### archfresh-005  ·  type `architecture`
 
@@ -371,11 +378,11 @@ Written on 2026-11-10 after the first 15 scored 5/15, on topics the first set do
 - `src/requests/exceptions.py`  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/exceptions.py)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Response.json uses utils.guess_json_utf and raises exceptions.JSONDecodeError. Optionally also accept compat.py (complexjson).
 
 ### archfresh-006  ·  type `architecture`
 
@@ -389,10 +396,10 @@ Written on 2026-11-10 after the first 15 scored 5/15, on topics the first set do
 
 **Your review of this label**
 - [ ] Right: these files are what a good answer must name
-- [ ] A needed file is missing (name it):
+- [x] A needed file is missing (name it): `src/requests/sessions.py`
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: HTTPDigestAuth registers handle_401 via register_hook (auth.py:339); it runs when Session.send calls dispatch_hook (sessions.py:791). Add as a 4th file, keep need=2.
 
 ### archfresh-007  ·  type `architecture`
 
@@ -405,11 +412,11 @@ Written on 2026-11-10 after the first 15 scored 5/15, on topics the first set do
 - `src/requests/adapters.py`  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/adapters.py)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: prepare_body/prepare_content_length, super_len, adapters.py:679 (chunked when no Content-Length).
 
 ### archfresh-008  ·  type `architecture`
 
@@ -422,11 +429,11 @@ Written on 2026-11-10 after the first 15 scored 5/15, on topics the first set do
 - `src/requests/models.py`  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/models.py)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Session.close closes adapters, HTTPAdapter.close clears pools, Response.close calls release_conn.
 
 ### archfresh-009  ·  type `architecture`
 
@@ -440,10 +447,10 @@ Written on 2026-11-10 after the first 15 scored 5/15, on topics the first set do
 
 **Your review of this label**
 - [ ] Right: these files are what a good answer must name
-- [ ] A needed file is missing (name it):
+- [x] A needed file is missing (name it): `src/requests/adapters.py`
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: build_response sets response.encoding = get_encoding_from_headers(...) (adapters.py:385), where the encoding is first chosen. compat only resolves the chardet/charset_normalizer import. Add as a 4th file, keep need=2.
 
 ### archfresh-010  ·  type `architecture`
 
@@ -456,11 +463,11 @@ Written on 2026-11-10 after the first 15 scored 5/15, on topics the first set do
 - `src/requests/__version__.py`  -  [open](https://github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/src/requests/__version__.py)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: default_headers/default_user_agent in utils, __version__ for the version string, Session.__init__ + merge_setting in sessions.
 
 ---
 
@@ -479,11 +486,11 @@ Not used by the Phase 6 gate: the agent has only been run on psf/requests.
 - `src/flask/sansio/scaffold.py`  -  anchor `Scaffold`, lines 52-706  -  [open](https://github.com/pallets/flask/blob/d086db856be187255b8ec61ef409357393020f32/src/flask/sansio/scaffold.py#L52-L706)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Judged from knowledge of Flask's layout; no flask clone, pinned lines not opened.
 
 ### flask-architecture-02  ·  type `dependency`  ·  split `dev`
 
@@ -497,11 +504,11 @@ Not used by the Phase 6 gate: the agent has only been run on psf/requests.
 - `src/flask/sansio/app.py`  -  anchor `App`, lines 60-1014  -  [open](https://github.com/pallets/flask/blob/d086db856be187255b8ec61ef409357393020f32/src/flask/sansio/app.py#L60-L1014)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Judged from knowledge of Flask's layout; no flask clone, pinned lines not opened.
 
 ### flask-architecture-03  ·  type `responsibility`  ·  split `dev`
 
@@ -514,11 +521,11 @@ Not used by the Phase 6 gate: the agent has only been run on psf/requests.
 - `src/flask/sansio/scaffold.py`  -  anchor `Scaffold.route`, lines 344-373  -  [open](https://github.com/pallets/flask/blob/d086db856be187255b8ec61ef409357393020f32/src/flask/sansio/scaffold.py#L344-L373)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Judged from knowledge of Flask's layout; no flask clone, pinned lines not opened.
 
 ### flask-architecture-04  ·  type `responsibility`  ·  split `dev`
 
@@ -531,11 +538,11 @@ Not used by the Phase 6 gate: the agent has only been run on psf/requests.
 - `src/flask/sansio/scaffold.py`  -  anchor `Scaffold.jinja_loader`, lines 272-282  -  [open](https://github.com/pallets/flask/blob/d086db856be187255b8ec61ef409357393020f32/src/flask/sansio/scaffold.py#L272-L282)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Judged from knowledge of Flask's layout; no flask clone, pinned lines not opened.
 
 ### flask-architecture-05  ·  type `flow`  ·  split `dev`
 
@@ -548,11 +555,11 @@ Not used by the Phase 6 gate: the agent has only been run on psf/requests.
 - `src/flask/globals.py`  -  anchor `module imports / declarations`, lines 1-77  -  [open](https://github.com/pallets/flask/blob/d086db856be187255b8ec61ef409357393020f32/src/flask/globals.py#L1-L77)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Judged from knowledge of Flask's layout; no flask clone, pinned lines not opened.
 
 ### flask-architecture-06  ·  type `layout`  ·  split `test`
 
@@ -565,11 +572,11 @@ Not used by the Phase 6 gate: the agent has only been run on psf/requests.
 - `src/flask/sansio/app.py`  -  anchor `App.register_blueprint`, lines 571-596  -  [open](https://github.com/pallets/flask/blob/d086db856be187255b8ec61ef409357393020f32/src/flask/sansio/app.py#L571-L596)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Judged from knowledge of Flask's layout; no flask clone, pinned lines not opened.
 
 ### flask-architecture-07  ·  type `flow`  ·  split `test`
 
@@ -582,11 +589,11 @@ Not used by the Phase 6 gate: the agent has only been run on psf/requests.
 - `src/flask/sansio/scaffold.py`  -  anchor `Scaffold.route`, lines 344-373  -  [open](https://github.com/pallets/flask/blob/d086db856be187255b8ec61ef409357393020f32/src/flask/sansio/scaffold.py#L344-L373)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Judged from knowledge of Flask's layout; no flask clone, pinned lines not opened.
 
 ### flask-architecture-08  ·  type `dependency`  ·  split `test`
 
@@ -599,11 +606,11 @@ Not used by the Phase 6 gate: the agent has only been run on psf/requests.
 - `src/flask/sansio/blueprints.py`  -  anchor `Blueprint`, lines 119-692  -  [open](https://github.com/pallets/flask/blob/d086db856be187255b8ec61ef409357393020f32/src/flask/sansio/blueprints.py#L119-L692)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Judged from knowledge of Flask's layout; no flask clone, pinned lines not opened.
 
 ### flask-architecture-09  ·  type `responsibility`  ·  split `test`
 
@@ -616,11 +623,11 @@ Not used by the Phase 6 gate: the agent has only been run on psf/requests.
 - `src/flask/app.py`  -  anchor `Flask.do_teardown_request`, lines 1420-1451  -  [open](https://github.com/pallets/flask/blob/d086db856be187255b8ec61ef409357393020f32/src/flask/app.py#L1420-L1451)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Judged from knowledge of Flask's layout; no flask clone, pinned lines not opened. Assumes the merged AppContext model (no separate RequestContext); confirm at d086db856b.
 
 ### flask-architecture-10  ·  type `flow`  ·  split `test`
 
@@ -633,11 +640,11 @@ Not used by the Phase 6 gate: the agent has only been run on psf/requests.
 - `src/flask/app.py`  -  anchor `Flask.process_response`, lines 1394-1418  -  [open](https://github.com/pallets/flask/blob/d086db856be187255b8ec61ef409357393020f32/src/flask/app.py#L1394-L1418)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Judged from knowledge of Flask's layout; no flask clone, pinned lines not opened. Assumes the merged AppContext model (no separate RequestContext); confirm at d086db856b.
 
 ### flask-architecture-11  ·  type `flow`  ·  split `test`
 
@@ -650,11 +657,11 @@ Not used by the Phase 6 gate: the agent has only been run on psf/requests.
 - `src/flask/wrappers.py`  -  anchor `Response`, lines 222-257  -  [open](https://github.com/pallets/flask/blob/d086db856be187255b8ec61ef409357393020f32/src/flask/wrappers.py#L222-L257)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Judged from knowledge of Flask's layout; no flask clone, pinned lines not opened. Assumes the merged AppContext model (no separate RequestContext); confirm at d086db856b.
 
 ### flask-architecture-12  ·  type `responsibility`  ·  split `test`
 
@@ -668,11 +675,11 @@ Not used by the Phase 6 gate: the agent has only been run on psf/requests.
 - `src/flask/signals.py`  -  anchor `module imports / declarations`, lines 1-17  -  [open](https://github.com/pallets/flask/blob/d086db856be187255b8ec61ef409357393020f32/src/flask/signals.py#L1-L17)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Judged from knowledge of Flask's layout; no flask clone, pinned lines not opened.
 
 ### flask-architecture-13  ·  type `dependency`  ·  split `test`
 
@@ -686,11 +693,11 @@ Not used by the Phase 6 gate: the agent has only been run on psf/requests.
 - `src/flask/sansio/app.py`  -  anchor `App.add_url_rule`, lines 606-662  -  [open](https://github.com/pallets/flask/blob/d086db856be187255b8ec61ef409357393020f32/src/flask/sansio/app.py#L606-L662)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Judged from knowledge of Flask's layout; no flask clone, pinned lines not opened.
 
 ### flask-architecture-14  ·  type `responsibility`  ·  split `test`
 
@@ -703,11 +710,11 @@ Not used by the Phase 6 gate: the agent has only been run on psf/requests.
 - `src/flask/wrappers.py`  -  anchor `Request.max_content_length`, lines 89-90  -  [open](https://github.com/pallets/flask/blob/d086db856be187255b8ec61ef409357393020f32/src/flask/wrappers.py#L89-L90)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Judged from knowledge of Flask's layout; no flask clone, pinned lines not opened.
 
 ### flask-architecture-15  ·  type `flow`  ·  split `test`
 
@@ -719,9 +726,9 @@ Not used by the Phase 6 gate: the agent has only been run on psf/requests.
 - `src/flask/app.py`  -  anchor `Flask.run`, lines 630-753  -  [open](https://github.com/pallets/flask/blob/d086db856be187255b8ec61ef409357393020f32/src/flask/app.py#L630-L753)
 
 **Your review of this label**
-- [ ] Right: these files are what a good answer must name
+- [x] Right: these files are what a good answer must name
 - [ ] A needed file is missing (name it):
 - [ ] A listed file should not be required (name it):
 - [ ] The question is unclear, or has no single right answer
-- Notes:
+- Notes: Judged from knowledge of Flask's layout; no flask clone, pinned lines not opened. Files are right, but need=1 lets an answer naming only app.py pass. Raise need to 2, or swap Flask.run for cli.py run_command.
 

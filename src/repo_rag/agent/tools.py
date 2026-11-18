@@ -18,7 +18,16 @@ from typing import Any
 
 from repo_rag.agent.bakeoff import redact, validate_arguments
 from repo_rag.agent.bakeoff_tools import BoundTools, _schema, tool_schemas
-from repo_rag.history.git_tools import GitToolError, file_history, pr_commits
+from repo_rag.agent.prompts import HISTORY_TOOL_VARIANTS
+from repo_rag.history.git_tools import (
+    GitToolError,
+    commits_between,
+    exact_renames,
+    file_history,
+    pr_commits,
+    releases_containing,
+)
+from repo_rag.history.metadata_db import names_of
 from repo_rag.retrieval.intent import detect_intent
 from repo_rag.store.manifest import Manifest
 from repo_rag.store.symbol_table import is_test_path
@@ -26,12 +35,19 @@ from repo_rag.store.symbol_table import is_test_path
 SEARCH_K = 5
 EXTRA_POOL_K = 40  # candidates searched for the extra files; the top 5 chunks come from the model
 COMMIT_TEXT_CHARS = 1200
+COMMIT_BRIEF_SUBJECT = 160  # a shortlist row past the first SEARCH_K: subject, files, symbols
+COMMIT_BRIEF_FIELD = 150
+COMMIT_AUTHOR_CHARS = 60
 CALLEE_LIMIT = 25
 PR_ISSUE_K = 4  # per collection: top PRs and top issues are shown separately
 PR_TEXT_CHARS = 700
 PR_COMMITS_LIMIT = 5  # a PR's own commits listed next to its merge commit by get_pr
 ADDED_TOOLS = ("search_docs", "search_commits", "search_prs", "get_references", "find_callees")
-HISTORY_TOOLS = ("file_history",)  # offered only by the `history_grounded` prompt variant
+# Offered only by the `history_grounded` prompt variant.
+HISTORY_TOOLS = ("file_history", "compare_refs", "find_issues")
+RENAME_TOOLS = ("count_commits", "top_contributors", "change_frequency")  # follow renames there
+ISSUES_SHOWN = 10  # newest issues find_issues lists; the total is always given
+COMPARE_LIMIT = 15  # newest commits compare_refs lists; the total is always given
 HISTORY_LIMIT = 8  # newest changes returned by file_history unless the model asks for fewer
 
 
@@ -89,10 +105,81 @@ def production_schemas(*, search_prs: bool = True, file_history: bool = False) -
             {"path": "string", "symbol": "string", "limit": "integer"},
             [],
         )
+        schemas["compare_refs"] = _schema(
+            "compare_refs",
+            "What changed between two tags, releases or commits: how many commits ref_b has that "
+            "ref_a lacks, and the newest ones (sha, author, date, subject, PR number). Give tag "
+            "names exactly as the repository writes them; an unknown name returns an error. "
+            "Default limit 15.",
+            {"ref_a": "string", "ref_b": "string", "limit": "integer"},
+            ["ref_a", "ref_b"],
+        )
+        schemas["find_issues"] = _schema(
+            "find_issues",
+            "Filter issues by state (OPEN or CLOSED), label or a word in the title: the total that "
+            "match and the newest ones (number, title, state, labels, dates). Use it for 'are "
+            "there open bugs about X' and 'how many issues ...'; search_prs only samples.",
+            {"state": "string", "label": "string", "title_contains": "string", "limit": "integer"},
+            [],
+        )
     return schemas
 
 
 class ProductionTools(BoundTools):
+    _rename_cache: dict[str, str] | None = None
+
+    def _renames(self) -> dict[str, str]:
+        """Exact renames over the pinned history, read from git once per agent."""
+        if self._rename_cache is None:
+            self._rename_cache = exact_renames(self.checkout, self.pin)
+        return self._rename_cache
+
+    def _following(self, name: str, args: dict) -> Any:
+        """count_commits, top_contributors and change_frequency across file renames. Without it a
+        file moved in 2023 (`requests/auth.py` to `src/requests/auth.py`) shows only its commits
+        since the move: the 2026-11-18 section 1 check named the wrong top author for it."""
+        validate_arguments(args, tool_schemas()[name]["parameters"])
+        if name in ("top_contributors", "change_frequency"):
+            args = {"limit": 3, **args}
+        renames = self._renames()
+        if name == "change_frequency":
+            return redact(self.db.change_frequency(self.repo, **args, renames=renames))
+        path = args.get("path")
+        alt = names_of(path, renames)[1:] if isinstance(path, str) else []
+        return redact(getattr(self.db, name)(self.repo, **args, alt_paths=alt))
+
+    def _find_issues(
+        self,
+        state: str | None = None,
+        label: str | None = None,
+        title_contains: str | None = None,
+        limit: int = ISSUES_SHOWN,
+    ) -> dict[str, Any]:
+        """All issues matching the filters counted, the newest few listed (no bodies)."""
+        found = self.db.find_issues(
+            self.repo,
+            state=state.upper() if state else None,
+            label=label,
+            title_contains=title_contains,
+            limit=100_000,
+        )
+        return redact(
+            {
+                "total": len(found),
+                "shown": [
+                    {
+                        "number": i.number,
+                        "title": i.title,
+                        "state": i.state,
+                        "labels": list(i.labels),
+                        "created_at": i.created_at,
+                        "closed_at": i.closed_at,
+                    }
+                    for i in found[: min(limit, ISSUES_SHOWN)]
+                ],
+            }
+        )
+
     def _indexed(self, kind: str) -> None:
         entry = Manifest(self.settings.manifest_path).get(self.repo)
         if entry is None or not entry.chunks.get(kind):
@@ -106,18 +193,42 @@ class ProductionTools(BoundTools):
             if kind == "commits" and self.settings.agent_commit_fix_only
             else None
         )
+        k = max(SEARCH_K, self.settings.agent_commit_k) if kind == "commits" else SEARCH_K
         if kind == "commits" and self.settings.reranker_mode == "on":
             try:
                 return self.retriever.search(
-                    self.repo, query, kind=kind, k=SEARCH_K, filters=filters, rerank=True
+                    self.repo, query, kind=kind, k=k, filters=filters, rerank=True
                 )
             except RuntimeError:
                 self.rerank_failures += 1
         return self.retriever.search(
-            self.repo, query, kind=kind, k=SEARCH_K, filters=filters, rerank=False
+            self.repo, query, kind=kind, k=k, filters=filters, rerank=False
         )
 
     rerank_failures = 0
+
+    def _compare_refs(self, ref_a: str, ref_b: str, limit: int = COMPARE_LIMIT) -> dict[str, Any]:
+        """Commits between two refs, newest first, with the total. Authors by name, never email."""
+        total, entries = commits_between(
+            self.checkout, ref_a, ref_b, limit=min(limit, COMPARE_LIMIT), settings=self.settings
+        )
+        return redact(
+            {
+                "from": ref_a,
+                "to": ref_b,
+                "total_commits": total,
+                "shown": [
+                    {
+                        "sha": e.sha[:12],
+                        "author": e.author_name,
+                        "date": e.author_date,
+                        "subject": e.subject,
+                        "pr": e.pr_number,
+                    }
+                    for e in entries
+                ],
+            }
+        )
 
     def _file_history(
         self, path: str | None = None, symbol: str | None = None, limit: int = HISTORY_LIMIT
@@ -126,6 +237,8 @@ class ProductionTools(BoundTools):
         the symbol table; an ambiguous or unknown name is an error that lists what exists, so the
         model can pick a path instead of guessing one."""
         function: str | None = None
+        lines: tuple[int, int] | None = None
+        shown = min(limit, HISTORY_LIMIT)
         if symbol:
             found = self.symbols.get_symbol(self.repo, symbol, path=path, limit=10)
             if not found:
@@ -139,17 +252,21 @@ class ProductionTools(BoundTools):
                     "call again with the path"
                 )
             path, function = paths[0], found[0].qualname.rpartition(".")[2]
+            # By line range, not name: `git log -L :name:` cannot find an indented method.
+            lines = (found[0].start_line, found[0].end_line)
         if not path:
             raise GitToolError("give a path or a symbol")
         entries = file_history(
             self.checkout,
             path,
             function=function,
-            limit=min(limit, HISTORY_LIMIT),
+            lines=lines,
+            limit=shown + 1,  # one more than shown: tells a partial list from a whole one
             ref=self.pin,
             settings=self.settings,
         )
-        return redact(
+        partial = len(entries) > shown
+        rows = redact(
             [
                 {
                     "sha": e.sha[:12],
@@ -160,9 +277,13 @@ class ProductionTools(BoundTools):
                     "path": path,
                     "function": function,
                 }
-                for e in entries
+                for e in entries[:shown]
             ]
         )
+        if partial:
+            note = f"only the newest {shown} changes are shown; older ones exist: say it is partial"
+            rows.append({"note": note})
+        return rows
 
     def _with_pr_commits(self, record: Any) -> Any:
         """Add the PR's own commits next to its merge commit, which holds no change itself."""
@@ -255,11 +376,17 @@ class ProductionTools(BoundTools):
             return rows
         if name == "get_pr":
             return self._with_pr_commits(super().execute(name, args))
+        if name in RENAME_TOOLS and self.settings.agent_prompt_variant in HISTORY_TOOL_VARIANTS:
+            return self._following(name, args)
         if name not in (*ADDED_TOOLS, *HISTORY_TOOLS):
             return super().execute(name, args)
         validate_arguments(args, production_schemas(file_history=True)[name]["parameters"])
         if name == "file_history":
             return self._file_history(**args)
+        if name == "compare_refs":
+            return self._compare_refs(**args)
+        if name == "find_issues":
+            return self._find_issues(**args)
         if name == "get_references":
             return redact(self.db.references(self.repo, **args))
         if name == "find_callees":
@@ -274,7 +401,41 @@ class ProductionTools(BoundTools):
             return [
                 {"text": h.document.page_content, "metadata": h.document.metadata} for h in hits
             ]
-        return [commit_row(h.document) for h in hits]
+        full = hits[:SEARCH_K]
+        rows = [commit_row(h.document) for h in full]
+        if self.settings.agent_prompt_variant in HISTORY_TOOL_VARIANTS:
+            for row, hit in zip(rows, full, strict=True):
+                row["first_release"] = self._first_release(str(hit.document.metadata["commit_sha"]))
+        # A wider shortlist (agent_commit_k > 5): the rest are one-liners, so 15 to 20 candidates
+        # cost about what 5 full ones do.
+        return rows + [commit_brief(h.document) for h in hits[SEARCH_K:]]
+
+    def _first_release(self, sha: str) -> str:
+        """The earliest tag containing the commit, or "unreleased". A hit's release is what tells
+        'introduced in v2.3' from 'was already in v2.1': section 1 bug-3 named a commit that had
+        shipped two releases earlier. Empty when git cannot say."""
+        try:
+            tags = releases_containing(self.checkout, sha, settings=self.settings)
+        except Exception:
+            return ""
+        return tags[0].tag if tags else "unreleased"
+
+
+def commit_brief(document: Any) -> dict[str, Any]:
+    """A shortlist row: short SHA, the commit's subject, and the files and symbols it touches."""
+    meta = document.metadata
+    lines = document.page_content.split("\n", 3)
+    symbols = next((x[len("Symbols: ") :] for x in lines[:3] if x.startswith("Symbols: ")), "")
+    return redact(
+        {
+            "sha": str(meta["commit_sha"])[:12],
+            "date": str(meta.get("author_date", ""))[:10],
+            "author": str(meta.get("author_name", ""))[:COMMIT_AUTHOR_CHARS],
+            "subject": lines[0][:COMMIT_BRIEF_SUBJECT],
+            "files_changed": str(meta.get("files_changed", ""))[:COMMIT_BRIEF_FIELD],
+            "symbols": symbols[:COMMIT_BRIEF_FIELD],
+        }
+    )
 
 
 def commit_row(document: Any) -> dict[str, Any]:
@@ -284,6 +445,8 @@ def commit_row(document: Any) -> dict[str, Any]:
         {
             "sha": str(meta["commit_sha"])[:12],
             "is_fix": meta.get("is_fix", "false"),
+            "date": str(meta.get("author_date", ""))[:10],
+            "author": str(meta.get("author_name", ""))[:COMMIT_AUTHOR_CHARS],
             "files_changed": str(meta.get("files_changed", ""))[:300],
             "text": document.page_content[:COMMIT_TEXT_CHARS],
         }

@@ -1,0 +1,478 @@
+# Section 1 sample questions: history_grounded_snap_abst1_toolerr1
+
+32 questions, 1 flagged by the automatic checks. Read the flagged ones first; an unflagged answer has only passed the citation checks, not been verified.
+
+| id | category | flags |
+|---|---|---|
+| arch-1 | architecture | none |
+| arch-2 | architecture | none |
+| arch-3 | architecture | none |
+| arch-4 | architecture | none |
+| explain-1 | explain | none |
+| explain-2 | explain | none |
+| explain-3 | explain | none |
+| explain-4 | explain | none |
+| bug-1 | bug report | none |
+| bug-2 | bug report | none |
+| bug-3 | bug report | none |
+| nav-1 | navigational | none |
+| nav-2 | navigational | none |
+| impact-1 | impact | none |
+| impact-2 | impact | none |
+| hist-1 | change history | none |
+| hist-2 | change history | none |
+| people-1 | people | none |
+| people-2 | people | none |
+| people-3 | people | none |
+| people-4 | people | none |
+| pr-1 | pull requests | none |
+| pr-2 | pull requests | none |
+| pr-3 | pull requests | 1 |
+| issue-1 | issues | none |
+| rel-1 | releases | none |
+| rel-2 | releases | none |
+| rel-3 | releases | none |
+| stats-1 | stats | none |
+| stats-2 | stats | none |
+| onboard-1 | onboarding | none |
+| oos-1 | out of scope | none |
+
+## arch-1 (architecture, code)
+
+**Q:** Give me a high-level overview of this repo's architecture. What are the main modules and how do they talk to each other?
+
+**A:** This is the psf/requests HTTP library. The public API in src/requests/api.py:1-21 exposes convenience functions (get, post, etc.) that build a Session and call it. The Session class in src/requests/sessions.py:442-488 holds per-session state (headers, auth, proxies, hooks, cookies) and its send method (src/requests/sessions.py:752-799) takes a PreparedRequest, picks the right transport adapter via get_adapter, calls adapter.send, then dispatches response hooks and persists cookies. Request/PreparedRequest/Response live in src/requests/models.py:378-422, where PreparedRequest holds the exact bytes (method, url, headers, body, hooks) to send. Transport is abstracted by BaseAdapter (src/requests/adapters.py:122-155) with a send/close interface, implemented by HTTPAdapter (src/requests/adapters.py:158-199 and 634-679) which uses urllib3 connection pools to actually perform the HTTP/HTTPS request and return a Response. So the flow is: api -> Session -> PreparedRequest -> HTTPAdapter (urllib3) -> Response, with hooks and cookies applied along the way.
+
+**Sources shown to the model:**
+- src/requests/packages.py:1-23 <module>
+- src/requests/help.py:67-132 info
+- src/requests/__init__.py:188-219 <module>
+- docs/conf.py:108-158 <module>
+- docs/conf.py:252-317 <module>
+- src/requests/sessions.py:442-488 Session.__init__
+- src/requests/api.py:1-21 <module>
+- src/requests/adapters.py:158-199 HTTPAdapter
+
+Tools: search_code, search_code; 36.8 s
+
+## arch-2 (architecture, code)
+
+**Q:** How does a request flow from Session.request to the network connection?
+
+**A:** A request flows from Session.request to the network connection as follows: Session.request prepares the request into a PreparedRequest via prepare_request, which merges the request's settings with the session's settings (cookies, auth, headers, params, hooks) and calls PreparedRequest.prepare (src/requests/sessions.py:505-555). It then calls Session.send with the PreparedRequest (src/requests/sessions.py:752-799). In send, defaults for stream, verify, cert and proxies are set, the appropriate adapter is chosen via self.get_adapter(url=request.url), and the request is dispatched to the network with r = adapter.send(request, **kwargs) (src/requests/sessions.py:752-799). The HTTPAdapter.send method performs the actual network transmission and returns a Response (src/requests/adapters.py:634-679). Back in Session.send, if allow_redirects is true, resolve_redirects is used to follow redirects, each of which calls self.send again with allow_redirects=False (src/requests/sessions.py:801-829 and src/requests/sessions.py:282-307); response hooks are dispatched and cookies are extracted into the session's cookie jar (src/requests/sessions.py:752-799).
+
+**Sources shown to the model:**
+- src/requests/sessions.py:505-555 Session.__enter__
+- src/requests/sessions.py:370-392 SessionRedirectMixin.rebuild_method
+- src/requests/api.py:48-71 request
+- src/requests/sessions.py:908-920 session
+- src/requests/sessions.py:752-799 Session.send
+- src/requests/models.py:378-422 PreparedRequest.__init__
+- src/requests/adapters.py:634-679 HTTPAdapter.send
+- src/requests/cookies.py:114-161 MockResponse
+
+Tools: search_code, search_code, search_code; 13.6 s
+
+## arch-3 (architecture, code)
+
+**Q:** Where is authentication handled, and what happens to the request before it is sent?
+
+**A:** Authentication is handled in src/requests/auth.py, which contains the authentication handlers (src/requests/auth.py:1-31). Before a request is sent, the auth data is prepared by PreparedRequest.prepare_auth, which sets the Authorization header (src/requests/models.py:654-697); for example HTTPBasicAuth.__call__ attaches the basic auth string to r.headers["Authorization"] (src/requests/auth.py:85-121). On redirects, SessionRedirectMixin.rebuild_auth strips or reapplies authentication to avoid leaking credentials (src/requests/sessions.py:309-332).
+
+**Sources shown to the model:**
+- src/requests/auth.py:85-121 HTTPBasicAuth
+- src/requests/sessions.py:309-332 SessionRedirectMixin.rebuild_auth
+- src/requests/auth.py:124-155 HTTPDigestAuth.__init__
+- src/requests/auth.py:1-31 <module>
+- src/requests/sessions.py:442-488 Session.__init__
+- src/requests/models.py:654-697 PreparedRequest.prepare_content_length
+- src/requests/adapters.py:565-611 HTTPAdapter.request_url
+- src/requests/cookies.py:31-87 MockRequest.__init__
+
+Tools: search_code; 5.8 s
+
+## arch-4 (architecture, code)
+
+**Q:** What design pattern do the transport adapters use?
+
+**A:** The transport adapters use the Strategy pattern: a common BaseAdapter interface defines send and close, and concrete adapters like HTTPAdapter implement it so a Session can swap the transport strategy per URL prefix (src/requests/adapters.py:122-155, src/requests/adapters.py:158-199, src/requests/sessions.py:888-905).
+
+**Sources shown to the model:**
+- src/requests/adapters.py:122-155 BaseAdapter
+- src/requests/adapters.py:158-199 HTTPAdapter
+- src/requests/sessions.py:888-905 Session.mount
+- src/requests/adapters.py:1-67 <module>
+- src/requests/sessions.py:831-886 Session.merge_environment_settings
+- src/requests/auth.py:85-121 HTTPBasicAuth
+- src/requests/models.py:72-105 <module>
+- src/requests/utils.py:85-93 <module>
+
+Tools: search_code; 5.4 s
+
+## explain-1 (explain, code)
+
+**Q:** Explain what `rebuild_auth` does, step by step, and why it might be written this way.
+
+**A:** rebuild_auth is a method on SessionRedirectMixin that handles authentication when a request is redirected, to avoid leaking credentials while preserving them where safe (src/requests/sessions.py:309-332). Step by step: (1) It takes the prepared redirect request and the response that caused the redirect, and asserts both are prepared, then reads the original request from response.request (src/requests/sessions.py:309-332). (2) It extracts the prepared request's headers and both the original and new URLs (src/requests/sessions.py:309-332). (3) If the request has an Authorization header and should_strip_auth(original_url, url) is true — meaning the redirect crosses to a different host — it deletes the Authorization header so credentials are not sent to a new host (src/requests/sessions.py:309-332). (4) It then checks .netrc for credentials for the new host via get_netrc_auth(url), but only if self.trust_env is set; if such auth exists it calls prepared_request.prepare_auth(new_auth) to reapply it (src/requests/sessions.py:309-332). It is written this way because a redirect to a different origin could otherwise leak the original credentials to an untrusted host, so the method strips auth on cross-host redirects while still allowing .netrc-based auth to be re-applied for the new host when the environment is trusted (src/requests/sessions.py:309-332).
+
+**Sources shown to the model:**
+- src/requests/sessions.py:309-332 SessionRedirectMixin.rebuild_auth
+- src/requests/auth.py:321-354 HTTPDigestAuth.__call__
+- src/requests/auth.py:124-155 HTTPDigestAuth.__init__
+- src/requests/auth.py:268-319 HTTPDigestAuth.handle_redirect
+- src/requests/auth.py:85-121 HTTPBasicAuth
+- src/requests/models.py:654-697 PreparedRequest.prepare_content_length
+- src/requests/adapters.py:403-440 HTTPAdapter.build_connection_pool_key_attributes
+- src/requests/utils.py:1040-1095 prepend_scheme_if_needed
+
+Tools: search_code; 8.5 s
+
+## explain-2 (explain, code)
+
+**Q:** Who calls `get_environ_proxies`, and what happens if it raises?
+
+**A:** get_environ_proxies is called by Session.merge_environment_settings (src/requests/sessions.py:831-886), which invokes it when self.trust_env is true and then merges the returned dict into the proxies mapping via setdefault; it is also called by resolve_proxies (src/requests/utils.py:911-962), which uses the returned dict to set a default proxy for the URL's scheme when trust_env is set and the URL is not bypassed, and by the tests TestGetEnvironProxies.test_bypass, test_not_bypass, test_bypass_no_proxy_keyword and test_not_bypass_no_proxy_keyword (tests/test_utils.py:242, 253, 265, 282). If it raises, no caller catches the exception: in merge_environment_settings the call is not wrapped in try/except, so the exception propagates out of the method (src/requests/sessions.py:831-886); likewise in resolve_proxies the call is not wrapped, so the exception propagates to the caller of resolve_proxies (src/requests/utils.py:911-962). The function itself (src/requests/utils.py:873-908) simply returns {} when should_bypass_proxies is true, otherwise getproxies(), and does not catch errors from getproxies().
+
+**Sources shown to the model:**
+- src/requests/sessions.py:831-886 Session.merge_environment_settings
+- src/requests/utils.py:873-908 get_environ_proxies
+- src/requests/utils.py:911-962 resolve_proxies
+- src/requests/sessions.py:334-368 SessionRedirectMixin.rebuild_proxies
+- src/requests/sessions.py:1-73 <module>
+- src/requests/adapters.py:512-563 HTTPAdapter.get_connection
+- src/requests/compat.py:83-115 <module>
+- src/requests/__init__.py:188-219 <module>
+
+Tools: find_callers, search_code; 6.7 s
+
+## explain-3 (explain, code)
+
+**Q:** What's the difference between `Session.send` and `Session.request`?
+
+**A:** Session.request is the high-level entry point: it takes a method, URL and optional parameters (params, data, json, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert), constructs a Request, prepares it with the session's settings, and then sends it, returning a Response (src/requests/sessions.py:557-600). Session.send is the lower-level method: it accepts an already-constructed PreparedRequest (raising ValueError if given a plain Request), applies session defaults (stream, verify, cert, proxies), dispatches it through the appropriate adapter, runs response hooks, persists cookies, and resolves redirects, returning the final Response (src/requests/sessions.py:752-799, src/requests/sessions.py:801-829). In short, request builds and prepares the request for you, while send transmits a PreparedRequest you have already prepared (src/requests/models.py:378-422).
+
+**Sources shown to the model:**
+- src/requests/sessions.py:752-799 Session.send
+- src/requests/sessions.py:801-829 Session.send
+- src/requests/sessions.py:695-740 Session.post
+- src/requests/sessions.py:505-555 Session.__enter__
+- src/requests/sessions.py:557-600 Session.request
+- src/requests/api.py:48-71 request
+- src/requests/models.py:378-422 PreparedRequest.__init__
+- src/requests/adapters.py:634-679 HTTPAdapter.send
+
+Tools: search_code; 5.6 s
+
+## explain-4 (explain, code)
+
+**Q:** `super_len` has no docstring. Write one based on how it's used.
+
+**A:** """Return the length of a request body, supporting strings, bytes, file-like objects and other objects with a known size. It determines the total length via __len__, a .len attribute, or os.fstat on the object's fileno, then subtracts the current position (from .tell(), or by seeking to the end for seekable objects) and returns max(0, total_length - current_position), falling back to 0 when the length cannot be determined (src/requests/utils.py:160-228). It is used to compute the Content-Length header for a request body (src/requests/models.py:654-697) and for streamed/iterable bodies, where a zero or failed length falls back to Transfer-Encoding: chunked (src/requests/models.py:603-652)."""
+
+**Sources shown to the model:**
+- src/requests/utils.py:160-199 super_len
+- src/requests/utils.py:201-228 super_len
+- src/requests/models.py:654-697 PreparedRequest.prepare_content_length
+- src/requests/models.py:72-105 <module>
+- src/requests/models.py:603-652 PreparedRequest.prepare_body
+- src/requests/_types.py:1-64 SupportsRead
+- src/requests/auth.py:34-82 _basic_auth_str
+- src/requests/compat.py:1-82 _resolve_char_detection
+
+Tools: get_symbol, search_code; 5.9 s
+
+## bug-1 (bug report, exact)
+
+**Q:** Users report that response.text shows garbled characters for a page with no charset in its headers. Has something like this been fixed before?
+
+**A:** Yes, this has been addressed before. When a response has no charset in its headers, Response.text falls back to an auto-detected encoding: if self.encoding is None it uses self.apparent_encoding (guessed via charset_normalizer or chardet), and if that is still unavailable it decodes with errors="replace" (src/requests/models.py:1034-1089). The header-based encoding itself is produced by get_encoding_from_headers, which returns None when there is no content-type, ISO-8859-1 for text types, and utf-8 for application/json (src/requests/utils.py:569-630). A related earlier fix for garbled text from a UTF-8 BOM was added in commit 19cff44ec1b8 and later reverted in commit fd13816d015c (both in v2.23.0), so the BOM-specific handling is not currently present.
+
+**Sources shown to the model:**
+- src/requests/models.py:1034-1089 Response.content
+- src/requests/utils.py:1008-1037 guess_json_utf
+- src/requests/utils.py:569-630 get_encoding_from_headers
+- src/requests/utils.py:522-566 get_encodings_from_content
+- src/requests/help.py:1-32 <module>
+- src/requests/compat.py:1-82 _resolve_char_detection
+- src/requests/__init__.py:1-57 <module>
+- src/requests/cookies.py:114-161 MockResponse
+
+Tools: search_commits, search_code; 11.1 s
+
+## bug-2 (bug report, exact)
+
+**Q:** Timeouts are ignored when proxies are set. Find commits that touched proxy and timeout handling.
+
+**A:** c93419f5125b, c64c0ab12151, c2aeaa3959b5, dfa41afd43a1, d2d576b6b110
+
+**Sources shown to the model:**
+- commit c93419f5125b TimeoutSauce!
+- commit 6d0315f78fb2 Clarify timeout behavior in quickstart doc
+- commit 58e3dd9de85c fix urllib3 bug
+- commit d2d576b6b110 Update urllib3 to a27758625e4169330fcf965652b1093faf5aaaa2
+- commit c64c0ab12151 prototype for new urllib3 timeouts
+- commit c2aeaa3959b5 Add support for connect timeouts
+- commit c64c0ab12151 prototype for new urllib3 timeouts
+- commit dfa41afd43a1 Document Timeout behaviour
+
+Tools: search_commits, search_commits; 5.9 s
+
+## bug-3 (bug report, exact)
+
+**Q:** Which commit introduced the redirect behaviour change in v2.3?
+
+**A:** 969195ad55f9
+
+**Sources shown to the model:**
+- commit 969195ad55f9 Clarify our 1.2.1 behaviour change.
+- commit 9968a10fcfad Typo in changelog.
+- commit 1e1fb1e7a81b Redirect history fix ()
+- commit 470af31f4a5e Handle 301s 'properly'.
+- commit ec3a2e6f04a6 rename resume/resume_incomplete to permanent_redirect according to rfc7238
+
+Tools: search_commits; 2.9 s
+
+## nav-1 (navigational, code)
+
+**Q:** Where is `DEFAULT_REDIRECT_LIMIT` defined and where is it used?
+
+**A:** DEFAULT_REDIRECT_LIMIT is defined as an int equal to 30 in src/requests/models.py:72-105. It is used in Session.__init__ to set self.max_redirects = DEFAULT_REDIRECT_LIMIT (src/requests/sessions.py:442-488); that max_redirects value is then checked in SessionRedirectMixin.resolve_redirects to raise TooManyRedirects when the redirect count is exceeded (src/requests/sessions.py:186-235).
+
+**Sources shown to the model:**
+- src/requests/sessions.py:127-152 SessionRedirectMixin.send
+- src/requests/sessions.py:186-235 SessionRedirectMixin.resolve_redirects
+- src/requests/models.py:72-105 <module>
+- src/requests/auth.py:268-319 HTTPDigestAuth.handle_redirect
+- src/requests/sessions.py:395-440 Session
+- src/requests/utils.py:85-93 <module>
+- src/requests/adapters.py:239-267 HTTPAdapter.init_poolmanager
+- src/requests/status_codes.py:101-128 _init
+
+Tools: get_symbol, search_code, find_callers, search_code; 8.0 s
+
+## nav-2 (navigational, code)
+
+**Q:** Show me all the places that read environment variables.
+
+**A:** Environment variables are read in: src/requests/utils.py:763-807 (set_environ reads os.environ.get(env_name)), src/requests/utils.py:231-287 (get_netrc_auth reads os.environ.get("NETRC")), and src/requests/sessions.py:831-886 (Session.merge_environment_settings reads os.environ.get("REQUESTS_CA_BUNDLE") and os.environ.get("CURL_CA_BUNDLE")).
+
+**Sources shown to the model:**
+- src/requests/utils.py:763-807 is_valid_cidr
+- src/requests/utils.py:873-908 get_environ_proxies
+- src/requests/utils.py:911-962 resolve_proxies
+- src/requests/utils.py:231-287 get_netrc_auth
+- src/requests/sessions.py:831-886 Session.merge_environment_settings
+- docs/conf.py:108-158 <module>
+- src/requests/_types.py:1-64 SupportsRead
+- src/requests/cookies.py:293-346 RequestsCookieJar.items
+
+Tools: search_code; 4.3 s
+
+## impact-1 (impact, code)
+
+**Q:** What breaks if I change the signature of `Session.send`?
+
+**A:** Changing the signature of Session.send (def send(self, request: PreparedRequest, **kwargs: Any) -> Response, src/requests/sessions.py:752-799) would break its internal callers and the public API: Session.request calls self.send (src/requests/sessions.py:557-600), and SessionRedirectMixin.resolve_redirects calls self.send (src/requests/sessions.py:292). It also breaks external callers that pass a PreparedRequest plus kwargs such as stream/verify/cert/proxies/allow_redirects, e.g. the tests that call s.send / session.send (tests/test_requests.py:325, tests/test_requests.py:622, tests/test_requests.py:630, tests/test_requests.py:639, tests/test_requests.py:2652). The method relies on **kwargs to set defaults (stream, verify, cert, proxies) and to pop allow_redirects (src/requests/sessions.py:752-799), so removing or renaming those parameters would break request dispatch, redirect resolution and hook dispatch.
+
+**Sources shown to the model:**
+- src/requests/sessions.py:752-799 Session.send
+- src/requests/sessions.py:695-740 Session.post
+- src/requests/sessions.py:801-829 Session.send
+- src/requests/sessions.py:908-920 session
+- src/requests/sessions.py:557-600 Session.request
+- src/requests/adapters.py:681-693 HTTPAdapter.send
+- src/requests/models.py:378-422 PreparedRequest.__init__
+- src/requests/auth.py:321-354 HTTPDigestAuth.__call__
+
+Tools: search_code, find_callers; 7.2 s
+
+## impact-2 (impact, docs)
+
+**Q:** Which third-party libraries does requests depend on, and which versions are pinned?
+
+**A:** requests depends on four third-party libraries, all with version ranges (not exact pins): charset_normalizer>=2,<4, idna>=2.5,<4, urllib3>=1.26,<3, and certifi>=2023.5.7 (pyproject.toml:1-24). None are pinned to an exact version; they use minimum/maximum bounds. For documentation, Sphinx==7.2.6 is exactly pinned (docs/requirements.txt:1-3). Development/test dependencies include pytest>=2.8.0,<10, pytest-httpbin==2.1.0, httpbin~=0.10.0, trustme, and wheel (requirements-dev.txt:1-7), where pytest-httpbin is exactly pinned to 2.1.0 and httpbin uses a compatible release ~=0.10.0.
+
+**Sources shown to the model:**
+- docs/requirements.txt:1-3 requirements.txt
+- requirements-dev.txt:1-7 requirements-dev.txt
+- README.md:30-38 Requests > Installing Requests and Supported Versions
+- pyproject.toml:1-24 pyproject.toml
+- pyproject.toml:58-115 pyproject.toml
+
+Tools: search_docs; 3.5 s
+
+## hist-1 (change history, exact)
+
+**Q:** Show me the history of `prepare_url`: who changed it and what each change did.
+
+**A:** History of prepare_url in src/requests/models.py (newest first, partial — only the 8 most recent changes are shown, older ones exist): 561e4b6889f5 by Nate Prewitt (2026-05-03, PR #7272) 'Add inline types to Requests'; bda7f0171f8b by Sergey Lyapustin (2022-06-29, PR #6188) 'Fixed warnings message to suggest using secure protocol'; 2a6f290bc093 by Nate Prewitt (2022-04-29, PR #6095) 'Add automatic code formatting to Requests'; 8bce583b9547 by Nate Prewitt (2022-03-25) 'Farewell, sweet Concorde!'; d09659997cd1 by Ian Stapleton Cordasco (2021-12-28) 'Merge pull request #5414 from mondeja/5367'; 658c10e84a46 by Álvaro Mondéjar (2020-04-05) 'Raise InvalidURL if hosts starts with "." as was reported at #5367'; 4246792b818c by Nate Prewitt (2021-12-28) 'Fix erroneous use of "schema" instead of "scheme"'; 9cdf29410778 by Nihaal (2019-08-13) 'Updated references to previous requests/requests GitHub path'.
+
+Tools: file_history, file_history; 4.8 s
+
+## hist-2 (change history, exact)
+
+**Q:** What were the three most recent changes to src/requests/adapters.py?
+
+**A:** The three most recent changes to src/requests/adapters.py are: 1) 661970d171d9 by Joren Hammudoglu on 2026-06-08, 'Disable commonly ignored Pyright linting rules (#7497)'; 2) fd628095d7b9 by typhon8 on 2026-05-10, 'Preserve leading slashes in request path_url (#7315)'; 3) 561e4b6889f5 by Nate Prewitt on 2026-05-03, 'Add inline types to Requests (#7272)'.
+
+Tools: file_history; 2.4 s
+
+## people-1 (people, exact)
+
+**Q:** Who wrote most of src/requests/auth.py?
+
+**A:** Kenneth Reitz
+
+Tools: top_contributors; 2.2 s
+
+## people-2 (people, exact)
+
+**Q:** Who last touched lines 40-80 of src/requests/sessions.py?
+
+**A:** Joren Hammudoglu
+
+Tools: blame; 1.8 s
+
+## people-3 (people, exact)
+
+**Q:** Who knows the sessions code best?
+
+**A:** Kenneth Reitz
+
+**Sources shown to the model:**
+- src/requests/sessions.py:908-920 session
+- src/requests/sessions.py:1-73 <module>
+- src/requests/sessions.py:395-440 Session
+- src/requests/sessions.py:490-503 Session.__init__
+- src/requests/sessions.py:888-905 Session.mount
+- src/requests/cookies.py:191-227 RequestsCookieJar.get
+- src/requests/api.py:1-21 <module>
+- src/requests/auth.py:124-155 HTTPDigestAuth.__init__
+
+Tools: top_contributors, search_code, top_contributors; 4.6 s
+
+## people-4 (people, exact)
+
+**Q:** Who opened, who reviewed and who merged PR #5856?
+
+**A:** Opened by steveberdy; reviewed by sigmavirus24 and nateprewitt; merged by nateprewitt.
+
+Tools: get_pr; 2.0 s
+
+## pr-1 (pull requests, exact)
+
+**Q:** What's PR #7272 about? Give me its description.
+
+**A:** PR #7272, titled "Add inline types to Requests", adds type annotations throughout the Requests library to codify the type contract alongside the code. It is a path for what inline typing in Requests could look like, aiming to establish which APIs are intended to support, make more reasoned decisions about code changes, and make using Requests in a modern development environment easier. The package passes strict type checking with pyright (0 errors), with a few internal decisions deferred for maintainer/community discussion. Key design decisions include using cast() over assert/isinstance for type narrowing to avoid breaking downstream code at runtime, a new _types.py module centralizing Protocols, type aliases, and TypeVars, SupportsRead/SupportsItems as @runtime_checkable Protocols replacing hasattr checks, is_prepared() as a TypeIs guard that is a no-op at runtime (always returns True), and about 100 documented type suppressions. It is related to issue #7271 (RFC: Adding inline type annotations to Requests).
+
+Tools: get_pr; 3.6 s
+
+## pr-2 (pull requests, exact)
+
+**Q:** Which PR switched the chardet dependency to charset_normalizer?
+
+**A:** - 5797
+
+Tools: search_prs; 2.8 s
+
+## pr-3 (pull requests, exact)
+
+**Q:** What did reviewers push back on in #5856?
+
+**A:** No relevant implementation was found in the retrieved context.
+
+**Flags:**
+- abstained
+
+Tools: get_pr, get_references; 2.6 s
+
+## issue-1 (issues, exact)
+
+**Q:** Are there open bugs about timeouts?
+
+**A:** Yes, there are 10 open issues about timeouts, including #7639, #7631, #7350, #5544, #5430, #5263, #5185, #4914, #4590, and #2392.
+
+Tools: find_issues; 1.8 s
+
+## rel-1 (releases, exact)
+
+**Q:** What changed between v2.30.0 and v2.31.0?
+
+**A:** v2.31.0 contains 5 commits not in v2.30.0: the v2.31.0 tag commit (147c8511ddbf), a merge of a security advisory PR (74ea7cf7a6a2), testing on pypy 3.8/3.9 on windows and macos (#6424, 302225334678), testing on py3.12 (#6448, b639e66c8165), and a small typo fix (#6452, d3d504436ef0).
+
+Tools: compare_refs; 2.5 s
+
+## rel-2 (releases, exact)
+
+**Q:** Which release first contained the fix in PR #5856?
+
+**A:** v2.27.0
+
+Tools: get_pr, releases_containing; 3.1 s
+
+## rel-3 (releases, exact)
+
+**Q:** When did the `json=` parameter ship?
+
+**A:** 2.4.2
+
+**Sources shown to the model:**
+- src/requests/models.py:1091-1142 Response.json
+- src/requests/_types.py:177-188 GetKwargs
+- src/requests/models.py:576-602 PreparedRequest.prepare_body
+- src/requests/api.py:117-151 post
+- src/requests/exceptions.py:42-99 JSONDecodeError
+- src/requests/utils.py:1008-1037 guess_json_utf
+- src/requests/cookies.py:531-576 morsel_to_cookie
+- src/requests/compat.py:1-82 _resolve_char_detection
+
+Tools: search_code, search_commits; 5.7 s
+
+## stats-1 (stats, exact)
+
+**Q:** Who are the top 5 contributors?
+
+**A:** Kenneth Reitz, Cory Benfield, Nate Prewitt, Ian Cordasco, dependabot[bot]
+
+Tools: top_contributors; 1.4 s
+
+## stats-2 (stats, exact)
+
+**Q:** Which files change most often?
+
+**A:** src/requests/models.py (735 commits), tests/integration/test_requests.py (368 commits), src/requests/sessions.py (346 commits)
+
+Tools: change_frequency; 1.4 s
+
+## onboard-1 (onboarding, docs)
+
+**Q:** How do I install requests and run its tests?
+
+**A:** To install Requests, run `python -m pip install requests` (docs/user/install.rst:10-15, README.md:30-38). To run its tests, use the Makefile: `make init` installs dev dependencies via `python -m pip install -r requirements-dev.txt`, and `make test` runs `python -m pytest tests` (Makefile:1-27).
+
+**Sources shown to the model:**
+- docs/user/install.rst:10-15 Installation of Requests > $ python -m pip install requests
+- docs/user/install.rst:1-7 Installation of Requests
+- README.md:30-38 Requests > Installing Requests and Supported Versions
+- docs/user/quickstart.rst:1-17 Quickstart
+- Makefile:1-27 Makefile
+
+Tools: search_docs; 2.5 s
+
+## oos-1 (out of scope, out_of_scope)
+
+**Q:** Show me all the places we write to the cache.
+
+**A:** No relevant implementation was found in the retrieved context.
+
+**Sources shown to the model:**
+- src/requests/structures.py:20-74 CaseInsensitiveDict.__init__
+- src/requests/cookies.py:229-291 RequestsCookieJar.set
+- src/requests/cookies.py:579-625 cookiejar_from_dict
+- src/requests/cookies.py:348-399 RequestsCookieJar.__iter__
+- src/requests/cookies.py:479-528 _copy_cookie_jar
+- src/requests/status_codes.py:1-59 <module>
+- src/requests/utils.py:290-338 extract_zipped_paths
+- src/requests/sessions.py:888-905 Session.mount
+
+Tools: search_code, search_code; 6.9 s

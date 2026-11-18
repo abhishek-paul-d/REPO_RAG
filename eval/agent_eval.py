@@ -37,6 +37,7 @@ RESULTS_DIR = ROOT / "eval/agent_eval_results"
 GOLDEN = ROOT / "eval/datasets/requests_qa.jsonl"
 ARCH_SOURCE = ROOT / "eval/datasets/architecture_v1/requests.jsonl"
 ARCH_DATASET = ROOT / "eval/datasets/agent_eval_architecture_v1.jsonl"
+COMMIT_FULL_DATASET = ROOT / "eval/datasets/agent_eval_commit_full_v1.jsonl"
 BUGFIX = ROOT / "eval/datasets/phase5_bugfix_v2/repos/psf__requests/pairs.jsonl"
 SAMPLE = {
     "pr_fact": 8, "closes": 3, "refs_out": 5, "refs_in": 5, "kind_issue": 3, "kind_pr": 2,
@@ -185,6 +186,21 @@ def build_records() -> list[dict[str, Any]]:
     return records
 
 
+# Label corrections from the owner's review of docs/ARCHITECTURE_LABEL_REVIEW.md (2026-11-18), applied
+# here because architecture_v1/ is frozen (freeze.json). Each note was checked against psf/requests at
+# 611c616. 04: models + sessions alone let "models.py" pass without saying who coordinates, so both are
+# needed. 11: adapters.py only passes the finished body on; encoding is models.py (_encode_params,
+# _encode_files) and utils.py (to_key_val_list, guess_filename), and both are needed (the reviewer did
+# not give a need for the two-file case; 2 is my choice, following their concern for 04).
+ARCH_LABEL_REVIEW: dict[str, dict[str, Any]] = {
+    "requests-architecture-04": {"need": 2},
+    "requests-architecture-11": {
+        "gold_files": ["src/requests/models.py", "src/requests/utils.py"],
+        "need": 2,
+    },
+}
+
+
 def build_architecture_records() -> list[dict[str, Any]]:
     """The 15 psf/requests architecture questions of architecture_v1, as agent questions.
 
@@ -196,7 +212,8 @@ def build_architecture_records() -> list[dict[str, Any]]:
     records: list[dict[str, Any]] = []
     for line in ARCH_SOURCE.read_text(encoding="utf-8").splitlines():
         row = json.loads(line)
-        files = row["gold_files"]
+        review = ARCH_LABEL_REVIEW.get(row["id"], {})
+        files = review.get("gold_files", row["gold_files"])
         records.append(
             {
                 "id": f"architecture-{len(records) + 1:03d}",
@@ -204,7 +221,7 @@ def build_architecture_records() -> list[dict[str, Any]]:
                 "question": row["question"],
                 "expect": {
                     "gold_files": files,
-                    "need": -(-len(files) // 2),
+                    "need": review.get("need", -(-len(files) // 2)),
                     "source_id": row["id"],
                     "split": row["split"],
                 },
@@ -223,24 +240,35 @@ ARCH_FRESH = [
     ("Which modules decide which proxy a request goes through, and how is it applied to the connection?",
      ["src/requests/sessions.py", "src/requests/utils.py", "src/requests/adapters.py"]),
     ("How do credentials from a netrc file end up on a request when the caller passes no auth?",
-     ["src/requests/utils.py", "src/requests/sessions.py", "src/requests/auth.py"]),
+     ["src/requests/utils.py", "src/requests/sessions.py", "src/requests/auth.py",
+      "src/requests/models.py"]),
     ("Which parts normalise and validate a URL before a request is sent, and what do they raise?",
      ["src/requests/models.py", "src/requests/utils.py", "src/requests/exceptions.py"]),
     ("How does an HTTP error status code become an exception for the caller?",
-     ["src/requests/models.py", "src/requests/exceptions.py", "src/requests/status_codes.py"]),
+     ["src/requests/models.py", "src/requests/exceptions.py"]),
     ("How is a response body decoded as JSON, including guessing its encoding, and which errors surface?",
      ["src/requests/models.py", "src/requests/utils.py", "src/requests/exceptions.py"]),
     ("How does digest authentication answer a 401 challenge, and how is it attached to the response?",
-     ["src/requests/auth.py", "src/requests/models.py", "src/requests/hooks.py"]),
+     ["src/requests/auth.py", "src/requests/models.py", "src/requests/hooks.py",
+      "src/requests/sessions.py"]),
     ("Which parts decide whether a request body is sent with a content length or chunked?",
      ["src/requests/models.py", "src/requests/utils.py", "src/requests/adapters.py"]),
     ("Which components release network connections when a session or a response is closed?",
      ["src/requests/sessions.py", "src/requests/adapters.py", "src/requests/models.py"]),
     ("How is the character encoding of a response chosen when its text is read?",
-     ["src/requests/models.py", "src/requests/utils.py", "src/requests/compat.py"]),
+     ["src/requests/models.py", "src/requests/utils.py", "src/requests/compat.py",
+      "src/requests/adapters.py"]),
     ("Where do the default headers such as the user agent come from, and how do they reach a request?",
      ["src/requests/utils.py", "src/requests/sessions.py", "src/requests/__version__.py"]),
 ]  # fmt: skip
+
+
+# Owner's review, 2026-11-18 (docs/ARCHITECTURE_LABEL_REVIEW.md, checked against the source at 611c616):
+# 002 +models.py (prepare_auth turns the netrc tuple into HTTPBasicAuth), 004 -status_codes.py
+# (raise_for_status never uses `codes`; models + exceptions, both needed), 006 +sessions.py
+# (Session.send runs the digest hook), 009 +adapters.py (build_response sets the first encoding).
+# 005 "optionally also accept compat.py" is not applied. Need stays half rounded up, except 004 (2 files, 2).
+ARCH_FRESH_NEED = {4: 2}
 
 
 def build_architecture_fresh_records() -> list[dict[str, Any]]:
@@ -249,7 +277,11 @@ def build_architecture_fresh_records() -> list[dict[str, Any]]:
             "id": f"archfresh-{n:03d}",
             "type": "architecture",
             "question": question,
-            "expect": {"gold_files": files, "need": -(-len(files) // 2), "split": "fresh"},
+            "expect": {
+                "gold_files": files,
+                "need": ARCH_FRESH_NEED.get(n, -(-len(files) // 2)),
+                "split": "fresh",
+            },
         }
         for n, (question, files) in enumerate(ARCH_FRESH, start=1)
     ]
@@ -271,6 +303,32 @@ def build_architecture() -> None:
         "\n".join(json.dumps(r, ensure_ascii=False) for r in records) + "\n", encoding="utf-8"
     )
     print(f"{len(records)} architecture questions; sha256 {sha256_of(ARCH_DATASET)[:12]}")
+
+
+def build_commit_full() -> None:
+    """Every `test`-split bug -> fix pair of psf/requests as a commit question (113), in pair-id
+    order. The frozen 10-question set is a sample of the same pairs; 113 questions can show a
+    difference of a few questions that 10 cannot. The dev pairs (28) are not used here, so they stay
+    available for choosing a setting."""
+    pairs = [json.loads(line) for line in BUGFIX.read_text(encoding="utf-8").splitlines()]
+    tests = sorted((p for p in pairs if p["split"] == "test"), key=lambda p: p["id"])
+    records = []
+    for number, pair in enumerate(tests, start=1):
+        gold = pair["gold"]
+        shas = ast.literal_eval(gold) if isinstance(gold, str) else gold
+        records.append(
+            {
+                "id": f"commitfull-{number:03d}",
+                "type": "commit",
+                "question": "A user reports the bug below. Was something like this fixed before "
+                "in this repository? If so, which commit?\n\n" + pair["query"][:BUG_CHARS],
+                "expect": {"shas": [s[:12] for s in shas]},
+            }
+        )
+    COMMIT_FULL_DATASET.write_text(
+        "\n".join(json.dumps(r, ensure_ascii=False) for r in records) + "\n", encoding="utf-8"
+    )
+    print(f"{len(records)} commit questions; sha256 {sha256_of(COMMIT_FULL_DATASET)[:12]}")
 
 
 def audit_probes(records: list[dict[str, Any]], clone: Path) -> None:
@@ -328,7 +386,9 @@ def first_kind(answer: str) -> str:
 def score(record: dict[str, Any], result: dict[str, Any]) -> dict[str, Any]:
     """Mechanical pass/fail. A failed run (tool or model error) never passes, not even a probe."""
     kind, expect = record["type"], record["expect"]
-    answer = result["answer"] if isinstance(result["answer"], str) else json.dumps(result["answer"])
+    # Score the model's own text: facts the agent appends to the answer must never change a score.
+    text = result.get("model_answer", result["answer"])
+    answer = text if isinstance(text, str) else json.dumps(text)
     ok = not result["failure"]
     detail = ""
     if kind == "probe":
@@ -409,6 +469,8 @@ def run(
     tool_error_retries: int = 0,
     tool_chars: int | None = None,
     max_input_tokens: int | None = None,
+    commit_k: int | None = None,
+    max_tool_calls: int | None = None,
 ) -> None:
     from repo_rag.agent.remote_llm import RemoteChatModel
     from repo_rag.agent.runtime import build_agent
@@ -429,6 +491,12 @@ def run(
             "agent_citation_snap": citation_snap,
             "agent_abstain_retries": abstain_retries,
             "agent_tool_error_retries": tool_error_retries,
+            **({"agent_commit_k": commit_k} if commit_k else {}),
+            **(
+                {"agent_max_tool_calls": max_tool_calls, "agent_max_turns": max_tool_calls + 1}
+                if max_tool_calls
+                else {}
+            ),
         }
     )
     model = RemoteChatModel(url, token)
@@ -454,6 +522,7 @@ def run(
             "type": record["type"],
             "question": record["question"][:200],
             "answer": result["answer"],
+            "model_answer": result.get("model_answer", result["answer"]),
             "abstain": result["abstain"],
             "failure": result["failure"],
             "error": result["error"],
@@ -496,6 +565,10 @@ def run(
         tag += f"_chars{tool_chars}"
     if max_input_tokens:
         tag += f"_in{max_input_tokens}"
+    if commit_k and commit_k != Settings().agent_commit_k:
+        tag += f"_ck{commit_k}"
+    if max_tool_calls:
+        tag += f"_tc{max_tool_calls}"
     if citation_snap:
         tag += "_snap"
     if abstain_retries:
@@ -516,6 +589,8 @@ def run(
                 "skip_tests": skip_tests,
                 "tool_result_chars": tool_chars or settings.agent_tool_result_chars,
                 "max_input_tokens": served_cap,
+                "commit_k": commit_k or settings.agent_commit_k,
+                "max_tool_calls": max_tool_calls or settings.agent_max_tool_calls,
                 "citation_snap": citation_snap,
                 "abstain_retries": abstain_retries,
                 "tool_error_retries": tool_error_retries,
@@ -547,6 +622,7 @@ def main() -> None:
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("build")
     sub.add_parser("build-architecture")
+    sub.add_parser("build-commit-full")
     sub.add_parser("build-architecture-fresh")
     runner = sub.add_parser("run")
     runner.add_argument("--url", required=True)
@@ -620,11 +696,25 @@ def main() -> None:
         help="the input-token cap the server must report (set on the server, checked here)",
     )
     runner.add_argument(
+        "--commit-k",
+        type=int,
+        default=None,
+        help="commits search_commits returns (default: agent_commit_k; the first 5 in full, the rest one line)",
+    )
+    runner.add_argument(
+        "--max-tool-calls",
+        type=int,
+        default=None,
+        help="tool calls allowed per question (default: agent_max_tool_calls, 4)",
+    )
+    runner.add_argument(
         "--repeat", type=int, default=1, help="run the selected questions this many times"
     )
     args = parser.parse_args()
     if args.command == "build":
         build()
+    elif args.command == "build-commit-full":
+        build_commit_full()
     elif args.command == "build-architecture":
         build_architecture()
     elif args.command == "build-architecture-fresh":
@@ -649,6 +739,8 @@ def main() -> None:
                 args.tool_error_retries,
                 args.tool_chars,
                 args.max_input_tokens,
+                args.commit_k,
+                args.max_tool_calls,
             )
 
 

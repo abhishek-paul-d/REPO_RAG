@@ -1,0 +1,262 @@
+{
+ "code-001": [
+  "faithful",
+  "correct",
+  "Loop, history, max_redirects check and TooManyRedirects all in the shown lines; the exceptions.py range is wide but plausible."
+ ],
+ "code-002": [
+  "faithful",
+  "correct",
+  "rebuild_auth and should_strip_auth both shown; only hostname change is stated, the http->https port exception is omitted (minor)."
+ ],
+ "code-003": [
+  "faithful",
+  "correct",
+  "rebuild_method call and the 303/302/301 rules plus the header purge match the code; rebuild_method body not shown to me, matches the library."
+ ],
+ "code-004": [
+  "faithful",
+  "correct",
+  "__init__ DEFAULT_RETRIES handling shown; docstring and init_poolmanager claims match."
+ ],
+ "code-005": [
+  "faithful",
+  "correct",
+  "cert_verify logic exactly as stated; certifi where() claim matches."
+ ],
+ "code-006": [
+  "faithful",
+  "partial",
+  "Every claim is supported, but it says text falls back to apparent_encoding when no charset is sent. For text/* without a charset the encoding is set to ISO-8859-1 by get_encoding_from_headers, so detection runs only when encoding is None (no content-type, non-text types). The answer lists both facts but does not connect them, which leaves the main case wrong."
+ ],
+ "code-007": [
+  "faithful",
+  "correct",
+  "iter_content, generate(), iter_slices reuse and decode_unicode all as stated."
+ ],
+ "code-008": [
+  "faithful",
+  "correct",
+  "json() flow, guess_json_utf, the swallowed UnicodeDecodeError and the re-raise as RequestsJSONDecodeError all match."
+ ],
+ "code-009": [
+  "faithful",
+  "correct",
+  "Names the class and the three methods with ranges; short but answers where."
+ ],
+ "code-010": [
+  "faithful",
+  "correct",
+  "latin1, colon join, b64encode, strip and the Basic prefix match; HTTPBasicAuth and HTTPProxyAuth headers correct."
+ ],
+ "code-011": [
+  "faithful",
+  "correct",
+  "Checked against source: lstrip('.'), exact match, then '.'+host suffix match, then proxy_bypass fallback, as stated."
+ ],
+ "code-012": [
+  "faithful",
+  "correct",
+  "get_environ_proxies and getproxies and the compat imports verified; omits that NO_PROXY is read in should_bypass_proxies (minor)."
+ ],
+ "code-013": [
+  "faithful",
+  "correct",
+  "_encode_params (UTF-8 pairs, urlencode doseq), query joining with & and requote_uri verified in source."
+ ],
+ "code-014": [
+  "faithful",
+  "correct",
+  "_encode_files steps and prepare_body usage match; omits that a user Content-Type header wins (minor)."
+ ],
+ "code-015": [
+  "faithful",
+  "correct",
+  "prepare_content_length and super_len order (utf-8 for urllib3 2.x, __len__, .len, fstat with text-mode warning) verified in source."
+ ],
+ "code-016": [
+  "faithful",
+  "correct",
+  "extract_cookies_to_jar with MockRequest and MockResponse and jar.extract_cookies, as shown."
+ ],
+ "code-017": [
+  "faithful",
+  "correct",
+  "merge_setting rules, prepare_request merging and merge_environment_settings all match."
+ ],
+ "code-018": [
+  "faithful",
+  "correct",
+  "get_adapter prefix loop with InvalidSchema and mount's longest-first reordering match the library; the cited range 831-886 is mostly merge_environment_settings with get_adapter at its end, so the citation is loose."
+ ],
+ "code-019": [
+  "faithful",
+  "correct",
+  "default_headers contents and the Session.__init__ assignment match."
+ ],
+ "code-020": [
+  "faithful",
+  "correct",
+  "CaseInsensitiveDict internals and prepare_headers described accurately."
+ ],
+ "code-021": [
+  "faithful",
+  "correct",
+  "dispatch_hook, HOOKS, register_hook and the Session.send dispatch all match."
+ ],
+ "code-022": [
+  "faithful",
+  "correct",
+  "links and parse_header_links described correctly (verified key = rel or url); the cited range 1091-1142 is mostly json() with links at its end, so the citation is loose."
+ ],
+ "code-023": [
+  "faithful",
+  "correct",
+  "raise_for_status message construction matches line for line."
+ ],
+ "code-024": [
+  "faithful",
+  "correct",
+  "Timeout tuple, TimeoutSauce and the urlopen timeout= argument match."
+ ],
+ "code-025": [
+  "partial",
+  "correct",
+  "Correct flow (NETRC env, then .netrc and _netrc in the home directory), but the first sentence says '~/.netrc or ~/.netrc' and the NETRC_FILES citation says line 74 when it is line 78."
+ ],
+ "code-026": [
+  "faithful",
+  "correct",
+  "IDNA branch, UnicodeError to InvalidURL and the ASCII '*' or '.' check verified in source; _get_idna_encoded_host range is wider than needed."
+ ],
+ "code-027": [
+  "faithful",
+  "correct",
+  "requote_uri behaviour and both quote modes match; the callers named are right."
+ ],
+ "code-028": [
+  "faithful",
+  "correct",
+  "rewind_body, _body_position and the rewindable condition in resolve_redirects match the library; the evidence I was shown skipped rewind_body itself, which is inside the cited range."
+ ],
+ "code-029": [
+  "faithful",
+  "correct",
+  "Steps of get_connection_with_tls_context (assert prepared, select_proxy, pool key attributes, proxy manager vs poolmanager, the two error cases) match."
+ ],
+ "code-030": [
+  "faithful",
+  "correct",
+  "lower_items and its use in __eq__ exactly as shown."
+ ],
+ "code-031": [
+  "faithful",
+  "correct",
+  "rebuild_auth plus should_strip_auth (hostname change, port or scheme change, http to https default-port exception) match the library."
+ ],
+ "code-032": [
+  "partial",
+  "partial",
+  "The diagnosis is wrong for the asked case. A page served as text/* with no charset gets encoding ISO-8859-1 from get_encoding_from_headers (verified, and set in adapters.build_response), so text does not use apparent_encoding; detection runs only when encoding is None. The answer says it falls back to detection and then, one sentence later, says text/* returns ISO-8859-1, which contradicts it. The fix advice (set r.encoding) is right."
+ ],
+ "code-033": [
+  "faithful",
+  "correct",
+  "super_len formula max(0, total - position) and the seek-to-end path are right (that path is for objects without a usable fileno or len, such as BytesIO; real files use fstat plus tell); prepare_body fallback to chunked is right."
+ ],
+ "code-034": [
+  "faithful",
+  "correct",
+  "The max_redirects check in resolve_redirects shown."
+ ],
+ "code-035": [
+  "faithful",
+  "correct",
+  "should_bypass_proxies matching rules, get_environ_proxies, resolve_proxies and the leading-dot and notexample.com behaviour all verified; the list of reasons covers the usual causes."
+ ],
+ "code-036": [
+  "faithful",
+  "correct",
+  "check_header_validity, _validate_header_part, the exact value regex (verified in _internal_utils.py) and the prepare_headers call all match."
+ ],
+ "code-037": [
+  "faithful",
+  "correct",
+  "Session.close, HTTPAdapter.close and BaseAdapter.close exactly as shown."
+ ],
+ "code-038": [
+  "faithful",
+  "correct",
+  "prepare_headers and the validator selection in _validate_header_part match."
+ ],
+ "code-039": [
+  "faithful",
+  "correct",
+  "Response.close behaviour verified in source (close raw if content not consumed, then release_conn); the cited range 1144-1184 also includes raise_for_status."
+ ],
+ "code-040": [
+  "faithful",
+  "correct",
+  "cookiejar_from_dict and the overwrite condition exactly as shown."
+ ],
+ "docs-041": [
+  "faithful",
+  "correct",
+  "README says Python 3.10+; matches requires-python in pyproject.toml."
+ ],
+ "docs-042": [
+  "faithful",
+  "correct",
+  "pip install command and the source install route, both in the cited lines."
+ ],
+ "docs-043": [
+  "faithful",
+  "correct",
+  "The four dependencies and versions match pyproject.toml exactly."
+ ],
+ "docs-045": [
+  "faithful",
+  "correct",
+  "Single value, tuple and None, plus the not-a-total-download-limit note, all supported by the docs."
+ ],
+ "docs-046": [
+  "faithful",
+  "correct",
+  "HTTPBasicAuth and the tuple shorthand are as documented; the netrc point is supported though not asked."
+ ],
+ "docs-044": [
+  "faithful",
+  "correct",
+  "make test, make ci and make coverage match the Makefile; omits make init (install requirements-dev.txt) and the Makefile citation has no extension so the checker cannot resolve it."
+ ],
+ "docs-047": [
+  "faithful",
+  "correct",
+  "Per-request, session (with the overwrite warning), environment variables (lower and upper case, ALL_PROXY), proxy basic auth, scheme://host keys and SOCKS all match the docs I checked."
+ ],
+ "docs-048": [
+  "faithful",
+  "correct",
+  "The version list is exactly the workflow's python-version matrix."
+ ],
+ "docs-049": [
+  "faithful",
+  "correct",
+  "Apache 2.0 is supported by the classifier, the license field and docs/api.rst; very short but answers it."
+ ],
+ "docs-050": [
+  "faithful",
+  "correct",
+  "Default verification, CA path, REQUESTS_CA_BUNDLE and CURL_CA_BUNDLE fallback and verify=False with the man-in-the-middle warning match; omits the c_rehash note for directories (minor)."
+ ],
+ "docs-051": [
+  "faithful",
+  "partial",
+  "Accurate, from the class docstring, but thin on the question's 'why': it never says the main reason is connection reuse (speed) and that a session carries default settings; cites source, not the docs page. The mechanical miss is fair."
+ ],
+ "docs-052": [
+  "faithful",
+  "correct",
+  "Contributor's Guide, AI policy points (human owner, no LLM co-authors, no unsupervised agents) and the maintainers-decide rule all verified."
+ ]
+}

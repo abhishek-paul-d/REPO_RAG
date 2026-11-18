@@ -31,6 +31,7 @@ from repo_rag.agent.bakeoff import BudgetFailure, Generation, Model, run_questio
 from repo_rag.agent.bakeoff_tools import tool_schemas
 from repo_rag.agent.citation_snap import Lookup, snap_citations
 from repo_rag.agent.citations import check_citations, chunks_from_results, repair_citations
+from repo_rag.agent.commit_answer import enrich
 from repo_rag.agent.prompts import (
     BAKEOFF_ARMS,
     HISTORY_BLOCK,
@@ -69,6 +70,7 @@ class Toolset:
     docs_reminder: str | None = None  # if set, sent after search_docs instead of `reminder`
     tool_error_retries: int = 0  # give a failing tool's error back to the model this many times
     abstain_retries: int = 0  # ask for another search when it abstains after fewer than 2 calls
+    budget_note: bool = False  # say so when a result is empty because the budget is used up
 
 
 def toolset_for(settings: Settings) -> Toolset:
@@ -90,6 +92,7 @@ def toolset_for(settings: Settings) -> Toolset:
             docs_reminder=production_docs_reminder(variant),
             tool_error_retries=settings.agent_tool_error_retries,
             abstain_retries=settings.agent_abstain_retries,
+            budget_note=settings.agent_budget_note,
         )
     prompt, reminder = BAKEOFF_ARMS[settings.llm_prompt_arm]
     return Toolset(tool_schemas(), prompt, reminder)
@@ -160,6 +163,9 @@ def generation_limits(settings: Settings) -> dict[str, int]:
         "tool_result_chars_per_question": settings.agent_tool_result_chars,
         "max_generation_turns": settings.agent_max_turns,
         "max_tool_calls": settings.agent_max_tool_calls,
+        # Once the model has searched commits it may take more steps (one more turn than calls).
+        "commit_max_tool_calls": settings.agent_commit_max_tool_calls,
+        "commit_max_generation_turns": settings.agent_commit_max_tool_calls + 1,
     }
 
 
@@ -226,6 +232,7 @@ class RepoAgent:
             docs_reminder=self.toolset.docs_reminder,
             tool_error_retries=self.toolset.tool_error_retries,
             abstain_retries=self.toolset.abstain_retries,
+            budget_note=self.toolset.budget_note,
         )
         if errors:
             trace["tool_error"] = errors[-1]
@@ -282,13 +289,16 @@ class RepoAgent:
         ]
         chunks = chunks_from_results(rows)
         sources = [f"{c.path}:{c.start_line}-{c.end_line} {c.symbol}".strip() for c in chunks]
-        commits = [
-            row
+        searches = [
+            list((call.get("result") or {}).get("value") or [])
             for call in trace["calls"]
             if call["name"] == "search_commits"
-            for row in ((call.get("result") or {}).get("value") or [])
         ]
-        sources += [f"commit {row['sha']} {row['text'].splitlines()[0][:80]}" for row in commits]
+        commits = [row for rows in searches for row in rows]
+        # Full rows carry `text`; shortlist rows (agent_commit_k > 5) carry only `subject`.
+        for row in commits:
+            lines = (row.get("text") or row.get("subject") or "").splitlines()
+            sources.append(f"commit {row['sha']} {lines[0][:80] if lines else ''}")
         evidence = json.dumps([c.get("result") for c in trace["calls"]]).lower()
         unverified = (
             sorted({m for m in _SHA.findall(answer.lower()) if m not in evidence})
@@ -320,9 +330,13 @@ class RepoAgent:
             }
             if self.settings.agent_citation_snap:
                 report["snapped"] = snapped
+        model_answer = answer
+        if isinstance(answer, str) and self.settings.agent_answer_facts:
+            answer = enrich(answer, abstain, searches, [c["name"] for c in trace["calls"]])
         return {
             "result": {
                 "answer": answer,
+                "model_answer": model_answer,
                 "abstain": abstain,
                 "failure": "",
                 "error": "",

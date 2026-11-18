@@ -157,10 +157,20 @@ before; call it with the symptoms. Name a commit only by the 12-character SHA fr
 only if its message or changed files match the problem; say they are probable matches, not
 certain ones.
 """
+# Variant "commit_explain": commit_pr_commits plus this paragraph. The base prompt says to return an
+# exact value alone, which made 67 of 70 passing commit answers a bare SHA (reviewed 2026-11-18).
+# Unmeasured on the live model until a run with `--variant commit_explain`.
+_PROD_COMMIT_EXPLAIN = """\
+Unlike the exact-fact answers above, a bug-report answer is the SHA plus one sentence saying
+why its message or changed files match; do not return the SHA alone.
+PR reviews in the data hold the reviewer, state and time only, not their comments: if asked what
+reviewers said, answer that review comments are not in the indexed data.
+"""
 # Variant "commit_pr_commits": get_pr lists a merged PR's own commits next to its merge commit
 # (`pr_commits`); the merge commit holds no change, so a fix is named from that list. Built for
-# commit-088, where the model cited the merge SHA and ignored the list; see docs/PROJECT_LOG.md
-# for whether it was measured.
+# commit-088, where the model cited the merge SHA and ignored the list. Measured on the 27B
+# (eager): commit 7/10 vs 6/10, no change elsewhere; the production default since 2026-11-18
+# (docs/PROJECT_LOG.md).
 _PROD_PR_COMMITS = """\
 get_pr returns merge_commit_sha, the merge itself, which holds no change. When it also returns
 pr_commits, those are the commits that made the change: name the one whose subject matches the
@@ -217,6 +227,16 @@ Questions about how a file or function changed over time ("the history of X", "r
 to a file", "who changed X") are answered with file_history: pass the path, or only the symbol
 name when you do not know the path. Never guess a path for blame or file_history; if a call
 fails, the error says what to do. Use blame only for a line range you were given or found.
+"What changed between two releases or tags" is answered with compare_refs (the total and the
+newest commits); use the tag names exactly as the question writes them. For "which commit
+introduced X in release vN", find candidate commits with search_commits; each result
+carries first_release, the earliest tag that contains it. A commit whose first_release is older than
+vN did not introduce a change in vN, so do not name it; if no candidate has first_release vN, say
+that you found no commit in that release. file_history and compare_refs list only
+the newest changes: when a list has as many entries as the limit, say it is partial. Questions
+about open or closed issues ("are there open bugs about timeouts", "how many issues ...") are
+answered with find_issues, which counts every match; search_prs only samples. Commit counts and
+authors for a file follow the file across renames that left it unchanged.
 """
 PROMPT_VARIANTS = (
     "baseline",
@@ -230,6 +250,7 @@ PROMPT_VARIANTS = (
     "grounded_complete",
     "history_grounded",
     "commit_pr_commits",
+    "commit_explain",
 )
 
 
@@ -245,7 +266,7 @@ def production_prompt(variant: str = "baseline") -> str:
         _PROD_INTRO.format(
             count="Four"
             if variant == "no_search_prs"
-            else ("Six" if variant in HISTORY_TOOL_VARIANTS else "Five")
+            else ("Eight" if variant in HISTORY_TOOL_VARIANTS else "Five")
         ),
         _PROD_ROUTING,
         {
@@ -257,9 +278,11 @@ def production_prompt(variant: str = "baseline") -> str:
             "grounded_complete": _PROD_DOCS_HINT_NARROW + _PROD_GROUNDED,
             "history_grounded": _PROD_DOCS_HINT_NARROW + _PROD_HISTORY + _PROD_GROUNDED,
             "commit_pr_commits": _PROD_DOCS_HINT_NARROW,
+            "commit_explain": _PROD_DOCS_HINT_NARROW,
         }.get(variant, ""),
         _PROD_COMMITS,
-        _PROD_PR_COMMITS if variant == "commit_pr_commits" else "",
+        _PROD_COMMIT_EXPLAIN if variant == "commit_explain" else "",
+        _PROD_PR_COMMITS if variant in ("commit_pr_commits", "commit_explain") else "",
         ""
         if variant == "no_search_prs"
         else (_PROD_PRS_NARROW if variant == "prs_narrow" else _PROD_PRS),
@@ -347,4 +370,12 @@ ABSTAIN_RETRY = (
 TOOL_ERROR_NEXT = (
     "That tool call failed: {error}. If the path or name was a guess, find the real one with "
     "get_symbol or search_code and call again, or answer without it."
+)
+
+# Added to a tool result whose rows were all dropped because the per-question result budget
+# (agent_tool_result_chars) was used up (agent_budget_note). Without it the model saw an empty
+# list, searched again blindly and ran out of turns (section 1 arch-2, 2026-11-18).
+BUDGET_NOTE = (
+    "The result budget for this question is used up, so no more results can be shown. "
+    "Answer from what you have already seen, or abstain if it does not answer the question."
 )

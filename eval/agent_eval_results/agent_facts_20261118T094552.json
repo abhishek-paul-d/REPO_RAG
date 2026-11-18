@@ -1,0 +1,991 @@
+{
+ "server": {
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+  "hardware": "NVIDIA A100-SXM4-40GB",
+  "max_input_tokens": "12288",
+  "decode_mode": "cuda-graphs + mtp3"
+ },
+ "target": 0.9,
+ "passed": 59,
+ "n": 60,
+ "rows": [
+  {
+   "id": "pr_merged_by:2803",
+   "type": "pr_merged_by",
+   "question": "Who merged #2803?",
+   "expected": "karpetrosyan",
+   "answer": "karpetrosyan",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "id": "pr_merged_by:2652",
+   "type": "pr_merged_by",
+   "question": "Who merged #2652?",
+   "expected": "lovelydinosaur",
+   "answer": "lovelydinosaur",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "id": "pr_merged_by:3058",
+   "type": "pr_merged_by",
+   "question": "Who merged #3058?",
+   "expected": "lovelydinosaur",
+   "answer": "lovelydinosaur",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "id": "pr_merged_by:3023",
+   "type": "pr_merged_by",
+   "question": "Who merged #3023?",
+   "expected": "karpetrosyan",
+   "answer": "karpetrosyan",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "id": "pr_merged_by:2986",
+   "type": "pr_merged_by",
+   "question": "Who merged #2986?",
+   "expected": "lovelydinosaur",
+   "answer": "lovelydinosaur",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "id": "pr_merged_by:2840",
+   "type": "pr_merged_by",
+   "question": "Who merged #2840?",
+   "expected": "lovelydinosaur",
+   "answer": "lovelydinosaur",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "id": "pr_merged_by:2771",
+   "type": "pr_merged_by",
+   "question": "Who merged #2771?",
+   "expected": "zanieb",
+   "answer": "zanieb",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "id": "pr_merged_by:2747",
+   "type": "pr_merged_by",
+   "question": "Who merged #2747?",
+   "expected": "lovelydinosaur",
+   "answer": "lovelydinosaur",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "id": "pr_author:3364",
+   "type": "pr_author",
+   "question": "Who opened PR #3364?",
+   "expected": "lovelydinosaur",
+   "answer": "lovelydinosaur",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "id": "pr_author:3124",
+   "type": "pr_author",
+   "question": "Who opened PR #3124?",
+   "expected": "nick2i",
+   "answer": "nick2i",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "id": "pr_author:2570",
+   "type": "pr_author",
+   "question": "Who opened PR #2570?",
+   "expected": "florimondmanca",
+   "answer": "florimondmanca",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "id": "pr_author:2517",
+   "type": "pr_author",
+   "question": "Who opened PR #2517?",
+   "expected": "zanieb",
+   "answer": "zanieb",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "id": "pr_author:2708",
+   "type": "pr_author",
+   "question": "Who opened PR #2708?",
+   "expected": "lazorchakp",
+   "answer": "lazorchakp",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "id": "pr_title:2872",
+   "type": "pr_title",
+   "question": "What is the title of PR #2872?",
+   "expected": "Bump mkdocs-material from 9.2.6 to 9.4.2",
+   "answer": "Bump mkdocs-material from 9.2.6 to 9.4.2",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "id": "pr_title:2901",
+   "type": "pr_title",
+   "question": "What is the title of PR #2901?",
+   "expected": "Use ruff format",
+   "answer": "Use ruff format",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "id": "pr_title:3270",
+   "type": "pr_title",
+   "question": "What is the title of PR #3270?",
+   "expected": "fix(decoder): decode multi-member gzip data",
+   "answer": "fix(decoder): decode multi-member gzip data",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "id": "pr_title:3371",
+   "type": "pr_title",
+   "question": "What is the title of PR #3371?",
+   "expected": "Review URL percent escaping sets, from whatwg.",
+   "answer": "Review URL percent escaping sets, from whatwg.",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "id": "pr_state:2515",
+   "type": "pr_state",
+   "question": "Is PR #2515 open, closed or merged?",
+   "expected": "CLOSED",
+   "answer": "CLOSED",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "id": "pr_state:2935",
+   "type": "pr_state",
+   "question": "Is PR #2935 open, closed or merged?",
+   "expected": "MERGED",
+   "answer": "MERGED",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "id": "pr_state:3774",
+   "type": "pr_state",
+   "question": "Is PR #3774 open, closed or merged?",
+   "expected": "OPEN",
+   "answer": "OPEN",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "id": "pr_state:3517",
+   "type": "pr_state",
+   "question": "Is PR #3517 open, closed or merged?",
+   "expected": "CLOSED",
+   "answer": "CLOSED",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "id": "issue_author:1428",
+   "type": "issue_author",
+   "question": "Who opened issue #1428?",
+   "expected": "ech0-py",
+   "answer": "ech0-py",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_issue_meta"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "id": "issue_author:2116",
+   "type": "issue_author",
+   "question": "Who opened issue #2116?",
+   "expected": "danielrobbins",
+   "answer": "danielrobbins",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_issue_meta"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "id": "issue_author:2507",
+   "type": "issue_author",
+   "question": "Who opened issue #2507?",
+   "expected": "TheDecember",
+   "answer": "TheDecember",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_issue_meta"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "id": "issue_closed_by:2884",
+   "type": "issue_closed_by",
+   "question": "Which PR closed issue #2884?",
+   "expected": [
+    "2885"
+   ],
+   "answer": "- 2885",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "prs_closing_issue"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "id": "issue_closed_by:1278",
+   "type": "issue_closed_by",
+   "question": "Which PR closed issue #1278?",
+   "expected": [
+    "2683"
+   ],
+   "answer": "- 2683",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "prs_closing_issue"
+   ],
+   "seconds": 7.0
+  },
+  {
+   "id": "issue_closed_by:2670",
+   "type": "issue_closed_by",
+   "question": "Which PR closed issue #2670?",
+   "expected": [
+    "2671"
+   ],
+   "answer": "- 2671",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "prs_closing_issue"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "id": "issue_closed_by:3400",
+   "type": "issue_closed_by",
+   "question": "Which PR closed issue #3400?",
+   "expected": [
+    "3767"
+   ],
+   "answer": "- 3767",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "prs_closing_issue"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "id": "release_first:2675",
+   "type": "release_first",
+   "question": "Which release first included the change merged in #2675?",
+   "expected": "0.24.1",
+   "answer": "0.24.1",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "id": "release_first:2708",
+   "type": "release_first",
+   "question": "Which release first included the change merged in #2708?",
+   "expected": "0.25.0",
+   "answer": "0.25.0",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "seconds": 5.2
+  },
+  {
+   "id": "release_first:2836",
+   "type": "release_first",
+   "question": "Which release first included the change merged in #2836?",
+   "expected": "0.25.0",
+   "answer": "0.25.0",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "seconds": 4.6
+  },
+  {
+   "id": "release_first:2852",
+   "type": "release_first",
+   "question": "Which release first included the change merged in #2852?",
+   "expected": "0.25.1",
+   "answer": "0.25.1",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "seconds": 7.2
+  },
+  {
+   "id": "release_first:3122",
+   "type": "release_first",
+   "question": "Which release first included the change merged in #3122?",
+   "expected": "0.27.1",
+   "answer": "0.27.1",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "seconds": 6.0
+  },
+  {
+   "id": "release_first:3187",
+   "type": "release_first",
+   "question": "Which release first included the change merged in #3187?",
+   "expected": "0.27.1",
+   "answer": "0.27.1",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "id": "release_first:3288",
+   "type": "release_first",
+   "question": "Which release first included the change merged in #3288?",
+   "expected": "0.27.2",
+   "answer": "0.27.2",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "seconds": 5.8
+  },
+  {
+   "id": "release_first:3478",
+   "type": "release_first",
+   "question": "Which release first included the change merged in #3478?",
+   "expected": "none",
+   "answer": "none",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "seconds": 5.1
+  },
+  {
+   "id": "blame_line:httpx/_main.py:49",
+   "type": "blame_line",
+   "question": "Which commit last changed line 49 of httpx/_main.py?",
+   "expected": "ee9250d60bc5",
+   "answer": "ee9250d60bc5",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "blame"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "id": "blame_line:httpx/_decoders.py:71",
+   "type": "blame_line",
+   "question": "Which commit last changed line 71 of httpx/_decoders.py?",
+   "expected": "bdc218f8e686",
+   "answer": "bdc218f8e686",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "blame"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "id": "blame_line:httpx/_status_codes.py:89",
+   "type": "blame_line",
+   "question": "Which commit last changed line 89 of httpx/_status_codes.py?",
+   "expected": "c12c27127605",
+   "answer": "c12c27127605",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "blame"
+   ],
+   "seconds": 4.0
+  },
+  {
+   "id": "blame_line:httpx/_transports/asgi.py:125",
+   "type": "blame_line",
+   "question": "Which commit last changed line 125 of httpx/_transports/asgi.py?",
+   "expected": "b4811664817c",
+   "answer": "b4811664817c",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "blame"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "id": "blame_line:httpx/_config.py:114",
+   "type": "blame_line",
+   "question": "Which commit last changed line 114 of httpx/_config.py?",
+   "expected": "26cd4f54e885",
+   "answer": "26cd4f54e885",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "blame"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "id": "blame_line:httpx/_multipart.py:66",
+   "type": "blame_line",
+   "question": "Which commit last changed line 66 of httpx/_multipart.py?",
+   "expected": "1526048c9417",
+   "answer": "1526048c9417",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "blame"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "id": "commits_in_month:pyproject.toml@2021-04-01",
+   "type": "commits_in_month",
+   "question": "How many commits touched pyproject.toml in April 2021?",
+   "expected": "0",
+   "answer": "0",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "count_commits"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "id": "commits_in_month:pyproject.toml@2019-04-01",
+   "type": "commits_in_month",
+   "question": "How many commits touched pyproject.toml in April 2019?",
+   "expected": "0",
+   "answer": "0",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "count_commits"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "id": "commits_in_month:pyproject.toml@2023-11-01",
+   "type": "commits_in_month",
+   "question": "How many commits touched pyproject.toml in November 2023?",
+   "expected": "5",
+   "answer": "5",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "count_commits"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "id": "commits_in_month:tests@2019-10-01",
+   "type": "commits_in_month",
+   "question": "How many commits touched tests in October 2019?",
+   "expected": "16",
+   "answer": "16",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "count_commits"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "id": "commits_in_month:tests@2019-12-01",
+   "type": "commits_in_month",
+   "question": "How many commits touched tests in December 2019?",
+   "expected": "36",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "passed": false,
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "count_commits",
+    "count_commits",
+    "change_frequency"
+   ],
+   "seconds": 5.2
+  },
+  {
+   "id": "commits_in_month:httpx/_client.py@2021-04-01",
+   "type": "commits_in_month",
+   "question": "How many commits touched httpx/_client.py in April 2021?",
+   "expected": "8",
+   "answer": "8",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "count_commits"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "id": "commits_in_month:httpx/_models.py@2021-11-01",
+   "type": "commits_in_month",
+   "question": "How many commits touched httpx/_models.py in November 2021?",
+   "expected": "1",
+   "answer": "1",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "count_commits"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "id": "commits_in_month:httpx@2021-10-01",
+   "type": "commits_in_month",
+   "question": "How many commits touched httpx in October 2021?",
+   "expected": "4",
+   "answer": "4",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "count_commits"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "id": "top_committer:repo@2024",
+   "type": "top_committer",
+   "question": "Who made the most commits in 2024?",
+   "expected": "Tom Christie",
+   "answer": "Tom Christie",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "top_contributors"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "id": "top_committer:httpx@2023",
+   "type": "top_committer",
+   "question": "Who made the most commits touching httpx in 2023?",
+   "expected": "Tom Christie",
+   "answer": "Tom Christie",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "top_contributors"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "id": "top_committer:repo@2022",
+   "type": "top_committer",
+   "question": "Who made the most commits in 2022?",
+   "expected": "dependabot[bot]",
+   "answer": "dependabot[bot]",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "top_contributors"
+   ],
+   "seconds": 4.8
+  },
+  {
+   "id": "hot_file:2024",
+   "type": "hot_file",
+   "question": "Which file under httpx/ was changed in the most commits in 2024?",
+   "expected": "httpx/_client.py",
+   "answer": "httpx/_client.py",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "change_frequency"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "id": "hot_file:2020",
+   "type": "hot_file",
+   "question": "Which file under httpx/ was changed in the most commits in 2020?",
+   "expected": "httpx/_client.py",
+   "answer": "httpx/_client.py",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "change_frequency"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "id": "tag_commit:0.23.2",
+   "type": "tag_commit",
+   "question": "Which commit does the tag 0.23.2 point to?",
+   "expected": "2ab735849a4e3c1d408778f7e2e4509078b907ad",
+   "answer": "2ab735849a4e3c1d408778f7e2e4509078b907ad",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_tag"
+   ],
+   "seconds": 4.5
+  },
+  {
+   "id": "tag_commit:0.28.1",
+   "type": "tag_commit",
+   "question": "Which commit does the tag 0.28.1 point to?",
+   "expected": "26d48e0634e6ee9cdc0533996db289ce4b430177",
+   "answer": "26d48e0634e6ee9cdc0533996db289ce4b430177",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_tag"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "id": "tag_commit:0.3.1",
+   "type": "tag_commit",
+   "question": "Which commit does the tag 0.3.1 point to?",
+   "expected": "f4591f08ae0a8009789ff23a68cb1830ea7100f5",
+   "answer": "f4591f08ae0a8009789ff23a68cb1830ea7100f5",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_tag"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "id": "tag_commit:0.6.4",
+   "type": "tag_commit",
+   "question": "Which commit does the tag 0.6.4 point to?",
+   "expected": "5326cd1a20a5264afe5b1b89178d0a7feb23ccb7",
+   "answer": "5326cd1a20a5264afe5b1b89178d0a7feb23ccb7",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_tag"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "id": "tag_commit:0.6.5",
+   "type": "tag_commit",
+   "question": "Which commit does the tag 0.6.5 point to?",
+   "expected": "fe71e939c399f708887058ebe26224e5aba9dbe8",
+   "answer": "fe71e939c399f708887058ebe26224e5aba9dbe8",
+   "passed": true,
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "tools": [
+    "get_tag"
+   ],
+   "seconds": 1.4
+  }
+ ]
+}

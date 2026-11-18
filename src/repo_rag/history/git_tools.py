@@ -167,17 +167,27 @@ def file_history(
     path: str,
     *,
     function: str | None = None,
+    lines: tuple[int, int] | None = None,
     limit: int | None = None,
     ref: str = "HEAD",
     settings: Settings | None = None,
 ) -> list[HistoryEntry]:
-    """Newest-first commits touching a file (following renames) or one function in it."""
+    """Newest-first commits touching a file (following renames), a function in it, or a line range.
+
+    `function` goes to `git log -L :name:path`, which only finds a definition that git's default
+    function-name rule recognises: a top-level one. An indented method gives "no match" (seen on
+    `prepare_url` in psf/requests), so a caller that knows the lines passes `lines` instead."""
     settings = settings or get_settings()
     cap = min(limit or settings.git_tool_max_results, settings.git_tool_max_results)
     repo = _open(root)
     sha = _resolve(repo, ref, "ref")
     path = _check_path(path)
-    if function is not None:
+    if lines is not None:
+        first, last = lines
+        if not (1 <= first <= last):
+            raise GitToolError(f"invalid line range: {first}-{last}")
+        args = ["-L", f"{first},{last}:{path}", f"--max-count={cap}", _LOG_FORMAT, sha]
+    elif function is not None:
         if not _FUNCTION.match(function):
             raise GitToolError(f"invalid function name: {function!r}")
         args = ["-L", f":{function}:{path}", f"--max-count={cap}", _LOG_FORMAT, sha]
@@ -187,6 +197,8 @@ def file_history(
         text = repo.git.log(*args)
     except GitCommandError as error:
         target = f"{function} in {path}" if function else path
+        if lines is not None:
+            target = f"lines {lines[0]}-{lines[1]} of {path}"
         raise GitToolError(f"no history for {target} at {ref}") from error
     return _entries(text)
 
@@ -209,6 +221,49 @@ def pr_commits(root: Path, merge_sha: str, *, limit: int = 10) -> list[HistoryEn
     except GitCommandError as error:
         raise GitToolError(f"no commits for {merge_sha}") from error
     return _entries(text)
+
+
+def exact_renames(root: Path, ref: str = "HEAD") -> dict[str, str]:
+    """old path -> new path for every rename git sees as 100% identical, over the history of `ref`.
+
+    Only exact renames: finding a changed-and-moved file needs blob contents, and on a blobless
+    clone that fetches every blob. Nothing is fetched here (`GIT_NO_LAZY_FETCH`), so a rename with
+    edits is not followed. When a path was renamed twice the chain is old -> middle -> new.
+    """
+    repo = _open(root)
+    sha = _resolve(repo, ref, "ref")
+    with repo.git.custom_environment(GIT_NO_LAZY_FETCH="1"):
+        try:
+            text = repo.git.log("--diff-filter=R", "-M100%", "--name-status", "--format=", sha)
+        except GitCommandError as error:
+            raise GitToolError(f"cannot read renames at {ref}") from error
+    renames: dict[str, str] = {}
+    for line in text.splitlines():
+        parts = line.split("	")
+        if len(parts) == 3 and parts[0] == "R100":
+            renames.setdefault(parts[1], parts[2])  # newest rename of an old name wins
+    return renames
+
+
+def commits_between(
+    root: Path,
+    ref_a: str,
+    ref_b: str,
+    *,
+    limit: int | None = None,
+    settings: Settings | None = None,
+) -> tuple[int, list[HistoryEntry]]:
+    """(how many commits `ref_b` has that `ref_a` lacks, the newest `limit` of them).
+
+    Unlike `diff_between` it reads no file contents, so on a blobless clone it never fetches blobs.
+    """
+    settings = settings or get_settings()
+    cap = min(limit or settings.git_tool_max_results, settings.git_tool_max_results)
+    repo = _open(root)
+    a, b = _resolve(repo, ref_a, "ref_a"), _resolve(repo, ref_b, "ref_b")
+    total = int(repo.git.rev_list("--count", f"{a}..{b}"))
+    text = repo.git.log(f"--max-count={cap}", _LOG_FORMAT, "--no-patch", f"{a}..{b}")
+    return total, _entries(text)
 
 
 def diff_between(

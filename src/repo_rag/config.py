@@ -61,6 +61,10 @@ class Settings(BaseSettings):
     # Limits the answer model was evaluated under (phase7_bakeoff_v5 protocol "generation").
     agent_max_tool_calls: int = 4
     agent_max_turns: int = 5
+    # Tool calls allowed once the model has searched commits (2026-11-18, 113 bug->commit
+    # questions at k=15): 4 calls 65/113 with 13 budget failures; 6 calls 70/113 with 1; 8 and 10
+    # calls 70/113, no change. Other questions keep `agent_max_tool_calls`; not re-measured there.
+    agent_commit_max_tool_calls: int = Field(default=6, ge=1, le=12)
     # 24,000 characters and 12,288 input tokens (the Qwen3.8-27B profile, user decision 2026-11-18);
     # the 14B was evaluated at 12,000 and 8,192: set those with REPO_RAG_ env vars to reproduce it.
     agent_tool_result_chars: int = 24000
@@ -150,8 +154,13 @@ class Settings(BaseSettings):
         "grounded_complete",
         "history_grounded",
         "commit_pr_commits",
-    ] = "docs_hint_narrow"
-    """Production-toolset prompt. Default `docs_hint_narrow` (user decision 2026-11-09): on the
+        "commit_explain",
+    ] = "commit_pr_commits"
+    """Production-toolset prompt. Default `commit_pr_commits` since 2026-11-18 (user decision): it
+    is `docs_hint_narrow` plus one paragraph telling the model to name a PR's own commit from
+    `pr_commits`, not the merge commit; on the 27B it took commit-088 from a miss to a pass (commit
+    7/10 vs 6/10, n = 10) with code, docs and the other types unchanged. Before that the default
+    was `docs_hint_narrow` (user decision 2026-11-09): on the
     fresh set it took usage questions from 1/10 to 9/10 with code unchanged at 8/10, and on the
     62-question set docs went 7/12 to 10/12 and code 35/40 to 36/40 (single deterministic passes).
     `baseline` is the text every earlier evaluation used (pinned by SHA-256 in
@@ -182,6 +191,18 @@ class Settings(BaseSettings):
     agent_extra_chunk_chars: int = Field(default=1000, gt=0)
     """Each extra chunk is cut to this many characters so the extras stay within
     `agent_tool_result_chars`; the metadata still gives the chunk's full line range."""
+    agent_commit_k: int = Field(default=15, ge=5, le=30)
+    """How many commits `search_commits` returns. The first 5 are shown in full (message, files, a
+    diff excerpt); any beyond that are one line each (subject, files, symbols), so 15 to 20 cost
+    about what 5 full ones do. On the 141 psf/requests bug -> fix pairs the gold commit is in the
+    top 5 for 79, the top 10 for 94 and the top 20 for 106 (`eval/commit_retrieval_check.py`,
+    2026-11-18, bug text as the query). Agent runs on the 113 test pairs (27B): 57 passed at 5,
+    65 at 15, 65 at 20 (more failures), so the default is 15; `--commit-k` A/Bs it."""
+    agent_answer_facts: bool = True
+    """Append facts from the tool results to an answer (`agent/commit_answer.py`): for a commit
+    answer the commit's date, author, subject and rank, or the closest candidates as unverified
+    leads when nothing matched; for count answers a note that merge commits are not counted.
+    `result["model_answer"]` keeps the model's own text, and the eval scores that."""
     agent_commit_fix_only: bool = False
     """`search_commits` only returns commits classified as fixes (`is_fix=true`), as `ask --bug`
     does. Unmeasured on the agent; see `agent_commit_query`."""
@@ -198,6 +219,12 @@ class Settings(BaseSettings):
     abstention. The 2026-11-16 section 1 run abstained after one search on 7 of 32 questions the
     repository answers. Unmeasured: off until an A/B on the agent_eval set shows the correct
     abstentions on out-of-scope probes survive (they were 5/5)."""
+    agent_budget_note: bool = False
+    """Production toolset only: when a tool result is empty because the per-question result budget
+    (`agent_tool_result_chars`) is used up, add a note saying so (`prompts.BUDGET_NOTE`). Section 1
+    arch-2 (2026-11-18): two searches used 23,625 of 24,000 characters, the next two came back empty
+    with no reason, and the model searched blind until it ran out of turns. Unmeasured; off keeps
+    the old behaviour. Enable with `REPO_RAG_AGENT_BUDGET_NOTE=true`."""
     agent_tool_error_retries: int = Field(default=0, ge=0, le=3)
     """Production toolset only: when a tool call fails, give the model the error and let it call
     again (or answer) instead of ending the run with `failure="tool"` (`prompts.TOOL_ERROR_NEXT`).

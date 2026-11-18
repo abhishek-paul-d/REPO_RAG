@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 import re
 import sqlite3
+from collections.abc import Mapping, Sequence
 from contextlib import suppress
 from dataclasses import asdict, dataclass, replace
 from pathlib import Path
@@ -151,6 +152,33 @@ def _clean_path(path: str | None) -> str | None:
         return None
     path = path.replace("\\", "/").strip().removeprefix("./").strip("/")
     return path or None
+
+
+def _path_match(paths: Sequence[str], column: str = "f.path") -> tuple[str, list[Any]]:
+    """SQL for "the file is one of `paths`, or lies under one of them" and its bound values."""
+    parts: list[str] = []
+    params: list[Any] = []
+    for path in paths:
+        parts.append(f"({column}=? OR substr({column},1,?)=?)")
+        params += [path, len(path) + 1, path + "/"]
+    return "(" + " OR ".join(parts) + ")", params
+
+
+def follow_renames(path: str, renames: Mapping[str, str]) -> str:
+    """The latest name of `path`: follow old -> new renames to the end (bounded, no cycles)."""
+    for _ in range(50):
+        newer = renames.get(path)
+        if newer is None or newer == path:
+            break
+        path = newer
+    return path
+
+
+def names_of(path: str, renames: Mapping[str, str]) -> list[str]:
+    """Every name the file `path` had, itself first: all old names whose latest name is its."""
+    latest = follow_renames(path, renames)
+    older = sorted(old for old in renames if follow_renames(old, renames) == latest)
+    return [path, *[name for name in older if name != path]]
 
 
 def _safe_payload(value: dict) -> dict:
@@ -786,8 +814,12 @@ class MetadataDB:
         since: str | None,
         until: str | None,
         is_fix: bool | None,
+        alt_paths: Sequence[str] = (),
     ) -> tuple[str, list[Any]]:
-        """WHERE clause over history_commits aliased `c`; every value is a bound parameter."""
+        """WHERE clause over history_commits aliased `c`; every value is a bound parameter.
+
+        `alt_paths` are other names of `path` (it was renamed): a commit matches on any of them.
+        """
         clauses: list[str] = ["c.repo=?"]
         params: list[Any] = [repo]
         if author is not None:
@@ -798,11 +830,12 @@ class MetadataDB:
             params += names
         path = _clean_path(path)
         if path is not None:
+            match, match_params = _path_match([path, *alt_paths])
             clauses.append(
                 "EXISTS (SELECT 1 FROM history_files f WHERE f.repo=c.repo AND f.sha=c.sha "
-                "AND (f.path=? OR substr(f.path,1,?)=?))"
+                f"AND {match})"
             )
-            params += [path, len(path) + 1, path + "/"]
+            params += match_params
         if symbol is not None:
             clauses.append(
                 "EXISTS (SELECT 1 FROM history_symbols s WHERE s.repo=c.repo AND s.sha=c.sha "
@@ -870,9 +903,17 @@ class MetadataDB:
         since: str | None = None,
         until: str | None = None,
         is_fix: bool | None = None,
+        alt_paths: Sequence[str] = (),
     ) -> CommitCount:
         where, params = self._commit_filter(
-            repo, author=author, path=path, symbol=symbol, since=since, until=until, is_fix=is_fix
+            repo,
+            author=author,
+            path=path,
+            symbol=symbol,
+            since=since,
+            until=until,
+            is_fix=is_fix,
+            alt_paths=alt_paths,
         )
         (count,) = self.connection.execute(
             f"SELECT count(*) FROM history_commits c WHERE {where}", params
@@ -887,10 +928,12 @@ class MetadataDB:
         since: str | None = None,
         until: str | None = None,
         limit: int = 10,
+        alt_paths: Sequence[str] = (),
     ) -> Answer[Contributor]:
         """Authors ranked by commits (ties: more added lines, then name), identities merged.
 
-        With `path`, additions/deletions count only files under that path.
+        With `path`, additions/deletions count only files under that path. `alt_paths` are older
+        names of `path`, counted with it (a rename does not reset the history).
         """
         if limit < 1:
             raise ValueError("limit must be positive")
@@ -898,10 +941,10 @@ class MetadataDB:
             repo, author=None, path=None, symbol=None, since=since, until=until, is_fix=None
         )
         path = _clean_path(path)
-        file_match, file_params = ("1", [])
+        file_match: str = "1"
+        file_params: list[Any] = []
         if path is not None:
-            file_match = "(f.path=? OR substr(f.path,1,?)=?)"
-            file_params = [path, len(path) + 1, path + "/"]
+            file_match, file_params = _path_match([path, *alt_paths])
         rows = self.connection.execute(
             f"SELECT {self._CANON} AS name, count(DISTINCT c.sha) AS commits, "
             "COALESCE(sum(f.additions),0) AS additions, COALESCE(sum(f.deletions),0) AS deletions, "
@@ -929,6 +972,52 @@ class MetadataDB:
             self.history_window(repo),
         )
 
+    def _change_frequency_following(
+        self,
+        repo: str,
+        renames: Mapping[str, str],
+        *,
+        path_prefix: str | None,
+        since: str | None,
+        until: str | None,
+        limit: int,
+    ) -> Answer[FileFrequency]:
+        where, params = self._commit_filter(
+            repo, author=None, path=None, symbol=None, since=since, until=until, is_fix=None
+        )
+        rows = self.connection.execute(
+            f"SELECT f.path AS path, c.sha AS sha, {self._CANON} AS author, "
+            "f.additions AS additions, f.deletions AS deletions, "
+            "datetime(c.author_date) AS changed "
+            "FROM history_commits c JOIN history_files f ON f.repo=c.repo AND f.sha=c.sha "
+            f"WHERE {where}",
+            params,
+        ).fetchall()
+        prefix = _clean_path(path_prefix)
+        grouped: dict[str, dict[str, Any]] = {}
+        for r in rows:
+            latest = follow_renames(r["path"], renames)
+            if prefix is not None and not (latest == prefix or latest.startswith(prefix + "/")):
+                continue
+            g = grouped.setdefault(
+                latest, {"shas": set(), "authors": set(), "add": 0, "del": 0, "last": ""}
+            )
+            g["shas"].add(r["sha"])
+            g["authors"].add(r["author"])
+            g["add"] += r["additions"] or 0
+            g["del"] += r["deletions"] or 0
+            g["last"] = max(g["last"], r["changed"] or "")
+        ranked = sorted(grouped.items(), key=lambda item: (-len(item[1]["shas"]), item[0]))[:limit]
+        return Answer(
+            tuple(
+                FileFrequency(
+                    path, len(g["shas"]), len(g["authors"]), g["add"], g["del"], g["last"]
+                )
+                for path, g in ranked
+            ),
+            self.history_window(repo),
+        )
+
     def change_frequency(
         self,
         repo: str,
@@ -937,14 +1026,21 @@ class MetadataDB:
         since: str | None = None,
         until: str | None = None,
         limit: int = 20,
+        renames: Mapping[str, str] | None = None,
     ) -> Answer[FileFrequency]:
         """Most-changed files (distinct commits touching the path as named at that commit).
 
-        A file renamed during the window is counted under each name it had; follow renames
-        with git_tools.file_history when that matters.
+        A file renamed during the window is counted under each name it had, unless `renames`
+        (old path -> new path, from `git_tools.exact_renames`) is given: then every name is
+        counted under the file's latest name, and a commit touching two of its names counts once.
+        `path_prefix` then applies to the latest name.
         """
         if limit < 1:
             raise ValueError("limit must be positive")
+        if renames:
+            return self._change_frequency_following(
+                repo, renames, path_prefix=path_prefix, since=since, until=until, limit=limit
+            )
         where, params = self._commit_filter(
             repo, author=None, path=None, symbol=None, since=since, until=until, is_fix=None
         )

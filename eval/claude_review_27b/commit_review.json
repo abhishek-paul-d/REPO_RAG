@@ -1,0 +1,20 @@
+{
+ "run": "agent_eval_production_agent_eval_commit_full_v1_extra3_notests_chars24000_in12288_ck15_20261118T171718.json",
+ "strict_pass": 70,
+ "of": 113,
+ "valid_alternatives_not_in_gold": {
+  "commitfull-011": "fix for the same issue #1280, same day as the gold commit",
+  "commitfull-019": "the actual code fix (the gold commit only edits the test)",
+  "commitfull-041": "first one-line attempt at #2250, gold is the follow-up",
+  "commitfull-077": "the merge commit of the PR that holds the gold commit",
+  "commitfull-106": "'as per issue #711', same day as gold",
+  "commitfull-110": "follow-up change to the same setup.py fix, four days later"
+ },
+ "estimate_with_alternatives": 76,
+ "misleading": {
+  "commitfull-039": "answers c3444f8c7 as an earlier fix, but that commit introduced the redirect cache that caused the bug"
+ },
+ "passes_that_are_bare_sha": 67,
+ "abstained": 14,
+ "note": "One AI reader. Alternatives were judged from the commit messages and diffs, not by running the code."
+}

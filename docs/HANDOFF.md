@@ -15,6 +15,7 @@ It points to the deeper documents rather than repeating them; the pointers are i
 
 ## 0. TL;DR
 
+- **Phase 7 status (2026-11-18, latest):** 27B answer model; S1 section 1 is 1 of 32 flagged by the automatic checks, facts 59/60, regression held with the guards on (see PROJECT_LOG 2026-11-18 entries). A manual check of the 19 exact answers against git and `metadata.db` found 5 wrong or misleading (renames, issue filter, release check); fixes are written and unit-tested but **not yet run on the live model** (needs a new Colab session; plan in `docs/A100_RUN_PLAN.md`). **Phase 7 was closed with known gaps on 2026-11-18 by the user's decision** (see plan.md Phase 7 for the gaps); the next open work is Phase 9 and the carried-forward items in PROJECT_LOG 2026-11-18. Legacy bullets below are from earlier dates.
 - **Phase 7 v4 dev revision 1 scored (2026-11-02):** `dev_1`/`smoke_1` are in
   `eval/facts_results/answer_bakeoff_v4_dev/`. Qwen3-14B is the only model with no failed dev gate
   (facts 67/71, citation-complete 14/16, 0 parse failures, probes 2/2). Coder fails answerable
@@ -618,6 +619,25 @@ Observed, not guessed:
 ---
 
 ## 11. What to do next
+
+### Latest (2026-11-18, evening): commit questions 57/113 to 70/113; next is the commit-summary pilot
+
+Defaults now: `agent_commit_k` = 15 (first 5 commits in full, the rest one line) and
+`agent_commit_max_tool_calls` = 6 (applies once the model has called `search_commits`; other
+questions keep 4). Measured on the new 113-question set `eval/datasets/agent_eval_commit_full_v1.jsonl`
+(27B, single runs): 57 before, 65 with k=15, 70 with k=15 and 6 calls; k=20 and 8 or 10 calls add
+nothing. The cap for non-commit questions was not re-measured. Full table and the retrieval sweeps
+(BM25 weight and title fusion are within noise) are in PROJECT_LOG 2026-11-18 (later). Pitfall found
+on the way: any new field in a commit row must also be handled in `graph._check` (it read
+`row["text"]` and crashed on the shortlist rows). Next: pilot of LLM-written commit summaries
+(141 gold commits plus about 1,000 others, GPU embedding, compare ranks with and without), then the
+exact-SHA reranker measurement at depth 50. The 10-question commit set (5/10) has not been re-run
+with the new defaults.
+
+Claude's review of the 27B answers (code/docs 49/52 correct, 15 exact answers 10 fully right, commit
+113: 70 strict, about 76 with valid alternatives, 67 of 70 passes are bare SHAs) is in
+`eval/claude_review_27b/`; the findings and the product gaps are in PROJECT_LOG 2026-11-18 (later).
+Pitfall: the metadata.db has 4,883 commits because merge commits are excluded by design, not truncated.
 
 ### Latest (2026-11-08, night): parse retry built, fresh question set built; next is one short GPU session
 

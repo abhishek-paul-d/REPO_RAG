@@ -168,7 +168,7 @@ def run_analysis(artifacts: Path, output: Path, tokenizer_path: Path | None) -> 
     for name, slug in (("requests", "psf__requests"), ("express", "expressjs__express")):
         directory = artifacts / slug / "full"
         run = read(directory / "run.json")
-        frozen_path = ROOT / "eval/retrieval_results/colab_full/phase4_v1_source.zip"
+        frozen_path = ROOT / "experiments/eval/retrieval_results/colab_full/phase4_v1_source.zip"
         for source_path, expected_hash in run["source_sha256"].items():
             if frozen_path.exists():
                 with zipfile.ZipFile(frozen_path) as frozen:

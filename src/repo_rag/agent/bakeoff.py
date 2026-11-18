@@ -14,6 +14,7 @@ from typing import Any, Protocol
 from repo_rag.agent.prompts import (
     ABSTAIN_RETRY,
     ANSWER_BAKEOFF_PROMPT,
+    BUDGET_NOTE,
     PARSE_RETRY,
     TOOL_ERROR_NEXT,
 )
@@ -115,13 +116,31 @@ def validate_arguments(args: dict, schema: dict) -> None:
 _OUTER_FENCE = re.compile(r"\A```(?:json)?[ \t]*\n(.*)\n```[ \t]*\Z", re.DOTALL)
 
 
+def _loads(text: str, tolerant: bool) -> Any:
+    """`json.loads`; in tolerant mode a complete object followed only by extra closing braces is
+    accepted. The 27B often ends a tool call with one `}` too many (section 1 arch-2, 2026-11-18),
+    which cost a retry turn and, when the retry repeated it, the whole question."""
+    try:
+        return json.loads(text, object_pairs_hook=_pairs)
+    except json.JSONDecodeError:
+        if not tolerant:
+            raise
+        decoder = json.JSONDecoder(object_pairs_hook=_pairs)
+        obj, end = decoder.raw_decode(text.lstrip())
+        rest = text.lstrip()[end:]
+        if isinstance(obj, dict) and rest.strip() and set(rest.strip()) == {"}"}:
+            return obj
+        raise
+
+
 def parse_reply(
     text: str, schemas: Mapping[str, dict], *, tolerant: bool = False
 ) -> dict[str, Any]:
     """Strict whole-output JSON; no fences, repair, duplicate keys, NaN or reasoning.
 
-    `tolerant` (production only; the bake-off stays strict) accepts exactly two harmless things:
-    the whole reply wrapped in one ```json fence, and backticks inside the answer string.
+    `tolerant` (production only; the bake-off stays strict) accepts exactly three harmless things:
+    the whole reply wrapped in one ```json fence, backticks inside the answer string, and extra
+    closing braces after a complete object.
     Everything else (duplicate keys, extra keys, reasoning tags, prose around the JSON) still fails.
     It also accepts a flat tool call whose extra keys are all arguments the tool declares
     (`{"type":"tool_call","name":"search_commits","query":"..."}`); the arguments are validated.
@@ -131,7 +150,7 @@ def parse_reply(
         if fenced:
             text = fenced.group(1)
     try:
-        obj = json.loads(text, object_pairs_hook=_pairs)
+        obj = _loads(text, tolerant)
         if not isinstance(obj, dict):
             raise ParseFailure("Expected object")
         if obj.get("type") == "final":
@@ -165,8 +184,10 @@ def parse_reply(
         raise ParseFailure("Invalid model JSON") from exc
 
 
-def bounded_result(value: Any, budget: int) -> dict[str, Any]:
-    """Keep whole records/chunks, including the wrapper in the cumulative char budget."""
+def bounded_result(value: Any, budget: int, note: bool = False) -> dict[str, Any]:
+    """Keep whole records/chunks, including the wrapper in the cumulative char budget.
+
+    With `note`, a result that had to drop every row says why (`BUDGET_NOTE`)."""
     value = redact(value)
     wrapped = {"value": value, "omitted": 0}
     if len(canonical(wrapped)) <= budget:
@@ -190,6 +211,10 @@ def bounded_result(value: Any, budget: int) -> dict[str, Any]:
         }
     else:
         result = {"value": None, "omitted": 1}
+    if note and result.get("omitted") and not result.get("value"):
+        noted = {**result, "note": BUDGET_NOTE}
+        if len(canonical(noted)) <= budget:  # never turn an empty result into a budget failure
+            result = noted
     if len(canonical(result)) > budget:
         raise BudgetFailure("Tool-result budget exhausted")
     return result
@@ -219,6 +244,7 @@ def run_question(
     tool_error_retries: int = 0,
     abstain_retries: int = 0,
     abstain_min_calls: int = 2,
+    budget_note: bool = False,
 ) -> dict[str, Any]:
     """The only dataset-derived model input is this string. No row/label argument exists.
 
@@ -255,10 +281,20 @@ def run_question(
     error_retries_left, abstain_left = tool_error_retries, abstain_retries
     trace["tool_error_recoveries"] = 0
     trace["abstain_retries"] = 0
+    commit_turns = limits.get("commit_max_generation_turns", 0)
+
+    def effective(key: str) -> int:
+        """The cap now in force: commit questions (the model has searched commits) may go longer."""
+        if any(c["name"] == "search_commits" for c in trace["calls"]):
+            return max(limits[key], limits.get(f"commit_{key}", 0))
+        return int(limits[key])
+
     model.start_question()
     started = time.perf_counter()
     try:
-        for _ in range(limits["max_generation_turns"]):
+        for turn_number in range(max(limits["max_generation_turns"], commit_turns)):
+            if turn_number >= effective("max_generation_turns"):
+                break
             turn: dict[str, Any] = {"messages": copy.deepcopy(messages)}
             trace["turns"].append(turn)
             try:
@@ -295,7 +331,7 @@ def run_question(
                     reply.get("abstain")
                     and abstain_left > 0
                     and len(trace["calls"]) < abstain_min_calls
-                    and len(trace["calls"]) < limits["max_tool_calls"]
+                    and len(trace["calls"]) < effective("max_tool_calls")
                 ):
                     abstain_left -= 1
                     trace["abstain_retries"] += 1
@@ -303,13 +339,13 @@ def run_question(
                     continue
                 trace["final"] = reply
                 break
-            if len(trace["calls"]) >= limits["max_tool_calls"]:
+            if len(trace["calls"]) >= effective("max_tool_calls"):
                 raise BudgetFailure("Tool-call cap")
             call = {"name": reply["name"], "arguments": reply["arguments"]}
             trace["calls"].append(call)
             try:
                 result = execute(reply["name"], reply["arguments"])
-                call["result"] = bounded_result(result, remaining)
+                call["result"] = bounded_result(result, remaining, budget_note)
                 remaining -= len(canonical(call["result"]))
             except BudgetFailure:
                 raise

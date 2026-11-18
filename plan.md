@@ -550,7 +550,8 @@ fallback was not re-measured under these defaults. Human label review stays open
 - **Done when:** "who calls X" returns correct callers for 5 hand-checked symbols, and the
   architecture question gets a coherent module-level answer.
 
-### Phase 7 — LangGraph agent  ☐
+### Phase 7 — LangGraph agent  ☑
+*Status (2026-11-18): ticked by the user's decision, **closed with known gaps**; the "done when" below is not strictly met. On the 27B (vLLM, `history_grounded` prompt variant with snapping, abstain/tool-error retries and the budget note): fact set **59/60 (98.3%)** against the 90% target; section 1 sample questions **1 of 32 flagged** by the automatic citation/abstention checks (pr-3 cannot be answered: the data holds no review text; oos-1 correctly abstains); regression code 40/40, docs 11/12, prsearch 10/10, history 11/11, refs 10/10, probes 5/5 abstained, commit questions 5/10. A manual check of the 19 exact answers against git and `metadata.db` found 5 wrong or misleading; four are fixed and re-checked, **bug-3 is still a weak answer** (a changelog line, vague question), hist-1 now says its list is partial. **Not done:** the answer-quality judge has not run on 27B answers, no person has labelled any answer (all quality figures are AI-checked), code and docs answers were checked only by the automatic citation checks, and the guards, snapping, `history_grounded` and the budget note are not the defaults (they are enabled per run). Numbers and files: `docs/PROJECT_LOG.md`, 2026-11-18 entries.*
 - Exact-ref pre-step + router + 5 routes + tools (§3.6), citation-enforcing answer prompt,
   checkpointer memory.
 - An end-to-end answer-quality check on the golden set with an LLM judge (faithfulness to cited

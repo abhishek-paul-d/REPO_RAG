@@ -1,15 +1,38 @@
 # repo-rag
 
-A developer companion that indexes a GitHub repository and answers questions about it, with
-citations. It handles architecture questions, code explanations, bug report to past fix
-matching, and exact questions about history, people, PRs, issues and releases.
+Ask questions about a GitHub repository and get answers with citations. `repo-rag` indexes a
+repo and answers five kinds of question:
+
+- **Architecture:** "How does auth flow from the API layer to the DB?"
+- **Code:** "What does `resolve_dependencies()` do and who calls it?"
+- **Bug report to past fix:** find earlier commits that fixed a similar bug.
+- **History, people, PRs, issues, releases:** "Who merged #1234?", "What changed between v2.30 and v2.31?"
+- **Onboarding:** answers from the README, docs, CI and dependency files.
 
 What sets it apart is **AST-based chunking** (tree-sitter): functions, methods and classes stay
-whole instead of being cut at a character count. Every claim in this file is backed by a
-measurement in [`eval/RESULTS.md`](eval/RESULTS.md) or [`docs/PROJECT_LOG.md`](docs/PROJECT_LOG.md),
-and the limits are stated next to the numbers.
+whole instead of being cut at a character count. Exact questions (who, when, how many, `#N`) are
+answered from tool output, never from the model's memory.
 
 Only **open-source local models** are used. Nothing needs an Anthropic or OpenAI key.
+
+Every number below comes from this repository's own eval harness
+([`eval/RESULTS.md`](eval/RESULTS.md), [`docs/PROJECT_LOG.md`](docs/PROJECT_LOG.md)), with its
+limits stated next to it. Almost all of it is one repository, `psf/requests`.
+
+## At a glance
+
+| | |
+|---|---|
+| Answer model | `Qwen3.8-27B` (AWQ 4-bit) served by vLLM on a Colab A100 40 GB, with CUDA graphs and MTP |
+| Speed | about 4 s per question (was about 23 s before CUDA graphs and MTP) |
+| Code questions | 39/40 |
+| Docs questions | 11/12 |
+| Exact facts through the model | 59/60 |
+| Architecture questions | 13/15 (original set), 8/10 (fresh set) |
+| Bug report to fix commit | 70/113 (62%) on the full test set; 5/10 on the old small set. The weak spot: treat answers as leads to check |
+
+These are mechanical pass rates from single runs, on one repository. See
+[Measured results](#measured-results) for what each one does and does not show.
 
 ## How it works
 
@@ -26,12 +49,10 @@ flowchart LR
     C --> Out[Answer + sources]
 ```
 
-- **Questions about meaning** ("how does auth reach the DB?") go to hybrid search over code,
-  docs, commits, PRs and issues: Qwen3 embeddings fused with BM25 by weighted reciprocal-rank
-  fusion, always filtered by repo.
-- **Exact questions** (who, when, how many, `#1234`, SHAs, tags) go to typed, parametrized tools
-  over `metadata.db` (SQLite) and git. The model never writes SQL and never estimates names,
-  dates or counts: it quotes tool output.
+- **Questions about meaning** go to hybrid search over code, docs, commits, PRs and issues:
+  Qwen3 embeddings fused with BM25 by weighted reciprocal-rank fusion, always filtered by repo.
+- **Exact questions** go to typed, parametrized tools over `metadata.db` (SQLite) and git. The
+  model never writes SQL and never estimates names, dates or counts: it quotes tool output.
 - **Every answer is checked.** Citations (`path:start-end` for code, short SHA for commits) are
   validated against what the tools actually returned; invalid ones are removed and unverified
   commit ids are flagged in the UI.
@@ -41,7 +62,9 @@ flowchart LR
 | Where | What |
 |---|---|
 | Laptop (CPU, no GPU needed) | Retrieval, tools, citation check, API, Streamlit UI |
-| Colab A100 40 GB | Indexing (embedding is about 0.16 chunks/s on a laptop CPU), the answer model, the reranker |
+| Colab A100 40 GB | Indexing (embedding is about 0.16 chunks/s on a laptop CPU) and the answer model |
+
+The 27B model leaves no room on the card for a reranker, so the default setup runs without one.
 
 Indexes move between machines as plain data (`export-index` / `import-index`), not Chroma
 files. The answer model is served from Colab over a hash-checked Cloudflare tunnel; prompts cross
@@ -72,8 +95,8 @@ uv run repo-rag import-index repo_rag_index.zip
 uv run repo-rag search "where are retries configured" --repo psf/requests
 ```
 
-4. For answers, start the model server with `notebooks/serve_model_on_colab.ipynb` (it releases
-   the GPU after 10 idle minutes), then start the API and UI and paste the URL and token:
+4. For answers, start the model server with `notebooks/serve_model_27b_on_colab.ipynb` (it
+   releases the GPU after 10 idle minutes), then start the API and UI and paste the URL and token:
 
 ```bash
 uv run uvicorn repo_rag.api.server:app --reload
@@ -99,13 +122,91 @@ More commands (symbols, callers, summaries, history, eval runs) are listed in [C
 
 ## Measured results
 
-All numbers are from this repository's own eval harness. "Exploratory" means no pre-registered
-gate and a single repository; read the caveats before quoting any of them.
+"Exploratory" means no pre-registered gate and a single repository. Read the caveats before
+quoting any number.
+
+### End-to-end agent check on psf/requests (27B, exploratory)
+
+128 questions through the real agent, answer model `Qwen3.8-27B` with CUDA graphs and MTP, single
+runs. A question passes when the answer cites lines (or names a commit) that match the known
+answer, or abstains when it should.
+
+| Question type | Pass |
+|---|---:|
+| Code (40) | 39/40 |
+| Docs (12) | 11/12 |
+| Architecture, original set (15) | 13/15 |
+| Architecture, fresh set (10) | 8/10 |
+| History (11) | 11/11 |
+| References `#N` (10) | 10/10 |
+| Kind of `#N` (5) | 5/5 |
+| Issue to fixing PR (10) | 10/10 |
+| Out-of-scope probes (5) | 5/5 (correctly abstained) |
+| **Bug report to fix commit (10)** | **5/10** (old small set, before the commit changes below) |
+| **Bug report to fix commit (113)** | **70/113** (62%); 57/113 before the shortlist and tool-call changes |
+
+Caveats:
+
+- **Architecture** passes when the answer names at least half of the gold files, so it is a
+  proxy for answer quality. The labels were reviewed by the repository owner (provenance not
+  independently verified), and the fresh set has no margin over its gate.
+- **Run-to-run movement** is about one question per set: the same questions scored 12/15 with CUDA
+  graphs alone and 13/15 with graphs plus MTP, and one code question flipped between runs. Do not
+  read differences of one question as gains.
+- **Commit questions** are the weak spot. On the 113 test pairs of psf/requests, the answer model
+  scores 70/113: a shortlist of 15 commits (the first 5 in full) and 6 tool calls for commit
+  questions raised it from 57/113. About 40 still fail, mostly a wrong commit or an abstention; the
+  gold commit is in the top 15 for about 70% of the pairs. The 10-question number below is older.
+  Earlier diagnosis on the small set showed the limit is retrieval ranking, model
+  selection and abstention, not query drift; a prompt change added about one question (6/10 to
+  7/10 on this set, a single run). The shipped default prompt was not re-measured at the current
+  speed settings. Treat answers to "which past commit fixed this?" as leads, not conclusions.
+- There is no fallback model. The previous model, `Qwen2.5-Coder-14B-Instruct`, scored code
+  36/40, docs 10/12 and commit 3/10 under older limits; it was not re-measured under the current
+  defaults and is unsupported.
+
+### Exact facts through the agent
+
+60 auto-generated facts on encode/httpx (expected answers from the raw GitHub data and plain git):
+**60/60** through the tools alone, and **59/60 (98.3%)** through the 27B model (target 90%). The
+one miss is a month-count question where the model used a different tool than the one scoring
+expects. This scores routing among the exact tools, not retrieval.
+
+### Manual check of 32 open-ended questions
+
+A 32-question set covering architecture, code, history, people, PRs, releases and bug reports was
+run on the 27B. The automatic citation checks flagged 1 of 32 (a PR-review question the data
+cannot answer). Those checks do not test correctness, so an AI reader also compared the 19
+exact-fact answers with git and `metadata.db`: 5 were wrong at first (path-based counts that
+ignored renamed files, an issue question answered from a few hits, and a release question), 4
+were fixed and the fifth, a vague "redirect change in v2.3" question, still gets a weak answer.
+The code and docs answers in this set were checked only by the automatic citation checks, and no
+human labelled any of it. Details: [docs/PROJECT_LOG.md](docs/PROJECT_LOG.md).
+
+### Claude's review of the 27B answers
+
+An AI reader (Claude, not a person) read the 27B's saved answers against the cited code, the pinned
+source, git and `metadata.db`. Verdicts are in `eval/claude_review_27b/`.
+
+| Answers read | Result |
+|---|---|
+| Code (40) and docs (12), one guards-on run | 49/52 correct, 3 partial; 50/52 faithful. The mechanical score said 40/40 and 11/12. The worst: the "no charset" questions say text falls back to charset detection, but `text/*` pages default to ISO-8859-1 |
+| Exact facts, 15 answers of the 32-question set | 10 fully right, 4 partial (history lists titles only, "who knows it best" ignores recency, a PR answer that is a bare number, a release summary that skips the security fix), 1 right abstention with misleading wording |
+| Commit questions (113) | 70 pass by exact SHA; about 76 if 6 answers that are valid alternative fixes are counted. 67 of the 70 passes are a bare SHA with no explanation. One answer names the commit that introduced the bug as its fix |
+
+This is one reader and no human labels, on questions the system was tuned on.
+
+### Speed
+
+Mean time per question fell from about 23 s to 4.2 s on the same A100 (103 non-architecture
+questions). The cost was almost all decoding: eager mode produced about 7 tokens/s, CUDA graphs
+about 35, and CUDA graphs with MTP about 45 to 52. The Cloudflare tunnel adds about 0.3 to
+0.6 s per call, and the first question in a process pays about 20 s of laptop warm-up.
 
 ### AST chunking: more complete evidence, not a consistent ranking gain
 
 Exact dense search, headers on, 40 questions per repo, fraction of gold line ranges that
-reach 90% coverage in the top 10 ("Gold ≥90%@10"):
+reach 90% coverage in the top 10 ("Gold >=90%@10"):
 
 | Repo | Character chunks | Language-aware splitter | AST (ours) |
 |---|---:|---:|---:|
@@ -114,27 +215,28 @@ reach 90% coverage in the top 10 ("Gold ≥90%@10"):
 
 AST minus character, headers on, all questions: +0.188 [+0.085, +0.292] on Requests and +0.100
 [+0.000, +0.225] on Express (paired bootstrap, 95% CI). Ranking (MRR@10) is **not** consistently
-better, and in some hybrid settings it is worse (Requests −0.074 [−0.137, −0.017]). The reference
+better, and in some hybrid settings it is worse (Requests -0.074 [-0.137, -0.017]). The reference
 `astchunk` library matches our completeness on Requests (0.842 both), so this does not show an
 advantage over reference cAST. Python and JavaScript only; two repos.
 
 ### Embedding model
 
-`Qwen/Qwen3-Embedding-0.6B` at 512 dimensions, chosen by comparing it with a 7B code embedder, CodeRankEmbed and BM25 (nDCG@10):
+`Qwen/Qwen3-Embedding-0.6B` at 512 dimensions, chosen by comparing it with a 7B code embedder,
+CodeRankEmbed and BM25 (nDCG@10):
 
 | Task | Qwen3-0.6B @512d | nomic-embed-code 7B | BM25 |
 |---|---:|---:|---:|
 | Questions about code (36) | 0.738 | 0.431 | 0.522 |
-| Bug report → fix commit (144) | 0.482 | 0.596 | 0.347 |
+| Bug report to fix commit (144) | 0.482 | 0.596 | 0.347 |
 
 The 7B model wins bug-to-fix but would need a GPU at query time and a much larger index, so it
 was not adopted. Filtering retrieval by repo adds 0.13 to 0.18 nDCG@10 for every model.
 
 ### Reranking (opt-in, GPU only)
 
-- **Code**: `Qwen3-Reranker-8B` beat the 4B on 150 questions: MRR 0.860 → 0.926 (+0.066
+- **Code**: `Qwen3-Reranker-8B` beat the 4B on 150 questions: MRR 0.860 to 0.926 (+0.066
   [+0.026, +0.109]), at about +45% latency.
-- **Bug report → fix commit**, held-out test, 8B rerank at depth 50:
+- **Bug report to fix commit**, held-out retrieval test, 8B rerank at depth 50:
 
 | Repo | n | Hit@5 | MRR@10 |
 |---|---:|---:|---:|
@@ -145,68 +247,31 @@ was not adopted. Filtering retrieval by repo adds 0.13 to 0.18 nDCG@10 for every
 
 Without reranking, source-path Hit@5 is 0.779 (requests 0.689, flask 0.850). The gold here is
 link-derived (an issue's own fix commit), so this does not measure how useful *similar* past
-fixes are to a developer.
-
-### Exact facts through the agent
-
-60 auto-generated facts on encode/httpx (expected answers from the raw GitHub data and plain git):
-**60/60** through the tools alone, and **59/60 (98.3%)** through the local model (target 90%).
-The one miss is a right commit with the SHA shortened to 10 characters instead of 12; the check
-was not loosened. This scores routing among the exact tools, not retrieval.
-
-### End-to-end agent check (exploratory)
-
-103 questions on psf/requests through the real agent with `Qwen2.5-Coder-14B-Instruct` on an
-A100, single deterministic runs (three passes were identical), no gates:
-
-| Question type | Pass |
-|---|---:|
-| Code (40) | 35/40 baseline prompt, 36/40 default prompt |
-| Docs (12) | 7/12 baseline prompt, 10/12 default prompt |
-| History (11) | 11/11 |
-| References `#N` (10) | 10/10 |
-| Kind of `#N` (5) | 5/5 |
-| Issue → fixing PR (10) | 10/10 |
-| Out-of-scope probes (5) | 5/5 (correctly abstained) |
-| **Bug report → fix commit (10)** | **3/10** |
-
-The default prompt (`docs_hint_narrow`) was measured on code, docs and PR search only (62
-questions); the other rows come from the baseline-prompt run. On 10 fresh docs-style questions
-it routed 9/10 to docs search against 1/10 for the baseline, with code unchanged at 8/10.
-
-### Answer quality (code and docs answers, AI-checked)
-
-The pass rates above are mechanical (the cited lines overlap the known answer). A local judge,
-`Qwen3.8-27B` (4-bit), read the 50 non-abstained code and docs answers against the lines they cite
-and a reference. Its negative controls (an answer paired with another question's evidence) were
-rejected 98% to 100% of the time, so it can tell a wrong answer from a right one. Rates:
-
-| Reader | Faithful (claims supported by cited lines) | Correct |
-|---|---:|---:|
-| Judge, v2 prompts | 25/48 (52%) | 41/50 (82%) |
-| AI review (Codex, corrected by a second AI reader) | 30/50 (60%) | 33/50 (66%) |
-
-Read these as ranges, not accuracy: the mechanical pass rate overstates quality (42 answers pass,
-12 of them are partial or worse in the review), the judge is kinder than the review on completeness, and
-**no independent human labels exist** (the marks on a 15-answer hard-case sample were
-unverified). Details and the judge's failure patterns: [docs/PROJECT_LOG.md](docs/PROJECT_LOG.md).
-
-**Commit questions are the weak spot.** Diagnosis showed the limit is retrieval ranking, model
-selection and abstention, not query drift, and none of the switches tried gave a clear gain.
-Treat answers to "which past commit fixed this?" as leads to check, not conclusions.
+fixes are to a developer. The 27B setup does not use the reranker, which is why the agent's
+commit score above (5/10) is far below this retrieval score.
 
 ## Known limits
 
 - **One main repository.** Almost every number is from `psf/requests` (plus httpx for exact
   facts, Flask and FastAPI for commit search). Other languages, larger repos and ANN accuracy at
   scale are unmeasured.
-- **Labels are author-checked.** Independent human review of the architecture labels is pending, and the
-  answer-quality numbers above come from AI readers only.
+- **No independent human labels.** The architecture labels were reviewed by the owner only (the
+  Flask labels were not checked against source), and answer quality was judged by automatic
+  checks and AI readers, not people. The review of the 27B's answers above is one AI reader.
+- **Commit answers are bare SHAs.** The answer to "which commit fixed this?" is usually just a
+  SHA, and a no-match is the generic "No relevant implementation was found". A user cannot tell a
+  confident answer from a guess.
+- **History counts exclude merge commits** (4,883 of 6,495 for requests), by design; answers do not
+  say so.
 - **Chunk granularity.** Merged chunks are labelled by their first symbol, so a question about the
-  second function in a chunk can cite the whole chunk's range (code-016 and code-037 in the eval).
+  second function in a chunk can cite the whole chunk's range.
 - **Architecture questions** can abstain when the top results stop at an entry point; the
   repo-map summaries are built but not enabled by default because the router lowered recall.
-- **Reranking needs a GPU**, so on a CPU-only laptop it is off.
+- **Extra answer guards are off by default.** Retry-on-abstain, retry-on-tool-error, citation
+  snapping and the `history_grounded` prompt held every regression gate when switched on, but
+  adopting them is undecided.
+- **Colab dependency.** The 27B needs a 40 GB GPU. Colab releases it after 10 idle minutes and
+  the tunnel then stops answering until the server notebook is restarted.
 - "Who pushed" is not in git: answers report author, committer and `merged_by`.
 - Answers show names and GitHub handles, never author emails.
 - Whole-repo scan questions ("any dead code?") are based on the top results and not exhaustive.
@@ -223,8 +288,9 @@ src/repo_rag/
   agent/       LangGraph agent, tools, prompts, citation check, remote model client
   api/         FastAPI: GET /repos, POST /ask (streaming), POST /repos/import
   ui/          Streamlit chat UI with source links at the indexed commit
-eval/          datasets, runners and every recorded result
-notebooks/     generated Colab notebooks (indexing, model server, experiments)
+eval/          datasets, runners and current results
+experiments/   archived experiment code, tests and result files
+notebooks/     generated Colab notebooks (indexing, model server)
 ```
 
 ## More

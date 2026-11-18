@@ -1,0 +1,62 @@
+{
+ "hist-1": [
+  "correct list, partial answer",
+  "The 8 newest changes match git log -L; it gives titles only (not what each change did) and lists a merge commit as a change. It does say the list is partial."
+ ],
+ "hist-2": [
+  "correct",
+  "Three newest commits of adapters.py match git exactly."
+ ],
+ "people-1": [
+  "correct",
+  "Kenneth Reitz; follows the 2023 move to src/. Bare name, no count."
+ ],
+ "people-2": [
+  "correct",
+  "Newest commit on lines 40-80 checked earlier."
+ ],
+ "people-3": [
+  "partial",
+  "Kenneth Reitz is right by commit count, but 'knows best' today is not answered: he has not been active for years and no recency is mentioned."
+ ],
+ "people-4": [
+  "correct",
+  "Opener, reviewers and merger match the database."
+ ],
+ "pr-1": [
+  "correct",
+  "Description matches the PR body."
+ ],
+ "pr-2": [
+  "partial",
+  "PR 5797 is the right PR, but the answer is just '- 5797': no title, no explanation."
+ ],
+ "pr-3": [
+  "right abstention, poor wording",
+  "Review text is not stored, so abstaining is right, but 'No relevant implementation was found' blames retrieval instead of the data."
+ ],
+ "issue-1": [
+  "correct",
+  "10 open issues with 'timeout' in the title, matches the database; does not say it is a title match."
+ ],
+ "rel-1": [
+  "partial",
+  "The 5 commits match git v2.30.0..v2.31.0, but the security fix that is the point of the release is only 'a merge of a security advisory PR'."
+ ],
+ "rel-2": [
+  "correct",
+  "v2.27.0 checked earlier against git."
+ ],
+ "rel-3": [
+  "correct",
+  "2.4.2; a version, no date."
+ ],
+ "stats-1": [
+  "correct",
+  "Matches git shortlog --no-merges (2209, 329, 234, 203, 65); the database holds the 4,883 non-merge commits of 6,495, by design. Aliases (Ian Stapleton Cordasco, 21) are not merged but do not change the order."
+ ],
+ "stats-2": [
+  "correct",
+  "Top 3 files match the database query (rename-aware); the answer does not say counts exclude merge commits."
+ ]
+}
