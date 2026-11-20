@@ -156,6 +156,7 @@ class Settings(BaseSettings):
         "commit_pr_commits",
         "commit_explain",
         "commit_verify",
+        "commit_code_fallback",
     ] = "commit_explain"
     """Production-toolset prompt. Default `commit_explain` since 2026-11-20 (user decision): it is
     `commit_pr_commits` plus "a bug-report answer is the SHA plus one sentence why" and "review

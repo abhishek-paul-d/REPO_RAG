@@ -29,7 +29,7 @@ limits stated next to it. Almost all of it is one repository, `psf/requests`.
 | Docs questions | 11/12 |
 | Exact facts through the model | 59/60 |
 | Architecture questions | 13/15 (original set), 8/10 (fresh set) |
-| Bug report to fix commit | requests 76 to 78/113 (about 68%), Flask 100 to 101/136 (about 74%), three identical runs each. The weak spot: treat answers as leads to check |
+| Bug report to fix commit | requests 76 to 78/113 (about 68%), three identical runs; Flask 105/136 (77%), two identical runs. The weak spot: treat answers as leads to check |
 
 These are mechanical pass rates from single runs, on one repository. See
 [Measured results](#measured-results) for what each one does and does not show.
@@ -206,8 +206,10 @@ This is one reader and no human labels, on questions the system was tuned on.
 
 The fresh questions were written by an AI and are easy for this system, so they show it does not
 regress, not how strong it is. `commit_explain` makes more specific claims that have not been
-checked against the diffs. The code, docs, history and architecture questions have not been
-re-run under it yet (only the commit questions have).
+checked against the diffs. Re-run under `commit_explain` on 2026-11-20 against the previous
+default: the 103 tuned questions 98 against 99 (one code question, a bug-style report, was
+answered with a commit instead of code), the 72 fresh questions 72 against 72, architecture 13/15
+against 12/15 and 9/10 against 9/10. No regression beyond noise.
 
 ### Commit questions: what was tried
 
@@ -217,22 +219,34 @@ below mean anything, and none of the gains is significant on its own (sign test)
 
 | Setting | requests (113) | Flask (136) |
 |---|---:|---:|
-| Default prompt `commit_explain`, three identical runs | 76, 76, 78 | 101, 100, 101 |
-| Search with the model's query and the question merged (`fused`) | 79 | 103 |
-| Summary index for search, fused, summary hidden from the model | 82 and 84 | 106 and 107 |
+| Default prompt `commit_explain`, identical runs | 76, 76, 78 | 105, 105 |
+| Search with the model's query and the question merged (`fused`) | 79 | 105 |
+| Summary index for search, fused, summary hidden from the model | 82 and 84 | 110 and 110 |
 | Model must read candidates with `get_commit` before naming one (`verify`) | 69 (worse, p = 0.065) | not run |
 
 - **Summary index:** the 27B wrote a short plain-English summary of every commit; it is added to the
   text that is *searched*, and the model still sees the raw commit. Retrieval alone (hybrid, 170
   Flask queries over 3,829 commits): hit@1 93 to 99, hit@5 141 to 146, MRR 0.675 to 0.712. Showing
   the summary to the model did not help (72/113 against 78/113), so it is hidden.
+- **Flask result (re-run 2026-11-20 after a crash fix):** an earlier Flask run was understated because
+  the PR-search tool raised an error on a repo indexed without PR data (now fixed; it returns a note).
+  With the fix, the two identical controls score 105 and 105 of 136 and agree on every question. The
+  summary index scores 110 twice: ahead on 14 questions, behind on 9 (sign test p = 0.405), so it is
+  not significant. It also abstains less (14 against 19), so part of the gain is answering more often.
+  Fused queries alone: 105, no change.
+- **Why the 31 Flask misses fail** (first query replayed against the index): the gold commit was in the
+  top 5 for 6, at rank 6 to 15 for 5, at rank 16 to 30 for 8, and not in the top 30 for 12. So 25 of
+  31 are a retrieval miss. 19 of the 31 are abstentions. Several gold commits are one-line typo, docs
+  or packaging fixes whose message says little ("Fixes #1051"), and four questions share one gold
+  commit (top-level arrays in `jsonify`) while the model often names a sibling commit that looks like
+  the right fix. Some of the misses are therefore label ambiguity, not wrong answers.
 - **Reading before naming made answers worse** on requests, so it stays off.
 - **Rejected on purpose:** a reranker (no gain, slower), and adding issue or PR text to the search
   text (the gold commit's own issue text would leak the answer). A run restricted to fix-like
   commits scored 85/113, but every gold commit passes that filter by construction, so it is an
   upper bound, not a result.
 - **Not the default:** the summary index needs a 27B summary pass plus a GPU embedding run for each
-  repository. Both repos point the same way (ahead of every control run, by 4 to 8 questions), but it is not proven. Turn it on
+  repository. Requests shows +4 to +8 over the controls; Flask shows +5 but not significantly. It is not proven. Turn it on
   with `agent_commit_query=fused` and `agent_commit_hide_summary=true`; the build steps are in
   [docs/FLASK_COMMIT_RUNBOOK.md](docs/FLASK_COMMIT_RUNBOOK.md).
 - **Limits:** the questions are an issue and its own fix commit, not "find a similar past fix for

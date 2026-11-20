@@ -1,0 +1,666 @@
+{
+ "dataset": "agent_eval_architecture_v1.jsonl",
+ "dataset_sha256": "7ed2a1c55719675a51c55667b9ecac4f0eae469f6bc3d244dc4f499b852b380e",
+ "toolset": "production",
+ "prompt_variant": "commit_explain",
+ "commit_query": "model",
+ "commit_fix_only": false,
+ "repo": "psf/requests",
+ "hide_summary": false,
+ "fuse_weight": null,
+ "commit_bm25_weight": null,
+ "data_dir": "data",
+ "extra_files": 3,
+ "skip_tests": true,
+ "tool_result_chars": 24000,
+ "max_input_tokens": "12288",
+ "commit_k": 15,
+ "max_tool_calls": 4,
+ "citation_snap": false,
+ "abstain_retries": 0,
+ "tool_error_retries": 0,
+ "server": {
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+  "hardware": "NVIDIA A100-SXM4-40GB",
+  "max_input_tokens": "12288",
+  "decode_mode": "cuda-graphs + mtp3",
+  "concurrency": "8"
+ },
+ "rerank_used": false,
+ "rerank_failures": 0,
+ "llm_model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+ "table": {
+  "architecture": {
+   "n": 15,
+   "passed": 13,
+   "abstained": 0,
+   "failed": 1,
+   "missed": [
+    "architecture-002",
+    "architecture-011"
+   ]
+  }
+ },
+ "rows": [
+  {
+   "id": "architecture-001",
+   "type": "architecture",
+   "question": "How is the public HTTP interface separated from persistent client state and network transport?",
+   "answer": "The public HTTP interface is separated from persistent client state and network transport through a layered design: the Session class holds persistent client state such as headers, auth, proxies, hooks and cookies (src/requests/sessions.py:442-488), while the actual network transport is delegated to a Transport Adapter. The BaseAdapter defines the abstract transport interface with send() and close() (src/requests/adapters.py:122-155), and HTTPAdapter implements it on top of urllib3, managing connection pools and proxy managers (src/requests/adapters.py:158-199). The Session mounts adapters per scheme (e.g. s.mount('http://', a)) so that the high-level request API never touches sockets directly; the adapter obtains a urllib3 connection via get_connection (src/requests/adapters.py:512-563) and computes the final request URL via request_url (src/requests/adapters.py:565-611). PreparedRequest objects carry the fully prepared request (headers, body, auth) between the Session and the adapter (src/requests/models.py:654-697), keeping the public interface decoupled from both state and transport.",
+   "model_answer": "The public HTTP interface is separated from persistent client state and network transport through a layered design: the Session class holds persistent client state such as headers, auth, proxies, hooks and cookies (src/requests/sessions.py:442-488), while the actual network transport is delegated to a Transport Adapter. The BaseAdapter defines the abstract transport interface with send() and close() (src/requests/adapters.py:122-155), and HTTPAdapter implements it on top of urllib3, managing connection pools and proxy managers (src/requests/adapters.py:158-199). The Session mounts adapters per scheme (e.g. s.mount('http://', a)) so that the high-level request API never touches sockets directly; the adapter obtains a urllib3 connection via get_connection (src/requests/adapters.py:512-563) and computes the final request URL via request_url (src/requests/adapters.py:565-611). PreparedRequest objects carry the fully prepared request (headers, body, auth) between the Session and the adapter (src/requests/models.py:654-697), keeping the public interface decoupled from both state and transport.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "public HTTP interface separated from persistent client state network transport"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 6,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 27.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 2 of 4 gold files (need 2)"
+  },
+  {
+   "id": "architecture-002",
+   "type": "architecture",
+   "question": "Trace a one-off HTTP call from a convenience entry point to the network connection pool.",
+   "answer": "No answer could be produced: the model's reply was not valid within the limits.",
+   "model_answer": "No answer could be produced: the model's reply was not valid within the limits.",
+   "abstain": true,
+   "failure": "budget",
+   "error": "",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"def request self.send adapter get_connection_with_tls_context poolmanager urlopen\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code",
+    "search_code",
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "convenience entry point one-off HTTP call get post request"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Session.request send adapter send connection pool urllib3"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "def request Session self.send adapter get_connection_with_tls_context poolmanager"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Session request method send adapter self.send"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 35.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "architecture-003",
+   "type": "architecture",
+   "question": "Which internal layers must a convenience HTTP entry point rely on to prepare and send a request?",
+   "answer": "The convenience entry point request() constructs a Request and sends it through a Session (src/requests/api.py:24-47). The Session merges session and request settings to build a PreparedRequest via Session.prepare_request (src/requests/sessions.py:505-555). That PreparedRequest is then transmitted by HTTPAdapter.send, which obtains a connection, verifies the certificate, adds headers and sends the request (src/requests/adapters.py:634-679).",
+   "model_answer": "The convenience entry point request() constructs a Request and sends it through a Session (src/requests/api.py:24-47). The Session merges session and request settings to build a PreparedRequest via Session.prepare_request (src/requests/sessions.py:505-555). That PreparedRequest is then transmitted by HTTPAdapter.send, which obtains a connection, verifies the certificate, adds headers and sends the request (src/requests/adapters.py:634-679).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "convenience HTTP entry point prepare and send request internal layers"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 23.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 3 of 4 gold files (need 2)"
+  },
+  {
+   "id": "architecture-004",
+   "type": "architecture",
+   "question": "Which part owns request preparation and response representation, and which part coordinates their use?",
+   "answer": "Request preparation is owned by the PreparedRequest model (src/requests/models.py:732-763) and response representation by the Response model (src/requests/models.py:732-763); their use is coordinated by the Session, which sends a PreparedRequest and returns a Response (src/requests/sessions.py:752-799), with the HTTPAdapter building the Response from the prepared request (src/requests/adapters.py:365-401).",
+   "model_answer": "Request preparation is owned by the PreparedRequest model (src/requests/models.py:732-763) and response representation by the Response model (src/requests/models.py:732-763); their use is coordinated by the Session, which sends a PreparedRequest and returns a Response (src/requests/sessions.py:752-799), with the HTTPAdapter building the Response from the prepared request (src/requests/adapters.py:365-401).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "request preparation response representation coordinates use"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 22.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 2 of 2 gold files (need 2)"
+  },
+  {
+   "id": "architecture-005",
+   "type": "architecture",
+   "question": "How is a low-level transport response converted into the response object returned to the caller?",
+   "answer": "The conversion is done by HTTPAdapter.build_response, which takes the urllib3 (low-level transport) response and constructs a requests.Response object: it creates a new Response, copies the status code from resp.status, wraps resp.headers in a CaseInsensitiveDict, derives the encoding from the headers, stores the raw urllib3 response in response.raw, sets the reason, decodes the request URL if it is bytes, extracts cookies into the response's cookie jar, and attaches the original PreparedRequest and the adapter as context before returning the Response (src/requests/adapters.py:365-401). The Response object's fields are initialized in Response.__init__ (src/requests/models.py:765-810).",
+   "model_answer": "The conversion is done by HTTPAdapter.build_response, which takes the urllib3 (low-level transport) response and constructs a requests.Response object: it creates a new Response, copies the status code from resp.status, wraps resp.headers in a CaseInsensitiveDict, derives the encoding from the headers, stores the raw urllib3 response in response.raw, sets the reason, decodes the request URL if it is bytes, extracts cookies into the response's cookie jar, and attaches the original PreparedRequest and the adapter as context before returning the Response (src/requests/adapters.py:365-401). The Response object's fields are initialized in Response.__init__ (src/requests/models.py:765-810).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "low-level transport response converted into response object returned to caller"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 23.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 2 of 3 gold files (need 2)"
+  },
+  {
+   "id": "architecture-006",
+   "type": "architecture",
+   "question": "Which components jointly retain cookies between calls and attach them to outgoing requests?",
+   "answer": "The Session class retains cookies between calls by storing a RequestsCookieJar and merging response cookies into it, while PreparedRequest.prepare_cookies attaches the jar's cookies to outgoing requests by generating the Cookie header (src/requests/sessions.py:1-73, src/requests/models.py:699-729). The cookies module provides extract_cookies_to_jar to pull cookies from responses into the jar and get_cookie_header to produce the Cookie header string (src/requests/cookies.py:114-161).",
+   "model_answer": "The Session class retains cookies between calls by storing a RequestsCookieJar and merging response cookies into it, while PreparedRequest.prepare_cookies attaches the jar's cookies to outgoing requests by generating the Cookie header (src/requests/sessions.py:1-73, src/requests/models.py:699-729). The cookies module provides extract_cookies_to_jar to pull cookies from responses into the jar and get_cookie_header to produce the Cookie header string (src/requests/cookies.py:114-161).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "cookies retain between calls attach outgoing requests"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 23.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 3 of 3 gold files (need 2)"
+  },
+  {
+   "id": "architecture-007",
+   "type": "architecture",
+   "question": "Trace the redirect cycle, including rebuilding credentials and preserving cookies across the next send.",
+   "answer": "The redirect cycle is driven by SessionRedirectMixin.resolve_redirects, which loops while a redirect target exists: it resolves the Location header (handling relative URLs via urljoin/requote_uri), rebuilds the method, and for non-307/308 responses purges Content-Length/Content-Type/Transfer-Encoding and clears the body (src/requests/sessions.py:237-280). It then preserves cookies by popping the old 'Cookie' header, extracting cookies from the response into the request's cookie jar, merging that jar with the session cookies, and re-preparing the cookies onto the new request (src/requests/sessions.py:237-280). Credentials are rebuilt via rebuild_auth, which strips the Authorization header when the redirect crosses to a different host (should_strip_auth) and re-applies .netrc auth for the new host if trust_env is set (src/requests/sessions.py:309-332); proxies are also rebuilt via rebuild_proxies (src/requests/sessions.py:237-280). After this, the loop calls self.send with allow_redirects=False to issue the next request, then extracts cookies from that response back into the session jar and fetches the next redirect target to continue the cycle (src/requests/sessions.py:282-307). The redirect target itself is obtained from get_redirect_target, which returns the Location header (re-encoded latin1->utf8) only when resp.is_redirect (src/requests/sessions.py:127-152), and is_redirect is true when a 'location' header is present with a redirect status code (src/requests/models.py:861-913).",
+   "model_answer": "The redirect cycle is driven by SessionRedirectMixin.resolve_redirects, which loops while a redirect target exists: it resolves the Location header (handling relative URLs via urljoin/requote_uri), rebuilds the method, and for non-307/308 responses purges Content-Length/Content-Type/Transfer-Encoding and clears the body (src/requests/sessions.py:237-280). It then preserves cookies by popping the old 'Cookie' header, extracting cookies from the response into the request's cookie jar, merging that jar with the session cookies, and re-preparing the cookies onto the new request (src/requests/sessions.py:237-280). Credentials are rebuilt via rebuild_auth, which strips the Authorization header when the redirect crosses to a different host (should_strip_auth) and re-applies .netrc auth for the new host if trust_env is set (src/requests/sessions.py:309-332); proxies are also rebuilt via rebuild_proxies (src/requests/sessions.py:237-280). After this, the loop calls self.send with allow_redirects=False to issue the next request, then extracts cookies from that response back into the session jar and fetches the next redirect target to continue the cycle (src/requests/sessions.py:282-307). The redirect target itself is obtained from get_redirect_target, which returns the Location header (re-encoded latin1->utf8) only when resp.is_redirect (src/requests/sessions.py:127-152), and is_redirect is true when a 'location' header is present with a redirect status code (src/requests/models.py:861-913).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "redirect cycle rebuild credentials preserve cookies next send"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 7,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 38.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 2 of 3 gold files (need 2)"
+  },
+  {
+   "id": "architecture-008",
+   "type": "architecture",
+   "question": "How does persistent client configuration depend on the case-insensitive header container and default settings helpers?",
+   "answer": "The persistent client configuration is the Session object, whose __init__ sets self.headers to default_headers() (src/requests/sessions.py:442-488). default_headers() returns a CaseInsensitiveDict populated with the default User-Agent, Accept-Encoding, Accept, and Connection values (src/requests/utils.py:911-962). CaseInsensitiveDict stores each key lowercased for lookups while remembering the original case, so header access is case-insensitive (src/requests/structures.py:20-74). Thus the session's persistent header configuration depends on the case-insensitive container for storage/lookup and on the default settings helpers for its initial values.",
+   "model_answer": "The persistent client configuration is the Session object, whose __init__ sets self.headers to default_headers() (src/requests/sessions.py:442-488). default_headers() returns a CaseInsensitiveDict populated with the default User-Agent, Accept-Encoding, Accept, and Connection values (src/requests/utils.py:911-962). CaseInsensitiveDict stores each key lowercased for lookups while remembering the original case, so header access is case-insensitive (src/requests/structures.py:20-74). Thus the session's persistent header configuration depends on the case-insensitive container for storage/lookup and on the default settings helpers for its initial values.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "persistent client configuration case-insensitive header container default settings helpers"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 23.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 3 of 3 gold files (need 2)"
+  },
+  {
+   "id": "architecture-009",
+   "type": "architecture",
+   "question": "Where do authentication strategies live, and how do request preparation and redirect handling invoke them?",
+   "answer": "Authentication strategies live in src/requests/auth.py, where classes such as HTTPBasicAuth (src/requests/auth.py:85-121) and HTTPDigestAuth (src/requests/auth.py:268-354) subclass AuthBase and implement __call__ to modify a PreparedRequest. Request preparation invokes them via PreparedRequest.prepare, which calls prepare_auth last so schemes can work on a fully prepared request (src/requests/models.py:424-481); prepare_auth resolves auth from the URL if needed, wraps a 2-tuple in HTTPBasicAuth, otherwise treats auth as a callable, invokes auth_handler(self), copies the result back, and recomputes Content-Length (src/requests/models.py:654-697). Redirect handling invokes them through hooks: HTTPDigestAuth.__call__ registers handle_401 and handle_redirect as response hooks (src/requests/auth.py:321-354), and the hooks system dispatches registered hooks via dispatch_hook (src/requests/hooks.py:1-48); on redirects, SessionRedirectMixin.rebuild_auth strips or reapplies Authorization headers to avoid leaking credentials (src/requests/sessions.py:309-332).",
+   "model_answer": "Authentication strategies live in src/requests/auth.py, where classes such as HTTPBasicAuth (src/requests/auth.py:85-121) and HTTPDigestAuth (src/requests/auth.py:268-354) subclass AuthBase and implement __call__ to modify a PreparedRequest. Request preparation invokes them via PreparedRequest.prepare, which calls prepare_auth last so schemes can work on a fully prepared request (src/requests/models.py:424-481); prepare_auth resolves auth from the URL if needed, wraps a 2-tuple in HTTPBasicAuth, otherwise treats auth as a callable, invokes auth_handler(self), copies the result back, and recomputes Content-Length (src/requests/models.py:654-697). Redirect handling invokes them through hooks: HTTPDigestAuth.__call__ registers handle_401 and handle_redirect as response hooks (src/requests/auth.py:321-354), and the hooks system dispatches registered hooks via dispatch_hook (src/requests/hooks.py:1-48); on redirects, SessionRedirectMixin.rebuild_auth strips or reapplies Authorization headers to avoid leaking credentials (src/requests/sessions.py:309-332).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "authentication strategies request preparation redirect handling"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "prepare_auth auth callable request hooks dispatch_hook"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 7,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 19.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 3 of 3 gold files (need 2)"
+  },
+  {
+   "id": "architecture-010",
+   "type": "architecture",
+   "question": "Which pieces cooperate to choose certificate verification defaults and configure TLS for transport?",
+   "answer": "The pieces that cooperate to choose certificate verification defaults and configure TLS for transport are: Session.__init__, which sets the default SSL verification value self.verify = True and the client certificate default self.cert = None (src/requests/sessions.py:442-488); HTTPAdapter.build_connection_pool_key_attributes, which inspects the PreparedRequest, the user-specified verify value, and the cert parameter to determine the PoolKey/SSLContext values used to select a connection from the urllib3 pool (src/requests/adapters.py:403-453); HTTPAdapter.get_connection_with_tls_context, which calls build_connection_pool_key_attributes and then obtains the urllib3 connection from the pool manager or proxy manager using those host parameters and pool kwargs (src/requests/adapters.py:455-510); HTTPAdapter.cert_verify, which resolves the CA bundle location (using DEFAULT_CA_BUNDLE_PATH when verify is True), sets conn.cert_reqs to CERT_REQUIRED or CERT_NONE, and configures conn.ca_certs/ca_cert_dir and the client cert/key files (src/requests/adapters.py:307-363); and the certs module, which returns the preferred default CA certificate bundle from the certifi package (src/requests/certs.py:1-18).",
+   "model_answer": "The pieces that cooperate to choose certificate verification defaults and configure TLS for transport are: Session.__init__, which sets the default SSL verification value self.verify = True and the client certificate default self.cert = None (src/requests/sessions.py:442-488); HTTPAdapter.build_connection_pool_key_attributes, which inspects the PreparedRequest, the user-specified verify value, and the cert parameter to determine the PoolKey/SSLContext values used to select a connection from the urllib3 pool (src/requests/adapters.py:403-453); HTTPAdapter.get_connection_with_tls_context, which calls build_connection_pool_key_attributes and then obtains the urllib3 connection from the pool manager or proxy manager using those host parameters and pool kwargs (src/requests/adapters.py:455-510); HTTPAdapter.cert_verify, which resolves the CA bundle location (using DEFAULT_CA_BUNDLE_PATH when verify is True), sets conn.cert_reqs to CERT_REQUIRED or CERT_NONE, and configures conn.ca_certs/ca_cert_dir and the client cert/key files (src/requests/adapters.py:307-363); and the certs module, which returns the preferred default CA certificate bundle from the certifi package (src/requests/certs.py:1-18).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "certificate verification defaults TLS transport configuration"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 5,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 18.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 3 of 4 gold files (need 2)"
+  },
+  {
+   "id": "architecture-011",
+   "type": "architecture",
+   "question": "Which modules cooperate to encode form and multipart upload bodies before network transmission?",
+   "answer": "The encoding is coordinated by PreparedRequest.prepare_body in src/requests/models.py:576-652, which delegates to RequestEncodingMixin._encode_params for form-encoded bodies (src/requests/models.py:108-180) and to RequestEncodingMixin._encode_files for multipart uploads (src/requests/models.py:182-251). _encode_files builds RequestField objects and calls encode_multipart_formdata to produce the final body and content type, while _encode_params uses urlencode to produce application/x-www-form-urlencoded bodies; prepare_body then sets the Content-Type and Content-Length headers before the body is transmitted (src/requests/models.py:603-652).",
+   "model_answer": "The encoding is coordinated by PreparedRequest.prepare_body in src/requests/models.py:576-652, which delegates to RequestEncodingMixin._encode_params for form-encoded bodies (src/requests/models.py:108-180) and to RequestEncodingMixin._encode_files for multipart uploads (src/requests/models.py:182-251). _encode_files builds RequestField objects and calls encode_multipart_formdata to produce the final body and content type, while _encode_params uses urlencode to produce application/x-www-form-urlencoded bodies; prepare_body then sets the Content-Type and Content-Length headers before the body is transmitted (src/requests/models.py:603-652).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "encode form multipart upload body before network transmission"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 15.7,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "names 1 of 2 gold files (need 2)"
+  },
+  {
+   "id": "architecture-012",
+   "type": "architecture",
+   "question": "Trace streamed response data from the raw connection through content decoding and iteration.",
+   "answer": "Streamed response data flows from the raw urllib3 connection through Response.iter_content, which yields chunks from self.raw.stream(chunk_size, decode_content=True) when the raw object has a stream method, or falls back to self.raw.read(chunk_size) for standard file-like objects, marking self._content_consumed True (src/requests/models.py:914-965). The Response.content property joins these chunks into a single bytes value via b\"\".join(self.iter_content(CONTENT_CHUNK_SIZE)) (src/requests/models.py:1034-1089), and Response.text decodes that content using the response encoding or an apparent-encoding fallback (src/requests/models.py:1034-1089). Iterating a response directly uses Response.__iter__, which returns self.iter_content(128) (src/requests/models.py:812-859). The raw object is attached to the Response by HTTPAdapter.build_response, which constructs the Response from the urllib3 response (src/requests/adapters.py:365-401). For unicode streaming, stream_decode_response_unicode wraps the byte iterator with an incremental decoder when r.encoding is set (src/requests/utils.py:569-630).",
+   "model_answer": "Streamed response data flows from the raw urllib3 connection through Response.iter_content, which yields chunks from self.raw.stream(chunk_size, decode_content=True) when the raw object has a stream method, or falls back to self.raw.read(chunk_size) for standard file-like objects, marking self._content_consumed True (src/requests/models.py:914-965). The Response.content property joins these chunks into a single bytes value via b\"\".join(self.iter_content(CONTENT_CHUNK_SIZE)) (src/requests/models.py:1034-1089), and Response.text decodes that content using the response encoding or an apparent-encoding fallback (src/requests/models.py:1034-1089). Iterating a response directly uses Response.__iter__, which returns self.iter_content(128) (src/requests/models.py:812-859). The raw object is attached to the Response by HTTPAdapter.build_response, which constructs the Response from the urllib3 response (src/requests/adapters.py:365-401). For unicode streaming, stream_decode_response_unicode wraps the byte iterator with an incremental decoder when r.encoding is set (src/requests/utils.py:569-630).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "streamed response data raw connection content decoding iteration"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 6,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 18.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 3 of 3 gold files (need 2)"
+  },
+  {
+   "id": "architecture-013",
+   "type": "architecture",
+   "question": "How are user hooks registered and dispatched around the response lifecycle?",
+   "answer": "User hooks are registered via RequestHooksMixin.register_hook, which validates the event name and appends a single callable or extends with an iterable of callables (src/requests/models.py:254-281); deregister_hook removes a previously registered hook (src/requests/models.py:254-281). During request preparation, PreparedRequest.prepare_hooks iterates over the provided hooks dict and calls register_hook for each event (src/requests/models.py:699-729). Session-level and request-level hooks are combined by merge_hooks, which avoids breaking session hooks when one side has an empty 'response' list (src/requests/sessions.py:76-124). Dispatch happens in Session.send: after the adapter returns the response, it calls dispatch_hook('response', hooks, r, **kwargs) (src/requests/sessions.py:752-799). dispatch_hook looks up the hook list for the key, wraps a single callable in a list, then calls each hook in order, replacing the response data with the hook's return value if it is not None (src/requests/hooks.py:1-48). The only supported hook event is 'response' (src/requests/hooks.py:1-48).",
+   "model_answer": "User hooks are registered via RequestHooksMixin.register_hook, which validates the event name and appends a single callable or extends with an iterable of callables (src/requests/models.py:254-281); deregister_hook removes a previously registered hook (src/requests/models.py:254-281). During request preparation, PreparedRequest.prepare_hooks iterates over the provided hooks dict and calls register_hook for each event (src/requests/models.py:699-729). Session-level and request-level hooks are combined by merge_hooks, which avoids breaking session hooks when one side has an empty 'response' list (src/requests/sessions.py:76-124). Dispatch happens in Session.send: after the adapter returns the response, it calls dispatch_hook('response', hooks, r, **kwargs) (src/requests/sessions.py:752-799). dispatch_hook looks up the hook list for the key, wraps a single callable in a list, then calls each hook in order, replacing the response data with the hook's return value if it is not None (src/requests/hooks.py:1-48). The only supported hook event is 'response' (src/requests/hooks.py:1-48).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "user hooks registered dispatched response lifecycle"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 7,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 18.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 3 of 3 gold files (need 2)"
+  },
+  {
+   "id": "architecture-014",
+   "type": "architecture",
+   "question": "How are compatibility shims, dependency checks and the public exception hierarchy separated?",
+   "answer": "Compatibility shims live in src/requests/compat.py, which previously handled Python 2/3 import compatibility and now resolves character-detection libraries (src/requests/compat.py:1-82), while src/requests/packages.py re-exports urllib3/idna/chardet under requests.packages for backwards compatibility (src/requests/packages.py:1-23). Dependency checks are centralized in src/requests/__init__.py: check_compatibility asserts urllib3 >= 1.21.1 and chardet/charset_normalizer version ranges, and _check_cryptography warns on old cryptography (src/requests/__init__.py:60-108); the module then calls check_compatibility inside a try/except that emits RequestsDependencyWarning, and optionally injects pyopenssl for SNI (src/requests/__init__.py:111-186). The public exception hierarchy is defined separately in src/requests/exceptions.py, where RequestException subclasses IOError and carries request/response, with subclasses like URLRequired, TooManyRedirects, MissingSchema, InvalidSchema, InvalidURL, InvalidHeader, InvalidProxyURL, ChunkedEncodingError, ContentDecodingError, StreamConsumedError, RetryError, UnrewindableBodyError (src/requests/exceptions.py:102-162) and the base RequestException/InvalidJSONError (src/requests/exceptions.py:1-39); warnings RequestsWarning, FileModeWarning and RequestsDependencyWarning are also defined there (src/requests/exceptions.py:102-162). The public API re-exports the exceptions from __init__ (src/requests/__init__.py:111-186) and lists them in __all__ (src/requests/__init__.py:188-219).",
+   "model_answer": "Compatibility shims live in src/requests/compat.py, which previously handled Python 2/3 import compatibility and now resolves character-detection libraries (src/requests/compat.py:1-82), while src/requests/packages.py re-exports urllib3/idna/chardet under requests.packages for backwards compatibility (src/requests/packages.py:1-23). Dependency checks are centralized in src/requests/__init__.py: check_compatibility asserts urllib3 >= 1.21.1 and chardet/charset_normalizer version ranges, and _check_cryptography warns on old cryptography (src/requests/__init__.py:60-108); the module then calls check_compatibility inside a try/except that emits RequestsDependencyWarning, and optionally injects pyopenssl for SNI (src/requests/__init__.py:111-186). The public exception hierarchy is defined separately in src/requests/exceptions.py, where RequestException subclasses IOError and carries request/response, with subclasses like URLRequired, TooManyRedirects, MissingSchema, InvalidSchema, InvalidURL, InvalidHeader, InvalidProxyURL, ChunkedEncodingError, ContentDecodingError, StreamConsumedError, RetryError, UnrewindableBodyError (src/requests/exceptions.py:102-162) and the base RequestException/InvalidJSONError (src/requests/exceptions.py:1-39); warnings RequestsWarning, FileModeWarning and RequestsDependencyWarning are also defined there (src/requests/exceptions.py:102-162). The public API re-exports the exceptions from __init__ (src/requests/__init__.py:111-186) and lists them in __all__ (src/requests/__init__.py:188-219).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "compatibility shims dependency checks public exception hierarchy"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 9,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 16.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 3 of 3 gold files (need 2)"
+  },
+  {
+   "id": "architecture-015",
+   "type": "architecture",
+   "question": "Which layers translate connection and timeout failures from the HTTP backend into library-specific errors?",
+   "answer": "The HTTPAdapter.send method in src/requests/adapters.py:695-748 catches urllib3 exceptions (ProtocolError, OSError, MaxRetryError, ClosedPoolError, ProxyError, SSLError, HTTPError, ReadTimeoutError, InvalidHeader) and re-raises them as library-specific requests exceptions (ConnectionError, ConnectTimeout, RetryError, ProxyError, SSLError, ReadTimeout, InvalidHeader). The corresponding library-specific exception classes are defined in src/requests/exceptions.py:42-99 (ConnectionError, ProxyError, SSLError, Timeout, ConnectTimeout, ReadTimeout).",
+   "model_answer": "The HTTPAdapter.send method in src/requests/adapters.py:695-748 catches urllib3 exceptions (ProtocolError, OSError, MaxRetryError, ClosedPoolError, ProxyError, SSLError, HTTPError, ReadTimeoutError, InvalidHeader) and re-raises them as library-specific requests exceptions (ConnectionError, ConnectTimeout, RetryError, ProxyError, SSLError, ReadTimeout, InvalidHeader). The corresponding library-specific exception classes are defined in src/requests/exceptions.py:42-99 (ConnectionError, ProxyError, SSLError, Timeout, ConnectTimeout, ReadTimeout).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "translate connection timeout failures HTTP backend into library-specific errors"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "urllib3 exceptions catch raise ConnectTimeout ReadTimeout ConnectionError SSLError ProxyError adapter send"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 10.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 2 of 2 gold files (need 1)"
+  }
+ ]
+}

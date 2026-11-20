@@ -1,0 +1,20 @@
+code_fallback: two-hop code -> symbol/path-scoped commit search fallback
+code_fallback: done in 4.1 min -> eval\agent_eval_results\agent_eval_production_commit_code_fallback_agent_eval_commit_full_pallets__flask_v1_repo-pallets__flask_idx-data_flask_extra3_notests_chars24000_in12288_20261121T020435.json
+fused_code_fallback: fused + two-hop code -> symbol/path-scoped commit search fallback
+fused_code_fallback: done in 3.8 min -> eval\agent_eval_results\agent_eval_production_commit_code_fallback_agent_eval_commit_full_pallets__flask_v1_cq-fused_repo-pallets__flask_idx-data_flask_extra3_notests_chars24000_in12288_20261121T020823.json
+
+# Commit session report
+
+| step | strict | lenient | abstained | mean search calls | get_commit calls | won | lost | sign-test p |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| control_a | 105/136 | 105/136 | 19 | 1.07 | 0 |  |  |  |
+| control_b | 105/136 | 105/136 | 19 | 1.06 | 0 | 0 | 0 | 1.000 |
+| fused | 105/136 | 105/136 | 17 | 1.05 | 0 | 7 | 7 | 1.000 |
+| summary_fused_hidden | 110/136 | 110/136 | 14 | 1.05 | 0 | 14 | 9 | 0.405 |
+| summary_fused_hidden_b | 110/136 | 110/136 | 14 | 1.05 | 0 | 14 | 9 | 0.405 |
+| code_fallback | 107/136 | 107/136 | 17 | 1.09 | 0 | 6 | 4 | 0.754 |
+| fused_code_fallback | 8/136 | 8/136 | 127 | 0.15 | 0 | 1 | 98 | 0.000 |
+
+won/lost are questions passed/failed compared with control_a.
+
+Noise: the two identical control runs differ on 0 of 136 questions.

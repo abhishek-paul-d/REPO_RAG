@@ -14,7 +14,9 @@ The added tools have not been through the Phase 7 bake-off; see docs/PROJECT_LOG
 
 from __future__ import annotations
 
+import hashlib
 import re
+from collections.abc import Sequence
 from typing import Any
 
 from repo_rag.agent.bakeoff import redact, validate_arguments
@@ -45,6 +47,16 @@ CALLEE_LIMIT = 25
 PR_ISSUE_K = 4  # per collection: top PRs and top issues are shown separately
 PR_TEXT_CHARS = 700
 PR_COMMITS_LIMIT = 5  # a PR's own commits listed next to its merge commit by get_pr
+NO_PR_DATA_NOTE = (
+    "Pull requests and issues are not indexed for {repo}, so there is nothing to search here. "
+    "Use search_commits or search_code instead."
+)
+NO_SCOPED_COMMITS_NOTE = (
+    "No indexed commits touched {scope}. Broaden by passing symbol alone (without path), "
+    "a different symbol/file from search_code, or call search_commits with query only."
+)
+COMMIT_SCOPE_MIN_BARE_LEN = 4
+COMMIT_SCOPE_BROADEN_BELOW = 5
 ADDED_TOOLS = ("search_docs", "search_commits", "search_prs", "get_references", "find_callees")
 # Offered only by the `commit_verify` prompt variant.
 COMMIT_TOOLS = ("get_commit",)
@@ -77,13 +89,55 @@ def strip_question_framing(question: str) -> str:
     return text
 
 
+def _bare_symbol_fallback(symbol: str) -> str | None:
+    """When `Class.method` moved classes, fall back to bare `method` if specific enough."""
+    if "." not in symbol:
+        return None
+    bare = symbol.rpartition(".")[2]
+    if len(bare) < COMMIT_SCOPE_MIN_BARE_LEN or (bare.startswith("__") and bare.endswith("__")):
+        return None
+    return bare
+
+
+def _merge_commit_hits(
+    primary: list,
+    secondary: list,
+    question_weight: float,
+    rrf_k: int,
+    shortlist: int,
+) -> list:
+    by_id = {h.chunk_id: h for h in secondary} | {h.chunk_id: h for h in primary}
+    fused = weighted_rrf(
+        {"model": [h.chunk_id for h in primary], "question": [h.chunk_id for h in secondary]},
+        {"question": question_weight},
+        rrf_k,
+    )
+    return [by_id[cid] for cid, _ in fused][:shortlist]
+
+
 def production_schemas(
-    *, search_prs: bool = True, file_history: bool = False, get_commit: bool = False
+    *,
+    search_prs: bool = True,
+    file_history: bool = False,
+    get_commit: bool = False,
+    commit_scope: bool = False,
 ) -> dict[str, dict]:
     """The evaluated tools plus the added ones. `search_prs=False` leaves that one tool out of what
     the model is offered (prompt variant `no_search_prs`); `get_commit=True` adds the commit reader
-    (prompt variant `commit_verify`)."""
+    (prompt variant `commit_verify`); `commit_scope=True` adds `path`/`symbol` filters on
+    `search_commits` (prompt variant `commit_code_fallback`)."""
     schemas = tool_schemas()
+    commits_desc = (
+        "Hybrid search over indexed commits (message, files, diff); top 5 in full plus up to "
+        "10 brief candidates with 12-character SHAs. For finding earlier fixes of a bug."
+    )
+    commits_fields = {"query": "string"}
+    if commit_scope:
+        commits_desc += (
+            " Optional symbol or path filters restrict search to commits that touched that symbol "
+            "or file (following renames)."
+        )
+        commits_fields = {"query": "string", "path": "string", "symbol": "string"}
     for name, description, fields, required in (
         (
             "search_docs",
@@ -94,9 +148,8 @@ def production_schemas(
         ),
         (
             "search_commits",
-            "Hybrid search over indexed commits (message, files, diff); top 5 in full plus up to "
-            "10 brief candidates with 12-character SHAs. For finding earlier fixes of a bug.",
-            {"query": "string"},
+            commits_desc,
+            commits_fields,
             ["query"],
         ),
         (
@@ -234,13 +287,84 @@ class ProductionTools(BoundTools):
         asked_query = strip_question_framing(question)
         hits = self._search("commits", query, k=depth)
         asked = self._search("commits", asked_query, k=depth)
-        by_id = {h.chunk_id: h for h in asked} | {h.chunk_id: h for h in hits}
-        fused = weighted_rrf(
-            {"model": [h.chunk_id for h in hits], "question": [h.chunk_id for h in asked]},
-            {"question": self.settings.agent_commit_fuse_question_weight},
+        return _merge_commit_hits(
+            hits,
+            asked,
+            self.settings.agent_commit_fuse_question_weight,
             self.settings.rrf_k,
+            shortlist,
         )
-        return [by_id[cid] for cid, _ in fused][:shortlist]
+
+    def _scoped_commit_search(
+        self,
+        query: str,
+        *,
+        path: str | None = None,
+        symbol: str | None = None,
+        question: str | None = None,
+    ) -> list:
+        """Hybrid commit search restricted to commits touching a symbol and/or file path."""
+        clean_path = path.strip() if path and path.strip() else None
+        clean_symbol = (
+            symbol.strip().rpartition("::")[2].strip() if symbol and symbol.strip() else None
+        )
+        clean_symbol = clean_symbol or None
+        alt_paths: Sequence[str] = ()
+        if clean_path is not None:
+            try:
+                alt_paths = names_of(clean_path, self._renames())[1:]
+            except GitToolError:
+                alt_paths = ()
+        is_fix = True if self.settings.agent_commit_fix_only else None
+
+        def matching_shas(p: str | None, alts: Sequence[str], s: str | None) -> list[str]:
+            found = self.db.commit_shas(self.repo, path=p, alt_paths=alts, symbol=s, is_fix=is_fix)
+            bare = _bare_symbol_fallback(s) if s else None
+            if bare and len(found) < COMMIT_SCOPE_BROADEN_BELOW:
+                seen = set(found)
+                for sha in self.db.commit_shas(
+                    self.repo, path=p, alt_paths=alts, symbol=bare, is_fix=is_fix
+                ):
+                    if sha not in seen:
+                        seen.add(sha)
+                        found.append(sha)
+            return found
+
+        shas = matching_shas(clean_path, alt_paths, clean_symbol)
+        if not shas and clean_path is not None and clean_symbol is not None:
+            shas = matching_shas(None, (), clean_symbol)
+        if not shas:
+            return []
+
+        chunk_ids = [hashlib.sha1(f"{self.repo}:commit:{sha}".encode()).hexdigest() for sha in shas]
+        shortlist = max(SEARCH_K, self.settings.agent_commit_k)
+
+        def subset(q: str, limit: int) -> list:
+            if self.settings.reranker_mode == "on":
+                try:
+                    return self.retriever.search_subset(
+                        self.repo, q, chunk_ids, kind="commits", k=limit, rerank=True
+                    )
+                except RuntimeError:
+                    self.rerank_failures += 1
+            return self.retriever.search_subset(
+                self.repo, q, chunk_ids, kind="commits", k=limit, rerank=False
+            )
+
+        if question and self.settings.agent_commit_query == "fused":
+            depth = max(self.settings.retrieval_k, shortlist)
+            if self.settings.reranker_mode == "on":
+                depth = min(depth, self.settings.rerank_candidate_depth)
+            hits = subset(query, depth)
+            asked = subset(strip_question_framing(question), depth)
+            return _merge_commit_hits(
+                hits,
+                asked,
+                self.settings.agent_commit_fuse_question_weight,
+                self.settings.rrf_k,
+                shortlist,
+            )
+        return subset(query, shortlist)
 
     def _search(self, kind: str, query: str, *, k: int | None = None) -> list:
         """Commit search re-scores its fused top 50 on the model server when one is attached
@@ -365,7 +489,10 @@ class ProductionTools(BoundTools):
         entry = Manifest(self.settings.manifest_path).get(self.repo)
         present = [k for k in ("pull_requests", "issues") if entry and entry.chunks.get(k)]
         if not present:
-            raise LookupError(f"pull requests and issues are not indexed for {self.repo}")
+            # Not an error: a repository indexed without PR sync (INDEX_PRS = False) is normal. A
+            # raised error ended the whole turn in an abstention and threw away the commits the
+            # model had already found (15 of 136 Flask questions, none passed; 2026-11-20).
+            return [{"note": NO_PR_DATA_NOTE.format(repo=self.repo)}]
         self.retriever.forget_cached_indexes()
         rows: list[dict[str, Any]] = []
         for kind in present:
@@ -444,7 +571,7 @@ class ProductionTools(BoundTools):
         # `_question` is added by the agent graph, never by the model; it is not a schema field.
         question = args.get("_question") if name == "search_commits" else None
         args = {k: v for k, v in args.items() if k != "_question"}
-        schemas = production_schemas(file_history=True, get_commit=True)
+        schemas = production_schemas(file_history=True, get_commit=True, commit_scope=True)
         validate_arguments(args, schemas[name]["parameters"])
         if name == "get_commit":
             return self._get_commit(args["sha"])
@@ -463,7 +590,24 @@ class ProductionTools(BoundTools):
         kind = "docs" if name == "search_docs" else "commits"
         self._indexed(kind)
         self.retriever.forget_cached_indexes()
-        if (
+        scope_path = (args["path"].strip() if isinstance(args.get("path"), str) else "") or None
+        scope_symbol = (
+            args["symbol"].strip().rpartition("::")[2].strip()
+            if isinstance(args.get("symbol"), str)
+            else ""
+        ) or None
+        if kind == "commits" and (scope_path or scope_symbol):
+            asked = question if isinstance(question, str) and question.strip() else None
+            hits = self._scoped_commit_search(
+                args["query"], path=scope_path, symbol=scope_symbol, question=asked
+            )
+            if not hits:
+                parts = [
+                    *(["symbol " + repr(scope_symbol)] if scope_symbol else []),
+                    *(["path " + repr(scope_path)] if scope_path else []),
+                ]
+                return [{"note": NO_SCOPED_COMMITS_NOTE.format(scope=" and ".join(parts))}]
+        elif (
             kind == "commits"
             and isinstance(question, str)
             and question.strip()

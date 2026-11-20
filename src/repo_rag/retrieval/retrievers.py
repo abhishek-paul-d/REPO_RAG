@@ -13,6 +13,7 @@ import logging
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass, replace
 
+import numpy as np
 from langchain_core.documents import Document
 
 from repo_rag.config import Settings, get_settings
@@ -194,12 +195,7 @@ class HybridRetriever:
         docs: dict[str, Document] = {str(d.metadata["chunk_id"]): d for d, _ in dense}
         similarity = {str(d.metadata["chunk_id"]): s for d, s in dense}
 
-        # BM25 (skipped, with a warning, if the index file is missing).
-        bm25_weight = (
-            settings.commit_bm25_weight
-            if kind == "commits" and settings.commit_bm25_weight is not None
-            else settings.bm25_weight
-        )
+        bm25_weight = self._bm25_weight_for(kind)
         bm25_ids: list[str] = []
         index = self._bm25_index(repo, kind)
         if index is None:
@@ -216,24 +212,7 @@ class HybridRetriever:
             docs.update(self.store.get_documents(kind, repo, missing))
             bm25_ids = [cid for cid in bm25_ids if cid in docs]
 
-        fused = weighted_rrf(
-            {"dense": dense_ids, "bm25": bm25_ids},
-            {"dense": settings.dense_weight, "bm25": bm25_weight},
-            settings.rrf_k,
-        )
-        dense_rank = {cid: r for r, cid in enumerate(dense_ids, start=1)}
-        bm25_rank = {cid: r for r, cid in enumerate(bm25_ids, start=1)}
-        hits = [
-            SearchHit(
-                document=docs[cid],
-                score=score,
-                dense_rank=dense_rank.get(cid),
-                bm25_rank=bm25_rank.get(cid),
-                dense_similarity=similarity.get(cid),
-            )
-            for cid, score in fused
-            if cid in docs
-        ]
+        hits = self._fuse_hits(kind, dense_ids, bm25_ids, docs, similarity)
 
         if use_reranker and hits:
             hits = self._rerank(query, hits[: settings.rerank_candidate_depth], kind)
@@ -274,6 +253,84 @@ class HybridRetriever:
                 for d in expanded
             ]
         return ranked
+
+    def _bm25_weight_for(self, kind: str) -> float:
+        if kind == "commits" and self.settings.commit_bm25_weight is not None:
+            return self.settings.commit_bm25_weight
+        return self.settings.bm25_weight
+
+    def _fuse_hits(
+        self,
+        kind: str,
+        dense_ids: list[str],
+        bm25_ids: list[str],
+        docs: Mapping[str, Document],
+        similarity: Mapping[str, float],
+    ) -> list[SearchHit]:
+        settings = self.settings
+        fused = weighted_rrf(
+            {"dense": dense_ids, "bm25": bm25_ids},
+            {"dense": settings.dense_weight, "bm25": self._bm25_weight_for(kind)},
+            settings.rrf_k,
+        )
+        dense_rank = {cid: r for r, cid in enumerate(dense_ids, start=1)}
+        bm25_rank = {cid: r for r, cid in enumerate(bm25_ids, start=1)}
+        return [
+            SearchHit(
+                document=docs[cid],
+                score=score,
+                dense_rank=dense_rank.get(cid),
+                bm25_rank=bm25_rank.get(cid),
+                dense_similarity=similarity.get(cid),
+            )
+            for cid, score in fused
+            if cid in docs
+        ]
+
+    def search_subset(
+        self,
+        repo: str,
+        query: str,
+        chunk_ids: Sequence[str],
+        *,
+        kind: str = "commits",
+        k: int | None = None,
+        rerank: bool = False,
+    ) -> list[SearchHit]:
+        """Rank only `chunk_ids` using exact cosine similarity + BM25 weighted RRF."""
+        settings = self.settings
+        limit = settings.rerank_top_n if k is None else k
+        if limit < 1:
+            raise ValueError("k must be positive")
+        use_reranker = rerank and reranking_enabled(settings)
+        if use_reranker and limit > settings.rerank_candidate_depth:
+            raise ValueError("k cannot exceed rerank_candidate_depth when reranking is enabled")
+        ids, docs_list, vectors = self.store.get_records(kind, repo, chunk_ids)
+        if not ids:
+            return []
+        qv = np.asarray(self.store.embeddings.embed_query(query), dtype=np.float32)
+        v_norm = np.linalg.norm(vectors, axis=1)
+        q_norm = float(np.linalg.norm(qv))
+        denom = np.where(v_norm * q_norm > 0, v_norm * q_norm, 1.0)
+        sims = (vectors @ qv) / denom
+        dense_order = np.argsort(-sims, kind="stable")
+        dense_ids = [ids[int(i)] for i in dense_order]
+        similarity = {ids[i]: float(sims[i]) for i in range(len(ids))}
+        docs = dict(zip(ids, docs_list, strict=True))
+
+        bm25_ids: list[str] = []
+        bm25_weight = self._bm25_weight_for(kind)
+        index = self._bm25_index(repo, kind)
+        if index is None:
+            log.warning("no BM25 index for %s/%s; using dense search only", repo, kind)
+        elif bm25_weight > 0:
+            allowed = set(ids)
+            bm25_ids = [cid for cid, _ in index.search(query, len(index)) if cid in allowed]
+
+        hits = self._fuse_hits(kind, dense_ids, bm25_ids, docs, similarity)
+        if use_reranker and hits:
+            hits = self._rerank(query, hits[: settings.rerank_candidate_depth], kind)
+        return hits[:limit]
 
     def _rerank(self, query: str, hits: list[SearchHit], kind: str = "code") -> list[SearchHit]:
         settings = self.settings

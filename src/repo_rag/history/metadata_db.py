@@ -911,6 +911,33 @@ class MetadataDB:
         )
         return Answer(summaries, self.history_window(repo))
 
+    def commit_shas(
+        self,
+        repo: str,
+        *,
+        path: str | None = None,
+        symbol: str | None = None,
+        is_fix: bool | None = None,
+        alt_paths: Sequence[str] = (),
+    ) -> list[str]:
+        """Full 40-character SHAs of indexed commits matching the filters, newest first."""
+        where, params = self._commit_filter(
+            repo,
+            author=None,
+            path=path,
+            symbol=symbol,
+            since=None,
+            until=None,
+            is_fix=is_fix,
+            alt_paths=alt_paths,
+        )
+        rows = self.connection.execute(
+            f"SELECT c.sha FROM history_commits c WHERE {where} "
+            "ORDER BY datetime(c.author_date) DESC, c.sha",
+            params,
+        ).fetchall()
+        return [str(r[0]) for r in rows]
+
     def count_commits(
         self,
         repo: str,

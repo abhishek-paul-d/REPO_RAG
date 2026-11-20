@@ -1,0 +1,16 @@
+reranker on the server: none; used: False
+archfresh-008 pass  33.2s  ['search_code']
+archfresh-004 pass  33.4s  ['search_code']
+archfresh-007 pass  33.3s  ['search_code']
+archfresh-006 MISS  34.5s  ['search_code']
+archfresh-003 pass  34.7s  ['search_code']
+archfresh-001 pass  34.9s  ['search_code']
+archfresh-005 pass  35.2s  ['search_code']
+archfresh-002 pass  41.8s  ['search_code', 'search_code']
+archfresh-009 pass  19.4s  ['search_code']
+archfresh-010 pass  21.4s  ['search_code', 'search_code']
+
+type       passed   of  abstained  failed
+architecture       9   10          0       0
+
+wrote eval\agent_eval_results\agent_eval_production_commit_explain_agent_eval_architecture_fresh_v1_extra3_notests_chars24000_in12288_20261120T233144.json

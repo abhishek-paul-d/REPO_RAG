@@ -1,0 +1,4466 @@
+{
+ "dataset": "agent_eval_commit_full_pallets__flask_v1.jsonl",
+ "dataset_sha256": "0b9f630053ba6064fb531cf67a2ce78bcdc4b194bbfaa55c36d9de94b78ca7fd",
+ "toolset": "production",
+ "prompt_variant": "commit_code_fallback",
+ "commit_query": "fused",
+ "commit_fix_only": false,
+ "repo": "pallets/flask",
+ "hide_summary": false,
+ "fuse_weight": null,
+ "commit_bm25_weight": null,
+ "data_dir": "data_flask",
+ "extra_files": 3,
+ "skip_tests": true,
+ "tool_result_chars": 24000,
+ "max_input_tokens": "12288",
+ "commit_k": 15,
+ "max_tool_calls": 4,
+ "citation_snap": false,
+ "abstain_retries": 0,
+ "tool_error_retries": 0,
+ "server": {
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+  "hardware": "NVIDIA A100-SXM4-40GB",
+  "max_input_tokens": "12288",
+  "decode_mode": "cuda-graphs + mtp3",
+  "concurrency": "8"
+ },
+ "rerank_used": false,
+ "rerank_failures": 0,
+ "llm_model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+ "table": {
+  "commit": {
+   "n": 136,
+   "passed": 8,
+   "abstained": 2,
+   "failed": 125,
+   "missed": [
+    "commitfull-004",
+    "commitfull-005",
+    "commitfull-008",
+    "commitfull-010",
+    "commitfull-011",
+    "commitfull-014",
+    "commitfull-015",
+    "commitfull-016",
+    "commitfull-017",
+    "commitfull-018",
+    "commitfull-019",
+    "commitfull-020",
+    "commitfull-021",
+    "commitfull-022",
+    "commitfull-023",
+    "commitfull-024",
+    "commitfull-025",
+    "commitfull-026",
+    "commitfull-027",
+    "commitfull-028",
+    "commitfull-029",
+    "commitfull-030",
+    "commitfull-031",
+    "commitfull-032",
+    "commitfull-033",
+    "commitfull-034",
+    "commitfull-035",
+    "commitfull-036",
+    "commitfull-037",
+    "commitfull-038",
+    "commitfull-039",
+    "commitfull-040",
+    "commitfull-041",
+    "commitfull-042",
+    "commitfull-043",
+    "commitfull-044",
+    "commitfull-045",
+    "commitfull-046",
+    "commitfull-047",
+    "commitfull-048",
+    "commitfull-049",
+    "commitfull-050",
+    "commitfull-051",
+    "commitfull-052",
+    "commitfull-053",
+    "commitfull-054",
+    "commitfull-055",
+    "commitfull-056",
+    "commitfull-057",
+    "commitfull-058",
+    "commitfull-059",
+    "commitfull-060",
+    "commitfull-061",
+    "commitfull-062",
+    "commitfull-063",
+    "commitfull-064",
+    "commitfull-065",
+    "commitfull-066",
+    "commitfull-067",
+    "commitfull-068",
+    "commitfull-069",
+    "commitfull-070",
+    "commitfull-071",
+    "commitfull-072",
+    "commitfull-073",
+    "commitfull-074",
+    "commitfull-075",
+    "commitfull-076",
+    "commitfull-077",
+    "commitfull-078",
+    "commitfull-079",
+    "commitfull-080",
+    "commitfull-081",
+    "commitfull-082",
+    "commitfull-083",
+    "commitfull-084",
+    "commitfull-085",
+    "commitfull-086",
+    "commitfull-087",
+    "commitfull-088",
+    "commitfull-089",
+    "commitfull-090",
+    "commitfull-091",
+    "commitfull-092",
+    "commitfull-093",
+    "commitfull-094",
+    "commitfull-095",
+    "commitfull-096",
+    "commitfull-097",
+    "commitfull-098",
+    "commitfull-099",
+    "commitfull-100",
+    "commitfull-101",
+    "commitfull-102",
+    "commitfull-103",
+    "commitfull-104",
+    "commitfull-105",
+    "commitfull-106",
+    "commitfull-107",
+    "commitfull-108",
+    "commitfull-109",
+    "commitfull-110",
+    "commitfull-111",
+    "commitfull-112",
+    "commitfull-113",
+    "commitfull-114",
+    "commitfull-115",
+    "commitfull-116",
+    "commitfull-117",
+    "commitfull-118",
+    "commitfull-119",
+    "commitfull-120",
+    "commitfull-121",
+    "commitfull-122",
+    "commitfull-123",
+    "commitfull-124",
+    "commitfull-125",
+    "commitfull-126",
+    "commitfull-127",
+    "commitfull-128",
+    "commitfull-129",
+    "commitfull-130",
+    "commitfull-131",
+    "commitfull-132",
+    "commitfull-133",
+    "commitfull-134",
+    "commitfull-135",
+    "commitfull-136"
+   ]
+  }
+ },
+ "rows": [
+  {
+   "id": "commitfull-001",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nFlash fails in nonobvious way when secret isn't set\n\nHere's what fails http://paste.pocoo.o",
+   "answer": "Yes. Commit 5310fc38227b (2010-04-17, Armin Ronacher) fixed this: it made the session fall back to a _NullSession when secret_key is missing, allowing read-only access to the empty session but raising a clear RuntimeError on write access (e.g. flash), explaining that the secret_key must be set. This directly addresses the nonobvious flash failure when the secret isn't set.\n\nMatched commit details:\n- 5310fc38227b (2010-04-17, Armin Ronacher): Session falls back to a dummy object now if secret_key is missing.; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. Commit 5310fc38227b (2010-04-17, Armin Ronacher) fixed this: it made the session fall back to a _NullSession when secret_key is missing, allowing read-only access to the empty session but raising a clear RuntimeError on write access (e.g. flash), explaining that the secret_key must be set. This directly addresses the nonobvious flash failure when the secret isn't set.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "flash fails when secret key not set session secret_key required"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 12.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-002",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nInconsistency in docs/testing.rst\n\nThe first time the FlaskrTestCase source code is shown t",
+   "answer": "Yes. Commit d17b6d738a0e (2010-08-03, \"Fixed a refacotring error in the docs.\") changed the first setUp/tearDown example in docs/testing.rst from `flaskr.DATABASE` to `self.app.config['DATABASE']`, and commit 0566abc28da9 (2010-08-18, \"Fixed testing example\") then corrected it to `flaskr.app.config['DATABASE']`, resolving the inconsistency between the two shown versions.\n\nMatched commit details:\n- d17b6d738a0e (2010-08-03, Armin Ronacher): Fixed a refacotring error in the docs.  This; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.\n- 0566abc28da9 (2010-08-18, Armin Ronacher): Fixed testing example; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. Commit d17b6d738a0e (2010-08-03, \"Fixed a refacotring error in the docs.\") changed the first setUp/tearDown example in docs/testing.rst from `flaskr.DATABASE` to `self.app.config['DATABASE']`, and commit 0566abc28da9 (2010-08-18, \"Fixed testing example\") then corrected it to `flaskr.app.config['DATABASE']`, resolving the inconsistency between the two shown versions.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "FlaskrTestCase setUp DATABASE tempfile.mkstemp inconsistency docs testing"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 17.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-003",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nWrong import in Errorhandling\n\nThe example at \"Logging to file\" has\n'from logging.handlers ",
+   "answer": "Yes, commit 38107c752cf9 (\"Fixed a wrong import path in the documentation.\") changed the example in docs/errorhandling.rst from 'from logging.handlers import TheHandlerYouWant' to a corrected import, matching the reported bug.\n\nMatched commit details:\n- 38107c752cf9 (2010-08-07, Armin Ronacher): Fixed a wrong import path in the documentation.; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes, commit 38107c752cf9 (\"Fixed a wrong import path in the documentation.\") changed the example in docs/errorhandling.rst from 'from logging.handlers import TheHandlerYouWant' to a corrected import, matching the reported bug.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Wrong import in Errorhandling logging.handlers TheHandlerYouWant"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 12.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-004",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nsend_file in flask 0.6 issues\n\nSee there:\n\nhttp://hg.moinmo.in/moin/2.0-dev/rev/58eb8f97818",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- 2d87e9bc37ef (2010-05-10, Armin Ronacher): Added support for send_file\n- 4104f29956b1 (2023-11-13, Daniel Isaac): type hint fix for flask.send_file\n- f80e1d3b5ab8 (2010-05-12, Armin Ronacher): Added note on send_file security.",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "send_file flask 0.6 issues patched files packaging"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "send_file flask 0.6 issues moinmo patched files packaging"
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "moinmo send_file flask 0.6 patched files packaging upstream"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 22.5,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commitfull-005",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n`pydoc flask` [or vars(flask)] fails\n\nSteps to reproduce:\n\n```\n(werk)mini:~ fz$ python\nPyth",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- 343e678900a9 (2011-07-18, Armin Ronacher): Fixed a typo in a docstring\n- 90884a78fbba (2011-09-18, Ron DuPlain): Cross-reference debug docs in run docstring.\n- 8ee01ad5ed72 (2013-02-22, Alex Couper): Put the link to Flask class docs at the end.",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "pydoc help flask docmodule repr fails"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "__repr__ __doc__ module pydoc docmodule"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 22.4,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commitfull-006",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDocs: cli.rst typos\n\nThere are a couple of typos in cli.rst file.\nThe command 'python -m fl",
+   "answer": "Yes, commit 367a168d867d (by Ian Connolly, 2014-05-13) fixed both typos in docs/cli.rst: it changed ``python -mflask`` to ``python -m flask`` and corrected the \"rasons\" wording in the Script Info section.\n\nMatched commit details:\n- 367a168d867d (2014-05-13, Ian Connolly): (no commit message); ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes, commit 367a168d867d (by Ian Connolly, 2014-05-13) fixed both typos in docs/cli.rst: it changed ``python -mflask`` to ``python -m flask`` and corrected the \"rasons\" wording in the Script Info section.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 1,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "cli.rst typos flask command space rasions reasons"
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "path": "docs/cli.rst",
+      "query": "python -m flask space typo reasons rasions"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 26.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-007",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nTyping error in docs/patterns/fabric.rst\n\nInside the deploy method \n\n```\n# upload the sourc",
+   "answer": "d903f55e835d — commit by Armin Ronacher (2010-08-18) titled \"s/sdist/dist/.\" which changes put('sdist/%s.tar.gz' % dist, ...) to put('dist/%s.tar.gz' % dist, ...) in docs/patterns/fabric.rst, matching the reported typo exactly.\n\nMatched commit details:\n- d903f55e835d (2010-08-18, Armin Ronacher): s/sdist/dist/.  This; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "d903f55e835d — commit by Armin Ronacher (2010-08-18) titled \"s/sdist/dist/.\" which changes put('sdist/%s.tar.gz' % dist, ...) to put('dist/%s.tar.gz' % dist, ...) in docs/patterns/fabric.rst, matching the reported typo exactly.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "typo sdist dist fabric.rst deploy put tarball"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 17.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-008",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n`url_for(\"static\", ...)` with `subdomain` problem\n\nThe version is 0.6.\n\nI made a `flask.Mod",
+   "answer": "Yes. The bug where the automatically added static URL rule for a Module did not inherit the module's subdomain was fixed in commit 6fca662c8417 (\"Fix the 108th issue.\"), which added subdomain=module.subdomain to the static rule registration in flask/module.py::_register_module. A follow-up commit 9ae4eba9861b (\"fix subdomain for static rule on registering module\") later corrected it to use state.subdomain instead of module.subdomain.\n\nMatched commit details:\n- 6fca662c8417 (2010-08-20, Heungsub Lee): Fix the 108th issue.; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.\n- 9ae4eba9861b (2011-01-06, Daniel Gerber): fix subdomain for static rule on registering module; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. The bug where the automatically added static URL rule for a Module did not inherit the module's subdomain was fixed in commit 6fca662c8417 (\"Fix the 108th issue.\"), which added subdomain=module.subdomain to the static rule registration in flask/module.py::_register_module. A follow-up commit 9ae4eba9861b (\"fix subdomain for static rule on registering module\") later corrected it to use state.subdomain instead of module.subdomain.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "url_for static subdomain Module subdomain option missing"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 15.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-009",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPython 3 docs are quite outdated\n\nI've been using Flask with Python 3 from since it was sup",
+   "answer": "Yes. The most direct fix is commit 00c200eeaa6a (2016-06-02, alatar-), which rewrote the outdated \"The Status of Python 3\" section in docs/advanced_foreword.rst into \"Python 3 Support in Flask\", removing the old warning that strongly discouraged Python 3. Related follow-ups include 931be8747563 (2014-07-10, INADA Naoki) softening the \"Small Ecosystem\" paragraph in docs/python3.rst and baa2689658e3 (2016-06-05, David Lord) \"clean up py3 info more\". These are probable matches for the reported outdated Python 3 documentation.\n\nMatched commit details:\n- 00c200eeaa6a (2016-06-02, alatar-): Update documentation about python 3 support in Flask,; ranked 3 of 15 search results; a text match on the report, not confirmed against the code.\n- 931be8747563 (2014-07-10, INADA Naoki): Update python3.rst; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.\n- baa2689658e3 (2016-06-05, David Lord): clean up py3 info more; ranked 10 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. The most direct fix is commit 00c200eeaa6a (2016-06-02, alatar-), which rewrote the outdated \"The Status of Python 3\" section in docs/advanced_foreword.rst into \"Python 3 Support in Flask\", removing the old warning that strongly discouraged Python 3. Related follow-ups include 931be8747563 (2014-07-10, INADA Naoki) softening the \"Small Ecosystem\" paragraph in docs/python3.rst and baa2689658e3 (2016-06-05, David Lord) \"clean up py3 info more\". These are probable matches for the reported outdated Python 3 documentation.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Python 3 docs outdated rewrite documentation"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-010",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nShould jsonify() throw an exception when provided a list?\n\nConsider `jsonify()`cation of a ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [WinError 10065] A socket operation was attempted to an unreachable host>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [WinError 10065] A socket operation was attempted to an unreachable host>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [WinError 10065] A socket operation was attempted to an unreachable host>",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"jsonify list TypeError raise exception\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "jsonify list TypeError exception"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "jsonify list TypeError raise exception"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 44.5,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-011",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nmake runs superfluous tests when using a virtualenv\n\nTests unrelated to flask run when I fo",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [WinError 10065] A socket operation was attempted to an unreachable host>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [WinError 10065] A socket operation was attempted to an unreachable host>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [WinError 10065] A socket operation was attempted to an unreachable host>",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"py.test tests examples Makefile test target\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "make runs superfluous tests virtualenv py.test examples tests Makefile"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "py.test tests examples Makefile test target"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 43.8,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-012",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nsend_file fails when filename contains unicode symbols\n\nHi.\n\nI've detected an issue with su",
+   "answer": "Yes. The bug was fixed in commit 0049922f2e69, which implements RFC 2231 to support unicode filenames in send_file, resolving the 'latin-1' codec error when HTTP headers contained non-latin-1 characters.\n\nMatched commit details:\n- 0049922f2e69 (2017-03-23, Antonio Larrosa): Fix send_file to work with non-ascii filenames; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. The bug was fixed in commit 0049922f2e69, which implements RFC 2231 to support unicode filenames in send_file, resolving the 'latin-1' codec error when HTTP headers contained non-latin-1 characters.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "send_file unicode filename content-disposition latin-1 http headers"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 13.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-013",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\napp.add_url_rule() should look for OPTIONS methods in a case-insensitive manner\n\nadd_url_ru",
+   "answer": "98b155c65da6 fixes this: it uppercases all method names in add_url_rule so the automatic OPTIONS check is case-insensitive, and adds a test for lowercase 'options' in methods.\n\nMatched commit details:\n- 98b155c65da6 (2014-12-24, Michael Hall): : app.add_url_rule() should look for OPTIONS methods in a case-insensitive manner; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "98b155c65da6 fixes this: it uppercases all method names in add_url_rule so the automatic OPTIONS check is case-insensitive, and adds a test for lowercase 'options' in methods.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "add_url_rule OPTIONS case-insensitive methods"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 13.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-014",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nFlask doc unittest error\n\nHi everyone. \nI'm new to Flask, and following the tutorial.\nUntil",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: [WinError 10054] An existing connection was forcibly closed by the remote host).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: [WinError 10054] An existing connection was forcibly closed by the remote host).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: [WinError 10054] An existing connection was forcibly closed by the remote host",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_commits\",\"arguments\":{\"query\":\"test_empty_db rv.data bytes str buffer API testing documentation\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "test_empty_db rv.data bytes str buffer API testing documentation"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 185.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-015",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nsignals.rst\n\nThis ...\n\n Example subscriber::\n\n```\n    def log_template_renders(sender, temp",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: [WinError 10054] An existing connection was forcibly closed by the remote host).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: [WinError 10054] An existing connection was forcibly closed by the remote host).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: [WinError 10054] An existing connection was forcibly closed by the remote host",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_commits\",\"arguments\":{\"query\":\"signals.rst example subscriber template_rendered request_started documentation typo\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "signals.rst example subscriber template_rendered request_started documentation typo"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 185.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-016",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nsessions not saved when streaming\n\nWhen streaming, changes to the session object at the sta",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_commits\",\"arguments\":{\"query\":\"session not saved when streaming new session created when stream starts\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "session not saved when streaming new session created when stream starts"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 13.8,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-017",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPointless example for Signal.connected_to\n\nThe example last in [this](http://flask.pocoo.or",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_commits\",\"arguments\":{\"query\":\"Signal connected_to example pointless recorded list not reachable\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Signal connected_to example pointless recorded list not reachable"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 13.4,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-018",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nShould we cache errorhandlers or not?\n\nCont. https://github.com/mitsuhiko/flask/pull/1291#d",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_commits\",\"arguments\":{\"query\":\"cache errorhandlers error handler caching\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "cache errorhandlers error handler caching"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 13.8,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-019",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nuWSGI / nginx documentation is incorrect\n\nThe Flask documentation for how to use it with uW",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_commits\",\"arguments\":{\"query\":\"uWSGI nginx documentation uwsgi_modifier1 manage-script-name mount\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "uWSGI nginx documentation uwsgi_modifier1 manage-script-name mount"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 14.8,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-020",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRemove Blueprint.view_functions\n\nhttps://github.com/mitsuhiko/flask/blob/master/flask/bluep",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-021",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nApplication/request stack corruption if unhandled exception is raised in session interface\n",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-022",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nurl_for('static', _external=True) gives bogus url with app.url_map.host_matching = True\n\n``",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-023",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nUpdate docs on the website (at least the python 3 ones)\n\nThe website gives a very outdated ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-024",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nWrong \"Date\" http header, breaks clientside caching for static files, lots of 304 responses",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-025",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPlease update mod_wsgi documentation to use httpd 2.4 syntax\n\nThis is my own fault as I was",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-026",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\njsonify doesn't accept a list\n\nI was suprised to find that jsonify(['hello', 'world']) will",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-027",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRemove old version added and changed tags\n\nSome of these lists are getting a bit long and i",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-028",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nIssue Template\n\nIt would be nice if you could add an issue template to the repository.",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-029",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nflask.Flask.register_blueprint is poorly documented\n\nhttp://flask.pocoo.org/docs/0.10/api/#",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-030",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nUnify versionadded markers (0.11 vs 1.0)\n\nThere are a few `versionadded::` markers that poi",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-031",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSetting error handler for unknown code fails\n\nThe following code:\n\n```\nflask_app.errorhandl",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-032",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAdd tests target that uses simplejson\n\nhttps://github.com/pallets/flask/issues/1602#issueco",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-033",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nTypo in flaskr tutorial -> testing\n\nThe sentence that reads\n\n```\nNow that you have finished",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-034",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nJinja templates do not auto reload if Flask app debug enabled solely via app.run(debug=True",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-035",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nWrong import json library\n\n[This code](https://github.com/pallets/flask/blob/c5900a1adf8e86",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-036",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPersona example - deprecated\n\nFrom the Mozilla site:\n[\"The persona.org service is shutting ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-037",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDocs should mention Query Args for url_for\n\nRight now the docs to not mention that url_for ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-038",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAttributeError: 'DispatchingApp' object has no attribute 'config'\n\ngoing through the tutori",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-039",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPrevent setting `SERVER_NAME` and `SESSION_COOKIE_DOMAIN` to an IP address\n\nSee #1946 and #",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-040",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nZero-padded file modes in repository \n\nAfter cloning this repository with git and you run \"",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-041",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nfailing test for safe_join in windows\n\nThis seems like a bug on windows:\nTest run on window",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-042",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nflaskr project (in dev docs and on github) needs to use relative import in __init__.py for ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-043",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nInstallation documentation for Windows: minor typo\n\nWhere it says,\nIf you are a Windows use",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-044",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDo not use cache when `Request.get_json(cache=False)` is called.\n\nThe `_cached_json` proper",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-045",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nTypo in flask quickstart docs\n\nIn section 'The Request Object' is a typo when doing route d",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-046",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nconfig.from_pyfile crashes on Python 3 when source isn't encoded in default encoding\n\nwhen ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-047",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSecurity Considerations Oversight\n\nNot a bug report, per se, but still should be noted. On ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-048",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDo not swallow exceptions if CLI fails to load\n\nI think the changes introduced in https://g",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-049",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDocs should mention that url_for() skips query string args with value=None\n\n(Related to #20",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-050",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nFlask error handler caching leads to inconsistent behavior\n\nWhen Flask finds an error handl",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-051",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nlogging improperly extending directly from Logger class\n\nThe python logging facility provid",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-052",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nUse existing response.vary property to set vary header\n\n#2288 and #2322 added support for s",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-053",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\npython -m flask run raises RuntimeWarning\n\n### Expected Behavior\r\n\r\nGiven a project with th",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-054",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nflask command should auto-detect module\n\nEven when installed as a package, it can be useful",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-055",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nNone return values from functions fail with wrong error\n\nThey should fail with an explicit ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-056",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nsetup.cfg code snippet not formatted correctly\n\n### Expected Behavior\r\n\r\nOn the \"Deploying ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-057",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nTestClient: EnvironBuilder cannot be passed in\n\nIn a normal test client from werkzeug you c",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-058",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSplit up Testsuite\n\nAfter the 0.7 release we really should be splitting up the testsuite in",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-059",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nReview JSON Security\n\nECMAscript 5 changed behavior of Array literals. That part of the doc",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-060",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPer-module processors\n\nThere should be a @context_processor decorator for modules, so that ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-061",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nReports of sessions not working when SERVER_NAME set with port\n\nNot sure how cookies are su",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-062",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nMake Tests for bluprints with dotted Names\n\nWe want to encourage blueprint names with dots ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-063",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nmake_response changes breaks custom response class\n\n### Expected Behavior\r\n\r\nI should be ab",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-064",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nmake audit still available, whereas the corresponding setup command is gone\n\nWhen the `audi",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-065",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nroute / add_url_rule Documentation\n\nThe docs are kinda inconsistent between route() and add",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-066",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nBroken link on flask docs\n\nIn `flask/docs/deploying/wsgi-standalone.rst`, https://github.co",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-067",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDefine reloader extra_files in `flask run` CLI \n\n### Expected Behavior\r\n\r\nI expected to hav",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-068",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nregister_module fails when url_prefix not previously set\n\nThe following example (taken from",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-069",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nrequest.json is documented twice\n\n`flask.request.json` is documented twice in http://flask.",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-070",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRemove MongoKit page from \"Patterns for Flask\" docs section\n\nI was just starting a little p",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-071",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\ncopy_current_request_context copies old session object\n\n### Expected Behavior\r\n\r\nWhen using",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-072",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nload_dotenv returns true even if no file exists\n\n### Expected Behavior\r\n\r\nIf no file is loa",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-073",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nmake_release.py won't work for August dates\n\nHi Armin -\n\nI am using your make_release.py sc",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-074",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nbase_url / url docs mixed up\n\nThese two have to be reversed in the API docs.",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-075",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSwitch to primitive types in the config\n\nRight now PERMANENT_SESSION_TIMEOUT can only be a ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-076",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nConvert make_test_environ_builder into EnvironBuilder subclass\n\nWerkzeug's `EnvironBuilder`",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-077",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nBetter error message when view return type is not supported\n\nOne of the most common errors/",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-078",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nBlueprint CLIs should not register empty groups\n\nAfter #1369, each blueprint has a `cli` gr",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-079",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nsuspicious unexplained `except: raise`\n\nThe following two lines:\r\nhttps://github.com/pallet",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-080",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nMove Some Context Preservation Logic into App\n\nRight now a test client can preserve the con",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-081",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nFlask.template_test()\n\nWhile there is template_filter() decorator for creating jinja2 custo",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-082",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSupport for Flashing Categories\n\nThe new signature for `flash()` should look like this in 0",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-083",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nsession is saved before @after_request callbacks\n\nThis makes it impossible to add data to s",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-084",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nInvalid name of converter in API docs\n\nThe API docs of Flask state that there are 4 builtin",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-085",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nQuickstart: Variable Rules Section\n\nIf you paste the code from \"Variable Rules\" into your t",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-086",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nQuickstart: Unique URLs / Redirection Behaviour\n\n(And in general in the quickstart) Instead",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-087",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n[Docs] Typo in documentation.\n\nhttps://github.com/pallets/flask/blob/e071734b4e9f5c21fe6540",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-088",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSet TRAP_BAD_REQUEST_ERRORS to True as the default when debugging is enabled\n\nWhen debuggin",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-089",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDocs/Tests missing in Tarball\n\nShould be added :)",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-090",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nbroken link in doc\n\non this page:\nhttp://flask.pocoo.org/docs/patterns/distribute/\n\nthe \"pa",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-091",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDocument app.run() should be in __name__ == '__main__'\n\nCommon problem that breaks on mod_w",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-092",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDocument how to generate Secret Keys\n\nDocumentation should contain some infos about how to ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-093",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n\"removed\" misspelled in deprecation warning\n\nSee: https://github.com/pallets/flask/blob/577",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-094",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n:inherited-members: does not work for attributes\n\nI am not sure if this is a bug in Sphinx,",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-095",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDocument lazy loading of view functions\n\nFor GAE and some other envs it makes sense not to ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-096",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nsafe_join with '..'\n\nIs this a problem?\n\n```\n>>> from flask import safe_join\n>>> safe_join(",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-097",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nCan jsonify return array?\n\nas the title says, can i use jsonify as this:\n\njsonify( [ { 'a':",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-098",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nQuickstart  login example has unclear comment.\n\nThe login example in the quickstart guide h",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-099",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n`make test` should use flask module in current directory not system-wide module\n\nCurrently ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-100",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDocument flask._request_ctx_stack\n\nFlask extensions are allowed to access this object, also",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-101",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nWarn or raise when overriding an endpoint\n\nIt is apparently a common mistake to make multip",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-102",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nConsider adding a TESTING switch\n\nMany extensions (like flask-mail) might want to switch to",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-103",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nResponse should always be processed.\n\nIf an exception is handled by exception handlers and ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-104",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nsdist from master creates \"devdev\" version.\n\n```\n$ ls ./dist\nFlask-0.10-devdev-20120918.tar",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-105",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nGetting raw POST data for whatever mimetype\n\nOk, this issue have been raised twice, but i g",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-106",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRegarding JSON inside <script> tag and HTML5 parser\n\nA JSON string in an HTML `<script>` ta",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-107",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nMinor typo in Tutorial, but possibly confusing\n\nThere is a minor typo in the Tutorial at th",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-108",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nIssue #524 was not one and flaskext_compat does not work anymore\n\nfind_module is a method a",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-109",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nmissing text in url_for() app context RuntimeError message\n\nIn `flask/helpers.py`, near the",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-110",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nUpdate Design Decisions based on recent changes\n\nThe design decisions document is slightly ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-111",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPlease improve CGI documentation slightly.\n\nPlease mention on web page that when deploying ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-112",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n@app.teardown_request function doesn't called in debug mode [NOT-A-BUG]\n\nUPD: not a bug, se",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-113",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nCan't jsonify list object\n\nJSON standard (http://json.org/) say, that any entity can be obj",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-114",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nMinor typo in quickstart\n\nGo to the quickstart guide:\n\nhttp://flask.pocoo.org/docs/quicksta",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-115",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDocument request.endpoint and request.view_args\n\nThey are missing currently but are a stabl",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-116",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nExplicitly state that the jsonify method changes on request\n\nHi,\n\nThis drove me crazy, unti",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-117",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nLink to Flask-SQLAlchemy and Flask-WTF in the docs\n\nThe docs should link to the Flask-SQLAl",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-118",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nExplain UTF-8 Encoding\n\nThe documentation should explain that Flask assumes utf-8 for templ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-119",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDocument that exceptions are swallowed in non-debug Mode\n\nThis also means that use_reloader",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-120",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nBroken `g.var is defined` behaviour\n\nJinja template test `g.nonexistent_var is defined` ret",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-121",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDocumentation for Flask.route() incorrect\n\nhttps://github.com/mitsuhiko/flask/blob/master/f",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-122",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nFlaskr tutorial suggestion - Use DATABASE='flaskr' instead of DATABASE='/tmp/flaskr'\n\nTitle",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-123",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nIf SERVER_NAME is set the cookie does not set itself correctly\n\nThe domain information is n",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-124",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPreserve request context on exception in debug mode\n\nIn debug mode the request context shou",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-125",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nmethods argument of Flask.route should be validated at import time\n\nI've seen that people o",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-126",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nThe after_request handlers should be called in reverse order\n\nThis `after_request` handlers",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-127",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nTutorial stores passwords in plaintext\n\nhttp://flask.pocoo.org/docs/tutorial/views/#login-a",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-128",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\ntypo in quickstart.rst \n\nin following line:\n\nThis behavior allows relative URLs to continue",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-129",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nModule.add_url_route and App.add_url_route not consistent  \n\nApp.add_url_route allows the n",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-130",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n2 little bugs in jqueryexample.py\n\nI found 2 little bugs in jqueryexample.py:\n1. In import ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-131",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRename @app.request_init and @app.request_shutdown\n\nNot a big deal but I think pre_request ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-132",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nImprove template documentation\n\nThe template documentation is currently spread out between ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-133",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nTemplate filter: tojson and sort_keys\n\nI spent couple of hours yesterday trying to understa",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-134",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nGET params discarded by flask test client, when using full url\n\nUsing full URL in flask tes",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-135",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRemove or downplay Tornado recommendation\n\nhttp://flask.pocoo.org/docs/deploying/wsgi-stand",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-136",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nTesting errors when streaming\n\nI currently have a problem with errors when I try to test a ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server unreachable: <urlopen error [Errno 11001] getaddrinfo failed>",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  }
+ ]
+}

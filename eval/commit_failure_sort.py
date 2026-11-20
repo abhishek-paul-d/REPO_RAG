@@ -10,19 +10,23 @@ named instead (subject, date, files shared with the gold commit). Buckets used b
     D  gold not in the top 30
 
     uv run python eval/commit_failure_sort.py OUT.json
+    uv run python eval/commit_failure_sort.py OUT.json --repo pallets/flask \
+        --data-dir D:/Repo_chatbot/data_flask --dataset eval/datasets/agent_eval_commit_full_pallets__flask_v1.jsonl \
+        --run control_a=eval/agent_eval_results/<result>.json
 
 2026-11-19 result on the two baseline runs (113 questions): of 35 misses (commit_explain) 4 were A,
 8 B, 5 C and 18 D; of 39 (default prompt) 7, 11, 5 and 16. Retrieval is the main loss, not the model's
 choice from a good shortlist. Read-only: it needs `data/` with the commit index and metadata.db.
 """
 
+import argparse
 import json
 import re
 import sqlite3
 import sys
 from pathlib import Path
 
-ROOT = Path("D:/Repo_chatbot_quality")
+ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from repo_rag.config import Settings  # noqa: E402
 from repo_rag.retrieval.retrievers import HybridRetriever  # noqa: E402
@@ -35,20 +39,23 @@ RUNS = {
     "explain": ("commit_explain", "20261118T233628"),
     "default": ("commit_pr_commits", "20261118T233118"),
 }
-OUT = Path(sys.argv[1])
+ARGS = argparse.ArgumentParser()
+ARGS.add_argument("out", type=Path)
+ARGS.add_argument("--repo", default="psf/requests")
+ARGS.add_argument("--data-dir", type=Path, default=ROOT / "data")
+ARGS.add_argument("--dataset", default="eval/datasets/agent_eval_commit_full_v1.jsonl")
+ARGS.add_argument("--run", action="append", default=[], help="name=result.json (repeatable)")
+A = ARGS.parse_args()
+OUT = A.out
 
 gold, question = {}, {}
-for line in (
-    (ROOT / "eval/datasets/agent_eval_commit_full_v1.jsonl")
-    .read_text(encoding="utf-8")
-    .splitlines()
-):
+for line in (ROOT / A.dataset).read_text(encoding="utf-8").splitlines():
     d = json.loads(line)
     gold[d["id"]] = [s[:12] for s in d["expect"]["shas"]]
     question[d["id"]] = d["question"]
 
-db = sqlite3.connect("file:D:/Repo_chatbot/data/metadata.db?mode=ro", uri=True)
-REPO = "psf/requests"
+db = sqlite3.connect(f"file:{A.data_dir.as_posix()}/metadata.db?mode=ro", uri=True)
+REPO = A.repo
 
 
 def subject(sha):
@@ -78,7 +85,7 @@ def prs(sha):
     }
 
 
-s = Settings(data_dir=Path("D:/Repo_chatbot/data"))
+s = Settings(data_dir=A.data_dir)
 retr = HybridRetriever(VectorStore(s, get_embeddings(s)), s)
 
 
@@ -91,8 +98,9 @@ def rank(query, shas, k=30):
 
 
 out = {}
-for name, (variant, stamp) in RUNS.items():
-    p = RES / f"agent_eval_production_{variant}{T}{stamp}.json"
+runs = {n: ROOT / f for n, f in (x.split("=", 1) for x in A.run)} if A.run else None
+for name, spec in (runs or RUNS).items():
+    p = spec if runs else RES / f"agent_eval_production_{spec[0]}{T}{spec[1]}.json"
     rows = {r["id"]: r for r in json.loads(p.read_text(encoding="utf-8"))["rows"]}
     for i, r in rows.items():
         if r["passed"]:

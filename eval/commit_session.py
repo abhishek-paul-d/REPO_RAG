@@ -118,6 +118,22 @@ STEPS = [
         ("--variant", "commit_explain", "--commit-query", "fused", "--hide-summary"),
         {"REPO_RAG_DATA_DIR": SUMMARY_INDEX},
     ),
+    Step(
+        "code_fallback",
+        "two-hop code -> symbol/path-scoped commit search fallback",
+        ("--variant", "commit_code_fallback"),
+    ),
+    Step(
+        "fused_code_fallback",
+        "fused + two-hop code -> symbol/path-scoped commit search fallback",
+        ("--variant", "commit_code_fallback", "--commit-query", "fused"),
+    ),
+    Step(
+        "summary_fused_code_fallback",
+        "summary index + fused + two-hop code -> symbol/path-scoped commit search fallback",
+        ("--variant", "commit_code_fallback", "--commit-query", "fused", "--hide-summary"),
+        {"REPO_RAG_DATA_DIR": SUMMARY_INDEX},
+    ),
 ]
 
 

@@ -34,6 +34,7 @@ from repo_rag.agent.citations import check_citations, chunks_from_results, repai
 from repo_rag.agent.commit_answer import enrich
 from repo_rag.agent.prompts import (
     BAKEOFF_ARMS,
+    COMMIT_SCOPE_VARIANTS,
     COMMIT_TOOL_VARIANTS,
     HISTORY_BLOCK,
     HISTORY_TOOL_VARIANTS,
@@ -84,6 +85,7 @@ def toolset_for(settings: Settings) -> Toolset:
                 search_prs=variant != "no_search_prs",
                 file_history=variant in HISTORY_TOOL_VARIANTS,
                 get_commit=variant in COMMIT_TOOL_VARIANTS,
+                commit_scope=variant in COMMIT_SCOPE_VARIANTS,
             ),
             production_prompt(variant),
             production_reminder(variant),
@@ -298,7 +300,11 @@ class RepoAgent:
         chunks = chunks_from_results(rows)
         sources = [f"{c.path}:{c.start_line}-{c.end_line} {c.symbol}".strip() for c in chunks]
         searches = [
-            list((call.get("result") or {}).get("value") or [])
+            [
+                row
+                for row in ((call.get("result") or {}).get("value") or [])
+                if isinstance(row, dict) and "sha" in row
+            ]
             for call in trace["calls"]
             if call["name"] == "search_commits"
         ]

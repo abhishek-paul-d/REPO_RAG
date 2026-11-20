@@ -1,0 +1,2 @@
+code_fallback: two-hop code -> symbol/path-scoped commit search fallback
+step code_fallback failed (exit 1); see D:\Repo_chatbot\eval\commit_session_results\code_fallback.log

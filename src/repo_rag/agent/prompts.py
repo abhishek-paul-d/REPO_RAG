@@ -177,6 +177,17 @@ code it changes is the code the report is about. If none of them fits, call sear
 with different words (a function, file or error message from the report) instead of naming the
 closest one. If still nothing fits, say you found no matching commit.
 """
+# Variant "commit_code_fallback": commit_explain plus path/symbol filters on search_commits and
+# this fallback paragraph. Offline on missed bug->commit questions (2026-11-20), chronological
+# file_history rescued 0/23 (requests) and 0/11 (flask), whereas exact symbol-scoped hybrid search
+# over commits touching a search_code symbol rescued 8/23 (requests) and 4/11 (flask).
+_PROD_COMMIT_CODE_FALLBACK = """\
+If search_commits returns no commit whose message or diff clearly matches the bug report, do not
+guess or give up immediately: call search_code with the symptoms or names from the report to find
+the affected function or file, then call search_commits again with that symbol (or path) to rank
+commits that touched it. Only use this fallback when the first search_commits shortlist has no
+clear match.
+"""
 # Variant "commit_pr_commits": get_pr lists a merged PR's own commits next to its merge commit
 # (`pr_commits`); the merge commit holds no change, so a fix is named from that list. Built for
 # commit-088, where the model cited the merge SHA and ignored the list. Measured on the 27B
@@ -263,11 +274,13 @@ PROMPT_VARIANTS = (
     "commit_pr_commits",
     "commit_explain",
     "commit_verify",
+    "commit_code_fallback",
 )
 
 
 HISTORY_TOOL_VARIANTS = ("history_grounded",)  # variants that also offer the file_history tool
 COMMIT_TOOL_VARIANTS = ("commit_verify",)  # variants that also offer the get_commit tool
+COMMIT_SCOPE_VARIANTS = ("commit_code_fallback",)
 
 
 def production_prompt(variant: str = "baseline") -> str:
@@ -297,12 +310,17 @@ def production_prompt(variant: str = "baseline") -> str:
             "commit_pr_commits": _PROD_DOCS_HINT_NARROW,
             "commit_explain": _PROD_DOCS_HINT_NARROW,
             "commit_verify": _PROD_DOCS_HINT_NARROW,
+            "commit_code_fallback": _PROD_DOCS_HINT_NARROW,
         }.get(variant, ""),
         _PROD_COMMITS,
-        _PROD_COMMIT_EXPLAIN if variant in ("commit_explain", "commit_verify") else "",
+        _PROD_COMMIT_EXPLAIN
+        if variant in ("commit_explain", "commit_verify", "commit_code_fallback")
+        else "",
         _PROD_COMMIT_VERIFY if variant == "commit_verify" else "",
+        _PROD_COMMIT_CODE_FALLBACK if variant == "commit_code_fallback" else "",
         _PROD_PR_COMMITS
-        if variant in ("commit_pr_commits", "commit_explain", "commit_verify")
+        if variant
+        in ("commit_pr_commits", "commit_explain", "commit_verify", "commit_code_fallback")
         else "",
         ""
         if variant == "no_search_prs"

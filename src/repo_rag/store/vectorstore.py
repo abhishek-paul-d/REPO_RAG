@@ -315,6 +315,34 @@ class VectorStore:
             )
         }
 
+    def get_records(
+        self, kind: str, repo: str, ids: Sequence[str], *, batch_size: int = 512
+    ) -> tuple[list[str], list[Document], np.ndarray]:
+        """Fetch chunks and their stored float32 vectors for a subset of ids (no re-embedding)."""
+        unique = list(dict.fromkeys(ids))
+        if not unique:
+            return [], [], np.empty((0, 0), dtype=np.float32)
+        found_ids: list[str] = []
+        found_docs: list[Document] = []
+        found_vecs: list[np.ndarray] = []
+        for start in range(0, len(unique), batch_size):
+            batch = unique[start : start + batch_size]
+            got = self._read(
+                kind,
+                ids=batch,
+                where=build_where(repo),
+                include=["documents", "metadatas", "embeddings"],
+            )
+            if not got["ids"]:
+                continue
+            for cid, text, meta in zip(got["ids"], got["documents"], got["metadatas"], strict=True):
+                found_ids.append(str(cid))
+                found_docs.append(Document(page_content=text, metadata=meta, id=str(cid)))
+            found_vecs.append(np.asarray(got["embeddings"], dtype=np.float32))
+        if not found_vecs:
+            return [], [], np.empty((0, 0), dtype=np.float32)
+        return found_ids, found_docs, np.vstack(found_vecs)
+
     def repo_documents(
         self, kind: str, repo: str, filters: Mapping[str, str] | None = None
     ) -> list[Document]:

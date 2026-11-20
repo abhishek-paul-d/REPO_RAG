@@ -1,6 +1,7 @@
 # Secrets and local data
 .env
 data/
+/data_flask/
 
 # Python
 __pycache__/

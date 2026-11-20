@@ -25,9 +25,9 @@ copied from real command output, never estimated.
 | 6 | **Done 2026-11-18** (ticked by the user's decision) | Architecture-answer gate met with the 27B (vLLM, CUDA graphs + MTP): 13/15 and fresh 8/10, code 39/40, docs 11/12; proxy metric, labels reviewed by the owner (provenance unverified; flask labels not applied), fresh set has no margin; E1/E2 evaluation audited earlier, no summary change qualifies |
 | 7 | **Closed with known gaps 2026-11-18** (ticked by the user's decision) | 27B: facts 59/60 (98.3%), section 1 1 of 32 flagged by the automatic checks (pr-3 data limit), regression held (code 40/40, docs 11/12, commit 5/10, probes 5/5); manual check of the 19 exact answers found 5 wrong, 4 fixed, bug-3 still weak; judge not run on 27B answers, no human labels, guards/snapping/`history_grounded` not default |
 | 8–9 | Not started | See plan.md |
-| Commit-summary pilot | Replicated on Flask 2026-11-20 | Summary index: requests 82 and 84 vs controls 76 to 78 of 113; Flask 106 and 107 vs 100 to 101 of 136. Not significant alone, not shipped by default. Default prompt is now `commit_explain`. |
+| Commit-summary pilot | Requests only; Flask result confounded | Summary index: requests 82 and 84 vs controls 76 to 78 of 113. Flask 106 and 107 vs 100 to 101 of 136, but a `search_prs` crash (fixed 2026-11-20) explains most of that gap; rerun pending. Not shipped by default. Default prompt is now `commit_explain`. |
 
-Git: repo initialized on `main`, **nothing committed yet**.
+Git: `main` has commit history. The generated Flask index and local clone are ignored under `data_flask/`.
 
 ---
 
@@ -3661,11 +3661,65 @@ The 113 commit questions pass about 70% (78 and 74 with the two prompts). Offlin
 - **Decision (user, 2026-11-20): `commit_explain` becomes the default `agent_prompt_variant`** (was `commit_pr_commits`). Evidence: 78/113 against 74/113 on requests, bare-SHA answers 0 of 103 against 86 of 99, stable at 100 to 101 of 136 on Flask. **Not re-measured on code, docs, history and architecture questions under this prompt**: run `eval/colab_session.py` in the next 27B session (its "default" steps still pass `commit_pr_commits` on purpose, so they stay comparable; add `--variant commit_explain` runs for the 103 tuned questions before quoting that nothing regressed). Tests updated (`test_prompt_variants`, `test_references`, `test_commit_verify`), all `notebooks/build_*.py` regenerated (the serve notebook embeds the source hash: upload the new `notebooks/repo_rag_ask_source.zip` to Drive before the next server session).
 - **Not decided:** shipping the summary index with `agent_commit_query=fused` and `agent_commit_hide_summary=true`. Recommendation: keep both off by default and document them as opt-in (needs a summary pass per repository).
 
+### 2026-11-20 (night): a tool crash distorted the Flask runs; fixed, Flask result NOT yet valid
+
+- **Bug (found by an outside review, verified here against the saved runs):** `search_prs` raised `LookupError: pull requests and issues are not indexed for pallets/flask` because Flask was indexed with `INDEX_PRS = False`. The agent turned any tool error into an abstention ("No answer could be produced: a tool failed"), throwing away the commits it had already found. Rows that called `search_prs` on Flask: 16 (control_a), 16 (control_b), 15 (control_c), 16 (fused), 13 and 12 (summary runs). **None of them passed.** psf/requests has PR data, so its runs are not affected.
+- **Fix:** `ProductionTools._search_prs` returns `[{"note": "Pull requests and issues are not indexed for <repo>, so there is nothing to search here. Use search_commits or search_code instead."}]` when neither kind is indexed (`NO_PR_DATA_NOTE` in `agent/tools.py`); `tests/test_references.py` updated. Other tools that need one specific indexed kind (`search_docs`, `search_commits`, `get_pr`) still raise, as before. `agent_tool_error_retries` stays at its default; not changed. All `notebooks/build_*.py` regenerated (source zip hash changed again: re-upload `notebooks/repo_rag_ask_source.zip`).
+- **What this does to the Flask numbers (computed from the saved runs, no new model run):** on the 115 questions that never crashed in any run, strict passes are control 98, 97, 97; fused 98; summary index 99 and 99. So on questions the bug did not touch, the summary index is ahead by about 1.5 of 115, which is inside the noise. Of the +5 and +6 seen on all 136, most comes from the summary runs crashing less often (12 to 13 against 15 to 16), not from better search. **The Flask replication of the summary index is therefore NOT confirmed.** It also means the Flask absolute scores (about 74%) are understated. The requests result (82 and 84 against 76 to 78) is untouched by this bug.
+- **To do (needs a 27B session):** rerun `control_a`, `control_b`, `fused`, `summary_fused_hidden` and `summary_fused_hidden_b` on Flask with the fix (about 8 minutes each), then redo the comparison. Until then the summary index stays opt-in, with no claim of a second-repo replication.
+- **Other suggestions from the same review, not done:** (a) when `search_commits` finds no clear match, tell the model to locate the file with `search_code` and call `query_commits(path=...)` or `file_history`: untested, needs an A/B on the 27B (the similar `verify` change hurt by 7); (b) the review's claim that the agent made 0 `query_commits` or `file_history` calls in the misses was not re-checked.
+
+### 2026-11-20 (night, later): Flask re-run with the `search_prs` fix, and why the 31 misses fail
+
+- **Run:** one 27B session (A100 40 GB, cuda-graphs + mtp3, concurrency 8), `eval/commit_session.py --repo pallets/flask --data-dir D:/Repo_chatbot/data_flask --summary-index ...`, about 5 minutes per step. The old Flask results were moved to `eval/commit_session_results/pallets__flask_before_search_prs_fix`. No question hit the crash (no `LookupError` in any log).
+- **Result (136 questions, strict = lenient):** `control_a` 105, `control_b` 105 (identical on all 136), `fused` 105 (7 won, 7 lost, p 1.000), `summary_fused_hidden` 110 and `summary_fused_hidden_b` 110 (14 won, 9 lost, p 0.405 each). Abstentions: controls 19, fused 17, summary 14. Before the fix the same controls scored 101, 100, 101.
+- **Reading:** the Flask baseline is 77%, higher than requests (68%) on a different question set. The summary index is +5 on both runs but not significant, and it abstains 5 times less, so part of the gain is answering more often. Same direction as requests (82 and 84 against 76 to 78); still opt-in, no proven second-repo gain. `fused` does nothing on Flask.
+- **Why the 31 `control_a` misses fail** (`eval/commit_failure_sort.py`, now parametrised: `--repo`, `--data-dir`, `--dataset`, `--run name=result.json`; it no longer points at the deleted worktree; output not kept, scratch file removed). Rank of the gold commit for the model's first `search_commits` query: top 5 for 6, rank 6 to 15 for 5, rank 16 to 30 for 8, not in the top 30 for 12. So 25 of 31 are retrieval misses, as on requests. 19 of the 31 are abstentions (none of the 19 passed). Most misses used a single search.
+- **Label and data issues seen in the misses (my reading of subjects, not checked against diffs):** four questions (010, 026, 059, 113) share one gold commit, "Add support for serializing top-level arrays to JSON", and the model often named a sibling ("Support returning list as JSON"). 008, 042 and 128 name a sibling commit that looks like the same fix ("Fix the 108th issue" against gold "Added testcase. This fixes #108"). Many of the 12 not-in-top-30 golds are typo, docs or packaging commits with a short message ("Fixes #1051", "Fixed typo in tutorial", "Removed dev tag from setup.cfg"): the report has little text in common with them. Lenient scoring counts siblings that name the same issue, and does not rescue these.
+- **`commit_explain` regression check (same 27B session, results in `eval/commit_explain_check/`, comparison against the `commit_pr_commits` runs in `eval/colab_session_results/latest`):** 103 tuned questions 98 against 99 (code 39/40 against 40/40; docs 11/12, history 11/11, refs 10/10, kind 5/5, commit 7/10, probes 5/5, prsearch 10/10 all unchanged); 72 fresh questions 72 against 72; architecture_v1 13/15 against 12/15; architecture_fresh 9/10 against 9/10. The one loss, `code-033` ("Uploading a file object that was partially read sends the wrong Content-Length"), was answered with a commit (`search_commits`) and no code range, so the citation check failed: bug-report-shaped code questions can be pulled to the commit route by this prompt. One question, inside noise, single run, but the pattern to watch. Conclusion: the default change did not regress the other types beyond noise.
+- **Not done:** the code-to-commit fallback A/B (a separate entry says it is built but unmeasured).
+
+### 2026-11-21: offline check of source-code-first diff ordering on Flask: no gain, not adopted
+
+- **Idea (from an outside review):** `commit_document` joins file patches in alphabetical path order and cuts at 800 characters, so `CHANGES.rst` and `docs/` can push a `.py` fix out of the searched text. Test: source files first, then tests, then docs and changelogs.
+- **Test (`eval/diff_order_bm25.py`, offline, no GPU):** rebuild the search text for all 3,829 Flask commits and score **BM25 only** on the 170 pilot queries. Dense search was not scored (re-embedding needs a GPU), and the agent's real search fuses both, so this is partial evidence.
+- **Result:** gold commits touching a non-test `.py` file: 109; for 17 of them none of that `.py` diff is inside the first 800 characters, so the problem exists (16%). But fixing the order does not help retrieval:
+
+| Text | Docs changed | hit@1 | hit@5 | hit@15 | hit@30 | MRR |
+|---|---:|---:|---:|---:|---:|---:|
+| Current (path order, 800 chars) | 0 | 77 | 119 | 137 | 147 | 0.570 |
+| Source first, 800 chars | 728 | 80 | 115 | 136 | 142 | 0.576 |
+| Source first, 400 chars per file | 2,001 | 77 | 116 | 137 | 144 | 0.559 |
+| Path order, 2,000 chars | 1,609 | 62 | 121 | 135 | 142 | 0.517 |
+
+  Source first: rank better on 39 queries, worse on 28; hit@5 down 4, hit@30 down 5, MRR +0.006. Net flat. A longer cut is worse at hit@1 (62), matching the earlier finding that 800 matches 2,000.
+- **Decision:** no change to `commit_document`, no re-embedding. The earlier requests test (code files first, 4,000 characters, within +-2) points the same way. Not tested: dense or fused retrieval, and the 31 specific agent misses.
+
+### 2026-11-20 (late): Opt-in two-hop code-to-commit fallback (`commit_code_fallback`, unmeasured on live 27B)
+
+- **Why not chronological `file_history` (offline diagnostic on non-crash retrieval misses):** Checking the `control_c` misses where global `search_commits` missed the gold commit in the top 15: chronological `file_history` (newest 15 commits touching the top-1 `search_code` file) rescued **`0/23`** misses on `psf/requests` and **`0/11`** misses on `pallets/flask`. By contrast, exact hybrid search scoped to commits touching the top-5 `search_code` symbols rescued **`8/23`** (`psf/requests`) and **`4/11`** (`pallets/flask`) — 100% of the retrieval misses whose gold commit touched those top-5 code symbols — and exact file-scoped hybrid search on the top-1 `search_code` file rescued **`6/23`** on `psf/requests`.
+- **Built (`commit_code_fallback`, opt-in; default stays `commit_explain`):**
+  - `MetadataDB.commit_shas` (`src/repo_rag/history/metadata_db.py`), `VectorStore.get_records` (`src/repo_rag/store/vectorstore.py`), and `HybridRetriever.search_subset` (`src/repo_rag/retrieval/retrievers.py`) score arbitrary SHA subsets using exact cosine similarity + BM25 weighted RRF (plus optional rerank).
+  - Prompt variant `commit_code_fallback` (`src/repo_rag/config.py`, `src/repo_rag/agent/prompts.py`, `src/repo_rag/agent/graph.py`) extends `commit_explain` and enables optional `path` and `symbol` filters on `search_commits` (`ProductionTools._scoped_commit_search` in `src/repo_rag/agent/tools.py`). It expands git renames (`exact_renames` + `names_of`), strips `file::` prefixes, broadens non-dunder refactored class symbols (`len(bare) >= 4` when `<5` hits), retries symbol alone if `path + symbol` returns 0, and returns `[{"note": ...}]` on 0 matches (filtered out of `graph.py` `searches` so `sources`/`commit_answer.enrich` never fail).
+  - Added `code_fallback`, `fused_code_fallback`, and `summary_fused_code_fallback` steps to `eval/commit_session.py`.
+- **Checks (offline, no live 27B measurement yet):**
+  - `uv run ruff check` and `uv run ruff format --check` clean on all 10 touched files; `uv run mypy` clean (`114 source files`).
+  - All 18 `notebooks/build_*.py` regenerated (`notebooks/repo_rag_ask_source.zip` short SHA-256 `440a7e8c`).
+  - Real-index offline smoke check: `psf/requests` (`path="src/requests/sessions.py"`) returned 15 rows including pre-rename `requests/sessions.py` commits; `pallets/flask` (`symbol="Scaffold.route"`) returned 8 rows across `src/flask/scaffold.py`, `src/flask/app.py`, and `src/flask/blueprints.py`.
+  - Targeted + notebook pytest suite (`21` files, `--basetemp=data/pt_fallback -p no:cacheprovider`): **`224 passed in 40.84s`** (including `tests/test_commit_code_fallback.py`). Nothing committed.
+  - Next live A/B on A100: upload new `notebooks/repo_rag_ask_source.zip` (`440a7e8c`) and run `eval/commit_session.py` with `--only control_a code_fallback` (and `fused_code_fallback` / `summary_fused_code_fallback`) against the fixed server.
+
+### 2026-11-21: Keep the generated Flask index local
+
+- Unstaged `data_flask/` after `git add .` picked up the local Flask clone and generated index files.
+- Added `/data_flask/` to `.gitignore`. The clone and index files stay available for local evaluation.
+
 ## 3. Decision log
 
 
 | Date | Decision | Why | Alternatives considered |
 |---|---|---|---|
+| 2026-11-21 | Ignore the root `data_flask/` directory | It holds the generated Flask index and the clone used for local evaluation | Move the index to the default data directory |
 | 2026-11-19 | Continue the commit-summary pilot with 67 original 27B rows and 1,076 labelled Codex rows | The original server session ended. The mixed-writer pilot can measure this corpus and provides limited evidence about the shipped model | Resume with the 27B if its server becomes available and measure an all-27B corpus |
 | 2026-11-01 | Implement the approved v2 bakeoff; freeze common prompt/parser only after complete shared dev matrices; retain raw failures and unchanged gates | User-approved four revisions and dev amendment; model execution belongs to user's A100 notebook | Local model runs, partial dev selection, cached-score analysis, post-test tuning or dependency changes |
 | 2026-11-01 | Freeze Phase 7 protocol/splits/probes before model research; propose four exact revisions and wait for approval | User-required order and no new dependency; preserve raw labels, test gates and separate summary approval | Load models or build the harness before approval; silently upgrade Transformers; select on test |
@@ -4376,6 +4430,8 @@ extended, notebooks regenerated.
 
 ## 5. Open items
 
+- [x] (2026-11-21) Unstage and ignore the generated `data_flask/` directory.
+- [x] (2026-11-20) Rerun the Flask commit steps with the `search_prs` fix: done, controls 105 and 105, summary index 110 and 110, p 0.405 (see the 2026-11-20 (night, later) entry).
 - [ ] (2026-11-20) Re-measure code, docs, history and architecture questions under the new default prompt `commit_explain` (next 27B session, `eval/colab_session.py`).
 - [ ] (2026-11-20) Decide whether the summary index (fused search, summaries hidden) ships; it needs a 27B summary pass and a GPU embedding run per repository.
 - [x] (2026-11-20, done: see the 2026-11-20 (evening) entry; fused 103, summary index 106 and 107 of 136 against controls 100 to 101) Run `docs/FLASK_COMMIT_RUNBOOK.md` on Colab: index `pallets/flask` (`d086db856be1`, `float32`, T4), generate 27B commit summaries for all 3,829 commits, embed them (`commit_summary_pilot_on_colab.ipynb`), and run `eval/commit_session.py --repo pallets/flask` on the 136 test questions to test whether `summary_fused_hidden` replicates on a second repository.
@@ -4629,3 +4685,8 @@ Phase 8 was ticked by the user's decision (criterion reworded: build the index i
 ### 2026-11-18 (later): Phase 8 real answer through the API
 - Ran the API against the live Colab 27B (A100, cuda-graphs + mtp3). POST /ask on psf/requests, 'How does Session.send decide which adapter to use?': stream start, prestep, answer, check, remember, result. The answer cites src/requests/sessions.py ranges for send, get_adapter, mount and __init__, plus 8 sources. The get_adapter range 831-886 is one chunk that also holds merge_environment_settings (get_adapter is at line 870), so the source label names the other function.
 - Not run: the Streamlit UI rendering of this answer (covered only by the scripted-agent tests). Server stopped.
+
+### 2026-11-19: Phase 8 UI check with a real answer
+- Streamlit UI + API against the live Colab 27B. Asked 'How does requests handle redirects, and where is that implemented?'. Progress box went from 'Reading the question' (about 1.5 min on the first query) to 'Done'; the answer cites src/requests/sessions.py, exceptions.py and auth.py ranges; '5 citation(s) match retrieved code'; 'Retrieved code (8)' panel lists 8 sources and 'Tool calls (1)' is present.
+- Permalinks go to github.com/psf/requests/blob/611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60/<path>#L<a>-L<b> (pinned commit). A chunk label can name its first symbol (127-152 shows SessionRedirectMixin.send, the stub at line 132, while the cited get_redirect_target is at 134 inside that range).
+- Servers stopped. Phase 8 real-answer check done.

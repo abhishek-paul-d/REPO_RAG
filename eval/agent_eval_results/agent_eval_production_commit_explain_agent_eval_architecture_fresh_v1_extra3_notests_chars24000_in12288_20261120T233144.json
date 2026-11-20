@@ -1,0 +1,449 @@
+{
+ "dataset": "agent_eval_architecture_fresh_v1.jsonl",
+ "dataset_sha256": "403f135f5445f99d84f6613104c7b76e5d7034cff385e77fbc070c94425cc2c8",
+ "toolset": "production",
+ "prompt_variant": "commit_explain",
+ "commit_query": "model",
+ "commit_fix_only": false,
+ "repo": "psf/requests",
+ "hide_summary": false,
+ "fuse_weight": null,
+ "commit_bm25_weight": null,
+ "data_dir": "data",
+ "extra_files": 3,
+ "skip_tests": true,
+ "tool_result_chars": 24000,
+ "max_input_tokens": "12288",
+ "commit_k": 15,
+ "max_tool_calls": 4,
+ "citation_snap": false,
+ "abstain_retries": 0,
+ "tool_error_retries": 0,
+ "server": {
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+  "hardware": "NVIDIA A100-SXM4-40GB",
+  "max_input_tokens": "12288",
+  "decode_mode": "cuda-graphs + mtp3",
+  "concurrency": "8"
+ },
+ "rerank_used": false,
+ "rerank_failures": 0,
+ "llm_model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+ "table": {
+  "architecture": {
+   "n": 10,
+   "passed": 9,
+   "abstained": 0,
+   "failed": 0,
+   "missed": [
+    "archfresh-006"
+   ]
+  }
+ },
+ "rows": [
+  {
+   "id": "archfresh-001",
+   "type": "architecture",
+   "question": "Which modules decide which proxy a request goes through, and how is it applied to the connection?",
+   "answer": "Proxy selection is decided by select_proxy in src/requests/utils.py:873-908, which picks a proxy from the proxies dict by matching scheme://host, scheme, all://host, or all keys. The HTTPAdapter applies it to the connection in get_connection_with_tls_context (src/requests/adapters.py:455-510) and the deprecated get_connection (src/requests/adapters.py:512-563): if a proxy is selected it is normalized with prepend_scheme_if_needed, parsed, and a ProxyManager is obtained via proxy_manager_for, then the connection is created from that proxy manager (connection_from_host or connection_from_url); otherwise the connection comes from the regular poolmanager. The URL actually sent is adjusted in request_url (src/requests/adapters.py:565-611), which uses the full URL for proxied non-HTTPS requests, and proxy authentication headers are added by proxy_headers (src/requests/adapters.py:613-632). On redirects, rebuild_proxies in src/requests/sessions.py:334-368 re-evaluates the proxy configuration against environment variables and NO_PROXY.",
+   "model_answer": "Proxy selection is decided by select_proxy in src/requests/utils.py:873-908, which picks a proxy from the proxies dict by matching scheme://host, scheme, all://host, or all keys. The HTTPAdapter applies it to the connection in get_connection_with_tls_context (src/requests/adapters.py:455-510) and the deprecated get_connection (src/requests/adapters.py:512-563): if a proxy is selected it is normalized with prepend_scheme_if_needed, parsed, and a ProxyManager is obtained via proxy_manager_for, then the connection is created from that proxy manager (connection_from_host or connection_from_url); otherwise the connection comes from the regular poolmanager. The URL actually sent is adjusted in request_url (src/requests/adapters.py:565-611), which uses the full URL for proxied non-HTTPS requests, and proxy authentication headers are added by proxy_headers (src/requests/adapters.py:613-632). On redirects, rebuild_proxies in src/requests/sessions.py:334-368 re-evaluates the proxy configuration against environment variables and NO_PROXY.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "proxy selection request connection"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 6,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 34.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 3 of 3 gold files (need 2)"
+  },
+  {
+   "id": "archfresh-002",
+   "type": "architecture",
+   "question": "How do credentials from a netrc file end up on a request when the caller passes no auth?",
+   "answer": "When no auth is passed, PreparedRequest.prepare_auth falls back to the environment: if trust_env is set it calls get_netrc_auth(url), which reads the netrc file (from the NETRC env var or the default ~/.netrc locations), looks up the URL's hostname via netrc(...).authenticators(host), and returns a (login, password) tuple (src/requests/utils.py:231-287). prepare_auth then applies that tuple to the request, and HTTPBasicAuth.__call__ sets the Authorization header to a Basic auth string built by _basic_auth_str (src/requests/auth.py:85-121, src/requests/auth.py:34-82). On redirects, SessionRedirectMixin.rebuild_auth strips the Authorization header for a new host and re-applies netrc credentials for the new URL when trust_env is true (src/requests/sessions.py:309-332).",
+   "model_answer": "When no auth is passed, PreparedRequest.prepare_auth falls back to the environment: if trust_env is set it calls get_netrc_auth(url), which reads the netrc file (from the NETRC env var or the default ~/.netrc locations), looks up the URL's hostname via netrc(...).authenticators(host), and returns a (login, password) tuple (src/requests/utils.py:231-287). prepare_auth then applies that tuple to the request, and HTTPBasicAuth.__call__ sets the Authorization header to a Basic auth string built by _basic_auth_str (src/requests/auth.py:85-121, src/requests/auth.py:34-82). On redirects, SessionRedirectMixin.rebuild_auth strips the Authorization header for a new host and re-applies netrc credentials for the new URL when trust_env is true (src/requests/sessions.py:309-332).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "netrc credentials request auth"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "prepare_auth netrc trust_env get_netrc_auth"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 41.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 3 of 4 gold files (need 2)"
+  },
+  {
+   "id": "archfresh-003",
+   "type": "architecture",
+   "question": "Which parts normalise and validate a URL before a request is sent, and what do they raise?",
+   "answer": "URL normalisation and validation before a request is sent is done in PreparedRequest.prepare_url (src/requests/models.py:483-542), which decodes/strings the URL, strips leading whitespace, skips non-HTTP schemes, parses it with parse_url, and raises InvalidURL for a parse failure, MissingSchema when no scheme is supplied, InvalidURL when no host is supplied, and InvalidURL for an invalid label (non-ASCII host that fails IDNA encoding or a host starting with '*' or '.'). The exceptions themselves are defined in src/requests/exceptions.py:102-162 (MissingSchema, InvalidSchema, InvalidURL, InvalidHeader, InvalidProxyURL). Header validation is separate: check_header_validity and _validate_header_part in src/requests/utils.py:1040-1095 and src/requests/utils.py:1098-1155 raise InvalidHeader for bad header parts. The final URL actually used for the request is chosen by HTTPAdapter.request_url (src/requests/adapters.py:565-611), which uses urldefragauth (src/requests/utils.py:1098-1155) to strip fragment and auth when going through a non-HTTPS proxy.",
+   "model_answer": "URL normalisation and validation before a request is sent is done in PreparedRequest.prepare_url (src/requests/models.py:483-542), which decodes/strings the URL, strips leading whitespace, skips non-HTTP schemes, parses it with parse_url, and raises InvalidURL for a parse failure, MissingSchema when no scheme is supplied, InvalidURL when no host is supplied, and InvalidURL for an invalid label (non-ASCII host that fails IDNA encoding or a host starting with '*' or '.'). The exceptions themselves are defined in src/requests/exceptions.py:102-162 (MissingSchema, InvalidSchema, InvalidURL, InvalidHeader, InvalidProxyURL). Header validation is separate: check_header_validity and _validate_header_part in src/requests/utils.py:1040-1095 and src/requests/utils.py:1098-1155 raise InvalidHeader for bad header parts. The final URL actually used for the request is chosen by HTTPAdapter.request_url (src/requests/adapters.py:565-611), which uses urldefragauth (src/requests/utils.py:1098-1155) to strip fragment and auth when going through a non-HTTPS proxy.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "normalise validate URL before request sent"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 6,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 34.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 3 of 3 gold files (need 2)"
+  },
+  {
+   "id": "archfresh-004",
+   "type": "architecture",
+   "question": "How does an HTTP error status code become an exception for the caller?",
+   "answer": "An HTTP error status code becomes an exception when the caller invokes Response.raise_for_status(), which checks self.status_code: if it is in the 400-499 range it builds a 'Client Error' message, and if it is in the 500-599 range it builds a 'Server Error' message (src/requests/models.py:1144-1184). If such a message is set, it raises HTTPError with that message and the response attached (src/requests/models.py:1144-1184). HTTPError is a subclass of RequestException, which stores the response and request on the exception instance (src/requests/exceptions.py:1-39, src/requests/exceptions.py:42-99). The Response.ok property also relies on this by calling raise_for_status() and returning False when HTTPError is raised (src/requests/models.py:861-913).",
+   "model_answer": "An HTTP error status code becomes an exception when the caller invokes Response.raise_for_status(), which checks self.status_code: if it is in the 400-499 range it builds a 'Client Error' message, and if it is in the 500-599 range it builds a 'Server Error' message (src/requests/models.py:1144-1184). If such a message is set, it raises HTTPError with that message and the response attached (src/requests/models.py:1144-1184). HTTPError is a subclass of RequestException, which stores the response and request on the exception instance (src/requests/exceptions.py:1-39, src/requests/exceptions.py:42-99). The Response.ok property also relies on this by calling raise_for_status() and returning False when HTTPError is raised (src/requests/models.py:861-913).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "HTTP error status code raise exception"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 5,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 33.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 2 of 2 gold files (need 2)"
+  },
+  {
+   "id": "archfresh-005",
+   "type": "architecture",
+   "question": "How is a response body decoded as JSON, including guessing its encoding, and which errors surface?",
+   "answer": "Response.json decodes the body by first checking whether an encoding is already set; if not, and the content is longer than 3 bytes, it calls guess_json_utf on the raw bytes to detect UTF-8, UTF-16 (LE/BE), or UTF-32 (LE/BE) from BOMs and null-byte patterns (src/requests/models.py:1091-1142, src/requests/utils.py:1008-1037). If a UTF codec is detected, it decodes the bytes with that codec and passes the result to complexjson.loads; a UnicodeDecodeError is silently swallowed (falling through to the text-based path), while a JSONDecodeError is re-raised as requests.exceptions.JSONDecodeError (src/requests/models.py:1091-1142). If no encoding was detected or decoding failed, it falls back to self.text, which uses the header charset or an apparent-encoding guess and decodes with errors='replace' (src/requests/models.py:1034-1089), then calls complexjson.loads on that string; any JSONDecodeError is again re-raised as requests.exceptions.JSONDecodeError (src/requests/models.py:1091-1142). The surfaced error type is requests.exceptions.JSONDecodeError, which subclasses both InvalidJSONError and the underlying json/simplejson JSONDecodeError (src/requests/exceptions.py:42-99).",
+   "model_answer": "Response.json decodes the body by first checking whether an encoding is already set; if not, and the content is longer than 3 bytes, it calls guess_json_utf on the raw bytes to detect UTF-8, UTF-16 (LE/BE), or UTF-32 (LE/BE) from BOMs and null-byte patterns (src/requests/models.py:1091-1142, src/requests/utils.py:1008-1037). If a UTF codec is detected, it decodes the bytes with that codec and passes the result to complexjson.loads; a UnicodeDecodeError is silently swallowed (falling through to the text-based path), while a JSONDecodeError is re-raised as requests.exceptions.JSONDecodeError (src/requests/models.py:1091-1142). If no encoding was detected or decoding failed, it falls back to self.text, which uses the header charset or an apparent-encoding guess and decodes with errors='replace' (src/requests/models.py:1034-1089), then calls complexjson.loads on that string; any JSONDecodeError is again re-raised as requests.exceptions.JSONDecodeError (src/requests/models.py:1091-1142). The surfaced error type is requests.exceptions.JSONDecodeError, which subclasses both InvalidJSONError and the underlying json/simplejson JSONDecodeError (src/requests/exceptions.py:42-99).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "decode response body JSON guess encoding"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 6,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 35.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 3 of 3 gold files (need 2)"
+  },
+  {
+   "id": "archfresh-006",
+   "type": "architecture",
+   "question": "How does digest authentication answer a 401 challenge, and how is it attached to the response?",
+   "answer": "When a request is made, HTTPDigestAuth.__call__ registers handle_401 as a response hook (src/requests/auth.py:321-345). If the server responds with a 401, handle_401 reads the 'www-authenticate' header, and if it contains 'digest' and fewer than two 401 calls have occurred, it parses the challenge into self._thread_local.chal (src/requests/auth.py:268-319). It then copies the original request, calls build_digest_header to compute the digest response using the challenge's realm, nonce, qop, algorithm and opaque values (src/requests/auth.py:157-266), and sets the computed string as the 'Authorization' header on the copied request (src/requests/auth.py:268-319). The new request is sent over the same connection, and the resulting response is returned with the original 401 appended to its history (src/requests/auth.py:268-319). If a nonce was already saved from a previous exchange, __call__ pre-emptively sets the Authorization header before sending, skipping the 401 round-trip (src/requests/auth.py:321-345).",
+   "model_answer": "When a request is made, HTTPDigestAuth.__call__ registers handle_401 as a response hook (src/requests/auth.py:321-345). If the server responds with a 401, handle_401 reads the 'www-authenticate' header, and if it contains 'digest' and fewer than two 401 calls have occurred, it parses the challenge into self._thread_local.chal (src/requests/auth.py:268-319). It then copies the original request, calls build_digest_header to compute the digest response using the challenge's realm, nonce, qop, algorithm and opaque values (src/requests/auth.py:157-266), and sets the computed string as the 'Authorization' header on the copied request (src/requests/auth.py:268-319). The new request is sent over the same connection, and the resulting response is returned with the original 401 appended to its history (src/requests/auth.py:268-319). If a nonce was already saved from a previous exchange, __call__ pre-emptively sets the Authorization header before sending, skipping the 401 round-trip (src/requests/auth.py:321-345).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "digest authentication 401 challenge response"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 6,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 34.5,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "names 1 of 4 gold files (need 2)"
+  },
+  {
+   "id": "archfresh-007",
+   "type": "architecture",
+   "question": "Which parts decide whether a request body is sent with a content length or chunked?",
+   "answer": "The decision is made in PreparedRequest.prepare_body, which checks whether the data is a stream/iterable and whether its length can be determined via super_len: if a length is available it sets the Content-Length header, otherwise it sets Transfer-Encoding: chunked (src/requests/models.py:603-652). For non-streamed bodies it calls prepare_content_length, which sets Content-Length when a length exists and falls back to chunked when it does not, and sets Content-Length to 0 for methods other than GET/HEAD with no body (src/requests/models.py:654-697). The length itself is computed by super_len, which uses __len__, .len, or fileno/fstat to determine the size (src/requests/utils.py:160-199).",
+   "model_answer": "The decision is made in PreparedRequest.prepare_body, which checks whether the data is a stream/iterable and whether its length can be determined via super_len: if a length is available it sets the Content-Length header, otherwise it sets Transfer-Encoding: chunked (src/requests/models.py:603-652). For non-streamed bodies it calls prepare_content_length, which sets Content-Length when a length exists and falls back to chunked when it does not, and sets Content-Length to 0 for methods other than GET/HEAD with no body (src/requests/models.py:654-697). The length itself is computed by super_len, which uses __len__, .len, or fileno/fstat to determine the size (src/requests/utils.py:160-199).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "content-length chunked transfer encoding request body"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 33.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 2 of 3 gold files (need 2)"
+  },
+  {
+   "id": "archfresh-008",
+   "type": "architecture",
+   "question": "Which components release network connections when a session or a response is closed?",
+   "answer": "The Response component releases the connection back to the pool when closed: Response.close calls self.raw.close() if content was not consumed and then invokes the raw object's release_conn() to return the connection to the pool (src/requests/models.py:1144-1184). The HTTPAdapter component disposes of internal state by closing the PoolManager and any active ProxyManager, which closes any pooled connections, in HTTPAdapter.close (src/requests/adapters.py:512-563).",
+   "model_answer": "The Response component releases the connection back to the pool when closed: Response.close calls self.raw.close() if content was not consumed and then invokes the raw object's release_conn() to return the connection to the pool (src/requests/models.py:1144-1184). The HTTPAdapter component disposes of internal state by closing the PoolManager and any active ProxyManager, which closes any pooled connections, in HTTPAdapter.close (src/requests/adapters.py:512-563).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "release network connection when session or response is closed"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 33.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 2 of 3 gold files (need 2)"
+  },
+  {
+   "id": "archfresh-009",
+   "type": "architecture",
+   "question": "How is the character encoding of a response chosen when its text is read?",
+   "answer": "When a response's text is read, the encoding is first taken from the response's `encoding` attribute, which is derived from the HTTP headers: the `charset` parameter of the `content-type` header is used if present, otherwise `ISO-8859-1` is assumed for `text/*` types and `utf-8` for `application/json` (src/requests/utils.py:569-588). If `self.encoding` is None, the code falls back to `self.apparent_encoding`, which guesses the encoding using `charset_normalizer` or `chardet` (src/requests/models.py:1034-1089). The content is then decoded with that encoding, defaulting to `utf-8` if still None, using `errors=\"replace\"`; if a LookupError or TypeError occurs, it decodes blindly with `errors=\"replace\"` (src/requests/models.py:1034-1089).",
+   "model_answer": "When a response's text is read, the encoding is first taken from the response's `encoding` attribute, which is derived from the HTTP headers: the `charset` parameter of the `content-type` header is used if present, otherwise `ISO-8859-1` is assumed for `text/*` types and `utf-8` for `application/json` (src/requests/utils.py:569-588). If `self.encoding` is None, the code falls back to `self.apparent_encoding`, which guesses the encoding using `charset_normalizer` or `chardet` (src/requests/models.py:1034-1089). The content is then decoded with that encoding, defaulting to `utf-8` if still None, using `errors=\"replace\"`; if a LookupError or TypeError occurs, it decodes blindly with `errors=\"replace\"` (src/requests/models.py:1034-1089).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "character encoding response text read"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 19.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 2 of 4 gold files (need 2)"
+  },
+  {
+   "id": "archfresh-010",
+   "type": "architecture",
+   "question": "Where do the default headers such as the user agent come from, and how do they reach a request?",
+   "answer": "The default headers are defined by default_headers() in src/requests/utils.py:911-962, which builds a CaseInsensitiveDict containing User-Agent (from default_user_agent(), f\"{name}/{__version__}\"), Accept-Encoding, Accept, and Connection. These defaults are stored on each Session instance: Session.__init__ sets self.headers = default_headers() (src/requests/sessions.py:442-488). When a request is prepared, Session.prepare_request merges the per-request headers with the session's default headers via merge_setting(request.headers, self.headers, dict_class=CaseInsensitiveDict) and passes the result to PreparedRequest.prepare (src/requests/sessions.py:505-555). PreparedRequest.prepare then calls prepare_headers, which copies the merged headers into a new CaseInsensitiveDict on the PreparedRequest (src/requests/models.py:424-481 and src/requests/models.py:565-574), so the defaults reach the outgoing request through the session's headers merged into the prepared request's headers.",
+   "model_answer": "The default headers are defined by default_headers() in src/requests/utils.py:911-962, which builds a CaseInsensitiveDict containing User-Agent (from default_user_agent(), f\"{name}/{__version__}\"), Accept-Encoding, Accept, and Connection. These defaults are stored on each Session instance: Session.__init__ sets self.headers = default_headers() (src/requests/sessions.py:442-488). When a request is prepared, Session.prepare_request merges the per-request headers with the session's default headers via merge_setting(request.headers, self.headers, dict_class=CaseInsensitiveDict) and passes the result to PreparedRequest.prepare (src/requests/sessions.py:505-555). PreparedRequest.prepare then calls prepare_headers, which copies the merged headers into a new CaseInsensitiveDict on the PreparedRequest (src/requests/models.py:424-481 and src/requests/models.py:565-574), so the defaults reach the outgoing request through the session's headers merged into the prepared request's headers.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "default headers user agent"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "prepare_headers merge session headers request headers"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 5,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 21.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "names 2 of 3 gold files (need 2)"
+  }
+ ]
+}
