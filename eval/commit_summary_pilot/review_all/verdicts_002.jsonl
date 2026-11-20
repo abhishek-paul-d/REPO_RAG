@@ -1,0 +1,89 @@
+{"n": 97, "sha": "054ad4aa67df93bd87eecfa5448479cb1151f7ef", "verdict": "ok", "reason": ""}
+{"n": 98, "sha": "054e1ab3ee4366a9c71a96e121cf88355b5e2f3e", "verdict": "ok", "reason": ""}
+{"n": 99, "sha": "055f7c1eb6172736e830120532934077ee87c102", "verdict": "ok", "reason": ""}
+{"n": 100, "sha": "0569fe44d804765a52b54c93835c5057e67d1751", "verdict": "wrong", "reason": "The test module already exists and the patch expands it rather than creating a comprehensive new suite."}
+{"n": 101, "sha": "056da86f6d547c727872f168608ab39a4fdbe16e", "verdict": "ok", "reason": ""}
+{"n": 102, "sha": "057689bb8a01b9206996a445e0a925971d746f2b", "verdict": "ok", "reason": ""}
+{"n": 103, "sha": "057722af23edf3f69bf7bdfed7c6c32cbe1ce2e7", "verdict": "ok", "reason": ""}
+{"n": 104, "sha": "057f32924a3d90216760fbe09a3e3a96870f69fc", "verdict": "ok", "reason": ""}
+{"n": 105, "sha": "058ef27178b49eb2a97bb5ea40a077248a58e234", "verdict": "ok", "reason": ""}
+{"n": 106, "sha": "059e105f8f5897ddf2da7c2317bef995ee099ab5", "verdict": "filler", "reason": "The two parser calls are changed, but consistent decoding across environments is not established by the diff."}
+{"n": 107, "sha": "05a1a21593c9c8e79393d35fae12c9c27a6f7605", "verdict": "ok", "reason": ""}
+{"n": 108, "sha": "05b14017955c9c486cc0c9521aef14c6913bf2e8", "verdict": "ok", "reason": ""}
+{"n": 109, "sha": "05dd0b88a18f5a987f05b58a31a5dc55f6665182", "verdict": "filler", "reason": "The URL changes, but the commit does not say that the old link was broken or show that the new one works."}
+{"n": 110, "sha": "05de270d7a074999ef3c58fede2b4fae7433aeaf", "verdict": "ok", "reason": ""}
+{"n": 111, "sha": "0622b5c54ee6682e6afc21e05cc5f9f95a98aaba", "verdict": "ok", "reason": ""}
+{"n": 112, "sha": "06462a6e794b2d016368959e4efe72eb86b2baea", "verdict": "ok", "reason": ""}
+{"n": 113, "sha": "066512900897d4092846529e7017df99a0aece6b", "verdict": "wrong", "reason": "The summary describes permanent removal even though the commit message calls this a reorder."}
+{"n": 114, "sha": "068d8863d18908bdf0aea238168d157fb164bc91", "verdict": "ok", "reason": ""}
+{"n": 115, "sha": "06920cc2663f4306be26a8cd86e055447385d838", "verdict": "ok", "reason": ""}
+{"n": 116, "sha": "06a5aed8e2a539d780020fb893fdf5ef9192ae04", "verdict": "wrong", "reason": "The new 401 assertion precedes the authenticated session request and does not apply to it."}
+{"n": 117, "sha": "06b49693834b3ae8b22245ac9d71f15bac3a580d", "verdict": "filler", "reason": "The manifest is visibly reordered, but no consistency requirement or outcome is shown."}
+{"n": 118, "sha": "06d9faedc662a3705af0349e12ea27e2b4bbf640", "verdict": "wrong", "reason": "The diff moves the authentication block earlier, rather than moving the encoding code."}
+{"n": 119, "sha": "06df08e676f5ed84b0f4fea2b56c9c5dbffd32ea", "verdict": "ok", "reason": ""}
+{"n": 120, "sha": "06e4971fe72c377692ba9e37638431ed0582a028", "verdict": "ok", "reason": ""}
+{"n": 121, "sha": "06e662be86d0cd383373e9714c2eb8f1fb96a461", "verdict": "ok", "reason": ""}
+{"n": 122, "sha": "06e788e253b5c05fbb1d99abfaf1e640d08727f3", "verdict": "ok", "reason": ""}
+{"n": 123, "sha": "06ecae43bd02513d5249224b697bf6d891064932", "verdict": "filler", "reason": "Only the CA-bundle heading changes, and a correction to the attribution itself is not shown."}
+{"n": 124, "sha": "06eee390dd9225bbaf4c953a684826fc564f8e61", "verdict": "ok", "reason": ""}
+{"n": 125, "sha": "06f048e5074da7b02ce640a3531a58956f656de4", "verdict": "ok", "reason": ""}
+{"n": 126, "sha": "0713e09526d3ed2d2fe2516fa6d35727c557024f", "verdict": "wrong", "reason": "The uncommented assertion compares an echoed JSON value and does not check a Content-Type header."}
+{"n": 127, "sha": "071796d83f1bfb79793170945fdb4f623a1f344a", "verdict": "filler", "reason": "The parser is simplified, but removing the empty-header guard does not establish that it was redundant."}
+{"n": 128, "sha": "0730b231ece46f86da4cc1baa5b12993e11e80e1", "verdict": "ok", "reason": ""}
+{"n": 129, "sha": "074144879852b1f7fdd600e0c4fcb343e9c87f3e", "verdict": "wrong", "reason": "The evidence identifies an executable path move and does not identify two different PyPy variants."}
+{"n": 130, "sha": "074150ff2c625a400244110c74f4e3546d08cbca", "verdict": "wrong", "reason": "The assertion checks for a substring in the entire URL, not the domain specifically."}
+{"n": 131, "sha": "074c4a32d8f6ab1d264e6b94521af8eb42240dcd", "verdict": "filler", "reason": "The bundle version and removed certificate are shown, but the text does not establish that the removed root was outdated or the resulting bundle was current."}
+{"n": 132, "sha": "0792acc1305b42a8d3f3160f1e23fd4751ec9dc8", "verdict": "ok", "reason": ""}
+{"n": 133, "sha": "0797c61fd541f92f66e409dbf9515ca287af28d2", "verdict": "ok", "reason": ""}
+{"n": 134, "sha": "07ad75ee043493809f95e22788e5f85e604f96d4", "verdict": "filler", "reason": "The note documents omitted None values, while the claim about what users would otherwise expect is speculative."}
+{"n": 135, "sha": "07b7872df8df67eaf61e6374c39767219e9155d7", "verdict": "ok", "reason": ""}
+{"n": 136, "sha": "07d8c28a756660a1a5b3cabc26f291ac0f28bd06", "verdict": "ok", "reason": ""}
+{"n": 137, "sha": "07d9b730b712e8d77106c5c886be4e8bf3bef4f6", "verdict": "ok", "reason": ""}
+{"n": 138, "sha": "07dd324e2f78ee208e35d3faa963ebab237ff95f", "verdict": "ok", "reason": ""}
+{"n": 139, "sha": "07e0a6198d132fee147806105a6ff05e541d3ba2", "verdict": "ok", "reason": ""}
+{"n": 140, "sha": "07f6675376a1772d3024a5fbc46c8bb296710b41", "verdict": "filler", "reason": "The removal of asynchronous tests is visible, but it does not establish that the asynchronous module is unsupported."}
+{"n": 141, "sha": "07f9a7ea0201b5e8d9763c41153862f211de12bd", "verdict": "wrong", "reason": "The release history changes the future version to a placeholder and does not name the stable release in that change."}
+{"n": 142, "sha": "080db5ee5d8bfdd7106b1c555a72935da2b5bbc5", "verdict": "filler", "reason": "The changelog mentions lower-case caching without showing a lookup performance result."}
+{"n": 143, "sha": "0813c865ee0495952c38d2b8e2932a184a1edcd3", "verdict": "filler", "reason": "The message says the link was broken, but does not say that the old website itself was outdated."}
+{"n": 144, "sha": "082029ff2e880136d207e7999c9f7e9832c98b89", "verdict": "ok", "reason": ""}
+{"n": 145, "sha": "082b877d81d64ad81d2845933436e210b47a3e3e", "verdict": "filler", "reason": "The two duplicate entries are removed, but the text does not establish uniqueness across the rest of the author list."}
+{"n": 146, "sha": "082f4d89486e4bfe918fd125431545a6b879155e", "verdict": "ok", "reason": ""}
+{"n": 147, "sha": "08300621004a76dcacf03ed6538bcf2e592ac521", "verdict": "ok", "reason": ""}
+{"n": 148, "sha": "08364c6739ef94d245327acf88359de371bbf3ba", "verdict": "ok", "reason": ""}
+{"n": 149, "sha": "0838685dabca56b3fc985b92feca9c739700129e", "verdict": "ok", "reason": ""}
+{"n": 150, "sha": "0859c01b16a3e4958685b99906224fee3fcfa43e", "verdict": "filler", "reason": "The binary asset is added, but its use for branding or as an interface element is speculative."}
+{"n": 151, "sha": "085a8768a232187f12d9c195c431ea85c33fb4b8", "verdict": "ok", "reason": ""}
+{"n": 152, "sha": "086655e4fc90b864ddf8ad0c4178a99b7b3705b9", "verdict": "ok", "reason": ""}
+{"n": 153, "sha": "086e19d8e175cccb630ee3589affdd2f38075ecd", "verdict": "wrong", "reason": "The previous property already returned a boolean for HTTP errors because it caught HTTPError internally."}
+{"n": 154, "sha": "087a27aba97d3eac017d321e37bf1970f8833c1a", "verdict": "ok", "reason": ""}
+{"n": 155, "sha": "087aeacee570e3e3adc6103015d4f8b056705850", "verdict": "wrong", "reason": "The patch changes imports of one helper and does not move multiple helper implementations."}
+{"n": 156, "sha": "087de5232c526f5a37dafdeeb7540ba79af44eed", "verdict": "ok", "reason": ""}
+{"n": 157, "sha": "088f908d581eb3a51370eff017ff6000802e5340", "verdict": "ok", "reason": ""}
+{"n": 158, "sha": "08a158f4868004586c6ab2e866b1530124dbd0fe", "verdict": "ok", "reason": ""}
+{"n": 159, "sha": "08a821381aa87803e925eb1e9c61269e4186fa80", "verdict": "ok", "reason": ""}
+{"n": 160, "sha": "08b6a78883cccdabd1a51b9e40fdb96e8712e5c3", "verdict": "ok", "reason": ""}
+{"n": 161, "sha": "08bc1198d3ed312ab5ce60c29d8447dd5d3f90ea", "verdict": "filler", "reason": "The text describes a failing regression test, so the added assertion cannot establish successful handling."}
+{"n": 162, "sha": "08ce652b8b42c64ad904133ceb3e4f71df90c03c", "verdict": "wrong", "reason": "The guide describes an allowed argument format without establishing a required type restriction."}
+{"n": 163, "sha": "08cebb3c2fb3b3a4164a8e38435ab30b2ddaaa73", "verdict": "ok", "reason": ""}
+{"n": 164, "sha": "08d8876230884eea98306ff60e1778a92fd09057", "verdict": "filler", "reason": "The example URL is replaced without evidence that the previous endpoint was deprecated or that the replacement was verified."}
+{"n": 165, "sha": "08f66a99b17e59355e2aeaf2d37244b18b69f6e1", "verdict": "ok", "reason": ""}
+{"n": 166, "sha": "090fcf14c57e842013b8ecebd536d368d014f2d5", "verdict": "filler", "reason": "The file is removed, but the text does not establish that its outstanding task was outdated."}
+{"n": 167, "sha": "091604455a74391f9b0cbcde98d121ddad79f8e5", "verdict": "ok", "reason": ""}
+{"n": 168, "sha": "0924069b689c7323f47444b6a19bc037c43b49e2", "verdict": "ok", "reason": ""}
+{"n": 169, "sha": "0938c9e985a7482ab1a131bf680b6b745978e87b", "verdict": "wrong", "reason": "The prior installation command already specified global installation, so a switch from virtual-environment installation is unsupported."}
+{"n": 170, "sha": "09658b80c0a090f54e8a30a7531deb96ff8da11e", "verdict": "wrong", "reason": "Certifi is the target of a new sidebar link, not the identified owner of the documentation."}
+{"n": 171, "sha": "09740c35e1e148b41a7f1384a38e33011471d9dc", "verdict": "ok", "reason": ""}
+{"n": 172, "sha": "09b6aef8355aa0cb3c8fe10addae01b08df9f0bc", "verdict": "ok", "reason": ""}
+{"n": 173, "sha": "09bd3232dd1572f1b6c435fdcca4275687fcb937", "verdict": "ok", "reason": ""}
+{"n": 174, "sha": "09c0365255a639932f0d17233249f298de000d03", "verdict": "wrong", "reason": "The old expression calls unicode, so a missing import of str is not the demonstrated cause of that expression failing."}
+{"n": 175, "sha": "09d97c112642674c4310ec41fdc3e9d8b6978824", "verdict": "ok", "reason": ""}
+{"n": 176, "sha": "09da1921ffbd9cfd4dff83ca440cc49b087c732c", "verdict": "ok", "reason": ""}
+{"n": 177, "sha": "09fd857eb1448a8234e39bc39e2c795d4c980bfb", "verdict": "ok", "reason": ""}
+{"n": 178, "sha": "0a17badb21c2dd9ceabb82dc6f3ca30a2c8d5aad", "verdict": "wrong", "reason": "The Unicode path uses Latin-1 and does not prevent errors for every Unicode header value."}
+{"n": 179, "sha": "0a1aaca024f34cc3b2d411f56905f9cfb7a3003b", "verdict": "wrong", "reason": "The test checks a file-like object's position at the very end, rather than an arbitrary partially consumed object."}
+{"n": 180, "sha": "0a1e527aec37b7c419a9bb976e3fcf3514570448", "verdict": "ok", "reason": ""}
+{"n": 181, "sha": "0a24de2ef9f334ed86512434bd86d4e886e82f97", "verdict": "ok", "reason": ""}
+{"n": 182, "sha": "0a2dc74ecbbb375b6d5171eb588ee69ca59b1898", "verdict": "ok", "reason": ""}
+{"n": 183, "sha": "0a4b7356ac039ffc0eed3086ced33d5f6b54dbba", "verdict": "cannot_tell", "reason": "The excerpt cuts off in the symbol list before the diff that would show whether the standard library actually replaces the vendored module."}
+{"n": 184, "sha": "0a4e65c0ed6bab6fbe9cfc4f4c4d349098b6f319", "verdict": "ok", "reason": ""}
+{"n": 185, "sha": "0a52d9405ea23cd9aa7401dcfcebcbc248df3d25", "verdict": "wrong", "reason": "The corrected spelling is the package path, and the HTTPAdapter class name was already spelled correctly."}

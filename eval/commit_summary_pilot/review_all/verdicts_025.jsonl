@@ -1,0 +1,85 @@
+{"n": 2097, "sha": "6d082ea9724a6dc75d14c08ebe3d4f4ac7b6610f", "verdict": "ok", "reason": ""}
+{"n": 2098, "sha": "6d25fff3f93eb89a87742bf3be24fa87724fe550", "verdict": "filler", "reason": "The explicit None return preserves the existing outcome, and the excerpt does not establish a separate consistency improvement."}
+{"n": 2099, "sha": "6d2a5072ca0851e37f7c529f27d13edfddc8c1dd", "verdict": "ok", "reason": ""}
+{"n": 2100, "sha": "6d3d5e59c9e1a37244ddce0e3d8b30a14d2a9974", "verdict": "ok", "reason": ""}
+{"n": 2101, "sha": "6d418d91324c77c6b131abcdbe7a82095ea074dc", "verdict": "ok", "reason": ""}
+{"n": 2102, "sha": "6d6252aa9fc4bb38d7f68073b41092c31ddb146b", "verdict": "ok", "reason": ""}
+{"n": 2103, "sha": "6d7e8a97bbefa287366bc5d0b0b8f789532e853a", "verdict": "ok", "reason": ""}
+{"n": 2104, "sha": "6d8a531e87efabdbfa734bd9f70e7220623c1cf7", "verdict": "wrong", "reason": "The history entry describes these interfaces and adds no response implementation."}
+{"n": 2105, "sha": "6da48dbd93cc52327e7568397572cc89e248dc39", "verdict": "wrong", "reason": "The release note loses its final period, and exception swallowing is narrower than exception handling."}
+{"n": 2106, "sha": "6da7e22a4ab07f4b5a573d37a6149a2d5cfdb7af", "verdict": "wrong", "reason": "The conversion applies under Python 2 to header names that can be represented as ASCII, with no support shown for arbitrary Unicode names."}
+{"n": 2107, "sha": "6dc13f2194b7d367f591954707c05d27ef9c79a2", "verdict": "ok", "reason": ""}
+{"n": 2108, "sha": "6dc664caaf507dccb2e499e4ab02a451ef7a148c", "verdict": "ok", "reason": ""}
+{"n": 2109, "sha": "6dd410ff17951462e6323c93a310772bb651d57d", "verdict": "ok", "reason": ""}
+{"n": 2110, "sha": "6de4f104cd8813e3fb2fca6c8297211794728cad", "verdict": "ok", "reason": ""}
+{"n": 2111, "sha": "6e05165a295e94afd9960a0f21fb36975870d8cf", "verdict": "ok", "reason": ""}
+{"n": 2112, "sha": "6e0649d9f896ce2dde57911e7f56b1c968575d74", "verdict": "ok", "reason": ""}
+{"n": 2113, "sha": "6e13e7343d2d1a37fe61365c7658984bcf4d9194", "verdict": "cannot_tell", "reason": "The excerpt shows new API-reference directives but cuts off before the runtime hunks, leaving it unclear which named interfaces are newly implemented."}
+{"n": 2114, "sha": "6e14d4704d87f572ab3257956bf7f32b0e6dab79", "verdict": "ok", "reason": ""}
+{"n": 2115, "sha": "6e1db21733214e4d6707b0bc91b80499d4e946db", "verdict": "ok", "reason": ""}
+{"n": 2116, "sha": "6e26f5754bd44e079202f5a146657ed56464b023", "verdict": "wrong", "reason": "The addition is a lone misspelled identifier and does not show how the hook is executed."}
+{"n": 2117, "sha": "6e2f1eb402096dfce912f7ff44cae55e466c3afc", "verdict": "ok", "reason": ""}
+{"n": 2118, "sha": "6e35ec4c127206106165cacc0b91cc6156334caa", "verdict": "ok", "reason": ""}
+{"n": 2119, "sha": "6e3cfe5dd5698afe67c84232ee6e60fe38618485", "verdict": "filler", "reason": "The diff shows the changed year, but the message only speculates that 2012 is the accurate year."}
+{"n": 2120, "sha": "6e4134b204f675268296b2b44c2d52c8a7927b2c", "verdict": "filler", "reason": "The old and new CodeQL action versions are explicit, but the excerpt does not establish that 4.x is the latest major line."}
+{"n": 2121, "sha": "6e53290acd02085424c548c6e149c3811325d314", "verdict": "ok", "reason": ""}
+{"n": 2122, "sha": "6e5b15d542a4e85945fd72066bb6cecbc3a82191", "verdict": "ok", "reason": ""}
+{"n": 2123, "sha": "6e5f7bb9d397ade498ee22d9785863ef1b8ad946", "verdict": "ok", "reason": ""}
+{"n": 2124, "sha": "6e76aaea4595d7c2a953fea5d624344e8c11f93a", "verdict": "ok", "reason": ""}
+{"n": 2125, "sha": "6e76ab7188b2e5f6338b8b15d7d77b69f1627a7b", "verdict": "wrong", "reason": "The original limitation applied to IDNA processing of the combined netloc, and the patch does not raise the permitted size of a port number."}
+{"n": 2126, "sha": "6e780fad6d15eea0366103501ed354b92ff28ba7", "verdict": "ok", "reason": ""}
+{"n": 2127, "sha": "6e83187b8feb273ed4c6cdab5efd8d54901dfab3", "verdict": "ok", "reason": ""}
+{"n": 2128, "sha": "6e840f46e113099f1d9d64ad7418809d84955ab7", "verdict": "ok", "reason": ""}
+{"n": 2129, "sha": "6e903de0680856ca1dc2c0e80eae97457e3ea29a", "verdict": "ok", "reason": ""}
+{"n": 2130, "sha": "6e9ebc06d1056d5a488e8d9af75ae82f458bf714", "verdict": "ok", "reason": ""}
+{"n": 2131, "sha": "6ea3f2ada87177559188bfc9148af1b2384f38c6", "verdict": "ok", "reason": ""}
+{"n": 2132, "sha": "6ead850065189a094687894168abcf99cabe7f02", "verdict": "ok", "reason": ""}
+{"n": 2133, "sha": "6eb1ac44527e40f26f078d336b4ad6838798432b", "verdict": "ok", "reason": ""}
+{"n": 2134, "sha": "6eb349f5d20e119ce3340d9163472dc51f8031b6", "verdict": "ok", "reason": ""}
+{"n": 2135, "sha": "6ec76b4a36fba4a32fb72f5f9ba04e632635e477", "verdict": "wrong", "reason": "The rule was already ignored in this configuration and is being removed from the ignore list because the rule itself had been removed."}
+{"n": 2136, "sha": "6ef3710970b23351c9ff3450070ed0abd9e9add0", "verdict": "ok", "reason": ""}
+{"n": 2137, "sha": "6ef7298466076eb9e196ff430f9f1d2ddad44012", "verdict": "filler", "reason": "The direct urllib3 import is clear, but correct dependency resolution is an unverified outcome."}
+{"n": 2138, "sha": "6f08c816981b0ba29f2c8a490f137fa194df353c", "verdict": "ok", "reason": ""}
+{"n": 2139, "sha": "6f205ff422bccd5e4c4fc0b64c5f3e7df5181db6", "verdict": "ok", "reason": ""}
+{"n": 2140, "sha": "6f52970a6d359e1a703f59478ef8d6070564318f", "verdict": "ok", "reason": ""}
+{"n": 2141, "sha": "6f5735274b9ce2c61345adf8d7657b01b1623320", "verdict": "filler", "reason": "The HEAD redirect default changes, but the excerpt does not claim or establish a standard HTTP requirement for that default."}
+{"n": 2142, "sha": "6f5b64bca68489c31c7f5a62a31024bf0ddd8aa9", "verdict": "ok", "reason": ""}
+{"n": 2143, "sha": "6f5b6bd4c4277a3b60e412cfd561b4adbc40ca1b", "verdict": "ok", "reason": ""}
+{"n": 2144, "sha": "6f659a41794045292b836859f1281d33eeed8260", "verdict": "ok", "reason": ""}
+{"n": 2145, "sha": "6f66281a1d6326b1b9c4ac09ca30de0fc4e6ef43", "verdict": "ok", "reason": ""}
+{"n": 2146, "sha": "6f6a920a68d858a89cf8a7a32d6faa1f164738ff", "verdict": "ok", "reason": ""}
+{"n": 2147, "sha": "6f6b2fd1d5ca6b281a841e8a31e32eb6c34c429b", "verdict": "wrong", "reason": "The new branch requires fileno as well as a zero length, so it does not apply to all empty file-like data."}
+{"n": 2148, "sha": "6f6d0164a9eb73539ab6e5f6124006a6ddf1bc2f", "verdict": "ok", "reason": ""}
+{"n": 2149, "sha": "6f84ce72f28a58afa782db585a86aa10632447df", "verdict": "wrong", "reason": "GET and HEAD already had a method-based redirect rule, and the new wrappers supply an overridable default instead of guaranteeing a final response."}
+{"n": 2150, "sha": "6fb1997b6a37f27aeda5e26aebcb886a4d2b817a", "verdict": "wrong", "reason": "The change narrows one handler and moves another, while retaining an outer generic handler."}
+{"n": 2151, "sha": "6fb26744466e38ec701d75ebf3ce3fe1cc5469ca", "verdict": "ok", "reason": ""}
+{"n": 2152, "sha": "6fb9b1ce53e2b5b047d875a916cfae8c468649dc", "verdict": "ok", "reason": ""}
+{"n": 2153, "sha": "6fbbbc8c9e2d0b5bce3409bbd10cc29e30e0e914", "verdict": "filler", "reason": "The empty paragraph element is visible, but no rendered spacing result is shown or explained."}
+{"n": 2154, "sha": "6fbfca90b6029c22da90902e950edd9f6d37a838", "verdict": "ok", "reason": ""}
+{"n": 2155, "sha": "6fd03d5f20fcac1e85517d3cde27349612022de2", "verdict": "ok", "reason": ""}
+{"n": 2156, "sha": "6fefffd03ed2a8ebfa882fff48fda41f29251d1f", "verdict": "filler", "reason": "The pool limits concurrent work, but the excerpt does not establish that any limit prevents server overload."}
+{"n": 2157, "sha": "6ff6f756c034ad0a946c711d0e136cfbd077ab62", "verdict": "wrong", "reason": "Renaming the handler does not make its redirect-specific reset apply to all redirect statuses."}
+{"n": 2158, "sha": "702283093a9a39325cc1825b2376d88b0c5cdfd2", "verdict": "ok", "reason": ""}
+{"n": 2159, "sha": "702f4039bc2f8543d2b337cb18c7d730afa1cccb", "verdict": "ok", "reason": ""}
+{"n": 2160, "sha": "704a922fc2d77bbc1b24fe2a02ad6876bdc16d5c", "verdict": "ok", "reason": ""}
+{"n": 2161, "sha": "704abf13325355497fc2df73259fb24615c237b9", "verdict": "wrong", "reason": "The deleted banner promotes Requests 3.0 development and financial help, with no text encouraging Python 2 support."}
+{"n": 2162, "sha": "70857f30971590208f42ecf4d80ce80389b0a66b", "verdict": "filler", "reason": "The new endpoint and example outputs are shown, but accuracy or consistency of a live response is not established."}
+{"n": 2163, "sha": "7088c06d8daef094eca6d154cbd3c1e6c8ea6126", "verdict": "ok", "reason": ""}
+{"n": 2164, "sha": "709828204a7f6f23a52a5169430c52d6913a9fc2", "verdict": "filler", "reason": "The new HEAD default and explicit override are clear, but the excerpt does not substantiate alignment with a standard HTTP convention."}
+{"n": 2165, "sha": "709c8bdcbf9a4b37a69e7790768c1d46ebac0035", "verdict": "ok", "reason": ""}
+{"n": 2166, "sha": "70a13e2a263983ac3a3e93591e8cebcf8a2169b1", "verdict": "ok", "reason": ""}
+{"n": 2167, "sha": "70a344d8ebc549592d8b8644b2029fb3d1ffa4c2", "verdict": "filler", "reason": "The hostname switch is visible and the listed files establish the scope, but the excerpt does not verify that the destination URLs are current or correct."}
+{"n": 2168, "sha": "70a4ae744c4fbb2096a3994d09b56619b4dde031", "verdict": "ok", "reason": ""}
+{"n": 2169, "sha": "70cc902f5e6eef91a9b80763f1e47b30991fcda3", "verdict": "filler", "reason": "The substitution of protected for kept safe is shown, but the excerpt does not establish that it is more accurate."}
+{"n": 2170, "sha": "70d7b134c806cf75c5c4343f9cefa92f9345635a", "verdict": "ok", "reason": ""}
+{"n": 2171, "sha": "70e98e47cfd9c14dc967fdbfe690444166ff172e", "verdict": "ok", "reason": ""}
+{"n": 2172, "sha": "70f31a3166c1f9470b5cfad888f828357c1daadd", "verdict": "ok", "reason": ""}
+{"n": 2173, "sha": "70faca2a14eda2f0c182f300f1c46fca8560cdc1", "verdict": "wrong", "reason": "The attribute annotations are comments rather than docstrings, and the deleted commented-out assignments belong to Request."}
+{"n": 2174, "sha": "71050e9ab97dda08ca32b2b4754b6d145680c48e", "verdict": "wrong", "reason": "The fallback chooses the string length, and the tests only require a single chunk for nonempty values with nonpositive lengths."}
+{"n": 2175, "sha": "710f09f806404fedc4b54e3a31125a2aa1bd7543", "verdict": "ok", "reason": ""}
+{"n": 2176, "sha": "7112775514a8276a0b94360c71730db9ae2ab974", "verdict": "filler", "reason": "The change bumps the action from 5.0.0 to 6.0.0, but the excerpt does not substantiate latest-major status."}
+{"n": 2177, "sha": "71195bb219ed24717961a3f968a00be7f3d8a4a7", "verdict": "ok", "reason": ""}
+{"n": 2178, "sha": "7125fe5554332b636ce42dcbe8224d0918381917", "verdict": "cannot_tell", "reason": "The excerpt shows the new try and the start of URI parsing, but cuts off before the except clause and its outcome."}
+{"n": 2179, "sha": "7127bcda974303a1df19fbff22cccfe22fb8aac7", "verdict": "ok", "reason": ""}
+{"n": 2180, "sha": "7138d8b0e305e8b8c8348e2526c8580d6d7db192", "verdict": "ok", "reason": ""}
+{"n": 2181, "sha": "714c9dc96759942226a0dc16fa1e3d6d51f56291", "verdict": "ok", "reason": ""}

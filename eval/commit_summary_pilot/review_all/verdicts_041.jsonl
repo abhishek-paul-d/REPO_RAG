@@ -1,0 +1,96 @@
+{"n": 3504, "sha": "b84547d78699a3a5c75dbdf2c2e422dbaa83b988", "verdict": "ok", "reason": ""}
+{"n": 3505, "sha": "b8561cda5e2bf9cb0129c2863ff52754e837ad85", "verdict": "cannot_tell", "reason": "The bypass check reads the no entry in self.proxies, but the supplied context does not show how that entry is populated from the environment."}
+{"n": 3506, "sha": "b86330d1f15f04e77093800efb8c6bd6909e8c8e", "verdict": "filler", "reason": "The excerpt shows a certificate bundle update and supplies no currency or trust outcome evidence."}
+{"n": 3507, "sha": "b88fbb5e0c1a95987612e891c60c3b14418fd077", "verdict": "wrong", "reason": "The shared handler is assigned to four named statuses, not every redirection status."}
+{"n": 3508, "sha": "b898415d0d466a77a6a64f1ddfd033c01e5d8ddf", "verdict": "wrong", "reason": "The diff removes a blank line below nose, which remains as context."}
+{"n": 3509, "sha": "b8a297baab501f5818a8041ca6dac15b1d29dafd", "verdict": "filler", "reason": "The message calls the representation test broken, but the excerpt does not establish why it failed or whether its expectation became obsolete."}
+{"n": 3510, "sha": "b8a577050dc4345b87afc0cd67193537fac41350", "verdict": "wrong", "reason": "The author identifies this as a docstring-only change to describe an existing capability."}
+{"n": 3511, "sha": "b8a88351518ada5d3da4629143e2c98d3a406d5a", "verdict": "ok", "reason": ""}
+{"n": 3512, "sha": "b8b87d416e5e76b5aab322bd38f0b1cfb9218d01", "verdict": "ok", "reason": ""}
+{"n": 3513, "sha": "b8ba5c2bcb861b07db6806da60fa96646743cfbc", "verdict": "wrong", "reason": "One converted handle links to a different contributor’s profile."}
+{"n": 3514, "sha": "b8c55da48d780c3688a5df724d87b8daa739b3f8", "verdict": "filler", "reason": "The excerpt shows imports removed or consolidated, but it does not establish that all removed dependencies were unused."}
+{"n": 3515, "sha": "b8d4a5ea61de8b579aa3e3d8e37e43f3cc34b619", "verdict": "ok", "reason": ""}
+{"n": 3516, "sha": "b8df8911c3591ce1abe823fcde91f6fa4f5ae570", "verdict": "ok", "reason": ""}
+{"n": 3517, "sha": "b8f1263f16777163baa3437e320a75d881430484", "verdict": "ok", "reason": ""}
+{"n": 3518, "sha": "b908559ac8cf016d4217b20a020d540a377f1b12", "verdict": "ok", "reason": ""}
+{"n": 3519, "sha": "b92058b6fe68a3b114b872d1dba072c115af413b", "verdict": "filler", "reason": "The empty diff is shown, but its purpose as a placeholder or marker is speculative."}
+{"n": 3520, "sha": "b920c6e3f864c36c2fac2b8d49c8a780de07b5ac", "verdict": "filler", "reason": "The rule is removed, but calling it unnecessary or redundant adds a layout judgment that the excerpt does not establish."}
+{"n": 3521, "sha": "b92f4ec6fb8e53c71603dcd91f8e0883539e678d", "verdict": "ok", "reason": ""}
+{"n": 3522, "sha": "b92feb3f0af4c4b13e2f65a7601baccb378fd800", "verdict": "ok", "reason": ""}
+{"n": 3523, "sha": "b93fbd30c32b122bf7aba7db6663ca5a292b17d3", "verdict": "ok", "reason": ""}
+{"n": 3524, "sha": "b94decc47c1026067b99e4452ddabec1ad139845", "verdict": "ok", "reason": ""}
+{"n": 3525, "sha": "b9517a58bc0d0fe7884bf7f9f0ac79531d645261", "verdict": "ok", "reason": ""}
+{"n": 3526, "sha": "b95ad3f6a8dea9c443e46a20ae8f2a9610831751", "verdict": "wrong", "reason": "The changelog note records a naming replacement and adds no endpoint."}
+{"n": 3527, "sha": "b9638ec7be9134786e28684ca17f3d161297ac5e", "verdict": "ok", "reason": ""}
+{"n": 3528, "sha": "b9648bad19060b06ae3e350add499548580c58ad", "verdict": "ok", "reason": ""}
+{"n": 3529, "sha": "b970d468d1251c51d28b0ec142a12f817cf19925", "verdict": "ok", "reason": ""}
+{"n": 3530, "sha": "b974cd374165214bc55712b41082d8b3dba43c67", "verdict": "ok", "reason": ""}
+{"n": 3531, "sha": "b97b4439c0ab264d36a2fbc1af07c0631bca2fbe", "verdict": "ok", "reason": ""}
+{"n": 3532, "sha": "b98027af9e4732d9c423393663e2231ef9acaaf0", "verdict": "ok", "reason": ""}
+{"n": 3533, "sha": "b98be047f2cb2aac42b32f79d089f0067ff4f86f", "verdict": "ok", "reason": ""}
+{"n": 3534, "sha": "b98cc8b4e9d8c4c12b8f52c9a9be151c306cb977", "verdict": "wrong", "reason": "The deletions show where eager reads were removed, with no evidence that explicitly reading the body is the only way users can free resources."}
+{"n": 3535, "sha": "b9a004a22b55209d309447e78e730935fb8c9646", "verdict": "ok", "reason": ""}
+{"n": 3536, "sha": "b9b5be7c4c78e02f83464d8e332a1bf819853b60", "verdict": "ok", "reason": ""}
+{"n": 3537, "sha": "b9d3ce2e10339d41aeaeb24c4226c4ce17558b53", "verdict": "wrong", "reason": "The old example variable is r."}
+{"n": 3538, "sha": "b9dfc95cf236471f1b620d5152a800753d764315", "verdict": "wrong", "reason": "The requirement collection is a list, and the new literal uses square brackets."}
+{"n": 3539, "sha": "b9e5cce2d2ab85e073c04cab03ac81210d25f2ee", "verdict": "wrong", "reason": "The response attribute explains how to inspect an already-used request, while the recipe constructs a request before sending it."}
+{"n": 3540, "sha": "ba00c4411c2465ddb203ce812240d8d961ff7860", "verdict": "ok", "reason": ""}
+{"n": 3541, "sha": "ba0db9db862916e199cd8014a20ee0f95d6046fc", "verdict": "ok", "reason": ""}
+{"n": 3542, "sha": "ba1df2cfca15c6344146992a46eee8ca8db67580", "verdict": "wrong", "reason": "The document explicitly includes PyPI mirrors among the official sources."}
+{"n": 3543, "sha": "ba21d149768909ffb63a5d5f9bd35f1f85a3371a", "verdict": "ok", "reason": ""}
+{"n": 3544, "sha": "ba25184ed5f0bf9b876dea3cf4312fa35b539a7c", "verdict": "ok", "reason": ""}
+{"n": 3545, "sha": "ba2b355168f3ddfce8e155011b38423c0d839e11", "verdict": "ok", "reason": ""}
+{"n": 3546, "sha": "ba45b9d8904c3982ebe1a0bc0290b36f859f23c2", "verdict": "ok", "reason": ""}
+{"n": 3547, "sha": "ba485913b624d997675760120abd6da2e6d69a34", "verdict": "ok", "reason": ""}
+{"n": 3548, "sha": "ba4cc326c2736f8cad7bc5c031e7c9230bd713e0", "verdict": "ok", "reason": ""}
+{"n": 3549, "sha": "ba509635a3cbf5a55bf7ed7db658411cde9469f8", "verdict": "ok", "reason": ""}
+{"n": 3550, "sha": "ba543713d35067866d68b09f644042c0c021a8ba", "verdict": "ok", "reason": ""}
+{"n": 3551, "sha": "ba5eddcf5e7b7fb6efd8f0809f95fda4fe2b6ce0", "verdict": "ok", "reason": ""}
+{"n": 3552, "sha": "ba67dc8dccd114faf8347e66c56baaa9d72f6429", "verdict": "filler", "reason": "The version bump is shown, but the excerpt does not establish latest-major-version status."}
+{"n": 3553, "sha": "ba6e948835ae16bbc460ca03fad6db4fbdb396da", "verdict": "filler", "reason": "The configuration notes an apparent PyPy hang, but guarantees about build completion are unsupported."}
+{"n": 3554, "sha": "ba7101e2cd790fde701b0d4942fb2f465f860ef7", "verdict": "ok", "reason": ""}
+{"n": 3555, "sha": "ba71e2a3cbee2aef75009e67c999300c90819544", "verdict": "wrong", "reason": "The file path changes and no reordered dependency entries appear."}
+{"n": 3556, "sha": "ba7975fd165d8511c3c83039a65deffa7341d4ca", "verdict": "ok", "reason": ""}
+{"n": 3557, "sha": "ba79a2eb97f87e883af6871c2b59b7b00501d0a5", "verdict": "ok", "reason": ""}
+{"n": 3558, "sha": "ba7d09354a5bbe552a863ea3927199932fe76832", "verdict": "ok", "reason": ""}
+{"n": 3559, "sha": "bab4aa0fbf765a85b93f07d01cbc45d064d3bf72", "verdict": "ok", "reason": ""}
+{"n": 3560, "sha": "babac7368b9aa34fd1f0e5d29d4f80c2006ad614", "verdict": "ok", "reason": ""}
+{"n": 3561, "sha": "baddc5b6adc72ad1cd1f0500344569ffef04cdf7", "verdict": "cannot_tell", "reason": "The excerpt shows the combined assignment but omits its surrounding branch, so the claim that it runs for dictionary input cannot be verified."}
+{"n": 3562, "sha": "baf3dcb6c7e89887fcb78857fb533cd428284ff2", "verdict": "ok", "reason": ""}
+{"n": 3563, "sha": "bb16fe8115420f9ff40faed039f79ec57e4f4323", "verdict": "ok", "reason": ""}
+{"n": 3564, "sha": "bb2ae009bc629da48f0d9347a0bdd07403012583", "verdict": "filler", "reason": "The added spaces are visible, but improved legibility of the decorative line is an unverified benefit."}
+{"n": 3565, "sha": "bb4577802990599b68820c1b41e231918c50d97c", "verdict": "ok", "reason": ""}
+{"n": 3566, "sha": "bb5614253a4fa29832cfbe108829985d5f308e40", "verdict": "ok", "reason": ""}
+{"n": 3567, "sha": "bb6f5a1d93777df9244d09a33281ad0e95174466", "verdict": "ok", "reason": ""}
+{"n": 3568, "sha": "bb9e72885a9a516550efbe1a1f40c780a3e2554d", "verdict": "ok", "reason": ""}
+{"n": 3569, "sha": "bbadf47a8fca97c4bf77e795369bc511e9483a40", "verdict": "filler", "reason": "The excerpt shows formatting edits but gives no evidence of newly adopted guidelines."}
+{"n": 3570, "sha": "bbbeedb0a200d41b0fab33880e97a50d566cdbab", "verdict": "wrong", "reason": "The diff drops an assignment and supplies no replacement direct assignment."}
+{"n": 3571, "sha": "bbd1e40bd57322fb0f41a0ab202c2b788de053c5", "verdict": "ok", "reason": ""}
+{"n": 3572, "sha": "bbd58b922bb1e5268206aa266cddfb1293c6f959", "verdict": "cannot_tell", "reason": "The old definition is removed, but the excerpt ends before the other module edits and does not establish whether requests.settings remains importable after the migration."}
+{"n": 3573, "sha": "bbdbcc8f0553f112ff68b0950b4128bd8af000fc", "verdict": "ok", "reason": ""}
+{"n": 3574, "sha": "bbdf81dc1c230bed7422ec62a7e3d4f43ad1ea60", "verdict": "ok", "reason": ""}
+{"n": 3575, "sha": "bbea679ab278f9aa7a12df404fd55f354b0701f1", "verdict": "ok", "reason": ""}
+{"n": 3576, "sha": "bbf10211566cbad71944f6cc04eae2012e93a82b", "verdict": "filler", "reason": "The removed import is visible, but its prior usage and lack of behavior impact are not established by the excerpt."}
+{"n": 3577, "sha": "bc04dfd6dad4cb02cd92f5daa81eb562d280a761", "verdict": "ok", "reason": ""}
+{"n": 3578, "sha": "bc290f62d7f17392ac30e57cc213c5034c48b9da", "verdict": "filler", "reason": "Using get preserves those keys locally, but the excerpt does not show that they are needed for subsequent processing."}
+{"n": 3579, "sha": "bc34f33955d7f71c82da18d109f278470d083dab", "verdict": "wrong", "reason": "The docstring identifies Charade as the detector. The local name chardet does not establish that the Chardet package is used."}
+{"n": 3580, "sha": "bc3eddc6eda5ec1937a9103a475a73ed6557cb9b", "verdict": "ok", "reason": ""}
+{"n": 3581, "sha": "bc46de58e61149879fea0cf51399c5dd63dbb227", "verdict": "ok", "reason": ""}
+{"n": 3582, "sha": "bc4af7c7e1b8895ac58633448a733eba8550e8d5", "verdict": "ok", "reason": ""}
+{"n": 3583, "sha": "bc5cc0dc92ae0b6edc356c90637a0d64e1d5042b", "verdict": "wrong", "reason": "The author explicitly notes that the fallback can still fail."}
+{"n": 3584, "sha": "bc7dd0fc4d56e808bcdd85ac2d797b3107c89259", "verdict": "wrong", "reason": "The old end anchor created an exception for a final newline, while the character classes already barred carriage returns."}
+{"n": 3585, "sha": "bc81ee3af47571d6a6aeb23dc7af74e252f015ed", "verdict": "ok", "reason": ""}
+{"n": 3586, "sha": "bc8b29099e67e7ce3b96739de0f5ba855aa6fba5", "verdict": "wrong", "reason": "The final diff changes the Makefile alone and contains no data-file revert."}
+{"n": 3587, "sha": "bc8fa9c246ea8f7f5f2de9ad297fd08502e98a5b", "verdict": "filler", "reason": "The replacement is visible, but the excerpt does not substantiate an improved rendered layout."}
+{"n": 3588, "sha": "bca920c1c1a96e191ec7f9fcaec5f53e46edf08e", "verdict": "ok", "reason": ""}
+{"n": 3589, "sha": "bcbc1be1c8782b4be98284fa285ff17b3f603254", "verdict": "ok", "reason": ""}
+{"n": 3590, "sha": "bcc4125a18f807bca14f4865e1770f9fc3b463f2", "verdict": "ok", "reason": ""}
+{"n": 3591, "sha": "bcc48a9607daf87a90bc2a70d9bfaac79b56d80c", "verdict": "ok", "reason": ""}
+{"n": 3592, "sha": "bcd0e170ac20bc670ab91c567206e4a268dc8a62", "verdict": "ok", "reason": ""}
+{"n": 3593, "sha": "bcd30f05abfa3295a4189427c4271b6d93b98035", "verdict": "ok", "reason": ""}
+{"n": 3594, "sha": "bcfcd9f980440e7bb3f38d57c1332009b8d31642", "verdict": "ok", "reason": ""}
+{"n": 3595, "sha": "bcfddb3d6559664f7ac8dd2420583403ee23adae", "verdict": "ok", "reason": ""}
+{"n": 3596, "sha": "bd0e00280460b28d3bf715d64888605750d9e735", "verdict": "filler", "reason": "Moving this one network-dependent case does not establish that all such tests are isolated in the external suite."}
+{"n": 3597, "sha": "bd100472443dcf4189630f6b1ed3ec0a61259dd8", "verdict": "ok", "reason": ""}
+{"n": 3598, "sha": "bd2b0c45baba6ab6b4fabcf5d7588a63db1865bd", "verdict": "filler", "reason": "The removal is visible, but the supplied context does not establish that the opener and related logic were unused or no longer needed."}
+{"n": 3599, "sha": "bd3cf95e34aa49c8d764c899672048df107e0d70", "verdict": "ok", "reason": ""}

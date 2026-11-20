@@ -1,0 +1,639 @@
+{
+ "dataset": "agent_eval_architecture_v1.jsonl",
+ "dataset_sha256": "7ed2a1c55719675a51c55667b9ecac4f0eae469f6bc3d244dc4f499b852b380e",
+ "toolset": "production",
+ "prompt_variant": "commit_pr_commits",
+ "commit_query": "model",
+ "commit_fix_only": false,
+ "extra_files": 3,
+ "skip_tests": true,
+ "tool_result_chars": 24000,
+ "max_input_tokens": "12288",
+ "commit_k": 15,
+ "max_tool_calls": 4,
+ "citation_snap": false,
+ "abstain_retries": 0,
+ "tool_error_retries": 0,
+ "server": {
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+  "hardware": "NVIDIA A100-SXM4-40GB",
+  "max_input_tokens": "12288",
+  "decode_mode": "cuda-graphs + mtp3",
+  "concurrency": "8"
+ },
+ "rerank_used": false,
+ "rerank_failures": 0,
+ "llm_model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+ "table": {
+  "architecture": {
+   "n": 15,
+   "passed": 0,
+   "abstained": 0,
+   "failed": 15,
+   "missed": [
+    "architecture-001",
+    "architecture-002",
+    "architecture-003",
+    "architecture-004",
+    "architecture-005",
+    "architecture-006",
+    "architecture-007",
+    "architecture-008",
+    "architecture-009",
+    "architecture-010",
+    "architecture-011",
+    "architecture-012",
+    "architecture-013",
+    "architecture-014",
+    "architecture-015"
+   ]
+  }
+ },
+ "rows": [
+  {
+   "id": "architecture-001",
+   "type": "architecture",
+   "question": "How is the public HTTP interface separated from persistent client state and network transport?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"public HTTP interface separated from persistent client state network transport\"}}\n\n",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "public HTTP interface separated from persistent client state network transport"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 23.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "architecture-002",
+   "type": "architecture",
+   "question": "Trace a one-off HTTP call from a convenience entry point to the network connection pool.",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"convenience entry point one-off HTTP call get post request\"}}\n\n",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "convenience entry point one-off HTTP call get post request"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 22.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "architecture-003",
+   "type": "architecture",
+   "question": "Which internal layers must a convenience HTTP entry point rely on to prepare and send a request?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"convenience HTTP entry point prepare and send request internal layers\"}}\n\n",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "convenience HTTP entry point prepare and send request internal layers"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 22.8,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "architecture-004",
+   "type": "architecture",
+   "question": "Which part owns request preparation and response representation, and which part coordinates their use?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"request preparation response representation coordinates use\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "request preparation response representation coordinates use"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 22.8,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "architecture-005",
+   "type": "architecture",
+   "question": "How is a low-level transport response converted into the response object returned to the caller?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"low-level transport response converted into response object returned to caller\"}}\n\n",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "low-level transport response converted into response object returned to caller"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.4,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "architecture-006",
+   "type": "architecture",
+   "question": "Which components jointly retain cookies between calls and attach them to outgoing requests?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"cookies retain between calls attach outgoing requests\"}}\n\n",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "cookies retain between calls attach outgoing requests"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "architecture-007",
+   "type": "architecture",
+   "question": "Trace the redirect cycle, including rebuilding credentials and preserving cookies across the next send.",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"redirect cycle rebuild credentials preserve cookies next send\"}}\n\n",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "redirect cycle rebuild credentials preserve cookies next send"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "architecture-008",
+   "type": "architecture",
+   "question": "How does persistent client configuration depend on the case-insensitive header container and default settings helpers?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"persistent client configuration case-insensitive header container default settings helpers\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "persistent client configuration case-insensitive header container default settings helpers"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "architecture-009",
+   "type": "architecture",
+   "question": "Where do authentication strategies live, and how do request preparation and redirect handling invoke them?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"authentication strategies request preparation redirect handling\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "authentication strategies request preparation redirect handling"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.9,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "architecture-010",
+   "type": "architecture",
+   "question": "Which pieces cooperate to choose certificate verification defaults and configure TLS for transport?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"certificate verification defaults TLS transport configuration\"}}\n\n",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "certificate verification defaults TLS transport configuration"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.4,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "architecture-011",
+   "type": "architecture",
+   "question": "Which modules cooperate to encode form and multipart upload bodies before network transmission?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"encode form multipart upload body before network transmission\"}}\n\n",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "encode form multipart upload body before network transmission"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.5,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "architecture-012",
+   "type": "architecture",
+   "question": "Trace streamed response data from the raw connection through content decoding and iteration.",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"streamed response data raw connection content decoding iteration\"}}\n\n",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "streamed response data raw connection content decoding iteration"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "architecture-013",
+   "type": "architecture",
+   "question": "How are user hooks registered and dispatched around the response lifecycle?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"user hooks registered dispatched response lifecycle\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "user hooks registered dispatched response lifecycle"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.9,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "architecture-014",
+   "type": "architecture",
+   "question": "How are compatibility shims, dependency checks and the public exception hierarchy separated?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"compatibility shims dependency checks public exception hierarchy\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "compatibility shims dependency checks public exception hierarchy"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.8,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "architecture-015",
+   "type": "architecture",
+   "question": "Which layers translate connection and timeout failures from the HTTP backend into library-specific errors?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"translate connection timeout failures HTTP backend into library-specific errors\"}}\n\n",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "translate connection timeout failures HTTP backend into library-specific errors"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  }
+ ]
+}

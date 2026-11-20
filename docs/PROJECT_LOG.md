@@ -25,6 +25,7 @@ copied from real command output, never estimated.
 | 6 | **Done 2026-11-18** (ticked by the user's decision) | Architecture-answer gate met with the 27B (vLLM, CUDA graphs + MTP): 13/15 and fresh 8/10, code 39/40, docs 11/12; proxy metric, labels reviewed by the owner (provenance unverified; flask labels not applied), fresh set has no margin; E1/E2 evaluation audited earlier, no summary change qualifies |
 | 7 | **Closed with known gaps 2026-11-18** (ticked by the user's decision) | 27B: facts 59/60 (98.3%), section 1 1 of 32 flagged by the automatic checks (pr-3 data limit), regression held (code 40/40, docs 11/12, commit 5/10, probes 5/5); manual check of the 19 exact answers found 5 wrong, 4 fixed, bug-3 still weak; judge not run on 27B answers, no human labels, guards/snapping/`history_grounded` not default |
 | 8–9 | Not started | See plan.md |
+| Commit-summary pilot | Replicated on Flask 2026-11-20 | Summary index: requests 82 and 84 vs controls 76 to 78 of 113; Flask 106 and 107 vs 100 to 101 of 136. Not significant alone, not shipped by default. Default prompt is now `commit_explain`. |
 
 Git: repo initialized on `main`, **nothing committed yet**.
 
@@ -3451,11 +3452,221 @@ prsearch 6, probes 5**. Same record format as `agent_eval_v1`, so `eval/agent_ev
   read a sample of the answers as well. The code questions use whole definitions, a different spread of files from the tuned set.
 - **Next:** one server run on this set with the default settings, then read about 20 answers; compare the pass rate per type with `agent_eval_v1`.
 
+### 2026-11-19: answer facts for PRs and people, one-session runner (worktree `quality/answers`, NOT measured live)
+
+Work done in the git worktree `D:\Repo_chatbot_quality` (branch `quality/answers`, from commit `2bd1c8e`), so it does not collide with the main folder.
+- **`agent/commit_answer.py`:** short answers now also get, from the tool rows only, the title and state of each PR or issue number they name (a bare "- 5797"
+  becomes "- #5797 (pull request, merged): Switch to charset_normalizer") and, for contributors from `top_contributors`, their commits and first and most recent
+  commit dates (answers "who knows it best" with recency). Only for answers of at most 300 characters; numbers need three digits or `#`. The eval still scores `model_answer`.
+- **`eval/colab_session.py`:** runs every measurement in one server session (fresh set default and with guards, commit set default and `commit_explain`, the 103 tuned
+  questions, the two architecture sets, two repeats of the fresh set for noise, then the summary step), resumable, refuses a server that is not the cuda-graphs + MTP,
+  12,288-token profile, writes `report.md` (per type counts, flips, noise) and `answers_sample.md`. Runbook: `docs/COLAB_SESSION.md`. Tests: `tests/test_colab_session.py` (7).
+- **Checks:** ruff and mypy clean; full suite green apart from one test that needs the local `data/` checkout (the worktree now has a junction to the main `data/`); the new tests
+  (`test_commit_answer`, `test_colab_session`, `test_fresh_v2`) pass. Zip hash **`2e86916f`**. `tests/`, `experiments/` and `.env` are ignored files, copied into the worktree by hand.
+- **Not done:** nothing here is measured on the live model; the reranker is not in the session (no room next to the 27B).
+
+### 2026-11-19 (later): the session measured live (27B, cuda-graphs + mtp3, 12,288-token cap, shipped prompt `commit_pr_commits`, `--workers 4`)
+
+Results are in `eval/colab_session_results/latest/` (`report.md`, `answers_sample.md`, one log and result JSON per step). Single runs, greedy decoding.
+- **Fresh set `agent_eval_fresh_v2` (73 new questions):** 72/73 in each of three runs, with **zero questions flipping between runs**; guards on (`--citation-snap`, abstain retry 1, tool-error retry 1): 72/73, also no flips. The one miss is `fresh2-code-029` (the "no charset" wrong diagnosis). The set is at its ceiling, so it shows no harm from the guards, not a gain; it was written by Claude after the tuned sets and is read by one AI reader.
+- **Tuned 103 questions:** code 40/40, docs 11/12, history 11/11, kind 5/5, prsearch 10/10, refs 10/10, commit 7/10, probes 5/5 (correct abstentions). No regression against the earlier measurements.
+- **113 bug reports:** default **74/113** (14 abstained, 2 failed; 70 before the extra row fields and appended facts); `commit_explain` **78/113** (10 abstained, 1 failed; 6 gained, 2 lost). Bare-SHA answers: 86 of 99 with the default prompt (median model answer 12 characters), 0 of 103 with `commit_explain` (median 302). Of the two losses, commitfull-061 is partly the scorer: the model found the PR but said no commit SHA is recorded (empty `merge_commit_sha`). Not read against the diffs: `commit_explain` makes more specific claims (e.g. commitfull-006 names the exact changed line). Default NOT changed; it is the user's decision.
+- **Architecture (25 answers read):** 12/15 and 9/10 mechanical; the answers are specific and cited. Loose citation seen (architecture-004 cites the same range for two classes); architecture-002 produced no valid reply.
+- **Parallel mode:** `eval/agent_eval.py --workers N` and `serve_model(..., concurrency=N)` (27B notebook `CONCURRENCY = 8`; zip hash **`c2a718e2`**). About 1.9x faster than serial (fresh set 172 s vs 327 s), not the 3 to 5x guessed. Same answers as serial on the checks done (three identical fresh runs).
+- **Mistakes found and fixed on the way (the runs they spoiled are kept under `eval/colab_session_results/run1_*`, `run2_*`, `run3_*` and must not be quoted):**
+  - `agent_eval.py --variant` defaults to `baseline`, not the shipped prompt. The first "default" steps ran the old prompt (docs 1/10 on the fresh set, 10/10 with the `history_grounded` prompt that had been bundled with the guards). `colab_session.py` now passes `--variant commit_pr_commits` to every step and the guards step changes only the guards.
+  - `--workers` first built agents in worker threads at once: "Cannot copy out of meta tensor" (embedding model) and "Could not connect to tenant" (Chroma). Then agents built in the main thread failed on SQLite ("objects created in a thread can only be used in that same thread"). Now the embedding model is loaded once and shared behind a lock, and each worker builds its own agent inside its thread, one at a time.
+  - Stopping the Colab server mid-run produced a `commit_explain` result with 72 failures; its state was cleared and re-run.
+- **Still to do:** the summaries step (resumable, serial, about 80 minutes) feeds the pilot; then `commit_summary_pilot.py package`, the pilot notebook on a second GPU session and `score`. Reranker at depth 50 still not measured.
+
+### 2026-11-19 (later): commit-summary pilot packaged for review
+
+Codex wrote 1,076 summaries in commit order using only the first 6,000 characters of each
+indexed commit. The 67 original Qwen3.8-27B rows were preserved byte for byte. New rows
+were passed through the pilot cleaner and carry `source: codex`. Codex did not read the
+pilot queries or gold links.
+
+`eval/commit_summary_pilot/pilot_input.zip` contains 1,143 commits (0.4 MB). Validation
+found 0 duplicate SHAs, 0 summaries over 60 words, and 0 numbered issue references.
+The pilot tests passed (12 of 12) and Ruff passed on `eval`.
+
+**Validity:** Report any result as **summaries by Codex imitating the 27B**, with a
+mixed corpus of 1,076 Codex and 67 original 27B summaries. This measures the mixed
+corpus. The shipped 27B's summary quality has yet to be measured across the pilot,
+and this result alone cannot justify having the 27B summarize all 4,883 commits.
+Sample review, GPU embedding, and scoring are pending.
+
+### 2026-11-19 (later): commit-summary pilot scored (summaries by Codex imitating the 27B)
+
+Claude's audit of the summaries: 1,143 unique rows covering `commits.jsonl`; three spot checks against the diffs faithful; no sign of leakage. Codex rows are shorter than the 27B's (mean 165 characters and 24 words against 231 and 34) and open differently ("The Requests package..." against "This commit ..."). Scored from `pilot_vectors.npz` (T4, 0.6B embedder, 141 gold commits in a corpus of 1,143; `eval/commit_summary_pilot/result.json`):
+
+| | hit@1 | hit@5 | hit@10 | hit@20 | MRR |
+|---|---|---|---|---|---|
+| dense, no summary | 69 | 102 | 114 | 121 | 0.596 |
+| dense, with summary | 79 | 108 | 117 | 122 | 0.654 |
+| hybrid (RRF), no summary | 66 | 100 | 114 | 124 | 0.579 |
+| hybrid (RRF), with summary | 77 | 110 | 118 | 124 | 0.642 |
+
+Hybrid, pairwise: 44 gold commits ranked higher, 16 lower, 81 unchanged. Caveats: the corpus is 1,143 commits, not the 4,883 in the real index (full-index hybrid hit@5 was 79/141, so these ranks are much easier); the summaries are Codex's, shorter than the 27B's; one run, one repository; the real test is the 113-question agent run on a re-indexed store. Reading: a real gain in this setting, not yet shown at full scale or with the 27B's own summaries. Summarising all 4,883 commits is the user's decision.
+
+### 2026-11-19 (evening): 27B summaries for all 4,883 commits; retrieval up, agent answers not
+
+Wrote a 27B summary for every commit (`eval/summarize_commits.py run --workers 8`, 4,816 new rows in about 20 minutes at ~300 commits/min; 0 errors; mean 239 chars, none with `#N`). Codex's 1,076 were not used. Tools: `summarize_commits.py prepare|run|status|package|score|build-index`; nothing under `src/` changed.
+
+Full-corpus retrieval (141 bug reports, 4,883 commits; vectors by the 0.6B embedder on Colab, `result_all.json`):
+
+| | hit@1 | hit@5 | hit@10 | hit@20 | MRR |
+|---|---|---|---|---|---|
+| hybrid, no summary | 46 | 80 | 97 | 105 | 0.442 |
+| hybrid, 27B summary | 49 | 90 | 103 | 112 | 0.483 |
+| dense, no summary | 55 | 77 | 93 | 105 | 0.474 |
+| dense, 27B summary | 58 | 94 | 102 | 111 | 0.518 |
+
+Hybrid pairwise: 59 gold commits ranked higher, 30 lower, 52 unchanged. Hybrid is not better than dense alone here (not investigated).
+
+Agent test: experiment index `data/exp_summaries` (copy of `data/` with the summary text and vectors swapped in; real index untouched), the 113 commit questions, same server settings, `--workers 8`:
+
+| prompt | without summaries | with summaries | gained / lost |
+|---|---|---|---|
+| `commit_explain` | 78/113 | 72/113 | 4 / 10 |
+| `commit_pr_commits` (default) | 74/113 | 71/113 | 9 / 12 |
+
+Both are lower, but neither difference is significant (sign tests p about 0.18 and 0.66). Read: better retrieval did not turn into more correct answers. Lost questions were not mainly ones where the model skipped the PR/issue route (1 of 10 and 2 of 12). One checked case (commitfull-019): the model named the true code fix, while the dataset's single gold sha is the later test-fix commit, so single-sha gold punishes a defensible answer. Not diff-checked beyond that. Decision: do NOT put summaries in the shipped index on this evidence.
+
+Follow-up: the agent's own first `search_commits` query for each of the 113 questions, replayed on both indexes (`agent_query_ranks.json`, `lost_ranks.json`; scripts were scratch). Gold commit in the top N:
+
+| | top 1 | top 3 | top 5 | top 10 | top 30 |
+|---|---|---|---|---|---|
+| index without summaries | 34 | 54 | 63 | 75 | 88 |
+| index with summaries | 33 | 60 | 68 | 83 | 90 |
+
+Rank better with summaries on 31 questions, worse on 21, same on 61. So retrieval on the agent's own (short, model-written) queries also improved, by 5 questions at top 5 and 8 at top 10, yet the pass count fell. Of the 17 distinct lost questions, 5 had the gold outside the top 30 on both indexes, 3 (022, 053, 109) had it pushed from inside the top 5 to outside it, and 9 had it unchanged or moved within the top 5. So the drop is not explained by summaries hiding the answer; the likely remainder is run-to-run variation in what the model picks, plus single-sha gold. Not measured: the run-to-run noise on this set (the fresh set had none across three runs, the commit set has not been repeated). The one experiment that would settle it is repeating the summary-index run once or twice with the same prompt.
+
+Validity check of the 4,883 summaries (Claude): all present, 0 over 60 words (max 59, mean 35), 0 with `#N`, 0 think/label leaks, 52 one-sentence rows (rule says two or three), 31 duplicated texts, 4,097 start with "This commit". Grounding: 4,424 backticked names, 8 not found verbatim in the commit text (all fair readings, e.g. `None`, `False`); 1,007 numbers, 34 not found in 27 commits, almost all correct inferences (`MMXVII` to `MMXVIII` read as 2017 to 2018, `1,500,000` as 1.5 million). Two real errors found among the 27 read against their diffs: a76f4925b5 says the sleep was restored to 0.01 s, the diff changes .01 to 1 (direction reversed); 593734b770 names "status code 400", which is not in the diff. Then read by hand against message, file list and diff (about 140 distinct commits, 3% of the 4,883; not all of them): 30 random (seed 7), 45 whose summary states a direction or a from-to change (seed 11), 24 of the 32 commits over 5,000 characters plus 25 random short ones (seed 23), and the 27 flagged above. Clear errors, all a direction or a figure: a76f4925b5 (sleep .01 to 1 reported as restored to 0.01), 593734b770 (invented "status code 400"), 0a4b7356 (the diff ADDS a 991-line `__collections.py`, the summary says it removes it). Mild overreach, not wrong: 1bc377b1 calls `r.content` "deprecated", bf2e7352 calls `pycon` "invalid", 1311c96e calls a logo link "broken", 9d4fd3c9 quotes diff text, ad311497 and several vendored-library bumps add generic "bug fixes and improvements" filler. Estimate: about 2% of summaries have a wrong direction or figure (3 of about 140; 95% upper bound near 6%); the other 97% were faithful. Conclusion: valid for use as search text; they describe commits, they are not an authority on what a commit changed. Only 32 commits exceed 5,000 characters, so the 6,000-character input cut rarely matters.
+
+### 2026-11-19 (night): Codex read all 4,883 summaries; Claude checked all 902 of its `wrong` rows
+
+Codex read every row (`docs/REVIEW_CODEX_ALL_SUMMARIES_REPORT.md`, `review_all/verdicts_001..056.jsonl`): ok 3,162, filler 662, wrong 902 (18.47%), cannot_tell 157. Its report recommends blanking all 902. That figure is too high, because Codex was strict: it faulted bugs in the commit's own code, quibbled over wording, and put benefit language under `wrong` instead of `filler`.
+
+Claude read the commit text, the summary and Codex's reason for all 902 (about 134 in a first pass, then the remaining 768 in order) and gave each row one verdict. Results, also in `docs/REVIEW_CLAUDE_OF_CODEX_WRONG.md` and `review_all/claude_check_of_codex_wrong.jsonl`:
+
+| Claude verdict | Rows | Share of 902 | Share of 4,883 |
+|---|---:|---:|---:|
+| real error (contradicts the commit, invents a change, wrong name or number) | 127 | 14% | 2.6% |
+| minor imprecision or overclaim | 223 | 25% | 4.6% |
+| Codex over-strict, summary fine | 550 | 61% | 11.3% |
+| cannot decide from the 6,000 characters | 2 | 0.2% | 0.04% |
+
+Real errors are mostly: a direction or order reversed (2439 auth and body swapped, 3223 a revert described backwards, 3188 `while True`/`while 1` swapped, 3194 sleep .01 to 1 described as the reverse); a "syntax error" or "missing newline" fixed that the diff does not fix (1068, 1700, 1772, 3779, 4845, 4373, 2208); invented details (3204 "screw project", 382 "DeepMind Korea office", 379 "Prettier", 2850 "Korean language extension"); and imports called absolute that became relative (1483, 1574, 4434). Real plus minor is 350 rows (7.2%). The 2.6% matches the earlier hand estimate of about 2% (3 of about 140).
+
+Not checked by Claude: Codex's 3,162 `ok`, 662 `filler` and 157 `cannot_tell` rows. An earlier spot-check of 40 `ok` rows found no error Codex missed (small sample). These verdicts are one reader's judgement, not ground truth; the real/minor line was Claude's call.
+
+Decision unchanged: do not put summaries in the shipped index (retrieval improved, agent answers did not). If they are ever used, blank or rewrite only the 127 real rows, not all 902, and leave out whitespace, AUTHORS and version-bump commits. The run-to-run noise measurement stays unrun and is not needed for this decision.
+
+### 2026-11-19 (night): why commit questions fail, and what was built to fix it (nothing measured on the agent yet)
+
+The 113 commit questions pass about 70% (78 and 74 with the two prompts). Offline analysis, all on the real index:
+
+- **Where the gold commit was (eval/commit_failure_sort.py, `eval/commit_failure_sort/failures_20261119.json`).** Replaying the agent's own first `search_commits` query for each miss: of 35 misses (commit_explain) the gold was in the top 5 for 4, at rank 6-15 (shown as a one-line row) for 8, at 16-30 for 5 and **not in the top 30 for 18**; for the 39 misses of the shipped prompt 7, 11, 5 and 16. So 23 of 35 never had the gold in the 15 commits the model saw. The agent picking wrongly from a good shortlist explains about a third; retrieval is the main loss. The model searched only once in most of the misses.
+- **Labels (eval/commit_lenient_score.py).** A commit that names the same issue number as the gold or the reported issue counts as a hit: +0 for commit_explain (78 to 78), +2 for the shipped prompt (74 to 76; commitfull-011 and 106, two commits fixing the same issue). Label noise is small. By gold type: code changes 64/93 pass, docs or release notes only 8/10, tests only 4/4, version bumps 2/6.
+- **Retrieval variants (113 questions, hybrid, gold SHA hits at 1/5/15/30, MRR; scratch scripts, not in the repo).**
+
+| search | @1 | @5 | @15 | @30 | MRR |
+|---|---:|---:|---:|---:|---:|
+| real index, the model's query (today) | 34 | 62 | 80 | 89 | 0.427 |
+| real index, the question text | 36 | 62 | 81 | 89 | 0.432 |
+| real index, both fused (RRF) | 35 | 68 | 88 | 91 | 0.444 |
+| real index, both fused, the question as the agent sends it (with the framing sentence) | 40 | 65 | 84 | 93 | 0.460 |
+| summary index, the model's query | 33 | 68 | 86 | 92 | 0.438 |
+| summary index, both fused | 42 | 73 | 89 | 94 | 0.500 |
+| summary index, both fused, the question as the agent sends it | 42 | 75 | 89 | 93 | 0.501 |
+
+  The rows that use the bug text alone leave out the sentence the harness puts in front of it ("A user reports the bug below ..."); with it the question alone is worse (real index @5 59, @15 78, @30 85), so the honest fused gain on the real index is +3 at @5 and +4 at @15, not +6 and +8. Fused with the question's weight at 0.5 gave @5 69, @15 85, MRR 0.462 on the real index; 1.0 and 2.0 were within noise of it. Richer BM25 text changed nothing (the full patch, code files first, 4,000 characters: within +-2 at every depth), and a larger BM25 weight hurt (0.3 to 0.6: @5 62 to 55). 22 questions have the gold outside the top 30 for every form; many are terse messages ("Fix #1293", "fixed #1723") whose issue numbers are scrubbed from the index text on purpose.
+- **`is_fix` filter.** On this set it lifts @5 from 62 to 82, but all 115 gold commits pass the heuristic by construction (the data protocol requires it; only 1,101 of 4,883 commits do), so the number is an upper bound, not evidence. Measured as an agent run it carries that caveat.
+- **Not done, and why.** Indexing issue or PR text as commit text (or mapping a matched issue to its fix) would hand the answer to this eval: each question is the text of the issue whose fix is the gold, and the protocol sets `linked_issue_text: false` for that reason. It could only be measured with the question's own issue held out, which leaves almost nothing to find. **Reranker dropped (user decision):** it did not perform well in the agent test and adds answer time; the notebook and check script built for it were deleted.
+- **Built, all off by default, tests green:** `agent_commit_query = "fused"` (model query + the question, weighted RRF, `agent_commit_fuse_question_weight`); the `get_commit` tool and prompt variant `commit_verify` (read the top candidates, search again if none fits; `agent_commit_read_chars`); `agent_commit_hide_summary` (the summary helps the search, the model reads the raw commit); `MetadataDB.find_commit`; `eval/agent_eval.py --commit-query fused --fuse-weight --hide-summary` (result files now carry `_idx-<dir>`); `eval/commit_session.py` (one Colab session: control twice for noise, fused, verify, fused_verify, fused_fix_only, summary_hidden, with the sign-test p-value against the control and the lenient score). All notebooks regenerated: the serve notebook's source hash changed, so upload the new `notebooks/repo_rag_ask_source.zip` to Drive before starting the server.
+- **Live result (27B, 113 commit questions, `commit_explain` prompt, `eval/commit_session_results/report.md`, 5 runs of the winning settings and 3 identical controls):**
+
+| step | passed | won / lost vs control_a | sign-test p |
+|---|---:|---:|---:|
+| control_a, control_b, control_c (identical) | 76, 76, 78 | 2/2, 4/2 | 1.0, 0.69 |
+| fused (model query + question) | 79 | 6 / 3 | 0.51 |
+| fused, question weight 0.5 | 76 | 3 / 3 | 1.0 |
+| verify (`get_commit`) | 69 | 2 / 9 | 0.065 |
+| fused + verify | 69 | 2 / 9 | 0.065 |
+| fused + fix-only filter (circular, upper bound) | 85 | 13 / 4 | 0.049 |
+| summary index for search, summary hidden from the model | 78 | 10 / 8 | 0.82 |
+| **summary index, fused, summary hidden** (run 1 / run 2) | **82 / 84** | 12 / 6, 13 / 5 | 0.24, 0.096 |
+
+  The controls differ on 4 of 113 questions pairwise (8 across all three), so the run-to-run noise is about +-2 passes. The winning setting passed 82 and 84, above all three controls (best 78); pooled per question (two runs against three) it passes more often on 16 questions and less on 7 (sign test p = 0.093). That is a likely gain of about +6 passes (76.7 to 83 on average), not a proven one; neither single run is significant. **`verify` lost 7:** in 100 of 113 questions the model made exactly one `get_commit` call and almost never searched again; reading the diff made it more confident in a plausible earlier or related commit (nine lost questions all answered, one abstained after four calls). Not adopted. `fused` alone (+3) and the summary index alone (+2) are within noise; the combination is what moved. Lenient scoring changes at most +1 in every step. Nothing was made a default.
+- **Decision for the user:** the one candidate worth shipping is the summary index used for search only, with `agent_commit_query=fused` and `agent_commit_hide_summary=true`. It needs `data/exp_summaries` (summary text embedded for all 4,883 commits; 127 of the summaries have a clear error, which now only affects ranking, not what the model reads) to replace the shipped commit index, and a repeat on a different repository before any claim about generalising.
+
+### 2026-11-19 (late): commit shortlist/fusion fixes, opt-in `commit_bm25_weight`, and offline agent-query replay
+
+- **Bug fixes (`src/repo_rag/agent/tools.py`, `graph.py`, `commit_answer.py`):**
+  - `commit_brief` now reads `metadata["symbols"]` and falls back to scanning all lines of `page_content` instead of only `lines[:3]` (which previously dropped `Symbols:` on 421 of 2,233 commits with symbols in `all_commits.jsonl`, and on summary-bearing brief rows where `Summary:` pushed `Symbols:` past line 2), and `_brief_subject` emits a `(no message) ...` diff snippet instead of `Files: ...` when `strip_issue_references` clears the whole message (`commit_answer.subject_of` uses `(no commit message)`).
+  - `ProductionTools._fused_search` now calls `_search(..., k=depth)` at full `retrieval_k` (50, capped at `rerank_candidate_depth` when `reranker_mode == "on"`) before `weighted_rrf` instead of truncating each list to `agent_commit_k` (15) before fusion; `strip_question_framing` strips the conversational lead-in before the pasted bug report; and `RepoAgent._answer` attaches `_question` only on the first `search_commits` call per question so follow-up model queries are not pulled back to the initial question.
+  - Updated the `search_commits` schema description to advertise top 5 in full plus up to 10 brief candidates.
+- **Opt-in `commit_bm25_weight` (`src/repo_rag/config.py`, `retrieval/retrievers.py`, `eval/agent_eval.py`):** `Settings.commit_bm25_weight` (default `None`) overrides `bm25_weight` for `kind == "commits"` only; wired `--commit-bm25-weight` into `eval/agent_eval.py`. No production default changed.
+- **Offline CPU replay of the 113 `control_a` (`20261119T215016`) first queries on `data/` (`eval/commit_retrieval_check.py --agent-replay`, `eval/commit_retrieval_results/agent_replay_20261119.json`):**
+
+| config | @1 | @5 | @10 | @15 | @30 | not_in_30 | MRR@30 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| `model_bm25_0.3` (current default) | 33 | 61 | 75 | 81 | 88 | 25 | 0.421 |
+| `model_bm25_0.1` | 33 | 60 | 73 | 82 | 89 | 24 | 0.416 |
+| `model_bm25_0.0` (dense only) | 31 | 61 | 71 | 79 | 88 | 25 | 0.396 |
+| `fused_d15_raw_bm25_0.3` (old depth-15 + framing) | 36 | 68 | 75 | 84 | 89 | 24 | 0.435 |
+| `fused_d50_clean_bm25_0.3` (depth-50 + framing strip) | **39** | **69** | **80** | 83 | **90** | **23** | **0.458** |
+| `fused_d50_clean_bm25_0.1` | 36 | 66 | 78 | 81 | 90 | 23 | 0.440 |
+| `fused_d50_clean_bm25_0.0` | 38 | 63 | 76 | 82 | 90 | 23 | 0.443 |
+
+  Unlike full raw issue bodies, on the agent's short queries and clean fused queries `bm25_weight = 0.3` beats `0.1` and `0.0` (`@1`, `@5`, `@10`, MRR), so `commit_bm25_weight` stays `None`.
+- **Timing note for `eval/commit_session_results/report.md`:** `control_c` (`78/113`, `23:03:42`) and `summary_fused_hidden_b` (`84/113`, `23:17:26`) ran after the `tools.py`/`graph.py` edits (`22:53:41`); earlier steps ran before those edits.
+- **Checks:** 12 modified files pass `ruff check` and `ruff format --check`; `mypy` clean (`114 source files`); all 17 `notebooks/build_*.py` regenerated (`notebooks/repo_rag_ask_source.zip` short SHA-256 `8a8865f1`); full offline suite `991 passed, 1 deselected in 1151.49s` (`--basetemp=data/pt_full -p no:cacheprovider`). Nothing committed.
+
+### 2026-11-20 (early): `--repo` support, Flask indexing notebook, pre-Colab fixes, and runbook
+
+- **Multi-repo commit-eval plumbing and Flask dataset:**
+  - `eval/agent_eval.py`, `eval/commit_session.py`, `eval/summarize_commits.py`, and `eval/commit_lenient_score.py` now accept `--repo` (`psf/requests` preserves all original paths; other repos isolate their datasets, summary working folders, summary indexes, and session results). Note: concurrent `commit_bm25_weight` edits in `config.py` / `agent_eval.py` coexist cleanly.
+  - Built the `136`-question Flask test dataset (`eval/datasets/agent_eval_commit_full_pallets__flask_v1.jsonl` from `eval/datasets/phase5_bugfix_v2/repos/pallets__flask/pairs.jsonl`, `136` test + `34` dev pairs). Verified `eval/datasets/agent_eval_commit_full_v1.jsonl` (`psf/requests`, `113` questions) is clean against git.
+  - Added `notebooks/build_flask_index.py` -> `notebooks/index_flask_on_colab.ipynb` (pinned at `d086db856be187255b8ec61ef409357393020f32`, full history, `float32`, `INDEX_PRS = False`, T4-sized `COMMIT_EMBED_BATCH = 4`).
+- **Four pre-Colab fixes found during audit:**
+  1. `notebooks/build_flask_index.py` `OUTRO` (and regenerated `index_flask_on_colab.ipynb`): `D:\Repo_chatbot\data\phase5_repos\pallets__flask` is a `--no-checkout` clone with no working tree, and `import-index` clears `clone_path`; updated `OUTRO` to `git clone --no-hardlinks` into `D:\Repo_chatbot\data_flask\repos\pallets__flask` and check out `d086db856be1` before `import-index`, `index-history --offline`, and `index-symbols`.
+  2. `eval/summarize_commits.py`: `score_all()` now swaps/restores `pilot.QUERIES` alongside `COMMITS`/`SUMMARIES`/`RESULT`, `configure()` is idempotent, `main()` accepts `--data-dir` (used by `prepare()` and `build_index()`), and `prepare()` fails fast if the repo has no indexed commits in that `data_dir`.
+  3. `eval/commit_session.py`: `configure()` is idempotent (keeps immutable `BASE_COMMON`) and defaults `EXPERIMENT_INDEX` to `data/exp_summaries_<slug>` for non-Requests repos; `report()` closes the read-only `metadata.db` connection cleanly.
+  4. Added unit tests in `tests/test_flask_index_notebook.py`, `tests/test_summarize_commits.py`, and `tests/test_commit_session.py`.
+- **Runbook:** Wrote `docs/FLASK_COMMIT_RUNBOOK.md` covering Colab T4 indexing, separate local import (`D:\Repo_chatbot\data_flask`), 27B commit summarization, summary embedding, and the 136-question Flask `commit_session.py` evaluation. No Flask GPU step has run yet.
+- **Checks:** `ruff check` passes across all edited/evaluated files; `uv run mypy` clean (`114 source files`); targeted offline suite (`test_flask_index_notebook.py`, `test_commit_session.py`, `test_summarize_commits.py`, `test_agent_eval.py`, `test_commit_summary_pilot.py`, `test_commit_shortlist.py`, `test_commit_verify.py`, `test_agent_graph.py`, `test_commit_answer.py`, `test_retrievers.py`, `test_config.py`, `test_colab_notebook.py`) `149 passed in 8.08s` (`--basetemp=data/pt_flask_audit -p no:cacheprovider`). Nothing committed.
+
+### 2026-11-20 (morning): Flask Colab index verified locally, symbols indexed, and summary prep checked
+
+- **Colab index verification:** Uploaded `repo_rag_index.zip` (`11.31 MB`, `pallets/flask` @ `d086db856be187255b8ec61ef409357393020f32`) matches `D:\Repo_chatbot\data_flask` byte-for-byte on IDs/texts (`max_vec_diff = 1.49e-08`): `429` code chunks, `653` doc chunks, `3,829` commits (`history_commits = 3,829`, `history_files = 9,317`, `history_symbols = 15,454`). `eval/commit_summary_pilot/pallets__flask/` already holds `all_commits.jsonl` (`3,829` commits) and `queries.jsonl` (`170` bug-fix pairs).
+- **Local checkout + symbol index:** Cloned `D:\Repo_chatbot\data\phase5_repos\pallets__flask` (`--no-hardlinks`) into `D:\Repo_chatbot\data_flask\repos\pallets__flask` and checked out `d086db856be187255b8ec61ef409357393020f32`, then ran `uv run repo-rag index-symbols pallets/flask --checkout D:\Repo_chatbot\data_flask\repos\pallets__flask`: indexed `1,622` definitions (`code_symbols = 1622`), `3,894` call sites (`code_calls = 3894`), and `639` imports (`code_imports = 639`) from `80` files.
+- **Verification:** `uv run repo-rag search "how does Flask push the request context" --repo pallets/flask --kind commits -k 3` returned `e71a5ff8de93`, `7b5015010bc8`, and `47288231fe8f`; `build_agent("pallets/flask", ...)` against `D:\Repo_chatbot\data_flask` succeeded (`RepoAgent`); `D:\Repo_chatbot\data\manifest.json` remains `['psf/requests']` only (untouched). Next: Stage 3 of `docs/FLASK_COMMIT_RUNBOOK.md` (start 27B A100 server and run `summarize_commits.py --repo pallets/flask run`).
+
+### 2026-11-20 (evening): Flask replication of the commit experiments, and `commit_explain` becomes the default prompt
+
+- **Second repository: pallets/flask** (pinned `d086db85...`, 3,829 non-merge commits, 136 test questions from `phase5_bugfix_v2`, file `eval/datasets/agent_eval_commit_full_pallets__flask_v1.jsonl`; same protocol as requests: an issue to its own linked fix commit). Indexed on a free T4 (`notebooks/index_flask_on_colab.ipynb`, float32), imported into the separate folder `D:\Repo_chatbot\data_flask`; the shipped psf/requests index was not touched. The `--repo`, `--data-dir` and `--summary-index` options exist in `eval/agent_eval.py`, `eval/commit_session.py`, `eval/commit_lenient_score.py` and `eval/summarize_commits.py`; results go to `eval/commit_session_results/pallets__flask/`.
+- **Summaries:** the 27B wrote all 3,829 (0 errors), embedded on a T4 with `commit_summary_pilot_on_colab.ipynb` (new switch `EMBED_BASELINE = False` skips re-embedding the unchanged text; the last cell now saves to Google Drive first, because the browser download failed silently twice). `summarize_commits.py --repo pallets/flask build-index` wrote `data/exp_summaries_pallets__flask` (3,829 commits carry a Summary line). Retrieval only, 170 queries over 3,829 commits, hybrid: hit@1 93 to 99, hit@5 141 to 146, MRR 0.675 to 0.712; 46 gold commits moved up, 20 down (dense: 51 up, 21 down).
+- **Live result (27B, 136 Flask commit questions, `commit_explain`, `--workers 8`):**
+
+| step | strict | abstained | won / lost vs control_a | sign-test p |
+|---|---:|---:|---|---:|
+| control_a, control_b, control_c | 101, 100, 101 | 23, 24, 24 | n/a | n/a |
+| fused | 103 | 22 | 7 / 5 | 0.774 |
+| summary index, fused, summary hidden | 106 | 18 | 12 / 7 | 0.359 |
+| the same, repeated | 107 | 17 | 12 / 6 | 0.238 |
+
+  Against the mean of the three controls, the two summary runs are ahead on 14 questions and behind on 9 (p = 0.405). Identical controls differ on 5 of 136 questions. Same direction as requests (82 and 84 against 76 to 78) but nothing is significant on its own; read it as a likely gain of about 4 to 6 points, not a confirmed one. Cost at answer time: none (summaries are used for search only, the model sees the raw commit); the one-time cost is a 27B summary pass plus a GPU embedding run per repository. A first accidental duplicate session was killed before it finished and its log deleted; the reported runs come from one chain.
+- **Decision (user, 2026-11-20): `commit_explain` becomes the default `agent_prompt_variant`** (was `commit_pr_commits`). Evidence: 78/113 against 74/113 on requests, bare-SHA answers 0 of 103 against 86 of 99, stable at 100 to 101 of 136 on Flask. **Not re-measured on code, docs, history and architecture questions under this prompt**: run `eval/colab_session.py` in the next 27B session (its "default" steps still pass `commit_pr_commits` on purpose, so they stay comparable; add `--variant commit_explain` runs for the 103 tuned questions before quoting that nothing regressed). Tests updated (`test_prompt_variants`, `test_references`, `test_commit_verify`), all `notebooks/build_*.py` regenerated (the serve notebook embeds the source hash: upload the new `notebooks/repo_rag_ask_source.zip` to Drive before the next server session).
+- **Not decided:** shipping the summary index with `agent_commit_query=fused` and `agent_commit_hide_summary=true`. Recommendation: keep both off by default and document them as opt-in (needs a summary pass per repository).
+
 ## 3. Decision log
 
 
 | Date | Decision | Why | Alternatives considered |
 |---|---|---|---|
+| 2026-11-19 | Continue the commit-summary pilot with 67 original 27B rows and 1,076 labelled Codex rows | The original server session ended. The mixed-writer pilot can measure this corpus and provides limited evidence about the shipped model | Resume with the 27B if its server becomes available and measure an all-27B corpus |
 | 2026-11-01 | Implement the approved v2 bakeoff; freeze common prompt/parser only after complete shared dev matrices; retain raw failures and unchanged gates | User-approved four revisions and dev amendment; model execution belongs to user's A100 notebook | Local model runs, partial dev selection, cached-score analysis, post-test tuning or dependency changes |
 | 2026-11-01 | Freeze Phase 7 protocol/splits/probes before model research; propose four exact revisions and wait for approval | User-required order and no new dependency; preserve raw labels, test gates and separate summary approval | Load models or build the harness before approval; silently upgrade Transformers; select on test |
 | 2026-11-01 | Adopt no architecture-summary change; keep code search unchanged; prepare E3 on F1 selected by the frozen dev tie order | Router fails all guards; best fusion gain +0.0333 misses the required +0.05 and code guard; labels unreviewed by a person | Promote a test-selected fusion row or tune the routing grid again on v1 |
@@ -3540,6 +3751,7 @@ prsearch 6, probes 5**. Same record format as `agent_eval_v1`, so `eval/agent_ev
 | 2026-11-18 | Defaults become the Qwen3.8-27B profile: `llm_model` = `cyankiwi/Qwen3.8-27B-AWQ-INT4` (revision `e3a70090`), `agent_code_extra_files` 3, `agent_code_skip_tests` True, `agent_tool_result_chars` 24000, `agent_max_input_tokens` 12288; Phase 6 ticked; the 14B stays as `LOCAL_14B_MODEL/REVISION` and the two notebooks that load it pin it | User decision after the 27B met every gate (architecture 13/15 and 8/10, code 39/40, docs 11/12, prsearch 10/10, probes 5/5); the laptop agent never loads the model, the 27B cannot be loaded locally | Keep the 14B default and the old limits (14B fails the architecture gate: 9/15 and 6/10) |
 | 2026-11-18 | Default prompt variant becomes `commit_pr_commits` (`docs_hint_narrow` plus one paragraph: when `get_pr` returns `pr_commits`, name the matching PR commit, never the merge commit) | User decision (option A). Measured on the 27B in eager mode: commit 7/10 vs 6/10 (088 fixed; both counts include the commit-083 label), code 40/40, docs 11/12, prsearch 10/10, probes 5/5, history 11/11, refs 10/10, kind 5/5. n = 10 for commit, one run; **not re-measured on graphs + MTP**, where the last full run used `docs_hint_narrow` (commit 5/10, 088 a miss) | Keep `docs_hint_narrow` (088 stays a miss) |
 | 2026-11-18 | No fallback model: the 14B (`Qwen2.5-Coder-14B-Instruct`) is unsupported under the current 27B defaults (user decision). Its settings stay in `config.py` as `LOCAL_14B_*` and its notebooks pin it explicitly, but it was not re-measured under the new limits. | The 27B profile met every gate; keeping a second model would need a full re-measure for no stated need. |
+| 2026-11-20 | Default prompt variant becomes `commit_explain` (`commit_pr_commits` plus "SHA plus one sentence why" and "review comments are not in the indexed data"). Summary-index search (`agent_commit_query=fused`, `agent_commit_hide_summary`) stays off by default | User decision after the commit runs: 78/113 vs 74/113 (requests), 0 of 103 bare-SHA answers vs 86 of 99, 100 to 101 of 136 on Flask; summary index 106 and 107 of 136 vs controls 100 to 101 (not significant) | Keep `commit_pr_commits`; make the summary index the default |
 
 ---
 
@@ -4163,6 +4375,11 @@ New tests `tests/test_answer_bakeoff_freeze.py` (6) also cover the v1 preparer. 
 extended, notebooks regenerated.
 
 ## 5. Open items
+
+- [ ] (2026-11-20) Re-measure code, docs, history and architecture questions under the new default prompt `commit_explain` (next 27B session, `eval/colab_session.py`).
+- [ ] (2026-11-20) Decide whether the summary index (fused search, summaries hidden) ships; it needs a 27B summary pass and a GPU embedding run per repository.
+- [x] (2026-11-20, done: see the 2026-11-20 (evening) entry; fused 103, summary index 106 and 107 of 136 against controls 100 to 101) Run `docs/FLASK_COMMIT_RUNBOOK.md` on Colab: index `pallets/flask` (`d086db856be1`, `float32`, T4), generate 27B commit summaries for all 3,829 commits, embed them (`commit_summary_pilot_on_colab.ipynb`), and run `eval/commit_session.py --repo pallets/flask` on the 136 test questions to test whether `summary_fused_hidden` replicates on a second repository.
+- [ ] (2026-11-19) Review a sample of the Codex summaries, run the pilot notebook on a GPU, and score the vectors. Report the result as summaries by Codex imitating the 27B. The mixed-writer result alone cannot justify a 27B run over all 4,883 commits.
 
 - [x] (2026-11-11) Review all 50 non-abstained saved code/docs answers with Codex; fill CSV verdicts/notes and run mechanical comparison. This is explicitly AI review, not human calibration.
 - [ ] (2026-11-11) Have a person verify the AI review; repair the Makefile citation capture and missing proxy/SSL/timeout reference sections in a versioned follow-up, then compare with actual judge output. Do not claim human-vs-judge agreement from the AI-marked sheet.

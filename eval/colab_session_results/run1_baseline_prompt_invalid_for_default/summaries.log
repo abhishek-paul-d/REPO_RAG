@@ -1,0 +1,39 @@
+Traceback (most recent call last):
+  File "D:\Repo_chatbot_quality\src\repo_rag\agent\remote_llm.py", line 246, in _call
+    with urllib.request.urlopen(request, timeout=self.timeout) as response:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Roaming\uv\python\cpython-3.13-windows-x86_64-none\Lib\urllib\request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Roaming\uv\python\cpython-3.13-windows-x86_64-none\Lib\urllib\request.py", line 495, in open
+    response = meth(req, response)
+  File "C:\Users\user\AppData\Roaming\uv\python\cpython-3.13-windows-x86_64-none\Lib\urllib\request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "C:\Users\user\AppData\Roaming\uv\python\cpython-3.13-windows-x86_64-none\Lib\urllib\request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\user\AppData\Roaming\uv\python\cpython-3.13-windows-x86_64-none\Lib\urllib\request.py", line 466, in _call_chain
+    result = func(*args)
+  File "C:\Users\user\AppData\Roaming\uv\python\cpython-3.13-windows-x86_64-none\Lib\urllib\request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 530: <none>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Repo_chatbot_quality\eval\commit_summary_pilot.py", line 370, in <module>
+    main()
+    ~~~~^^
+  File "D:\Repo_chatbot_quality\eval\commit_summary_pilot.py", line 362, in main
+    summarize(args.url, args.token, args.limit)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Repo_chatbot_quality\eval\commit_summary_pilot.py", line 249, in summarize
+    print("server:", model.health())
+                     ~~~~~~~~~~~~^^
+  File "D:\Repo_chatbot_quality\src\repo_rag\agent\remote_llm.py", line 263, in health
+    return self._call("/health")
+           ~~~~~~~~~~^^^^^^^^^^^
+  File "D:\Repo_chatbot_quality\src\repo_rag\agent\remote_llm.py", line 255, in _call
+    raise RuntimeError(f"Model server returned {exc.code}: {detail}") from exc
+RuntimeError: Model server returned 530: 

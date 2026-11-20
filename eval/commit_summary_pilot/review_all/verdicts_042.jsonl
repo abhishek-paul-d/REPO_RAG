@@ -1,0 +1,99 @@
+{"n": 3600, "sha": "bd45bc716ac7cb7d7c0be369c655976d11d46cf0", "verdict": "cannot_tell", "reason": "The added parameter and proxy branch are visible, but the excerpt cuts off before any use that establishes what prefetch controls."}
+{"n": 3601, "sha": "bd49da067fe865d78bb78047aee41564fa17be08", "verdict": "ok", "reason": ""}
+{"n": 3602, "sha": "bd840450c0d1e9db3bf62382c15d96378cc3a056", "verdict": "wrong", "reason": "The summary reverses the authorization-header fix."}
+{"n": 3603, "sha": "bda7f0171f8bba17989d3a2c28dfa9a9261b1b65", "verdict": "ok", "reason": ""}
+{"n": 3604, "sha": "bdc92c795fe661e613c57d2366300b0816b09827", "verdict": "ok", "reason": ""}
+{"n": 3605, "sha": "bdd7f8f8a2cffae76aee80f8eddac3e969cbe69a", "verdict": "wrong", "reason": "The test branch is removed while the publish branch is retained as context."}
+{"n": 3606, "sha": "bdda99c0c10b0906849f2c53f28e53ef10829f7a", "verdict": "ok", "reason": ""}
+{"n": 3607, "sha": "bdf9f90c8a3015ff7b7d03259ce57ec0ee98eb12", "verdict": "ok", "reason": ""}
+{"n": 3608, "sha": "be01a35ef12c7e71c0e71c4e37d1f1a392a66fd8", "verdict": "ok", "reason": ""}
+{"n": 3609, "sha": "be04142723c7d67355a748ae944d01194c299909", "verdict": "ok", "reason": ""}
+{"n": 3610, "sha": "be228043a1eede54c0913166f36ac5b1d99f16be", "verdict": "ok", "reason": ""}
+{"n": 3611, "sha": "be295ba4d45143960b8ed2688884699b14dcbf25", "verdict": "filler", "reason": "The shorter YAML notation keeps the same command, with no evidence of a change to the resulting build process."}
+{"n": 3612, "sha": "be2fe0c6af9b52e815fc6b15668b20b6c677ad38", "verdict": "filler", "reason": "The separator is visible, but the proposed visual purpose is speculation."}
+{"n": 3613, "sha": "be31a90906deb5553c2e703fb05cf6964ee23ed5", "verdict": "wrong", "reason": "The implementation still lets the regex raise TypeError internally and translates it to InvalidHeader."}
+{"n": 3614, "sha": "be364e13d381f96d24f6bfaa608254583f3ea1b6", "verdict": "ok", "reason": ""}
+{"n": 3615, "sha": "be453ba3c34466abe93f996b7de25a3b88b6fea5", "verdict": "ok", "reason": ""}
+{"n": 3616, "sha": "be564e500cdebff5c0325808adb9ff33610b7c78", "verdict": "ok", "reason": ""}
+{"n": 3617, "sha": "be62645dd56580dd7576032b348cf79d880851d8", "verdict": "cannot_tell", "reason": "Removing the early return is shown, but the remaining content-length logic is absent, so unconditional recalculation cannot be verified."}
+{"n": 3618, "sha": "be69529dca2a877b87e1728858eb013d2e76a29c", "verdict": "ok", "reason": ""}
+{"n": 3619, "sha": "be7cbe1353ef7a3307efebc9e5322b7332539a99", "verdict": "filler", "reason": "The file extension changes from SVG to PNG, but no rendering result or compatibility motivation is given."}
+{"n": 3620, "sha": "be8b13e89b971b61a7aecabaaea599b44246377b", "verdict": "ok", "reason": ""}
+{"n": 3621, "sha": "be8ce365abf62b1be1450db5c3eae0b845891e7f", "verdict": "ok", "reason": ""}
+{"n": 3622, "sha": "bea206018211ef77955dfeb1e982bd3530b1fe60", "verdict": "filler", "reason": "The fallback is removed, but the excerpt does not establish that the old fallback caused parsing errors."}
+{"n": 3623, "sha": "bea231b033d643a6c4152a5b12c3e0b2524ed48f", "verdict": "filler", "reason": "The three pin updates are shown, but nothing establishes latest-stable status."}
+{"n": 3624, "sha": "beaa7e4180ad6679424dda3d6bbd0368591ada17", "verdict": "ok", "reason": ""}
+{"n": 3625, "sha": "bebf5250b0df1b922ff534e987a4481cc4dde99d", "verdict": "ok", "reason": ""}
+{"n": 3626, "sha": "beccd21146a0731c715f4fb7b3541bead8735623", "verdict": "wrong", "reason": "The Makefile file loses its final newline, while the command and message keep the same text."}
+{"n": 3627, "sha": "bedb1cd38fc363d78484ef1ce8240c76ec36fbef", "verdict": "filler", "reason": "The replacement tagline is shown, but describing it as more modern is an unsupported stylistic claim."}
+{"n": 3628, "sha": "bedd2be0a75c355229e43cb71bac398400d81e7a", "verdict": "ok", "reason": ""}
+{"n": 3629, "sha": "bf026e3c3109ee3d5948f674df120e97e3c3fb84", "verdict": "wrong", "reason": "Removing the guard stops automatic unittest execution on direct invocation. It does not prevent running the file as a script or restrict all test execution to one runner."}
+{"n": 3630, "sha": "bf05b7aeb5be0f7f427e758a5bd244947a8947ee", "verdict": "ok", "reason": ""}
+{"n": 3631, "sha": "bf1744eea2b16012ace3cc74be20fb60731ff822", "verdict": "filler", "reason": "The constants receive None outside the Python 2 branch, but the excerpt does not establish an authentication mechanism disabled by these assignments."}
+{"n": 3632, "sha": "bf24b7d8d17da34be720c19e5978b2d3bf94a53b", "verdict": "ok", "reason": ""}
+{"n": 3633, "sha": "bf2e73522f09dd131c5c8f78efd3ef6d6bc1d4d7", "verdict": "wrong", "reason": "The previous tag identifies a Python console session and is not an invalid language identifier in general."}
+{"n": 3634, "sha": "bf32936955f495615c0ab7bf0b5eef29ee647f40", "verdict": "filler", "reason": "The edit names the patron tier, but the excerpt does not establish its rank among all sponsorship tiers."}
+{"n": 3635, "sha": "bf38d5bf529c89be336cd380067faea83b9287f4", "verdict": "ok", "reason": ""}
+{"n": 3636, "sha": "bf3e960e159ad19af557b26abdf633b7b8117cad", "verdict": "ok", "reason": ""}
+{"n": 3637, "sha": "bf499a80de4a0a6f0ab6a47caa0fbc5e8d03cc03", "verdict": "wrong", "reason": "The old fallback passed the multipart field key to guess_filename. Inferring the name from the file object is part of the new code."}
+{"n": 3638, "sha": "bf4a813304cc17b4ed4c4e4178024303c530fb0d", "verdict": "ok", "reason": ""}
+{"n": 3639, "sha": "bf53ace6f80a852b35bdd513cac81d060e78cb33", "verdict": "ok", "reason": ""}
+{"n": 3640, "sha": "bf8c8312ddece928b2549104b5864600df368904", "verdict": "ok", "reason": ""}
+{"n": 3641, "sha": "bf8f791a936dbaadb6be33546f41bca50a652ac0", "verdict": "ok", "reason": ""}
+{"n": 3642, "sha": "bfb93d4b7d269a8735f1b216093e7e9a9fdc4517", "verdict": "wrong", "reason": "Removing Python applicability markers does not guarantee the selected bleach version is secure."}
+{"n": 3643, "sha": "bfba9dc68c841b78ca51e6302d3283d33167f773", "verdict": "ok", "reason": ""}
+{"n": 3644, "sha": "bfe91296cbf990ce579639777412f5395e951247", "verdict": "filler", "reason": "The monkey patch calls are shown, but the author questions their sufficiency and supplies no evidence of prevented compatibility issues."}
+{"n": 3645, "sha": "bfef8d99c856b4700f09f16f50cf1ac8818a9e0c", "verdict": "ok", "reason": ""}
+{"n": 3646, "sha": "bff65f42eebe58f5f76c7b021369698bee4642f7", "verdict": "filler", "reason": "The message credits style feedback, and it does not substantiate new test style guidelines."}
+{"n": 3647, "sha": "bff8b91638586a8269f79f1bac6e82921702e5b3", "verdict": "ok", "reason": ""}
+{"n": 3648, "sha": "c0037973198bcb26788d167fb77de8ec2ee98a60", "verdict": "ok", "reason": ""}
+{"n": 3649, "sha": "c00783cd86b3de9592f498f4670a5ebad1e99e83", "verdict": "ok", "reason": ""}
+{"n": 3650, "sha": "c008465d244e1ade1f007a04037eac96a4ad67e3", "verdict": "filler", "reason": "The endpoint changes to a /simple URL, but its designation as legacy and an installation impact are not established."}
+{"n": 3651, "sha": "c008bf38836a2b5621ba7b352e9fcecacac4ee93", "verdict": "wrong", "reason": "The API docstrings say query parameters are sent in the request body, so the edit does not fully align with the stated behavior."}
+{"n": 3652, "sha": "c010f5895ae56c40d4b349e61f5707b93d662457", "verdict": "ok", "reason": ""}
+{"n": 3653, "sha": "c01bc5be5ba0d4d5c7f516faae3493f1f41ef233", "verdict": "wrong", "reason": "Both versions propagate the exception. The change removes explicit re-raising of the named exception."}
+{"n": 3654, "sha": "c02520ed99d5aead74d70bcae70d3d1fa6424012", "verdict": "wrong", "reason": "The cleanup treats empty strings as absent and is not guaranteed to run if an earlier assertion raises."}
+{"n": 3655, "sha": "c03553ed4ae856d1732ea7ce084549758dc5007f", "verdict": "wrong", "reason": "The reported Python 3 breakage affected chardet, and both import workarounds were meant to support vendored oauthlib."}
+{"n": 3656, "sha": "c03e14242b4bc65f6a970de100460eb3f1e14cc2", "verdict": "cannot_tell", "reason": "The attribute addition is visible, but the excerpt does not show how __attrs__ is used for serialization or copying."}
+{"n": 3657, "sha": "c042c08179cae74e7b2c520b33ea19881c0ec842", "verdict": "cannot_tell", "reason": "The visible hunks show comment spacing and wrapping, but the excerpt cuts off before the remaining edits needed to locate any typo correction."}
+{"n": 3658, "sha": "c044a70796f5ba7cbe8f5a4c45a849c3acf09037", "verdict": "ok", "reason": ""}
+{"n": 3659, "sha": "c04b044b30a76518a98b0a247827a63e90bb6f8d", "verdict": "ok", "reason": ""}
+{"n": 3660, "sha": "c05202939910d6b58a680601f75656403700c4c5", "verdict": "ok", "reason": ""}
+{"n": 3661, "sha": "c054a722bb92d2ed628c22212eed180175e56685", "verdict": "ok", "reason": ""}
+{"n": 3662, "sha": "c05b1bfca98cb15e09fea5e720b91165af59a593", "verdict": "ok", "reason": ""}
+{"n": 3663, "sha": "c05c64d21bd5144079b8dcfc85cf6ae5de115058", "verdict": "filler", "reason": "The new defaults are shown, but the excerpt does not show a difference in the transmitted payload."}
+{"n": 3664, "sha": "c063938abb6464d4b1a2f0b426e7ecf2dd5619f8", "verdict": "ok", "reason": ""}
+{"n": 3665, "sha": "c0763bb8d5b3f4ac74a1d77d064474e4823e2246", "verdict": "wrong", "reason": "The revised case exercises space encoding, with no unreserved character encoding check."}
+{"n": 3666, "sha": "c0813a2d910ea6b4f8438b91d315b8d181302356", "verdict": "wrong", "reason": "The stated risk runs in the opposite direction. A later request expecting verification could reuse a connection opened without verification."}
+{"n": 3667, "sha": "c089993a0f85d8dc2e2c932c8ce34988110371a6", "verdict": "filler", "reason": "The changelog records optional simplejson use without making performance or compatibility claims."}
+{"n": 3668, "sha": "c0ae3dd31e7b87a697e763185c2f6f284363d0de", "verdict": "filler", "reason": "The example endpoint and sample results change, but the excerpt does not verify the new output against the service."}
+{"n": 3669, "sha": "c0cb698191061630ae8df56ddda660c470bf70e0", "verdict": "ok", "reason": ""}
+{"n": 3670, "sha": "c0d8e8e8467a337f7ad0a10206b64087d8eef14a", "verdict": "ok", "reason": ""}
+{"n": 3671, "sha": "c0f066626eacc1e412f0288906c681512d8761e8", "verdict": "ok", "reason": ""}
+{"n": 3672, "sha": "c0faa9e79c24a9d37ff6a061780a0821b29eded7", "verdict": "ok", "reason": ""}
+{"n": 3673, "sha": "c108c5300fa1fb130d6121e5550a04b989e03fed", "verdict": "ok", "reason": ""}
+{"n": 3674, "sha": "c121b98c4eb1e4ee8927995d9b9f1d6bdccd9349", "verdict": "ok", "reason": ""}
+{"n": 3675, "sha": "c134388a43eef18b2dcb3b9a515898cea9a091e5", "verdict": "filler", "reason": "The explicit inclusion is removed, but neither overall source-distribution contents nor the assertion that the file is unnecessary are established."}
+{"n": 3676, "sha": "c13ccd11f6bb24d043016a2fe521f0db251b80ab", "verdict": "ok", "reason": ""}
+{"n": 3677, "sha": "c14bd018adc715db2810c844258b392870fbc6fe", "verdict": "ok", "reason": ""}
+{"n": 3678, "sha": "c15a8f8a3d8fbe943dcae2603c4ceca7f99ff2bf", "verdict": "ok", "reason": ""}
+{"n": 3679, "sha": "c15d2b694948fba9430fa220c5ef0113032291aa", "verdict": "filler", "reason": "The deletion removes the AppVeyor Windows matrix, while the excerpt does not establish an end to automated Windows testing across the project."}
+{"n": 3680, "sha": "c165255e9888d98ca7f6ff95b044be9b2abd7526", "verdict": "ok", "reason": ""}
+{"n": 3681, "sha": "c166c4f5d44734cbf988fb87c88fb87c80a042cc", "verdict": "ok", "reason": ""}
+{"n": 3682, "sha": "c18e6459a80d83c54f787549565eedb3a0210156", "verdict": "ok", "reason": ""}
+{"n": 3683, "sha": "c19650b00f0c169cdf6372a093425830e11a8771", "verdict": "ok", "reason": ""}
+{"n": 3684, "sha": "c19651193488c90e4b84ec92b55da1258574d9f9", "verdict": "ok", "reason": ""}
+{"n": 3685, "sha": "c198cc0b2ee14e8e347fc63f3c8606eefd3b482d", "verdict": "filler", "reason": "The Markdown source is rewrapped, but the excerpt does not establish improved readability in the rendered page."}
+{"n": 3686, "sha": "c19b2c517256ef2a8cd5915d9d5f44612731881d", "verdict": "ok", "reason": ""}
+{"n": 3687, "sha": "c1a44259d6f8f44618788c712e3638b9b4d77c50", "verdict": "ok", "reason": ""}
+{"n": 3688, "sha": "c1b828bc95b8ed0407511b93ee260aa1032f4f8c", "verdict": "wrong", "reason": "The substitution removes calls to bytes(). It does not establish that those calls allocated new empty bytes objects."}
+{"n": 3689, "sha": "c1c164ba80a35e63e13f00d20bd32f2f08c4fc51", "verdict": "ok", "reason": ""}
+{"n": 3690, "sha": "c1c393122d4975b166fa58fc5f62e4e789904e76", "verdict": "filler", "reason": "Gumroad and Flattr scripts are removed, but the excerpt does not establish that they were outdated."}
+{"n": 3691, "sha": "c1f32f68f66e7196b69369e36d11125738ee6367", "verdict": "ok", "reason": ""}
+{"n": 3692, "sha": "c2100c0a4e068aedcae24945cd0cb23cd80a795b", "verdict": "wrong", "reason": "The commit documents the JSON API change without modifying the response class itself."}
+{"n": 3693, "sha": "c21c039ec8044dc0aeeededa365cc8bece8094de", "verdict": "ok", "reason": ""}
+{"n": 3694, "sha": "c22b71fc5b69736f40f8e491c5a6c4db461321f3", "verdict": "ok", "reason": ""}
+{"n": 3695, "sha": "c243d0939828423bc5af92b07a4026ee406466ee", "verdict": "ok", "reason": ""}
+{"n": 3696, "sha": "c244f8ea8770d0a20d4548b9a66d342e67189e3a", "verdict": "ok", "reason": ""}
+{"n": 3697, "sha": "c24665b59352006120ef33624ae8177ff68990bd", "verdict": "cannot_tell", "reason": "The docstring describes a guess for absent Content-Type, but the excerpt ends before the new branch logic that would confirm handling of malformed types."}
+{"n": 3698, "sha": "c2479aeac78de66dfffa0e2e8a99e7c0943b3160", "verdict": "filler", "reason": "The binary logo changes, but the excerpt shows neither the design differences nor a motive for replacing it."}

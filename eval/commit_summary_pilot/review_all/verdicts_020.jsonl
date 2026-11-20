@@ -1,0 +1,88 @@
+{"n": 1642, "sha": "53a53668d90f4defdc5ece7ed79f7cbac8bed5f3", "verdict": "filler", "reason": "The roadmap is removed, but the excerpt does not describe the project's current priorities."}
+{"n": 1643, "sha": "53ba629a232ae969ed68de2432c215dc73d6874f", "verdict": "ok", "reason": ""}
+{"n": 1644, "sha": "53bf544050c790c43166fe8ff02d10c6c8983323", "verdict": "ok", "reason": ""}
+{"n": 1645, "sha": "53c7b777355a42eaef1df0c88916d413d3e996ec", "verdict": "ok", "reason": ""}
+{"n": 1646, "sha": "53d3519a3503c59ad7de05941064f472720ae948", "verdict": "ok", "reason": ""}
+{"n": 1647, "sha": "53d3cece000fb37bfe35977d01fcd0e5d04866ec", "verdict": "ok", "reason": ""}
+{"n": 1648, "sha": "53d454c8137e3c4863d7c1ecef8e3664f399f883", "verdict": "ok", "reason": ""}
+{"n": 1649, "sha": "53d60cac4f8d53181843bc55847b8a4dd427a239", "verdict": "ok", "reason": ""}
+{"n": 1650, "sha": "53d679edba3a42d648e2b386d9ca725490c7b470", "verdict": "ok", "reason": ""}
+{"n": 1651, "sha": "53f33eb473ec55746098670d178e1e1936003da6", "verdict": "ok", "reason": ""}
+{"n": 1652, "sha": "541aa80ca3d0ee771611bd155a5172efaa26d9da", "verdict": "ok", "reason": ""}
+{"n": 1653, "sha": "54240b4811b66dc7d5c2738b91994c21023f0e9e", "verdict": "wrong", "reason": "The hunk adds a docstring where the former shown lines were a pass and placeholder, rather than editing a prior docstring."}
+{"n": 1654, "sha": "542fbbc67fd07819551012295ff5468eb2714f62", "verdict": "ok", "reason": ""}
+{"n": 1655, "sha": "544a5fea59f24bc87750d62389a43a42559b49c0", "verdict": "wrong", "reason": "The only addition is a comment, so the initializer cannot acquire new behavior from this change."}
+{"n": 1656, "sha": "544d08d0f61c35358cf13b4a6b677e4e51dbbe7e", "verdict": "wrong", "reason": "The new guard checks the header value's truthiness rather than simple presence."}
+{"n": 1657, "sha": "544ebf402f50cd7afbbe0e04b553a64872111b6c", "verdict": "ok", "reason": ""}
+{"n": 1658, "sha": "5453b88f8fa97e5ff0b7e093802eb6a8b2d90a23", "verdict": "ok", "reason": ""}
+{"n": 1659, "sha": "5460f467b02e49471c0fd6cfc9ca0adab6351f98", "verdict": "filler", "reason": "The diff establishes the lock-threads upgrade from v6.0.0 to v6.0.2, but does not substantiate the broader most-recent-dependencies claim."}
+{"n": 1660, "sha": "54692912961641565f6e8ab0fe5e2524ee0d72b0", "verdict": "ok", "reason": ""}
+{"n": 1661, "sha": "547720883595bb592bf272e3d663f1b3eb8d19fb", "verdict": "ok", "reason": ""}
+{"n": 1662, "sha": "54791d1970531cdb44d60e2f0abc186933f1a7ed", "verdict": "ok", "reason": ""}
+{"n": 1663, "sha": "548a03acef3238389b1cce95131a0511d5c82211", "verdict": "ok", "reason": ""}
+{"n": 1664, "sha": "54b2cb0b2744470dce8801bfe76e3041eadb336f", "verdict": "ok", "reason": ""}
+{"n": 1665, "sha": "54b77afbb57ac66a34cb5a24dd7db99b0d39d383", "verdict": "wrong", "reason": "The edit changes a reStructuredText target label, which is different from the visible text of a hyperlink."}
+{"n": 1666, "sha": "54cefc901ca719a06c2775d1c5c0b8f58e8458d4", "verdict": "ok", "reason": ""}
+{"n": 1667, "sha": "54d3b59f8914ac2b5a543b05210f22283c12281c", "verdict": "wrong", "reason": "The documentation attributes connection pooling and keep-alive to urllib3, but it does not attribute the query and form conveniences to urllib3."}
+{"n": 1668, "sha": "54e96b40b7c36deb547339e5d3d4ccac75b53b51", "verdict": "wrong", "reason": "The keyword arguments belong to a subclassing hook, and the excerpt does not add them to the adapter constructor or document a timeout option."}
+{"n": 1669, "sha": "54ed5ed469ff04351bfe550a6c8d49e62c535e6c", "verdict": "ok", "reason": ""}
+{"n": 1670, "sha": "54fd24b7575af3c9fb8218aeae4d06c9d0ea3317", "verdict": "ok", "reason": ""}
+{"n": 1671, "sha": "55014bcc4857b7fbc2a53b4207dd427f1255466e", "verdict": "ok", "reason": ""}
+{"n": 1672, "sha": "550dc190992e227c1b568dcd7a85a81ab7b7a3c0", "verdict": "ok", "reason": ""}
+{"n": 1673, "sha": "551a0bf0df2db42413baf4734ad6be37415f25ca", "verdict": "filler", "reason": "The support channels are removed, but the excerpt does not identify them as outdated."}
+{"n": 1674, "sha": "55237ad67dddaf070a40ea1ab64f84799356edfa", "verdict": "ok", "reason": ""}
+{"n": 1675, "sha": "5537902796d75ef5ce739e89ee993a801da3b2c6", "verdict": "ok", "reason": ""}
+{"n": 1676, "sha": "553907aa6b588c6006babdf746e34748d630595d", "verdict": "wrong", "reason": "The hunk changes the name used to call loads without identifying either import's backing library."}
+{"n": 1677, "sha": "5549f5025822dd2fedbb4fa09415495882ccfdf5", "verdict": "ok", "reason": ""}
+{"n": 1678, "sha": "555472bf1e3ab4ad6c2057c93e195427bda5a18b", "verdict": "ok", "reason": ""}
+{"n": 1679, "sha": "555b870eb19d497ddb67042645420083ec8efb02", "verdict": "ok", "reason": ""}
+{"n": 1680, "sha": "5562c0f09714f51c11dadcb544b4f720b338ea5c", "verdict": "ok", "reason": ""}
+{"n": 1681, "sha": "557480cfe8231ce4cfb10ef4cab2a955bf99198d", "verdict": "filler", "reason": "The layout embeds a HelloBar instance, but the excerpt does not show its content or establish that it is promotional."}
+{"n": 1682, "sha": "5593f12347419c33063b19a3d9c33fee54348d1b", "verdict": "ok", "reason": ""}
+{"n": 1683, "sha": "55bf436f8f6612f627cf0f562dd5d36e26e17c68", "verdict": "wrong", "reason": "The accepted type tuple lists specific built-in types and does not cover all numeric types."}
+{"n": 1684, "sha": "55cea74b5643e660cc5cee9a4b0abe4cfb3a2f27", "verdict": "ok", "reason": ""}
+{"n": 1685, "sha": "55d3d8b3b2a908765fd3d107b7bfd2651fea13a2", "verdict": "filler", "reason": "The markup and font size change are visible, but improved visual presentation is subjective and unverified."}
+{"n": 1686, "sha": "55da533a87afe188282b7f8dfbadeb30c21743d8", "verdict": "ok", "reason": ""}
+{"n": 1687, "sha": "55dea233ce52457ff35654b9a01f188e0e695304", "verdict": "ok", "reason": ""}
+{"n": 1688, "sha": "561e4b6889f53584c39a67f8794c53a414f68481", "verdict": "ok", "reason": ""}
+{"n": 1689, "sha": "56406b3442b20a3ea5536cabbd10477cc36244b8", "verdict": "wrong", "reason": "Only decode_response changes its return expression, while the unicode_response edit changes its assignment target."}
+{"n": 1690, "sha": "565745f7b7b07d4fb210bd1f6ea9494cbaaa1626", "verdict": "ok", "reason": ""}
+{"n": 1691, "sha": "567b31080e62fd52bb9b8fb778736eb05359daa8", "verdict": "ok", "reason": ""}
+{"n": 1692, "sha": "567e12bfb8d0f4e2a4f6fddf0fab9ffbcbf6d49f", "verdict": "ok", "reason": ""}
+{"n": 1693, "sha": "56844d128754b923211a981618903c34fd36ed7b", "verdict": "ok", "reason": ""}
+{"n": 1694, "sha": "5691f596134c2feb121e595c77a0178921fcce61", "verdict": "wrong", "reason": "A read-only type interface can describe mutable objects, so this annotation does not make JSON collections immutable."}
+{"n": 1695, "sha": "5693314a37ff8815c3c6a4bb7b9ebd5ef1abb5b9", "verdict": "ok", "reason": ""}
+{"n": 1696, "sha": "569b59f495ec37639b011591bd2b0c11c3e77581", "verdict": "wrong", "reason": "The version is bumped, but the adapter and link-header fixes appear only as changelog bullets."}
+{"n": 1697, "sha": "56a1b55a42072eb594eb0cc969dc4b4a80b7fab2", "verdict": "ok", "reason": ""}
+{"n": 1698, "sha": "56b5f02551cd65cfc99f7f38c60d36b2cfdfc6e8", "verdict": "ok", "reason": ""}
+{"n": 1699, "sha": "56c36ac27dcc86c7a9cd54b2da8d90a05f71be55", "verdict": "wrong", "reason": "The commit adds a general cookie note to the changelog without changing parsing or specifying that it concerns values."}
+{"n": 1700, "sha": "56c82c52b060cada1b2dbd1f85fc1352ca6804a7", "verdict": "wrong", "reason": "A space between the print function name and its argument list is syntactically valid."}
+{"n": 1701, "sha": "56d6d703f9c3ef0dbe09d0bac205e7c222481b87", "verdict": "filler", "reason": "The quickstart updates the option name, but the excerpt does not establish that disable_redirects was previously implemented and then removed."}
+{"n": 1702, "sha": "56e58fdcafa3ec173d43b41e26b8f8c8b07edc34", "verdict": "ok", "reason": ""}
+{"n": 1703, "sha": "56ef079e6fac587cdd367c0442f1c7ebe5fe54b7", "verdict": "filler", "reason": "The test checks cookie persistence in this scenario, but it does not demonstrate a runtime change that prevents data loss."}
+{"n": 1704, "sha": "56f4b7ca68d75795112b673673de2b90f05c9e93", "verdict": "ok", "reason": ""}
+{"n": 1705, "sha": "5708fe95657f2e00050acce95963b5cf72e8827c", "verdict": "wrong", "reason": "The new bare imports can resolve implicitly relative to the package in Python 2, and do not explicitly select absolute imports."}
+{"n": 1706, "sha": "570c4c83a506e0999437a23fd54f6fc5b3a12d64", "verdict": "wrong", "reason": "The old shell conditional is syntactically valid, but returns a failure status when the version check is false."}
+{"n": 1707, "sha": "570dc15b52db6dde708e4fe3bdb8562ae9a4738d", "verdict": "ok", "reason": ""}
+{"n": 1708, "sha": "571d2c2cd7495e6fb81f656abdd2b3d3f593f1f0", "verdict": "ok", "reason": ""}
+{"n": 1709, "sha": "571d808d25d3391664a69920d4e0a5cb1418af90", "verdict": "wrong", "reason": "The prior joining expression is retained for relative URLs, and the new guard changes what happens to URLs with a network location."}
+{"n": 1710, "sha": "572c15d0494125b62ec84a670eefd3fd4615c573", "verdict": "wrong", "reason": "In the old-style exception syntax the name after the comma receives the exception and does not identify a second exception type to catch."}
+{"n": 1711, "sha": "572d2f453464a2733253eab3d85109fccfb483d4", "verdict": "wrong", "reason": "The countdown is added to an existing template as a fixed top-of-page element, rather than created in a new sidebar template."}
+{"n": 1712, "sha": "5734f4fc4a1a078a39629bdae5ccac60960991e4", "verdict": "wrong", "reason": "The hunk restores normal Pipenv locking behavior without adding an option that requires an existing unchanged lockfile."}
+{"n": 1713, "sha": "573ab095e44690e13047273b4f67eafcfd6613c8", "verdict": "ok", "reason": ""}
+{"n": 1714, "sha": "573d460aa7f7883951adc1fe9f05a89130d84b09", "verdict": "ok", "reason": ""}
+{"n": 1715, "sha": "57659e5987e7a9649dd3d59b256cd8e917d2b2e1", "verdict": "ok", "reason": ""}
+{"n": 1716, "sha": "576b447a3708cce7c6d0c26695ca980b11c4bdc9", "verdict": "ok", "reason": ""}
+{"n": 1717, "sha": "576e18a79686c84f908f7bdad7cfd56028404c1e", "verdict": "wrong", "reason": "The recommended packages page already exists, and the inserted link does not use the quoted spelling."}
+{"n": 1718, "sha": "577dba2bf737b1522145a1ca52d3aaf0d1fe5ed5", "verdict": "ok", "reason": ""}
+{"n": 1719, "sha": "578b03255594d446b4fc8c6e00ec67dd3c8b440f", "verdict": "ok", "reason": ""}
+{"n": 1720, "sha": "579cd9f23319ebc65b71613f59e2b7b37d67276d", "verdict": "ok", "reason": ""}
+{"n": 1721, "sha": "57aeafa11548010ea7fb13c600f2602b5873fbc5", "verdict": "ok", "reason": ""}
+{"n": 1722, "sha": "57b4d39749021305a2d5850e642537224d30611f", "verdict": "ok", "reason": ""}
+{"n": 1723, "sha": "57b861148eda51a0be752d133f6ba19c22936e75", "verdict": "ok", "reason": ""}
+{"n": 1724, "sha": "57ba337e79a204ce1eb582da6c02e495caf9a71c", "verdict": "wrong", "reason": "One of the new assertions is malformed, so the updated tests do not all carry out the described type checks."}
+{"n": 1725, "sha": "57c138e59bac910e98df1d6815b121720e58e9a1", "verdict": "wrong", "reason": "On Python 2, dropping the Unicode prefixes can change the returned string type and the behavior for non-ASCII inputs."}
+{"n": 1726, "sha": "57ccd7e65c30ffef773c7e60a582ce9325482fed", "verdict": "wrong", "reason": "The message identifies Python 3 incompatibility for the async tests only, leaving the reason for excluding external tests separate."}
+{"n": 1727, "sha": "57dbab2932e6f2d29e196e40ecbed04150c944bf", "verdict": "ok", "reason": ""}
+{"n": 1728, "sha": "57e7a308b0b118b8fb98b4f453b5653d245d5a52", "verdict": "ok", "reason": ""}
+{"n": 1729, "sha": "582a53f3f4b7cf539dfa61e83994ca9f2b5ef2ff", "verdict": "ok", "reason": ""}

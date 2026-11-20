@@ -1,0 +1,94 @@
+{"n": 2971, "sha": "9a8a826f226e6973d72914b4a4fc806e0b5036f4", "verdict": "ok", "reason": ""}
+{"n": 2972, "sha": "9a8b25d5fafe3cb1b74c636000bf5b0d06d75816", "verdict": "wrong", "reason": "The changelog reports simultaneous uploads and POST data, and the commit does not implement that capability."}
+{"n": 2973, "sha": "9a8eb131c9cba816d2835b3dcdb1359922b8018d", "verdict": "ok", "reason": ""}
+{"n": 2974, "sha": "9aa62d5622fd69bc77bad3ea24ed8379eb158de8", "verdict": "ok", "reason": ""}
+{"n": 2975, "sha": "9abc9ad1b3e93307b6a82c54ed94faa11d43bd4f", "verdict": "ok", "reason": ""}
+{"n": 2976, "sha": "9ac5a6e4aea4ba76c515291be3682aac262e34d4", "verdict": "wrong", "reason": "The patch removes UTF-8 decoding from received data and makes UTF-8 explicit only for outgoing text."}
+{"n": 2977, "sha": "9aca57d4bf7fe7906dd7b6d9e7c4836b6f38735d", "verdict": "wrong", "reason": "The summary reverses the old and new values. The revert restores None for both defaults."}
+{"n": 2978, "sha": "9acca90bf6bdb29f80b9c82ff66303bd6fb157fa", "verdict": "filler", "reason": "The major upgrade is shown, but the excerpt does not establish that the new version is the latest supported scanning tool."}
+{"n": 2979, "sha": "9ad8589efd625fe125345a6e1508ee5be78fd547", "verdict": "ok", "reason": ""}
+{"n": 2980, "sha": "9b165629f94b5160265fba9cfa0188d0b32facb2", "verdict": "ok", "reason": ""}
+{"n": 2981, "sha": "9b20cadaeb8103ab37c4f02f5cfcd6ca7ca7ec22", "verdict": "filler", "reason": "The notice switches the name to Chardet and the message says Charade is gone, but it does not state a formal deprecation."}
+{"n": 2982, "sha": "9b2d7382bfc8656630b70fd68831fc47ae1c5eee", "verdict": "ok", "reason": ""}
+{"n": 2983, "sha": "9b42c954c6f9d841e4be5dd99b1d135002f3ba01", "verdict": "wrong", "reason": "The changelog adds an offline-suite announcement, and the shown commit does not change how tests are run."}
+{"n": 2984, "sha": "9b51d7c4f2f3e0b1425e72ca01ec520a1eae0c5c", "verdict": "cannot_tell", "reason": "The credit moves from the beginning to a new position around line 17, but the excerpt does not show whether this position is at the end of the README."}
+{"n": 2985, "sha": "9b63f9cd37d19f2d4bbce42caec112ad0606d8dd", "verdict": "ok", "reason": ""}
+{"n": 2986, "sha": "9b95b4e7b4df1865b058161f1492989868614535", "verdict": "filler", "reason": "The test matrix and explicit socket close are shown, but the excerpt does not establish that the missing close was a resource leak."}
+{"n": 2987, "sha": "9ba6c5e63882579dd1aaa4ce3fb3f13244b4f127", "verdict": "ok", "reason": ""}
+{"n": 2988, "sha": "9ba93b885cb503ddb84beb88210ea389912ff4d3", "verdict": "wrong", "reason": "The multiple-hook system and method are mentioned as release changes but are not implemented by this commit."}
+{"n": 2989, "sha": "9bb332fee12a43c49661beabea8ea4809755036b", "verdict": "filler", "reason": "The file and its single activation command are removed, but the excerpt provides no evidence of environment conflicts or exposed settings."}
+{"n": 2990, "sha": "9bf53676b87fa4951e23f67d2251f5dfae4e5206", "verdict": "ok", "reason": ""}
+{"n": 2991, "sha": "9c0a0fbd01ce0a07cebc26f0203e17bfccf7e481", "verdict": "ok", "reason": ""}
+{"n": 2992, "sha": "9c0db922497bfb5827ba2e604fbcf4f02e248b8e", "verdict": "ok", "reason": ""}
+{"n": 2993, "sha": "9c2f9f61efc46de7636f87fec3873527f7195523", "verdict": "ok", "reason": ""}
+{"n": 2994, "sha": "9c3ca6e740e3f93da9ddccb20d81210772c4e07c", "verdict": "ok", "reason": ""}
+{"n": 2995, "sha": "9c67691b9041f6a74e18ed5a04e11d2fd6ffbac7", "verdict": "filler", "reason": "The commit is labeled empty, but the excerpt does not say why it exists."}
+{"n": 2996, "sha": "9c6ae1dc0b6ade1dec2e8c3d5dcd8ef98398cb91", "verdict": "ok", "reason": ""}
+{"n": 2997, "sha": "9c6ffc530319d3b6d75bb160267d76f0224b0743", "verdict": "ok", "reason": ""}
+{"n": 2998, "sha": "9c72a41bec8597f948c9d8caa5dc3f12273b3303", "verdict": "filler", "reason": "The action upgrade is shown, but the excerpt does not establish that it provides the latest available features and fixes."}
+{"n": 2999, "sha": "9c8660dbb6e5d9b8694447e91e7936161f868ab0", "verdict": "ok", "reason": ""}
+{"n": 3000, "sha": "9c8ae76928913db076bce13111f791ed4211f60f", "verdict": "filler", "reason": "The import line is removed, but the excerpt does not identify it as obsolete or show a change in recommended usage."}
+{"n": 3001, "sha": "9c92f757e6ced45d494a8e174fa6dd2ef27ca70a", "verdict": "ok", "reason": ""}
+{"n": 3002, "sha": "9c939ec026281dc5efcda5f52fde367cf2658b2a", "verdict": "ok", "reason": ""}
+{"n": 3003, "sha": "9cae7be94f0aa35a26b42e1a34e26f874cd754da", "verdict": "ok", "reason": ""}
+{"n": 3004, "sha": "9cae98c167316993b134fa8a937acd7c90fa2953", "verdict": "ok", "reason": ""}
+{"n": 3005, "sha": "9cb3d6444d7c2e2787267874f59c271cd2bcf1be", "verdict": "ok", "reason": ""}
+{"n": 3006, "sha": "9cd2d33489f95a97fdbb22a977ff4b7f51199702", "verdict": "ok", "reason": ""}
+{"n": 3007, "sha": "9cdc8325ae8ace6fe3b09eb78751d6912410e9cc", "verdict": "wrong", "reason": "The code copies the value into a Cookie request header verbatim. It leaves the original Set-Cookie response header in place and performs no cookie parsing."}
+{"n": 3008, "sha": "9cdf29410778f31b88c48385c4a0fdf96fa10bd1", "verdict": "cannot_tell", "reason": "The old repository path is named, but the supplied hunks redact the differing targets and stop before any new destination can be verified."}
+{"n": 3009, "sha": "9ce7f0bf5b3cb7f48f7dea76c420554e037e18b7", "verdict": "filler", "reason": "The new property delegates to the existing getter, but the excerpt does not specify the underlying compatibility issue."}
+{"n": 3010, "sha": "9d0d11a36947d3c1161834b60e14cf33c6db4300", "verdict": "ok", "reason": ""}
+{"n": 3011, "sha": "9d16c7276791fb7e5e75f2fbcddec95fa8f15b2b", "verdict": "wrong", "reason": "The pattern is compiled inside handle_401 on the affected path. This is a Python 2.6 compatibility edit, with no reuse across requests shown."}
+{"n": 3012, "sha": "9d33629b6d3f4ed3a2ee0f413090b48fa10e8560", "verdict": "wrong", "reason": "The code stops forwarding params when building a follow-up redirect request, rather than changing direct requests."}
+{"n": 3013, "sha": "9d4fd3c968b134d98ed2789cfb376e0237cfd047", "verdict": "ok", "reason": ""}
+{"n": 3014, "sha": "9d88810d52a2f70bba96b6f0360daa99c0531969", "verdict": "ok", "reason": ""}
+{"n": 3015, "sha": "9d8a57f2a29de97682d85d71ea98354ac8223442", "verdict": "ok", "reason": ""}
+{"n": 3016, "sha": "9d8d1d14f1aae1933440920953ef7841c449bef0", "verdict": "ok", "reason": ""}
+{"n": 3017, "sha": "9dba20395296f26a56fde851cbfa8ac6cef5a3bf", "verdict": "ok", "reason": ""}
+{"n": 3018, "sha": "9dce7861134c60596b91dfa8eda2ff66f5c5d5e5", "verdict": "ok", "reason": ""}
+{"n": 3019, "sha": "9dd6e47b5b4d25ee34701a1a0111a3332b1478d7", "verdict": "ok", "reason": ""}
+{"n": 3020, "sha": "9dd823c289faca0d496ef71f25d36216d2259ca3", "verdict": "ok", "reason": ""}
+{"n": 3021, "sha": "9de992e22c4d9f11f8ec16b85ff5806710a6bde5", "verdict": "wrong", "reason": "The newline moves after the former last text line, but the new final emoji line still has no terminating newline."}
+{"n": 3022, "sha": "9e0fb37fff4ad0a9a51ed6b522d2eb47f678d9a3", "verdict": "ok", "reason": ""}
+{"n": 3023, "sha": "9e27326d6843e7c26e9847776159eeb68a999675", "verdict": "wrong", "reason": "The local server emits the fixture responses, while the assertions test how Requests reads and decodes them."}
+{"n": 3024, "sha": "9e45d201f329e9c37972af41268f1ee3365d846c", "verdict": "ok", "reason": ""}
+{"n": 3025, "sha": "9e681a4a9f4e85083ce76e763eef55b0e1f3185c", "verdict": "ok", "reason": ""}
+{"n": 3026, "sha": "9e771aa79cc3cdf2b625b31148247c05efdf4edd", "verdict": "ok", "reason": ""}
+{"n": 3027, "sha": "9e843468de02cbd393fc144c123ea7465e9114a1", "verdict": "filler", "reason": "The proxy manager now receives the configured pool parameters, but the excerpt does not identify a resource exhaustion issue."}
+{"n": 3028, "sha": "9e8702d3d54a532f01334f47e68eb90e22a6ab7a", "verdict": "ok", "reason": ""}
+{"n": 3029, "sha": "9e8d403a21fbe0e97fff8a096bf4746d033d0cc5", "verdict": "ok", "reason": ""}
+{"n": 3030, "sha": "9e9d2c6521e37e1c4f35e04f95a910ad47e28958", "verdict": "ok", "reason": ""}
+{"n": 3031, "sha": "9ea85109a51d6573caab6d6811c503dfec456ea7", "verdict": "ok", "reason": ""}
+{"n": 3032, "sha": "9eab9f7415e718cefc77f4bbe632abf8e089c555", "verdict": "ok", "reason": ""}
+{"n": 3033, "sha": "9eaee76c33b5ffb82aa71ed7f3e81013480d06c8", "verdict": "ok", "reason": ""}
+{"n": 3034, "sha": "9ebebdef98a6aacfbedcf2ca61ba0eaecc2563f4", "verdict": "filler", "reason": "The message records the OpenSSL version used for regeneration, but does not identify a compatibility problem or say that compatibility was the reason."}
+{"n": 3035, "sha": "9ec222c363b226e908a9d72018e2f467952da52f", "verdict": "ok", "reason": ""}
+{"n": 3036, "sha": "9ec3478469744b475d0413e6400d4161e032e847", "verdict": "wrong", "reason": "The extra retains pyOpenSSL with a higher floor and adds two new requirements, whose earlier versions were not in that extra."}
+{"n": 3037, "sha": "9ed5db8ed28e816b597dafd328b342ec95466afa", "verdict": "wrong", "reason": "The docstring still qualifies when HTTPError is raised, so it does not describe creating an HTTPError on every call."}
+{"n": 3038, "sha": "9edba838b3c7891c955b49d680c49b4ee8e64dd4", "verdict": "wrong", "reason": "Session.request skips copying its newly built request altogether. A separate copy remains for callers of Session.prepare_request."}
+{"n": 3039, "sha": "9f119ee420318c113094e15bc5e6d7dbda5c98b0", "verdict": "ok", "reason": ""}
+{"n": 3040, "sha": "9f26d0ced3d7a360b1bb392a5e8257409378bac5", "verdict": "ok", "reason": ""}
+{"n": 3041, "sha": "9f29a31f662ba389e6276962df93451084dddc24", "verdict": "wrong", "reason": "The version label remains 0.8.3, and there is no package version metadata change."}
+{"n": 3042, "sha": "9f33a0cd3c5106d4cc1b114f3ad57af45ab31daf", "verdict": "ok", "reason": ""}
+{"n": 3043, "sha": "9f35ebd7956644c214405cc6253e1f5b7506df24", "verdict": "wrong", "reason": "The added line contains HTML markup and a nonbreaking-space entity rather than being blank."}
+{"n": 3044, "sha": "9f42a50742ae9d76088eb528bf73770ae4ee78b3", "verdict": "ok", "reason": ""}
+{"n": 3045, "sha": "9f4ce17a29ead608a42649b3fec4a85b9911dbc9", "verdict": "ok", "reason": ""}
+{"n": 3046, "sha": "9f55f503b1c5a2b5146792613eb17ba4cad47b68", "verdict": "ok", "reason": ""}
+{"n": 3047, "sha": "9f6246a7b84a7889864b1b1be3545bc8801bf7df", "verdict": "ok", "reason": ""}
+{"n": 3048, "sha": "9f89ebe0de1c7d493b955b0c8c192583e7a35444", "verdict": "ok", "reason": ""}
+{"n": 3049, "sha": "9f9ebecec27108db292a31397e44d447f4ebfeb9", "verdict": "wrong", "reason": "The core module only receives new version and build values. The file-upload and URL features are recorded in the changelog."}
+{"n": 3050, "sha": "9fbfd22f6b6bf0075619e2181e66d557511b14d8", "verdict": "filler", "reason": "The metadata fields are added, but the excerpt does not show any packaging or documentation integration using them."}
+{"n": 3051, "sha": "9fcfec18daf65028b06ab3c32620a21a8ce70f94", "verdict": "ok", "reason": ""}
+{"n": 3052, "sha": "9fd2d07c1dac17805ada0da0dd1bc735d487b895", "verdict": "wrong", "reason": "The excerpt shows the Python 2.5 classifier and a conditional dependency being removed, rather than enforcing an interpreter restriction."}
+{"n": 3053, "sha": "9fd70c209b0e295840bc9399f5343703c528f189", "verdict": "ok", "reason": ""}
+{"n": 3054, "sha": "9fdee250de7e1aa0c92db5fb435cf1f2f8efe7e7", "verdict": "wrong", "reason": "Poster is the multipart library or context for the change, not an HTTP header named POSTER."}
+{"n": 3055, "sha": "9fe4a9936572e638dad2db30fffd6b38b0b74f66", "verdict": "ok", "reason": ""}
+{"n": 3056, "sha": "9ff2e43cd6de340c152145adc0e922f94e0aaf1c", "verdict": "ok", "reason": ""}
+{"n": 3057, "sha": "9ff8cbe5fb5e917b95dcbd6bc81e43d35dcbbb16", "verdict": "wrong", "reason": "The helper passes an existing name to a filesystem path operation. The patch introduces no URL parsing."}
+{"n": 3058, "sha": "9ffc5e6a95e4e814e14252f8ff75bed43dc9919a", "verdict": "ok", "reason": ""}
+{"n": 3059, "sha": "9ffcbb82a2d6a49939d52fe95f494488d4b6b7c6", "verdict": "ok", "reason": ""}
+{"n": 3060, "sha": "a00b7e4b25e041a62b634adc67cb02d7c3667c3e", "verdict": "cannot_tell", "reason": "The bundled file deletion is shown, but the excerpt contains no certificate-resolution logic to determine whether callers need their own bundle or settings changes."}
+{"n": 3061, "sha": "a00d14a61f5d10cfe335f068f6e320beef090332", "verdict": "filler", "reason": "The parallel test plugin is added as a requirement, but no test runner configuration or speedup is shown."}
+{"n": 3062, "sha": "a00dc1abf37a0348e963d4e061c3f820bddca09d", "verdict": "wrong", "reason": "The handler catches URLError and checks its reason, rather than catching raw socket.timeout directly."}
+{"n": 3063, "sha": "a02069ec9e0593f136e40783a8ea98e64968d32b", "verdict": "wrong", "reason": "Only the documented type is removed, with no change to which inputs the adapter accepts."}
+{"n": 3064, "sha": "a02189a8e93d814faa03fafd4127e928369b76b3", "verdict": "wrong", "reason": "The commented sidebar rule stays in the stylesheet at a later location."}

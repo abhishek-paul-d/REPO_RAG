@@ -1,0 +1,4201 @@
+{
+ "dataset": "agent_eval_v1.jsonl",
+ "dataset_sha256": "d8bf41dcb3a665e23a0dbc8fb88c20702d5bfc5cbe2fdf457706bb0841d3cb79",
+ "toolset": "production",
+ "prompt_variant": "commit_pr_commits",
+ "commit_query": "model",
+ "commit_fix_only": false,
+ "extra_files": 3,
+ "skip_tests": true,
+ "tool_result_chars": 24000,
+ "max_input_tokens": "12288",
+ "commit_k": 15,
+ "max_tool_calls": 4,
+ "citation_snap": false,
+ "abstain_retries": 0,
+ "tool_error_retries": 0,
+ "server": {
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+  "hardware": "NVIDIA A100-SXM4-40GB",
+  "max_input_tokens": "12288",
+  "decode_mode": "cuda-graphs + mtp3",
+  "concurrency": "8"
+ },
+ "rerank_used": false,
+ "rerank_failures": 0,
+ "llm_model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+ "table": {
+  "code": {
+   "n": 40,
+   "passed": 40,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  },
+  "docs": {
+   "n": 12,
+   "passed": 11,
+   "abstained": 0,
+   "failed": 0,
+   "missed": [
+    "docs-051"
+   ]
+  },
+  "history": {
+   "n": 11,
+   "passed": 11,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  },
+  "refs": {
+   "n": 10,
+   "passed": 10,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  },
+  "kind": {
+   "n": 5,
+   "passed": 5,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  },
+  "commit": {
+   "n": 10,
+   "passed": 7,
+   "abstained": 2,
+   "failed": 1,
+   "missed": [
+    "commit-079",
+    "commit-080",
+    "commit-085"
+   ]
+  },
+  "probe": {
+   "n": 5,
+   "passed": 5,
+   "abstained": 5,
+   "failed": 0,
+   "missed": []
+  },
+  "prsearch": {
+   "n": 10,
+   "passed": 10,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  }
+ },
+ "rows": [
+  {
+   "id": "code-001",
+   "type": "code",
+   "question": "How are redirects followed, and where is the maximum number of redirects enforced?",
+   "answer": "Redirects are followed by SessionRedirectMixin.resolve_redirects, a generator that loops while a redirect target exists: it copies the request, appends the previous response to history, consumes/releases the connection, normalizes the URL, and then calls self.send with allow_redirects=False to fetch the next response, repeating until no redirect target remains (src/requests/sessions.py:186-235, src/requests/sessions.py:282-307). The redirect target is obtained from get_redirect_target, which returns the Location header when resp.is_redirect (src/requests/sessions.py:127-152). The maximum number of redirects is enforced inside resolve_redirects: if len(resp.history) >= self.max_redirects it raises TooManyRedirects (src/requests/sessions.py:186-235); the TooManyRedirects exception is defined in src/requests/exceptions.py:102-162. Session.send invokes resolve_redirects when allow_redirects is true (src/requests/sessions.py:801-829).",
+   "model_answer": "Redirects are followed by SessionRedirectMixin.resolve_redirects, a generator that loops while a redirect target exists: it copies the request, appends the previous response to history, consumes/releases the connection, normalizes the URL, and then calls self.send with allow_redirects=False to fetch the next response, repeating until no redirect target remains (src/requests/sessions.py:186-235, src/requests/sessions.py:282-307). The redirect target is obtained from get_redirect_target, which returns the Location header when resp.is_redirect (src/requests/sessions.py:127-152). The maximum number of redirects is enforced inside resolve_redirects: if len(resp.history) >= self.max_redirects it raises TooManyRedirects (src/requests/sessions.py:186-235); the TooManyRedirects exception is defined in src/requests/exceptions.py:102-162. Session.send invokes resolve_redirects when allow_redirects is true (src/requests/sessions.py:801-829).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "redirects maximum number follow redirect"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 6,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 14.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-002",
+   "type": "code",
+   "question": "Where is the Authorization header removed when a redirect goes to a different host?",
+   "answer": "The Authorization header is removed in SessionRedirectMixin.rebuild_auth, which deletes headers[\"Authorization\"] when should_strip_auth returns True for a redirect to a different host (src/requests/sessions.py:309-332). The decision to strip is made in should_strip_auth, which returns True when the old and new hostnames differ (src/requests/sessions.py:154-184).",
+   "model_answer": "The Authorization header is removed in SessionRedirectMixin.rebuild_auth, which deletes headers[\"Authorization\"] when should_strip_auth returns True for a redirect to a different host (src/requests/sessions.py:309-332). The decision to strip is made in should_strip_auth, which returns True when the old and new hostnames differ (src/requests/sessions.py:154-184).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Authorization header removed redirect different host"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-003",
+   "type": "code",
+   "question": "How does a POST request become a GET after a 303 See Other redirect?",
+   "answer": "When a redirect response is received, SessionRedirectMixin.resolve_redirects copies the original prepared request and calls self.rebuild_method(prepared_request, resp) to adjust the method (src/requests/sessions.py:237-280). rebuild_method checks the response status code and, per RFC 7231 section 6.4.4, if the status is 303 See Other and the method is not HEAD, it sets the method to GET (src/requests/sessions.py:370-392). After the method is changed, resolve_redirects also purges the Content-Length, Content-Type, and Transfer-Encoding headers and sets the body to None for redirects other than 307/308, so the new GET request is sent without the original POST body (src/requests/sessions.py:237-280).",
+   "model_answer": "When a redirect response is received, SessionRedirectMixin.resolve_redirects copies the original prepared request and calls self.rebuild_method(prepared_request, resp) to adjust the method (src/requests/sessions.py:237-280). rebuild_method checks the response status code and, per RFC 7231 section 6.4.4, if the status is 303 See Other and the method is not HEAD, it sets the method to GET (src/requests/sessions.py:370-392). After the method is changed, resolve_redirects also purges the Content-Length, Content-Type, and Transfer-Encoding headers and sets the body to None for redirects other than 307/308, so the new GET request is sent without the original POST body (src/requests/sessions.py:237-280).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "303 See Other redirect POST GET method change"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 13.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-004",
+   "type": "code",
+   "question": "How are automatic retries configured for the connection pool?",
+   "answer": "Automatic retries for the connection pool are configured through the HTTPAdapter's max_retries parameter. In __init__, if max_retries equals DEFAULT_RETRIES, self.max_retries is set to Retry(0, read=False), meaning no retries by default; otherwise it is converted via Retry.from_int(max_retries) (src/requests/adapters.py:201-237). The class docstring explains that max_retries is the maximum number of retries each connection should attempt, applying only to failed DNS lookups, socket connections and connection timeouts, never to requests where data has reached the server, and that for granular control you should pass a urllib3 Retry object instead (src/requests/adapters.py:158-199). The pool itself is created in init_poolmanager, which builds a urllib3 PoolManager with num_pools, maxsize and block, but retries are handled by the Retry object stored on the adapter rather than by the pool manager (src/requests/adapters.py:239-267).",
+   "model_answer": "Automatic retries for the connection pool are configured through the HTTPAdapter's max_retries parameter. In __init__, if max_retries equals DEFAULT_RETRIES, self.max_retries is set to Retry(0, read=False), meaning no retries by default; otherwise it is converted via Retry.from_int(max_retries) (src/requests/adapters.py:201-237). The class docstring explains that max_retries is the maximum number of retries each connection should attempt, applying only to failed DNS lookups, socket connections and connection timeouts, never to requests where data has reached the server, and that for granular control you should pass a urllib3 Retry object instead (src/requests/adapters.py:158-199). The pool itself is created in init_poolmanager, which builds a urllib3 PoolManager with num_pools, maxsize and block, but retries are handled by the Retry object stored on the adapter rather than by the pool manager (src/requests/adapters.py:239-267).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "automatic retries connection pool retry configuration"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 13.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-005",
+   "type": "code",
+   "question": "Where are SSL certificates verified and the CA bundle chosen?",
+   "answer": "SSL certificate verification and CA bundle selection happen in HTTPAdapter.cert_verify, which sets conn.cert_reqs to CERT_REQUIRED for https URLs when verify is truthy, chooses the CA bundle from the user-supplied verify path or falls back to DEFAULT_CA_BUNDLE_PATH, and assigns it to conn.ca_certs (file) or conn.ca_cert_dir (directory) (src/requests/adapters.py:307-363). The default CA bundle itself comes from the certifi package via the where() function in src/requests/certs.py:1-18.",
+   "model_answer": "SSL certificate verification and CA bundle selection happen in HTTPAdapter.cert_verify, which sets conn.cert_reqs to CERT_REQUIRED for https URLs when verify is truthy, chooses the CA bundle from the user-supplied verify path or falls back to DEFAULT_CA_BUNDLE_PATH, and assigns it to conn.ca_certs (file) or conn.ca_cert_dir (directory) (src/requests/adapters.py:307-363). The default CA bundle itself comes from the certifi package via the where() function in src/requests/certs.py:1-18.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "SSL certificate verification CA bundle"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 5.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-006",
+   "type": "code",
+   "question": "How is the response body decoded into text when the server sends no charset?",
+   "answer": "When the server sends no charset, the Response.text property first checks self.encoding; if it is None it falls back to self.apparent_encoding, which guesses the encoding using charset_normalizer or chardet (src/requests/models.py:1055-1089). It then decodes the byte content with that encoding, defaulting to utf-8 if the encoding is still None, using errors='replace' (src/requests/models.py:1055-1089). The apparent_encoding guess is what handles the no-charset case, since get_encoding_from_headers only returns a value when a charset parameter, a text content type (ISO-8859-1), or application/json (utf-8) is present (src/requests/utils.py:569-587).",
+   "model_answer": "When the server sends no charset, the Response.text property first checks self.encoding; if it is None it falls back to self.apparent_encoding, which guesses the encoding using charset_normalizer or chardet (src/requests/models.py:1055-1089). It then decodes the byte content with that encoding, defaulting to utf-8 if the encoding is still None, using errors='replace' (src/requests/models.py:1055-1089). The apparent_encoding guess is what handles the no-charset case, since get_encoding_from_headers only returns a value when a charset parameter, a text content type (ISO-8859-1), or application/json (utf-8) is present (src/requests/utils.py:569-587).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "decode response body charset text encoding"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 13.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-007",
+   "type": "code",
+   "question": "How does streaming a download in chunks work?",
+   "answer": "Streaming a download in chunks is done by Response.iter_content, which yields the response body in pieces instead of loading it all into memory (src/requests/models.py:914-965). When the request was made with stream=True, the inner generate() function reads from the underlying urllib3 raw stream via self.raw.stream(chunk_size, decode_content=True), yielding each chunk as it arrives and translating protocol, decoding, timeout, and SSL errors into requests exceptions (src/requests/models.py:914-965). If the raw object is a standard file-like object without a stream method, it instead loops calling self.raw.read(chunk_size) until an empty chunk is returned (src/requests/models.py:914-965). The chunk_size argument is the number of bytes to read into memory per chunk and is not necessarily the length of each yielded item because decoding can change the size; a value of None reads data as it arrives when stream=True or returns the whole body as a single chunk when stream=False (src/requests/models.py:914-965). If the content was already consumed, iter_content simulates small chunks by slicing the stored bytes with iter_slices (src/requests/models.py:967-977 and src/requests/utils.py:569-630). When decode_unicode is True, the chunks are passed through stream_decode_response_unicode, which uses an incremental decoder based on the response encoding to yield decoded text, falling back to raw bytes if no encoding is available (src/requests/models.py:967-977 and src/requests/utils.py:569-630). The stream flag is set on the request through Session.request, which passes it into the adapter's send (src/requests/sessions.py:601-653 and src/requests/adapters.py:634-679).",
+   "model_answer": "Streaming a download in chunks is done by Response.iter_content, which yields the response body in pieces instead of loading it all into memory (src/requests/models.py:914-965). When the request was made with stream=True, the inner generate() function reads from the underlying urllib3 raw stream via self.raw.stream(chunk_size, decode_content=True), yielding each chunk as it arrives and translating protocol, decoding, timeout, and SSL errors into requests exceptions (src/requests/models.py:914-965). If the raw object is a standard file-like object without a stream method, it instead loops calling self.raw.read(chunk_size) until an empty chunk is returned (src/requests/models.py:914-965). The chunk_size argument is the number of bytes to read into memory per chunk and is not necessarily the length of each yielded item because decoding can change the size; a value of None reads data as it arrives when stream=True or returns the whole body as a single chunk when stream=False (src/requests/models.py:914-965). If the content was already consumed, iter_content simulates small chunks by slicing the stored bytes with iter_slices (src/requests/models.py:967-977 and src/requests/utils.py:569-630). When decode_unicode is True, the chunks are passed through stream_decode_response_unicode, which uses an incremental decoder based on the response encoding to yield decoded text, falling back to raw bytes if no encoding is available (src/requests/models.py:967-977 and src/requests/utils.py:569-630). The stream flag is set on the request through Session.request, which passes it into the adapter's send (src/requests/sessions.py:601-653 and src/requests/adapters.py:634-679).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "streaming download in chunks"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 10,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 20.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-008",
+   "type": "code",
+   "question": "How is JSON parsed from a response, and what error is raised if the body is not valid JSON?",
+   "answer": "Response.json decodes the body with complexjson.loads (an alias for the json/simplejson module), first trying to detect a UTF-8/16/32 encoding via guess_json_utf when no encoding is set, and otherwise parsing self.text (src/requests/models.py:1091-1142). If the body is not valid JSON, it catches JSONDecodeError and raises requests.exceptions.JSONDecodeError (RequestsJSONDecodeError), constructed with the original error's msg, doc, and pos (src/requests/models.py:1091-1142). This exception subclasses InvalidJSONError and the compat JSONDecodeError (src/requests/exceptions.py:42-66).",
+   "model_answer": "Response.json decodes the body with complexjson.loads (an alias for the json/simplejson module), first trying to detect a UTF-8/16/32 encoding via guess_json_utf when no encoding is set, and otherwise parsing self.text (src/requests/models.py:1091-1142). If the body is not valid JSON, it catches JSONDecodeError and raises requests.exceptions.JSONDecodeError (RequestsJSONDecodeError), constructed with the original error's msg, doc, and pos (src/requests/models.py:1091-1142). This exception subclasses InvalidJSONError and the compat JSONDecodeError (src/requests/exceptions.py:42-66).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "parse JSON from response body invalid JSON error"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 12.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-009",
+   "type": "code",
+   "question": "Where is HTTP Digest authentication implemented?",
+   "answer": "HTTP Digest authentication is implemented in the HTTPDigestAuth class in src/requests/auth.py:124-155, which defines the class and its per-thread state initialization. The digest header is built in build_digest_header (src/requests/auth.py:157-266), the request is prepared and hooks are registered in __call__ (src/requests/auth.py:321-354), and the 401 challenge is handled in handle_401 (src/requests/auth.py:268-319).",
+   "model_answer": "HTTP Digest authentication is implemented in the HTTPDigestAuth class in src/requests/auth.py:124-155, which defines the class and its per-thread state initialization. The digest header is built in build_digest_header (src/requests/auth.py:157-266), the request is prepared and hooks are registered in __call__ (src/requests/auth.py:321-354), and the 401 challenge is handled in handle_401 (src/requests/auth.py:268-319).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "HTTP Digest authentication"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 8.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-010",
+   "type": "code",
+   "question": "How is the value of the Basic auth header built?",
+   "answer": "The Basic auth header value is built by _basic_auth_str, which first coerces non-string username/password to str (with a deprecation warning), then encodes any str values to bytes using latin1, joins them with a colon, base64-encodes the result, and prefixes it with 'Basic ' (src/requests/auth.py:34-82). HTTPBasicAuth.__call__ assigns this string to the 'Authorization' header, and HTTPProxyAuth.__call__ assigns it to 'Proxy-Authorization' (src/requests/auth.py:85-121).",
+   "model_answer": "The Basic auth header value is built by _basic_auth_str, which first coerces non-string username/password to str (with a deprecation warning), then encodes any str values to bytes using latin1, joins them with a colon, base64-encodes the result, and prefixes it with 'Basic ' (src/requests/auth.py:34-82). HTTPBasicAuth.__call__ assigns this string to the 'Authorization' header, and HTTPProxyAuth.__call__ assigns it to 'Proxy-Authorization' (src/requests/auth.py:85-121).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Basic auth header build value"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 8.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-011",
+   "type": "code",
+   "question": "How does the library decide whether a URL should bypass the proxy?",
+   "answer": "The decision is made by should_bypass_proxies(url, no_proxy), which first parses the URL and returns True immediately if there is no hostname (e.g. file:// URLs) (src/requests/utils.py:810-870). If a no_proxy value is provided (or read from the NO_PROXY/no_proxy environment variable, preferring lowercase), it splits the value on commas and checks the hostname: for IPv4 addresses it matches either a CIDR network via address_in_network or an exact plain-IP match, and for other hosts it matches the hostname or hostname:port exactly or as a suffix (after stripping a leading dot) against each no_proxy entry (src/requests/utils.py:810-870). If no no_proxy match is found, it falls back to the platform proxy_bypass(hostname) (with the no_proxy env var temporarily restored), catching TypeError/socket.gaierror as False, and returns True if that reports a bypass (src/requests/utils.py:810-870). On Windows, proxy_bypass checks the environment first via proxy_bypass_environment, otherwise reads the Windows registry ProxyOverride (handling <local> and glob patterns) (src/requests/utils.py:96-146). This function is used by get_environ_proxies, which returns an empty dict when the URL should bypass proxies, and by resolve_proxies, which only consults environment proxies when trust_env is set and the URL does not bypass (src/requests/utils.py:873-908, src/requests/utils.py:911-940).",
+   "model_answer": "The decision is made by should_bypass_proxies(url, no_proxy), which first parses the URL and returns True immediately if there is no hostname (e.g. file:// URLs) (src/requests/utils.py:810-870). If a no_proxy value is provided (or read from the NO_PROXY/no_proxy environment variable, preferring lowercase), it splits the value on commas and checks the hostname: for IPv4 addresses it matches either a CIDR network via address_in_network or an exact plain-IP match, and for other hosts it matches the hostname or hostname:port exactly or as a suffix (after stripping a leading dot) against each no_proxy entry (src/requests/utils.py:810-870). If no no_proxy match is found, it falls back to the platform proxy_bypass(hostname) (with the no_proxy env var temporarily restored), catching TypeError/socket.gaierror as False, and returns True if that reports a bypass (src/requests/utils.py:810-870). On Windows, proxy_bypass checks the environment first via proxy_bypass_environment, otherwise reads the Windows registry ProxyOverride (handling <local> and glob patterns) (src/requests/utils.py:96-146). This function is used by get_environ_proxies, which returns an empty dict when the URL should bypass proxies, and by resolve_proxies, which only consults environment proxies when trust_env is set and the URL does not bypass (src/requests/utils.py:873-908, src/requests/utils.py:911-940).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "bypass proxy URL no_proxy should bypass"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 6,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 10.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-012",
+   "type": "code",
+   "question": "Where are proxy settings read from environment variables?",
+   "answer": "Proxy settings are read from environment variables in get_environ_proxies, which calls getproxies() (src/requests/utils.py:873-908). These are merged into request settings by Session.merge_environment_settings (src/requests/sessions.py:831-886) and re-evaluated for redirects by resolve_proxies (src/requests/utils.py:911-962) and SessionRedirectMixin.rebuild_proxies (src/requests/sessions.py:334-368).",
+   "model_answer": "Proxy settings are read from environment variables in get_environ_proxies, which calls getproxies() (src/requests/utils.py:873-908). These are merged into request settings by Session.merge_environment_settings (src/requests/sessions.py:831-886) and re-evaluated for redirects by resolve_proxies (src/requests/utils.py:911-962) and SessionRedirectMixin.rebuild_proxies (src/requests/sessions.py:334-368).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "proxy settings environment variables"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 7.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-013",
+   "type": "code",
+   "question": "How are query parameters URL-encoded into the request URL?",
+   "answer": "Query parameters are URL-encoded by PreparedRequest.prepare_url, which calls _encode_params on the params (src/requests/models.py:544-563). _encode_params converts the data into a list of (key, value) byte pairs via to_key_val_list, encoding each key and value as UTF-8, then returns urlencode(result, doseq=True) (src/requests/models.py:108-180). The resulting encoded string is appended to the existing query with an '&' separator if a query already exists, otherwise it becomes the query, and the full URL is rebuilt with urlunparse and passed through requote_uri (src/requests/models.py:544-563). The urlencode and requote_uri helpers come from urllib.parse (src/requests/compat.py:83-115).",
+   "model_answer": "Query parameters are URL-encoded by PreparedRequest.prepare_url, which calls _encode_params on the params (src/requests/models.py:544-563). _encode_params converts the data into a list of (key, value) byte pairs via to_key_val_list, encoding each key and value as UTF-8, then returns urlencode(result, doseq=True) (src/requests/models.py:108-180). The resulting encoded string is appended to the existing query with an '&' separator if a query already exists, otherwise it becomes the query, and the full URL is rebuilt with urlunparse and passed through requote_uri (src/requests/models.py:544-563). The urlencode and requote_uri helpers come from urllib.parse (src/requests/compat.py:83-115).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "URL encode query parameters request URL"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-014",
+   "type": "code",
+   "question": "How are multipart file uploads encoded?",
+   "answer": "Multipart file uploads are encoded by RequestEncodingMixin._encode_files, which builds the body for a multipart/form-data request: it converts data and files into key/value lists, wraps each file in a RequestField (supporting 2-, 3- or 4-tuples for filename, fileobj, content-type and custom headers), calls make_multipart on each field, and finally calls encode_multipart_formdata to produce the body and content type (src/requests/models.py:182-251). PreparedRequest.prepare_body invokes _encode_files when files are provided and sets the Content-Type header from the returned content type (src/requests/models.py:603-652).",
+   "model_answer": "Multipart file uploads are encoded by RequestEncodingMixin._encode_files, which builds the body for a multipart/form-data request: it converts data and files into key/value lists, wraps each file in a RequestField (supporting 2-, 3- or 4-tuples for filename, fileobj, content-type and custom headers), calls make_multipart on each field, and finally calls encode_multipart_formdata to produce the body and content type (src/requests/models.py:182-251). PreparedRequest.prepare_body invokes _encode_files when files are provided and sets the Content-Type header from the returned content type (src/requests/models.py:603-652).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "multipart file upload encoding"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-015",
+   "type": "code",
+   "question": "How is the Content-Length of a request body computed?",
+   "answer": "The Content-Length is computed by PreparedRequest.prepare_content_length, which calls super_len(body) and, if a length is returned, sets the Content-Length header to that value; if the body is None and the method is not GET or HEAD, it sets Content-Length to 0 (src/requests/models.py:654-697). super_len determines the length by first checking for __len__ (len(o)), then a .len attribute, then fileno() with os.fstat(fileno).st_size for file-like objects, and for strings it encodes to UTF-8 before measuring (src/requests/utils.py:160-199). For streamed/iterable bodies, prepare_body calls super_len(data) and sets Content-Length if a length is available, otherwise it sets Transfer-Encoding: chunked (src/requests/models.py:603-652).",
+   "model_answer": "The Content-Length is computed by PreparedRequest.prepare_content_length, which calls super_len(body) and, if a length is returned, sets the Content-Length header to that value; if the body is None and the method is not GET or HEAD, it sets Content-Length to 0 (src/requests/models.py:654-697). super_len determines the length by first checking for __len__ (len(o)), then a .len attribute, then fileno() with os.fstat(fileno).st_size for file-like objects, and for strings it encodes to UTF-8 before measuring (src/requests/utils.py:160-199). For streamed/iterable bodies, prepare_body calls super_len(data) and sets Content-Length if a length is available, otherwise it sets Transfer-Encoding: chunked (src/requests/models.py:603-652).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Content-Length request body compute"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-016",
+   "type": "code",
+   "question": "How are cookies from a response stored in the cookie jar?",
+   "answer": "Cookies from a response are stored in the cookie jar by extract_cookies_to_jar, which wraps the response's original HTTPMessage headers in a MockResponse and the PreparedRequest in a MockRequest, then calls jar.extract_cookies(res, req) so http.cookiejar parses and stores the Set-Cookie headers (src/requests/cookies.py:114-161).",
+   "model_answer": "Cookies from a response are stored in the cookie jar by extract_cookies_to_jar, which wraps the response's original HTTPMessage headers in a MockResponse and the PreparedRequest in a MockRequest, then calls jar.extract_cookies(res, req) so http.cookiejar parses and stores the Set-Cookie headers (src/requests/cookies.py:114-161).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "store cookies from response in cookie jar"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 9.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-017",
+   "type": "code",
+   "question": "How are session-level settings merged with per-request settings?",
+   "answer": "Session-level and per-request settings are merged by the merge_setting function, which prefers the explicit per-request value when the session value is None, prefers the session value when the request value is None, and for non-dictionary values (e.g. verify) returns the request value (src/requests/sessions.py:76-124). When both values are dictionaries, it starts from a copy of the session setting and updates it with the request setting, then removes any keys whose value is None (src/requests/sessions.py:76-124). Hooks are merged separately by merge_hooks, which handles the special case where a hooks dict has an empty 'response' list so that one side does not break the other (src/requests/sessions.py:76-124). Session.prepare_request applies these merges for headers, params, auth, cookies, and hooks when constructing the PreparedRequest (src/requests/sessions.py:505-555), and Session.merge_environment_settings applies merge_setting to proxies, stream, verify, and cert after considering environment variables (src/requests/sessions.py:831-886).",
+   "model_answer": "Session-level and per-request settings are merged by the merge_setting function, which prefers the explicit per-request value when the session value is None, prefers the session value when the request value is None, and for non-dictionary values (e.g. verify) returns the request value (src/requests/sessions.py:76-124). When both values are dictionaries, it starts from a copy of the session setting and updates it with the request setting, then removes any keys whose value is None (src/requests/sessions.py:76-124). Hooks are merged separately by merge_hooks, which handles the special case where a hooks dict has an empty 'response' list so that one side does not break the other (src/requests/sessions.py:76-124). Session.prepare_request applies these merges for headers, params, auth, cookies, and hooks when constructing the PreparedRequest (src/requests/sessions.py:505-555), and Session.merge_environment_settings applies merge_setting to proxies, stream, verify, and cert after considering environment variables (src/requests/sessions.py:831-886).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "session-level settings merged with per-request settings"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 5,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-018",
+   "type": "code",
+   "question": "How does a session pick which transport adapter handles a URL?",
+   "answer": "A session picks the transport adapter by iterating over its mounted adapters and returning the first one whose prefix matches the start of the URL, case-insensitively (src/requests/sessions.py:862-873). Adapters are registered via mount, which stores them in an OrderedDict sorted in descending order by prefix length so longer, more specific prefixes are checked first (src/requests/sessions.py:888-896). If no prefix matches, an InvalidSchema is raised (src/requests/sessions.py:862-873).",
+   "model_answer": "A session picks the transport adapter by iterating over its mounted adapters and returning the first one whose prefix matches the start of the URL, case-insensitively (src/requests/sessions.py:862-873). Adapters are registered via mount, which stores them in an OrderedDict sorted in descending order by prefix length so longer, more specific prefixes are checked first (src/requests/sessions.py:888-896). If no prefix matches, an InvalidSchema is raised (src/requests/sessions.py:862-873).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "session pick transport adapter URL"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 9.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-019",
+   "type": "code",
+   "question": "Where are default headers such as User-Agent set?",
+   "answer": "Default headers such as User-Agent are defined by the default_headers() function in src/requests/utils.py:911-962, which builds a CaseInsensitiveDict containing User-Agent (from default_user_agent()), Accept-Encoding, Accept, and Connection. These defaults are assigned to a Session's headers in Session.__init__ at src/requests/sessions.py:442-488, where self.headers = default_headers() is set.",
+   "model_answer": "Default headers such as User-Agent are defined by the default_headers() function in src/requests/utils.py:911-962, which builds a CaseInsensitiveDict containing User-Agent (from default_user_agent()), Accept-Encoding, Accept, and Connection. These defaults are assigned to a Session's headers in Session.__init__ at src/requests/sessions.py:442-488, where self.headers = default_headers() is set.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "default headers User-Agent set"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 9.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-020",
+   "type": "code",
+   "question": "How are HTTP header names handled case-insensitively?",
+   "answer": "HTTP header names are handled case-insensitively by the CaseInsensitiveDict class, which stores each header using its lowercased name as the lookup key while preserving the original cased key alongside the value (src/requests/structures.py:20-74). Setting an item uses key.lower() for the store key (src/requests/structures.py:63-66), and retrieval, deletion, and containment all use key.lower() so that, for example, headers['content-encoding'] matches a stored 'Content-Encoding' (src/requests/structures.py:67-74). Iteration and keys() return the original cased keys (src/requests/structures.py:70-72), while lower_items() yields lowercase keys (src/requests/structures.py:76-78), and equality comparison is done insensitively by comparing lower_items() (src/requests/structures.py:79-85). PreparedRequest.prepare_headers builds self.headers as a CaseInsensitiveDict and stores each header name converted via to_native_string (src/requests/models.py:565-574).",
+   "model_answer": "HTTP header names are handled case-insensitively by the CaseInsensitiveDict class, which stores each header using its lowercased name as the lookup key while preserving the original cased key alongside the value (src/requests/structures.py:20-74). Setting an item uses key.lower() for the store key (src/requests/structures.py:63-66), and retrieval, deletion, and containment all use key.lower() so that, for example, headers['content-encoding'] matches a stored 'Content-Encoding' (src/requests/structures.py:67-74). Iteration and keys() return the original cased keys (src/requests/structures.py:70-72), while lower_items() yields lowercase keys (src/requests/structures.py:76-78), and equality comparison is done insensitively by comparing lower_items() (src/requests/structures.py:79-85). PreparedRequest.prepare_headers builds self.headers as a CaseInsensitiveDict and stores each header name converted via to_native_string (src/requests/models.py:565-574).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "HTTP header name case-insensitive"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 7,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 13.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-021",
+   "type": "code",
+   "question": "How are event hooks such as the response hook dispatched?",
+   "answer": "Event hooks are dispatched by the dispatch_hook function, which takes a hook key (e.g. \"response\"), the hooks dictionary, and the hook data (the Response), then iterates over the registered callables for that key, calling each with the data and kwargs and replacing the data with the hook's return value if it is not None (src/requests/hooks.py:30-48). Hooks are registered on a request via RequestHooksMixin.register_hook, which appends a callable or extends with an iterable of callables for a given event, and deregistered via deregister_hook (src/requests/models.py:254-281). The response hook is actually invoked inside Session.send after the adapter returns the response, where dispatch_hook(\"response\", hooks, r, **kwargs) is called to let hooks manipulate the response (src/requests/sessions.py:752-799).",
+   "model_answer": "Event hooks are dispatched by the dispatch_hook function, which takes a hook key (e.g. \"response\"), the hooks dictionary, and the hook data (the Response), then iterates over the registered callables for that key, calling each with the data and kwargs and replacing the data with the hook's return value if it is not None (src/requests/hooks.py:30-48). Hooks are registered on a request via RequestHooksMixin.register_hook, which appends a callable or extends with an iterable of callables for a given event, and deregistered via deregister_hook (src/requests/models.py:254-281). The response hook is actually invoked inside Session.send after the adapter returns the response, where dispatch_hook(\"response\", hooks, r, **kwargs) is called to let hooks manipulate the response (src/requests/sessions.py:752-799).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "event hooks response hook dispatch"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 12.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-022",
+   "type": "code",
+   "question": "Where is the Link header parsed into a dictionary?",
+   "answer": "The Link header is parsed into a dictionary by the `links` property on `Response`, which calls `parse_header_links` and builds a dict keyed by `rel` or `url` (src/requests/models.py:1091-1142). The underlying parsing into per-link dicts happens in `parse_header_links` (src/requests/utils.py:965-1005).",
+   "model_answer": "The Link header is parsed into a dictionary by the `links` property on `Response`, which calls `parse_header_links` and builds a dict keyed by `rel` or `url` (src/requests/models.py:1091-1142). The underlying parsing into per-link dicts happens in `parse_header_links` (src/requests/utils.py:965-1005).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Link header parsed into dictionary"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 7.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-023",
+   "type": "code",
+   "question": "How does raising for HTTP error status codes build its error message?",
+   "answer": "Response.raise_for_status builds the message by first normalizing self.reason: if it is bytes it tries to decode as utf-8 and falls back to iso-8859-1 on UnicodeDecodeError, otherwise it uses the reason as-is (src/requests/models.py:1144-1184). It then sets http_error_msg to an f-string of the form \"{status_code} Client Error: {reason} for url: {url}\" when 400 <= status_code < 500, or \"{status_code} Server Error: {reason} for url: {url}\" when 500 <= status_code < 600 (src/requests/models.py:1144-1184). If the message is non-empty it raises HTTPError with that message and the response attached (src/requests/models.py:1144-1184).",
+   "model_answer": "Response.raise_for_status builds the message by first normalizing self.reason: if it is bytes it tries to decode as utf-8 and falls back to iso-8859-1 on UnicodeDecodeError, otherwise it uses the reason as-is (src/requests/models.py:1144-1184). It then sets http_error_msg to an f-string of the form \"{status_code} Client Error: {reason} for url: {url}\" when 400 <= status_code < 500, or \"{status_code} Server Error: {reason} for url: {url}\" when 500 <= status_code < 600 (src/requests/models.py:1144-1184). If the message is non-empty it raises HTTPError with that message and the response attached (src/requests/models.py:1144-1184).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "raise HTTP error status code error message"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-024",
+   "type": "code",
+   "question": "How are connect and read timeouts passed down to urllib3?",
+   "answer": "In HTTPAdapter.send, the timeout argument is normalized into a urllib3 Timeout object (imported as TimeoutSauce from urllib3.util): if it is a tuple, connect and read are unpacked and passed as TimeoutSauce(connect=connect, read=read); if it is already a TimeoutSauce it is used directly; otherwise a single value is applied to both as TimeoutSauce(connect=timeout, read=timeout) (src/requests/adapters.py:681-693). The resulting resolved_timeout is then passed to the connection's urlopen call as timeout=resolved_timeout (src/requests/adapters.py:695-748).",
+   "model_answer": "In HTTPAdapter.send, the timeout argument is normalized into a urllib3 Timeout object (imported as TimeoutSauce from urllib3.util): if it is a tuple, connect and read are unpacked and passed as TimeoutSauce(connect=connect, read=read); if it is already a TimeoutSauce it is used directly; otherwise a single value is applied to both as TimeoutSauce(connect=timeout, read=timeout) (src/requests/adapters.py:681-693). The resulting resolved_timeout is then passed to the connection's urlopen call as timeout=resolved_timeout (src/requests/adapters.py:695-748).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "connect read timeout urllib3"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 8.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-025",
+   "type": "code",
+   "question": "Where are credentials loaded from the user's netrc file?",
+   "answer": "Credentials are loaded from the user's netrc file by get_netrc_auth, which checks the NETRC environment variable first and otherwise looks for ~/.netrc or ~/.netrc (NETRC_FILES) in the user's home directory (src/requests/utils.py:231-287). The file location is defined by NETRC_FILES = (\".netrc\", \"_netrc\") (src/requests/utils.py:74-74).",
+   "model_answer": "Credentials are loaded from the user's netrc file by get_netrc_auth, which checks the NETRC environment variable first and otherwise looks for ~/.netrc or ~/.netrc (NETRC_FILES) in the user's home directory (src/requests/utils.py:231-287). The file location is defined by NETRC_FILES = (\".netrc\", \"_netrc\") (src/requests/utils.py:74-74).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "netrc credentials load"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 6.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-026",
+   "type": "code",
+   "question": "What does `prepare_url` do with internationalized (IDNA) host names?",
+   "answer": "prepare_url IDNA-encodes the host when it contains non-ASCII characters: it checks unicode_is_ascii(host), and if false it calls self._get_idna_encoded_host(host), which uses idna.encode(host, uts46=True).decode(\"utf-8\") and raises UnicodeError (surfaced as InvalidURL \"URL has an invalid label.\") on idna.IDNAError; for ASCII hosts it only rejects labels starting with \"*\" or \".\" (src/requests/models.py:483-542, src/requests/models.py:424-481).",
+   "model_answer": "prepare_url IDNA-encodes the host when it contains non-ASCII characters: it checks unicode_is_ascii(host), and if false it calls self._get_idna_encoded_host(host), which uses idna.encode(host, uts46=True).decode(\"utf-8\") and raises UnicodeError (surfaced as InvalidURL \"URL has an invalid label.\") on idna.IDNAError; for ASCII hosts it only rejects labels starting with \"*\" or \".\" (src/requests/models.py:483-542, src/requests/models.py:424-481).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "prepare_url IDNA internationalized host name"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 10.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-027",
+   "type": "code",
+   "question": "What does `requote_uri` do?",
+   "answer": "requote_uri re-quotes a URI by passing it through an unquote/quote cycle so it is fully and consistently quoted: it first unquotes only unreserved characters via unquote_unreserved and then quotes only illegal characters, keeping reserved, unreserved and '%' characters safe; if the URI cannot be unquoted (InvalidURL), it quotes the original URI while ensuring any unquoted '%' characters are properly escaped (src/requests/utils.py:704-722).",
+   "model_answer": "requote_uri re-quotes a URI by passing it through an unquote/quote cycle so it is fully and consistently quoted: it first unquotes only unreserved characters via unquote_unreserved and then quotes only illegal characters, keeping reserved, unreserved and '%' characters safe; if the URI cannot be unquoted (InvalidURL), it quotes the original URI while ensuring any unquoted '%' characters are properly escaped (src/requests/utils.py:704-722).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "requote_uri"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 10.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-028",
+   "type": "code",
+   "question": "How does `rewind_body` work?",
+   "answer": "rewind_body moves a file-like request body's pointer back to its recorded starting position so it can be read again on redirect (src/requests/utils.py:1098-1155). It gets the body's seek method via getattr(prepared_request.body, \"seek\", None); if that exists and prepared_request._body_position is an integer, it calls body_seek(prepared_request._body_position), raising UnrewindableBodyError if an OSError occurs; otherwise it raises UnrewindableBodyError because the body cannot be rewound (src/requests/utils.py:1098-1155). The _body_position value is recorded in prepare_body by calling body.tell() before reading, or set to object() if tell() fails (src/requests/models.py:603-652). It is invoked from resolve_redirects when the request is rewindable, i.e. _body_position is not None and the headers contain Content-Length or Transfer-Encoding (src/requests/sessions.py:237-280, src/requests/sessions.py:282-307).",
+   "model_answer": "rewind_body moves a file-like request body's pointer back to its recorded starting position so it can be read again on redirect (src/requests/utils.py:1098-1155). It gets the body's seek method via getattr(prepared_request.body, \"seek\", None); if that exists and prepared_request._body_position is an integer, it calls body_seek(prepared_request._body_position), raising UnrewindableBodyError if an OSError occurs; otherwise it raises UnrewindableBodyError because the body cannot be rewound (src/requests/utils.py:1098-1155). The _body_position value is recorded in prepare_body by calling body.tell() before reading, or set to object() if tell() fails (src/requests/models.py:603-652). It is invoked from resolve_redirects when the request is rewindable, i.e. _body_position is not None and the headers contain Content-Length or Transfer-Encoding (src/requests/sessions.py:237-280, src/requests/sessions.py:282-307).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "rewind_body"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 5,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-029",
+   "type": "code",
+   "question": "What does `get_connection_with_tls_context` do?",
+   "answer": "get_connection_with_tls_context returns a urllib3 HTTPConnectionPool for a given PreparedRequest and TLS settings; it is intended only for subclassing HTTPAdapter, not direct user code (src/requests/adapters.py:455-510). It asserts the request is prepared, selects a proxy from the proxies dict, builds the connection pool key attributes via build_connection_pool_key_attributes (raising InvalidURL on ValueError), and then obtains the connection either from a proxy manager (validating the proxy URL and raising InvalidProxyURL if the host is missing) or from the pool manager directly, returning the resulting connection (src/requests/adapters.py:455-510).",
+   "model_answer": "get_connection_with_tls_context returns a urllib3 HTTPConnectionPool for a given PreparedRequest and TLS settings; it is intended only for subclassing HTTPAdapter, not direct user code (src/requests/adapters.py:455-510). It asserts the request is prepared, selects a proxy from the proxies dict, builds the connection pool key attributes via build_connection_pool_key_attributes (raising InvalidURL on ValueError), and then obtains the connection either from a proxy manager (validating the proxy URL and raising InvalidProxyURL if the host is missing) or from the pool manager directly, returning the resulting connection (src/requests/adapters.py:455-510).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "get_connection_with_tls_context"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 9.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-030",
+   "type": "code",
+   "question": "Explain `CaseInsensitiveDict.lower_items`.",
+   "answer": "CaseInsensitiveDict.lower_items returns an iterator of (lowercased_key, value) tuples, like items() but with all keys lowercased (src/requests/structures.py:76-78). It works by iterating over self._store.items(), where each entry is a (lowerkey, (original_key, value)) pair, and yields (lowerkey, value) (src/requests/structures.py:76-78). The _store is an OrderedDict keyed by the lowercased key, with the original cased key stored alongside the value (src/requests/structures.py:20-74). It is used by __eq__ to compare two mappings case-insensitively by building dicts from lower_items of both sides (src/requests/structures.py:76-93).",
+   "model_answer": "CaseInsensitiveDict.lower_items returns an iterator of (lowercased_key, value) tuples, like items() but with all keys lowercased (src/requests/structures.py:76-78). It works by iterating over self._store.items(), where each entry is a (lowerkey, (original_key, value)) pair, and yields (lowerkey, value) (src/requests/structures.py:76-78). The _store is an OrderedDict keyed by the lowercased key, with the original cased key stored alongside the value (src/requests/structures.py:20-74). It is used by __eq__ to compare two mappings case-insensitively by building dicts from lower_items of both sides (src/requests/structures.py:76-93).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_symbol",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "get_symbol",
+     "arguments": {
+      "symbol": "lower_items"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "CaseInsensitiveDict lower_items"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 10.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-031",
+   "type": "code",
+   "question": "My Authorization header disappears after the server redirects me. Why?",
+   "answer": "The Authorization header is intentionally removed on redirects to avoid leaking credentials. When a redirect occurs, rebuild_auth checks should_strip_auth; if the redirect goes to a different hostname, or changes the scheme/port (except for the special http->https case on standard ports), it deletes the Authorization header from the prepared request (src/requests/sessions.py:309-332). The decision logic is in should_strip_auth, which returns True when the hostname differs, and otherwise returns True if the port or scheme changed, with a special allowance for http->https on standard ports (src/requests/sessions.py:154-184).",
+   "model_answer": "The Authorization header is intentionally removed on redirects to avoid leaking credentials. When a redirect occurs, rebuild_auth checks should_strip_auth; if the redirect goes to a different hostname, or changes the scheme/port (except for the special http->https case on standard ports), it deletes the Authorization header from the prepared request (src/requests/sessions.py:309-332). The decision logic is in should_strip_auth, which returns True when the hostname differs, and otherwise returns True if the port or scheme changed, with a special allowance for http->https on standard ports (src/requests/sessions.py:154-184).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Authorization header redirect"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 10.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-032",
+   "type": "code",
+   "question": "response.text shows garbled characters for a page that has no charset in its headers",
+   "answer": "When a response has no charset in its headers, Response.text falls back to auto-detection via apparent_encoding (charset_normalizer or chardet) and decodes with errors=\"replace\", which can produce garbled characters if the guess is wrong (src/requests/models.py:1034-1089). The encoding is determined solely from HTTP headers per RFC 2616; if you know the correct encoding, set r.encoding before accessing .text (src/requests/models.py:1034-1089).",
+   "model_answer": "When a response has no charset in its headers, Response.text falls back to auto-detection via apparent_encoding (charset_normalizer or chardet) and decodes with errors=\"replace\", which can produce garbled characters if the guess is wrong (src/requests/models.py:1034-1089). The encoding is determined solely from HTTP headers per RFC 2616; if you know the correct encoding, set r.encoding before accessing .text (src/requests/models.py:1034-1089).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "response.text charset encoding garbled characters"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 9.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-033",
+   "type": "code",
+   "question": "Uploading a file object that was partially read sends the wrong Content-Length",
+   "answer": "The fix is in super_len, which now seeks to the end to compute total_length and then seeks back to the current position, returning max(0, total_length - current_position) so a partially read file-like object reports the remaining bytes rather than the full file size (src/requests/utils.py:160-228). This value is used by prepare_content_length to set the Content-Length header (src/requests/models.py:654-697) and by prepare_body for streamed bodies (src/requests/models.py:603-652). The fix was introduced in commit 5397ef71b37e (\"Fix super_len for partially read files\").\n\nMatched commit details:\n- 5397ef71b37e (2015-11-10, Ian Cordasco): Fix super_len for partially read files; ranked 9 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "The fix is in super_len, which now seeks to the end to compute total_length and then seeks back to the current position, returning max(0, total_length - current_position) so a partially read file-like object reports the remaining bytes rather than the full file size (src/requests/utils.py:160-228). This value is used by prepare_content_length to set the Content-Length header (src/requests/models.py:654-697) and by prepare_body for streamed bodies (src/requests/models.py:603-652). The fix was introduced in commit 5397ef71b37e (\"Fix super_len for partially read files\").",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "partially read file object wrong Content-Length upload"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "super_len partially read file content length seek"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-034",
+   "type": "code",
+   "question": "I get a TooManyRedirects exception. Where is it raised?",
+   "answer": "TooManyRedirects is raised in SessionRedirectMixin.resolve_redirects when the number of redirects reaches self.max_redirects (src/requests/sessions.py:186-235). The exception class itself is defined in src/requests/exceptions.py:102-162.",
+   "model_answer": "TooManyRedirects is raised in SessionRedirectMixin.resolve_redirects when the number of redirects reaches self.max_redirects (src/requests/sessions.py:186-235). The exception class itself is defined in src/requests/exceptions.py:102-162.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "TooManyRedirects exception raise"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-035",
+   "type": "code",
+   "question": "Requests ignores my NO_PROXY environment variable",
+   "answer": "Requests reads the NO_PROXY environment variable (lowercase no_proxy is preferred, uppercase is a fallback) inside should_bypass_proxies, which checks whether the request URL's hostname matches the no_proxy list and returns True to bypass the proxy (src/requests/utils.py:810-870). This is invoked by resolve_proxies, which only consults environment proxies when trust_env is True and the URL is not bypassed (src/requests/utils.py:911-962). If your NO_PROXY is being ignored, common causes are: the session's trust_env is set to False, the hostname does not match the no_proxy entries (matching is by exact host, host:port, or suffix after a leading dot), or you are passing an explicit proxies dict that overrides environment settings. Note that the code prioritizes the lowercase no_proxy variable over uppercase NO_PROXY (src/requests/utils.py:810-870).",
+   "model_answer": "Requests reads the NO_PROXY environment variable (lowercase no_proxy is preferred, uppercase is a fallback) inside should_bypass_proxies, which checks whether the request URL's hostname matches the no_proxy list and returns True to bypass the proxy (src/requests/utils.py:810-870). This is invoked by resolve_proxies, which only consults environment proxies when trust_env is True and the URL is not bypassed (src/requests/utils.py:911-962). If your NO_PROXY is being ignored, common causes are: the session's trust_env is set to False, the hostname does not match the no_proxy entries (matching is by exact host, host:port, or suffix after a leading dot), or you are passing an explicit proxies dict that overrides environment settings. Note that the code prioritizes the lowercase no_proxy variable over uppercase NO_PROXY (src/requests/utils.py:810-870).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "NO_PROXY environment variable proxy configuration"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 18.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-036",
+   "type": "code",
+   "question": "A header value containing a newline raises InvalidHeader",
+   "answer": "A header value containing a newline (\\r or \\n) fails the value regex and raises InvalidHeader. The value validators are compiled to disallow \\r and \\n (src/requests/_internal_utils.py:1-51). check_header_validity validates both the name and value parts (src/requests/utils.py:1040-1095), and _validate_header_part raises InvalidHeader when the value does not match the validator (src/requests/utils.py:1098-1155). This is invoked from PreparedRequest.prepare_headers, which calls check_header_validity for each header (src/requests/models.py:565-574). The InvalidHeader exception is defined in src/requests/exceptions.py:102-162.",
+   "model_answer": "A header value containing a newline (\\r or \\n) fails the value regex and raises InvalidHeader. The value validators are compiled to disallow \\r and \\n (src/requests/_internal_utils.py:1-51). check_header_validity validates both the name and value parts (src/requests/utils.py:1040-1095), and _validate_header_part raises InvalidHeader when the value does not match the validator (src/requests/utils.py:1098-1155). This is invoked from PreparedRequest.prepare_headers, which calls check_header_validity for each header (src/requests/models.py:565-574). The InvalidHeader exception is defined in src/requests/exceptions.py:102-162.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "InvalidHeader newline header value"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 5,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 12.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-037",
+   "type": "code",
+   "question": "How does closing a session release its transport adapters?",
+   "answer": "Session.close() iterates over the values of self.adapters and calls close() on each one, which disposes of the adapter's internal state (src/requests/sessions.py:883-886). For the default HTTPAdapter, close() clears the PoolManager and any active ProxyManagers, which closes any pooled connections (src/requests/adapters.py:555-563). The base BaseAdapter.close() is the hook that subclasses override to clean up adapter-specific items (src/requests/adapters.py:152-155).",
+   "model_answer": "Session.close() iterates over the values of self.adapters and calls close() on each one, which disposes of the adapter's internal state (src/requests/sessions.py:883-886). For the default HTTPAdapter, close() clears the PoolManager and any active ProxyManagers, which closes any pooled connections (src/requests/adapters.py:555-563). The base BaseAdapter.close() is the hook that subclasses override to clean up adapter-specific items (src/requests/adapters.py:152-155).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "close session release transport adapters"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 8.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-038",
+   "type": "code",
+   "question": "How are outgoing request headers validated and stored case-insensitively?",
+   "answer": "Outgoing request headers are validated and stored case-insensitively in PreparedRequest.prepare_headers, which creates a CaseInsensitiveDict, iterates over the provided headers, calls check_header_validity on each (name, value) pair, and stores the name via to_native_string into the case-insensitive dict (src/requests/models.py:565-574). The case-insensitive storage is provided by CaseInsensitiveDict, which remembers the case of the last key set but performs lookups and contains tests case-insensitively (src/requests/structures.py:20-74). The actual per-part validation is done by _validate_header_part, which selects a str or bytes regex validator for the header name or value and raises InvalidHeader if the part contains invalid leading whitespace, reserved characters, or return characters (src/requests/utils.py:1098-1155).",
+   "model_answer": "Outgoing request headers are validated and stored case-insensitively in PreparedRequest.prepare_headers, which creates a CaseInsensitiveDict, iterates over the provided headers, calls check_header_validity on each (name, value) pair, and stores the name via to_native_string into the case-insensitive dict (src/requests/models.py:565-574). The case-insensitive storage is provided by CaseInsensitiveDict, which remembers the case of the last key set but performs lookups and contains tests case-insensitively (src/requests/structures.py:20-74). The actual per-part validation is done by _validate_header_part, which selects a str or bytes regex validator for the header name or value and raises InvalidHeader if the part contains invalid leading whitespace, reserved characters, or return characters (src/requests/utils.py:1098-1155).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "outgoing request headers validated case-insensitive"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 10.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-039",
+   "type": "code",
+   "question": "How does closing a response release its underlying connection?",
+   "answer": "Response.close() releases the connection by first closing the underlying raw stream if the content has not been consumed, then calling the raw object's release_conn method to return the connection to the pool (src/requests/models.py:1144-1184).",
+   "model_answer": "Response.close() releases the connection by first closing the underlying raw stream if the content has not been consumed, then calling the raw object's release_conn method to return the connection to the pool (src/requests/models.py:1144-1184).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "close response release connection"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 7.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "code-040",
+   "type": "code",
+   "question": "How is a dictionary converted to a cookie jar while respecting overwrite?",
+   "answer": "cookiejar_from_dict builds a RequestsCookieJar (or uses the provided jar), collects the names of cookies already in the jar, then for each key in the dictionary it calls set_cookie with create_cookie only when overwrite is True or the name is not already present in the jar (src/requests/cookies.py:579-601).",
+   "model_answer": "cookiejar_from_dict builds a RequestsCookieJar (or uses the provided jar), collects the names of cookies already in the jar, then for each key in the dictionary it calls set_cookie with create_cookie only when overwrite is True or the name is not already present in the jar (src/requests/cookies.py:579-601).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "dictionary converted to cookie jar overwrite"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 7.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-041",
+   "type": "docs",
+   "question": "Which Python versions does requests officially support?",
+   "answer": "Requests officially supports Python 3.10+ (README.md:30-38).",
+   "model_answer": "Requests officially supports Python 3.10+ (README.md:30-38).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "officially supported Python versions"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-042",
+   "type": "docs",
+   "question": "How do I install requests?",
+   "answer": "Run `python -m pip install requests` in your terminal (docs/user/install.rst:10-15). Alternatively, clone the source from GitHub and install it with `python -m pip install .` (docs/user/install.rst:17-36). Requests is available on PyPI and officially supports Python 3.10+ (README.md:30-38).",
+   "model_answer": "Run `python -m pip install requests` in your terminal (docs/user/install.rst:10-15). Alternatively, clone the source from GitHub and install it with `python -m pip install .` (docs/user/install.rst:17-36). Requests is available on PyPI and officially supports Python 3.10+ (README.md:30-38).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "install requests"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 6.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-043",
+   "type": "docs",
+   "question": "What are the runtime dependencies of requests?",
+   "answer": "The runtime dependencies of requests are charset_normalizer>=2,<4, idna>=2.5,<4, urllib3>=1.26,<3, and certifi>=2023.5.7 (pyproject.toml:1-24).",
+   "model_answer": "The runtime dependencies of requests are charset_normalizer>=2,<4, idna>=2.5,<4, urllib3>=1.26,<3, and certifi>=2023.5.7 (pyproject.toml:1-24).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "runtime dependencies requests"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 6.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-044",
+   "type": "docs",
+   "question": "How do I run the test suite?",
+   "answer": "Run the test suite with `make test`, which executes `python -m pytest tests` (Makefile:1-27). For CI-style runs with a JUnit report, use `make ci`, which runs `python -m pytest tests --junitxml=report.xml` (Makefile:1-27). You can also run coverage with `make coverage` (Makefile:1-27).",
+   "model_answer": "Run the test suite with `make test`, which executes `python -m pytest tests` (Makefile:1-27). For CI-style runs with a JUnit report, use `make ci`, which runs `python -m pytest tests --junitxml=report.xml` (Makefile:1-27). You can also run coverage with `make coverage` (Makefile:1-27).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "run test suite"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 6.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-045",
+   "type": "docs",
+   "question": "How do I set a timeout on a request?",
+   "answer": "Pass the timeout parameter to the request call. A single value applies to both the connect and read timeouts, e.g. requests.get('https://github.com', timeout=5) (docs/user/advanced.rst:1086-1117). To set them separately, pass a tuple (connect, read), e.g. requests.get('https://github.com', timeout=(3.05, 27)) (docs/user/advanced.rst:1086-1117). Pass timeout=None to wait forever (docs/user/advanced.rst:1119-1137). Note that timeout is not a limit on the entire response download; it raises an exception if no bytes are received on the socket for that many seconds (docs/user/quickstart.rst:529-549).",
+   "model_answer": "Pass the timeout parameter to the request call. A single value applies to both the connect and read timeouts, e.g. requests.get('https://github.com', timeout=5) (docs/user/advanced.rst:1086-1117). To set them separately, pass a tuple (connect, read), e.g. requests.get('https://github.com', timeout=(3.05, 27)) (docs/user/advanced.rst:1086-1117). Pass timeout=None to wait forever (docs/user/advanced.rst:1119-1137). Note that timeout is not a limit on the entire response download; it raises an exception if no bytes are received on the socket for that many seconds (docs/user/quickstart.rst:529-549).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "set a timeout on a request"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 9.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-046",
+   "type": "docs",
+   "question": "How do I use HTTP basic authentication?",
+   "answer": "To use HTTP Basic Auth, import HTTPBasicAuth and pass it as the auth argument: from requests.auth import HTTPBasicAuth; basic = HTTPBasicAuth('user', 'pass'); requests.get('https://httpbin.org/basic-auth/user/pass', auth=basic) (docs/user/authentication.rst:13-33). You can also use the shorthand tuple form, which is exactly the same: requests.get('https://httpbin.org/basic-auth/user/pass', auth=('user', 'pass')) (docs/user/authentication.rst:13-33). If no auth argument is given, Requests will try to read credentials for the hostname from the user's netrc file and send the request with HTTP Basic Auth (docs/user/authentication.rst:36-56).",
+   "model_answer": "To use HTTP Basic Auth, import HTTPBasicAuth and pass it as the auth argument: from requests.auth import HTTPBasicAuth; basic = HTTPBasicAuth('user', 'pass'); requests.get('https://httpbin.org/basic-auth/user/pass', auth=basic) (docs/user/authentication.rst:13-33). You can also use the shorthand tuple form, which is exactly the same: requests.get('https://httpbin.org/basic-auth/user/pass', auth=('user', 'pass')) (docs/user/authentication.rst:13-33). If no auth argument is given, Requests will try to read credentials for the hostname from the user's netrc file and send the request with HTTP Basic Auth (docs/user/authentication.rst:36-56).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "HTTP basic authentication"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 7.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-047",
+   "type": "docs",
+   "question": "How do I configure proxies?",
+   "answer": "You can configure proxies in three ways. Per request, pass a proxies dict to any request method, e.g. requests.get('http://example.org', proxies={'http': 'http://10.10.1.10:3128', 'https': 'http://10.10.1.10:1080'}) (docs/user/advanced.rst:578-614). For a whole session, set session.proxies.update(proxies) on a requests.Session, noting that environmental proxies can override these values (docs/user/advanced.rst:578-614). Or use standard environment variables http_proxy, https_proxy, no_proxy, and all_proxy (uppercase variants also supported), e.g. export HTTP_PROXY=\"http://10.10.1.10:3128\" (docs/user/advanced.rst:614-645). For HTTP Basic Auth use the http://user:password@host/ syntax in any entry (docs/user/advanced.rst:614-645). For a specific scheme and host, use the scheme://hostname form as the key, e.g. proxies = {'http://10.20.1.128': 'http://10.10.1.10:5323'} (docs/user/advanced.rst:647-691). For SOCKS proxies, install the extra with pip install 'requests[socks]' and use a socks5:// or socks5h:// URL (docs/user/advanced.rst:647-691).",
+   "model_answer": "You can configure proxies in three ways. Per request, pass a proxies dict to any request method, e.g. requests.get('http://example.org', proxies={'http': 'http://10.10.1.10:3128', 'https': 'http://10.10.1.10:1080'}) (docs/user/advanced.rst:578-614). For a whole session, set session.proxies.update(proxies) on a requests.Session, noting that environmental proxies can override these values (docs/user/advanced.rst:578-614). Or use standard environment variables http_proxy, https_proxy, no_proxy, and all_proxy (uppercase variants also supported), e.g. export HTTP_PROXY=\"http://10.10.1.10:3128\" (docs/user/advanced.rst:614-645). For HTTP Basic Auth use the http://user:password@host/ syntax in any entry (docs/user/advanced.rst:614-645). For a specific scheme and host, use the scheme://hostname form as the key, e.g. proxies = {'http://10.20.1.128': 'http://10.10.1.10:5323'} (docs/user/advanced.rst:647-691). For SOCKS proxies, install the extra with pip install 'requests[socks]' and use a socks5:// or socks5h:// URL (docs/user/advanced.rst:647-691).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "configure proxies"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 6,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 12.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-048",
+   "type": "docs",
+   "question": "Which Python versions does the CI test against?",
+   "answer": "The CI test matrix runs against Python 3.10, 3.11, 3.12, 3.13, 3.14, 3.14t, 3.15-dev, and pypy-3.11 (.github/workflows/run-tests.yml:1-45).",
+   "model_answer": "The CI test matrix runs against Python 3.10, 3.11, 3.12, 3.13, 3.14, 3.14t, 3.15-dev, and pypy-3.11 (.github/workflows/run-tests.yml:1-45).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "CI Python versions tested against"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 4.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-049",
+   "type": "docs",
+   "question": "What license is requests released under?",
+   "answer": "Apache 2.0 (docs/api.rst:193-202, pyproject.toml:26-56).",
+   "model_answer": "Apache 2.0 (docs/api.rst:193-202, pyproject.toml:26-56).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "license requests released under"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 5.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-050",
+   "type": "docs",
+   "question": "How do I verify SSL certificates or turn verification off?",
+   "answer": "Requests verifies SSL certificates for HTTPS requests by default, and will throw an SSLError if it cannot verify the certificate (docs/user/advanced.rst:211-244). To verify against a specific CA, pass verify the path to a CA_BUNDLE file or a directory of trusted CA certificates, e.g. requests.get('https://github.com', verify='/path/to/certfile'), or set it persistently on a session with s.verify = '/path/to/certfile' (docs/user/advanced.rst:211-244). If verify points to a directory, it must have been processed with the c_rehash utility from OpenSSL (docs/user/advanced.rst:211-244). You can also set the trusted CAs via the REQUESTS_CA_BUNDLE environment variable, with CURL_CA_BUNDLE as a fallback (docs/user/advanced.rst:211-244). To turn verification off, set verify to False, e.g. requests.get('https://kennethreitz.org', verify=False); note this accepts any TLS certificate and ignores hostname mismatches and expired certificates, making the application vulnerable to man-in-the-middle attacks, so it is only recommended for local development or testing (docs/user/advanced.rst:243-252).",
+   "model_answer": "Requests verifies SSL certificates for HTTPS requests by default, and will throw an SSLError if it cannot verify the certificate (docs/user/advanced.rst:211-244). To verify against a specific CA, pass verify the path to a CA_BUNDLE file or a directory of trusted CA certificates, e.g. requests.get('https://github.com', verify='/path/to/certfile'), or set it persistently on a session with s.verify = '/path/to/certfile' (docs/user/advanced.rst:211-244). If verify points to a directory, it must have been processed with the c_rehash utility from OpenSSL (docs/user/advanced.rst:211-244). You can also set the trusted CAs via the REQUESTS_CA_BUNDLE environment variable, with CURL_CA_BUNDLE as a fallback (docs/user/advanced.rst:211-244). To turn verification off, set verify to False, e.g. requests.get('https://kennethreitz.org', verify=False); note this accepts any TLS certificate and ignores hostname mismatches and expired certificates, making the application vulnerable to man-in-the-middle attacks, so it is only recommended for local development or testing (docs/user/advanced.rst:243-252).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "verify SSL certificates turn verification off"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 5,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "docs-051",
+   "type": "docs",
+   "question": "What is a Session object and why would I use one?",
+   "answer": "A Session object is a Requests session that provides cookie persistence, connection-pooling, and configuration (src/requests/sessions.py:395-440). You would use one to maintain state across multiple requests, such as keeping cookies and reusing connections, and it can be used directly or as a context manager (src/requests/sessions.py:395-440).",
+   "model_answer": "A Session object is a Requests session that provides cookie persistence, connection-pooling, and configuration (src/requests/sessions.py:395-440). You would use one to maintain state across multiple requests, such as keeping cookies and reusing connections, and it can be used directly or as a context manager (src/requests/sessions.py:395-440).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Session object class definition"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 5.5,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "docs-052",
+   "type": "docs",
+   "question": "How do I contribute a change to requests?",
+   "answer": "To contribute a change to requests, first read the Contributor's Guide and the AI Policy before opening any issues or proposing pull requests (.github/CONTRIBUTING.md:1-8). The Contributor's Guide lays out guidelines and advice for contributing, and is split into sections based on the type of contribution you're thinking of making (docs/dev/contributing.rst:1-23). Note that maintainers have the last word on whether a contribution is suitable, and contributions may be rejected if they do not suit the project's current goals (docs/dev/contributing.rst:49-59). You must also comply with the AI Policy: every contribution must be backed by a human who owns the copyright, no LLM bots in Co-authored-by, and no unsupervised agentic tools (.github/AI_POLICY.md:1-27).",
+   "model_answer": "To contribute a change to requests, first read the Contributor's Guide and the AI Policy before opening any issues or proposing pull requests (.github/CONTRIBUTING.md:1-8). The Contributor's Guide lays out guidelines and advice for contributing, and is split into sections based on the type of contribution you're thinking of making (docs/dev/contributing.rst:1-23). Note that maintainers have the last word on whether a contribution is suitable, and contributions may be rejected if they do not suit the project's current goals (docs/dev/contributing.rst:49-59). You must also comply with the AI Policy: every contribution must be backed by a human who owns the copyright, no LLM bots in Co-authored-by, and no unsupervised agentic tools (.github/AI_POLICY.md:1-27).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "contribute a change contribution guide"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 6.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-053",
+   "type": "history",
+   "question": "Who merged PR #6640 in psf/requests?",
+   "answer": "sigmavirus24",
+   "model_answer": "sigmavirus24",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 6640
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-054",
+   "type": "history",
+   "question": "Who merged PR #5206 in psf/requests?",
+   "answer": "sethmlarson",
+   "model_answer": "sethmlarson",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 5206
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-055",
+   "type": "history",
+   "question": "Who merged PR #1276 in psf/requests?",
+   "answer": "kennethreitz",
+   "model_answer": "kennethreitz",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1276
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-056",
+   "type": "history",
+   "question": "Who merged PR #2076 in psf/requests?",
+   "answer": "kennethreitz",
+   "model_answer": "kennethreitz",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2076
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-057",
+   "type": "history",
+   "question": "Who merged PR #2442 in psf/requests?",
+   "answer": "sigmavirus24",
+   "model_answer": "sigmavirus24",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2442
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-058",
+   "type": "history",
+   "question": "Who authored PR #3697 in psf/requests?",
+   "answer": "hussaintamboli",
+   "model_answer": "hussaintamboli",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 3697
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-059",
+   "type": "history",
+   "question": "Who authored PR #4683 in psf/requests?",
+   "answer": "martindurant",
+   "model_answer": "martindurant",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 4683
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-060",
+   "type": "history",
+   "question": "Who authored PR #137 in psf/requests?",
+   "answer": "monkeython",
+   "model_answer": "monkeython",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 137
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "history-061",
+   "type": "history",
+   "question": "Which issues does PR #1810 in psf/requests close?",
+   "answer": "- 1800",
+   "model_answer": "- 1800",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1810
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "history-062",
+   "type": "history",
+   "question": "Which issues does PR #2271 in psf/requests close?",
+   "answer": "- 2250",
+   "model_answer": "- 2250",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2271
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "history-063",
+   "type": "history",
+   "question": "Which issues does PR #1001 in psf/requests close?",
+   "answer": "- 1000",
+   "model_answer": "- 1000",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1001
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-064",
+   "type": "refs",
+   "question": "Which other PRs or issues does #265 in psf/requests mention in its title or body?",
+   "answer": "- 174",
+   "model_answer": "- 174",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 265
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-065",
+   "type": "refs",
+   "question": "Which other PRs or issues does #5500 in psf/requests mention in its title or body?",
+   "answer": "- 5443\n- 5492\n- 5496",
+   "model_answer": "- 5443\n- 5492\n- 5496",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 5500
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-066",
+   "type": "refs",
+   "question": "Which other PRs or issues does #1097 in psf/requests mention in its title or body?",
+   "answer": "- 1096",
+   "model_answer": "- 1096",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 1097
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-067",
+   "type": "refs",
+   "question": "Which other PRs or issues does #3032 in psf/requests mention in its title or body?",
+   "answer": "- 3028",
+   "model_answer": "- 3028",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 3032
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-068",
+   "type": "refs",
+   "question": "Which other PRs or issues does #4960 in psf/requests mention in its title or body?",
+   "answer": "- 4959",
+   "model_answer": "- 4959",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 4960
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-069",
+   "type": "refs",
+   "question": "Which PRs or issues in psf/requests mention #6557 in their title or body?",
+   "answer": "- 6561\n- 7090",
+   "model_answer": "- 6561\n- 7090",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 6557
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-070",
+   "type": "refs",
+   "question": "Which PRs or issues in psf/requests mention #5888 in their title or body?",
+   "answer": "- 5893\n- 5924\n- 7615",
+   "model_answer": "- 5893\n- 5924\n- 7615",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 5888
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-071",
+   "type": "refs",
+   "question": "Which PRs or issues in psf/requests mention #6242 in their title or body?",
+   "answer": "- 6243\n- 6244",
+   "model_answer": "- 6243\n- 6244",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 6242
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-072",
+   "type": "refs",
+   "question": "Which PRs or issues in psf/requests mention #3780 in their title or body?",
+   "answer": "- 3783",
+   "model_answer": "- 3783",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 3780
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "refs-073",
+   "type": "refs",
+   "question": "Which PRs or issues in psf/requests mention #2718 in their title or body?",
+   "answer": "- 6875",
+   "model_answer": "- 6875",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 2718
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "kind-074",
+   "type": "kind",
+   "question": "Is #1517 in psf/requests a pull request or an issue?",
+   "answer": "issue",
+   "model_answer": "issue",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "get_issue_meta"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1517
+     }
+    },
+    {
+     "name": "get_issue_meta",
+     "arguments": {
+      "number": 1517
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "kind-075",
+   "type": "kind",
+   "question": "Is #1983 in psf/requests a pull request or an issue?",
+   "answer": "issue",
+   "model_answer": "issue",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "get_issue_meta"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1983
+     }
+    },
+    {
+     "name": "get_issue_meta",
+     "arguments": {
+      "number": 1983
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "kind-076",
+   "type": "kind",
+   "question": "Is #7165 in psf/requests a pull request or an issue?",
+   "answer": "issue",
+   "model_answer": "issue",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "get_issue_meta"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 7165
+     }
+    },
+    {
+     "name": "get_issue_meta",
+     "arguments": {
+      "number": 7165
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 4.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "kind-077",
+   "type": "kind",
+   "question": "Is #1637 in psf/requests a pull request or an issue?",
+   "answer": "pull request",
+   "model_answer": "pull request",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1637
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "kind-078",
+   "type": "kind",
+   "question": "Is #1669 in psf/requests a pull request or an issue?",
+   "answer": "pull request",
+   "model_answer": "pull request",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1669
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commit-079",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPreparing a request body without headers throws a TypeError\n\nI have a usecase where I need ",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- 628e393b9a25 (2013-01-11, Matt McClure): Resolves the parts of  in requests proper.\n- 1d5c4f3f0f49 (2013-03-27, Ian Cordasco): This should take care of \n- 31b35ab838df (2016-09-21, Nate Prewitt): removing redundant logic from prepare_content_length",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "prepare_body headers None TypeError Content-Length"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "prepare_body headers None Content-Length"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 10.7,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commit-080",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRequest cookies should not be persisted to session\n\nAfter the fix for #1630, cookies sent w",
+   "answer": "No answer could be produced: the model's reply was not valid within the limits.",
+   "model_answer": "No answer could be produced: the model's reply was not valid within the limits.",
+   "abstain": true,
+   "failure": "budget",
+   "error": "",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"cookies not persisted to session request cookies\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr",
+    "search_prs",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "request cookies persisted to session"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "request cookies should not be persisted to session 1630"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 1728
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1729
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "1728 cookies not persisted session fix"
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "1728 request cookies not persisted session"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 21.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commit-081",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nrequests.get is ALWAYS sending content length\n\nHi,\n\nIt seems like that request.get always a",
+   "answer": "44b1e7ebeabd\n\nMatched commit details:\n- 44b1e7ebeabd (2013-01-24, Johnny Goodnow): Remove default Content-Length from GET requests.; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "44b1e7ebeabd",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "content-length header GET request always sent"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commit-082",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAttributeError while trying to read `content` attr\n\nIt seems that if there's a problem with",
+   "answer": "f7968b6797a5\n\nMatched commit details:\n- f7968b6797a5 (2011-11-04, Kenneth Reitz): r.content is None of there's an invalid response.; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "f7968b6797a5",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "AttributeError content raw read NoneType"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 4.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commit-083",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nGittip renamed to Gratipay, layout needs updating\n\nGittip [was renamed to Gratipay](https:/",
+   "answer": "4d498db3ed23\n\nMatched commit details:\n- 4d498db3ed23 (2014-10-14, morganthrapp): Update sidebarintro.html; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "4d498db3ed23",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Gittip renamed Gratipay sidebar button cut off CSS layout"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "accepted through ALSO_ACCEPTED"
+  },
+  {
+   "id": "commit-084",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nmethod = builtin_str(method) problem\n\nIn requests/sessions.py is a command:\n\nmethod = built",
+   "answer": "29ef10815831\n\nMatched commit details:\n- 29ef10815831 (2014-10-31, Ian Cordasco): Use to_native_string instead of builtin_str; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "29ef10815831",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "builtin_str method binary string b'GET' 404"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commit-085",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nFix Auth Registry\n\nModule-level auth registry not functional.",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- 1b885614760d (2011-02-14, Kenneth Reitz): Readme update\n- 20e0ee496829 (2011-10-23, Kenneth Reitz): Remove AuthObject entirely.\n- 94c587d642eb (2011-10-23, Kenneth Reitz): Comment out authentication handlers",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "auth registry module-level not functional"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "auth registry module-level register auth"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 11.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commit-086",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n[BUG] JSONDecodeError can't be deserialized - invalid JSON raises a BrokenProcessPool and c",
+   "answer": "3ff3ff21dd45\n\nMatched commit details:\n- 3ff3ff21dd45 (2024-01-31, Thomas Dehghani): - JSONDecodeError are not deserializable; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "3ff3ff21dd45",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "JSONDecodeError BrokenProcessPool deserialization pickling exceptions"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commit-087",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nOrder of operations\n\nSo I realized in changing github3.py's download creation function that",
+   "answer": "f48c78c9eebd\n\nMatched commit details:\n- f48c78c9eebd (2012-08-19, Ian Cordasco): Change ordering of data + params back.; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "f48c78c9eebd",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "_encode_files file tuples order data files ordering"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commit-088",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n301 redirect broken with latest pyopenssl/SNI\n\nWith the latest pyopenssl on Windows 64bit:\n",
+   "answer": "8b792be81bfa\n\nMatched commit details:\n- 8b792be81bfa (2014-01-28, Konstantinos Koukopoulos): on redirect pass URL as bytes.; ranked 8 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "8b792be81bfa",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "301 redirect unicode pyopenssl SNI bytes"
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1885
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 10.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "probe-089",
+   "type": "probe",
+   "question": "How does requests integrate with Django's ORM?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Django ORM integration"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 10.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "probe-090",
+   "type": "probe",
+   "question": "Where does requests implement GraphQL query batching?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "GraphQL query batching"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 10.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "probe-091",
+   "type": "probe",
+   "question": "How does requests implement a WebSocket client?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "WebSocket client implementation"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 10.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "probe-092",
+   "type": "probe",
+   "question": "Which function deploys requests to a Kubernetes cluster?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "deploy requests to Kubernetes cluster"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "probe-093",
+   "type": "probe",
+   "question": "How does requests map responses onto SQLAlchemy models?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "map response onto SQLAlchemy model"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-094",
+   "type": "prsearch",
+   "question": "In psf/requests, which pull request is about: \"handle multiple qop types\"? Give its number.",
+   "answer": "- 1602\n\nDetails from the search results:\n- #1602 (pull request, merged): PR #1602: Handle multiple qop types",
+   "model_answer": "- 1602",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "handle multiple qop types"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-095",
+   "type": "prsearch",
+   "question": "In psf/requests, which pull request is about: \"made .history type consistent (tuples only)\"? Give its number.",
+   "answer": "- 1898\n\nDetails from the search results:\n- #1898 (pull request, closed): PR #1898: Made .history type consistent (tuples only)",
+   "model_answer": "- 1898",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "made .history type consistent (tuples only)"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-096",
+   "type": "prsearch",
+   "question": "In psf/requests, which pull request is about: \"proof of concept async requests via futures\"? Give its number.",
+   "answer": "- 1247\n\nDetails from the search results:\n- #1247 (pull request, closed): PR #1247: proof of concept async requests via futures",
+   "model_answer": "- 1247",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "proof of concept async requests via futures"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-097",
+   "type": "prsearch",
+   "question": "In psf/requests, which pull request is about: \"🛠 fix: adapter overwrite passed-in retry\"? Give its number.",
+   "answer": "- 6395\n\nDetails from the search results:\n- #6395 (pull request, closed): PR #6395: 🛠 fix: Adapter overwrite passed-in retry",
+   "model_answer": "- 6395",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "fix: adapter overwrite passed-in retry"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 5.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-098",
+   "type": "prsearch",
+   "question": "In psf/requests, which pull request is about: \"add to authors and fix case\"? Give its number.",
+   "answer": "- 2172\n\nDetails from the search results:\n- #2172 (pull request, merged): PR #2172: Add to authors and fix case",
+   "model_answer": "- 2172",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "add to authors and fix case"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-099",
+   "type": "prsearch",
+   "question": "In psf/requests, which issue is about: \"when a response with status code 204 is received the package still tries to parser its bytes and get an exception\"? Give its number.",
+   "answer": "3794\n\nDetails from the search results:\n- #3794 (issue, closed): Issue #3794: When a response with status code 204 is received the package still tries to parser its ",
+   "model_answer": "3794",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "response status code 204 tries to parse bytes exception"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-100",
+   "type": "prsearch",
+   "question": "In psf/requests, which issue is about: \"requests does not support encoding headers to ascii?\"? Give its number.",
+   "answer": "2637\n\nDetails from the search results:\n- #2637 (issue, closed): Issue #2637: Requests does not support encoding headers to ascii?",
+   "model_answer": "2637",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "requests does not support encoding headers to ascii"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-101",
+   "type": "prsearch",
+   "question": "In psf/requests, which issue is about: \"\"content-type header: application/x-www-form-urlencoded\" won't be overridden\"? Give its number.",
+   "answer": "1608\n\nDetails from the search results:\n- #1608 (issue, closed): Issue #1608: \"Content-Type header: application/x-www-form-urlencoded\" won't be overridden",
+   "model_answer": "1608",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "content-type header application/x-www-form-urlencoded won't be overridden"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-102",
+   "type": "prsearch",
+   "question": "In psf/requests, which issue is about: \"pypi website description is showing html\"? Give its number.",
+   "answer": "5539\n\nDetails from the search results:\n- #5539 (issue, closed): Issue #5539: PyPi website description is showing HTML",
+   "model_answer": "5539",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "pypi website description is showing html"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "prsearch-103",
+   "type": "prsearch",
+   "question": "In psf/requests, which issue is about: \"how to add parameters --groups x25519\"? Give its number.",
+   "answer": "6197\n\nDetails from the search results:\n- #6197 (issue, closed): Issue #6197: how to add parameters --groups X25519",
+   "model_answer": "6197",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "how to add parameters --groups x25519"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  }
+ ]
+}

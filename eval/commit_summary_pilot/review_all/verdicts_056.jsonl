@@ -1,0 +1,24 @@
+{"n": 4860, "sha": "fe58c6fdd6c476657a2f390d24a6ca9fb7fa4c9b", "verdict": "ok", "reason": ""}
+{"n": 4861, "sha": "fe6882623c743043b72c44f1c74c3f78fcb4e4d9", "verdict": "ok", "reason": ""}
+{"n": 4862, "sha": "fe7348cc530fab7375939dce9672a05c6864a2fa", "verdict": "wrong", "reason": "The JSON property decodes the received response body, not a request body."}
+{"n": 4863, "sha": "fe8290b3d0ca21dd8ae5471a59a8bf13d3dcb31e", "verdict": "ok", "reason": ""}
+{"n": 4864, "sha": "fe945345dd5d9b187632e9f9084cd101ee3a1211", "verdict": "ok", "reason": ""}
+{"n": 4865, "sha": "fec0d1a9a09e60bd4da70765095a42f56d337f28", "verdict": "ok", "reason": ""}
+{"n": 4866, "sha": "fec96cd5976ad763e45bac9a033d62cca1877a00", "verdict": "ok", "reason": ""}
+{"n": 4867, "sha": "fecb35a08ec77d6392bdc609ab1ea21943e40228", "verdict": "filler", "reason": "The diff and test demonstrate quoting, but neither establishes standards compliance or server rejection of the prior form."}
+{"n": 4868, "sha": "fecf3dc472ddc78e20e96ea0b18e1589110c1d5e", "verdict": "ok", "reason": ""}
+{"n": 4869, "sha": "fed17cb58a23853731a322d0178217dc77f83ce0", "verdict": "wrong", "reason": "The response interface already had the same description before the edit."}
+{"n": 4870, "sha": "fed6cfbf4d282cc5056fd1e26b999523fdac73b1", "verdict": "cannot_tell", "reason": "The slice shows the start of the new module and lists CookieJar methods but lacks the implementation needed to verify cookie use across HTTP sessions."}
+{"n": 4871, "sha": "fedbafc79b73175b5ec4b75dccf189da426ef134", "verdict": "ok", "reason": ""}
+{"n": 4872, "sha": "fee0e94a76b4ed561897b341f8e88c046b483129", "verdict": "filler", "reason": "The empty file list establishes that the commit is empty but gives no evidence of a placeholder purpose."}
+{"n": 4873, "sha": "fef09a66916e89294030e08bd13b7ed238f9336f", "verdict": "ok", "reason": ""}
+{"n": 4874, "sha": "ff169d32fee661a40fd600a86ea6fae931bd99c8", "verdict": "ok", "reason": ""}
+{"n": 4875, "sha": "ff286f351cad5462fb59e9c4fd6f2284ba1146f5", "verdict": "ok", "reason": ""}
+{"n": 4876, "sha": "ff55d737d509d8af1308c4b118dd2cc4ebbaaa72", "verdict": "ok", "reason": ""}
+{"n": 4877, "sha": "ff56e431ad94ce54ad0fb8e11113474ea1362112", "verdict": "filler", "reason": "The additional support contacts are visible, but the excerpt gives no basis for calling the set of channels complete."}
+{"n": 4878, "sha": "ff71b25efc44460d941b97a021a2b58bc3e0ef2e", "verdict": "ok", "reason": ""}
+{"n": 4879, "sha": "ff7cfa732f16049cc871f00f93c666c8e193cb09", "verdict": "ok", "reason": ""}
+{"n": 4880, "sha": "ff954e16f141bac5696632a50db31cbaf3746044", "verdict": "ok", "reason": ""}
+{"n": 4881, "sha": "ffdbc387ea67398ac123b2ff5a5d69df3e198340", "verdict": "ok", "reason": ""}
+{"n": 4882, "sha": "ffde764a910e64398d01a8058a540853b63d60d3", "verdict": "ok", "reason": ""}
+{"n": 4883, "sha": "fff5269d1a9eb3c07acbbb0d995b689d674123c8", "verdict": "ok", "reason": ""}

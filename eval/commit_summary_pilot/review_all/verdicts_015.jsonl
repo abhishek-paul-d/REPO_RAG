@@ -1,0 +1,81 @@
+{"n": 1216, "sha": "3e3019691734a8867370bb6dee54559b4a747679", "verdict": "filler", "reason": "The paragraph wrapper is shown, but the excerpt does not establish the resulting rendered spacing."}
+{"n": 1217, "sha": "3e32356716572e59c9f10c6c2622bedf5f48b07e", "verdict": "wrong", "reason": "The wildcard import does not expose the new module's double-underscore metadata because the module defines no __all__."}
+{"n": 1218, "sha": "3e3fc7683cab2d401981fdf01ae8cdc40c8d6222", "verdict": "ok", "reason": ""}
+{"n": 1219, "sha": "3e45e4ba51addaa8c65b34864d272e9b8bad014b", "verdict": "ok", "reason": ""}
+{"n": 1220, "sha": "3e4efeeb897c761d0dff2b31be10c32a7eecfc5b", "verdict": "ok", "reason": ""}
+{"n": 1221, "sha": "3e568eb3b0c3f2dc2cc11ba873db8593918bad87", "verdict": "ok", "reason": ""}
+{"n": 1222, "sha": "3e60a9eb9c0321938cd9788e550532ba79c15592", "verdict": "wrong", "reason": "The excerpt does not show Unicode encoding failing, and the change specifically stops treating Unicode values as the strings to encode."}
+{"n": 1223, "sha": "3e7c682e66fb4b276c8343bb718d8b13037cea15", "verdict": "ok", "reason": ""}
+{"n": 1224, "sha": "3e8a14e133d8c2dc35a76e0a2a2ae3151c171c26", "verdict": "cannot_tell", "reason": "The excerpt reaches the new pre_request dispatcher but cuts off before any runtime change for post_request is shown."}
+{"n": 1225, "sha": "3ea9c5382619d15c5058faa2faea4257eb9ddd4c", "verdict": "ok", "reason": ""}
+{"n": 1226, "sha": "3ed0f8fba044e65946385f1067dcb1ab0440f37d", "verdict": "ok", "reason": ""}
+{"n": 1227, "sha": "3ed60078e2376c847ba0b0c9d564af522623c5ba", "verdict": "filler", "reason": "The Jinja motivation and version restrictions are shown, but the dev requirement edits do not establish that the whole application runs correctly."}
+{"n": 1228, "sha": "3ee594140bb5bbbb8553cbd20c99c116d1954c0f", "verdict": "ok", "reason": ""}
+{"n": 1229, "sha": "3eeea3771b274e1089317faa302730e74203b37c", "verdict": "wrong", "reason": "The new facility exposes data returned by handlers to the main thread and does not establish that the server processes requests after connection closure."}
+{"n": 1230, "sha": "3ef41153498917bc4d01123b2f7a8fbd8e7bcf63", "verdict": "cannot_tell", "reason": "Proxy-header merging and the import change are visible, but the excerpt stops before the hostname matching hunks needed to check the claimed refinement."}
+{"n": 1231, "sha": "3ef49272f2ff7bef67c8b53bcfba9c3a2ecfa9c7", "verdict": "ok", "reason": ""}
+{"n": 1232, "sha": "3efd5dbab42fb6fe7d4825bbd575d989574c1505", "verdict": "ok", "reason": ""}
+{"n": 1233, "sha": "3f024ff7746ff2eed5b7ca04f0266fa2a51fa529", "verdict": "ok", "reason": ""}
+{"n": 1234, "sha": "3f07f990ac74f1e1691ba17ef8c14007f05846ab", "verdict": "ok", "reason": ""}
+{"n": 1235, "sha": "3f21a2d62eaa0d4746b4bb8af6746c87b941468e", "verdict": "filler", "reason": "The binary additions and modifications are shown, but the excerpt does not show where the assets are displayed."}
+{"n": 1236, "sha": "3f86e22a07fb1bd91c70d3c487efbadb55f6b36a", "verdict": "ok", "reason": ""}
+{"n": 1237, "sha": "3f873dc22271625c21cc85fe8d1186aa1dd465a0", "verdict": "filler", "reason": "The code stops forwarding hooks into Request construction, but duplicated or misapplied callbacks are not established by the excerpt."}
+{"n": 1238, "sha": "3f8f1dc00c11c501c9596a8d8008e40d4d99179f", "verdict": "wrong", "reason": "The summary reverses the change to the attributes registry and conflates it with two individual settings."}
+{"n": 1239, "sha": "3f98034c2aa5d04e45670ef968c0c7026c188ed9", "verdict": "ok", "reason": ""}
+{"n": 1240, "sha": "3fa02a13360778965b0dc2b52e086e5da8a91df7", "verdict": "ok", "reason": ""}
+{"n": 1241, "sha": "3faff0b8ea2c3c7d87272971893234e26a01d9fc", "verdict": "wrong", "reason": "The original condition already checked builtin_str as well as str, and no failure on either byte or Unicode values is shown."}
+{"n": 1242, "sha": "3fccf63f491b53a443b6fb187da5db48ec33203d", "verdict": "ok", "reason": ""}
+{"n": 1243, "sha": "3fd309a5c14e4cfbd96bea6c8e71b4958fe090bb", "verdict": "filler", "reason": "The function counts UTF-8 bytes for strings, but the excerpt does not show how the transport encodes every value it sends."}
+{"n": 1244, "sha": "3fe4753d5d3afd9f02f80675f4ff60259ab4e450", "verdict": "wrong", "reason": "The new __repr__ is observable, even though the authentication methods otherwise only get documentation and spacing edits."}
+{"n": 1245, "sha": "3ff2995c1d38d7353209881fe83995622581ecf7", "verdict": "ok", "reason": ""}
+{"n": 1246, "sha": "3ff3ff21dd45957c9e143cd500291959bb15f690", "verdict": "wrong", "reason": "The error was in unpickling after serialization, rather than in the ability to pickle the object."}
+{"n": 1247, "sha": "3ff8d4380188934ed170a084083c7c5fe6cdf0c6", "verdict": "ok", "reason": ""}
+{"n": 1248, "sha": "400046f9116ccee8baff0c5936a2ede530589fec", "verdict": "ok", "reason": ""}
+{"n": 1249, "sha": "4002efb56a0aca6c6a0281fba69bf45faaed4e88", "verdict": "ok", "reason": ""}
+{"n": 1250, "sha": "400d27f982ff24784388409a70ad8945927ac023", "verdict": "wrong", "reason": "Setting the SNI warning filter to always controls display when emitted, but it does not make the secure server trigger that warning across environments."}
+{"n": 1251, "sha": "4018276b54a644f3529cbe751e8db594056dc9e9", "verdict": "wrong", "reason": "The urllib2 import is still present on the context line in the changed hunk."}
+{"n": 1252, "sha": "401e17bbdcda31724fa6eda982a5e0473d3c0bf1", "verdict": "filler", "reason": "The examples switch to the httpbin authentication endpoint, but the source does not compare endpoint reliability."}
+{"n": 1253, "sha": "402a55b647c852553ff6967403b12f6b6efc0fd8", "verdict": "wrong", "reason": "The restored prefix test sends http+unix through HTTP-style preparation and removes its passthrough test."}
+{"n": 1254, "sha": "402f3b4993fe8d0626fcffcbfc30caf671b65df3", "verdict": "wrong", "reason": "The diff distinguishes None from an empty JSON object, but the message explicitly says the change fails on tests."}
+{"n": 1255, "sha": "40402cd0dd044b640b984d25233e1095fae9ec16", "verdict": "ok", "reason": ""}
+{"n": 1256, "sha": "404585ce8c289fba05daddb78ded6910eda683f7", "verdict": "ok", "reason": ""}
+{"n": 1257, "sha": "404ecaf95bbaaa42013d7ae67b96c7593296d8cf", "verdict": "ok", "reason": ""}
+{"n": 1258, "sha": "4070bcf1b9d3cb7036ccd27136206720897a0fe7", "verdict": "ok", "reason": ""}
+{"n": 1259, "sha": "408e576d33659638ce5c010a48dc32aefc4d10f1", "verdict": "filler", "reason": "The reported values and source link are shown, but the text does not establish that the new count is current or more accurate."}
+{"n": 1260, "sha": "40956723f27daf5e0d9759208ca69cef236ab339", "verdict": "wrong", "reason": "The opt-in file affects blame attribution and does not remove the formatting commit from history or guarantee original-author attribution."}
+{"n": 1261, "sha": "4095b26f136021ec93f44c3ac099ae90894fd783", "verdict": "filler", "reason": "The introductory criticism is removed, but the excerpt does not establish that it was outdated."}
+{"n": 1262, "sha": "40a060cf579a7f0996c92eed578148e526d9416f", "verdict": "ok", "reason": ""}
+{"n": 1263, "sha": "40ba6b4ec13e599ede207ec6987c37b0c1b54152", "verdict": "filler", "reason": "The iframe URL is replaced, but the excerpt does not establish that the previous URL was outdated or that the new iframe loads successfully."}
+{"n": 1264, "sha": "40c54800a60f1c7e47f3de3e4a8482734bda1bdf", "verdict": "ok", "reason": ""}
+{"n": 1265, "sha": "40c5a8b0c28e2756e83ecfab0160ca3be37391e1", "verdict": "ok", "reason": ""}
+{"n": 1266, "sha": "40c8bcf70ce397bf8d8ffcf3e8471e5da1d76dfc", "verdict": "ok", "reason": ""}
+{"n": 1267, "sha": "40f4b984ef471a53ed11a8a224c705d7f10b435a", "verdict": "wrong", "reason": "The new fundraising text is a paragraph within the existing section, with no new section heading."}
+{"n": 1268, "sha": "4114b0452134a31455c3340f5371dde46dc8b907", "verdict": "wrong", "reason": "The implementation claims describe features listed in the release notes, but the commit changes only the changelog."}
+{"n": 1269, "sha": "412e3a20a9b7933b5dab4fbd689b2ea017f069aa", "verdict": "ok", "reason": ""}
+{"n": 1270, "sha": "413f2a557c31531d6a2b38a1e79e74873c80db33", "verdict": "wrong", "reason": "The new wording credits urllib3 but neither describes it as external nor establishes that the former embedded description was inaccurate."}
+{"n": 1271, "sha": "414b9dde840f2624b247f42eec2c11e5ee5c6717", "verdict": "ok", "reason": ""}
+{"n": 1272, "sha": "414f0513c33883adf6f2b46901d4f0b38a455851", "verdict": "filler", "reason": "The action upgrades are identified, but latest stable status is not established for either tool."}
+{"n": 1273, "sha": "41517e2111ce964db9f3a102b89eea103f2dc411", "verdict": "filler", "reason": "The task definition is deleted, but the excerpt does not establish that the script was unused."}
+{"n": 1274, "sha": "415fb53cb45969f0f4877b95b035f6b864ff7450", "verdict": "ok", "reason": ""}
+{"n": 1275, "sha": "41687c8fa8e77830a8ff3f2cefa05d8a586c5132", "verdict": "wrong", "reason": "The listed changes concern release metadata and documentation, not the implementation of uploads or chunking."}
+{"n": 1276, "sha": "41876fd8c6b7146026acfe58b18ceeb21aed3069", "verdict": "ok", "reason": ""}
+{"n": 1277, "sha": "4193b95db0e24b298b2c41d404c8b6e45c977ff5", "verdict": "ok", "reason": ""}
+{"n": 1278, "sha": "41a33f2e869e1fdcd88062be469775f613ee8ced", "verdict": "ok", "reason": ""}
+{"n": 1279, "sha": "41b4658738e7177adf044e4c80fdf42acf7b6d38", "verdict": "wrong", "reason": "The rewrite is added to the idna target, with no evidence that a package build runs that target."}
+{"n": 1280, "sha": "41c26ce1f54278954575df015d861b4dd5cb8894", "verdict": "ok", "reason": ""}
+{"n": 1281, "sha": "41c455182b7c64808ca14dfd13dd2e4febcf2d25", "verdict": "filler", "reason": "The license year changes from 2017 to 2018, but the excerpt does not establish when maintenance occurred."}
+{"n": 1282, "sha": "41d1a427b06acd33ae69728f4dc63e56078719b0", "verdict": "ok", "reason": ""}
+{"n": 1283, "sha": "4207867aaf917ed8d223064cc5c163dfe027dc00", "verdict": "filler", "reason": "The docstring and secure fixture changes are supported, but the excerpt does not establish how validation is better."}
+{"n": 1284, "sha": "421b1f175766065e2feb569990c528df16c2874f", "verdict": "filler", "reason": "The action is pinned to 3.22.11, but the excerpt does not establish that it is the latest supported scanning tool."}
+{"n": 1285, "sha": "4246792b818ce804fb1bb98877c8ec7e8f71b2ca", "verdict": "ok", "reason": ""}
+{"n": 1286, "sha": "424fe263d8d80c9e8b90fccfc5b26d5bbc239681", "verdict": "ok", "reason": ""}
+{"n": 1287, "sha": "42582019007a1071ebf9a4ad7d206dfc89547430", "verdict": "ok", "reason": ""}
+{"n": 1288, "sha": "426a1c01200434ec8a9012d36c918974ae30587a", "verdict": "ok", "reason": ""}
+{"n": 1289, "sha": "427e8eb1e7559ac4739c04069310be18ddbb734f", "verdict": "ok", "reason": ""}
+{"n": 1290, "sha": "428678b2e4601b6c8b484a9c15e389474b7067d5", "verdict": "ok", "reason": ""}
+{"n": 1291, "sha": "428fc9c0bd889eb673fcfe0803e7eab0e3712ea6", "verdict": "wrong", "reason": "The URL-presence check already exists in the removed code and is relocated, while a separate scheme check is new."}
+{"n": 1292, "sha": "4291f76c9939a15838feed0b64230f4197ba844b", "verdict": "ok", "reason": ""}
+{"n": 1293, "sha": "4293e3fdb20c53d744c38db0c78d18fa62e2d34a", "verdict": "ok", "reason": ""}
+{"n": 1294, "sha": "42a206e5d32c878d7fee04849adc7ef8991fbacf", "verdict": "ok", "reason": ""}
+{"n": 1295, "sha": "42a3b5cce8336c52ad7102a3a493576ba40fb4fa", "verdict": "filler", "reason": "The pin changes to 2.22.1, but neither latest status nor any particular scanning improvement is established."}
+{"n": 1296, "sha": "42b029552190f6639642d0f62d27abcd1ceed51e", "verdict": "filler", "reason": "The only visible change removes the class attribute list, so copying, serialization, and pickling failures are speculative."}

@@ -1,0 +1,93 @@
+{"n": 1919, "sha": "61be59d996eace1b958a189c98e0e3a4219aa1b0", "verdict": "ok", "reason": ""}
+{"n": 1920, "sha": "61c324da43dd8b775d3930d76265538b3ca27bc1", "verdict": "wrong", "reason": "The dependency and error-message changes are mentioned in the release notes but are not implemented by the files changed here."}
+{"n": 1921, "sha": "61d50d531cca57061335c776148c55d452ef5c3e", "verdict": "ok", "reason": ""}
+{"n": 1922, "sha": "61f16d1ddcf4729945ce7b0b9bfbd94b75dc4b92", "verdict": "filler", "reason": "The code sets the length by seeking on the file, but the excerpt does not establish broader transmission accuracy."}
+{"n": 1923, "sha": "620a5391c38a2eef86ba69748833aa3c00aaef62", "verdict": "ok", "reason": ""}
+{"n": 1924, "sha": "620ed4fc5240ccba73d60a6905cd13ec325c1b10", "verdict": "ok", "reason": ""}
+{"n": 1925, "sha": "62176a1ca7207db37273365b4691ed599203b828", "verdict": "filler", "reason": "The year changes from 2016 to 2017, but the excerpt does not establish that 2017 was current when the edit was made."}
+{"n": 1926, "sha": "62200cb07e76b0b6189bc64d1ca35d43514d0566", "verdict": "wrong", "reason": "The expected-failure case creates successive iterators without any concurrent execution, so it demonstrates a repeated-use problem rather than a concurrency test."}
+{"n": 1927, "sha": "623d9e7878895eea4e2f7e263b7fc3f01459a37a", "verdict": "ok", "reason": ""}
+{"n": 1928, "sha": "6253cf4c183161bed987aaa76c0b59e82e281eac", "verdict": "ok", "reason": ""}
+{"n": 1929, "sha": "626c48e9471d8075039aeb5daefa61756951e03f", "verdict": "cannot_tell", "reason": "The safer check is visible in HTTPConnection, but the VerifiedHTTPSConnection hunk cuts off before its replacement and cannot establish what that class now does."}
+{"n": 1930, "sha": "6271046a271a689848e7658047436d644e295093", "verdict": "ok", "reason": ""}
+{"n": 1931, "sha": "628325ae90352e09fa5ccee29211ddeb2955d199", "verdict": "filler", "reason": "The viewport and layout changes are visible, but the excerpt does not establish the resulting display on small screens."}
+{"n": 1932, "sha": "628474d62666e6691ec35677a918f5e97c35cda2", "verdict": "wrong", "reason": "The certificate reversion is a release note, and the bundle itself is absent from the changed files."}
+{"n": 1933, "sha": "628633143d5b8590b1dbdf5371fe81fb8250dffd", "verdict": "filler", "reason": "The dependency addition is shown, but no runtime certificate selection or SSL failure is established."}
+{"n": 1934, "sha": "628e393b9a251c3d2b9910c697b9e4ac4f3d8d6a", "verdict": "cannot_tell", "reason": "The extracted method is visible, but its remainder and prepare_auth changes are cut off, so unchanged behavior cannot be verified."}
+{"n": 1935, "sha": "62925fb668597e8e7a24e97aa25af1c4cf786872", "verdict": "ok", "reason": ""}
+{"n": 1936, "sha": "62931b60f8c6da1a1f1a3bd472c8d6ce0570c27c", "verdict": "ok", "reason": ""}
+{"n": 1937, "sha": "629d730da606110f2adcf46a16b7a73b829fa159", "verdict": "ok", "reason": ""}
+{"n": 1938, "sha": "62a23bfbdecf54e13e571237df5a175e53d539cb", "verdict": "ok", "reason": ""}
+{"n": 1939, "sha": "62afdabb30b817c1e6a08787e22498d0cafda355", "verdict": "ok", "reason": ""}
+{"n": 1940, "sha": "62b014560ae8c282c761e413a9d31c727fe4a462", "verdict": "wrong", "reason": "The installed revision follows the repository's default ref, and nothing pins or identifies master in the excerpt."}
+{"n": 1941, "sha": "62d05f842dc10c056bb721b0a5430c9c98c64349", "verdict": "ok", "reason": ""}
+{"n": 1942, "sha": "62d29d510625aa6c5415f4ba35579059b1c842fd", "verdict": "ok", "reason": ""}
+{"n": 1943, "sha": "62d2ea80340de1ae146cce3c85490444a8fca047", "verdict": "filler", "reason": "The new chunk size is shown, but no measured or otherwise established performance improvement is provided."}
+{"n": 1944, "sha": "62df872871049f1911bbcfee194d603e9704613e", "verdict": "wrong", "reason": "The visible change is to how the raw header values are retrieved, rather than evidence that lookups previously failed on case variants."}
+{"n": 1945, "sha": "62f0df4434df363435e3e3a9cac73ddfac4cd07c", "verdict": "ok", "reason": ""}
+{"n": 1946, "sha": "63243b1e3b435c7736acf1e51c0f6fa6666d861d", "verdict": "ok", "reason": ""}
+{"n": 1947, "sha": "632d9893b0187205ff4ccae8e17b5bfc0e1359a8", "verdict": "ok", "reason": ""}
+{"n": 1948, "sha": "634b2beb39644a1aa1ef3f1f7c4f26fe0a6a9bf8", "verdict": "ok", "reason": ""}
+{"n": 1949, "sha": "6360477c52303c9445b45fa8744b02d05a2f0905", "verdict": "filler", "reason": "The workflow pins 4.35.1, but no latest status or new scanning features and fixes are shown."}
+{"n": 1950, "sha": "6366d3dd190a9e58ca582955cddf7e2ac5f32dcc", "verdict": "ok", "reason": ""}
+{"n": 1951, "sha": "636e61d68b9176c614f8243295c81552dd0ee199", "verdict": "ok", "reason": ""}
+{"n": 1952, "sha": "637d0330c2e0ed96da4d2458847a3fc811aa4006", "verdict": "wrong", "reason": "The test makes a POST call but does not inspect the transmitted body or server response."}
+{"n": 1953, "sha": "638532dd9ae319bef4d2eaa4b905d21bfc035c7e", "verdict": "wrong", "reason": "The code only bumps the version, while danger_mode and iter_lines appear in release notes without any performance evidence."}
+{"n": 1954, "sha": "63b3b9be55e0a836ec312dd2197366c260fd2eb0", "verdict": "wrong", "reason": "The new description refers to environment settings generally and does not limit authentication to environment variables."}
+{"n": 1955, "sha": "63e7748fe502f44d112486d81a0da8cf38f36455", "verdict": "ok", "reason": ""}
+{"n": 1956, "sha": "6404f345e562d962abe6700a1c357ec1e7e18232", "verdict": "ok", "reason": ""}
+{"n": 1957, "sha": "640538adcb81fd5930eadb1ecf47dcb8a0a62ab3", "verdict": "ok", "reason": ""}
+{"n": 1958, "sha": "6413c063ed88244902e9ab1daea382f60ab17587", "verdict": "ok", "reason": ""}
+{"n": 1959, "sha": "641f4611b285d8c3b9bee7d6ce62ea1c4d4fc242", "verdict": "ok", "reason": ""}
+{"n": 1960, "sha": "6421ec1784642a3e34fb3af4e6a3e05fb2dbc899", "verdict": "ok", "reason": ""}
+{"n": 1961, "sha": "642bbf60604d74319bd0e625277d4ac5bfe3cb9b", "verdict": "ok", "reason": ""}
+{"n": 1962, "sha": "645933a5da8a6554045f918bfca7798bed7c4b7c", "verdict": "cannot_tell", "reason": "The excerpt shows removal of monkey-handler imports but cuts off before the AuthObject and method changes needed to establish the claimed removal of the class and replacement response handling."}
+{"n": 1963, "sha": "647cdd38476f6b21887d3ebcd6e0c79a6c97baa1", "verdict": "wrong", "reason": "The new fallback is explicitly intended to use the global timeout when the opener lacks the timeout argument, so the side effect is not eliminated in every case."}
+{"n": 1964, "sha": "647ed5b6de6a71d235eb222fe978899c0447b0f2", "verdict": "wrong", "reason": "The file-backed case is already present and gains extra checks, while only the hook case gets a new test definition."}
+{"n": 1965, "sha": "6495190b00b4635791ca718990b9c9a1aa2d5b33", "verdict": "wrong", "reason": "The whitespace hunks are placed inside or after the named functions, and do not both insert lines before those definitions."}
+{"n": 1966, "sha": "649aeaa489d66807a30b9e7ea508589f036ba883", "verdict": "ok", "reason": ""}
+{"n": 1967, "sha": "649dac1029ad51e01091a06feac81f199249cfc3", "verdict": "wrong", "reason": "The quoted RFC passage addresses the server's advertised qop options and does not establish a requirement for the client's outgoing value."}
+{"n": 1968, "sha": "64ba451049c614eb14d336c2e7989ffaa81b2bb5", "verdict": "ok", "reason": ""}
+{"n": 1969, "sha": "64d6c3074f2e1bd5ae5f5d786f83d592a5a56ead", "verdict": "wrong", "reason": "The excerpt shows a shorter extension list but does not establish that the removed extensions were unsupported or caused a build failure."}
+{"n": 1970, "sha": "64eb415ec0595f4ee5a59578dbbbb99200755c49", "verdict": "ok", "reason": ""}
+{"n": 1971, "sha": "64ec73cbda37eca386984354ef28899fe5b4f6be", "verdict": "ok", "reason": ""}
+{"n": 1972, "sha": "64eee1eba72cf9e5e5f99e0db00139023c0a30cf", "verdict": "ok", "reason": ""}
+{"n": 1973, "sha": "64efd9cfe0909c831bc0737331131a2546237acf", "verdict": "ok", "reason": ""}
+{"n": 1974, "sha": "64f0b3c81ecbe6b4dff1393ad0409da64e1e8cee", "verdict": "filler", "reason": "The notice drops certificate metadata, but the excerpt does not establish that those details were outdated."}
+{"n": 1975, "sha": "6551c290fdbf0b29e4534abef1b04f7485a88aad", "verdict": "ok", "reason": ""}
+{"n": 1976, "sha": "655f0edbb43dad16ea5fe6ec0f31fdc1de396610", "verdict": "ok", "reason": ""}
+{"n": 1977, "sha": "6562137731f9ad11be7c156fa25220fc3a7ffe03", "verdict": "wrong", "reason": "The changelog edit records a behavior and does not suppress any runtime error itself."}
+{"n": 1978, "sha": "6576370b7bc227c7c0bec8517c3bac24d98e9e4f", "verdict": "ok", "reason": ""}
+{"n": 1979, "sha": "658c10e84a461e5298199f20f17b510b90ac478a", "verdict": "ok", "reason": ""}
+{"n": 1980, "sha": "658d609e9ffcef264b172a37e2c82649e4a28ef3", "verdict": "ok", "reason": ""}
+{"n": 1981, "sha": "658da765ecc72b369a9f01d267ffb5db4bb6871e", "verdict": "wrong", "reason": "The two literals still concatenate into the same character set and do not change validation or runtime compliance handling."}
+{"n": 1982, "sha": "6592dbc29b4e4f76b544f523437cc88ac2943634", "verdict": "ok", "reason": ""}
+{"n": 1983, "sha": "6597b5383485c8ffd06f5593c338d4793b7b8e82", "verdict": "wrong", "reason": "The constraint selects a sufficiently new package for the runtime API and does not establish that installation formerly failed on those systems."}
+{"n": 1984, "sha": "65989ddfe927f2dd3f194c5fed0df770006473bc", "verdict": "ok", "reason": ""}
+{"n": 1985, "sha": "65a73bd0f7935d3bb479238793d9d5fd6a2b33d7", "verdict": "wrong", "reason": "The named phrases are two features in the first table row, not separate documentation sections."}
+{"n": 1986, "sha": "65a765fe882ab30f794be8108abf9defd05900c5", "verdict": "wrong", "reason": "The early return for no default dictionary bypasses the None-key removal, so that cleanup is not universal."}
+{"n": 1987, "sha": "65b6ef6036f7a40538a8beb90ae8ef906e5792b6", "verdict": "ok", "reason": ""}
+{"n": 1988, "sha": "65bf3ab201d9e58062f1456036d5989bcb2e43d5", "verdict": "ok", "reason": ""}
+{"n": 1989, "sha": "65c06579b477d64c10c3f544c00832f81d0d1d6f", "verdict": "filler", "reason": "The new attribution is visible, but one addition does not establish that every contributor is accurately credited."}
+{"n": 1990, "sha": "65c19bc0e0c44da54ff46d2237264800e2f2238f", "verdict": "wrong", "reason": "The changed loop snapshots the key-value pairs into a list and does not copy the dictionary itself."}
+{"n": 1991, "sha": "65fb2a50c839ca5ae6496498efb0548054481d1e", "verdict": "ok", "reason": ""}
+{"n": 1992, "sha": "660e0903157579fae39d72c1ac7af45a1f6dc9d1", "verdict": "filler", "reason": "The missing hook files are added, but the excerpt does not show that users had encountered import errors."}
+{"n": 1993, "sha": "661970d171d9c3e12e4c789c4768db647d8c4da0", "verdict": "ok", "reason": ""}
+{"n": 1994, "sha": "661af1dc1ab08403c2d71310d7e7c00f684a1861", "verdict": "wrong", "reason": "The oauthlib.common import remains unconditional, so only some oauthlib imports become Python 2-only."}
+{"n": 1995, "sha": "66293b830a8b9507a458d26e305664bf4ea03d55", "verdict": "ok", "reason": ""}
+{"n": 1996, "sha": "662c3edacc76d6a0e7b55b569c9fea38f8b0bc78", "verdict": "ok", "reason": ""}
+{"n": 1997, "sha": "6632fb87c0eceed91d48f2bf84144cd4d24f77b8", "verdict": "ok", "reason": ""}
+{"n": 1998, "sha": "66339b21fa45404b28812bb6d86408acf3f9cc81", "verdict": "wrong", "reason": "The Twitter Streaming API reference remains in the immediate context, and the excerpt does not describe it as deprecated."}
+{"n": 1999, "sha": "66391e5c9da77889ebaf1c8a1cd3f84543d6943b", "verdict": "ok", "reason": ""}
+{"n": 2000, "sha": "6648defcddeff2e5e4022f51a9fd7b6c224bc472", "verdict": "ok", "reason": ""}
+{"n": 2001, "sha": "66567e037b5805dc81b80745bf2468a568aa04f3", "verdict": "ok", "reason": ""}
+{"n": 2002, "sha": "665bb2a6874bcbbfc864c100490b4dcb47a3aad9", "verdict": "ok", "reason": ""}
+{"n": 2003, "sha": "667367d6b9875752c8144ee7a3f2c22a398671e2", "verdict": "ok", "reason": ""}
+{"n": 2004, "sha": "667896c557718114fcb1c365f29e5d04413bff84", "verdict": "ok", "reason": ""}
+{"n": 2005, "sha": "6686ac173011a302c26c4aedbd992f96d6e58357", "verdict": "ok", "reason": ""}
+{"n": 2006, "sha": "66c52c3ce0e273250cbb5e470ef4e0daadeac715", "verdict": "ok", "reason": ""}
+{"n": 2007, "sha": "66d21cb07bd6255b1280291c4fafb71803cdb3b7", "verdict": "ok", "reason": ""}
+{"n": 2008, "sha": "66ef8886c6523e59d75bed40fedd3145fe0afe25", "verdict": "filler", "reason": "The new openSUSE bundle path is shown, but the excerpt does not establish what SSL verification failures it prevents."}
+{"n": 2009, "sha": "670c4aecdde6232f2f487564a4ccac70f9cc7002", "verdict": "ok", "reason": ""}
+{"n": 2010, "sha": "6716d7c9f29df636643fa2489f98890216525cb0", "verdict": "ok", "reason": ""}
+{"n": 2011, "sha": "671ba85d410febab91ac580eab8282a485c89108", "verdict": "ok", "reason": ""}

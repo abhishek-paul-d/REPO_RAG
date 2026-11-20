@@ -1,0 +1,95 @@
+{"n": 4765, "sha": "f89b5a5d90d7b45a7f59dbd2bb29ae2f400aba44", "verdict": "ok", "reason": ""}
+{"n": 4766, "sha": "f8a59c3e6fc7a6f1dd5d4f9783ee25c8458bccee", "verdict": "ok", "reason": ""}
+{"n": 4767, "sha": "f8aa36b92d95e6d2f133489f39f9d5c2412f1bd9", "verdict": "filler", "reason": "A CI job with an urllib3 less-than-2 requirement checks compatibility in one environment and cannot guarantee it across the older major series."}
+{"n": 4768, "sha": "f8ade967626ac36ccb26dd2788e2194df292a034", "verdict": "ok", "reason": ""}
+{"n": 4769, "sha": "f8af499700b58cf550205c463ad4b163a784892b", "verdict": "ok", "reason": ""}
+{"n": 4770, "sha": "f8b3141204c83737fd6ab7a5ba3aa84e0a1b6d61", "verdict": "ok", "reason": ""}
+{"n": 4771, "sha": "f8bec2f7ca9d7c03981a12ff8866a9b3923f1699", "verdict": "ok", "reason": ""}
+{"n": 4772, "sha": "f8c98715c307dda487d0cc404eb7d26c53c49aa4", "verdict": "ok", "reason": ""}
+{"n": 4773, "sha": "f8ccc604987cdad57426b2852951402734b994bb", "verdict": "ok", "reason": ""}
+{"n": 4774, "sha": "f8e2d0e7328b74e4cc6e60edd1eecaaa1052eb96", "verdict": "ok", "reason": ""}
+{"n": 4775, "sha": "f90931465227dddee68d1d39ccfe80ff4792c5c8", "verdict": "ok", "reason": ""}
+{"n": 4776, "sha": "f90c31185145d9ec4dbe19b8e35c374424c684f4", "verdict": "filler", "reason": "The template shows a different site ID without evidence about the correctness of tracking or configuration."}
+{"n": 4777, "sha": "f9141f51ec937da874aa6799393acb78a0247675", "verdict": "cannot_tell", "reason": "The excerpt does not show where the response r came from or whether it was made through the session with preset cookies."}
+{"n": 4778, "sha": "f93275c47f1557793bec348918013750e6902ff4", "verdict": "ok", "reason": ""}
+{"n": 4779, "sha": "f96157d259e43d9dfa9adeae54a9779004d35cf6", "verdict": "ok", "reason": ""}
+{"n": 4780, "sha": "f968fe013659b9b5b89f0316203de5f3139a7217", "verdict": "filler", "reason": "The examples show a different endpoint and output but give no basis for comparing endpoint reliability."}
+{"n": 4781, "sha": "f97e78726e7efe64b9a3db27707ec579e859ef06", "verdict": "ok", "reason": ""}
+{"n": 4782, "sha": "f996313aabec649cab6b7a2b90763beab70aee3b", "verdict": "ok", "reason": ""}
+{"n": 4783, "sha": "f997c0590fb84481e4d33e2f3b45320e54466264", "verdict": "ok", "reason": ""}
+{"n": 4784, "sha": "f99a2534c92fd64e518c8442e77de3ec0f42b4d9", "verdict": "ok", "reason": ""}
+{"n": 4785, "sha": "f9a48e0f0b79c1f6dc148b1abc6a2622c48b1ab1", "verdict": "ok", "reason": ""}
+{"n": 4786, "sha": "f9a9233058314e815f7a8763e19f1e42ef1822d0", "verdict": "ok", "reason": ""}
+{"n": 4787, "sha": "f9ac75cab1365f059d827b0e6aca84a16c49bbab", "verdict": "wrong", "reason": "Adds an angle bracket while the closing parenthesis already existed."}
+{"n": 4788, "sha": "f9b7d92b9189a210d12cd6bd38847b19394eec44", "verdict": "ok", "reason": ""}
+{"n": 4789, "sha": "f9bcf7c611781f3ec9237f1872b5ab1be0f8fb71", "verdict": "ok", "reason": ""}
+{"n": 4790, "sha": "f9c0ddf46ddae0a6b901257309424f2f3f196d90", "verdict": "wrong", "reason": "Join requires strings, so the fix does not handle arbitrary list values."}
+{"n": 4791, "sha": "f9d5cbe5b56227d61709cb1309d6152f90df24e8", "verdict": "ok", "reason": ""}
+{"n": 4792, "sha": "f9dfbb73ddbc6ce78cd6e57dd436158fc417d031", "verdict": "cannot_tell", "reason": "The excerpt includes the forwarded argument but omits the receiving call, so the session destination cannot be verified."}
+{"n": 4793, "sha": "f9f3b46ef6f5266099e351243f4068c100274d0b", "verdict": "ok", "reason": ""}
+{"n": 4794, "sha": "fa1b0a367abc8488542f7ce7c02a3614ad8aa09d", "verdict": "ok", "reason": ""}
+{"n": 4795, "sha": "fa1db9581477b8748b76344623e9b3eb8f77f4f9", "verdict": "ok", "reason": ""}
+{"n": 4796, "sha": "fa2dbe9a91764734a23104f9a4bde2a6d2bd9cde", "verdict": "ok", "reason": ""}
+{"n": 4797, "sha": "fa42c12e5b3a9bad83594d9831ddb00be094e249", "verdict": "ok", "reason": ""}
+{"n": 4798, "sha": "fa47067802e89a06eab564547535abe6ba687166", "verdict": "ok", "reason": ""}
+{"n": 4799, "sha": "fa838c7a852c6ec2c737eb530e6005974df7ffbb", "verdict": "ok", "reason": ""}
+{"n": 4800, "sha": "fa91b0ab7ce45389357a4fc9f33785514b265b40", "verdict": "ok", "reason": ""}
+{"n": 4801, "sha": "faae6b87b14851a75a62c3c4e82e0b571e3a8fa3", "verdict": "ok", "reason": ""}
+{"n": 4802, "sha": "faafb5a043534353f0a71c0d290d884cbd02e998", "verdict": "ok", "reason": ""}
+{"n": 4803, "sha": "fad1c665a640701c588924f8c9606f69b0662322", "verdict": "ok", "reason": ""}
+{"n": 4804, "sha": "fad8d743b584c874cde320fa9be08192061f7ed8", "verdict": "ok", "reason": ""}
+{"n": 4805, "sha": "fadcf799def168cc2ac3c2f09c865745813fd043", "verdict": "wrong", "reason": "The statement about Python 3 syntax leaves out versions that accept u-prefixed literals."}
+{"n": 4806, "sha": "fae3f92c34d8d7267de33ecb676b3d5600146257", "verdict": "filler", "reason": "The visible move defers the import and adds a fallback, while the excerpt gives no measured or stated startup-delay result."}
+{"n": 4807, "sha": "fae670147814f7107f6978117948b8395030a522", "verdict": "ok", "reason": ""}
+{"n": 4808, "sha": "fae7530a17c5f602a0eff662072cc610fe54e82a", "verdict": "ok", "reason": ""}
+{"n": 4809, "sha": "fb1971778f0a199e65193af4bbd0a040fd3808f8", "verdict": "ok", "reason": ""}
+{"n": 4810, "sha": "fb230709a8d35d8d2973eab3365cb8f9664cfa90", "verdict": "ok", "reason": ""}
+{"n": 4811, "sha": "fb2380c3cc48eac77cc164df3f277a045a9f8848", "verdict": "ok", "reason": ""}
+{"n": 4812, "sha": "fb2931801edd807c581108e743040475116c5d85", "verdict": "ok", "reason": ""}
+{"n": 4813, "sha": "fb2ce4f0dc063decfb7ce7da0e91b52f41646896", "verdict": "ok", "reason": ""}
+{"n": 4814, "sha": "fb49481ddfae75840271bbeff5987a791170d76d", "verdict": "ok", "reason": ""}
+{"n": 4815, "sha": "fb496e4e86cafd78fd510e6d1ecf539c0545bcae", "verdict": "ok", "reason": ""}
+{"n": 4816, "sha": "fb6dade63d967623e5fb7505e05d22995dcec00e", "verdict": "filler", "reason": "The alias avoids the visible collision with the json argument, while “specific JSON handling requirements” adds no supported explanation."}
+{"n": 4817, "sha": "fb7efcf3f1cb1fb91214bfc6291090a7903f2a31", "verdict": "ok", "reason": ""}
+{"n": 4818, "sha": "fba77fc65f40ba10428346c0d01fe6c5d55ddbce", "verdict": "ok", "reason": ""}
+{"n": 4819, "sha": "fbb8d32c4eda57c56ce4dee222f863d4cc44405b", "verdict": "ok", "reason": ""}
+{"n": 4820, "sha": "fbc366c1a551c05d8c1ebfdf92608b7062a22622", "verdict": "ok", "reason": ""}
+{"n": 4821, "sha": "fbc5ed552e120c7efd719aa259f1def58d18bc5f", "verdict": "ok", "reason": ""}
+{"n": 4822, "sha": "fbd0eb37320376740a1010f52f2b9870e8210d88", "verdict": "filler", "reason": "The diff confirms the version bump but does not establish that the new version was the latest patch release."}
+{"n": 4823, "sha": "fbe0393eb34e975022cd3bf884dc94a6f5aa886d", "verdict": "ok", "reason": ""}
+{"n": 4824, "sha": "fbe104876efe9c8a792c12fe089f749edf0f59ee", "verdict": "ok", "reason": ""}
+{"n": 4825, "sha": "fbe48fbb7c5b96cde3a16453311e45f723516afd", "verdict": "ok", "reason": ""}
+{"n": 4826, "sha": "fc04d8a368b373945f2b7d701a683d1167ff4101", "verdict": "wrong", "reason": "The attribute gains a documentation comment, not a string literal."}
+{"n": 4827, "sha": "fc106ab586b9bfeca37c54780387b24b5d2b13b4", "verdict": "ok", "reason": ""}
+{"n": 4828, "sha": "fc1d0fedea5c400c539b660f7bf8301d855a1d63", "verdict": "ok", "reason": ""}
+{"n": 4829, "sha": "fc1e9b46a197b8412fa3fdb7d2bcb5e0f62f68a5", "verdict": "filler", "reason": "The samples use different names and humorous text with no shown expansion of the existing syntax guidance."}
+{"n": 4830, "sha": "fc3b03a5f50bdfb2e05e71d74787a8532801fcf1", "verdict": "ok", "reason": ""}
+{"n": 4831, "sha": "fc512d89245c4ee1f4b6d6f0445bc962a0621288", "verdict": "ok", "reason": ""}
+{"n": 4832, "sha": "fc618aa78a63d372e160a42f1589dbb738ab16a2", "verdict": "ok", "reason": ""}
+{"n": 4833, "sha": "fc6ddfd78a26afe926c0b5430807d2bbe6d7c874", "verdict": "ok", "reason": ""}
+{"n": 4834, "sha": "fc8fa1aa265bb14d59c68eb68a179bce17953967", "verdict": "wrong", "reason": "URL preparation still converts string or bytes parameters, while the shared encoder now returns bytes unchanged for callers including body preparation."}
+{"n": 4835, "sha": "fc9b8a02148dd3b41c0323f868d8664e70c49468", "verdict": "filler", "reason": "The Python 2 compatibility branch changes detector preference, but the excerpt does not substantiate the relative speed claim."}
+{"n": 4836, "sha": "fc9dfac2b9d1861734fabd0eb2da7b9bd14fa736", "verdict": "ok", "reason": ""}
+{"n": 4837, "sha": "fcac1c3746b72777b8b25f78b9abff0d3e283389", "verdict": "ok", "reason": ""}
+{"n": 4838, "sha": "fcb272cc36b3fcf64220f669e48df8bd4566563c", "verdict": "wrong", "reason": "The removed line in cookies.py is a bare reference rather than an assignment."}
+{"n": 4839, "sha": "fcb8c8d33b72f66a0c94b3f2b0a65cb2a2e06697", "verdict": "ok", "reason": ""}
+{"n": 4840, "sha": "fcc3b7d7b1c50dadaa385526a27f338fce9c3890", "verdict": "ok", "reason": ""}
+{"n": 4841, "sha": "fcde69193acac25fb7d550a85f37020fb4881b79", "verdict": "ok", "reason": ""}
+{"n": 4842, "sha": "fd13816d015c4c90ee65297fa996caea6a094ed1", "verdict": "ok", "reason": ""}
+{"n": 4843, "sha": "fd31453aa25f80f04e1ce36de9abff0460bd136a", "verdict": "ok", "reason": ""}
+{"n": 4844, "sha": "fd628095d7b9ddbf3e987d8a4bf0e6062768916f", "verdict": "ok", "reason": ""}
+{"n": 4845, "sha": "fd6b1f0c4e7fc4c7236faf5c0debff8222c08af2", "verdict": "wrong", "reason": "A trailing comma can be omitted on a final element, and adjacent string literals concatenate in Python."}
+{"n": 4846, "sha": "fd7610dd7a144879481b48e3b5412753b8499776", "verdict": "ok", "reason": ""}
+{"n": 4847, "sha": "fd926e74c3879776bcba42ac6f204302417aa1e8", "verdict": "ok", "reason": ""}
+{"n": 4848, "sha": "fdb9b753b47e7abead1ec75d860c9c9b929ca5f5", "verdict": "filler", "reason": "The old and new image URLs do not establish that the old photo was outdated or the new one current."}
+{"n": 4849, "sha": "fdbb53db19382e82e6ad67235a9fe16811cfa6e9", "verdict": "wrong", "reason": "The spacing edit is on a keyword argument, not inside the dictionary."}
+{"n": 4850, "sha": "fdd08215ea88510ecc5ccf883f37b9d087a5c112", "verdict": "ok", "reason": ""}
+{"n": 4851, "sha": "fdd54e14d68123899e61dd651176264b1276f416", "verdict": "wrong", "reason": "The removed line is entirely empty."}
+{"n": 4852, "sha": "fde7ba78f255ced0f1ade4dd5cd4daa41a2b26f3", "verdict": "ok", "reason": ""}
+{"n": 4853, "sha": "fdec88de995fd94c1f0dbe33e105680bbd1ac1de", "verdict": "ok", "reason": ""}
+{"n": 4854, "sha": "fdf932c61c7ff77d494a4a413cc5fbdb71328ac7", "verdict": "wrong", "reason": "Consumption alone is insufficient to raise the new error."}
+{"n": 4855, "sha": "fe0850f34134254c7aee753da2bdaa450acf5e7b", "verdict": "filler", "reason": "The diff shows the literal year change but does not independently establish that 2016 was current."}
+{"n": 4856, "sha": "fe0b0a989fad80a300d2cf940d58370d13cc9e42", "verdict": "ok", "reason": ""}
+{"n": 4857, "sha": "fe10eeb5bec86e4d2055c63d7686eda53f69fd2f", "verdict": "ok", "reason": ""}
+{"n": 4858, "sha": "fe2063be0cfbc08150ef468ae57a708c2514a321", "verdict": "ok", "reason": ""}
+{"n": 4859, "sha": "fe4211d5b5efb585b014845ef4d99d79cb1f316f", "verdict": "ok", "reason": ""}

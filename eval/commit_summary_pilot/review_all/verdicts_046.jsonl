@@ -1,0 +1,87 @@
+{"n": 3968, "sha": "cfefcab8e055627ea7384a4a15a6af671aa7103f", "verdict": "ok", "reason": ""}
+{"n": 3969, "sha": "cff3b7f9bd96b6837914ebb0fcf79ba874569ca5", "verdict": "ok", "reason": ""}
+{"n": 3970, "sha": "cff70e75b77ab61a8a57a25a4921acc5a5ef6ce1", "verdict": "ok", "reason": ""}
+{"n": 3971, "sha": "cffa0effe02d796e5f44391f899d94ea53be82a2", "verdict": "filler", "reason": "The requirements change removes pytest-mock without showing that it was unused or redundant."}
+{"n": 3972, "sha": "d0285fac4203e8cfed6b5ceeb96b2646076e745d", "verdict": "ok", "reason": ""}
+{"n": 3973, "sha": "d0359c9460eb83759734dd898b1dd633f5477b89", "verdict": "filler", "reason": "The message identifies a broken old link, but the excerpt does not verify that the replacement works in the generated documentation."}
+{"n": 3974, "sha": "d04f31b302cef097e061bcdf6e1a45d522c72abc", "verdict": "ok", "reason": ""}
+{"n": 3975, "sha": "d05840d34d8eb533bdde08c83bcf33c9a3a660fc", "verdict": "ok", "reason": ""}
+{"n": 3976, "sha": "d06908d655eca4467521c28d93a68d329d48d524", "verdict": "ok", "reason": ""}
+{"n": 3977, "sha": "d06dabab59b1b9f07289d8a8cd533a3adedbfaba", "verdict": "cannot_tell", "reason": "Tunneling and HTTPConnectionPool proxy parameters are visible, but the excerpt ends before the PoolManager changes needed to verify that it receives new parameters."}
+{"n": 3978, "sha": "d078b69aefc24ec6fc52fcaf4334c2573e5168fc", "verdict": "wrong", "reason": "The handler surrounds the entire parse and update loop, rather than catching an error per cookie and continuing."}
+{"n": 3979, "sha": "d09c0e0f24486f66ceaa03b0631d7e23f385e7c2", "verdict": "cannot_tell", "reason": "The visible branch list loses proposed/3.0.0, but the excerpt does not show all workflow triggers needed to verify the master-only claim."}
+{"n": 3980, "sha": "d0aa0175e6b32bdb5b4f6b87c07d02c0088fcdea", "verdict": "ok", "reason": ""}
+{"n": 3981, "sha": "d0b9357f1bfe2eb4c0d7d0614ec948caeaa49fe1", "verdict": "ok", "reason": ""}
+{"n": 3982, "sha": "d0bf5538097cbdee663eddf4e29e9f34106c67cb", "verdict": "cannot_tell", "reason": "The file is named but no content hunk is supplied, so the claimed deletion or its purpose cannot be verified."}
+{"n": 3983, "sha": "d0cb56932c251667420e4876f99f5fa6b5c8a9a6", "verdict": "ok", "reason": ""}
+{"n": 3984, "sha": "d0fdf0eb38da6afaddc8bca88af3fa32fac367cf", "verdict": "filler", "reason": "The comment drops the enumeration, but the excerpt does not establish that the previous method list was outdated."}
+{"n": 3985, "sha": "d11522b29e3d05017c1464f13dd3be70c3ffd1a4", "verdict": "wrong", "reason": "The old send code constructed a new HTTPAdapter at each call site, rather than reusing one for every request."}
+{"n": 3986, "sha": "d123e9fe78e7d76d407d7a46b0b5a70be5adecd5", "verdict": "ok", "reason": ""}
+{"n": 3987, "sha": "d12eac8669bc820c7fdd4efe47032112a6b41a1b", "verdict": "ok", "reason": ""}
+{"n": 3988, "sha": "d13bf9f11337e90ca2d2f86667982d2876a9088f", "verdict": "ok", "reason": ""}
+{"n": 3989, "sha": "d15365bf4fd34c3a09956f35a2992cfef27a75d0", "verdict": "ok", "reason": ""}
+{"n": 3990, "sha": "d165b18b6e0c1aaabd8f652f88308008769f6625", "verdict": "ok", "reason": ""}
+{"n": 3991, "sha": "d181577f3e34ac4bda2458f7b28405a5ed034d87", "verdict": "ok", "reason": ""}
+{"n": 3992, "sha": "d18ea48b956df50fbd69cea6526f16fb9cb856c0", "verdict": "ok", "reason": ""}
+{"n": 3993, "sha": "d1b6db05a4aa48e10f08015889da0dfb20f4dc4c", "verdict": "filler", "reason": "The flag is set when prefetch is truthy, but the excerpt does not show the subsequent reads that the summary claims are avoided."}
+{"n": 3994, "sha": "d1c89333d05fbfefd2fa71e835164b59f40bc1e2", "verdict": "wrong", "reason": "The common request entry point is a module function used by the convenience functions, not a method on Request."}
+{"n": 3995, "sha": "d1ca591c0fc0cfac634c74ed8b283c47ecffa9f8", "verdict": "ok", "reason": ""}
+{"n": 3996, "sha": "d1dc6aa329ef2bc972f9e71a795a9d00c3c46ceb", "verdict": "ok", "reason": ""}
+{"n": 3997, "sha": "d1fab0b60ce040b9789d5854719a631aa7fe9802", "verdict": "ok", "reason": ""}
+{"n": 3998, "sha": "d2176cf0526ee1965f830f0a6681dbcc9007d52e", "verdict": "filler", "reason": "The helper changes to urljoin, but the excerpt does not establish a particular resolution error that the old concatenation caused."}
+{"n": 3999, "sha": "d22ac00098475367ea0c0725d7db94d7967b09b1", "verdict": "ok", "reason": ""}
+{"n": 4000, "sha": "d22b8d8e7e8fcb8d16efba6841977dc81ac2c935", "verdict": "ok", "reason": ""}
+{"n": 4001, "sha": "d22eaf96e2a1c64bc29579a072f67d2a9c758ef8", "verdict": "cannot_tell", "reason": "The helper adds absent cookies to the jar it receives, but the caller changes are cut off and do not establish whether that jar is a session-owned object or a copy."}
+{"n": 4002, "sha": "d232948188f922c137dd709b53f77c49d1442c84", "verdict": "ok", "reason": ""}
+{"n": 4003, "sha": "d23c4b94c11eadfba7554fa7216f2a30b04396ca", "verdict": "wrong", "reason": "The standard module provides encoders such as b64encode, but has no standard function named base64."}
+{"n": 4004, "sha": "d240b1fe15d373b37c5939db52835816d88f0aab", "verdict": "ok", "reason": ""}
+{"n": 4005, "sha": "d2427ecae751a533ddd9026849dd19cfaa3394f4", "verdict": "ok", "reason": ""}
+{"n": 4006, "sha": "d243668d16e5a1b9d886f12f43ab521a1774df65", "verdict": "ok", "reason": ""}
+{"n": 4007, "sha": "d249c0a9c6dccf2bd63c3d1aad365f37cc4591a1", "verdict": "ok", "reason": ""}
+{"n": 4008, "sha": "d24ee0e1dce2b8e387aca70ce9483b93ca618fae", "verdict": "ok", "reason": ""}
+{"n": 4009, "sha": "d25280dc20d93446f1f66b069932c0c7adaf6515", "verdict": "filler", "reason": "The target changes to a Stack Overflow question, but whether the new link works is unverified."}
+{"n": 4010, "sha": "d2584ff853c2cc319daa5ad5e93486f96c595d0e", "verdict": "ok", "reason": ""}
+{"n": 4011, "sha": "d258b20eba81447a94ea17a40a7e3b45854eb9ab", "verdict": "ok", "reason": ""}
+{"n": 4012, "sha": "d2590ee46c0641958b6d4792a206bd5171cb247d", "verdict": "ok", "reason": ""}
+{"n": 4013, "sha": "d262df99bfe0972300ca025e58a2ce1a329e3a22", "verdict": "ok", "reason": ""}
+{"n": 4014, "sha": "d26f3333e4d2ac65fd82bd413bc5759a0808e259", "verdict": "wrong", "reason": "The excerpt shows state persisting on the same instance, not sharing between separate response objects."}
+{"n": 4015, "sha": "d26f6314ab07eb8ea42ffb0a96e28deebf61ed18", "verdict": "ok", "reason": ""}
+{"n": 4016, "sha": "d2713412e5ca97b68b7f38924cf902729ddbf96d", "verdict": "ok", "reason": ""}
+{"n": 4017, "sha": "d27e4bff1ebf0caef629f4a05ca42a7038f72caf", "verdict": "ok", "reason": ""}
+{"n": 4018, "sha": "d28804cc48bbb6d5b6f961c540af491433f9959f", "verdict": "ok", "reason": ""}
+{"n": 4019, "sha": "d289eb22f164e0bc71c81b191c1f00bdd08fe669", "verdict": "ok", "reason": ""}
+{"n": 4020, "sha": "d2962f1d55a211a4606d8387b6333de7a21e630d", "verdict": "ok", "reason": ""}
+{"n": 4021, "sha": "d2d576b6b1101e2871c82f63adf2c2b534c2dabc", "verdict": "wrong", "reason": "The warning hunk edits a comment without changing the filter configuration."}
+{"n": 4022, "sha": "d2f647cee45fd05cc1977cc3faf4b095b5047b29", "verdict": "ok", "reason": ""}
+{"n": 4023, "sha": "d2f65af033942a50890b29ab0159b385c426ea5b", "verdict": "ok", "reason": ""}
+{"n": 4024, "sha": "d2f6bdecc835475c3cfbb83565ea879d7b2712ca", "verdict": "ok", "reason": ""}
+{"n": 4025, "sha": "d2ff0f40eb55ea572794daf286e74833ca773d59", "verdict": "ok", "reason": ""}
+{"n": 4026, "sha": "d339b0f64fb2ea53519366729371b3b497dd2286", "verdict": "wrong", "reason": "The malformed input begins with a valid http scheme and repeats a scheme-shaped substring."}
+{"n": 4027, "sha": "d339ffe9d92ca3c3c6418923fa6bd17799549e3d", "verdict": "ok", "reason": ""}
+{"n": 4028, "sha": "d33ce49aaa46c855458582f338a6e2039d428bee", "verdict": "wrong", "reason": "Advertising keep-alive is distinct from implementing or enabling connection reuse."}
+{"n": 4029, "sha": "d3566ee1b053b6f24c4bf657ca36e6cb4698a44f", "verdict": "wrong", "reason": "The test asserts an error from the top-level get function. It does not assert that PreparedRequest raises it."}
+{"n": 4030, "sha": "d374a182d997d6c07e519328ccdb8f2fec3ef7a6", "verdict": "ok", "reason": ""}
+{"n": 4031, "sha": "d38495c90653496c3c81f31e8f9bef162b400b44", "verdict": "ok", "reason": ""}
+{"n": 4032, "sha": "d3911da65316730a3b0ebfeb3f21ceb3be3461ef", "verdict": "ok", "reason": ""}
+{"n": 4033, "sha": "d39cdc45d13c36faf6cbb32425afa7256bd81e5b", "verdict": "ok", "reason": ""}
+{"n": 4034, "sha": "d39cde206b8cffc7acd9bfdc1441902790573822", "verdict": "wrong", "reason": "Tablib appears only in the new introductory prose. The installation commands and mirror section are for Requests."}
+{"n": 4035, "sha": "d3a46c822f635f2278536a8960af029e77f21e4b", "verdict": "ok", "reason": ""}
+{"n": 4036, "sha": "d3a4d06238ee418ac122368515c71db47e329058", "verdict": "ok", "reason": ""}
+{"n": 4037, "sha": "d3acb783b95623d0378db02bd9832fb11850204b", "verdict": "ok", "reason": ""}
+{"n": 4038, "sha": "d3adc9d334c7879525a6bfa7074375275f7eff9f", "verdict": "wrong", "reason": "The manifest glob includes top-level Python files and does not recursively include the directory."}
+{"n": 4039, "sha": "d3b3399ece1f76387d323983638e0838c06e88ea", "verdict": "ok", "reason": ""}
+{"n": 4040, "sha": "d3b7f9881490c1429b4310c97f79a432ec7d76a5", "verdict": "filler", "reason": "The new status-zero behavior is shown, but the excerpt does not identify a specific body-reading error it prevents."}
+{"n": 4041, "sha": "d3bd3630ee9599f1bdbc71e0efb3d3b21ee0100e", "verdict": "filler", "reason": "The new handler swallows ValueError, but the excerpt does not establish that all later cookie handling succeeds with an invalid value."}
+{"n": 4042, "sha": "d3bd9f30a6acec62cafee067e82f7cb1cd775701", "verdict": "ok", "reason": ""}
+{"n": 4043, "sha": "d3cbf37352ec8462d07f27fbc0866cbf219dff1a", "verdict": "cannot_tell", "reason": "The message says the issues were closed, but the supplied references and diff do not establish whether the work was completed."}
+{"n": 4044, "sha": "d3d504436ef0c2ac7ec8af13738b04dcc8c694be", "verdict": "ok", "reason": ""}
+{"n": 4045, "sha": "d3e0f73354051f824cae563aeae215006158da28", "verdict": "ok", "reason": ""}
+{"n": 4046, "sha": "d3e6597f73c8e6f5fc88aa6afc62611fbd8be8bd", "verdict": "ok", "reason": ""}
+{"n": 4047, "sha": "d3f14af44d9460a17c79de19ebdb65b3eec2e534", "verdict": "ok", "reason": ""}
+{"n": 4048, "sha": "d3f3b423ad1d2372067b7be73c0dec53b10b8a77", "verdict": "ok", "reason": ""}
+{"n": 4049, "sha": "d41fba63477c97559e5454d5f57e53fa17c9fdaa", "verdict": "wrong", "reason": "The new promotional sentence is appended to the existing joke and retains the wink."}
+{"n": 4050, "sha": "d4227051a983068070f3528c0117c2c760f116a3", "verdict": "ok", "reason": ""}
+{"n": 4051, "sha": "d42556a936fc3d56299d1462adfa48614f3f9712", "verdict": "ok", "reason": ""}
+{"n": 4052, "sha": "d427bb86031a384eaf92b8dc26b0600c5b3422d9", "verdict": "ok", "reason": ""}
+{"n": 4053, "sha": "d437c338d0bfe4a88d9c3efa1a1802603ee9cc97", "verdict": "cannot_tell", "reason": "The excerpt cuts off during credential extraction, before the header assignment, so it does not verify the literal header name or exact condition."}
+{"n": 4054, "sha": "d4385f6fc84854d78f838f4eb3a93dd3985242c5", "verdict": "ok", "reason": ""}

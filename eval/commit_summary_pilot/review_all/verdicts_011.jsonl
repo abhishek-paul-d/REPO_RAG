@@ -1,0 +1,86 @@
+{"n": 868, "sha": "2dc7db4730fb9763931ad0a7449732d0797959b9", "verdict": "ok", "reason": ""}
+{"n": 869, "sha": "2df3c7c75dd4e3c825421da3aaa4b08bd91d4afb", "verdict": "ok", "reason": ""}
+{"n": 870, "sha": "2dfcc0bb7b7eb9060e523f785845919d277ab412", "verdict": "filler", "reason": "The formatting substitution is shown, but improved readability is a subjective benefit."}
+{"n": 871, "sha": "2e1086f5b4fe1caf507abfb6cd2ac0c2ad420e26", "verdict": "ok", "reason": ""}
+{"n": 872, "sha": "2e1452234d8a3240aa27fc5fa5db93d53d799c25", "verdict": "ok", "reason": ""}
+{"n": 873, "sha": "2e3169615636ceffc7aa85469464470c11d3a85e", "verdict": "ok", "reason": ""}
+{"n": 874, "sha": "2e391fa44cb1d5d2d5c4321c547d470d0b594333", "verdict": "ok", "reason": ""}
+{"n": 875, "sha": "2e4329d153a01407be6a7d1217f1ea25b14138bc", "verdict": "ok", "reason": ""}
+{"n": 876, "sha": "2e4724cceaed86cfd6a73ee495db668ceea80be7", "verdict": "ok", "reason": ""}
+{"n": 877, "sha": "2e5a6746019140bf2ef3a497c30c17992de36426", "verdict": "ok", "reason": ""}
+{"n": 878, "sha": "2e62df456ae82aedb12987a317d29b1a9123633e", "verdict": "filler", "reason": "The double-release fix is stated, but the excerpt does not establish pool corruption or any dependence on upload size."}
+{"n": 879, "sha": "2e992817d45780df9f3edd35caa91f1ab4dfa224", "verdict": "filler", "reason": "The README reports new figures but does not establish that they are current or that the old figures were stale."}
+{"n": 880, "sha": "2e9e944bc16fcf51b9ec4f8fc2f6161fbd2bb194", "verdict": "ok", "reason": ""}
+{"n": 881, "sha": "2eb63be19ae9496193fd6d70aef09442f1840c74", "verdict": "wrong", "reason": "The changed prober belongs to the vendored charade package, which Requests imports under an alias."}
+{"n": 882, "sha": "2eb682671db4cdcc1fceac0240cb57683f9497ba", "verdict": "wrong", "reason": "The connection limit behavior is optional because the new argument defaults to false."}
+{"n": 883, "sha": "2eb7e3c80b345f6c6e13fadf6f1ba98efccdd2e2", "verdict": "ok", "reason": ""}
+{"n": 884, "sha": "2ecdb685619340735fa85d253c4779029957246f", "verdict": "filler", "reason": "The documentation replaces references to cookielib, but it does not indicate that the former module name was deprecated."}
+{"n": 885, "sha": "2ed84f55b22f19a1e1e8eea2e50963dce62052d3", "verdict": "wrong", "reason": "The summary reverses the preference between the two encoding detection libraries."}
+{"n": 886, "sha": "2ed976ea7147a9d0c18998e02b16d691b6798a3e", "verdict": "ok", "reason": ""}
+{"n": 887, "sha": "2edb5530363251e37b167a67202749ea4f5ba790", "verdict": "filler", "reason": "The test dependencies are removed, but the motive about simplification or conflicts is not given."}
+{"n": 888, "sha": "2edca11103c1c27dd8b572dab544b7f48cf3b446", "verdict": "ok", "reason": ""}
+{"n": 889, "sha": "2edda29448a9530059b9d6f772ba1e9a92371e7b", "verdict": "wrong", "reason": "The replacement checks a substring anywhere in the URL, so it does not verify the destination hostname."}
+{"n": 890, "sha": "2ee5b0b01c9e7c14217a536886b337d6f08b9aac", "verdict": "ok", "reason": ""}
+{"n": 891, "sha": "2ee67441c849ad5f1944a6758f81e26172dc05c0", "verdict": "filler", "reason": "The fallback avoids one missing-tool failure, but the change does not establish that the whole CI pipeline completes successfully."}
+{"n": 892, "sha": "2ef0b1b51de9a0895eacd2b01c3f8b9c04f2b2f2", "verdict": "wrong", "reason": "The diff adds the equals sign to the forbidden set despite the title saying to accept it."}
+{"n": 893, "sha": "2ef782b8e6a5e9024da4681de870bb54431afda9", "verdict": "ok", "reason": ""}
+{"n": 894, "sha": "2f33679cb39c144a9fef591e5140a766c92d66f5", "verdict": "ok", "reason": ""}
+{"n": 895, "sha": "2f39e0e2aa791da13a8358f7a48c0365461029d8", "verdict": "filler", "reason": "The Timeout export and connection-pool edits are visible, but the summary gives no grounded meaning for more robust timeout handling."}
+{"n": 896, "sha": "2f5008107c56485a46271062ecc0b75f5e49fa16", "verdict": "ok", "reason": ""}
+{"n": 897, "sha": "2f55393593fb0d8818fa014bc004dfed73564110", "verdict": "ok", "reason": ""}
+{"n": 898, "sha": "2f60748c7340c0f1b034998677115d465d470f0d", "verdict": "filler", "reason": "The excerpt removes import inspect but does not show that the name was unused or establish that the top-level namespace change had no user impact."}
+{"n": 899, "sha": "2f6cf50a6c6e655e8a87c8721fab2049a34d8e8e", "verdict": "wrong", "reason": "The diff removes a re-exported name and does not identify settings as a module."}
+{"n": 900, "sha": "2f744b501058d45c36c71391d4a185cccf62f9e1", "verdict": "ok", "reason": ""}
+{"n": 901, "sha": "2f7923bc0564ed6c8bb30b4d547cbacccbecaebb", "verdict": "ok", "reason": ""}
+{"n": 902, "sha": "2f91d8e77337cceb37a11a3efea7107318163ef5", "verdict": "wrong", "reason": "The removed script tries a URL containing a quote but does not observe or assert that the server received the character unchanged."}
+{"n": 903, "sha": "2f98ef17924d296a4871d909e43f5e7e365d05a3", "verdict": "ok", "reason": ""}
+{"n": 904, "sha": "2f9e287f7d1b9dfe5322c7c17a5a32a21a502aa0", "verdict": "wrong", "reason": "The entire diff is a comment and cannot introduce the behavior claimed."}
+{"n": 905, "sha": "2fa180e9ea63b4b2a8992b5d750fe7b5f650b006", "verdict": "filler", "reason": "The helper call is shown, but preventing malformed headers is an unverified general benefit."}
+{"n": 906, "sha": "2fa5fa6ac5e008f918d8bd6e4a0c253f63780f55", "verdict": "wrong", "reason": "The new flag is placed after the upload command, and wheel tagging alone would not establish Python compatibility."}
+{"n": 907, "sha": "2fc6e8a894a5378dd16b2653df9ccf875d0bddf8", "verdict": "ok", "reason": ""}
+{"n": 908, "sha": "2fc9f6bbc923d2d24623ea740cdbccf90db2a0cb", "verdict": "ok", "reason": ""}
+{"n": 909, "sha": "2fddbe36063812788a175617aceafe2965d40646", "verdict": "ok", "reason": ""}
+{"n": 910, "sha": "2fde9ee4076b8828f858e37cfdcee66008ff35f9", "verdict": "ok", "reason": ""}
+{"n": 911, "sha": "2ff8106d62a93ce768837f10005e9158609e2330", "verdict": "ok", "reason": ""}
+{"n": 912, "sha": "30018e604c0f89a0dad7d8b7e6f2a227916ee8c9", "verdict": "wrong", "reason": "The new branch still passes the existing jar for merging, and the changed line assigns locally rather than adding a return."}
+{"n": 913, "sha": "3004ad539875ffc2c9ec5a376af7203189ce6fe1", "verdict": "wrong", "reason": "Neither new expression calls lower, so it accesses a method instead of a lowercased string."}
+{"n": 914, "sha": "301d1a838f56c6c8e5e886b7dde3de88656cfae4", "verdict": "wrong", "reason": "The new condition checks whether a decoded body already exists and does not itself decode the body or establish a signature fix."}
+{"n": 915, "sha": "3020d0e56a552cd0a1f603aba69393511ac22d81", "verdict": "ok", "reason": ""}
+{"n": 916, "sha": "302225334678490ec66b3614a9dddb8a02c5f4fe", "verdict": "ok", "reason": ""}
+{"n": 917, "sha": "302c4d9c4131dd075382152c7d33cfb6275156a4", "verdict": "ok", "reason": ""}
+{"n": 918, "sha": "30377ca91211725aacf41905c5998cd4ed36a900", "verdict": "ok", "reason": ""}
+{"n": 919, "sha": "303eca03f31741571fe2025d792ca3db28687078", "verdict": "wrong", "reason": "The changed configuration is for AppVeyor, and the summary names a different CI system."}
+{"n": 920, "sha": "304e4cb5ee9cf47bbeb5822336789ac9f5111ce9", "verdict": "filler", "reason": "The badge and its target are shown, but improved appearance and accessibility are not established."}
+{"n": 921, "sha": "308343508b9b2e88e720477f0a31e752d246f3dd", "verdict": "wrong", "reason": "The removed space is outside the quoted string, so the error message itself is unchanged."}
+{"n": 922, "sha": "3092483433ebf0f5802677aa9b8a74ee4dc1e64b", "verdict": "ok", "reason": ""}
+{"n": 923, "sha": "30a16088c4d1bb58b3288e64489a9530ae712c5c", "verdict": "ok", "reason": ""}
+{"n": 924, "sha": "30bcd55fb97523bf188f68b641ec9dc6eb4b6a75", "verdict": "ok", "reason": ""}
+{"n": 925, "sha": "30be889651e7034eaa56edaf5794d68ffbfde9ed", "verdict": "ok", "reason": ""}
+{"n": 926, "sha": "30c128ade9a0f93a2e6209e93c239521bbc1a238", "verdict": "ok", "reason": ""}
+{"n": 927, "sha": "30d699b64fbf298881c0de88cd6b727b1972538a", "verdict": "wrong", "reason": "Adding an authentication handler for a 404 fallback does not guarantee that missing resources stop producing errors."}
+{"n": 928, "sha": "30d937f299d217f2107139b3c0a8083d90d184aa", "verdict": "ok", "reason": ""}
+{"n": 929, "sha": "310d7f8a9b0215bc27bef9390a9e3e46cf81afb7", "verdict": "ok", "reason": ""}
+{"n": 930, "sha": "3127a34298ec4a674916033b8d9678a1b57f828b", "verdict": "filler", "reason": "The deletions are evident, but the excerpt does not establish that the exception class and import were unused by callers."}
+{"n": 931, "sha": "314e7c9c701ddbeb6c26ae357a132045709d47f1", "verdict": "ok", "reason": ""}
+{"n": 932, "sha": "3155bc99362a8c6ab136b6a3bb999732617cd2e5", "verdict": "ok", "reason": ""}
+{"n": 933, "sha": "3161783e49ed3e4b62f8340b97b863e42074f10c", "verdict": "ok", "reason": ""}
+{"n": 934, "sha": "316f748226e7379b9888e77a32345e8a995cd337", "verdict": "wrong", "reason": "The inserted entity name is misspelled, so the diff does not insert HTML nonbreaking spaces."}
+{"n": 935, "sha": "31762899a013276343c02c72960c0e48b02ed3d9", "verdict": "ok", "reason": ""}
+{"n": 936, "sha": "317c5b693a16e5e638d9253dd2913d93f5389e00", "verdict": "wrong", "reason": "The old docstring has matching triple quotes and is syntactically valid."}
+{"n": 937, "sha": "31817b66c6b793689c93a5b558384fb53d0576f7", "verdict": "filler", "reason": "The test moves from str(e.message) to str(e), but the excerpt does not establish the claimed deprecation status."}
+{"n": 938, "sha": "318300848f0ef96d603e25ae185e6f0a08fd9cc9", "verdict": "ok", "reason": ""}
+{"n": 939, "sha": "3189d8690e5b6a90d1921e9697e9231269f806e4", "verdict": "wrong", "reason": "The former default already came from configuration, and the new fallback also applies to explicitly passed falsy values."}
+{"n": 940, "sha": "318f2460eed225b7d369db3f07d4cc3445e70804", "verdict": "ok", "reason": ""}
+{"n": 941, "sha": "319b570f8212c5681326782764e4a0e361e95ea5", "verdict": "ok", "reason": ""}
+{"n": 942, "sha": "31a6e696bbddc927e7532e65d63d18c35a6fbdd3", "verdict": "ok", "reason": ""}
+{"n": 943, "sha": "31a89d9c8463c3394ca00f408f4b86d814421a09", "verdict": "wrong", "reason": "The commit documents the proxy fix but changes no proxy parsing code."}
+{"n": 944, "sha": "31b35ab838dfab92ea199a2688fefb74215aa7e9", "verdict": "cannot_tell", "reason": "The excerpt shows the deleted size-calculation branches but cuts off at the new docstring, so the new handling of the claimed body types cannot be verified."}
+{"n": 945, "sha": "31c0962e83c8f3b043b3faceff880f69a9a4dbdc", "verdict": "cannot_tell", "reason": "The old send sequence dominates the excerpt and the replacement is cut off, so the claimed header and chunk formatting behavior cannot be checked."}
+{"n": 946, "sha": "31c73a61f9791d54e64d563119a6c088596c8e4d", "verdict": "ok", "reason": ""}
+{"n": 947, "sha": "31d10c0b2b693a43581935913c6d8bff4111a8c5", "verdict": "ok", "reason": ""}
+{"n": 948, "sha": "31d495fb0220ff4bb812f457e03948cbe2b8e3a9", "verdict": "wrong", "reason": "The Requests setup change adds certifi as a dependency and does not establish that certifi is depending on itself."}
+{"n": 949, "sha": "31f74bd02eb89592c1173a301c402132e171153f", "verdict": "ok", "reason": ""}
+{"n": 950, "sha": "31fc69ec0d439664b97dd7c0b936b4640c30d49d", "verdict": "filler", "reason": "The source establishes the empty commit, but it gives no reason to call it a placeholder or marker."}
+{"n": 951, "sha": "320a10d142a7cbe224f0dcb1732484fff08cdd8e", "verdict": "ok", "reason": ""}
+{"n": 952, "sha": "3216bda17432dcb0e7480ba0068b927f7ff746b5", "verdict": "ok", "reason": ""}
+{"n": 953, "sha": "32327f8f7c2f457d38130b5df664ec8f29cf3053", "verdict": "ok", "reason": ""}

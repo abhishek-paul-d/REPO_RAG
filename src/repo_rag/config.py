@@ -155,8 +155,15 @@ class Settings(BaseSettings):
         "history_grounded",
         "commit_pr_commits",
         "commit_explain",
-    ] = "commit_pr_commits"
-    """Production-toolset prompt. Default `commit_pr_commits` since 2026-11-18 (user decision): it
+        "commit_verify",
+    ] = "commit_explain"
+    """Production-toolset prompt. Default `commit_explain` since 2026-11-20 (user decision): it is
+    `commit_pr_commits` plus "a bug-report answer is the SHA plus one sentence why" and "review
+    comments are not in the indexed data". On the 27B, 113 commit questions: 78/113 against
+    74/113 for `commit_pr_commits`, bare-SHA answers 0 of 103 against 86 of 99; on Flask the
+    same prompt held 100 to 101 of 136 in three runs. NOT re-measured on the code, docs, history
+    and architecture types under this prompt. `commit_pr_commits` (default 2026-11-18 to
+    2026-11-20) is kept: it
     is `docs_hint_narrow` plus one paragraph telling the model to name a PR's own commit from
     `pr_commits`, not the merge commit; on the 27B it took commit-088 from a miss to a pass (commit
     7/10 vs 6/10, n = 10) with code, docs and the other types unchanged. Before that the default
@@ -166,12 +173,25 @@ class Settings(BaseSettings):
     `baseline` is the text every earlier evaluation used (pinned by SHA-256 in
     tests/test_prompt_variants.py). The others are for A/B runs of `eval/agent_eval.py --variant`;
     `prs_narrow` lost 4 prsearch questions and `docs_hint` was contaminated: not candidates."""
-    agent_commit_query: Literal["model", "question"] = "model"
+    agent_commit_query: Literal["model", "question", "fused"] = "model"
     """What `search_commits` searches for. `model` (default) is the query the model writes.
     `question` replaces it with the user's current question as typed (no thread history), in case
-    a short model-written query loses the details of a pasted bug report. Unmeasured on the agent
-    (see docs/PROJECT_LOG.md, 2026-11-09): A/B it with
-    `eval/agent_eval.py --commit-query question` before changing the default."""
+    a short model-written query loses the details of a pasted bug report. `fused` runs both the
+    model's query and the question and merges the two rankings by weighted reciprocal-rank fusion
+    (`agent_commit_fuse_*`), so a good model query is kept and the details of a pasted report are
+    not lost. Unmeasured on the agent (see docs/PROJECT_LOG.md, 2026-11-09): A/B it with
+    `eval/agent_eval.py --commit-query question|fused` before changing the default."""
+    agent_commit_fuse_question_weight: float = Field(default=1.0, ge=0)
+    """`fused` only: the weight of the question's ranking next to the model query's (weight 1.0)."""
+    agent_commit_read_chars: int = Field(default=3000, gt=0)
+    """`get_commit` (prompt variant `commit_verify`): the diff shown for one commit is cut to this
+    many characters; the full message and the changed files with their line counts are always
+    shown."""
+    agent_commit_hide_summary: bool = False
+    """Show the model a commit without its `Summary:` line. Only matters for an index whose commit
+    texts carry a model-written summary (an experiment, `eval/summarize_commits.py build-index`):
+    the summary still helps the search, but the model reads the raw commit, so a wrong summary
+    cannot mislead the answer."""
     agent_code_extra_files: int = Field(default=3, ge=0, le=6)
     """Production toolset only: after `search_code` returns its top 5 chunks (unchanged), add up to
     this many more, each from a file not already shown, taken from a search with the user's whole
@@ -338,6 +358,8 @@ class Settings(BaseSettings):
     """PROVISIONAL. Fusion is weighted RRF. Equal weights measurably hurt Qwen3 in the embedding
     benchmark (mean nDCG@10 0.612 -> 0.585), so BM25 gets a smaller vote. 0.3 is a guess that
     has not been established as a universal optimum by Phase 4."""
+    commit_bm25_weight: float | None = Field(default=None, ge=0)
+    """Optional BM25 weight override for `kind == "commits"` only. None keeps `bm25_weight`."""
     rrf_k: int = Field(default=60, gt=0)
 
     # --- Evaluation (never changes production retrieval defaults) ---

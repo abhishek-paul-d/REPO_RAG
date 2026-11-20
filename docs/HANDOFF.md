@@ -620,7 +620,30 @@ Observed, not guessed:
 
 ## 11. What to do next
 
-### Latest (2026-11-18, evening): commit questions 57/113 to 70/113; next is the commit-summary pilot
+### Latest (2026-11-20, evening): Flask replication, `commit_explain` is now the default
+
+Details and tables: PROJECT_LOG 2026-11-20 (evening). Flask (136 questions, `data_flask`): controls 101, 100, 101; fused 103; summary index, fused, summaries hidden 106 and 107. Same direction as requests, nothing significant alone; the summary index is NOT shipped (recommendation: opt-in, it costs a 27B summary pass and a GPU embedding run per repo). The default prompt is now `commit_explain` (user decision); code, docs, history and architecture have not been re-run under it, so do that first in the next 27B session (`eval/colab_session.py`). Notebooks were regenerated: upload the new `notebooks/repo_rag_ask_source.zip` to Drive before starting the server notebook. Pitfalls: a Colab `files.download` can fail silently (the pilot notebook now saves to Google Drive first); `pkill` is not available in this bash, kill by PID with PowerShell, and never start a second `commit_session.py` while one runs; `commit_session.py --repo pallets/flask` needs `--data-dir D:/Repo_chatbot/data_flask` and `--summary-index`.
+
+### Latest (2026-11-19, night): commit questions, what failed and what is built (not yet run on the agent)
+
+Details and numbers: PROJECT_LOG 2026-11-19 (night). Summaries were not the cause of the 113-question ceiling: of 35 misses, 23 never had the gold commit in the agent's 15 shown, 18 not even in the top 30
+(`eval/commit_failure_sort/failures_20261119.json`). Built, all default off: `agent_commit_query=fused`, `get_commit` + prompt `commit_verify`, `agent_commit_hide_summary`, and
+`eval/commit_session.py` (control twice, fused, verify, fused_verify, fused_fix_only, summary_hidden; sign test and lenient score). Offline (113 questions, question as the agent sends it), gold in the top 5: 62 today, 65 fused, 75 fused on the summary index.
+**Ran live (27B):** controls 76, 76, 78; `verify` 69 (worse, do not use); `fused` 79; summary index + `fused` + `hide_summary` **82 and 84** (likely about +6, pooled p = 0.093, not proven); fix-only 85 is circular. Table in PROJECT_LOG.
+**Next:** the user decides whether to adopt the summary index for search (`data/exp_summaries` replaces the commit index; set `agent_commit_query=fused`, `agent_commit_hide_summary=true`). Before claiming it generalises, repeat on a second repository. Do not use the reranker (user decision), do not index issue or PR text for commits (leaks this eval), treat `is_fix` filtering as an upper bound here.
+
+### 2026-11-19: the quality session ran live; decisions waiting for the user
+
+Work is in the worktree `D:\Repo_chatbot_quality` (branch `quality/answers`, uncommitted; copy new tests to `D:\Repo_chatbot\tests` by hand). Runbook `docs/COLAB_SESSION.md`; results in
+`eval/colab_session_results/latest/`; details in PROJECT_LOG 2026-11-19 (later). Headline (shipped prompt, 27B): fresh set 72/73 three times with no flips, guards change nothing there; 113
+bug reports 74/113 default and **78/113 with `commit_explain`** (answers explain instead of bare SHAs: 0 bare against 86 of 99); tuned set no regression.
+**Waiting on the user:** make `commit_explain` the default (recommended; its specific claims are not diff-checked), keep guards off (no measured gain), whether the summary pilot justifies summarising
+all 4,883 commits (summaries step running; then `package`, pilot notebook, `score`).
+Pitfalls: `agent_eval.py --variant` defaults to `baseline`, NOT the shipped prompt (always pass `--variant commit_pr_commits`); `--workers` builds one agent per thread, one at a time, with a shared locked
+embedding model (never build agents concurrently); the server notebook and zip must be the worktree's (`c2a718e2`; the main folder's are older and have no `concurrency`); runs under
+`eval/colab_session_results/run1_*`, `run2_*`, `run3_*` are spoiled and must not be quoted. Parallel mode is ~1.9x, not 3 to 5x.
+
+### 2026-11-18, evening: commit questions 57/113 to 70/113; next is the commit-summary pilot
 
 Defaults now: `agent_commit_k` = 15 (first 5 commits in full, the rest one line) and
 `agent_commit_max_tool_calls` = 6 (applies once the model has called `search_commits`; other

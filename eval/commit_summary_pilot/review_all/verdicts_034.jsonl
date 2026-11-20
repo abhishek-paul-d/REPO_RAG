@@ -1,0 +1,88 @@
+{"n": 2883, "sha": "958c424c89079239401c1fe236464178f0038760", "verdict": "ok", "reason": ""}
+{"n": 2884, "sha": "95911f059aa76c46f9da002df9724cb41fa7cdce", "verdict": "ok", "reason": ""}
+{"n": 2885, "sha": "95a03532c36f1afd38c395f7160c7f7086557b7b", "verdict": "ok", "reason": ""}
+{"n": 2886, "sha": "95b0549c75c61fe0b759400713112de357ae74b1", "verdict": "ok", "reason": ""}
+{"n": 2887, "sha": "95dcdd8a05ef5dade3dd2234e445ba78d42a1f4e", "verdict": "ok", "reason": ""}
+{"n": 2888, "sha": "95f456733656ed93645ff0250bfa54f6d256f6fe", "verdict": "ok", "reason": ""}
+{"n": 2889, "sha": "9603589b06458d299b2ff7a5389defa915b7bf58", "verdict": "wrong", "reason": "This is the local Requests documentation theme, and the excerpt shows no change to Flask documentation."}
+{"n": 2890, "sha": "9606f0240b8e0ce5f64e9659c2161a91c8dc6b60", "verdict": "ok", "reason": ""}
+{"n": 2891, "sha": "961790f95c7c06dc073d882acb28810a22d27b77", "verdict": "ok", "reason": ""}
+{"n": 2892, "sha": "963c78853f0125eb21f3483628f34ab322d65b34", "verdict": "ok", "reason": ""}
+{"n": 2893, "sha": "9645e882b2a581da0b14c8dad3f062e53b2df17e", "verdict": "ok", "reason": ""}
+{"n": 2894, "sha": "965ada6f660a423ec259fe3ad12d24022a55d37b", "verdict": "ok", "reason": ""}
+{"n": 2895, "sha": "966672dbc11d62bd0b0971a59902a7d6d3368d33", "verdict": "ok", "reason": ""}
+{"n": 2896, "sha": "967a05bfffcb68f97296eda197b062221c2ebc0d", "verdict": "ok", "reason": ""}
+{"n": 2897, "sha": "968863678bc09c0205fc916138c1a74e11f46e5b", "verdict": "ok", "reason": ""}
+{"n": 2898, "sha": "969195ad55f9e44ee2e1605e8561123bfed62c4e", "verdict": "ok", "reason": ""}
+{"n": 2899, "sha": "96936b56164aa7973431375402ba6b41262277c8", "verdict": "ok", "reason": ""}
+{"n": 2900, "sha": "9697290111d0a6c664f97a2dd452a9132ca2c384", "verdict": "filler", "reason": "Nose is added to the requirements file, but the excerpt does not identify a prior missing-package failure."}
+{"n": 2901, "sha": "969783702d84873cfeffffc40dd943948aae12aa", "verdict": "ok", "reason": ""}
+{"n": 2902, "sha": "96b9a3f0fc7551aa3c2d25b093ba85a49d5b0497", "verdict": "ok", "reason": ""}
+{"n": 2903, "sha": "96ba401c1296ab1dda74a2365ef36d88f7d144ef", "verdict": "ok", "reason": ""}
+{"n": 2904, "sha": "96cd8e9ca0b6953794b9b3244b244dd34f975544", "verdict": "wrong", "reason": "The previous keys and values methods existed and are corrected, and the shown lookup switches to duplicate detection rather than replacing a list return."}
+{"n": 2905, "sha": "96e7a60b8d8a930d3257b87e3159b5abbbf385d5", "verdict": "ok", "reason": ""}
+{"n": 2906, "sha": "96e8e8b92f177b3672dc5566a1e7cd010c872ccf", "verdict": "ok", "reason": ""}
+{"n": 2907, "sha": "96efb5ec9638f2a057e0206db62ee673a3e610dc", "verdict": "ok", "reason": ""}
+{"n": 2908, "sha": "96fbe9e8c9ffad8c15358d1e53831c1a2922cb13", "verdict": "wrong", "reason": "The intended XML option is misspelled in the hunk, so valid XML generation is not demonstrated."}
+{"n": 2909, "sha": "970e8cec988421bd43da57350723b05c8ce8dc7e", "verdict": "ok", "reason": ""}
+{"n": 2910, "sha": "972089826e830670cdaec774bb4eb8a3f349b661", "verdict": "ok", "reason": ""}
+{"n": 2911, "sha": "973e9cb54826062328f1c8650630819205ccfe8e", "verdict": "ok", "reason": ""}
+{"n": 2912, "sha": "9742da7f91f595796a412a8150aacc00191be039", "verdict": "ok", "reason": ""}
+{"n": 2913, "sha": "975430d5e622b9815e42963c3c0b0704e7d5a39c", "verdict": "ok", "reason": ""}
+{"n": 2914, "sha": "975720a30c0437a2b9076ca699408cf5b0348dfa", "verdict": "filler", "reason": "The title mentions Sphinx, but the excerpt supplies no type-hinting issue or verified effect on runtime attribute access."}
+{"n": 2915, "sha": "975a183796ac6feccecc8f9d0fd6b4d9eea97e1e", "verdict": "wrong", "reason": "The new --core-target option receives the shell's python variable, with no evidence that the variable is an interpreter path."}
+{"n": 2916, "sha": "9763a671da1061244aa0a98e924efa1ec8379a7b", "verdict": "ok", "reason": ""}
+{"n": 2917, "sha": "976bfbf6871ea8036fead81c010b023562abd0ab", "verdict": "filler", "reason": "The example switches to r.text, but the excerpt does not say that r.content was deprecated."}
+{"n": 2918, "sha": "97815c9930e20d6cf378681bb39a57ebe6e3b2b8", "verdict": "filler", "reason": "Session-level prefetch wiring is visible, but the excerpt contains no performance rationale or measurement."}
+{"n": 2919, "sha": "9787d0c09c0d771b97cb5d333f71e988b43d9ffc", "verdict": "filler", "reason": "The workflow pins are updated, but the excerpt does not establish that they provide the latest features and fixes."}
+{"n": 2920, "sha": "97b28fdf7f725baa3a9ee58718b98c6cc0186ed7", "verdict": "ok", "reason": ""}
+{"n": 2921, "sha": "97b5bc21d1f95bf31d12bfe52267e62f88f82f9b", "verdict": "wrong", "reason": "The test changes switch which local file is opened as sample input and do not parse a new dependency format."}
+{"n": 2922, "sha": "97be9ee4cd6326bf7551f7a737877ef2e368ef20", "verdict": "wrong", "reason": "The commit message discusses earlier or intended pool work, but this change only removes a debug print."}
+{"n": 2923, "sha": "97cf16e958a948ecf30c3019ae94f2e7ec7dcb7f", "verdict": "ok", "reason": ""}
+{"n": 2924, "sha": "97e3c840845bfe7a10eb3ad4d7431fa7cb8a473d", "verdict": "ok", "reason": ""}
+{"n": 2925, "sha": "98114245c686ef7cd62c9932071fd972ad3efedb", "verdict": "wrong", "reason": "The original function is named merge_kwargs, and the patch introduces its replacement named merge_setting."}
+{"n": 2926, "sha": "982268a2019b451b587f717675039ebccf00a658", "verdict": "ok", "reason": ""}
+{"n": 2927, "sha": "982fd9d8032385b1ee4ed97737d100077ab799c8", "verdict": "wrong", "reason": "The import changes at module scope, and the request function reads the new timeout reference rather than importing anything itself."}
+{"n": 2928, "sha": "9832bd89172fb1200e8fdfb2e1cc334ad0fcf332", "verdict": "ok", "reason": ""}
+{"n": 2929, "sha": "9840966d7203f0301fa3fdd3b525b191321b70dd", "verdict": "wrong", "reason": "The text adds the words different forms and moves the literal-block marker onto the sentence. It does not delete redundant prose."}
+{"n": 2930, "sha": "9849c27b70b919bc5636745fa2ccddbaf4163ed6", "verdict": "ok", "reason": ""}
+{"n": 2931, "sha": "985a906c6c078356cddedd0b3331031a6a84960c", "verdict": "ok", "reason": ""}
+{"n": 2932, "sha": "9866277c03188d92f4ab609d12da8a160bd72294", "verdict": "wrong", "reason": "The deletion establishes the loss of this README file, not the absence of those materials elsewhere at the root."}
+{"n": 2933, "sha": "986704dc62dc7bce0ed323a25dc3c52fe24cef06", "verdict": "ok", "reason": ""}
+{"n": 2934, "sha": "98680b64f4ec679b788071d1811a2bdcbdd26ac9", "verdict": "ok", "reason": ""}
+{"n": 2935, "sha": "98a7585fbdc3a9231aad314b7985b170ca3feb42", "verdict": "ok", "reason": ""}
+{"n": 2936, "sha": "98ac3df71369a6cf9bde35b8e5c8dc5935b028d0", "verdict": "wrong", "reason": "The intended string formatter is added with an unclosed parenthesis in the displayed function, so it cannot ensure the described logging behavior as written."}
+{"n": 2937, "sha": "98b76f4b988145a98be7d865da407e150aadc165", "verdict": "ok", "reason": ""}
+{"n": 2938, "sha": "98b8316c0c1343f94749c3dde785ffaf7e70a04b", "verdict": "ok", "reason": ""}
+{"n": 2939, "sha": "98bbf8d17088cc9e11b30038e451cbafba1ef7e2", "verdict": "ok", "reason": ""}
+{"n": 2940, "sha": "98c8a78c3e0f3827ef4ba304de9fa74666f0be0e", "verdict": "ok", "reason": ""}
+{"n": 2941, "sha": "98cbde132477f058d355148f3bc612134ec6e3ff", "verdict": "ok", "reason": ""}
+{"n": 2942, "sha": "98d257e0394e6839bef9c8dc1359d02a43eb8bed", "verdict": "ok", "reason": ""}
+{"n": 2943, "sha": "98dc08236c51483130dfa59e1f74a01b31106a46", "verdict": "ok", "reason": ""}
+{"n": 2944, "sha": "99197c2058200f1ccc951931260f0223975d1b08", "verdict": "wrong", "reason": "The literal link label gains a colon, and the link destination does not change."}
+{"n": 2945, "sha": "991b853bd948dd90353a77807563e8ad32b113ab", "verdict": "ok", "reason": ""}
+{"n": 2946, "sha": "991e8b76b7a9d21f698b24fa0058d3d5968721bc", "verdict": "wrong", "reason": "The message distinguishes loosening the idna pin from updating the runtime warning for urllib3."}
+{"n": 2947, "sha": "991f05dcd922b1c4036067cb0473abc17db3c806", "verdict": "filler", "reason": "The action version is explicit, but the excerpt does not verify that it is the latest stable release."}
+{"n": 2948, "sha": "99210995463497cf4ee9ec1bee79c5f2bff4e3f8", "verdict": "filler", "reason": "The new OS bundle fallback is shown, but the excerpt does not demonstrate a security improvement over the existing bundle handling."}
+{"n": 2949, "sha": "992d1182db9fc9deb1c795ce18ca64f56115e524", "verdict": "ok", "reason": ""}
+{"n": 2950, "sha": "9930c9c737f8d7469fceb3a503f333675123668b", "verdict": "ok", "reason": ""}
+{"n": 2951, "sha": "99364b6b0b8d1ce5ac69121040e641db99d562d1", "verdict": "ok", "reason": ""}
+{"n": 2952, "sha": "99533b0f0f7e3276ddef856fa05ff44e91d2235d", "verdict": "ok", "reason": ""}
+{"n": 2953, "sha": "9966017a4976339c76b834eab8a10b4dfba474f1", "verdict": "cannot_tell", "reason": "The header parsing additions are shown, but the excerpt cuts off before randombytes and cannot substantiate its security properties."}
+{"n": 2954, "sha": "9968a10fcfad7268b552808c4f8946eecafc956a", "verdict": "ok", "reason": ""}
+{"n": 2955, "sha": "99825de025fe47372ce8fc09f1461a7f0576f4f7", "verdict": "ok", "reason": ""}
+{"n": 2956, "sha": "99b3b492418d0751ca960178d274f89805095e4c", "verdict": "cannot_tell", "reason": "The excerpt shows a new resolve_proxies import and deleted inline lookup, but cuts off before the header handling and call sites needed to check preservation on redirects."}
+{"n": 2957, "sha": "99b6e3594078da14161000ee7eec3985468ee82e", "verdict": "ok", "reason": ""}
+{"n": 2958, "sha": "99c3970fd39b676bda45a5ce082559b910cc0212", "verdict": "ok", "reason": ""}
+{"n": 2959, "sha": "99f0ef47668b7a8a62f1b64d064c89a149cf105f", "verdict": "filler", "reason": "The new flag defaults to False, but the excerpt does not show what enabling it does or support a security or stability purpose."}
+{"n": 2960, "sha": "99fa7becf263473c7bfc1998b41c2c6c80a0f499", "verdict": "ok", "reason": ""}
+{"n": 2961, "sha": "9a0ce939353a3ab4873088fb34d0683749b60e92", "verdict": "ok", "reason": ""}
+{"n": 2962, "sha": "9a1348707c9265b58065e276492f99f53de29c96", "verdict": "ok", "reason": ""}
+{"n": 2963, "sha": "9a1a4136ac69cce55d8d5f27a0ab1caadb0a6e90", "verdict": "filler", "reason": "The new subclass relationship is shown, but the excerpt does not establish what exceptions were raised for SSL failures before the class was added."}
+{"n": 2964, "sha": "9a1d90d184d5830f4bc31b1c328e0c4ed066f2d0", "verdict": "ok", "reason": ""}
+{"n": 2965, "sha": "9a20afd6b5140da4b9f187a3c0c6ea7010baeee9", "verdict": "wrong", "reason": "The explicit signature defaults are added only to Session.request, while the top-level function still accepts **kwargs."}
+{"n": 2966, "sha": "9a2a316f0832ace4d74a1f0c74a6fb26a3da1600", "verdict": "wrong", "reason": "The hash field refers to the Pipfile rather than being an integrity hash of the lockfile itself."}
+{"n": 2967, "sha": "9a2cc99b068b2aaa572f52b4516852b239577c34", "verdict": "wrong", "reason": "The original string occurs after an import and is not a Python module docstring in that position."}
+{"n": 2968, "sha": "9a30e02962ef2bb0a8bd5ce6db28f423a9b4b896", "verdict": "wrong", "reason": "The OAuth1 callable returns the request it is processing, and moving return outside the branch ensures all paths return it."}
+{"n": 2969, "sha": "9a40d1277807f0a4f26c9a37eea8ec90faa8aadc", "verdict": "ok", "reason": ""}
+{"n": 2970, "sha": "9a62aa63808fd528475711c65b8ed220b40198cb", "verdict": "wrong", "reason": "The line is a comment-style marker and the diff adds no structural sections for future notes."}

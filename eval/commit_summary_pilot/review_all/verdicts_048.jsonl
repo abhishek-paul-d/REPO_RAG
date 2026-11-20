@@ -1,0 +1,98 @@
+{"n": 4142, "sha": "d8bf59dde4bd47f07ef88a4161b4a652b06c7599", "verdict": "ok", "reason": ""}
+{"n": 4143, "sha": "d8c2fdf92f6f2124bb4ef73dd898f1c1824b7c9b", "verdict": "ok", "reason": ""}
+{"n": 4144, "sha": "d8c923c3850a4f29a39f7da46a77169d8cfe9537", "verdict": "ok", "reason": ""}
+{"n": 4145, "sha": "d8cc045a2ed44a1384605158371190d4cc00fb15", "verdict": "wrong", "reason": "The edit renames the sponsorship heading rather than correcting the spelling of Contributors."}
+{"n": 4146, "sha": "d8d9591076a6222bad87c89591b0667180564ec4", "verdict": "ok", "reason": ""}
+{"n": 4147, "sha": "d8dcd35316621df0691ab5fc3fe1d5f3d76f71bb", "verdict": "ok", "reason": ""}
+{"n": 4148, "sha": "d8e236780981f28228441029c689a5e8dccdd71b", "verdict": "wrong", "reason": "The helper itself still raises on a failed assertion. Warning behavior belongs to the surrounding compatibility check."}
+{"n": 4149, "sha": "d8f28f4bca40715a3b2929ae639868f235bcaa38", "verdict": "ok", "reason": ""}
+{"n": 4150, "sha": "d8fb6d2a5a169d1bbfd0c1a8cc583a55ecd4e88b", "verdict": "ok", "reason": ""}
+{"n": 4151, "sha": "d911f278689bf10b7a74c5b1e8e4f2af103e87d7", "verdict": "filler", "reason": "The script deletion is shown, but a migration to a different CI system is speculative."}
+{"n": 4152, "sha": "d91af4cadfa5fa299d4702a9eedbfc7f7f558b9d", "verdict": "ok", "reason": ""}
+{"n": 4153, "sha": "d91b70bd29ff8a6dab7777d2db43a32e72d548ce", "verdict": "ok", "reason": ""}
+{"n": 4154, "sha": "d91fe00983f1c66b9a428fe1ad15bf6ea8238972", "verdict": "wrong", "reason": "The constructor initializes error, but the property reads _error, which is set only in the shown failure handlers."}
+{"n": 4155, "sha": "d93731213afad71d8125551ebcbdda0a66691622", "verdict": "ok", "reason": ""}
+{"n": 4156, "sha": "d938f3208968949decbb0a21292deb1451c211d5", "verdict": "ok", "reason": ""}
+{"n": 4157, "sha": "d93b37cee77c45807cc6659bbd971d2b983c03b1", "verdict": "ok", "reason": ""}
+{"n": 4158, "sha": "d961000b96d2f67de97ccee6d150c30353c9b3c4", "verdict": "ok", "reason": ""}
+{"n": 4159, "sha": "d96f9982a276c73ab078b255c94397cf4d7f6cc2", "verdict": "ok", "reason": ""}
+{"n": 4160, "sha": "d974b46dbef560cce203b82c9491e7804edba7eb", "verdict": "cannot_tell", "reason": "The environment check changes and the local fallback is removed, but the branch after the check is omitted, so strict user-supplied configuration cannot be verified."}
+{"n": 4161, "sha": "d977ee8a2494903178f5b63756b65fc4dedb3715", "verdict": "wrong", "reason": "The code concatenates a string with the bytes result before reaching the native-string conversion on Python 3."}
+{"n": 4162, "sha": "d983cfabe232e99f379ef9f0f63bc85993a5217f", "verdict": "ok", "reason": ""}
+{"n": 4163, "sha": "d98de70f4acfa93bcec4ae77ee04c57b9945a3b4", "verdict": "wrong", "reason": "The new last line still has no final newline."}
+{"n": 4164, "sha": "d9a349c1a1451f7c6d1dbea0b637b35107eb8de5", "verdict": "ok", "reason": ""}
+{"n": 4165, "sha": "d9a85560a2767e1b1420ab455b2eab508bed6666", "verdict": "ok", "reason": ""}
+{"n": 4166, "sha": "d9a9a981bc998fed82c15e5df0fd7de5fd800f40", "verdict": "filler", "reason": "The minimum version changes to 0.0.2. A minimum constraint does not ensure selection of the latest release."}
+{"n": 4167, "sha": "d9c49ad30d1107591f3b5150da6f95ec90c63784", "verdict": "ok", "reason": ""}
+{"n": 4168, "sha": "d9cb18ad2a5dcc54a9c931d094d112be167078ba", "verdict": "ok", "reason": ""}
+{"n": 4169, "sha": "d9e571737716e2929386f5279ce80c130d772a5b", "verdict": "cannot_tell", "reason": "The new helper begins creating a jar, but the excerpt ends before insertion and return, so successful conversion from dictionary keys and values cannot be verified."}
+{"n": 4170, "sha": "d9ea1aaeb0854ff48f3421153ec71fd445226755", "verdict": "ok", "reason": ""}
+{"n": 4171, "sha": "d9f34c6848b9b313beefa7d3ce05f52fdea28c27", "verdict": "ok", "reason": ""}
+{"n": 4172, "sha": "da122231e4dab3cc3f9726b4e8edf70bb649dd5d", "verdict": "ok", "reason": ""}
+{"n": 4173, "sha": "da13fec6ce8fdd7a5322ca3b22594b23554d8122", "verdict": "ok", "reason": ""}
+{"n": 4174, "sha": "da246958b41f6548914fb185d7d91094cabd1157", "verdict": "ok", "reason": ""}
+{"n": 4175, "sha": "da26f1f37729b614db68cef4c968e99009210a51", "verdict": "ok", "reason": ""}
+{"n": 4176, "sha": "da288ad57a2875487aefc6d8fc624954c898e13d", "verdict": "ok", "reason": ""}
+{"n": 4177, "sha": "da3178f377b34230792c70a48cc992500578316f", "verdict": "ok", "reason": ""}
+{"n": 4178, "sha": "da726fc030f6098cfb377b21c76d31d9088799e6", "verdict": "filler", "reason": "The message names WebKit scrollbar styling, but the excerpt does not show a rendering result."}
+{"n": 4179, "sha": "da82fb4b1d287caff3a2a99692be111eccbd1347", "verdict": "ok", "reason": ""}
+{"n": 4180, "sha": "da9113c0466850a425e554630a732ec1f7d045fc", "verdict": "wrong", "reason": "CODEOWNERS designates reviewers. Mandatory approval depends on repository protection settings outside this diff."}
+{"n": 4181, "sha": "da9996fe4dc63356e9467d0a5e10df3d89a8528e", "verdict": "ok", "reason": ""}
+{"n": 4182, "sha": "daa2b297a35518e2b4b649919e49d65f1f7ca463", "verdict": "ok", "reason": ""}
+{"n": 4183, "sha": "daa4fbf4e2111c0c7c7c4a7deb9130f81ec1d326", "verdict": "ok", "reason": ""}
+{"n": 4184, "sha": "dab3df76192536c7337806aa98874a035e39ed96", "verdict": "ok", "reason": ""}
+{"n": 4185, "sha": "dac050bf403749524e025b1cae697a61dc592217", "verdict": "ok", "reason": ""}
+{"n": 4186, "sha": "dacaae520a84d2a2e373ca2fc3b7a77d44dd9dc2", "verdict": "ok", "reason": ""}
+{"n": 4187, "sha": "dacc1d8aafedf80f8736d794005b6c8e8b1d4ad1", "verdict": "ok", "reason": ""}
+{"n": 4188, "sha": "dacf69a16df787c4a4c4b4185b86e597b2414445", "verdict": "ok", "reason": ""}
+{"n": 4189, "sha": "dae7ef63b4df6eded86637f251fc4e3a06c3b479", "verdict": "filler", "reason": "The revision change is visible, but the excerpt does not establish that 0.16.4 is the latest patch release."}
+{"n": 4190, "sha": "daebd6b807d45cc79e47d9d7f91b2ddb0f0aece3", "verdict": "filler", "reason": "There are no file changes, but the excerpt does not establish a placeholder or marker purpose."}
+{"n": 4191, "sha": "daf56b3f62f91c7b6ae783ef74ee41ff3c7af89f", "verdict": "ok", "reason": ""}
+{"n": 4192, "sha": "daf7aeb8c3756508f3d960a58b6d3839be1e731f", "verdict": "wrong", "reason": "Only the API reference changes, so the function itself is not removed by this commit."}
+{"n": 4193, "sha": "daf9b6055052d3dd812cc9a7669cffd242f56c08", "verdict": "ok", "reason": ""}
+{"n": 4194, "sha": "db43eb4cb9fcd1ad5565cc2bff5b8cdfec549648", "verdict": "ok", "reason": ""}
+{"n": 4195, "sha": "db47b9b4a0c5877fb97f64ac442757604c4c45cc", "verdict": "filler", "reason": "The fallback decision changes, but the excerpt does not establish an overhead or conflict caused by earlier pyOpenSSL use."}
+{"n": 4196, "sha": "db575eeedcfdb03bf31285afd3033e301df8b685", "verdict": "ok", "reason": ""}
+{"n": 4197, "sha": "dba7a5a7e20d0dd2a8781c7b2a79eb50c9a60e0a", "verdict": "ok", "reason": ""}
+{"n": 4198, "sha": "dbb67a13109edef8d02addf5b3fbc8c6f319f4aa", "verdict": "ok", "reason": ""}
+{"n": 4199, "sha": "dbdbffd7f56812e6fd89098722c23dcbbc740d77", "verdict": "filler", "reason": "The commit removes the explicit lock step and predicts faster CI, but no end-to-end timing is shown."}
+{"n": 4200, "sha": "dbefff68214b9a65d53a6f13fc1f1e49d6c7c91f", "verdict": "filler", "reason": "The old manifest is deleted, but the excerpt does not establish that it was outdated."}
+{"n": 4201, "sha": "dbf70fc40fd0d05133bf93d0d43d1267650ccf78", "verdict": "wrong", "reason": "Removing the exception class and export does not implement acceptance of every HTTP method."}
+{"n": 4202, "sha": "dc10a5daddcc9d2a1c64549c773f7b792e4c95cb", "verdict": "wrong", "reason": "The heading already exists, and the patch adds an introductory sentence without listing any organizations."}
+{"n": 4203, "sha": "dc1526f85d7b55d7f2005c0a8cd8eacf47d77a5c", "verdict": "ok", "reason": ""}
+{"n": 4204, "sha": "dc31c1133994d7b9f94bd7077d69388bae03e403", "verdict": "ok", "reason": ""}
+{"n": 4205, "sha": "dc70edf17d3975857de5d89a1cbe95c0cc157d67", "verdict": "wrong", "reason": "The boxed flag runs tests in subprocesses and does not change how test output is formatted."}
+{"n": 4206, "sha": "dc74223461aeda6c988fc94a17cb6b3774b2780d", "verdict": "ok", "reason": ""}
+{"n": 4207, "sha": "dc75b3ca0b4c95648eb07b92cb414394d99c13a0", "verdict": "ok", "reason": ""}
+{"n": 4208, "sha": "dc7b4e7d32e45494d43d37c3d7c61032211b83ca", "verdict": "cannot_tell", "reason": "The merge helper is visible, but the excerpt omits the Request and Session edits needed to verify its connection to redirect parameters."}
+{"n": 4209, "sha": "dc9dbdfb3434c6e58d48fd102f93e5342308817e", "verdict": "ok", "reason": ""}
+{"n": 4210, "sha": "dcb82779751bc410316c31313d5ffaecc40e6f9c", "verdict": "ok", "reason": ""}
+{"n": 4211, "sha": "dcebab4c35369f9f91dab3eb6ff877509f7d38c2", "verdict": "ok", "reason": ""}
+{"n": 4212, "sha": "dcf5617a5e3b8d84ef57000d4b09f28fc6607832", "verdict": "ok", "reason": ""}
+{"n": 4213, "sha": "dd01f8661ebaa4840598e04ba909b6a5663b6e64", "verdict": "ok", "reason": ""}
+{"n": 4214, "sha": "dd0f164f8ed8e6f936c8af4442f6ddfa4d302fd5", "verdict": "wrong", "reason": "The code accepts values that int can convert, including integer-valued strings. It does not require the input to already be an integer object."}
+{"n": 4215, "sha": "dd13b13479db82e3ed555b47c2b41a300f683b03", "verdict": "ok", "reason": ""}
+{"n": 4216, "sha": "dd271782e82e7cabbf6a4ce5f26c9602780687d2", "verdict": "ok", "reason": ""}
+{"n": 4217, "sha": "dd57439fa56ffa1eb69b9b6d36763924952bc031", "verdict": "ok", "reason": ""}
+{"n": 4218, "sha": "dd777b3d7e8975ec6927dc9cc15b881778d39bc8", "verdict": "ok", "reason": ""}
+{"n": 4219, "sha": "dd89df314d2dd882fc62ab16746ffe0ab3c37714", "verdict": "ok", "reason": ""}
+{"n": 4220, "sha": "dda533cf67b645efa6345181e71a6fea6f96298d", "verdict": "ok", "reason": ""}
+{"n": 4221, "sha": "dda9689ca4f3a5b241c3544a96159fb3a21597d0", "verdict": "wrong", "reason": "The summary states the reverse of the shown replacement."}
+{"n": 4222, "sha": "ddada2d7503a5506fb28db8e60890d54f4568317", "verdict": "wrong", "reason": "No URL preparation implementation is modified in this commit."}
+{"n": 4223, "sha": "ddbeb3025bddc13f2a725d818b2565ab2327cfcf", "verdict": "ok", "reason": ""}
+{"n": 4224, "sha": "dddb41e34906c1b7eff389921c7b1bb6d734a433", "verdict": "cannot_tell", "reason": "The expanded exception clause is visible, but the handler body and return path are omitted, so a None result cannot be verified."}
+{"n": 4225, "sha": "ddde5cd85b872cb09e865a9d52c810795ff64923", "verdict": "ok", "reason": ""}
+{"n": 4226, "sha": "de035b56f9c8376bb584ed4ffcaac6ab9ae0f042", "verdict": "filler", "reason": "The notice is deleted, but the excerpt does not explain a replacement attribution or distribution policy."}
+{"n": 4227, "sha": "de0658f7e82982a398e8acef3470ed6be0e3c52e", "verdict": "filler", "reason": "The code adds a netrc lookup for falsy auth, but a lookup alone does not establish that users will be authenticated."}
+{"n": 4228, "sha": "de17f4e5a49ee980c45006fa14e17b33cfbe525f", "verdict": "wrong", "reason": "The old subscript is valid Python syntax and can fail at runtime because headers is a bare name."}
+{"n": 4229, "sha": "de1c200dff8d5cb0486200fe21793793a7b94346", "verdict": "wrong", "reason": "The visible spacer is an HTML paragraph containing a nonbreaking space. A blank source line also follows it."}
+{"n": 4230, "sha": "de2a5f43320288ed29023564574e299f2d254160", "verdict": "ok", "reason": ""}
+{"n": 4231, "sha": "de32f1774f5e6491aa58075a5e8baad1a85ba330", "verdict": "ok", "reason": ""}
+{"n": 4232, "sha": "de4035fb96977344891217964cd898a2845cd3cd", "verdict": "ok", "reason": ""}
+{"n": 4233, "sha": "de4c75bbadeaf68a01bb14e25dd6c86b75404fd6", "verdict": "ok", "reason": ""}
+{"n": 4234, "sha": "de53523befec064909fe0d2436f94772fc28b6f6", "verdict": "wrong", "reason": "pytest-httpbin provides an HTTP test server rather than an HTTP mocking tool."}
+{"n": 4235, "sha": "de64f0f23f57f272ed11713d18ff50f193c3164b", "verdict": "ok", "reason": ""}
+{"n": 4236, "sha": "debc5de6d4cf77f85f261d55f41084729e25f928", "verdict": "cannot_tell", "reason": "The integer comparisons are shown, but the excerpt omits the joining-type data changes needed to verify that the old comparisons failed before this update."}
+{"n": 4237, "sha": "ded32878c0090f6b7b32a008176df6cecf36481f", "verdict": "filler", "reason": "The hook pin advances, but the excerpt does not establish that it is the latest stable release."}
+{"n": 4238, "sha": "ded42e649866328892c4b167fbd1cc7d75ddc5ce", "verdict": "ok", "reason": ""}
+{"n": 4239, "sha": "dedf9064c6fae669995d0dc04081f93845ca9c42", "verdict": "ok", "reason": ""}

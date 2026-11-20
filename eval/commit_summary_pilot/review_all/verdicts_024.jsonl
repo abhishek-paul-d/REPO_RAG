@@ -1,0 +1,85 @@
+{"n": 2012, "sha": "672e66ba5fa94f6d55638067f9476cc1da396650", "verdict": "ok", "reason": ""}
+{"n": 2013, "sha": "6730818ddcfc5edcdf6aaebb17ca689f3ea39db6", "verdict": "filler", "reason": "The switch to keywords is shown, but error prevention after future signature changes is speculative."}
+{"n": 2014, "sha": "673bd6afce7ca407c1863be5f6049edd4f5d43b0", "verdict": "ok", "reason": ""}
+{"n": 2015, "sha": "6746b2540dbf4f7a1389b499f2fd1fe3fca6d854", "verdict": "cannot_tell", "reason": "The excerpt shows the Pipenv file deletions but cuts off before the listed requirements.txt change, so the stated consolidation cannot be checked."}
+{"n": 2016, "sha": "677bbe30d7b26b006d8b38107e1db9cbd429ac2f", "verdict": "wrong", "reason": "The edit moves the assignment to a narrower branch inside the same method."}
+{"n": 2017, "sha": "67831abaaf5966b73d13637fe7e3a1b97509b55a", "verdict": "wrong", "reason": "The command replaces the heading text and retains the section underline."}
+{"n": 2018, "sha": "678fca84238e311ffba758d90879d4b870030498", "verdict": "ok", "reason": ""}
+{"n": 2019, "sha": "679ab5bc20d0d8569540b94178f232791bdb157d", "verdict": "ok", "reason": ""}
+{"n": 2020, "sha": "679d368e3edebe3bfc03db5e0a275c572056dad6", "verdict": "wrong", "reason": "The boxed flag controls worker process isolation, and the diff adds no output formatting setting."}
+{"n": 2021, "sha": "67a0e90b6b5f5a4bec5fdd744a0a662892e92830", "verdict": "filler", "reason": "The doctest is made less strict about variable output, but the excerpt supplies no history of instability."}
+{"n": 2022, "sha": "67c505781cece96763b86c47967efb785f33b079", "verdict": "ok", "reason": ""}
+{"n": 2023, "sha": "67c7e496f5f7340387da196d31f59512c366328d", "verdict": "filler", "reason": "The test removal is visible, but the excerpt does not say that safe_mode was deprecated."}
+{"n": 2024, "sha": "67f50a0fe53765987e5a6a1c02daabe6400322af", "verdict": "wrong", "reason": "The visible hunk adds socket consumption, and the earlier change mentioned in the message is where the double flush became unnecessary."}
+{"n": 2025, "sha": "6833b326f801272afc50d2a816147021c4c62057", "verdict": "wrong", "reason": "The URL points to gevent, and no installation instructions or package named gentry are shown."}
+{"n": 2026, "sha": "686db5d45253a721b60fb1e445aa4dff0fcf2e87", "verdict": "wrong", "reason": "The new methods are intended to provide a mapping interface but cannot work as instance methods as written."}
+{"n": 2027, "sha": "687ff0eb360c054e11d4e9de78c129f6501511f4", "verdict": "ok", "reason": ""}
+{"n": 2028, "sha": "688a00c38643f55df41f8337b063ba1944f33ca6", "verdict": "ok", "reason": ""}
+{"n": 2029, "sha": "68b48309480db3a95372967fe9c005d612c91ea0", "verdict": "ok", "reason": ""}
+{"n": 2030, "sha": "68d394952a8d37fae23abcadc54ca76dffacb376", "verdict": "ok", "reason": ""}
+{"n": 2031, "sha": "68db4132e36d23dc371219dd99ac51b1c1b1f852", "verdict": "ok", "reason": ""}
+{"n": 2032, "sha": "68dea921e7482c8ee235b571e8dd5f5bb7a07650", "verdict": "wrong", "reason": "The file recommends following PEP8 where possible and expressly allows exceptions."}
+{"n": 2033, "sha": "68e581f1b5b4425a0ee950a2433fc3c92e671d0f", "verdict": "ok", "reason": ""}
+{"n": 2034, "sha": "68edcd12b12818f773581397399ec73b055681d7", "verdict": "ok", "reason": ""}
+{"n": 2035, "sha": "68fda6bcf297c7f1ab3e05eaa628771bfa970509", "verdict": "filler", "reason": "The diff proves the dependency reorder, but the vague message does not identify a resolution conflict or an installation error."}
+{"n": 2036, "sha": "690426ac86bb3423fcd6e57a1443c6d4ca3a8952", "verdict": "ok", "reason": ""}
+{"n": 2037, "sha": "691e9520ed1ed7d1d686f2fa1cc76a1d5c24e335", "verdict": "wrong", "reason": "The assertion expects a form-encoded string of repeated parameters, rather than a list output."}
+{"n": 2038, "sha": "6931bd67153f92246c2fdd69d2c0ec29c13bb885", "verdict": "ok", "reason": ""}
+{"n": 2039, "sha": "6963b8490ca4624f4e46e971b6261861bcfd0902", "verdict": "ok", "reason": ""}
+{"n": 2040, "sha": "69856f3052037e47113c59c5c22cc48d20a6f6b0", "verdict": "wrong", "reason": "The note links to the development of Requests III and does not announce a released version or general support service."}
+{"n": 2041, "sha": "698b93b86dd88ed68ee6dc02c60f5defcc4b5995", "verdict": "ok", "reason": ""}
+{"n": 2042, "sha": "69ba64380b5eee14f741f45b22711115fe5c6d98", "verdict": "wrong", "reason": "The test demonstrates the streaming behavior and adds no hook plumbing fix."}
+{"n": 2043, "sha": "69c7a8638eb9277e384c31370864aa8af0419087", "verdict": "filler", "reason": "The glob restriction is visible, but the excerpt does not say unrelated modules were being picked up."}
+{"n": 2044, "sha": "69e7e94c4ce349b243d8dde82a69166d8792ab81", "verdict": "cannot_tell", "reason": "The truncated diff stops just after importing RLock and deleting the thread-safety TODO, before any lock usage can be checked."}
+{"n": 2045, "sha": "69f84847045bef7a849cc994a26fe7ba8a169e95", "verdict": "filler", "reason": "The exact action upgrades are shown, but the excerpt does not establish that they provide the latest available features and fixes."}
+{"n": 2046, "sha": "6a0845c98479911bcf4a27555403fe30a6baa27f", "verdict": "ok", "reason": ""}
+{"n": 2047, "sha": "6a23625c1150cfc46c1a73d9c2472a2d2aa3fc60", "verdict": "wrong", "reason": "A Request starts with no session and only the Session.request path shown attaches one."}
+{"n": 2048, "sha": "6a24eb6d20c6747669ecd6d8bda3924a384d4648", "verdict": "ok", "reason": ""}
+{"n": 2049, "sha": "6a3ca7372f33a5d685ab9fb80a38c1316e15696e", "verdict": "filler", "reason": "The README lists HTTP(S) proxy support, but the excerpt does not say the capability is newly introduced."}
+{"n": 2050, "sha": "6a415a02cf0fafc34be212befb95136bc037f565", "verdict": "filler", "reason": "The constraint admits newer versions outside the exclusions, but it neither checks nor promises their stability."}
+{"n": 2051, "sha": "6a51f6b2f8af5b3e68a9b3f2edfd4c673dadc3b1", "verdict": "cannot_tell", "reason": "The zero default is shown, but the excerpt cuts off inside removed comments before showing how the option is passed through or what it retries."}
+{"n": 2052, "sha": "6a8a480d6c535e8fd52526875296576c5309203c", "verdict": "wrong", "reason": "The change removes the explicit request argument and an assertion that it is populated, without demonstrating that the attribute itself was removed."}
+{"n": 2053, "sha": "6a96652396515631bb72ba7c363e96c27edd769a", "verdict": "ok", "reason": ""}
+{"n": 2054, "sha": "6a9d59ea97f9681b57c1fe0db263b7e2af3e60c9", "verdict": "wrong", "reason": "The header edit operates on the request passed into OAuth1 auth, and the claimed encoding guarantee is unsupported."}
+{"n": 2055, "sha": "6abe1ff9334a67e4781b8eca541dbd892af7fa58", "verdict": "filler", "reason": "The test target now invokes setup.py, but no installation workflow or project-wide standard is shown."}
+{"n": 2056, "sha": "6ac1e0269134694fde1236f277760f9b23f633af", "verdict": "filler", "reason": "The new hook source is visible, but the excerpt does not identify any resulting request-preparation errors."}
+{"n": 2057, "sha": "6ac70450dc4c5099ec01cb7d9bf1a1ab653370b4", "verdict": "ok", "reason": ""}
+{"n": 2058, "sha": "6acce57271efce8c17cea2f1eece943f429e3879", "verdict": "ok", "reason": ""}
+{"n": 2059, "sha": "6adabacd81d8e453c3915f8a98692c9891df022b", "verdict": "ok", "reason": ""}
+{"n": 2060, "sha": "6ae8a2189235b62d7c5b2a6b95528750f046097c", "verdict": "ok", "reason": ""}
+{"n": 2061, "sha": "6af0b94158bbe10c45e754e85f9701f401e6aa9c", "verdict": "filler", "reason": "The new Ruff hook revision is visible, but the excerpt does not establish its status as the latest patch release."}
+{"n": 2062, "sha": "6af910610f67d35d70856b8a1257afc875c9d7f0", "verdict": "filler", "reason": "The requirements entries are removed, but the excerpt does not show that the packages are unused or that downloads will be avoided."}
+{"n": 2063, "sha": "6b09e6ee347ea435e4d6199c533a5fc44b39c535", "verdict": "wrong", "reason": "The edit changes the local files value for selected redirect branches and leaves the original request attribute untouched."}
+{"n": 2064, "sha": "6b11cf21f3d703315f4ae82ee493ee52a57d0b30", "verdict": "wrong", "reason": "The TODO is added, while the deletions are whitespace."}
+{"n": 2065, "sha": "6b129ec0c991536b7e61e204faa6886b6f086494", "verdict": "ok", "reason": ""}
+{"n": 2066, "sha": "6b1e81c41017cf05b742a8f4ef4e50b3a1a51aa8", "verdict": "ok", "reason": ""}
+{"n": 2067, "sha": "6b36911260b48b512b82bd4527e670de070acdb5", "verdict": "ok", "reason": ""}
+{"n": 2068, "sha": "6b377cc919e8c079e5c4f2c752ccce3c2acc4e64", "verdict": "ok", "reason": ""}
+{"n": 2069, "sha": "6b639bbc082024801a6ec31d32157da12af0d957", "verdict": "ok", "reason": ""}
+{"n": 2070, "sha": "6b89c8752aa67735b59642fc99bbaccf41e14ea8", "verdict": "ok", "reason": ""}
+{"n": 2071, "sha": "6badbac6e0d6b5a53872f26401761ad37a9002b8", "verdict": "cannot_tell", "reason": "The date is visible, but redacted parenthetical content leaves the removed and added HTTPAdapter lines identical in the supplied view."}
+{"n": 2072, "sha": "6bb4c4ebe628ad1fbb54c673ee4e409ed7376b2e", "verdict": "ok", "reason": ""}
+{"n": 2073, "sha": "6bd091ca7046585e4dc4cdb7bc33d7f29022834e", "verdict": "ok", "reason": ""}
+{"n": 2074, "sha": "6bd8e9e73f1a651180a92725bcb95f8d3171ebdf", "verdict": "ok", "reason": ""}
+{"n": 2075, "sha": "6bde9551709444a9b3859ae33b6174edcc99b03e", "verdict": "wrong", "reason": "Removing the leading dot converts explicit relative imports to the unqualified syntax that can resolve implicitly relative on the targeted interpreter."}
+{"n": 2076, "sha": "6be69e303b636b70a6d10233331eaada2417e2e7", "verdict": "ok", "reason": ""}
+{"n": 2077, "sha": "6c1be607f134f56bffebb7de71b18fadf918dcaa", "verdict": "ok", "reason": ""}
+{"n": 2078, "sha": "6c1ddeedfbb12abfb6778620836a181f63387b4a", "verdict": "ok", "reason": ""}
+{"n": 2079, "sha": "6c2942b19865106a3ac65b3bfc1fc93aae2d346c", "verdict": "wrong", "reason": "The project already has a test suite according to the old Makefile commands."}
+{"n": 2080, "sha": "6c322457a219f9f18e3aa8ed83ad1326aa565210", "verdict": "wrong", "reason": "The earlier value is a Pipfile entry name, and both entries resolve to the same editable local directory."}
+{"n": 2081, "sha": "6c41633cfd5634be42c9026f4c206fc8c2bf5d84", "verdict": "filler", "reason": "The import path changes are shown, but the excerpt does not identify import failures or version conflicts that they prevent."}
+{"n": 2082, "sha": "6c839985b9520ceeb0e48f204d86c92eb018bf3e", "verdict": "ok", "reason": ""}
+{"n": 2083, "sha": "6c88b6b09f2ac7c8cba340db774f0e7596626ec2", "verdict": "filler", "reason": "The action bump is stated, but the excerpt does not establish that it provides the latest upload functionality."}
+{"n": 2084, "sha": "6c8d9b1d0fd6bef2e7b617bcb1574e69c4fc8780", "verdict": "ok", "reason": ""}
+{"n": 2085, "sha": "6c9a0eff04e114d983d0a015ad1b0fb37da3096b", "verdict": "ok", "reason": ""}
+{"n": 2086, "sha": "6ca9d71bb5822f6d0c45062b474b5bb17f1a1dc7", "verdict": "ok", "reason": ""}
+{"n": 2087, "sha": "6cbebf782a4309010eef3bba088867a206f617b4", "verdict": "cannot_tell", "reason": "The book purchase link and cover are visible in sidebarintro.html, but the excerpt ends before the sidebarlogo.html hunk."}
+{"n": 2088, "sha": "6cc0b56d51d13e2a8553f7abffa06e9fbaf795db", "verdict": "wrong", "reason": "The changed exception path concerns failure to determine the current position with tell, rather than an error getting the file's length."}
+{"n": 2089, "sha": "6cc24a11fdf3c9d9489e4a49bad990ce662074f0", "verdict": "ok", "reason": ""}
+{"n": 2090, "sha": "6cc891fd3204c63e57ccfae4b91bb6edca2d876e", "verdict": "ok", "reason": ""}
+{"n": 2091, "sha": "6ce4ece8aa452764be26cdb26e5ce72dfd0da53d", "verdict": "ok", "reason": ""}
+{"n": 2092, "sha": "6cead64345d875d0049ef27655c9d5f650033dc5", "verdict": "ok", "reason": ""}
+{"n": 2093, "sha": "6cfbe1aedd56f8c2f9ff8b968efe65b22669795b", "verdict": "ok", "reason": ""}
+{"n": 2094, "sha": "6d0203609294a9f95b2808515829b3c371aaac74", "verdict": "wrong", "reason": "The test checks for no intermediate response on a second request with the same auth object and does not exercise a redirect or prove session-level reuse."}
+{"n": 2095, "sha": "6d0315f78fb27ec92407e50694c7054aa16ad1b1", "verdict": "wrong", "reason": "The documentation defines an inactivity window for bytes on the socket, which also applies while receiving the body."}
+{"n": 2096, "sha": "6d071f43312e6585c32208eeda6918be36d3649c", "verdict": "ok", "reason": ""}

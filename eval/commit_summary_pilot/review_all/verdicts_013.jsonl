@@ -1,0 +1,94 @@
+{"n": 1043, "sha": "3550ac7473883aea52ca7f4153de8c26357d5c37", "verdict": "ok", "reason": ""}
+{"n": 1044, "sha": "355e2889400f6ba2ae886056aa8cd968c2f9e5c4", "verdict": "filler", "reason": "The new heading is visible, but the excerpt does not show the section content needed to say it is a better fit."}
+{"n": 1045, "sha": "356bf42373f16ec9754cc73c63bc116a46e2f239", "verdict": "ok", "reason": ""}
+{"n": 1046, "sha": "35744c3e5d212f8841be3a5ab7de3e3b37dda5bb", "verdict": "wrong", "reason": "The former test code uses a generator expression, which does not create a list comprehension result."}
+{"n": 1047, "sha": "358478eb8881e3ebdef6afae09ee8ba934f66ee9", "verdict": "ok", "reason": ""}
+{"n": 1048, "sha": "358bb766d02bfa99e17902aa37718642cc061e0b", "verdict": "filler", "reason": "The commit is empty, but the supplied text gives no purpose as a placeholder or marker."}
+{"n": 1049, "sha": "35a1874912fff2a1f098d3e5d45984b97968f5fd", "verdict": "ok", "reason": ""}
+{"n": 1050, "sha": "35af0b077f287274c16d80305bd4af967bd81fc1", "verdict": "ok", "reason": ""}
+{"n": 1051, "sha": "35b0c5e16ea01a077357057fdd1b60fcfd64a73f", "verdict": "ok", "reason": ""}
+{"n": 1052, "sha": "35beda21b8187f7a5e99d76084c7ddbd05f4b738", "verdict": "ok", "reason": ""}
+{"n": 1053, "sha": "35bfa9e91d93c695f5cd421148a472e61da05a11", "verdict": "ok", "reason": ""}
+{"n": 1054, "sha": "35d4a47cb1f841c7bd207f5ae35061f4239711d2", "verdict": "ok", "reason": ""}
+{"n": 1055, "sha": "35d5ac6e8f5f4357f945b8c4890388207f7f1c00", "verdict": "wrong", "reason": "The commit changes the encoding detection fallback when chardet is unavailable, without changing the default for all HTTP response text."}
+{"n": 1056, "sha": "35ec6bb613669dbbbba2afcc7aac4e467a5b4db8", "verdict": "wrong", "reason": "Setting a request header does not itself guarantee transport cleanup or establish that there was a leak."}
+{"n": 1057, "sha": "35ed9b5f38ea9fa210658d555dbb8e1a71fb66d8", "verdict": "ok", "reason": ""}
+{"n": 1058, "sha": "35f2e55308fc37647132cf350cfd131bcdba4023", "verdict": "filler", "reason": "The new pip command is visible, but the excerpt does not establish deprecation or current best practice."}
+{"n": 1059, "sha": "35f6671ec583e75b90a026167e18cb41cdb7d760", "verdict": "ok", "reason": ""}
+{"n": 1060, "sha": "35f7bcdaa2734aca43a8462ab717af47342ca0c8", "verdict": "wrong", "reason": "The client tells the server the destination hostname, which differs from the client's own hostname."}
+{"n": 1061, "sha": "35fc3b4dbb6c0b87f97c183dfae14289eb87d60d", "verdict": "ok", "reason": ""}
+{"n": 1062, "sha": "3602690886a0b1795f721664e93c96f4b4c9f5a9", "verdict": "ok", "reason": ""}
+{"n": 1063, "sha": "36093e69c70b9b24dd1e007befa35ad891313f51", "verdict": "ok", "reason": ""}
+{"n": 1064, "sha": "3615cbc9df85a7fe374c1a7e3fe2c64ad91fe0ea", "verdict": "ok", "reason": ""}
+{"n": 1065, "sha": "3618f3f68ed7b4efe5a6adf6ddf2f413dc71d0e8", "verdict": "ok", "reason": ""}
+{"n": 1066, "sha": "362da46e9a46da6e86e1907f03014384ab210151", "verdict": "wrong", "reason": "The release note refers specifically to StringIO, and the changed files contain release information rather than the implementation."}
+{"n": 1067, "sha": "3635b1501d5bfb17678404f199fb6efe2b3249ff", "verdict": "ok", "reason": ""}
+{"n": 1068, "sha": "36485983caa62437ced58dc0c8a4e974a1103c13", "verdict": "wrong", "reason": "The original print expression is valid with a space before the opening parenthesis."}
+{"n": 1069, "sha": "365c64fe3bd074ad942ae720813693e8d8cf68d3", "verdict": "filler", "reason": "The default size visibly changes, but the possible performance and memory effects are unsupported speculation."}
+{"n": 1070, "sha": "3664682539fe911a3e19712a0ddec21a515bc16f", "verdict": "ok", "reason": ""}
+{"n": 1071, "sha": "366e8e849877aea44ce96abebd4f26f5bcce12fb", "verdict": "ok", "reason": ""}
+{"n": 1072, "sha": "36842db26f85fde19143be490cc37fa31e835fca", "verdict": "wrong", "reason": "The shell command checks out a ref inside an urllib3 directory and does not establish that the directory is a Git submodule."}
+{"n": 1073, "sha": "369be8afd07e7a0f38bc4f78d6f3764a800711aa", "verdict": "wrong", "reason": "The Python-version warning is already present in the deleted line, so it is not introduced by this commit."}
+{"n": 1074, "sha": "369e7cb38f7cd2b5ccbc86127d3a59f2fb8790c0", "verdict": "ok", "reason": ""}
+{"n": 1075, "sha": "36b0481f24aa45a0229791630b467971dd58c92f", "verdict": "ok", "reason": ""}
+{"n": 1076, "sha": "36b6c3749694d0d76282a12d69a36cdaf562b792", "verdict": "ok", "reason": ""}
+{"n": 1077, "sha": "36cc7bbfc35dec99e8090cf697bfd37820e66f6a", "verdict": "ok", "reason": ""}
+{"n": 1078, "sha": "36dcce1a06fe0a82d8522c7d4287fb3623722c6c", "verdict": "ok", "reason": ""}
+{"n": 1079, "sha": "36dea434065fa174105ac220152d94f7a39827b5", "verdict": "cannot_tell", "reason": "The new one-time initialization guard is visible, but the previous call-site conditions are cut off before the reset-on-every-request claim can be checked."}
+{"n": 1080, "sha": "36fd8da1c07090c25a386dbc0c8ba22213e50f93", "verdict": "ok", "reason": ""}
+{"n": 1081, "sha": "37011aaa3f571249951e79162ca58072ff5d7e41", "verdict": "ok", "reason": ""}
+{"n": 1082, "sha": "37037607b5f3da32ff1897caca3c38e210f04c37", "verdict": "wrong", "reason": "The condition treats an explicitly supplied falsy data value the same as no data."}
+{"n": 1083, "sha": "37070ac30e1c9ae9ec52de51e88174927e00d936", "verdict": "ok", "reason": ""}
+{"n": 1084, "sha": "3711e04f37329b7252e13b410bc0ab04a6c4645c", "verdict": "ok", "reason": ""}
+{"n": 1085, "sha": "372e4d94c560473fbff5691e72f8bcc1f5580fb3", "verdict": "ok", "reason": ""}
+{"n": 1086, "sha": "373166d833aa5e89d38859f11be59ad3aaba5a1d", "verdict": "ok", "reason": ""}
+{"n": 1087, "sha": "373a34a1443b3137b062a699d39cf91e78a892a3", "verdict": "ok", "reason": ""}
+{"n": 1088, "sha": "377078b0f5cc5944756635f6e506d208b421b1e1", "verdict": "ok", "reason": ""}
+{"n": 1089, "sha": "37786613e06f055a0495b05940f31531a9afd705", "verdict": "ok", "reason": ""}
+{"n": 1090, "sha": "379025a1bc5bad72176259695dcbda1a53c6fc7a", "verdict": "filler", "reason": "The README drops a badge but gives no evidence of a distribution status or build change."}
+{"n": 1091, "sha": "37bbdbe8c3d041e5bb66396f735266c4dfeb5652", "verdict": "ok", "reason": ""}
+{"n": 1092, "sha": "37bde4b63869ad4635cbb9953a7d0c229f30daa1", "verdict": "ok", "reason": ""}
+{"n": 1093, "sha": "37d269c1049c438ac67e5ff5347e0194c22df330", "verdict": "ok", "reason": ""}
+{"n": 1094, "sha": "37ed9116b7081ff2b1542af7bdb2857f3ca63661", "verdict": "ok", "reason": ""}
+{"n": 1095, "sha": "37ef88885cbc80b007869a53919f0b8db7053ace", "verdict": "wrong", "reason": "The workflow invokes a README target without establishing that it validates documentation examples specifically."}
+{"n": 1096, "sha": "37f3a29d49453244c354b98a01fe765b5f01aaec", "verdict": "ok", "reason": ""}
+{"n": 1097, "sha": "3816cfa1abd42dca21b9e837f26c59b246016aaf", "verdict": "ok", "reason": ""}
+{"n": 1098, "sha": "3843a40f7cde8242c84533a5d6079f444cb3f5c8", "verdict": "ok", "reason": ""}
+{"n": 1099, "sha": "3857431159b56707965f9abce581e6ab0694604b", "verdict": "wrong", "reason": "The commit records removal of the cache and raises the package version, with no implementation change to the cache in the file list."}
+{"n": 1100, "sha": "386382b18caab6a3a8a111fa8e24875dca27b0aa", "verdict": "ok", "reason": ""}
+{"n": 1101, "sha": "3873121c01d0081777edb49b90d00e4c0ae777e1", "verdict": "wrong", "reason": "The old jobs are spawned with gevent, and nothing indicates this is a thread pool."}
+{"n": 1102, "sha": "387c8f852cbb6ee2bdbb073b23871e18b7767d53", "verdict": "wrong", "reason": "The new limit bounds the number of cache entries, not the application's total memory usage."}
+{"n": 1103, "sha": "388e949e83a728d09f27cc708d32badcc160971e", "verdict": "wrong", "reason": "The edited example adds a doctest continuation prompt, with no change to the position of the arguments."}
+{"n": 1104, "sha": "389da34fc9a0ab100d9b4bde7475d1bed479014d", "verdict": "ok", "reason": ""}
+{"n": 1105, "sha": "389eea58dfb2f2ee096421a812e3af29c0298951", "verdict": "ok", "reason": ""}
+{"n": 1106, "sha": "38a194795777e22b7a80712158bc186d78d9e7f4", "verdict": "ok", "reason": ""}
+{"n": 1107, "sha": "38aced9f90cdbcdbda1cf402ef759060b08df6de", "verdict": "ok", "reason": ""}
+{"n": 1108, "sha": "38bd23493609c4e1a33bbf8009d98265865e6ce0", "verdict": "ok", "reason": ""}
+{"n": 1109, "sha": "38c2532c5f5d93e36f5296b94e496f3ef7c7fbdd", "verdict": "filler", "reason": "The minimum certifi version is shown, but a security or compatibility motive is speculative."}
+{"n": 1110, "sha": "38dd089c5f7a35bf6eed72f4e63820aed9eb7ca3", "verdict": "ok", "reason": ""}
+{"n": 1111, "sha": "38f2581d6ff4d7ca8011929685917b931f256b77", "verdict": "filler", "reason": "The example URL gains the missing slash, but the excerpt does not establish that the endpoint is functional."}
+{"n": 1112, "sha": "38f3f8ecb93cadfac03a6b7b3173018ac829d0cf", "verdict": "ok", "reason": ""}
+{"n": 1113, "sha": "390024329756db774d5b044ebb124f58ef2ba503", "verdict": "wrong", "reason": "The redirect target is still resolved against a base URL, so the change preserves the query delimiter without guaranteeing an unchanged URL."}
+{"n": 1114, "sha": "390a499e81cebe835c1e35b9c917840db85a4ce4", "verdict": "ok", "reason": ""}
+{"n": 1115, "sha": "392b01f26e1cca4a2ada1539a6ae1a1b607ec33a", "verdict": "filler", "reason": "The workflow selects 8.0.0 explicitly, but no evidence establishes that this is the latest major release."}
+{"n": 1116, "sha": "39446def395672b96642ad9b317fab09ee771be1", "verdict": "ok", "reason": ""}
+{"n": 1117, "sha": "3948a9562db886e7ead6a48dbcbada34fbeb0838", "verdict": "ok", "reason": ""}
+{"n": 1118, "sha": "3957b0befb063ecea1c9cb3dc67b2c385ddad58e", "verdict": "wrong", "reason": "The replaced expression is true for exactly the same values, and the hunk shows branch tests rather than code that enables verification."}
+{"n": 1119, "sha": "395a3e888506d3713dba030b73adc21ca99a305c", "verdict": "filler", "reason": "The alias and serializer call are visible, but the reference to specific JSON compatibility requirements is unexplained."}
+{"n": 1120, "sha": "396963ac7eb8078bae5c30d9cf596debef892c3d", "verdict": "wrong", "reason": "The local patch relabels the existing bundle and does not demonstrate an upgrade to an upstream development version."}
+{"n": 1121, "sha": "397bd4b67688fe8b35b5c17a6f1d6f43ab076c18", "verdict": "ok", "reason": ""}
+{"n": 1122, "sha": "397f10bac76b74e3e6efcb5c4be2fe735382d7bc", "verdict": "ok", "reason": ""}
+{"n": 1123, "sha": "39841562c5a5d34ed6bebbf733f97b95d57977ca", "verdict": "ok", "reason": ""}
+{"n": 1124, "sha": "398d1105b4c25740687baf0c5635b9c8ce00f632", "verdict": "ok", "reason": ""}
+{"n": 1125, "sha": "398f5b501f7d67c52a27b8a6e00b883866d11e48", "verdict": "ok", "reason": ""}
+{"n": 1126, "sha": "3992ed6ad17347c128dac1784020c5e627b3e742", "verdict": "ok", "reason": ""}
+{"n": 1127, "sha": "39acf1dbd250df61ebfa7871384cd73cb6669c6d", "verdict": "ok", "reason": ""}
+{"n": 1128, "sha": "39b121d791ddd2f98ecf7b7f7ba5bae89034e422", "verdict": "ok", "reason": ""}
+{"n": 1129, "sha": "39b3a436d3058975ac8e05735825da03e755a3b0", "verdict": "ok", "reason": ""}
+{"n": 1130, "sha": "39b3dcf7d937570f8a5ecda57ac0aae7eeea3aba", "verdict": "ok", "reason": ""}
+{"n": 1131, "sha": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e", "verdict": "ok", "reason": ""}
+{"n": 1132, "sha": "39d12818fe6ca81eaa32d917100aa5da8c9c3a7f", "verdict": "ok", "reason": ""}
+{"n": 1133, "sha": "39e8c0d96f2ea9563fc2bc42d5e0aaf61aa29370", "verdict": "wrong", "reason": "The original assertion already decoded the byte string before comparing it."}
+{"n": 1134, "sha": "39e9424f012dcae29d9b64d97582f7a80206c5d0", "verdict": "filler", "reason": "The new contributor is shown, but the addition does not establish that the attribution file is accurate overall."}
+{"n": 1135, "sha": "39edf7a7fad2e799cc9129bcf3d2ba33df0cc507", "verdict": "wrong", "reason": "The only hunk changes the docstring, so it does not give the method a new exception behavior."}
+{"n": 1136, "sha": "39ee5d46dc05edec6d4cf9c2831b326b857fc0e4", "verdict": "ok", "reason": ""}

@@ -1,0 +1,85 @@
+{"n": 2182, "sha": "715a57dec888c850d16b767d7cdab9705fda7292", "verdict": "ok", "reason": ""}
+{"n": 2183, "sha": "71626dea7e72e63c31742e4368ab9dc136484bbe", "verdict": "filler", "reason": "The promise is removed from the README, but the excerpt does not show how redirects actually work at this point."}
+{"n": 2184, "sha": "716b627c1e7c86af722affe973a11df4d5812a1b", "verdict": "cannot_tell", "reason": "The per-hop PreparedRequest and use of the original method are visible, but the excerpt ends before URL handling and does not show the claimed URL reuse bug."}
+{"n": 2185, "sha": "716d29c49c346106b25fadd1d15d6bd79cd6847a", "verdict": "ok", "reason": ""}
+{"n": 2186, "sha": "71898bb7937679dddbda4bd12d9e53eb5de7b1fa", "verdict": "cannot_tell", "reason": "The title and package file list point to chardet2, but the excerpt stops in the symbol listing before the defaults.py edit can be checked."}
+{"n": 2187, "sha": "718f45698de90994effa734ac6d608e92008c177", "verdict": "filler", "reason": "The copyright string changes, but the excerpt does not establish legal ownership or the accuracy of the attribution."}
+{"n": 2188, "sha": "7192b8022e6273c60de2b94d6e03015eaefd5c75", "verdict": "filler", "reason": "The constructor now initializes config as a dict, but the excerpt does not establish that it remains a dict or prevented a specific type error."}
+{"n": 2189, "sha": "7197afa8874a3751a3dfafffc715c598e3be55ca", "verdict": "ok", "reason": ""}
+{"n": 2190, "sha": "71a05cf28985da6bb56ee27b91d7cd005ce8da9d", "verdict": "wrong", "reason": "The patch skips an early calculation on unprocessed data, while non-stream requests still determine Content-Length from the prepared body."}
+{"n": 2191, "sha": "71b8941f0e5c2ea5901a4f7ec6f397d443d9104b", "verdict": "ok", "reason": ""}
+{"n": 2192, "sha": "71d3490bcde6a6c595bc76a1244f059a7d7f4458", "verdict": "wrong", "reason": "Optional blocking or deferred reading does not establish asynchronous processing of the response body."}
+{"n": 2193, "sha": "71d8f289b086a60b2b177e1eab5d7c0f6e9cf006", "verdict": "ok", "reason": ""}
+{"n": 2194, "sha": "71df02df2c9ab37a8ee40b31f5e28742d1a6cee8", "verdict": "filler", "reason": "The method override is demonstrated, but the excerpt does not establish a reliability problem with existing parameterized GET requests."}
+{"n": 2195, "sha": "71e402fe40b36042c1e941f508bba24772cf45ed", "verdict": "ok", "reason": ""}
+{"n": 2196, "sha": "720d0b2c38bd5c8dcc03a1a1de23a976c76f5f87", "verdict": "ok", "reason": ""}
+{"n": 2197, "sha": "720f1ce61d957ce88da9d4cebdde2e687e9d39ef", "verdict": "ok", "reason": ""}
+{"n": 2198, "sha": "72176ab9accf1a6cba861ddaeb9e36c6270f4bd2", "verdict": "ok", "reason": ""}
+{"n": 2199, "sha": "7229dbe0331492b16ed57745b0b448e8f26160ca", "verdict": "ok", "reason": ""}
+{"n": 2200, "sha": "722b1dae96b0523dde5e01351dd743f102090f53", "verdict": "ok", "reason": ""}
+{"n": 2201, "sha": "724038e4b5e94addb0bf6c767b7f5578b172c659", "verdict": "ok", "reason": ""}
+{"n": 2202, "sha": "724a3889bcd26c318cd4063519e67581d3be5d7e", "verdict": "ok", "reason": ""}
+{"n": 2203, "sha": "724ae1274e87b9636550fbab737c07b2ba359d52", "verdict": "ok", "reason": ""}
+{"n": 2204, "sha": "724fd44b975c5a078a186e79417656772a3f8ecc", "verdict": "ok", "reason": ""}
+{"n": 2205, "sha": "724ff7e4fa3af4d18b948c84fec48833006fea0b", "verdict": "ok", "reason": ""}
+{"n": 2206, "sha": "72506652971a99492c0d50c7a29129798f6150bc", "verdict": "ok", "reason": ""}
+{"n": 2207, "sha": "729fd3cf420adf658e0d98ba47789592016c112d", "verdict": "ok", "reason": ""}
+{"n": 2208, "sha": "72c8163aee29320a1d3ffd3818b7ee0c10f0d724", "verdict": "wrong", "reason": "The new final line still lacks a terminating newline."}
+{"n": 2209, "sha": "72ca1b7e314ede0ff57ebe7ec13310be50a052ab", "verdict": "ok", "reason": ""}
+{"n": 2210, "sha": "72d69d7b62c7c644001c72f065bd91cedb682dd6", "verdict": "filler", "reason": "The bundle update and removal of an Equifax root are visible, but the excerpt does not establish that the certificate was outdated or that all remaining roots are current."}
+{"n": 2211, "sha": "72d8293e0837fe29740a294b9b6d38a1b73172d4", "verdict": "ok", "reason": ""}
+{"n": 2212, "sha": "72d96a67ef5db73dcc419a7a24d0ed0be26931fe", "verdict": "wrong", "reason": "The return types are documented in Sphinx fields, and the Python function signatures are unchanged."}
+{"n": 2213, "sha": "72e155e529ae9f1892c5dffb5a021fa36ca0243e", "verdict": "ok", "reason": ""}
+{"n": 2214, "sha": "72e99c0f49823a5b798f8d15896480b7216c4fba", "verdict": "cannot_tell", "reason": "The excerpt lists HISTORY.rst but contains no diff lines to verify any version updates or fixes."}
+{"n": 2215, "sha": "72f7cbfdc1859567a8dfb06fc0b35a1c2671d655", "verdict": "ok", "reason": ""}
+{"n": 2216, "sha": "73018f40a3c3869e7e747181c55bcc33c21fe5e5", "verdict": "filler", "reason": "The empty commit is explicit, but its supposed purpose as a placeholder is not stated."}
+{"n": 2217, "sha": "730c0e2e2bef77968a86962f9d5f2bebba4d19ec", "verdict": "filler", "reason": "The socket consumption and crash workaround are visible, but the excerpt does not establish that a resource leak was the failure mechanism."}
+{"n": 2218, "sha": "7322aa5b6442af61a7c0d96c33c7e253215b6f95", "verdict": "wrong", "reason": "One formatting edit is in a docstring and the other is in an attribute comment."}
+{"n": 2219, "sha": "733b2018a3987714f5a9576f2df4895f2a166449", "verdict": "filler", "reason": "The new minimum versions are explicit, but the excerpt does not document security changes for either dependency."}
+{"n": 2220, "sha": "73425fbffbee293faa6cf4b2fc8ad1e6bce1b45b", "verdict": "ok", "reason": ""}
+{"n": 2221, "sha": "73635df1b2680e8b4ac7babc0ab0bc004fbb21b7", "verdict": "ok", "reason": ""}
+{"n": 2222, "sha": "7369e47f1847b5942c4c6d21a19cf35a06d3030e", "verdict": "ok", "reason": ""}
+{"n": 2223, "sha": "736e8cd7358a475979da9d2e525e535e81fdab18", "verdict": "ok", "reason": ""}
+{"n": 2224, "sha": "73793ce43e3d940a0f8d6b9b8ff125617828d8a1", "verdict": "ok", "reason": ""}
+{"n": 2225, "sha": "737dd0c3c6b9c090d1d525ffc0c7449d2cdca0ac", "verdict": "ok", "reason": ""}
+{"n": 2226, "sha": "7384fe71d6620b2478d250e504aca1e6e44a3d7a", "verdict": "filler", "reason": "The setuptools floor is explicit, but the excerpt does not identify a compatibility requirement or show compatibility being established."}
+{"n": 2227, "sha": "73a65941ad831bb4b5bdd0056e2d41a0363c1c0f", "verdict": "wrong", "reason": "The original count and claim stay in the text, and the commit only makes the phrase depended upon a link."}
+{"n": 2228, "sha": "73abf84ace955e681d07cacf047263d95c540440", "verdict": "ok", "reason": ""}
+{"n": 2229, "sha": "73b414ab4564486f2335f02a1727fd0f4d005608", "verdict": "ok", "reason": ""}
+{"n": 2230, "sha": "73b9b6906d5cd94bd18751d7c5dce15a5d47eab0", "verdict": "ok", "reason": ""}
+{"n": 2231, "sha": "73ba48be2e51e2dea2f4e6c924495796c112a9a3", "verdict": "ok", "reason": ""}
+{"n": 2232, "sha": "73ca21ed8ca1078ac1f165875fa3a8c3260c3dff", "verdict": "ok", "reason": ""}
+{"n": 2233, "sha": "73ed0d01f64eec04760a1ea2fe078bc1d2a327b4", "verdict": "wrong", "reason": "The hunk extends an existing RequestsTestCase and does not create a new test suite."}
+{"n": 2234, "sha": "73ed950e70cdf27c6455845c2ae14de0b0ab0af3", "verdict": "ok", "reason": ""}
+{"n": 2235, "sha": "74013d751c410ff2157d66de0864c8ed3052f75c", "verdict": "filler", "reason": "The lowered timeout and Rackspace reference are visible, but the message gives no evidence of flakiness caused by latency or of reliable triggering afterward."}
+{"n": 2236, "sha": "7407309c8a8a73aa2f4337184025d440bbedab7a", "verdict": "ok", "reason": ""}
+{"n": 2237, "sha": "741fd3ded57be6a18e826238bc85c9145d19011e", "verdict": "ok", "reason": ""}
+{"n": 2238, "sha": "742610c6b9e9b1b72ac13b784ba9c44685be1b92", "verdict": "ok", "reason": ""}
+{"n": 2239, "sha": "74289f420c20f8ae8691722987e73dc147784c99", "verdict": "ok", "reason": ""}
+{"n": 2240, "sha": "742cbeaee15f9805da8473dac668e58ef80d7b7d", "verdict": "ok", "reason": ""}
+{"n": 2241, "sha": "743f38209dad9aa8a70b48249b48534dc0e699ed", "verdict": "wrong", "reason": "The message says to remove nonexistent usernames, which does not establish deletion of whole contributor records or whether accounts used to exist."}
+{"n": 2242, "sha": "74609c5c8f94cbae3d3fc72e0b0a53cae19cc29c", "verdict": "ok", "reason": ""}
+{"n": 2243, "sha": "7461371361a718e497bdfc63641d0916904e3f04", "verdict": "ok", "reason": ""}
+{"n": 2244, "sha": "746d2cad5db2fa416174f62f0266ab35dea3802a", "verdict": "filler", "reason": "Use of mirrors is shown, but the excerpt provides no evidence of faster sources or a shorter build."}
+{"n": 2245, "sha": "747f882b0e99f7d70e08acef78e517df93085c58", "verdict": "ok", "reason": ""}
+{"n": 2246, "sha": "7481980c1a4a60d9a63278041aed895002af9f5d", "verdict": "ok", "reason": ""}
+{"n": 2247, "sha": "748633d616db4e27bb00530d8db5afa660460a67", "verdict": "filler", "reason": "The method rename is shown, but the excerpt does not establish a standard naming convention or relative user familiarity."}
+{"n": 2248, "sha": "748c65f7a7ddedcc878bcbd150cba5592195b9d5", "verdict": "wrong", "reason": "The new requirement is an unpinned Git source and identifies no version, tag or revision."}
+{"n": 2249, "sha": "749419ad0c4df9a0452a2a8bd13b4310c8f1e8ec", "verdict": "ok", "reason": ""}
+{"n": 2250, "sha": "749edb35541d7bc008f5db860c798f800881cd2e", "verdict": "ok", "reason": ""}
+{"n": 2251, "sha": "74a4d06d58106ac0e258df1ede94c5ecfad33945", "verdict": "ok", "reason": ""}
+{"n": 2252, "sha": "74b72800490901bfa21620b46ed25ac72b2e94b5", "verdict": "ok", "reason": ""}
+{"n": 2253, "sha": "74b72ce4265583db0430080ab67d3d5e0c4b44b2", "verdict": "ok", "reason": ""}
+{"n": 2254, "sha": "74c56d5ffb0ad718dbd011b983d056c994355d7d", "verdict": "wrong", "reason": "The wildcard ignore rule is added to one Dependabot updates entry, which does not establish a repository-wide policy for every dependency."}
+{"n": 2255, "sha": "74cf6fc38ef3c655f87f0fb1e1c5696584506d2f", "verdict": "ok", "reason": ""}
+{"n": 2256, "sha": "74d85d0a2f21b6d888e8f5a5c4988e04ca522afc", "verdict": "wrong", "reason": "The actual text replaces an em dash with two ASCII hyphens."}
+{"n": 2257, "sha": "74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5", "verdict": "ok", "reason": ""}
+{"n": 2258, "sha": "75027f9557e61f2416af1794a269758604a7454c", "verdict": "ok", "reason": ""}
+{"n": 2259, "sha": "75096a167cd6c3293223995d9207ceb96f254fd6", "verdict": "ok", "reason": ""}
+{"n": 2260, "sha": "751b35c346e1cf373fcf4b2f19683ebfbd9dae3d", "verdict": "ok", "reason": ""}
+{"n": 2261, "sha": "751e2ea2d420b1c7dfc99f0e376184e3e97772d6", "verdict": "filler", "reason": "The deleted tasks and new note are visible, but nothing in the excerpt establishes that the removed tasks had become outdated."}
+{"n": 2262, "sha": "751e7a0a66bc9f57923b8ae039bf2f467e106c60", "verdict": "ok", "reason": ""}
+{"n": 2263, "sha": "753fd08c5eacce0aa0df73fe47e49525c67e0a29", "verdict": "wrong", "reason": "The edit fixes the verb and changes the relative pronoun, which does not represent a pronoun-agreement fix."}
+{"n": 2264, "sha": "7548bc7ccc96f40a31c385895faaab50bc1bb830", "verdict": "ok", "reason": ""}
+{"n": 2265, "sha": "75703d57e66544ff1e6c7cbd54648b051928b1a9", "verdict": "wrong", "reason": "A syntax error invalidates the module when Python parses it, before Session.send can be called."}
+{"n": 2266, "sha": "758cd24033b910f55b564a4d57b8ec46b838e42b", "verdict": "ok", "reason": ""}

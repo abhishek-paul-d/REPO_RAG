@@ -1,0 +1,96 @@
+{"n": 4494, "sha": "ec2859c0ded048c8630f4561d9556117fa301794", "verdict": "ok", "reason": ""}
+{"n": 4495, "sha": "ec33ce9d29d591e18ded52018501942d3eb02776", "verdict": "ok", "reason": ""}
+{"n": 4496, "sha": "ec3a2e6f04a6e268cbae747e9f1ff6ea4217f8b2", "verdict": "wrong", "reason": "The 307 edits switch redirect-handling call sites to a different alias. The excerpt shows the alias removal for 308, not a rename of the 307 names in the status-code module."}
+{"n": 4497, "sha": "ec4edae97770897d7975b9ac447962f6336966df", "verdict": "ok", "reason": ""}
+{"n": 4498, "sha": "ec553c275fe915ab8c179a530907b564892d2922", "verdict": "ok", "reason": ""}
+{"n": 4499, "sha": "ec5804c706fcf2260ff85132b878851ffbbc2a6f", "verdict": "ok", "reason": ""}
+{"n": 4500, "sha": "ec5844a3bca014f71673da091c8717f114c921f0", "verdict": "ok", "reason": ""}
+{"n": 4501, "sha": "ec5f227381ae3911e0cd979b24564064c5a11efd", "verdict": "ok", "reason": ""}
+{"n": 4502, "sha": "ec700a9a1338975cbd340001091aa2c6d98c8988", "verdict": "ok", "reason": ""}
+{"n": 4503, "sha": "ec78348c4b6292b1a38008fa31e51f7b6b2252dc", "verdict": "filler", "reason": "The workflow upgrades setup-python from v3 to v4, but the excerpt does not establish latest-version status."}
+{"n": 4504, "sha": "ec84f2c539d952499e0207849dfd3f73e2c11324", "verdict": "cannot_tell", "reason": "The new assertions compare r5 and r6 to 425, but their assignments are absent, so the claimed URL preparation scenarios cannot be verified."}
+{"n": 4505, "sha": "ec852c1e5a71c11b1e894b6a846f4e09a5029662", "verdict": "filler", "reason": "The setup flag marks the package as not zip-safe, but no import or resource-access failure is identified."}
+{"n": 4506, "sha": "ec926a49580619a03c36f58f02df0874fbf9303b", "verdict": "wrong", "reason": "The structures module gains a blank line, while the sessions module loses one."}
+{"n": 4507, "sha": "ec94f5030c9087372ac31f240e25cf51bf420241", "verdict": "ok", "reason": ""}
+{"n": 4508, "sha": "ec979dc60a1796d77ff778669b0a8f2b7634c9c8", "verdict": "ok", "reason": ""}
+{"n": 4509, "sha": "eca835149157f49e53f6e77dff7d839021ed79bf", "verdict": "ok", "reason": ""}
+{"n": 4510, "sha": "ecaa10543fafd295e1354185a0f4e25751f3770d", "verdict": "filler", "reason": "The packages are commented out, but the excerpt does not establish a conflict with external dependency management."}
+{"n": 4511, "sha": "ecf57cac5ce1d9e365b52ded97e59038287c6a9d", "verdict": "ok", "reason": ""}
+{"n": 4512, "sha": "ed0242ae3a6f30202983aef6938bebadf655ef67", "verdict": "wrong", "reason": "The prior code passes a username/password tuple directly as auth, which is Basic Auth in this example, rather than negotiating XAuth tokens."}
+{"n": 4513, "sha": "ed0570bc2bac0e45af75a16f2614f32063dbe895", "verdict": "ok", "reason": ""}
+{"n": 4514, "sha": "ed160f2d2a25c7f8d307680532751cab3aa0c702", "verdict": "ok", "reason": ""}
+{"n": 4515, "sha": "ed360dcaf5af53a37b01c96bd50b3e91f0d6ac37", "verdict": "wrong", "reason": "The import is at module scope, so the failure would occur when importing sessions rather than when creating a Session instance."}
+{"n": 4516, "sha": "ed3ba3dbb8c589f2f7d45d110d34799c01b184fd", "verdict": "ok", "reason": ""}
+{"n": 4517, "sha": "ed5c728c529864e7fbf19b50cb4e69d8bd88c1ef", "verdict": "ok", "reason": ""}
+{"n": 4518, "sha": "ed642cfb6d471f2462953ac5f4f33a443750bd02", "verdict": "ok", "reason": ""}
+{"n": 4519, "sha": "ed73d9e45d96ba47c6c67796d5ddd7b5d98cc96f", "verdict": "ok", "reason": ""}
+{"n": 4520, "sha": "ed767cb70381ba4313a9e4b0c53a68b016f10e36", "verdict": "ok", "reason": ""}
+{"n": 4521, "sha": "ed7b14899fcc196acb5631819585dcc2be1b41f7", "verdict": "ok", "reason": ""}
+{"n": 4522, "sha": "ed8a3f319958844870bb071db7a185fb66d25171", "verdict": "ok", "reason": ""}
+{"n": 4523, "sha": "ed8ff63048a5ccaf304e2a59bfed58c9206cfd69", "verdict": "ok", "reason": ""}
+{"n": 4524, "sha": "ed9004f30eb9a521ac10fcdae75a2748a1efba3b", "verdict": "ok", "reason": ""}
+{"n": 4525, "sha": "edc68a0ac899785cd89a726e3da258e880d641dd", "verdict": "ok", "reason": ""}
+{"n": 4526, "sha": "edcc894a2e08b49729b98ad91092dbaada2aa374", "verdict": "ok", "reason": ""}
+{"n": 4527, "sha": "eddea4e9142bcfc439b2c4276de0b0532d63bf37", "verdict": "wrong", "reason": "The factory expectation is a dictionary with an empty list under response, rather than an empty list as the return value."}
+{"n": 4528, "sha": "eddf5254fbafc03abf0a11ee818f4c070f0a8146", "verdict": "ok", "reason": ""}
+{"n": 4529, "sha": "edf7731e666db9e5252b8736e61d50632e01faa4", "verdict": "filler", "reason": "One listed contact and fingerprint are replaced, but the page does not designate a primary contact."}
+{"n": 4530, "sha": "edf7e5f42062dd8ff65ae05e9bbbc7a3bc3d156a", "verdict": "ok", "reason": ""}
+{"n": 4531, "sha": "edfd0990b57199394446fed73b6f0ce0838ad43d", "verdict": "ok", "reason": ""}
+{"n": 4532, "sha": "edfdef23963ab1c5a0424f16f97cdc39dccae34a", "verdict": "cannot_tell", "reason": "The message claims broad authentication support, but the excerpt cuts off before the AuthManager code and does not allow verifying its supported types."}
+{"n": 4533, "sha": "ee024423a5d586b2e2cfe773cc5c47a8dcf1db99", "verdict": "ok", "reason": ""}
+{"n": 4534, "sha": "ee060ba7f36c065bc72019c51c7e649a7f0bf921", "verdict": "ok", "reason": ""}
+{"n": 4535, "sha": "ee36baf4f346b3d6817a6139840ac3b8b7e42621", "verdict": "ok", "reason": ""}
+{"n": 4536, "sha": "ee43ad249798c3d88db809ca68d356a4a06ce5c6", "verdict": "ok", "reason": ""}
+{"n": 4537, "sha": "ee50afef59ca47879144448ae056a2836f3d4534", "verdict": "wrong", "reason": "The header check is attached to a single elif fallback and is not a condition on all length calculations."}
+{"n": 4538, "sha": "ee58368c9f1c96ca9c66adff6ed05d5f233bdb2b", "verdict": "ok", "reason": ""}
+{"n": 4539, "sha": "ee6c638e9cfdbdf39b9e499d95c353460365f42c", "verdict": "filler", "reason": "The imports are commented out, but the excerpt does not establish that they were unused."}
+{"n": 4540, "sha": "ee7389da98092f6e63f68a490e7f71651c9ec047", "verdict": "wrong", "reason": "Append changes filter order and does not make an always warning stop repeating."}
+{"n": 4541, "sha": "ee7fe02953d864021298ed8d3e3e5f6aff1f6731", "verdict": "ok", "reason": ""}
+{"n": 4542, "sha": "ee861f42873ed3b19dd382c3d6fb9e0d5a7521cf", "verdict": "ok", "reason": ""}
+{"n": 4543, "sha": "ee90f0af608a58761e5f1e08ea5ea6a6365651a2", "verdict": "wrong", "reason": "A shallow copy protects the outer fields but can still share their nested values."}
+{"n": 4544, "sha": "eea96f94d9501f9a04d7e2c0a02096871af012c8", "verdict": "wrong", "reason": "Both source files switch to Markdown, but the package description now uses only the README."}
+{"n": 4545, "sha": "eeafdc143bee0f0356e0f5115029eaef792d4eb4", "verdict": "ok", "reason": ""}
+{"n": 4546, "sha": "eebae9c63bd336550210a4e4039298d23e6ad99f", "verdict": "ok", "reason": ""}
+{"n": 4547, "sha": "eec44dbbb1a0ce0427bf5151aa32ad5fcd1898e5", "verdict": "wrong", "reason": "The new guard accepts specific compatible string types and retains other conditions. It does not accept arbitrary string-like objects."}
+{"n": 4548, "sha": "eef4e0836cacd5fba902fb44850ac134fc1b992c", "verdict": "ok", "reason": ""}
+{"n": 4549, "sha": "ef02d02b1f4db1053c6e124ed740ff061d248fc4", "verdict": "ok", "reason": ""}
+{"n": 4550, "sha": "ef1e27ea9f254edf6e6805745c77425a9a4362ab", "verdict": "ok", "reason": ""}
+{"n": 4551, "sha": "ef34a8537802e1a911957cfeabffd4ac163ecdf2", "verdict": "wrong", "reason": "The entire script block is removed, including both the README test and make ci command."}
+{"n": 4552, "sha": "ef439eb779c1eba7cbdeeeb302b11e1e061b4b7d", "verdict": "ok", "reason": ""}
+{"n": 4553, "sha": "ef52044c5f0411307ef2200fcb950bd84879266f", "verdict": "ok", "reason": ""}
+{"n": 4554, "sha": "ef5875cc19d8ca34a37662f53e196944595874d8", "verdict": "wrong", "reason": "The previous code already tried parsing directly and handled TypeError afterward, rather than checking the input type up front."}
+{"n": 4555, "sha": "ef59aa0227bf463f0ed3d752b26db9b3acc64afb", "verdict": "ok", "reason": ""}
+{"n": 4556, "sha": "ef6ceffc1c943e73795150ede423bded8f0dbf12", "verdict": "ok", "reason": ""}
+{"n": 4557, "sha": "ef81c166114c3e11502b96ce344bfdaa7292d9ff", "verdict": "ok", "reason": ""}
+{"n": 4558, "sha": "ef8563ab36c6b52834ee9c35f6f75a424cd9ceef", "verdict": "ok", "reason": ""}
+{"n": 4559, "sha": "ef9bae8d9f2dc605d4fbcdf24256b6cc82612a2d", "verdict": "wrong", "reason": "The class change adds head to the allowed-method tuple. It does not define a head method on Request."}
+{"n": 4560, "sha": "efa030eae3cfa1eccb292a75ed958e00bb231631", "verdict": "filler", "reason": "The index URL and recorded Pipfile hash change, but lockfile validity and synchronization are not verified in the excerpt."}
+{"n": 4561, "sha": "efb4af01271c8c0ddf49457c7096a5bc91edbdad", "verdict": "ok", "reason": ""}
+{"n": 4562, "sha": "efba606e574707968ec2b35985b8cbb78213cb71", "verdict": "ok", "reason": ""}
+{"n": 4563, "sha": "efbbb84315505d78aff709106c53073e5111a9fe", "verdict": "ok", "reason": ""}
+{"n": 4564, "sha": "efc267ce59f6f18cffdfe6f736290857fdde1855", "verdict": "ok", "reason": ""}
+{"n": 4565, "sha": "efc4ea6ed717c2085a7aee3e185680a2b06bc3f4", "verdict": "filler", "reason": "The changelog is deleted, but no migration destination or replacement documentation system is shown."}
+{"n": 4566, "sha": "efd2b57b920ec5b3dab6eca506bcc82d5090ba08", "verdict": "wrong", "reason": "The new description adds a stray s to a previously correct sentence."}
+{"n": 4567, "sha": "efdd645dbccbb73c6829228ec32bb6ee740337bb", "verdict": "wrong", "reason": "The old wording reported installations, and the new wording reports downloads. The excerpt does not present this as correcting an erroneous count."}
+{"n": 4568, "sha": "efe0608cddabcc7cd40be69dfaaa6e04848c4b72", "verdict": "filler", "reason": "The empty commit is shown, but no placeholder or marker purpose is stated."}
+{"n": 4569, "sha": "efedbd9775b5c086b57b32c62cf45dd952c8f5b6", "verdict": "ok", "reason": ""}
+{"n": 4570, "sha": "efefc6b7784d76d34595fe6f6caa31757f481471", "verdict": "ok", "reason": ""}
+{"n": 4571, "sha": "f002b73026bdc136654ba545296898af9a88007a", "verdict": "ok", "reason": ""}
+{"n": 4572, "sha": "f003025a37f9d546570e52f7d355c6f5d1a81617", "verdict": "cannot_tell", "reason": "The implementation uses len(body), but the excerpt omits body construction and does not establish that the value always represents a byte count."}
+{"n": 4573, "sha": "f01694e2743c9883ca316d3abd8d2385d5c5f37e", "verdict": "ok", "reason": ""}
+{"n": 4574, "sha": "f0198e6dfc431a2293dc16e1b1e8fcddc910a7f3", "verdict": "cannot_tell", "reason": "The excerpt shows the old parser being removed but ends before the replacement, so the claimed new behavior for malformed parameter values cannot be checked."}
+{"n": 4575, "sha": "f023c81dad05fd8c5e9c1979b26c3c9ecfc4cf3b", "verdict": "ok", "reason": ""}
+{"n": 4576, "sha": "f02573f743458f015d93c67e9b6169b9516fe275", "verdict": "ok", "reason": ""}
+{"n": 4577, "sha": "f02a80cbe85c16c99cd0c4df63aeb56c0044865a", "verdict": "wrong", "reason": "The removed example is for the session helper. The environment-variable paragraph is rewritten rather than shown as an obsolete example being removed."}
+{"n": 4578, "sha": "f02d0f9e79a3aa3f0b716871f457ceb8f446bdba", "verdict": "ok", "reason": ""}
+{"n": 4579, "sha": "f038ec3b6e9e3dc9ba118eb34f60db295c6a5534", "verdict": "wrong", "reason": "The code checks for a substring in the header. It does not parse the encoding list or handle a stack of different decoders."}
+{"n": 4580, "sha": "f040b2aa5d5e278ce8a474a7dac3cf5533b36071", "verdict": "ok", "reason": ""}
+{"n": 4581, "sha": "f045979f8d942326a82ae87e2b5627f51cd5f45b", "verdict": "ok", "reason": ""}
+{"n": 4582, "sha": "f0660e33a268e9517ad15b39457bcf9875f71619", "verdict": "ok", "reason": ""}
+{"n": 4583, "sha": "f0b9b60f6298ec743f2b470819cd249a041845d3", "verdict": "ok", "reason": ""}
+{"n": 4584, "sha": "f0bcdd075e7c49b22a5729ba9e9b8c73bbcf7607", "verdict": "ok", "reason": ""}
+{"n": 4585, "sha": "f0beed86862a5154965cd2d39ce057c1a6ac841d", "verdict": "ok", "reason": ""}
+{"n": 4586, "sha": "f0c592b09eff266323f203be3c6bc8226491294d", "verdict": "ok", "reason": ""}
+{"n": 4587, "sha": "f0cfba708b0de39c072c3a327d4674ce777a0f50", "verdict": "ok", "reason": ""}
+{"n": 4588, "sha": "f0d2ac3dd5d3a2838cf2e55519feaa1e1b5023d2", "verdict": "ok", "reason": ""}
+{"n": 4589, "sha": "f0d3edf4090f3228f576cee665e3135052fbf303", "verdict": "ok", "reason": ""}

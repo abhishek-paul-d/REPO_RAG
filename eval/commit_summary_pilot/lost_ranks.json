@@ -1,0 +1,290 @@
+[
+ {
+  "run": "explain",
+  "id": "commitfull-015",
+  "gold": [
+   "c5d0a0931e1a"
+  ],
+  "q_before": "301 redirect PUT request content-length body",
+  "q_after": "301 redirect PUT request content-length body",
+  "old_idx_qbefore": null,
+  "new_idx_qbefore": null,
+  "old_idx_qafter": null,
+  "new_idx_qafter": null
+ },
+ {
+  "run": "explain",
+  "id": "commitfull-019",
+  "gold": [
+   "2a34335dc3ef"
+  ],
+  "q_before": "unicode multipart post fieldnames b'stuff' name encoding",
+  "q_after": "unicode multipart post fieldnames b'stuff' name encoding",
+  "old_idx_qbefore": 3,
+  "new_idx_qbefore": 3,
+  "old_idx_qafter": 3,
+  "new_idx_qafter": 3
+ },
+ {
+  "run": "explain",
+  "id": "commitfull-020",
+  "gold": [
+   "2a9ae4b367fc"
+  ],
+  "q_before": "TooManyRedirects redirect limit t.co",
+  "q_after": "TooManyRedirects redirect limit t.co",
+  "old_idx_qbefore": null,
+  "new_idx_qbefore": null,
+  "old_idx_qafter": null,
+  "new_idx_qafter": null
+ },
+ {
+  "run": "explain",
+  "id": "commitfull-022",
+  "gold": [
+   "39fe0068aa65",
+   "d22eaf96e2a1"
+  ],
+  "q_before": "cookies not persisted when set via functional API Session.request redirect",
+  "q_after": "cookies not persisted when set via functional API Session.request redirect",
+  "old_idx_qbefore": 3,
+  "new_idx_qbefore": 7,
+  "old_idx_qafter": 3,
+  "new_idx_qafter": 7
+ },
+ {
+  "run": "explain",
+  "id": "commitfull-028",
+  "gold": [
+   "642bbf60604d"
+  ],
+  "q_before": "too many redirects google spreadsheet 30 redirects",
+  "q_after": "too many redirects google spreadsheet 30 redirects",
+  "old_idx_qbefore": null,
+  "new_idx_qbefore": null,
+  "old_idx_qafter": null,
+  "new_idx_qafter": null
+ },
+ {
+  "run": "explain",
+  "id": "commitfull-053",
+  "gold": [
+   "6e2f1eb40209"
+  ],
+  "q_before": "quickstart guide data argument custom headers order",
+  "q_after": "quickstart guide custom headers data argument order",
+  "old_idx_qbefore": 4,
+  "new_idx_qbefore": 6,
+  "old_idx_qafter": 5,
+  "new_idx_qafter": 16
+ },
+ {
+  "run": "explain",
+  "id": "commitfull-079",
+  "gold": [
+   "26bea1e498d6"
+  ],
+  "q_before": "HTTPS proxy connection not initialized if first request is chunked CONNECT request never sent",
+  "q_after": "HTTPS proxy connection not initialized if first request is chunked CONNECT request never sent",
+  "old_idx_qbefore": 7,
+  "new_idx_qbefore": 7,
+  "old_idx_qafter": 7,
+  "new_idx_qafter": 7
+ },
+ {
+  "run": "explain",
+  "id": "commitfull-089",
+  "gold": [
+   "a9ee0eef5a70"
+  ],
+  "q_before": "Python 2.7 support removal timeline documentation",
+  "q_after": "Python 2.7 support removal timeline documentation",
+  "old_idx_qbefore": 1,
+  "new_idx_qbefore": 2,
+  "old_idx_qafter": 1,
+  "new_idx_qafter": 2
+ },
+ {
+  "run": "explain",
+  "id": "commitfull-109",
+  "gold": [
+   "f48c78c9eebd"
+  ],
+  "q_before": "_encode_files file tuples order data files ordering",
+  "q_after": "_encode_files file tuples order data files encoding",
+  "old_idx_qbefore": 4,
+  "new_idx_qbefore": 6,
+  "old_idx_qafter": 16,
+  "new_idx_qafter": 21
+ },
+ {
+  "run": "explain",
+  "id": "commitfull-111",
+  "gold": [
+   "c03553ed4ae8"
+  ],
+  "q_before": "requests adds packages directory to sys.path chardet import",
+  "q_after": "requests adds packages directory to sys.path chardet import",
+  "old_idx_qbefore": 14,
+  "new_idx_qbefore": 16,
+  "old_idx_qafter": 14,
+  "new_idx_qafter": 16
+ },
+ {
+  "run": "default",
+  "id": "commitfull-014",
+  "gold": [
+   "9fdee250de7e"
+  ],
+  "q_before": "Headers kwarg overrides Poster headers multipart Content-Length iterable body",
+  "q_after": "Headers kwarg overrides Poster headers multipart Content-Length iterable body",
+  "old_idx_qbefore": 14,
+  "new_idx_qbefore": 9,
+  "old_idx_qafter": 14,
+  "new_idx_qafter": 9
+ },
+ {
+  "run": "default",
+  "id": "commitfull-015",
+  "gold": [
+   "c5d0a0931e1a"
+  ],
+  "q_before": "301 redirect PUT request body content-length",
+  "q_after": "301 redirect PUT request content-length body",
+  "old_idx_qbefore": null,
+  "new_idx_qbefore": null,
+  "old_idx_qafter": null,
+  "new_idx_qafter": null
+ },
+ {
+  "run": "default",
+  "id": "commitfull-020",
+  "gold": [
+   "2a9ae4b367fc"
+  ],
+  "q_before": "TooManyRedirects redirect limit t.co",
+  "q_after": "TooManyRedirects redirect limit t.co",
+  "old_idx_qbefore": null,
+  "new_idx_qbefore": null,
+  "old_idx_qafter": null,
+  "new_idx_qafter": null
+ },
+ {
+  "run": "default",
+  "id": "commitfull-022",
+  "gold": [
+   "39fe0068aa65",
+   "d22eaf96e2a1"
+  ],
+  "q_before": "cookies not persisted when set via functional API Session.request redirect",
+  "q_after": "cookies not persisted when set via functional API Session.request redirect",
+  "old_idx_qbefore": 3,
+  "new_idx_qbefore": 7,
+  "old_idx_qafter": 3,
+  "new_idx_qafter": 7
+ },
+ {
+  "run": "default",
+  "id": "commitfull-030",
+  "gold": [
+   "87abd9c6094f"
+  ],
+  "q_before": "test_expires_valid_str morsel_to_cookie expires timezone",
+  "q_after": "test_expires_valid_str morsel_to_cookie expires timezone",
+  "old_idx_qbefore": 2,
+  "new_idx_qbefore": 3,
+  "old_idx_qafter": 2,
+  "new_idx_qafter": 3
+ },
+ {
+  "run": "default",
+  "id": "commitfull-036",
+  "gold": [
+   "47d0517d66e8"
+  ],
+  "q_before": "socket.timeout uncaught during post requests.exceptions.Timeout",
+  "q_after": "socket.timeout uncaught during post requests.exceptions.Timeout",
+  "old_idx_qbefore": null,
+  "new_idx_qbefore": null,
+  "old_idx_qafter": null,
+  "new_idx_qafter": null
+ },
+ {
+  "run": "default",
+  "id": "commitfull-053",
+  "gold": [
+   "6e2f1eb40209"
+  ],
+  "q_before": "quickstart guide data argument custom headers order",
+  "q_after": "quickstart guide data argument custom headers order",
+  "old_idx_qbefore": 4,
+  "new_idx_qbefore": 6,
+  "old_idx_qafter": 4,
+  "new_idx_qafter": 6
+ },
+ {
+  "run": "default",
+  "id": "commitfull-061",
+  "gold": [
+   "773e730d80aa"
+  ],
+  "q_before": "urllib3 chunked encoding refactor v2.6.1 release vendored libraries",
+  "q_after": "urllib3 chunked encoding refactor v2.6.1 release vendored libraries",
+  "old_idx_qbefore": null,
+  "new_idx_qbefore": null,
+  "old_idx_qafter": null,
+  "new_idx_qafter": null
+ },
+ {
+  "run": "default",
+  "id": "commitfull-079",
+  "gold": [
+   "26bea1e498d6"
+  ],
+  "q_before": "HTTPS proxy connection not initialized if first request is chunked CONNECT request never sent",
+  "q_after": "HTTPS proxy connection not initialized if first request is chunked CONNECT request never sent",
+  "old_idx_qbefore": 7,
+  "new_idx_qbefore": 7,
+  "old_idx_qafter": 7,
+  "new_idx_qafter": 7
+ },
+ {
+  "run": "default",
+  "id": "commitfull-089",
+  "gold": [
+   "a9ee0eef5a70"
+  ],
+  "q_before": "Python 2.7 support removal timeline documentation",
+  "q_after": "Python 2.7 support removal timeline documentation",
+  "old_idx_qbefore": 1,
+  "new_idx_qbefore": 2,
+  "old_idx_qafter": 1,
+  "new_idx_qafter": 2
+ },
+ {
+  "run": "default",
+  "id": "commitfull-093",
+  "gold": [
+   "d569a2d6bca6"
+  ],
+  "q_before": "Session prefetch pickle AttributeError",
+  "q_after": "Session prefetch pickle AttributeError",
+  "old_idx_qbefore": 1,
+  "new_idx_qbefore": 2,
+  "old_idx_qafter": 1,
+  "new_idx_qafter": 2
+ },
+ {
+  "run": "default",
+  "id": "commitfull-111",
+  "gold": [
+   "c03553ed4ae8"
+  ],
+  "q_before": "requests adds packages directory to sys.path chardet import",
+  "q_after": "requests adds packages directory to sys.path chardet import",
+  "old_idx_qbefore": 14,
+  "new_idx_qbefore": 16,
+  "old_idx_qafter": 14,
+  "new_idx_qafter": 16
+ }
+]

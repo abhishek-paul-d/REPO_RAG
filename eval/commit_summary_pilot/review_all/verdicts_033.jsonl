@@ -1,0 +1,89 @@
+{"n": 2794, "sha": "903f96cc6a948cdb86a2d79c23f93d27a258c4ab", "verdict": "wrong", "reason": "The monkeys import is for request machinery and is not shown to centralize config. The excerpt ends mid-import."}
+{"n": 2795, "sha": "9055b33f6f534cceb182fb323c9b68e753a5b612", "verdict": "ok", "reason": ""}
+{"n": 2796, "sha": "90578795eb1f4f8d11a1b15e8ed5d13fc3067c22", "verdict": "ok", "reason": ""}
+{"n": 2797, "sha": "9057f7539b9341ba3c739eb87af09995828f9544", "verdict": "ok", "reason": ""}
+{"n": 2798, "sha": "90688c68ad5a1bad8ac93c6e2b26395da1fdff51", "verdict": "ok", "reason": ""}
+{"n": 2799, "sha": "906fcd732889d9c4c0672cd0f98026b9e1b74273", "verdict": "ok", "reason": ""}
+{"n": 2800, "sha": "907c927d60f4ba3f09cf3574a5ae90ab76aa1717", "verdict": "ok", "reason": ""}
+{"n": 2801, "sha": "907e5294719c7d5a230eaa3c1a03f6230b90d875", "verdict": "cannot_tell", "reason": "The changelog says all args are kwargs, but no affected signatures are shown, so actual positional argument restrictions cannot be checked."}
+{"n": 2802, "sha": "90837359632b43aba7900b65b42744715f0b739a", "verdict": "ok", "reason": ""}
+{"n": 2803, "sha": "908c3b01ee1a3c5d44865b1ba5c1731c4086b7c0", "verdict": "filler", "reason": "The explicit package list is visible, but the excerpt does not prove it is exhaustive or verify the installed distribution."}
+{"n": 2804, "sha": "908d7de7b8ad05c537b8131f076f9112657a77ee", "verdict": "wrong", "reason": "The text still says PST after the edit."}
+{"n": 2805, "sha": "90a166d44ae2d6b0887140f64c0c79051fd8c0f3", "verdict": "wrong", "reason": "The note identifies a failure to determine the current position with tell, rather than all failures to measure size."}
+{"n": 2806, "sha": "90dc467fc0b1f4f1b7472acb5708e3017a53fa70", "verdict": "ok", "reason": ""}
+{"n": 2807, "sha": "90ddeca70d7846e6a5b99a9c1fe1a2666b5ca47c", "verdict": "wrong", "reason": "The previous warning is shortened to No. and remains separate from the added docstring guidance."}
+{"n": 2808, "sha": "90e109c241010ccb8e998cc1b85333261fc2739e", "verdict": "wrong", "reason": "The hunk removes a spurious entry from the example headers, and supplies no example of separate status and reason fields."}
+{"n": 2809, "sha": "90f3842ed60f91ff101189f792ce21f7c762b1a0", "verdict": "ok", "reason": ""}
+{"n": 2810, "sha": "90f5c8bd854d8ffb7bb53be9bdb3a207bd80460e", "verdict": "ok", "reason": ""}
+{"n": 2811, "sha": "90f73378582e4e2cbc75a189a2cfa7826824f29e", "verdict": "ok", "reason": ""}
+{"n": 2812, "sha": "90fee0876aea97c639b3bf698d83a12876d2f160", "verdict": "filler", "reason": "The cache removal is visible at module scope, but the excerpt gives no reason for the revert or evidence of a configuration or performance regression."}
+{"n": 2813, "sha": "910b2312d644aa3edf5d03f5dc760474a949b71d", "verdict": "ok", "reason": ""}
+{"n": 2814, "sha": "911e8aec8d7101536c443e7918929fe7e8fb9496", "verdict": "ok", "reason": ""}
+{"n": 2815, "sha": "912f48eececb6355b3511416d4d5361aedbd5d08", "verdict": "ok", "reason": ""}
+{"n": 2816, "sha": "913880c45a3a8c3bf6b298e9c38709cd95a9c97c", "verdict": "ok", "reason": ""}
+{"n": 2817, "sha": "913adced21816f8bb34abb8adc1ca01a4e9d8431", "verdict": "ok", "reason": ""}
+{"n": 2818, "sha": "913ef867be5b918aebbbf491e879116963a4fa29", "verdict": "ok", "reason": ""}
+{"n": 2819, "sha": "916e6fcd64d16252cb884106a0dd225a7a1c2549", "verdict": "ok", "reason": ""}
+{"n": 2820, "sha": "91766548d10cd5ebf46aba376f9e000263285875", "verdict": "cannot_tell", "reason": "The revert and deleted test are shown, but the omitted exception branches make the resulting safe-mode timeout behavior unclear."}
+{"n": 2821, "sha": "919c168cdbb74977d6f1d10b2622897d2b9521ae", "verdict": "ok", "reason": ""}
+{"n": 2822, "sha": "91a3eabd3dcc4d7f36dd8249e4777a90ef9b4305", "verdict": "filler", "reason": "The action upgrade is shown, but the excerpt does not establish that it provides the latest scanning features and fixes."}
+{"n": 2823, "sha": "91a9c397466d22c83688ddd851d7f04d73cd22a8", "verdict": "wrong", "reason": "The script assigns a saved value in its own environment and sets the variable to '0' if it was originally absent, rather than restoring absence."}
+{"n": 2824, "sha": "91ac5ba110e1d85544af3edaa375837db861e426", "verdict": "ok", "reason": ""}
+{"n": 2825, "sha": "91e75f721508d2198ccb3d4e2979047249ae01f4", "verdict": "ok", "reason": ""}
+{"n": 2826, "sha": "92075b330a30b9883f466a43d3f7566ab849f91b", "verdict": "wrong", "reason": "The warning is in the base implementation, so overriding the method does not itself cause the warning to run."}
+{"n": 2827, "sha": "9217a2523d7d4fafeebb259884276fc349a376b1", "verdict": "wrong", "reason": "The change lets an auth callable run before body handling, and does not put HTTP authentication headers into the payload."}
+{"n": 2828, "sha": "92209d9ebe2d8ef6bdb30f897e8cee67e956a5ef", "verdict": "wrong", "reason": "The test file loses two blank lines, rather than a single one."}
+{"n": 2829, "sha": "922aa406b53f14a67264e07d12fb042704be7374", "verdict": "ok", "reason": ""}
+{"n": 2830, "sha": "92355ada54a3a19341f7fbc65a8bc50816858c63", "verdict": "wrong", "reason": "The hunk removes the HOOKS import from sessions.py, but does not delete the constant definition."}
+{"n": 2831, "sha": "925e975295e2fe772268e748c6c074af7b0ae47d", "verdict": "ok", "reason": ""}
+{"n": 2832, "sha": "927294fbd439d96c0cea0750017122102effe9ff", "verdict": "wrong", "reason": "The replacement begins with the same ASCII-art characters, now space-indented, rather than a text heading."}
+{"n": 2833, "sha": "928facfcd98503006777dc29a74c14c1c61b2839", "verdict": "wrong", "reason": "The v prefix is added to the displayed release text, and the newly linked item is Installation."}
+{"n": 2834, "sha": "92a8db6da0fc91b09fd7ff4068dad951aa0a0c8c", "verdict": "ok", "reason": ""}
+{"n": 2835, "sha": "92b88fcffb312630dd3e8b94b44be8a746fd585b", "verdict": "wrong", "reason": "The tag points to a flourish graphic, and the claim that a logo now renders is unsupported."}
+{"n": 2836, "sha": "92d57036f3805f1c6a7ff97758c0f70d17bd7191", "verdict": "cannot_tell", "reason": "The session cleanup removal and stub send method are visible, but the excerpt cuts off before the OldRequest definition, so addition versus renaming cannot be checked."}
+{"n": 2837, "sha": "92f10cec5b3223e90c186b7a04306564cde050dc", "verdict": "ok", "reason": ""}
+{"n": 2838, "sha": "92f747817447ad56d3318e393e222db0f347dfb3", "verdict": "filler", "reason": "The comment now says to check the URL first when auth is absent, but the excerpt does not identify its ordering relative to any other auth methods."}
+{"n": 2839, "sha": "92f9e431c99d5e0776a00c10a90dfdf11cd45ba0", "verdict": "ok", "reason": ""}
+{"n": 2840, "sha": "92fe51c0afd9239388d2c8bb17dc46babdf7881f", "verdict": "ok", "reason": ""}
+{"n": 2841, "sha": "930f03c8649613da9efb7915e17428dd1e8526af", "verdict": "wrong", "reason": "The test neither enables streaming nor asserts that an exception must occur."}
+{"n": 2842, "sha": "931397829e788fd94125a072deaf4882a6afbc4d", "verdict": "ok", "reason": ""}
+{"n": 2843, "sha": "93216afbaf09290aa1cadb2f5811f18f4c48f983", "verdict": "ok", "reason": ""}
+{"n": 2844, "sha": "9322d13f610fc26f63cc51c8c4b0a907d7392153", "verdict": "ok", "reason": ""}
+{"n": 2845, "sha": "9324c2a9b4ed2e324047f067428ee238b15880b5", "verdict": "filler", "reason": "The OAuthlib constraint is explicit in the shown branch, but the excerpt does not establish that it fixes a compatibility issue or applies in all installations."}
+{"n": 2846, "sha": "9337b4d95d23b66f04acdfec1b8a9cd41687d70f", "verdict": "ok", "reason": ""}
+{"n": 2847, "sha": "933cbd735bc57383b812a35aaf1e51c51de59d95", "verdict": "ok", "reason": ""}
+{"n": 2848, "sha": "933cf49daa524bb1ea89e82ecbcb5c57d8ae03e2", "verdict": "ok", "reason": ""}
+{"n": 2849, "sha": "9354855648cedbec3a91a9391e067f56e8414814", "verdict": "ok", "reason": ""}
+{"n": 2850, "sha": "9369b5a37aeba52d668820870a863ad09c8e25b5", "verdict": "wrong", "reason": "The excerpt shows an image file being added and contains no evidence of a Korean extension or locale."}
+{"n": 2851, "sha": "9379a14cb41916ce71fd94feaa26808b7770511d", "verdict": "filler", "reason": "The imports and references switch from charade to chardet, but the excerpt does not state that charade was deprecated."}
+{"n": 2852, "sha": "93b2be48f0db93d96495212da96257051ae24ee9", "verdict": "ok", "reason": ""}
+{"n": 2853, "sha": "93be6916f98f191eee9ac053994f61e99869735b", "verdict": "ok", "reason": ""}
+{"n": 2854, "sha": "93bf5331a70cd2c77ac3ba43f85c918cae67c69f", "verdict": "cannot_tell", "reason": "The excerpt shows insertion of the PyPI version badge and removal of badges near the top, but cuts off before revealing whether the download badge was reinserted farther down."}
+{"n": 2855, "sha": "93c44157bab8ba5fc4dfe7c4d890489b4fd02ff1", "verdict": "wrong", "reason": "The module already existed, and the new docstring says the HTTP API calls return Request instances, with map used to send them."}
+{"n": 2856, "sha": "93cb1ca763a6b1627e216a1f749fe1131f42a377", "verdict": "ok", "reason": ""}
+{"n": 2857, "sha": "940c1246e0b84442f72c9e78566b5e298b716cde", "verdict": "ok", "reason": ""}
+{"n": 2858, "sha": "941a77f2b86a801aff9bda17c65b9f7e56f2c68a", "verdict": "ok", "reason": ""}
+{"n": 2859, "sha": "941ac53ba0251496b56b28c47ae48ea5a88e477a", "verdict": "ok", "reason": ""}
+{"n": 2860, "sha": "9427e1efe87d81d9cafb3461626e834bb1c612da", "verdict": "wrong", "reason": "The import was already executed on Python 2 before it was moved. The new placement narrows it to that interpreter branch."}
+{"n": 2861, "sha": "94331723d18083dea9ee9d198c5aba1905fcf41c", "verdict": "ok", "reason": ""}
+{"n": 2862, "sha": "9450dd51fb423c17f01325d5f23e62b0450696c6", "verdict": "ok", "reason": ""}
+{"n": 2863, "sha": "9451ae2e98708ea0664b1317ed84e49e6c1f259f", "verdict": "ok", "reason": ""}
+{"n": 2864, "sha": "9469b4bb6939e84b4539e6cd854e12c3d6b5d1fb", "verdict": "cannot_tell", "reason": "The numeric-to-alias source table is visible, but the excerpt does not reach the LookupDict population code needed to verify the public lookup direction."}
+{"n": 2865, "sha": "946f7ec579c7784cb5c65301eab5d5d81e562128", "verdict": "wrong", "reason": "The addition is documentation describing encode_uri, with no default value or behavior added."}
+{"n": 2866, "sha": "9471b0ab889a4684f87952cb951f7f4dc3f59dda", "verdict": "ok", "reason": ""}
+{"n": 2867, "sha": "947248129ba3b0917c86c013f24d7499c15cb8ae", "verdict": "ok", "reason": ""}
+{"n": 2868, "sha": "94869e720e4ab808a4f5d23de773b393dc770eb6", "verdict": "ok", "reason": ""}
+{"n": 2869, "sha": "9488af5a42bb02913d99e2255cd53f2ad7c860e9", "verdict": "ok", "reason": ""}
+{"n": 2870, "sha": "94c587d642eb131660e738667dc3861fbd35314e", "verdict": "ok", "reason": ""}
+{"n": 2871, "sha": "94d4818fde1df23747e2208b01fd4911a97bb69f", "verdict": "wrong", "reason": "The import text is identical before and after, and only its placement changes."}
+{"n": 2872, "sha": "94da24e387776266e4f1ef3fdb2217fdf71d056d", "verdict": "ok", "reason": ""}
+{"n": 2873, "sha": "94e82e9cc2e7eb9934ed086a69d3b49ddf3ce3eb", "verdict": "wrong", "reason": "The removed module describes several defaults in its docstring, but the only constant it actually defines is SCHEMAS."}
+{"n": 2874, "sha": "94f9f7357e50f6accf1ec1a87fd3223981e68003", "verdict": "ok", "reason": ""}
+{"n": 2875, "sha": "95084c9ca8b3c33d6f16bf63f9c041aa6e442641", "verdict": "ok", "reason": ""}
+{"n": 2876, "sha": "95161ed313db11296c3bd473336340dbb19bb347", "verdict": "ok", "reason": ""}
+{"n": 2877, "sha": "9518d053a4423a58f1a835b1f721179ba2f1bd4f", "verdict": "ok", "reason": ""}
+{"n": 2878, "sha": "951dd15fa619b23aba6b72532f1aac30b69389b7", "verdict": "ok", "reason": ""}
+{"n": 2879, "sha": "957216d1fb8228cb91a0e8cec10939d4c2e707ed", "verdict": "wrong", "reason": "The commit describes the new adapters and dependency in the release notes, with no runtime code in the file list."}
+{"n": 2880, "sha": "9572d6a2993690ee8595c144360bbae4549c435c", "verdict": "ok", "reason": ""}
+{"n": 2881, "sha": "9576518d69b819b25cd036397d2624daa6ae088c", "verdict": "wrong", "reason": "The commit bundles OAuthlib modules, including an OAuth 2 draft implementation, without showing application-facing OAuth support in Requests itself."}
+{"n": 2882, "sha": "958845ae35cee1fa15acc14b5691d787e8bed9bb", "verdict": "ok", "reason": ""}

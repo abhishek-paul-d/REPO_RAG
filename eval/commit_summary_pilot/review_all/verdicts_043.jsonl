@@ -1,0 +1,88 @@
+{"n": 3699, "sha": "c2480f65e6d3ff2d9af376cd609653882a7cfd3f", "verdict": "ok", "reason": ""}
+{"n": 3700, "sha": "c25a72ea248358641dd9048f0062d83625cc703b", "verdict": "ok", "reason": ""}
+{"n": 3701, "sha": "c2674158826050ad8e134da3e09546f36466777b", "verdict": "ok", "reason": ""}
+{"n": 3702, "sha": "c2688bbf27874a84a82873cb3cb2cc300a175818", "verdict": "ok", "reason": ""}
+{"n": 3703, "sha": "c26a6c310cf8489bb55be5b4b9899d06a2bddda9", "verdict": "ok", "reason": ""}
+{"n": 3704, "sha": "c28da22e9c42e22b303bb07da434ce65e10c0cb2", "verdict": "ok", "reason": ""}
+{"n": 3705, "sha": "c2a1f28a2ebd9448be7b4c8f9207d16c894717c3", "verdict": "filler", "reason": "The code attempts a raw read as a fallback, but the excerpt does not establish that it always succeeds or releases the connection."}
+{"n": 3706, "sha": "c2aeaa3959b5754f5b39a45bceff91b196b6c986", "verdict": "ok", "reason": ""}
+{"n": 3707, "sha": "c2b307dbefe21177af03f9feb37181a89a799fcc", "verdict": "ok", "reason": ""}
+{"n": 3708, "sha": "c2c523ba9e327adf5810165d115136397f8190f7", "verdict": "ok", "reason": ""}
+{"n": 3709, "sha": "c2e6fe4d5dfbb2bf4e31d70bb7c3f3eda2435beb", "verdict": "wrong", "reason": "The format operation and replacement both call the same dictionary string conversion."}
+{"n": 3710, "sha": "c2e942f230a21dd5b61088b03fda2edfc8c929df", "verdict": "ok", "reason": ""}
+{"n": 3711, "sha": "c2fab5b4ca2f8dcdc76fabb1851bd268f0d41889", "verdict": "wrong", "reason": "The missing attribute is request on the supplied response, rather than response on the exception."}
+{"n": 3712, "sha": "c2fd5686950f49128c9d282bf28d440a71225c6b", "verdict": "wrong", "reason": "The new persistent-header test contains an unclosed call that prevents the module from parsing."}
+{"n": 3713, "sha": "c3055863c6791c696d957cf90197798eb8621d2c", "verdict": "filler", "reason": "The OAuthlib notice is removed, but the excerpt does not identify a corresponding dependency or licensing change."}
+{"n": 3714, "sha": "c31a450c55da44cb33ece953ef8cddbf3310538a", "verdict": "ok", "reason": ""}
+{"n": 3715, "sha": "c323047dbe5cfb892eada9c37037145738507c5e", "verdict": "ok", "reason": ""}
+{"n": 3716, "sha": "c3280d7844cc88693b1e97d45f704945cb55f29c", "verdict": "filler", "reason": "The author identifies HTTPX as the replacement, but the excerpt does not establish its maintenance status."}
+{"n": 3717, "sha": "c32b046243dcbf0dceb952da1317261109ac45c4", "verdict": "ok", "reason": ""}
+{"n": 3718, "sha": "c32b1cd6d65c7a54f3fec547b4731ca7a655e5d4", "verdict": "ok", "reason": ""}
+{"n": 3719, "sha": "c333bd144e72d82a44dba03b6020e9e77e985e6a", "verdict": "ok", "reason": ""}
+{"n": 3720, "sha": "c3367d1854208c37855622659ae0a621d9352af2", "verdict": "wrong", "reason": "The property decorator is newly added, and the diff does not identify the type of the stored value."}
+{"n": 3721, "sha": "c3431bb6f21bf7c88ff86d9a232ba4db54bb91a0", "verdict": "filler", "reason": "The deletions are visible, but the excerpt does not establish that the pool-manager initialization or removed helpers were unnecessary."}
+{"n": 3722, "sha": "c3444f8c7abdda2642f59109d6961bdf8511f38c", "verdict": "ok", "reason": ""}
+{"n": 3723, "sha": "c363ca476fd378c854407fbd63d628893671027c", "verdict": "wrong", "reason": "The condition adds a slash only to an empty path and does not append one to nonempty paths."}
+{"n": 3724, "sha": "c386eebcf8f99e80068951fe2090513e931386ca", "verdict": "ok", "reason": ""}
+{"n": 3725, "sha": "c398ab0e7dcae24f19a998e35da41f075e1ecb44", "verdict": "ok", "reason": ""}
+{"n": 3726, "sha": "c3a00771e395789b4704a7e8a01d01acb04dcde2", "verdict": "ok", "reason": ""}
+{"n": 3727, "sha": "c3ad7af06c5fdd603d4ac114cfa114a12a386d10", "verdict": "wrong", "reason": "The certificate refresh target fetches the bundle from curl’s CA distribution endpoint."}
+{"n": 3728, "sha": "c3bba1543b977f06c7f10dd5d05981ab69fb0121", "verdict": "ok", "reason": ""}
+{"n": 3729, "sha": "c3bef6b0d930f34c20848508ab3ef2066a8a449c", "verdict": "ok", "reason": ""}
+{"n": 3730, "sha": "c3c90bb09c9f4cd635ea28cbc784ee5f724bdab8", "verdict": "ok", "reason": ""}
+{"n": 3731, "sha": "c3e6c41fc164d4348f8ce197bd0075aff05637af", "verdict": "ok", "reason": ""}
+{"n": 3732, "sha": "c3ecb825c41f90fb6bec28c282c70c84398e08c0", "verdict": "filler", "reason": "The Travis entry is commented out, but the excerpt does not connect this to test failures or unnecessary build time."}
+{"n": 3733, "sha": "c3fb8e020b865a04afbc01e2c439fb3995feb702", "verdict": "ok", "reason": ""}
+{"n": 3734, "sha": "c40d6d05096ce10440390f11753985bcb6b96e86", "verdict": "ok", "reason": ""}
+{"n": 3735, "sha": "c40deefb8a192c83ceab0cfe745ed2bdf378130c", "verdict": "ok", "reason": ""}
+{"n": 3736, "sha": "c41932e18468caf8990611aa62b25e867e8ad4bb", "verdict": "ok", "reason": ""}
+{"n": 3737, "sha": "c430b60e38465108dddb4af2dea25637cfbae7d0", "verdict": "ok", "reason": ""}
+{"n": 3738, "sha": "c436165a2dae7980fb4283bb8dd5a1c6fde3e2e9", "verdict": "ok", "reason": ""}
+{"n": 3739, "sha": "c4367f231b5dc54f23f2983828562ce3a7555a8a", "verdict": "ok", "reason": ""}
+{"n": 3740, "sha": "c451dd2c773402e5bdc1b41c3c23d31b5092bd86", "verdict": "ok", "reason": ""}
+{"n": 3741, "sha": "c45a4dfe6bfc6017d4ea7e9f051d6cc30972b310", "verdict": "ok", "reason": ""}
+{"n": 3742, "sha": "c46f55bd48dabc02f033d252f8c64e2011f37361", "verdict": "wrong", "reason": "Both lower bounds remain, so earlier minor releases such as idna 2.4 are still excluded."}
+{"n": 3743, "sha": "c4772423769299fcc7a6f8ad97cc825411a13ad0", "verdict": "ok", "reason": ""}
+{"n": 3744, "sha": "c485928a9f964632cd9556607889aeb1379846b8", "verdict": "ok", "reason": ""}
+{"n": 3745, "sha": "c48cf2bba8aafa50ae5cd77e7ab4bb476dca086c", "verdict": "filler", "reason": "The imports are reordered, but the excerpt does not establish that order has no effect on initialization or imported names."}
+{"n": 3746, "sha": "c49ce5ae0b859a0a7702da490608e72c73f338e0", "verdict": "wrong", "reason": "The return type paths change in docstrings, not in Python annotations."}
+{"n": 3747, "sha": "c49f3643ae3c837b0c8863e8fc2f4efd885bf412", "verdict": "ok", "reason": ""}
+{"n": 3748, "sha": "c4ab96b63800f04511aada9b5899540a7937967a", "verdict": "wrong", "reason": "The Request initializer already accepted and stored cookies before the change."}
+{"n": 3749, "sha": "c4abb4c9fbce7635ea89938f52896defa5583c54", "verdict": "ok", "reason": ""}
+{"n": 3750, "sha": "c4adf614a60cc328dfdccaa5aae87353ef59723f", "verdict": "ok", "reason": ""}
+{"n": 3751, "sha": "c4bd6ea1501ee24a7e45d3e888f11d2a52e41469", "verdict": "wrong", "reason": "The namespace distinction is the point of the fix, and the import retains the requests.packages prefix."}
+{"n": 3752, "sha": "c4c60864f8868ec33f3d33dc635f60a5453a3d71", "verdict": "cannot_tell", "reason": "The diff changes an image source filename, with no image contents or link results to verify the claimed logo identity or broken URL."}
+{"n": 3753, "sha": "c4c86fd6e8f7400d0a8d3bf656db201ed7bec767", "verdict": "ok", "reason": ""}
+{"n": 3754, "sha": "c4d76800e8917c3fda10cb1f2dee22c8219de3e6", "verdict": "ok", "reason": ""}
+{"n": 3755, "sha": "c4eb9301bb1ad1616e2affa4dc2dc1da82169c36", "verdict": "wrong", "reason": "Only the connection-error assertion corrects the malformed isinstance call, and both assertions inspect stored errors."}
+{"n": 3756, "sha": "c4f013a6f999c2e945e00b1f052074b9c9377842", "verdict": "filler", "reason": "The rename is shown, and the excerpt does not substantiate full compatibility beyond the updated call sites."}
+{"n": 3757, "sha": "c4f16c351c4b639a194ff36f61abebd1ecccf797", "verdict": "ok", "reason": ""}
+{"n": 3758, "sha": "c4f9340fb4df41d7a8be66ee41c40bfed64ec6d6", "verdict": "ok", "reason": ""}
+{"n": 3759, "sha": "c501784541ffe595f25cd62774d392270639c662", "verdict": "ok", "reason": ""}
+{"n": 3760, "sha": "c510d21e4ee8affe66ad0f5c1de32c659bf04fc3", "verdict": "cannot_tell", "reason": "The loop is visible, but the excerpt omits the header container and add_header implementation needed to verify duplicate handling."}
+{"n": 3761, "sha": "c51a9efa2bc4285cabeb2f7e42386e89baa3df89", "verdict": "ok", "reason": ""}
+{"n": 3762, "sha": "c51b44d96bb460ebea3daee7deeff6b686585087", "verdict": "ok", "reason": ""}
+{"n": 3763, "sha": "c53a685e7d2ff3ca73308acadf85bb5a32661894", "verdict": "ok", "reason": ""}
+{"n": 3764, "sha": "c55258792bfccc370511a1a375dc568c175df48a", "verdict": "ok", "reason": ""}
+{"n": 3765, "sha": "c56acf0e321d7a2ae1c0726352d9d7698091d05c", "verdict": "ok", "reason": ""}
+{"n": 3766, "sha": "c577eb8d5fa39eb4acdc64eb2e957a2c1b261c9b", "verdict": "wrong", "reason": "The Markdown link target is unchanged. The double slash is removed from the visible label."}
+{"n": 3767, "sha": "c57bd07a341ca5d71bfa2c6a245a263d4cc53d54", "verdict": "ok", "reason": ""}
+{"n": 3768, "sha": "c57f1f0ca10e61771b459c857182c23626607312", "verdict": "ok", "reason": ""}
+{"n": 3769, "sha": "c589d8a251868d983ecf97b2fbffff0e9f29e56c", "verdict": "cannot_tell", "reason": "The old gevent instructions are removed, but the conditional commit message and truncated replacement do not establish the old module’s deprecation status or availability."}
+{"n": 3770, "sha": "c58ddff3a4b782012894e148bf471e0ebd146d64", "verdict": "ok", "reason": ""}
+{"n": 3771, "sha": "c5a41269d9795e7c63d72777b7ea360e380544d8", "verdict": "ok", "reason": ""}
+{"n": 3772, "sha": "c5b6a107eb9af0fd6a1a48c7bf0276fbf71e9157", "verdict": "filler", "reason": "The docstring changes the library name without providing evidence that Charade was deprecated."}
+{"n": 3773, "sha": "c5d0a0931e1a9b199ea286853fc4722d624d85ec", "verdict": "cannot_tell", "reason": "The method predicate changes as stated, but the rest of the enclosing condition is absent and the affected redirects cannot be determined from the excerpt."}
+{"n": 3774, "sha": "c5d787d6fd57b3cea6731c2afd5ba9de05cda720", "verdict": "ok", "reason": ""}
+{"n": 3775, "sha": "c5d9e1216ef684a6d589fa4fda657afa25822f4b", "verdict": "filler", "reason": "The message identifies a resize, but optimized dimensions and consistent scaling across the project are unverified."}
+{"n": 3776, "sha": "c5ed41e00a2010fc251ed5655d9f1923c345878a", "verdict": "wrong", "reason": "The example supplies two hooks in one list. It does not show that they run concurrently."}
+{"n": 3777, "sha": "c5ed4c99538cb26e780735157a087b6f679e2ae8", "verdict": "ok", "reason": ""}
+{"n": 3778, "sha": "c5fddb95edd7694c0164ae2a5279ceeebe475511", "verdict": "ok", "reason": ""}
+{"n": 3779, "sha": "c6084704ccb5610ea093b6b47fb45d2149570174", "verdict": "wrong", "reason": "The old wrapped call is syntactically valid and has the same arguments."}
+{"n": 3780, "sha": "c60b72e2d0c505b016741c419894e1feaeb96d9d", "verdict": "ok", "reason": ""}
+{"n": 3781, "sha": "c6183d273c50a5ab50d00315597cd842543af6e1", "verdict": "wrong", "reason": "The removed line is a comment rather than a variable assignment that ran."}
+{"n": 3782, "sha": "c619bea72259b37f4e8d770204232f36c83aaed3", "verdict": "filler", "reason": "The change is empty, but the excerpt gives no evidence that it served as a placeholder or marker."}
+{"n": 3783, "sha": "c64c0ab1215168adf2384888f3d52bd99217d723", "verdict": "cannot_tell", "reason": "The adapter only specifies read explicitly for non-streaming requests, but the excerpt omits the Timeout default used for streamed reads."}
+{"n": 3784, "sha": "c65065177f528595a9b55dd62a916146ecdf40cc", "verdict": "ok", "reason": ""}
+{"n": 3785, "sha": "c658b363e38c928a2f7be8e09eece8e11f863b62", "verdict": "wrong", "reason": "The supplied pool schedules jobs and is not a pool of HTTP connections."}
+{"n": 3786, "sha": "c65a52a1d0021055b407d913c216330822307f3c", "verdict": "ok", "reason": ""}

@@ -1,0 +1,354 @@
+{
+ "steps": {
+  "fresh_default": {
+   "seconds": 172,
+   "exit": 0,
+   "result": "eval/agent_eval_results/agent_eval_production_commit_pr_commits_agent_eval_fresh_v2_extra3_notests_chars24000_in12288_20261118T232312.json",
+   "summary": {
+    "code": {
+     "passed": 29,
+     "of": 30,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 11.1
+    },
+    "docs": {
+     "passed": 10,
+     "of": 10,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 6.8
+    },
+    "history": {
+     "passed": 14,
+     "of": 14,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 4.1
+    },
+    "kind": {
+     "passed": 4,
+     "of": 4,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 3.4
+    },
+    "probe": {
+     "passed": 5,
+     "of": 5,
+     "abstained": 5,
+     "failed": 0,
+     "seconds": 7.5
+    },
+    "prsearch": {
+     "passed": 6,
+     "of": 6,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 7.3
+    },
+    "refs": {
+     "passed": 4,
+     "of": 4,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 2.6
+    }
+   }
+  },
+  "fresh_guards": {
+   "seconds": 179,
+   "exit": 0,
+   "result": "eval/agent_eval_results/agent_eval_production_commit_pr_commits_agent_eval_fresh_v2_extra3_notests_chars24000_in12288_snap_abst1_toolerr1_20261118T232612.json",
+   "summary": {
+    "code": {
+     "passed": 29,
+     "of": 30,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 10.9
+    },
+    "docs": {
+     "passed": 10,
+     "of": 10,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 6.6
+    },
+    "history": {
+     "passed": 14,
+     "of": 14,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 3.8
+    },
+    "kind": {
+     "passed": 4,
+     "of": 4,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 3.5
+    },
+    "probe": {
+     "passed": 5,
+     "of": 5,
+     "abstained": 5,
+     "failed": 0,
+     "seconds": 13.4
+    },
+    "prsearch": {
+     "passed": 6,
+     "of": 6,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 6.4
+    },
+    "refs": {
+     "passed": 4,
+     "of": 4,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 2.4
+    }
+   }
+  },
+  "commit_default": {
+   "seconds": 307,
+   "exit": 0,
+   "result": "eval/agent_eval_results/agent_eval_production_commit_pr_commits_agent_eval_commit_full_v1_extra3_notests_chars24000_in12288_20261118T233118.json",
+   "summary": {
+    "commit": {
+     "passed": 74,
+     "of": 113,
+     "abstained": 14,
+     "failed": 2,
+     "seconds": 9.8
+    }
+   }
+  },
+  "commit_explain": {
+   "seconds": 310,
+   "exit": 0,
+   "result": "eval/agent_eval_results/agent_eval_production_commit_explain_agent_eval_commit_full_v1_extra3_notests_chars24000_in12288_20261118T233628.json",
+   "summary": {
+    "commit": {
+     "passed": 78,
+     "of": 113,
+     "abstained": 10,
+     "failed": 1,
+     "seconds": 9.9
+    }
+   }
+  },
+  "regression_default": {
+   "seconds": 227,
+   "exit": 0,
+   "result": "eval/agent_eval_results/agent_eval_production_commit_pr_commits_agent_eval_v1_extra3_notests_chars24000_in12288_20261118T234016.json",
+   "summary": {
+    "code": {
+     "passed": 40,
+     "of": 40,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 10.8
+    },
+    "commit": {
+     "passed": 7,
+     "of": 10,
+     "abstained": 3,
+     "failed": 1,
+     "seconds": 9.4
+    },
+    "docs": {
+     "passed": 11,
+     "of": 12,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 7.0
+    },
+    "history": {
+     "passed": 11,
+     "of": 11,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 2.6
+    },
+    "kind": {
+     "passed": 5,
+     "of": 5,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 3.6
+    },
+    "probe": {
+     "passed": 5,
+     "of": 5,
+     "abstained": 5,
+     "failed": 0,
+     "seconds": 9.6
+    },
+    "prsearch": {
+     "passed": 10,
+     "of": 10,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 7.4
+    },
+    "refs": {
+     "passed": 10,
+     "of": 10,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 2.6
+    }
+   }
+  },
+  "architecture_v1": {
+   "seconds": 77,
+   "exit": 0,
+   "result": "eval/agent_eval_results/agent_eval_production_commit_pr_commits_agent_eval_architecture_v1_extra3_notests_chars24000_in12288_20261118T234132.json",
+   "summary": {
+    "architecture": {
+     "passed": 12,
+     "of": 15,
+     "abstained": 1,
+     "failed": 1,
+     "seconds": 12.5
+    }
+   }
+  },
+  "architecture_fresh": {
+   "seconds": 61,
+   "exit": 0,
+   "result": "eval/agent_eval_results/agent_eval_production_commit_pr_commits_agent_eval_architecture_fresh_v1_extra3_notests_chars24000_in12288_20261118T234234.json",
+   "summary": {
+    "architecture": {
+     "passed": 9,
+     "of": 10,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 12.3
+    }
+   }
+  },
+  "fresh_repeat_2": {
+   "seconds": 176,
+   "exit": 0,
+   "result": "eval/agent_eval_results/agent_eval_production_commit_pr_commits_agent_eval_fresh_v2_extra3_notests_chars24000_in12288_20261118T234530.json",
+   "summary": {
+    "code": {
+     "passed": 29,
+     "of": 30,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 11.1
+    },
+    "docs": {
+     "passed": 10,
+     "of": 10,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 6.4
+    },
+    "history": {
+     "passed": 14,
+     "of": 14,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 3.4
+    },
+    "kind": {
+     "passed": 4,
+     "of": 4,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 3.7
+    },
+    "probe": {
+     "passed": 5,
+     "of": 5,
+     "abstained": 5,
+     "failed": 0,
+     "seconds": 7.2
+    },
+    "prsearch": {
+     "passed": 6,
+     "of": 6,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 7.0
+    },
+    "refs": {
+     "passed": 4,
+     "of": 4,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 2.6
+    }
+   }
+  },
+  "fresh_repeat_3": {
+   "seconds": 166,
+   "exit": 0,
+   "result": "eval/agent_eval_results/agent_eval_production_commit_pr_commits_agent_eval_fresh_v2_extra3_notests_chars24000_in12288_20261118T234816.json",
+   "summary": {
+    "code": {
+     "passed": 29,
+     "of": 30,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 11.1
+    },
+    "docs": {
+     "passed": 10,
+     "of": 10,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 6.3
+    },
+    "history": {
+     "passed": 14,
+     "of": 14,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 3.8
+    },
+    "kind": {
+     "passed": 4,
+     "of": 4,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 3.5
+    },
+    "probe": {
+     "passed": 5,
+     "of": 5,
+     "abstained": 5,
+     "failed": 0,
+     "seconds": 7.4
+    },
+    "prsearch": {
+     "passed": 6,
+     "of": 6,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 6.8
+    },
+    "refs": {
+     "passed": 4,
+     "of": 4,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 2.5
+    }
+   }
+  }
+ },
+ "server": {
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+  "hardware": "NVIDIA A100-SXM4-40GB",
+  "max_input_tokens": "12288",
+  "decode_mode": "cuda-graphs + mtp3",
+  "concurrency": "8"
+ }
+}

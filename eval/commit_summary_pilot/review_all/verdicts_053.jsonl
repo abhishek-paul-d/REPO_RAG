@@ -1,0 +1,91 @@
+{"n": 4590, "sha": "f0d5a1f230c38a586aa23b9ef5cad02c10653edc", "verdict": "ok", "reason": ""}
+{"n": 4591, "sha": "f0e327f979edcd5e0ef0d03a0f48987bc411bcb6", "verdict": "ok", "reason": ""}
+{"n": 4592, "sha": "f0edd4a3e0207d0ce447c9f09fc7e46d5cab118b", "verdict": "ok", "reason": ""}
+{"n": 4593, "sha": "f0fb20cd83f770d6f71b8d5e73a89cb13c08f348", "verdict": "ok", "reason": ""}
+{"n": 4594, "sha": "f0fb5034fc7118008c5ee88f10ce780fbcbcf181", "verdict": "ok", "reason": ""}
+{"n": 4595, "sha": "f0fe551dc999c4887767f369951732f04178f45e", "verdict": "ok", "reason": ""}
+{"n": 4596, "sha": "f123f89d32d3258429cdecf33fbd20e68a746042", "verdict": "filler", "reason": "The import removals are visible, but the excerpt does not establish that the imported names were unused."}
+{"n": 4597, "sha": "f12584b94ae06d48ce4125de4d29feb283d2d62c", "verdict": "ok", "reason": ""}
+{"n": 4598, "sha": "f137db6803d4feadf0616dfb74059df2d6586dc1", "verdict": "ok", "reason": ""}
+{"n": 4599, "sha": "f14f30817e80b8181ae79114691230d3af1b6f55", "verdict": "ok", "reason": ""}
+{"n": 4600, "sha": "f17ead413300e349b7080a3ee0be3c7e96ec55ec", "verdict": "ok", "reason": ""}
+{"n": 4601, "sha": "f17ef753d2c1f4db0d7f5aec51261da1db20d611", "verdict": "cannot_tell", "reason": "The deletion is shown and the message names the intended destination, but no destination hunk is supplied to verify the test is present there."}
+{"n": 4602, "sha": "f18733d2be4a9c3d0d3ceea31be9e191c05f21d6", "verdict": "ok", "reason": ""}
+{"n": 4603, "sha": "f18c40fd368310556b8822bb9c4997277ca8a307", "verdict": "wrong", "reason": "The edit only changes a number in the main API documentation and does not change methods on the Request class."}
+{"n": 4604, "sha": "f19d30a67092515349e358e011ada34d852401df", "verdict": "ok", "reason": ""}
+{"n": 4605, "sha": "f1ba27faa2b9b1a26e6c935c18acd6fcd9e7e164", "verdict": "cannot_tell", "reason": "The predicate is inverted, but the bodies of the affected branches are omitted, so the exact acceptance or rejection behavior cannot be verified."}
+{"n": 4606, "sha": "f1bb25b1ec1b62bfd0b4f2b47eb551a6a6277b51", "verdict": "ok", "reason": ""}
+{"n": 4607, "sha": "f1d104e0048eeaedccb66d148e5ecfa22348e3eb", "verdict": "wrong", "reason": "The release-note wording becomes more general without specifying an expansion in implemented OAuth support."}
+{"n": 4608, "sha": "f1d51aa7eb22837d6179b406d9b289d35278871d", "verdict": "ok", "reason": ""}
+{"n": 4609, "sha": "f1d9aae10e82e7d122b2172616c7a675971cd0e6", "verdict": "ok", "reason": ""}
+{"n": 4610, "sha": "f1e8700e9a6bdb8aaa3e4f86414b7ceeb729063c", "verdict": "ok", "reason": ""}
+{"n": 4611, "sha": "f1f56c30818adc6c1e8e6814c4ffbcb341e3cdaa", "verdict": "wrong", "reason": "Removing in-repository packaging recipes does not make external Debian packaging impossible."}
+{"n": 4612, "sha": "f1f578806657a6b123cc159129906199cfd04a57", "verdict": "wrong", "reason": "The developer toctree replaces one destination with another. The excerpt does not show the reference content being moved into internals."}
+{"n": 4613, "sha": "f1fd11e54faef9045833432c8505b6681d7526bc", "verdict": "ok", "reason": ""}
+{"n": 4614, "sha": "f214b91d770ef194f9fad7041a1356ff27097ae5", "verdict": "ok", "reason": ""}
+{"n": 4615, "sha": "f2172922c51932bf2155a9fb4d7be6475002f32e", "verdict": "ok", "reason": ""}
+{"n": 4616, "sha": "f21fd19ac55595fa6699c734399970b603978a59", "verdict": "ok", "reason": ""}
+{"n": 4617, "sha": "f23346a9b8e74de01220cce96c037bbd2404a1c6", "verdict": "ok", "reason": ""}
+{"n": 4618, "sha": "f2409648acd584a8e6600778bcde86701e8c71fb", "verdict": "ok", "reason": ""}
+{"n": 4619, "sha": "f24d56a1ce658a20577517d05bcb92e44e3ffc53", "verdict": "ok", "reason": ""}
+{"n": 4620, "sha": "f25827c5b66450482fad8209f38ca77664f504dd", "verdict": "ok", "reason": ""}
+{"n": 4621, "sha": "f25901874ab9cb7c6be20f8126f744e13c49a041", "verdict": "ok", "reason": ""}
+{"n": 4622, "sha": "f2629e9e3c7ce3c3c8c025bcd8db551101cbc773", "verdict": "filler", "reason": "The adapter stops passing strict=True, but the excerpt does not establish deprecation or identify an affected urllib3 version."}
+{"n": 4623, "sha": "f269c6c89a1cf0b6368f58a6c2cc4d095d1f5239", "verdict": "ok", "reason": ""}
+{"n": 4624, "sha": "f278344e010e0d3fed5ba1c3bef8d9f16cab693f", "verdict": "cannot_tell", "reason": "The excerpt shows dependency-name normalization and lockfile entries moving or appearing, but it ends before a version change for the same dependency is established."}
+{"n": 4625, "sha": "f28bde7250cfe18a2bb9351dae17908783d8a93e", "verdict": "wrong", "reason": "Passing strict=True supplies a pool option. It does not establish full HTTP compliance or validate protocol traffic during pool initialization."}
+{"n": 4626, "sha": "f2b04f94ca689bb4cc1d9f3c4a85476b17dc5c5d", "verdict": "ok", "reason": ""}
+{"n": 4627, "sha": "f2ec732ce8bd339187cc01f3c5290d4fc19ed0d1", "verdict": "ok", "reason": ""}
+{"n": 4628, "sha": "f2f3bdea8da5f4ba7f56d6a9dd4b2b5f414abf32", "verdict": "ok", "reason": ""}
+{"n": 4629, "sha": "f2fe7358469cf844bce04bf04478b8f95fd634f9", "verdict": "wrong", "reason": "The heading is a book title and is not the Requests project title."}
+{"n": 4630, "sha": "f3036adc4f156627dce26a6106e22d3631940d3e", "verdict": "wrong", "reason": "The test happens to be housed in TestCaseInsensitiveDict, but its assertion concerns an HTTP redirect response."}
+{"n": 4631, "sha": "f3159ed4f619124ab4b47c4e0f06f96daed762ce", "verdict": "cannot_tell", "reason": "The docstring mentions a dictionary and the body starts an outer list of parsed entries, but the excerpt ends before the return, so the exact result type cannot be verified."}
+{"n": 4632, "sha": "f319006813c76454d5a0dfccebc6d73f02de88f1", "verdict": "ok", "reason": ""}
+{"n": 4633, "sha": "f31ade335de9df096ba3c67c9507dd4eb32667a8", "verdict": "ok", "reason": ""}
+{"n": 4634, "sha": "f31dc8a9efc1fdd53c43ad514d9762a2f63fa287", "verdict": "ok", "reason": ""}
+{"n": 4635, "sha": "f32b86dba217578bc2d52473a807b0cae4f69cd3", "verdict": "ok", "reason": ""}
+{"n": 4636, "sha": "f3393fb24cc74e9e9aff643e16e0480fcced6ba3", "verdict": "ok", "reason": ""}
+{"n": 4637, "sha": "f33a0aa47b049994e41188e6101cf79c4a2d5d4b", "verdict": "ok", "reason": ""}
+{"n": 4638, "sha": "f348d51818ed801c819d8bd5c85b923928b28ebe", "verdict": "ok", "reason": ""}
+{"n": 4639, "sha": "f35363e58428e80b9c9f07e96bf421b2080f1a64", "verdict": "wrong", "reason": "The replacement uses the build page as the image source and the badge image as its link target."}
+{"n": 4640, "sha": "f35838beb6a84b1ece6e775570f6dd668dcd8da0", "verdict": "ok", "reason": ""}
+{"n": 4641, "sha": "f361ead047be5cb873174218582f7d8b9fcd9f49", "verdict": "filler", "reason": "The new pin is shown, but the excerpt does not establish latest-stable status."}
+{"n": 4642, "sha": "f37b9684756b9c495fdcea1db3b6edd6a76b6d47", "verdict": "wrong", "reason": "The swap uses the compatibility layer’s str, rather than switching to the built-in string type."}
+{"n": 4643, "sha": "f37fe551bbbf6ac8d07c35c64888b4ab289c967d", "verdict": "filler", "reason": "The author reports the flags unused, but the excerpt does not establish lack of impact for external users importing those names."}
+{"n": 4644, "sha": "f3ad56f103e364671504bb0d960a0ed69c2eafbc", "verdict": "cannot_tell", "reason": "The excerpt shows earlier multipart encoding, but ends before showing length calculation or its relation to digest header generation."}
+{"n": 4645, "sha": "f3b62442beb5422430eb2e5d82ec7132757a6fbf", "verdict": "ok", "reason": ""}
+{"n": 4646, "sha": "f3bc8b6e1f470298467738f1a33c759eeb0474f4", "verdict": "wrong", "reason": "The words on IP are present before and after the change."}
+{"n": 4647, "sha": "f3d310b299af587d668493f09d82c84c197d00fd", "verdict": "wrong", "reason": "The file mode remains the valid value r. The edit adds a separate positional argument."}
+{"n": 4648, "sha": "f3d4480a33b367cf020b0ed447bca10797706094", "verdict": "wrong", "reason": "The method chooses a request URL form, and its scheme check does not bypass an HTTPS proxy."}
+{"n": 4649, "sha": "f3eeb3854281eaecf5378724dce77b76496a4038", "verdict": "filler", "reason": "The image directive is added, but the excerpt does not show the rendered appearance or demonstrate a visual improvement."}
+{"n": 4650, "sha": "f3f4c3e20adad6e2faa0068ca221a11f6a53ef7c", "verdict": "filler", "reason": "The Windows SOCKS dependency marker changes as described, but no specific compatibility problem with other versions is established."}
+{"n": 4651, "sha": "f3fc892b901abe2c3605f2669af4f6469b896e88", "verdict": "ok", "reason": ""}
+{"n": 4652, "sha": "f401287afb7da663e622a244bbaf22fcc32fca09", "verdict": "ok", "reason": ""}
+{"n": 4653, "sha": "f408829d516614c813a59621bfec9b09a6251da4", "verdict": "wrong", "reason": "The new path still needs simplejson and can fail if both JSON dependencies are absent."}
+{"n": 4654, "sha": "f409d65d1536848769d2e01aecd17593b90c1ed9", "verdict": "ok", "reason": ""}
+{"n": 4655, "sha": "f40a1d6a8ad4ea47e4a2b92b9a13a2270c6806cf", "verdict": "ok", "reason": ""}
+{"n": 4656, "sha": "f40bd0f7074ccda6be66c77f39442770d7669af0", "verdict": "wrong", "reason": "The request member is a module-level function rather than a class."}
+{"n": 4657, "sha": "f41560c5d46e8cbb8d8f741b2f7d2da29a9d6b94", "verdict": "ok", "reason": ""}
+{"n": 4658, "sha": "f422ace07e92d79308f2e72897126971c37a3414", "verdict": "filler", "reason": "The new padding is measurable in the CSS, but the claimed readability result is unverified."}
+{"n": 4659, "sha": "f4296ba758e9bfd598966c7f2ec988ec305c9ebe", "verdict": "wrong", "reason": "The final contributor line is still marked as having no newline."}
+{"n": 4660, "sha": "f4311269d77dbbfdc1fa84b79146dc8f5eea246e", "verdict": "ok", "reason": ""}
+{"n": 4661, "sha": "f43f750ee10addbaa13901c1017631b4d70fd6e3", "verdict": "filler", "reason": "The hook revision advances to v0.15.11, but nothing establishes latest-release status."}
+{"n": 4662, "sha": "f4445b3d4f320f66142cf5aa0656fe62a6c0df3e", "verdict": "ok", "reason": ""}
+{"n": 4663, "sha": "f44b86e03962b08ebf3b77d980ebeb8f11f6f704", "verdict": "ok", "reason": ""}
+{"n": 4664, "sha": "f44bb31bec2d36d113f642640f384832114ab7fb", "verdict": "cannot_tell", "reason": "The patch moves yield resp, but the intervening statement and surrounding loop are absent, so the effect on the final versus intermediate response cannot be verified."}
+{"n": 4665, "sha": "f453892960dded53add21f3132a22f992ba6e6a3", "verdict": "ok", "reason": ""}
+{"n": 4666, "sha": "f462eecf4817ad886efd21f417129c4fd820c7ce", "verdict": "ok", "reason": ""}
+{"n": 4667, "sha": "f478c346712d730df0cbe410b632bd120b0589aa", "verdict": "ok", "reason": ""}
+{"n": 4668, "sha": "f47aff68f1352c3a5030fe70bbdf7c00171e207b", "verdict": "ok", "reason": ""}
+{"n": 4669, "sha": "f4818b2010ce0846e9ddc85f439b80303a395494", "verdict": "ok", "reason": ""}
+{"n": 4670, "sha": "f48c78c9eebde590dfadc7f0d89e1de1ed9f85b3", "verdict": "ok", "reason": ""}
+{"n": 4671, "sha": "f494cd9c7283f9f920d04a59ed47efd5ae0c284a", "verdict": "ok", "reason": ""}
+{"n": 4672, "sha": "f4b488b7f8a1c0c10ee7fa11611a3c5518f2448c", "verdict": "filler", "reason": "The html5lib pin is removed, but installation failures or package conflicts are only conjecture."}
+{"n": 4673, "sha": "f4b90827b0c7b4fa02d9d5e7c15011c3fd9ef358", "verdict": "filler", "reason": "The manifest reference is removed, but the excerpt does not establish that the file was deleted or that its former inclusion caused a packaging error."}
+{"n": 4674, "sha": "f4c4bf3d0b8d8a09ec645f4064522852d0c5f9ee", "verdict": "ok", "reason": ""}
+{"n": 4675, "sha": "f4d1bbb7c549e1e276e61fa6390f9b5ce761c0ae", "verdict": "ok", "reason": ""}
+{"n": 4676, "sha": "f4ddf00c364e4396e7d941f91a8817311dd79adc", "verdict": "ok", "reason": ""}
+{"n": 4677, "sha": "f4e03a5d32366dc874a60eef64ea36502e3e23a9", "verdict": "ok", "reason": ""}
+{"n": 4678, "sha": "f4eaefa63e80b323762c4e719342717fd523663b", "verdict": "ok", "reason": ""}
+{"n": 4679, "sha": "f4ec3d2309c681777211c5aba8c9fe3144f21ae2", "verdict": "ok", "reason": ""}
+{"n": 4680, "sha": "f4f2bd9fab5e3e0a5e66d9d4cd1b14c051faf863", "verdict": "wrong", "reason": "Only the change log is modified, with no runtime change to Response or its URL assignment."}

@@ -1,0 +1,4181 @@
+{
+ "dataset": "agent_eval_commit_full_v1.jsonl",
+ "dataset_sha256": "da7d08dd05094e7fad2ccd709de8d5efb43524ed7f0b476a9526defd416dbc76",
+ "toolset": "production",
+ "prompt_variant": "commit_explain",
+ "commit_query": "model",
+ "commit_fix_only": false,
+ "extra_files": 3,
+ "skip_tests": true,
+ "tool_result_chars": 24000,
+ "max_input_tokens": "12288",
+ "commit_k": 15,
+ "max_tool_calls": 4,
+ "citation_snap": false,
+ "abstain_retries": 0,
+ "tool_error_retries": 0,
+ "server": {
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+  "hardware": "NVIDIA A100-SXM4-40GB",
+  "max_input_tokens": "12288",
+  "decode_mode": "cuda-graphs + mtp3"
+ },
+ "rerank_used": false,
+ "rerank_failures": 0,
+ "llm_model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+ "table": {
+  "commit": {
+   "n": 113,
+   "passed": 26,
+   "abstained": 3,
+   "failed": 72,
+   "missed": [
+    "commitfull-005",
+    "commitfull-010",
+    "commitfull-012",
+    "commitfull-013",
+    "commitfull-018",
+    "commitfull-021",
+    "commitfull-024",
+    "commitfull-025",
+    "commitfull-026",
+    "commitfull-035",
+    "commitfull-036",
+    "commitfull-037",
+    "commitfull-038",
+    "commitfull-039",
+    "commitfull-040",
+    "commitfull-041",
+    "commitfull-043",
+    "commitfull-044",
+    "commitfull-045",
+    "commitfull-046",
+    "commitfull-047",
+    "commitfull-048",
+    "commitfull-049",
+    "commitfull-050",
+    "commitfull-051",
+    "commitfull-052",
+    "commitfull-053",
+    "commitfull-054",
+    "commitfull-055",
+    "commitfull-056",
+    "commitfull-057",
+    "commitfull-058",
+    "commitfull-059",
+    "commitfull-060",
+    "commitfull-061",
+    "commitfull-062",
+    "commitfull-063",
+    "commitfull-064",
+    "commitfull-065",
+    "commitfull-066",
+    "commitfull-067",
+    "commitfull-068",
+    "commitfull-069",
+    "commitfull-070",
+    "commitfull-071",
+    "commitfull-072",
+    "commitfull-073",
+    "commitfull-074",
+    "commitfull-075",
+    "commitfull-076",
+    "commitfull-077",
+    "commitfull-078",
+    "commitfull-079",
+    "commitfull-080",
+    "commitfull-081",
+    "commitfull-082",
+    "commitfull-083",
+    "commitfull-084",
+    "commitfull-085",
+    "commitfull-086",
+    "commitfull-087",
+    "commitfull-088",
+    "commitfull-089",
+    "commitfull-090",
+    "commitfull-091",
+    "commitfull-092",
+    "commitfull-093",
+    "commitfull-094",
+    "commitfull-095",
+    "commitfull-096",
+    "commitfull-097",
+    "commitfull-098",
+    "commitfull-099",
+    "commitfull-100",
+    "commitfull-101",
+    "commitfull-102",
+    "commitfull-103",
+    "commitfull-104",
+    "commitfull-105",
+    "commitfull-106",
+    "commitfull-107",
+    "commitfull-108",
+    "commitfull-109",
+    "commitfull-110",
+    "commitfull-111",
+    "commitfull-112",
+    "commitfull-113"
+   ]
+  }
+ },
+ "rows": [
+  {
+   "id": "commitfull-001",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nrequests.auth has an orphaned reference to ._oauth\n\nSymptom:\n\n```\nTraceback (most recent ca",
+   "answer": "Yes. Commit f69934fb24a9 (by Matt McClure, 2012-12-12) is a probable match: it changes requests/auth.py to import Client, SIGNATURE_HMAC, SIGNATURE_TYPE_AUTH_HEADER and extract_params directly from oauthlib instead of the obsolete `from ._oauth import ...` wrapper, which is the orphaned reference causing the NameError: global name 'Client' is not defined.\n\nMatched commit details:\n- f69934fb24a9 (2012-12-12, Matt McClure): Import oauthlib without the obsolete wrapper.; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. Commit f69934fb24a9 (by Matt McClure, 2012-12-12) is a probable match: it changes requests/auth.py to import Client, SIGNATURE_HMAC, SIGNATURE_TYPE_AUTH_HEADER and extract_params directly from oauthlib instead of the obsolete `from ._oauth import ...` wrapper, which is the orphaned reference causing the NameError: global name 'Client' is not defined.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "requests.auth orphaned reference to ._oauth Client is not defined NameError"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 23.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-002",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAttributeError: 'HTTPAdapter' object has no attribute 'verify'\n\n``` python\ncerts = requests",
+   "answer": "Yes. Commit 910b2312d644 (\"fix verify bug\", 2012-12-17) changed cert_verify in requests/adapters.py from `cert_loc = self.verify` to `cert_loc = verify`, directly fixing the reported AttributeError: 'HTTPAdapter' object has no attribute 'verify' (the traceback points to line 65, `cert_loc = self.verify`).\n\nMatched commit details:\n- 910b2312d644 (2012-12-17, Kenneth Reitz): fix verify bug; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. Commit 910b2312d644 (\"fix verify bug\", 2012-12-17) changed cert_verify in requests/adapters.py from `cert_loc = self.verify` to `cert_loc = verify`, directly fixing the reported AttributeError: 'HTTPAdapter' object has no attribute 'verify' (the traceback points to line 65, `cert_loc = self.verify`).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "HTTPAdapter object has no attribute verify cert_verify"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-003",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nrequests.get is ALWAYS sending content length\n\nHi,\n\nIt seems like that request.get always a",
+   "answer": "Yes. Commit 44b1e7ebeabd (\"Remove default Content-Length from GET requests.\") is a probable match: it removes the automatic Content-Length header for GET requests in requests/models.py and adds a test asserting GET requests have no Content-Length header.\n\nMatched commit details:\n- 44b1e7ebeabd (2013-01-24, Johnny Goodnow): Remove default Content-Length from GET requests.; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. Commit 44b1e7ebeabd (\"Remove default Content-Length from GET requests.\") is a probable match: it removes the automatic Content-Length header for GET requests in requests/models.py and adds a test asserting GET requests have no Content-Length header.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "content-length header GET request always sent"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-004",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nOn redirect (302) params are doubled\n\nWhen the servers redirects (302) and the redirect url",
+   "answer": "Yes, this was fixed before. The commit 9d33629b6d3f by Kenneth Reitz, titled 'don't supply params for directs', changed requests/sessions.py (SessionRedirectMixin.resolve_redirects) so that the original request's params are no longer re-applied to the redirect URL, which already contains them in the location header. This is a probable match for the reported doubling of params on 302 redirects. (src/requests/sessions.py:186-235, src/requests/sessions.py:237-280, src/requests/sessions.py:282-307)\n\nMatched commit details:\n- 9d33629b6d3f (2013-01-10, Kenneth Reitz): don't supply params for directs; ranked 15 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes, this was fixed before. The commit 9d33629b6d3f by Kenneth Reitz, titled 'don't supply params for directs', changed requests/sessions.py (SessionRedirectMixin.resolve_redirects) so that the original request's params are no longer re-applied to the redirect URL, which already contains them in the location header. This is a probable match for the reported doubling of params on 302 redirects. (src/requests/sessions.py:186-235, src/requests/sessions.py:237-280, src/requests/sessions.py:282-307)",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "redirect 302 params doubled url location"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "resolve_redirects params url location redirect"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [
+     "src/requests/sessions.py:186-235",
+     "src/requests/sessions.py:237-280",
+     "src/requests/sessions.py:282-307"
+    ],
+    "uncited": false
+   },
+   "seconds": 6.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-005",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPOST and PUT on 307 redirect will re-POST without body\n\nWith requests 1.0.4, if one makes a",
+   "answer": "Yes. The closest prior fix is commit 8d693a2a27d0 (PR #1963, \"Do not use original request in redirect\"), which fixed the related bug where a POST that was redirected (e.g. via 303 to GET, then 307) would reuse the original request and re-POST; its message and changed files (requests/sessions.py resolve_redirects) match the reported problem. A later commit 40402cd0dd04 (PR #3655, \"Rewind readable body before POST redirect\") also addresses POST bodies being lost on 307 redirects by rewinding the body before re-POSTing.\n\nMatched commit details:\n- 8d693a2a27d0 (2014-03-15, Ian Cordasco): : Do not use original request in redirect; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. The closest prior fix is commit 8d693a2a27d0 (PR #1963, \"Do not use original request in redirect\"), which fixed the related bug where a POST that was redirected (e.g. via 303 to GET, then 307) would reuse the original request and re-POST; its message and changed files (requests/sessions.py resolve_redirects) match the reported problem. A later commit 40402cd0dd04 (PR #3655, \"Rewind readable body before POST redirect\") also addresses POST bodies being lost on 307 redirects by rewinding the body before re-POSTing.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_pr",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "307 redirect POST PUT body"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "307 redirect POST PUT body re-POST"
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1963
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 3655
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-006",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nResult of 'response' hook is stored in session.response and not returned\n\nhttps://github.co",
+   "answer": "Yes. Commit e1c4fe21d47d (2013-01-19, Ian Cordasco) changed `self.response = dispatch_hook('response', hooks, resp)` to `resp = dispatch_hook('response', hooks, resp)` in requests/sessions.py and removed the duplicate response hook call from requests/adapters.py, directly fixing the reported issue that the hook result was stored on the session instead of being returned.\n\nMatched commit details:\n- e1c4fe21d47d (2013-01-19, Ian Cordasco): Files: requests/adapters.py, requests/sessions.py; ranked 3 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. Commit e1c4fe21d47d (2013-01-19, Ian Cordasco) changed `self.response = dispatch_hook('response', hooks, resp)` to `resp = dispatch_hook('response', hooks, resp)` in requests/sessions.py and removed the duplicate response hook call from requests/adapters.py, directly fixing the reported issue that the hook result was stored on the session instead of being returned.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "response hook stored in session.response not returned dispatch_hook"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-007",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nNo means of authenticating redirects\n\nIn `requests/requests-kerberos` we use GSSAPI to not ",
+   "answer": "Yes. PR #1185, commit 4dfd6f3fc1f7, titled 'Dispatch hooks before following redirects', fixes issue #1183 (the reported bug) by dispatching hooks before following redirects, allowing authentication mechanisms to authenticate redirects.\n\nDetails from the search results:\n- #1185 (pull request, merged): Dispatch hooks before following redirects\n- #1183 (issue, closed): Issue #1183: No means of authenticating redirects",
+   "model_answer": "Yes. PR #1185, commit 4dfd6f3fc1f7, titled 'Dispatch hooks before following redirects', fixes issue #1183 (the reported bug) by dispatching hooks before following redirects, allowing authentication mechanisms to authenticate redirects.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "mutual authentication redirects GSSAPI kerberos authenticate redirects hook"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "mutual authentication redirects GSSAPI kerberos authenticate redirects hook redirect"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 1183
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1185
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-008",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDefault value of allow_redirects in HEAD requests\n\nIn version 1.1.0 allow_redirects for HEA",
+   "answer": "Yes. Commit a788cb72719a (\"Missing line was allowing redirects with HEAD\") added kwargs.setdefault('allow_redirects', False) to requests/api.py::head, matching the reported symptom that HEAD requests were following redirects by default.\n\nMatched commit details:\n- a788cb72719a (2013-02-20, Ian Cordasco): Missing line was allowing redirects with HEAD; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. Commit a788cb72719a (\"Missing line was allowing redirects with HEAD\") added kwargs.setdefault('allow_redirects', False) to requests/api.py::head, matching the reported symptom that HEAD requests were following redirects by default.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "allow_redirects HEAD default True"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-009",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nProblem with missing cookies after redirect\n\nI sent this by e-mail - no response. I think t",
+   "answer": "Yes. The most direct fix is commit 5bb2be9a2300 (2013-03-09, Miikka Koskinen), \"Use session cookies when following redirects\", which changed resolve_redirects in requests/sessions.py so that the session's cookies are included in the follow-up request after a redirect, rather than only the cookies set by the initial response. This matches the reported symptom where the SESSIONID cookie was not repeated on the GET after a 302. Related earlier fixes include 9cdc8325ae8a (\"Fix Setting a cookie on redirect\") and e355d6ac6cbc (\"Always persist cookies\").\n\nMatched commit details:\n- 5bb2be9a2300 (2013-03-09, Miikka Koskinen): Use session cookies when following redirects; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.\n- 9cdc8325ae8a (2013-02-10, Ian Cordasco): Fix Setting a cookie on redirect; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.\n- e355d6ac6cbc (2012-12-17, Bryce Boe): Fix . Always persist cookies.; ranked 3 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. The most direct fix is commit 5bb2be9a2300 (2013-03-09, Miikka Koskinen), \"Use session cookies when following redirects\", which changed resolve_redirects in requests/sessions.py so that the session's cookies are included in the follow-up request after a redirect, rather than only the cookies set by the initial response. This matches the reported symptom where the SESSIONID cookie was not repeated on the GET after a 302. Related earlier fixes include 9cdc8325ae8a (\"Fix Setting a cookie on redirect\") and e355d6ac6cbc (\"Always persist cookies\").",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "missing cookies after redirect 302 session cookie not sent on redirect"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-010",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nShould Session.send() ignore Session.proxies?\n\nMy test code:\n\n``` python\nimport requests\ns ",
+   "answer": "Yes, this was fixed before. The current Session.send() resolves proxies from the session when none are passed explicitly, so Session.proxies is no longer ignored (src/requests/sessions.py:752-799). The probable fix is commit 325ea7b7e209, 'Use session defaults instead of arbitrary ones', which changed Session.send to use session defaults (src/requests/sessions.py).\n\nMatched commit details:\n- 325ea7b7e209 (2013-03-29, Ian Cordasco): Use session defaults instead of arbitrary ones; ranked 13 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes, this was fixed before. The current Session.send() resolves proxies from the session when none are passed explicitly, so Session.proxies is no longer ignored (src/requests/sessions.py:752-799). The probable fix is commit 325ea7b7e209, 'Use session defaults instead of arbitrary ones', which changed Session.send to use session defaults (src/requests/sessions.py).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Session.send proxies ignored merge_kwargs"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Session.send proxies merge_kwargs self.proxies"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 7.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-011",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSession.request doesn't have parameter return_response, contrary to what the docs say.\n\n```",
+   "answer": "Yes. Commit ca0aea640d0c (2013-04-02, Kamil Szot) added the return_response parameter to Session.request, but it was immediately reverted by commit 54ed5ed469ff (2013-04-02, Kenneth Reitz), so the parameter was not actually kept; the docstring was separately corrected in 1abd13700b32 to remove the stale return_response documentation.\n\nMatched commit details:\n- ca0aea640d0c (2013-04-02, Kamil Szot): Fix for the issue; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.\n- 54ed5ed469ff (2013-04-02, Kenneth Reitz): Revert \"Fix for the issue ; ranked 5 of 15 search results; a text match on the report, not confirmed against the code.\n- 1abd13700b32 (2013-04-02, Ian Cordasco): Correct the doc-string for Session#request that I copied without thinking; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. Commit ca0aea640d0c (2013-04-02, Kamil Szot) added the return_response parameter to Session.request, but it was immediately reverted by commit 54ed5ed469ff (2013-04-02, Kenneth Reitz), so the parameter was not actually kept; the docstring was separately corrected in 1abd13700b32 to remove the stale return_response documentation.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Session.request return_response parameter"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 4.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-012",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nCookies won't get deleted after update to 1.X\n\nRequests ignores `Set-Cookie: cookie_user=de",
+   "answer": "Yes. The most probable fix is commit 87abd9c6094f (2014-01-12, \"Use calendar.timegm when calculating cookie expiration\"), which changed requests/cookies.py::morsel_to_cookie to compute the cookie expiration with calendar.timegm instead of time.mktime - time.timezone, so that a Set-Cookie with expires=Thu, 01-Jan-1970 00:00:01 GMT is correctly treated as expired and the cookie is deleted. Related earlier work includes 88f13598f32b (2013-04-04), which added the unit test test_cookie_removed_on_expire reproducing exactly this scenario, and ea4570da5714 (2013-12-05), which fixed the timezone handling in morsel_to_cookie.\n\nMatched commit details:\n- 87abd9c6094f (2014-01-12, Ian Cordasco): Use calendar.timegm when calculating cookie expiration; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.\n- 88f13598f32b (2013-04-04, Chase Sterling): Add a unit test for server expiring cookies from session; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.\n- ea4570da5714 (2013-12-05, Michael Becker): cookies: Fix bugs found during CI; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. The most probable fix is commit 87abd9c6094f (2014-01-12, \"Use calendar.timegm when calculating cookie expiration\"), which changed requests/cookies.py::morsel_to_cookie to compute the cookie expiration with calendar.timegm instead of time.mktime - time.timezone, so that a Set-Cookie with expires=Thu, 01-Jan-1970 00:00:01 GMT is correctly treated as expired and the cookie is deleted. Related earlier work includes 88f13598f32b (2013-04-04), which added the unit test test_cookie_removed_on_expire reproducing exactly this scenario, and ea4570da5714 (2013-12-05), which fixed the timezone handling in morsel_to_cookie.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Set-Cookie expires 1970 cookie not deleted"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 4.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-013",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nMissingSchema error raised when schema present\n\nAfter [this](https://github.com/kennethreit",
+   "answer": "Yes, this was addressed: commit 087a27aba97d (by ContinuousFunction, 2014-11-15) partially addresses the issue where MissingSchema could be raised when a scheme is present but the network location is missing; the current code in src/requests/models.py:483-542 raises MissingSchema only when the scheme is absent and raises InvalidURL when the host is absent, so a URL with a scheme but no network location is handled as InvalidURL rather than MissingSchema.\n\nMatched commit details:\n- 087a27aba97d (2014-11-15, ContinuousFunction): Partially addresses ; ranked 14 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes, this was addressed: commit 087a27aba97d (by ContinuousFunction, 2014-11-15) partially addresses the issue where MissingSchema could be raised when a scheme is present but the network location is missing; the current code in src/requests/models.py:483-542 raises MissingSchema only when the scheme is absent and raises InvalidURL when the host is absent, so a URL with a scheme but no network location is handled as InvalidURL rather than MissingSchema.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "MissingSchema error raised when schema present network location"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "MissingSchema No schema supplied prepare_url"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 8.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-014",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nHeaders kwarg overrides Poster headers\n\nIf a caller uses both the `files` and `headers` kwa",
+   "answer": "Yes. The fix is commit 9fdee250de7e, 'Better POSTER header compatibility', which changed Request.send in requests/core.py so that req.headers is updated with self.headers instead of being assigned, preserving the multipart headers generated by Poster (matching PR #14 / issue #13).\n\nMatched commit details:\n- 9fdee250de7e (2011-03-06, Kenneth Reitz): Better POSTER header compatibility (); ranked 13 of 15 search results; a text match on the report, not confirmed against the code.\n\nDetails from the search results:\n- #14 (pull request, closed): Issue #13: Poster headers preservation",
+   "model_answer": "Yes. The fix is commit 9fdee250de7e, 'Better POSTER header compatibility', which changed Request.send in requests/core.py so that req.headers is updated with self.headers instead of being assigned, preserving the multipart headers generated by Poster (matching PR #14 / issue #13).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_pr",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "headers kwarg overrides Poster headers multipart Content-Length iterable body"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "headers kwarg overrides Poster headers multipart files Content-Length"
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 14
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 14
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-015",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nrequests follows a PUT request's 301 and does a PUT request at the end\n\nNot only is that wr",
+   "answer": "Yes. Commit c5d0a0931e1a (2013-04-13, Ian Cordasco) changed the redirect logic in requests/sessions.py so that the method is changed to GET when it isn't already GET/HEAD, not only for POST, which addresses the issue of a PUT being followed as a PUT on a 301 redirect. This is a probable match for the reported bug.\n\nMatched commit details:\n- c5d0a0931e1a (2013-04-13, Ian Cordasco): Change the method when it isn't already GET/HEAD; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. Commit c5d0a0931e1a (2013-04-13, Ian Cordasco) changed the redirect logic in requests/sessions.py so that the method is changed to GET when it isn't already GET/HEAD, not only for POST, which addresses the issue of a PUT being followed as a PUT on a 301 redirect. This is a probable match for the reported bug.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "301 redirect PUT request content-length body"
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "redirect 301 PUT change method to GET POST body"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-016",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nTransport adapters don't work as advertised\n\nHaving:\n\n``` python\n  >>> import requests\n  >>",
+   "answer": "Yes, this was fixed before. The fix is commit 4c8af1fff47e (2013-05-15, by Łukasz Langa), titled ': transport adapters stored in ordered form', which changed requests/sessions.py so that Session.mount keeps adapters sorted in descending order by prefix length, making get_adapter() deterministically pick the most specific (longest) matching prefix instead of relying on random dict key order. This is reflected in the current code where Session.mount reorders keys so longer prefixes come first (src/requests/sessions.py:888-905) and get_adapter() returns the first matching prefix in that order (src/requests/sessions.py:831-886).\n\nMatched commit details:\n- 4c8af1fff47e (2013-05-15, Łukasz Langa): : transport adapters stored in ordered form; ranked 6 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes, this was fixed before. The fix is commit 4c8af1fff47e (2013-05-15, by Łukasz Langa), titled ': transport adapters stored in ordered form', which changed requests/sessions.py so that Session.mount keeps adapters sorted in descending order by prefix length, making get_adapter() deterministically pick the most specific (longest) matching prefix instead of relying on random dict key order. This is reflected in the current code where Session.mount reorders keys so longer prefixes come first (src/requests/sessions.py:888-905) and get_adapter() returns the first matching prefix in that order (src/requests/sessions.py:831-886).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Session.get_adapter transport adapter prefix matching order"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "get_adapter prefix longest match sort keys"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-017",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAdd note in docs about None not being as data\n\nSee this for more information\n\nhttps://githu",
+   "answer": "Yes, this was fixed before: commit 07ad75ee0434 (2013-07-19) added a note in docs/user/quickstart.rst stating that any dictionary key whose value is None will not be added to the URL's query string, matching the reported issue.\n\nMatched commit details:\n- 07ad75ee0434 (2013-07-19, David Pursehouse): : Add note in docs about None not being sent as data; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes, this was fixed before: commit 07ad75ee0434 (2013-07-19) added a note in docs/user/quickstart.rst stating that any dictionary key whose value is None will not be added to the URL's query string, matching the reported issue.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "None not being as data docs note"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-018",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nReplacing existing session headers is not done case-insensitively\n\nWhen updating a requests",
+   "answer": "Yes, a probable earlier fix is commit 73ca21ed8ca1, which changed PreparedRequest.prepare_headers to build self.headers from the passed headers via CaseInsensitiveDict instead of wrapping the existing self.headers, addressing the case-insensitive header update behavior (requests/models.py). (src/requests/models.py:565-574)\n\nMatched commit details:\n- 73ca21ed8ca1 (2012-12-16, Bartek Sarul): Fixed a bug where user couldn't add custom headers.; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes, a probable earlier fix is commit 73ca21ed8ca1, which changed PreparedRequest.prepare_headers to build self.headers from the passed headers via CaseInsensitiveDict instead of wrapping the existing self.headers, addressing the case-insensitive header update behavior (requests/models.py). (src/requests/models.py:565-574)",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "session headers case-insensitive update existing header name"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Session headers CaseInsensitiveDict case-insensitive update"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [
+     "src/requests/models.py:565-574"
+    ],
+    "uncited": false
+   },
+   "seconds": 9.4,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-019",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\ntest_unicode_multipart_post_fieldnames() fails sometimes\n\n```\nself = <test_requests.Request",
+   "answer": "Yes. Commit 003c795afed5 (\"Only pass unicode fieldnames to urllib3\") changed requests/models.py::_encode_files to decode bytes fieldnames instead of encoding str ones, directly addressing the b'name=\"b\\'stuff\\'\"' assertion in test_unicode_multipart_post_fieldnames. A follow-up, 2a34335dc3ef, also adjusted that test's filename handling. These are probable matches for the reported failure.\n\nMatched commit details:\n- 003c795afed5 (2013-05-21, Ib Lundgren): Only pass unicode fieldnames to urllib3.; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.\n- 2a34335dc3ef (2013-05-22, papaeye): Files: test_requests.py; ranked 3 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. Commit 003c795afed5 (\"Only pass unicode fieldnames to urllib3\") changed requests/models.py::_encode_files to decode bytes fieldnames instead of encoding str ones, directly addressing the b'name=\"b\\'stuff\\'\"' assertion in test_unicode_multipart_post_fieldnames. A follow-up, 2a34335dc3ef, also adjusted that test's filename handling. These are probable matches for the reported failure.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "unicode multipart post fieldnames b'stuff' name encoding"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-020",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nrequests bumps into TooManyRedirects, curl/wget don't\n\nThe following invocation raises a To",
+   "answer": "Yes. The fix is commit 2a9ae4b367fc, which closed issue #161 (the TooManyRedirects/curl-wget report) by fixing a URL quoting issue that caused the redirect loop (PR #163, merged 2011-09-15).\n\nDetails from the search results:\n- #161 (issue, closed): Issue #161: requests bumps into TooManyRedirects, curl/wget don't\n- #163 (pull request, merged): Fixed #161 (quoting issue).",
+   "model_answer": "Yes. The fix is commit 2a9ae4b367fc, which closed issue #161 (the TooManyRedirects/curl-wget report) by fixing a URL quoting issue that caused the redirect loop (PR #163, merged 2011-09-15).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "TooManyRedirects redirect limit t.co"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "TooManyRedirects t.co redirect limit curl wget"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 161
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 163
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-021",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nUse MD5-sess authentication got  \"UnboundLocalError: local variable 'hash_utf8' referenced ",
+   "answer": "Yes. Commit abe02ed89fa7 (2016-04-29, by Mark Shannon) initializes hash_utf8 to None in HTTPDigestAuth, preventing the NameError/UnboundLocalError when the MD5-sess algorithm path references hash_utf8 before assignment (requests/auth.py).\n\nMatched commit details:\n- abe02ed89fa7 (2016-04-29, Mark Shannon): Initialize hash_utf8 to None, preventing NameError. .; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. Commit abe02ed89fa7 (2016-04-29, by Mark Shannon) initializes hash_utf8 to None in HTTPDigestAuth, preventing the NameError/UnboundLocalError when the MD5-sess algorithm path references hash_utf8 before assignment (requests/auth.py).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "UnboundLocalError hash_utf8 MD5-sess authentication referenced before assignment"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.4,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-022",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nCookies not persisted when set via functional API.\n\nCookies set as part of a call to `Sessi",
+   "answer": "Yes. The most direct fix is commit 39fe0068aa65 (2013-09-28, daftshady), which restores the original Cookie header on redirect responses and adds test_cookie_persists_via_api covering both r.request.headers['Cookie'] and r.history[0].request.headers['Cookie'] — exactly the reported symptoms. Related earlier fixes include e355d6ac6cbc (always persist cookies) and 642bbf60604d (update the next prepared request's CookieJar with new cookies).\n\nMatched commit details:\n- 39fe0068aa65 (2013-09-28, daftshady): , added test case for cookie persistence.; ranked 3 of 15 search results; a text match on the report, not confirmed against the code.\n- e355d6ac6cbc (2012-12-17, Bryce Boe): Fix . Always persist cookies.; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.\n- 642bbf60604d (2013-12-17, Ian Cordasco): Sure cookies are persisted to the session, but those new cookies are not added; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. The most direct fix is commit 39fe0068aa65 (2013-09-28, daftshady), which restores the original Cookie header on redirect responses and adds test_cookie_persists_via_api covering both r.request.headers['Cookie'] and r.history[0].request.headers['Cookie'] — exactly the reported symptoms. Related earlier fixes include e355d6ac6cbc (always persist cookies) and 642bbf60604d (update the next prepared request's CookieJar with new cookies).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "cookies not persisted when set via functional API Session.request redirect"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-023",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n\"č\" - UTF-8 UnicodeDecodeError\n\nTraceback (most recent call last):\nFile \"pysnap/get_snaps.p",
+   "answer": "Yes. This is issue #1674, fixed by PR #1900 \"Reinstate falling back to self.text for JSON responses\" (merged 2014-02-11), whose commit is 5ee8b348ebab — it reinstates falling back to self.text (chardet detection) when the guessed UTF codec fails to decode a JSON response.\n\nMatched commit details:\n- 5ee8b348ebab (2014-02-03, Martijn Pieters): Reinstate falling back to self.text for JSON responses; ranked 13 of 15 search results; a text match on the report, not confirmed against the code.\n\nDetails from the search results:\n- #1674 (issue, closed): Issue #1674: \"č\" - UTF-8 UnicodeDecodeError\n- #1900 (pull request, merged): Reinstate falling back to self.text for JSON responses",
+   "model_answer": "Yes. This is issue #1674, fixed by PR #1900 \"Reinstate falling back to self.text for JSON responses\" (merged 2014-02-11), whose commit is 5ee8b348ebab — it reinstates falling back to self.text (chardet detection) when the guessed UTF codec fails to decode a JSON response.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "UnicodeDecodeError utf8 codec can't decode byte invalid continuation byte"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "UnicodeDecodeError utf8 codec can't decode byte invalid continuation byte json"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 1674
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1900
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-024",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPossible Memory Leak\n\nI have a very simple program that periodically retrieves an image fro",
+   "answer": "Yes. The most directly matching fix is commit 3c0b94047c1c (2012-07-17, Shivaram Lingamneni), which addressed the connection/memory leak by making prefetch default to True so sockets are returned to the urllib3 connection pool on request end, adding Session.close(), and having the module-level API (e.g. requests.get) explicitly close its session when finished. Earlier related fixes include 32a861b2eddc (2011-08-09, 'Fixed memory leak') and 730c0e2e2bef (2012-01-29, 'Initial stop-the-bleeding fix', later reverted by b98cc8b4e9d8).\n\nMatched commit details:\n- 3c0b94047c1c (2012-07-17, Shivaram Lingamneni): address connection leak issue from ; ranked 5 of 15 search results; a text match on the report, not confirmed against the code.\n- 32a861b2eddc (2011-08-09, Jérémy Bethmont): Fixed memory leak (see http://bugs.python.org/issue1208304); ranked 2 of 15 search results; a text match on the report, not confirmed against the code.\n- 730c0e2e2bef (2012-01-29, Chris Adams): Initial stop-the-bleeding fix; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.\n- b98cc8b4e9d8 (2012-01-29, Chris Adams): Revert \"Initial stop-the-bleeding fix\"; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. The most directly matching fix is commit 3c0b94047c1c (2012-07-17, Shivaram Lingamneni), which addressed the connection/memory leak by making prefetch default to True so sockets are returned to the urllib3 connection pool on request end, adding Session.close(), and having the module-level API (e.g. requests.get) explicitly close its session when finished. Earlier related fixes include 32a861b2eddc (2011-08-09, 'Fixed memory leak') and 730c0e2e2bef (2012-01-29, 'Initial stop-the-bleeding fix', later reverted by b98cc8b4e9d8).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "memory leak requests get content growing working set"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 4.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-025",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nUnicode method names cause UnicodeDecodeError for some requests in Python 2.7.2\n\nThe follow",
+   "answer": "Yes, a probable match is commit 8c01865d62df, which removed the unicode encoding of the HTTP method in prepare_method (requests/models.py), addressing UnicodeDecodeError with unicode method names on Python 2.\n\nMatched commit details:\n- 8c01865d62df (2012-12-17, Eric Scrivner): Remove unicode encoding for HTTP method.; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes, a probable match is commit 8c01865d62df, which removed the unicode encoding of the HTTP method in prepare_method (requests/models.py), addressing UnicodeDecodeError with unicode method names on Python 2.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Unicode method names cause UnicodeDecodeError for some requests in Python 2.7.2"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-026",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRequest cookies should not be persisted to session\n\nAfter the fix for #1630, cookies sent w",
+   "answer": "No answer could be produced: the model's reply was not valid within the limits.",
+   "model_answer": "No answer could be produced: the model's reply was not valid within the limits.",
+   "abstain": true,
+   "failure": "budget",
+   "error": "",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_commits\",\"arguments\":{\"query\":\"0b68037 cookies not persisted session changelog\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr",
+    "search_prs",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "request cookies persisted to session"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "request cookies should not be persisted to session 1630"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 1728
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1729
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "1728 cookies not persisted session fix"
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "1728 request cookies not persisted session"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 11.7,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-027",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRequests encounters HTTP 400 while redirecting -- wget does not\n\nUsing the latest developme",
+   "answer": "Yes. PR #175 fixed issue #174 (the same bug); the fix commit is 62d29d510625, which refactored URL quoting/concatenation so params and query are properly encoded.\n\nDetails from the search results:\n- #175 (pull request, merged): Fixed #174 and refactored urls quoting/concatenation in one function in utils.py.",
+   "model_answer": "Yes. PR #175 fixed issue #174 (the same bug); the fix commit is 62d29d510625, which refactored URL quoting/concatenation so params and query are properly encoded.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "HTTP 400 redirect t.co wget curl 301 Moved Permanently"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "HTTP 400 redirect t.co wget curl 301 Moved Permanently"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 174
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 175
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-028",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nGetting a public Google Spreadsheet doc gives you the too many redirects error\n\nIn version ",
+   "answer": "Yes. Issue #1805 (this exact bug) was fixed by PR #1808, whose change is commit 642bbf60604d, which updates the prepared request's CookieJar with new cookies during redirects so the Google Spreadsheet URL no longer loops into TooManyRedirects.\n\nMatched commit details:\n- 642bbf60604d (2013-12-17, Ian Cordasco): Sure cookies are persisted to the session, but those new cookies are not added; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.\n\nDetails from the search results:\n- #1805 (issue, closed): Issue #1805: Getting a public Google Spreadsheet doc gives you the too many redirects error\n- #1808 (pull request, merged): Fixes #1805",
+   "model_answer": "Yes. Issue #1805 (this exact bug) was fixed by PR #1808, whose change is commit 642bbf60604d, which updates the prepared request's CookieJar with new cookies during redirects so the Google Spreadsheet URL no longer loops into TooManyRedirects.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "too many redirects google spreadsheet 30 redirects"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "google spreadsheet too many redirects 30 redirects"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 1805
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1808
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "cookies saved on redirect update CookieJar prepared request"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-029",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nResponse URLs are not unicode strings\n\nWhen running...\n\n```\n>>> u = requests.head('http://t",
+   "answer": "Yes. Commit b37fbf30a3d4 (2012-01-20, Johannes Gorset) is marked as a fix and changes `response.url = self.full_url` to `response.url = self.full_url.decode('utf-8')` in requests/models.py, adding a test_response_has_unicode_url test — directly matching the reported bug that response URLs were not unicode strings.\n\nMatched commit details:\n- b37fbf30a3d4 (2012-01-20, Johannes Gorset): Decode response URL to a unicode string.; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. Commit b37fbf30a3d4 (2012-01-20, Johannes Gorset) is marked as a fix and changes `response.url = self.full_url` to `response.url = self.full_url.decode('utf-8')` in requests/models.py, adding a test_response_has_unicode_url test — directly matching the reported bug that response URLs were not unicode strings.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "response URL unicode string decode utf8"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-030",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nBrittle test\n\nThe test `test_expires_valid_str` fails on my OS X box, in Python 2.7:\n\n``` p",
+   "answer": "Yes. The bug where test_expires_valid_str failed due to timezone-dependent cookie expiration was fixed in commit 87abd9c6094f, which replaced time.mktime(...)-time.timezone with calendar.timegm in morsel_to_cookie (requests/cookies.py).\n\nMatched commit details:\n- 87abd9c6094f (2014-01-12, Ian Cordasco): Use calendar.timegm when calculating cookie expiration; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. The bug where test_expires_valid_str failed due to timezone-dependent cookie expiration was fixed in commit 87abd9c6094f, which replaced time.mktime(...)-time.timezone with calendar.timegm in morsel_to_cookie (requests/cookies.py).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "test_expires_valid_str morsel_to_cookie expires timezone"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-031",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nResourceWarning in python 3.2+\n\nRequests issues a ResourceWarning in python 3.2+ as sockets",
+   "answer": "Yes. The most direct fix for this ResourceWarning is commit 3155bc99362a (\"Close sessions created in the functional API\"), which makes the module-level API (e.g. requests.get) explicitly close its session so sockets are not left open and trigger a ResourceWarning. A related earlier fix is 3c0b94047c1c, which added Session.close() and made the functional API close its session to address the connection leak.\n\nMatched commit details:\n- 3155bc99362a (2014-11-07, Ian Cordasco): Close sessions created in the functional API; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.\n- 3c0b94047c1c (2012-07-17, Shivaram Lingamneni): address connection leak issue from ; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. The most direct fix for this ResourceWarning is commit 3155bc99362a (\"Close sessions created in the functional API\"), which makes the module-level API (e.g. requests.get) explicitly close its session so sockets are not left open and trigger a ResourceWarning. A related earlier fix is 3c0b94047c1c, which added Session.close() and made the functional API close its session to address the connection leak.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "ResourceWarning unclosed socket close"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-032",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n301 redirect broken with latest pyopenssl/SNI\n\nWith the latest pyopenssl on Windows 64bit:\n",
+   "answer": "Yes. The fix is commit 8b792be81bfa, \"on redirect pass URL as bytes\", which changes requests/sessions.py (SessionRedirectMixin.resolve_redirects) to pass the redirect URL as bytes, addressing the pyopenssl/SNI bytes-type exception on 301 redirects. A matching unit test was added in commit b6e16799d022 (test_pyopenssl_redirect).\n\nMatched commit details:\n- 8b792be81bfa (2014-01-28, Konstantinos Koukopoulos): on redirect pass URL as bytes.; ranked 8 of 15 search results; a text match on the report, not confirmed against the code.\n- b6e16799d022 (2014-01-28, Konstantinos Koukopoulos): test pyopenssl redirect (unit test for ); ranked 7 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. The fix is commit 8b792be81bfa, \"on redirect pass URL as bytes\", which changes requests/sessions.py (SessionRedirectMixin.resolve_redirects) to pass the redirect URL as bytes, addressing the pyopenssl/SNI bytes-type exception on 301 redirects. A matching unit test was added in commit b6e16799d022 (test_pyopenssl_redirect).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "301 redirect unicode pyopenssl SNI bytes"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-033",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRemoving a default header of a session\n\n[The docs](http://docs.python-requests.org/en/lates",
+   "answer": "Yes, this was fixed in commit d2f647cee45f, which filters out headers with None values in merge_setting so that session headers set to None are not sent (e.g. Accept-Encoding: None).\n\nMatched commit details:\n- d2f647cee45f (2014-02-14, Ian Cordasco): Do not set headers with None value; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes, this was fixed in commit d2f647cee45f, which filters out headers with None values in merge_setting so that session headers set to None are not sent (e.g. Accept-Encoding: None).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "session header None value sent as string Accept-Encoding"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-034",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nrequest.history can be either a list or a tuple\n\nIMHO r.history should always be a list for",
+   "answer": "Yes. Commit daf56b3f62f9 (\"A Response's history should be a list\") changed requests/sessions.py to stop assigning r.history = tuple(history) and added test_history_is_always_a_list, directly addressing the report that history should always be a list.\n\nMatched commit details:\n- daf56b3f62f9 (2014-03-15, Ian Cordasco): : A Response's history should be a list; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. Commit daf56b3f62f9 (\"A Response's history should be a list\") changed requests/sessions.py to stop assigning r.history = tuple(history) and added test_history_is_always_a_list, directly addressing the report that history should always be a list.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "request.history tuple list sessions"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-035",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nFix Auth Registry\n\nModule-level auth registry not functional.",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- 1b885614760d (2011-02-14, Kenneth Reitz): Readme update\n- 20e0ee496829 (2011-10-23, Kenneth Reitz): Remove AuthObject entirely.\n- 94c587d642eb (2011-10-23, Kenneth Reitz): Comment out authentication handlers",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "auth registry module-level not functional"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "auth registry module-level register"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 5.9,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commitfull-036",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nUncaught socket.timeout during post\n\nHallo requests devs (and thanks for an awesome lib)\n\nD",
+   "answer": "Yes, a probable earlier fix is commit 318f2460eed2, which differentiates urllib3 timeout errors and raises the requests Timeout exception instead of letting a raw socket.timeout bubble up (requests/models.py).\n\nMatched commit details:\n- 318f2460eed2 (2012-07-13, Leila Muhtasib): Differentiate between two types of timeout errors from urllib3; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes, a probable earlier fix is commit 318f2460eed2, which differentiates urllib3 timeout errors and raises the requests Timeout exception instead of letting a raw socket.timeout bubble up (requests/models.py).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "socket.timeout uncaught during post requests.exceptions.Timeout"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "socket.timeout catch raise ConnectTimeout ReadTimeout"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": true
+   },
+   "seconds": 9.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-037",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDefault Authentication Overwrites Authentication Header\n\nHi,\n\nAnd thanks for maintaining re",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- fcb8c8d33b72 (2015-12-20, Isa Hassen): Docs: clarify the precedence of `auth=` over `netrc`\n- c88fd8cc9dab (2013-07-19, David Pursehouse): Move netrc authentication documentation under the Basic Auth section\n- 6f6a920a68d8 (2013-07-19, David Pursehouse): Improve documentation of netrc authentication",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Authorization header overwritten by default authentication netrc"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "prepare_auth Authorization header netrc override existing"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commitfull-038",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nOn Python 3, sending bytes automatically choses 'x-www-form-urlencoded' as the content_type",
+   "answer": "Yes, this was fixed before. Commit dacaae520a84 (\"bytes data fix for python3\") addressed the issue where bytes data was being treated as form-urlencoded on Python 3. The current code in src/requests/models.py:603-652 shows the fix: when data is a basestring or has a read method, content_type is set to None (so no Content-Type header is added), otherwise it defaults to application/x-www-form-urlencoded. This means bytes data is now sent as-is without an automatic content-type header.\n\nMatched commit details:\n- dacaae520a84 (2012-02-15, Kenneth Reitz): bytes data fix for python3; ranked 15 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes, this was fixed before. Commit dacaae520a84 (\"bytes data fix for python3\") addressed the issue where bytes data was being treated as form-urlencoded on Python 3. The current code in src/requests/models.py:603-652 shows the fix: when data is a basestring or has a read method, content_type is set to None (so no Content-Type header is added), otherwise it defaults to application/x-www-form-urlencoded. This means bytes data is now sent as-is without an automatic content-type header.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "bytes content_type x-www-form-urlencoded Python 3"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "prepare_body bytes content_type x-www-form-urlencoded"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 7.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-039",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nTooManyRedirects not working in 2.4.0\n\nhi,\n\nif i try page which has permanent redirect to i",
+   "answer": "Yes. The bug where a permanent redirect to itself caused an infinite loop without raising TooManyRedirects was fixed in commit c3444f8c7abd, titled 'don't make duplicate requests for permanent redirects' (Eric L Frederich, 2014-06-12), which changed requests/models.py and requests/sessions.py. This is a probable match: the commit message directly addresses permanent redirects, and the current code in src/requests/sessions.py:186-235 shows the TooManyRedirects raise that bounds the redirect loop.\n\nMatched commit details:\n- c3444f8c7abd (2014-06-12, Eric L Frederich): don't make duplicate requests for permanent redirects; ranked 10 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. The bug where a permanent redirect to itself caused an infinite loop without raising TooManyRedirects was fixed in commit c3444f8c7abd, titled 'don't make duplicate requests for permanent redirects' (Eric L Frederich, 2014-06-12), which changed requests/models.py and requests/sessions.py. This is a probable match: the commit message directly addresses permanent redirects, and the current code in src/requests/sessions.py:186-235 shows the TooManyRedirects raise that bounds the redirect loop.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "TooManyRedirects redirect to itself permanent redirect loop"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "resolve_redirects redirect loop history url permanent redirect"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 7.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-040",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nrequests sends HTTP auth details in Host header\n\nI noticed that the Host header of my http ",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- d437c338d0bf (2013-02-06, Cory Benfield): Add Proxy-Auth header when proxies have credentials.\n- 3331e2aecdbf (2018-06-28, Bruce Merry): Strip Authorization header whenever root URL changes\n- 6fbfca90b602 (2020-03-17, hodbn): Send only one Host header in chunked request",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "HTTP auth credentials in Host header"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Host header credentials auth in URL netloc"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commitfull-041",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nLink header parsing breaks if attribute value has commas\n\nThe function parse_header_links d",
+   "answer": "Yes. Commit 4594667f07ca (2014-10-08, mikecool1000) changed parse_header_links in requests/utils.py from value.split(\",\") to re.split(\",\\ *<\", value), which is a probable fix for link headers whose attribute values contain commas (e.g. Memento datetime values).\n\nMatched commit details:\n- 4594667f07ca (2014-10-08, mikecool1000): Update utils.py; ranked 3 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. Commit 4594667f07ca (2014-10-08, mikecool1000) changed parse_header_links in requests/utils.py from value.split(\",\") to re.split(\",\\ *<\", value), which is a probable fix for link headers whose attribute values contain commas (e.g. Memento datetime values).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "parse_header_links link header commas attribute value"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-042",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nLink to the changelog in the sidebar of the documentation\n\nRight now it's unfortunately a b",
+   "answer": "Yes, commit 589f2f6d6e4b (\"Add Release History to the sidebar\") added a Release History link to the documentation sidebar, which matches the reported issue of the changelog being hard to find.\n\nMatched commit details:\n- 589f2f6d6e4b (2014-10-09, Ian Cordasco): Add Release History to the sidebar; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes, commit 589f2f6d6e4b (\"Add Release History to the sidebar\") added a Release History link to the documentation sidebar, which matches the reported issue of the changelog being hard to find.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "changelog sidebar documentation link"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-043",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nsession hooks doesn't work with v0.7.3\n\nI was able to add a hook to a session object in v0.",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 502: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 502: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 502: ",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_commits\",\"arguments\":{\"query\":\"session hooks not working hooks dict args\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "session hooks not working hooks dict args"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-044",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nGittip renamed to Gratipay, layout needs updating\n\nGittip [was renamed to Gratipay](https:/",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-045",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nurllib3 and chardet makefile workflow bug\n\nCurrently the requests/packages/urllib3 and requ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-046",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nTracking chained redirection\n\nSometimes when you make a GET request the client follows mult",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-047",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nmethod = builtin_str(method) problem\n\nIn requests/sessions.py is a command:\n\nmethod = built",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-048",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nUsing RecentlyUsedContainer for session cache breaks pickling\n\nThe changes in 387c8f8 have ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-049",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRequests unable to follow/retrieve links with percent in url\n\nA simple requests.get(url) do",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-050",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAttributeError while trying to read `content` attr\n\nIt seems that if there's a problem with",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-051",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\ninfinite recursion on 401 error\n\nI'm using requests 0.7.4, and am having a strange problem ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-052",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nWrong digest header creation when server has qop=\"auth,auth-int\"\n\nI always get \"401 unautho",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-053",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nData argument introduced too early in Quickstart guide\n\nI'm following the quick start guide",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-054",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nError in `requests.packages.__init__` (version > 2.5.1)\n\nAfter update to requests 2.5.3 in ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-055",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nIssue with pyinstaller\n\nCan't seem to wrap my head around this.\n\nhaving a problem compiling",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-056",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nConsider adding return type documentation in docstrings\n\nIt would be great if the docstring",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-057",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAttributeError- LWPCookieJar instance has no attribute 'copy'\n\nHi,\nIn version 2.x:\n<b>[test",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-058",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n__build__ out of sync? Still at 0x020503, looks like 2.5.3 rather than 2.6.0\n\nCould it be t",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-059",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nGET request sends full url to server - should be path only\n\nThe command `requests.get(\"http",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-060",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nContent-Encoding: Gzip not automatically decoded in 2.6.1\n\nWhen using requests on python 2.",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-061",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n[Proposal] New Release Management Process\n\nIn v2.6.1 we pulled in a new copy of urllib3. Ty",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-062",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nTimeout ignored when following redirects\n\nTo reproduce, add a print to requests.models.Requ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-063",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSame HTTPConnection object returned to pool twice\n\nNot totally sure how to reproduce this y",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-064",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nutils.get_netrc_auth silently fails when netrc exists but fails to parse\n\nMy .netrc contain",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-065",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nCaseInsensitiveDict.__repr__ is unordered\n\nCaseInsensitiveDict.**repr** uses dict, and ther",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-066",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nProxies that depend on the URL\n\nCurrently the proxies dictionary supports only schemes as k",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-067",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nResponse.encoding should be available, overridable.\n\n- Japanese websites specify the incorr",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-068",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPost request hangs in certain cases when body is a StringIO\n\nThis is related to a report fo",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-069",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nmodels.Request.sent never set to `True`?\n\nWhile dissecting the `models.Request.send()` meth",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-070",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nHTTPDigestAuth: Empty qop header in server challenge results in Authorization: None\n\nThis i",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-071",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nFile upload not working with HTTP digest authentication\n\nThis is due to a couple of issues ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-072",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nCompensate for urllib2's basic http retry\n\nSee http://bugs.python.org/issue8894 for more in",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-073",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPreparedRequest check: use duck typing?\n\nOkay, this is admittedly an edge case.\n\nI was atte",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-074",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nUnhandled exception on timeout in safe_mode\n\nIf safe_mode is specified, and a timeout occur",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-075",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\ndocs don't show correct max_redirects\n\nIn the docs, `max_redirects = None` (http://docs.pyt",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-076",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nURL proxy auth with empty passwords doesn't emit auth header.\n\nI'm using a proxy that requi",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-077",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAttributeError: 'NoneType' object has no attribute 'read'\n\nHello :)\r\n\r\nAfter a recent upgra",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-078",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDigest Auth will auth regardless of status code\n\nDiscovered on IRC.\r\n\r\nThe digest auth hand",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-079",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nHTTPS proxy connection not initialized if first request is chunked\n\nUsing code below, will ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-080",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDocumentation issue: requests.request behavior unclear when 'data' parameter is dictionary\n",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-081",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPropose additional documentation for post data\n\n## Problem statement\r\n\r\nCurrent documentati",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-082",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nFix allow_redirects\n\nHi,\n\nI have problems with the \"allow_redirects\" to the Request object.",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-083",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nUnfortunate header unicode interactions\n\nheader_expand (https://github.com/kennethreitz/req",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-084",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSession with cert set can't do HTTP connections\n\nIt is not clear from the documentation if ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-085",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nallow_redirects doesn't work\n\nI haven't had the opportunity to research this yet, but I tho",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-086",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nsubmodules of requests.packages.urllib3 are not equal to urllib3's\n\nSee title. Caused by th",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-087",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAttributeError: module 'requests.packages' has no attribute 'urllib3'\n\nThis [commit](https:",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-088",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nMisleading exception with invalid protocol in proxy variable\n\nWhen the value of `https_prox",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-089",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nClarification of timeline for removing Python 2.7 support\n\nHi, all. I'm trying to update so",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-090",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nURL in readme (https://2.python-requests.org/) is http only\n\nThe URL `//2.python-requests.o",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-091",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRunning requests in parallel from a zip archive can create race condition when unpacking th",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-092",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\npytest.raises with a string as the second argument removed in pytest 5\n\nSee http://doc.pyte",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-093",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSession.prefetch not pickled and causing AttributeError on next request after unpickle\n\nCod",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-094",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPreparing a request body without headers throws a TypeError\n\nI have a usecase where I need ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-095",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nr.text and r.json() return different results *in some cases*\n\nThis might be an interesting ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-096",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRedirect of multipart-encoded post\n\nI'm scripting a site that returns a redirect in respons",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-097",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nConnection timeout (not Read, Wall or Total) is consistently taking twice as long\n\nI'm awar",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-098",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nresponse.json\n\nNever adding another decoded type. ever.",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-099",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nCaseInsensitiveDict __setitem__ faulty for differing-case keys\n\nI think I figured out the c",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-100",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n[BUG] JSONDecodeError can't be deserialized - invalid JSON raises a BrokenProcessPool and c",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-101",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nLeading slash in uri followed by column fails\n\nLeading slash in uri followed by column fail",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-102",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\npytest.warns(None) is no longer supported\n\nNot sure what was this code supposed to mean (ma",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-103",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSSLV3_ALERT_HANDSHAKE_FAILURE after upgrade from 2.31.0 to 2.32.2\n\nAfter upgrading to reque",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-104",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRegenerating tests/certs/ with OpenSSL >= 3.2.0 causes test failures\n\nRegenerating `tests/c",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-105",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nQuickStart documentation error\n\nhttpbin post has a header item '\"X-Amzn-Trace-Id\" which cau",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-106",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nParse Link headers (rfc5988)\n\n[Web Linking RFC](http://www.rfc-editor.org/rfc/rfc5988.txt)\n",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-107",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRequest_gzip = True\n\nIn order to receive gzipped content, requests should send the header:\n",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-108",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAllow lists in the dict values of the hooks argument\n\nCurrently the Request class has a .re",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-109",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nOrder of operations\n\nSo I realized in changing github3.py's download creation function that",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-110",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nos.environ['PYTHONDONTWRITEBYTECODE'] = '1' in setup.py breaks other packages\n\nos.environ['",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-111",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nrequests adds packages directory to sys.path\n\nImporting requests adds its internal packages",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-112",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nBe able to get the response content as a file like object\n\nIn some particular cases, it is ",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-113",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nReal logging\n\n- WARNING for things that shouldn't happen and can cause unexpected behaviour",
+   "answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "model_answer": "No answer could be produced: the answer model failed (RuntimeError: Model server returned 530: ).",
+   "abstain": true,
+   "failure": "model",
+   "error": "RuntimeError: Model server returned 530: ",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [],
+   "calls": [],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 0.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  }
+ ]
+}

@@ -1,0 +1,100 @@
+{"n": 3065, "sha": "a025522d086cd85e364ffb18ab7ca636a60a14fd", "verdict": "ok", "reason": ""}
+{"n": 3066, "sha": "a02f3dec02897bc4ab11329640aa79efbb4969f6", "verdict": "wrong", "reason": "The handler only catches IOError from two platform calls, so it does not guarantee that every attempt to generate the string succeeds."}
+{"n": 3067, "sha": "a032e7c3925eb07a9d9df11920e4f1b2727ab4a0", "verdict": "ok", "reason": ""}
+{"n": 3068, "sha": "a044b020dea43230585126901684a0f30ec635a8", "verdict": "wrong", "reason": "The flag marks the digests as used outside a security context. The excerpt does not establish that warnings disappear or that environments restricting non-security use would permit them."}
+{"n": 3069, "sha": "a04775f862c479d017689dddf28c6e6a84beb74e", "verdict": "filler", "reason": "The test now checks r3 instead of r2, but the excerpt does not show whether the earlier check produced false failures."}
+{"n": 3070, "sha": "a050faf084662f3a352dd1a941f2c7c9f886d4ad", "verdict": "cannot_tell", "reason": "The history bullet says session cookies are not saved with return_response=False, but the excerpt does not show whether that describes a defect or a newly intended behavior."}
+{"n": 3071, "sha": "a05aac7007dd802401d59b6380ef95095836ed9b", "verdict": "ok", "reason": ""}
+{"n": 3072, "sha": "a0632d8df045f9e56625a856a14df8941922eced", "verdict": "ok", "reason": ""}
+{"n": 3073, "sha": "a0790f37b762ec737b2a4a13c167aad2defa8575", "verdict": "ok", "reason": ""}
+{"n": 3074, "sha": "a08c421f7c129aa23165366a4ccca8c0d27790dd", "verdict": "ok", "reason": ""}
+{"n": 3075, "sha": "a094ad8f312165b96d889cb4d24eb5954556a0db", "verdict": "filler", "reason": "The example now points to develop/AUTHORS.rst, but the excerpt does not show whether the target is current or resolves."}
+{"n": 3076, "sha": "a0ae2e6c7b46eaa93fa972623d0fdfc576de242b", "verdict": "filler", "reason": "The fallback and RFC rationale are visible, but preventing corruption is not established for text with another undeclared encoding."}
+{"n": 3077, "sha": "a0b97253c2f29022c55cfef2453068437f523d56", "verdict": "ok", "reason": ""}
+{"n": 3078, "sha": "a0c3570640e6132f845d9012dc2b8ca63d546ac1", "verdict": "ok", "reason": ""}
+{"n": 3079, "sha": "a0e77064400ceb75569669d4ff5cdc9c19f98514", "verdict": "filler", "reason": "The edits address specific documentation warnings, but no build output establishes that the whole documentation builds without errors."}
+{"n": 3080, "sha": "a0e79bad059f2d0e6d3c00a2a7311acb2bef4d67", "verdict": "ok", "reason": ""}
+{"n": 3081, "sha": "a0e9b21c9da518d757bb5bd7510b50e6095de85c", "verdict": "wrong", "reason": "The header advertises encodings, which does not itself implement support for decoding all of them."}
+{"n": 3082, "sha": "a0f0258eeea538a12450977584f8d3dca8927ba7", "verdict": "ok", "reason": ""}
+{"n": 3083, "sha": "a0f991dbad7ca22f4665603296852e3cfdff5bc8", "verdict": "ok", "reason": ""}
+{"n": 3084, "sha": "a0ffeaa56e5271878a8532362905328c97c1160b", "verdict": "wrong", "reason": "The title proposes a default support channel, while the patch simply adds a link labeled for usage support."}
+{"n": 3085, "sha": "a158abfa15cdadc3ce5b9b98e0c01e8d50d5f69b", "verdict": "ok", "reason": ""}
+{"n": 3086, "sha": "a16278e85dc1dda84e55f2f63e4d56cb60329601", "verdict": "ok", "reason": ""}
+{"n": 3087, "sha": "a166dd0ad7772d74410f9b1b0d129b78004c4dac", "verdict": "ok", "reason": ""}
+{"n": 3088, "sha": "a17f5592f8ea3f73314a558e8a05aaa14627c49f", "verdict": "ok", "reason": ""}
+{"n": 3089, "sha": "a17fdf622403d487504af67708b8e6d973760eb7", "verdict": "filler", "reason": "The vendored imports are selected by Python major version, and the excerpt does not verify equivalent detection behavior across them."}
+{"n": 3090, "sha": "a180db963f08ab1a3b1fd036b3cd5f6bae791a5a", "verdict": "wrong", "reason": "A supplied Timeout object is forwarded unchanged. The keyword is omitted only when the timeout is None."}
+{"n": 3091, "sha": "a189c238cc2c3fcd1f824e4ac6ca3dfcdb3c3798", "verdict": "ok", "reason": ""}
+{"n": 3092, "sha": "a197309e214ad060cd5f084ab47f6d04f09cf68b", "verdict": "wrong", "reason": "The added condition is missing its colon and uses a module name that the shown import does not bind."}
+{"n": 3093, "sha": "a1a6a549a0143d9b32717dbe3d75cd543ae5a4f6", "verdict": "ok", "reason": ""}
+{"n": 3094, "sha": "a1afbfbaa3babf4f31e54cd1920b9c0c845db029", "verdict": "ok", "reason": ""}
+{"n": 3095, "sha": "a1b6ef3f8563ee1b535b82eada0bd43fa0e5ae1a", "verdict": "cannot_tell", "reason": "The excerpt names requests/async.py and has no diff lines, so the nature and direction of its change cannot be checked."}
+{"n": 3096, "sha": "a1d058c6b1258649c21396e1bfd79ed08401c285", "verdict": "filler", "reason": "The title establishes an empty commit, but there is no evidence of a placeholder or marker purpose."}
+{"n": 3097, "sha": "a1f4e62aa4724bffbc3e35b960afc26302442af1", "verdict": "wrong", "reason": "The changed line is a file inclusion directive rather than an outbound documentation link."}
+{"n": 3098, "sha": "a1fd038d2cc5ffe9a9a68bf37deec65ff5de64b3", "verdict": "wrong", "reason": "The diff adds a fallback importer and does not add OAuthlib source files. Installed OAuthlib is tried first."}
+{"n": 3099, "sha": "a23f22e5dc81b359229d68a10352c4ad8ed71c46", "verdict": "ok", "reason": ""}
+{"n": 3100, "sha": "a2413e010f4d2dd5fa4cfcc85427a47a67fc8b01", "verdict": "ok", "reason": ""}
+{"n": 3101, "sha": "a25141f9f42f481a70debbcf20977e7b208c03d9", "verdict": "wrong", "reason": "The malformed expression prevents the whole module from parsing, before URL validation can happen."}
+{"n": 3102, "sha": "a25a641fb479b17e582effa4142f21701a958805", "verdict": "ok", "reason": ""}
+{"n": 3103, "sha": "a25f5ff1dd599fc6701d3c58073d9597fce9d948", "verdict": "ok", "reason": ""}
+{"n": 3104, "sha": "a291d0d0f861e16f579467137e52efd3d99fec89", "verdict": "ok", "reason": ""}
+{"n": 3105, "sha": "a29be8f9ccf13c887e0f8861c2a35fb5289b9e3f", "verdict": "filler", "reason": "The license year changes, but the excerpt does not show the commit date or establish a maintenance timeframe."}
+{"n": 3106, "sha": "a29e862adffe433317087def6b9ea4589150ce8c", "verdict": "ok", "reason": ""}
+{"n": 3107, "sha": "a2ce3d8ace060b0c8446bc956e3853806dd4e3bb", "verdict": "ok", "reason": ""}
+{"n": 3108, "sha": "a2e41ba1f1ae81b2ed224030df908a1432ad435e", "verdict": "ok", "reason": ""}
+{"n": 3109, "sha": "a2e828d4d735c79786a0d8e54ead9831e96456a2", "verdict": "ok", "reason": ""}
+{"n": 3110, "sha": "a2ecf9c7864a849236c6a9589ac76b05c00244fb", "verdict": "ok", "reason": ""}
+{"n": 3111, "sha": "a2fd25ff34b66ef71b54dfc90e09a4e4152357f6", "verdict": "ok", "reason": ""}
+{"n": 3112, "sha": "a310b5ab34f905460486878fb97facf56690676c", "verdict": "wrong", "reason": "The colon makes the line an attribute-documentation comment, rather than a Sphinx directive. The message also presents the outcome as tentative."}
+{"n": 3113, "sha": "a345b776fb2cf67d1a1810349e71fd60a83f53eb", "verdict": "ok", "reason": ""}
+{"n": 3114, "sha": "a348fd7ae3c6349b726410a75e0c551dadf4c1c9", "verdict": "ok", "reason": ""}
+{"n": 3115, "sha": "a34e0bea8beb9f19706d751adbaa4f1c9234b37f", "verdict": "ok", "reason": ""}
+{"n": 3116, "sha": "a350ceffb934b4bced2eadd1cb7338dcb04fe598", "verdict": "filler", "reason": "The parameter rename and fallback factory are visible, but the excerpt does not establish a naming standard."}
+{"n": 3117, "sha": "a3735e2517c4af327d1ce55eea93376502ededd1", "verdict": "cannot_tell", "reason": "The image source changes to deepmind-kr.jpg, but the text does not show the image contents needed to verify that it depicts a key."}
+{"n": 3118, "sha": "a389aaad453ac4c0b9f8af4a72429de164810654", "verdict": "ok", "reason": ""}
+{"n": 3119, "sha": "a392a87389d39b5e2ad88f29df334d67f41188e9", "verdict": "ok", "reason": ""}
+{"n": 3120, "sha": "a3a928c7f173ceab284a3e01ded04c1d0fd91189", "verdict": "filler", "reason": "The version string's leading zero is removed, but the excerpt does not identify a separate new release."}
+{"n": 3121, "sha": "a3acd30bcc284f02e5740b7ce9b4aa415af00bf5", "verdict": "ok", "reason": ""}
+{"n": 3122, "sha": "a3b26c7e5bde922a874a413a0d752ed2555c3d66", "verdict": "ok", "reason": ""}
+{"n": 3123, "sha": "a3b8ef15dbc863c1923a47c5a9adc055711dfbf8", "verdict": "filler", "reason": "The target clones urllib3 into the package tree, but it does not pin a revision or establish that the clone is the correct version."}
+{"n": 3124, "sha": "a3cc97128b9511659e136afb9b3fa42ae7490bda", "verdict": "wrong", "reason": "This is an API and connection-plumbing change, not a spelling correction to an existing attribute."}
+{"n": 3125, "sha": "a3d54b83f74b48c476fd54b8b857500fb713a4f4", "verdict": "wrong", "reason": "The old guidance says a warning is issued. It does not claim errors are silently ignored."}
+{"n": 3126, "sha": "a3d7cf3f27e74c28ef30f01e9f2e483570ab042e", "verdict": "ok", "reason": ""}
+{"n": 3127, "sha": "a3ded28c5728775d3509649bd9ee981efe8f5b0b", "verdict": "ok", "reason": ""}
+{"n": 3128, "sha": "a3e597c17112da2d9520e27e09159c29ac4b8351", "verdict": "ok", "reason": ""}
+{"n": 3129, "sha": "a3e671d717d575b579b7a4fdd710e0d3a63b2bbf", "verdict": "ok", "reason": ""}
+{"n": 3130, "sha": "a3f2972c4f574aa91a44b09e54b84693fcf7f191", "verdict": "ok", "reason": ""}
+{"n": 3131, "sha": "a3fb5ac326549081f469f35fe1e4d843ff0ab390", "verdict": "wrong", "reason": "The note names decode_unicode but does not identify it as a function."}
+{"n": 3132, "sha": "a3fb689942e8a215858ef0619d0ec95e22186c77", "verdict": "wrong", "reason": "A missing parenthesis in Python code is a parse error, which occurs before anybody can call the method."}
+{"n": 3133, "sha": "a4234e97bedff790617dd3f8921ef056d11e6993", "verdict": "ok", "reason": ""}
+{"n": 3134, "sha": "a42c003cdc43e0ade4fe624db56f405761eb3afc", "verdict": "ok", "reason": ""}
+{"n": 3135, "sha": "a44284c045b43d728c2a07d4f0a064bf8714f4af", "verdict": "cannot_tell", "reason": "The UTF-8 string is supplied as a third positional argument to open, but its meaning depends on which open function is bound, and the relevant import is not shown."}
+{"n": 3136, "sha": "a453a78c7c94aa220aa099dd62a36ec5b5232571", "verdict": "wrong", "reason": "The exclusion pattern is a bare basename while find is rooted at tests/, so the predicate does not exclude the corresponding prefixed path."}
+{"n": 3137, "sha": "a4605fe32426bcc404ab1eb4ea4b0dde9238a3e8", "verdict": "filler", "reason": "Delegating to merge_setting is shown, but the excerpt does not show the failing test or what exactly it expected."}
+{"n": 3138, "sha": "a49c387b7af58e36f7a1266618595b3078be41fd", "verdict": "ok", "reason": ""}
+{"n": 3139, "sha": "a4b87c6fc198e61baa8d1c57294552cae9be1904", "verdict": "ok", "reason": ""}
+{"n": 3140, "sha": "a4be9a2578dcb8f0862cc80f1e37243edfc04bd7", "verdict": "ok", "reason": ""}
+{"n": 3141, "sha": "a4c18cd733f97b5659a29589432d8a39e7a0de87", "verdict": "ok", "reason": ""}
+{"n": 3142, "sha": "a4cd1a85d6978c79e33d053a87a21314e67a919e", "verdict": "ok", "reason": ""}
+{"n": 3143, "sha": "a4f313a0e53c9fba64b8488a2034a7c249f9db86", "verdict": "ok", "reason": ""}
+{"n": 3144, "sha": "a4f9a5999bdb9bf2d6e7c8aa973b28cacb17134f", "verdict": "wrong", "reason": "The leading dot is removed from the no_proxy entry, not from the hostname parsed from the request."}
+{"n": 3145, "sha": "a501b0ca81e340fb2c968e1cabc37565187006f7", "verdict": "ok", "reason": ""}
+{"n": 3146, "sha": "a548b6249dda248a45f54ce5bf513f9c621d60c3", "verdict": "ok", "reason": ""}
+{"n": 3147, "sha": "a5517960ea63728d3d8cb5c761a13b749575b3c9", "verdict": "ok", "reason": ""}
+{"n": 3148, "sha": "a554828931dee19163caa3486560f5e7ee850c9c", "verdict": "ok", "reason": ""}
+{"n": 3149, "sha": "a559d62f17c0c3129029870146b74da50a81d433", "verdict": "cannot_tell", "reason": "The native.js deletion is visible, but the excerpt cuts off before any HTML hunks, so it does not establish that the templates themselves were deleted."}
+{"n": 3150, "sha": "a560e094279c755b7a9bd5f3d29c303155ed8b27", "verdict": "ok", "reason": ""}
+{"n": 3151, "sha": "a56db9ecc4456c992372f13d979e526bca251183", "verdict": "wrong", "reason": "The change renames one class and changes that class's base. It does not change two classes or remove unittest inheritance across the whole suite."}
+{"n": 3152, "sha": "a59fac5e4ba290164cd0e108769bcab523f1bfb2", "verdict": "filler", "reason": "The default no longer advertises compress, but the excerpt gives no efficiency comparison or reason for the removal."}
+{"n": 3153, "sha": "a5a0e4b587c7f2de4250ec965caf21b8fca172e0", "verdict": "filler", "reason": "The version bump is shown, but latest available features and fixes are not established by the excerpt."}
+{"n": 3154, "sha": "a5b45edf2f02e5c91daf0ff779bd5e48cf098a15", "verdict": "filler", "reason": "Both examples point to the events endpoint, but the excerpt does not verify formal deprecation of the old endpoint or availability of the new one."}
+{"n": 3155, "sha": "a5bc99d53edfe2cf8dc922cfea21f8ceadf1af5f", "verdict": "wrong", "reason": "The local dependency line is deleted entirely and has no standard-install replacement in this requirements file."}
+{"n": 3156, "sha": "a5bcc9c46e4062ca97f59cc42ad5ff44ee252cfc", "verdict": "cannot_tell", "reason": "The diff shows the addition of ext/ss.png only as a binary file, without image contents or a message confirming that it is a screenshot."}
+{"n": 3157, "sha": "a5cb4284e18555d9e179f309356178410dbfdaf1", "verdict": "filler", "reason": "The pins identify version 5.5.0, but the excerpt does not establish that it is the latest stable release."}
+{"n": 3158, "sha": "a5d462e176c61c9967ef6cbcc0ef50a4764dc0b6", "verdict": "ok", "reason": ""}
+{"n": 3159, "sha": "a5da4f399f3dfdcd8b24fdd18dd361707ac79a55", "verdict": "ok", "reason": ""}
+{"n": 3160, "sha": "a5e5a51fb4e7202910172624bcc732700422a738", "verdict": "ok", "reason": ""}
+{"n": 3161, "sha": "a5e7169e759817ca309f8271c3c4fa79393a22f5", "verdict": "ok", "reason": ""}
+{"n": 3162, "sha": "a5f05353b3a2cfa1974fdb2fced2251884740ce3", "verdict": "ok", "reason": ""}
+{"n": 3163, "sha": "a5f4f3c9a3da6064feaf009ed94aba14c77fb137", "verdict": "ok", "reason": ""}
+{"n": 3164, "sha": "a5f79712bb34bee0aed8ac60c954270677710294", "verdict": "wrong", "reason": "The last expression accesses the content property without assigning anything directly."}

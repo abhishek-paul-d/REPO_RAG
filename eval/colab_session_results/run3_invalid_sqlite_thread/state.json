@@ -1,0 +1,67 @@
+{
+ "steps": {
+  "fresh_default": {
+   "seconds": 159,
+   "exit": 0,
+   "result": "eval/agent_eval_results/agent_eval_production_commit_pr_commits_agent_eval_fresh_v2_extra3_notests_chars24000_in12288_20261118T231733.json",
+   "summary": {
+    "code": {
+     "passed": 29,
+     "of": 30,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 10.9
+    },
+    "docs": {
+     "passed": 10,
+     "of": 10,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 6.6
+    },
+    "history": {
+     "passed": 0,
+     "of": 14,
+     "abstained": 14,
+     "failed": 14,
+     "seconds": 1.2
+    },
+    "kind": {
+     "passed": 0,
+     "of": 4,
+     "abstained": 4,
+     "failed": 4,
+     "seconds": 1.1
+    },
+    "probe": {
+     "passed": 5,
+     "of": 5,
+     "abstained": 5,
+     "failed": 0,
+     "seconds": 7.3
+    },
+    "prsearch": {
+     "passed": 6,
+     "of": 6,
+     "abstained": 0,
+     "failed": 0,
+     "seconds": 7.1
+    },
+    "refs": {
+     "passed": 0,
+     "of": 4,
+     "abstained": 4,
+     "failed": 4,
+     "seconds": 1.0
+    }
+   }
+  }
+ },
+ "server": {
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+  "hardware": "NVIDIA A100-SXM4-40GB",
+  "max_input_tokens": "12288",
+  "decode_mode": "cuda-graphs + mtp3",
+  "concurrency": "8"
+ }
+}

@@ -1,0 +1,85 @@
+{"n": 2709, "sha": "8c737069a53933566403ad115234e9e6c809b3d6", "verdict": "ok", "reason": ""}
+{"n": 2710, "sha": "8c74860fd1ae29c1ebc5896df9614076c34d1b6a", "verdict": "ok", "reason": ""}
+{"n": 2711, "sha": "8c81cf64deb2a310fbd74c15fd1f70a6e1a6241d", "verdict": "ok", "reason": ""}
+{"n": 2712, "sha": "8c873712fe89b9a4378cf069191a197d1eb6500a", "verdict": "ok", "reason": ""}
+{"n": 2713, "sha": "8c8938e8cb7ffded42cf463f652831ca7e88e5fc", "verdict": "wrong", "reason": "Case preservation matters for path and query components, but DNS hostnames are case-insensitive."}
+{"n": 2714, "sha": "8c90c610cd15f91ed0cd1738aa73f088496b6af9", "verdict": "ok", "reason": ""}
+{"n": 2715, "sha": "8c963b52ea90c2cdb4e27d7d576d6e2968cb0131", "verdict": "wrong", "reason": "The documentation says dictionaries are an available input form, rather than the required representation for request data."}
+{"n": 2716, "sha": "8ca453a8d76af5777edd77bd88dcfae7fe690cfc", "verdict": "ok", "reason": ""}
+{"n": 2717, "sha": "8cb904b49d343a4f6ede534bdcfdf7b614ea77e0", "verdict": "ok", "reason": ""}
+{"n": 2718, "sha": "8cca789ba5df5d31f3c923001ee6dc9fcf7f1b1b", "verdict": "ok", "reason": ""}
+{"n": 2719, "sha": "8ce2c1a182a4ec91ed1bfcf47875aa0614f212b5", "verdict": "ok", "reason": ""}
+{"n": 2720, "sha": "8ce2fd25570a9be499b5bbad39ead28481a6b825", "verdict": "ok", "reason": ""}
+{"n": 2721, "sha": "8cf5e670418264242f02f9c52291253817933f19", "verdict": "ok", "reason": ""}
+{"n": 2722, "sha": "8cf6a3593d08e62c635010d66ca9794f3be539ea", "verdict": "ok", "reason": ""}
+{"n": 2723, "sha": "8d0889b91b7e9d487e69eea00baed666a25259af", "verdict": "wrong", "reason": "The cleanup is for streamed Response objects and does not close or change the Session itself."}
+{"n": 2724, "sha": "8d09a80a1610a871307b4009f888c7a4e9a6fc1a", "verdict": "filler", "reason": "The image move and centered paragraph are visible, but the excerpt does not verify rendered text or image layout."}
+{"n": 2725, "sha": "8d0c2537ee3769de6ef9264427cb7020a6d27a96", "verdict": "ok", "reason": ""}
+{"n": 2726, "sha": "8d1228cd1943bfe89ffaae32e15b2feb3f8479f5", "verdict": "ok", "reason": ""}
+{"n": 2727, "sha": "8d239a3739339557cc3e767040bcc9e731e264ed", "verdict": "filler", "reason": "The button is moved in both templates, but no padding style or rendered spacing is shown."}
+{"n": 2728, "sha": "8d2ab68a9716670fb44e6be729aa9d72fa433876", "verdict": "ok", "reason": ""}
+{"n": 2729, "sha": "8d34538f4c702657698c1784ef8e5face7f400e5", "verdict": "ok", "reason": ""}
+{"n": 2730, "sha": "8d4afcb5b834abe837a0de74fe11c15006fdef43", "verdict": "ok", "reason": ""}
+{"n": 2731, "sha": "8d5108b142dd8d9de27559ee8364967b13f2b62a", "verdict": "ok", "reason": ""}
+{"n": 2732, "sha": "8d693a2a27d0a073c0d03823cab71a3716001285", "verdict": "wrong", "reason": "The first 303 already converts POST to GET, and the bug was that a later redirect could revert to POST by reusing the original request."}
+{"n": 2733, "sha": "8d6f7e68547e1fdfc9008cab88b372e97ef67ebe", "verdict": "ok", "reason": ""}
+{"n": 2734, "sha": "8d75cdf7fede6a8059e683dd2a32cc7f42691cc6", "verdict": "ok", "reason": ""}
+{"n": 2735, "sha": "8d8865aadb9c76863820c87431229d20e5c23a70", "verdict": "wrong", "reason": "The no-body default was already absent for GET and HEAD in the shown branch. The patch broadens it to other methods and does not rule out an explicit length for a GET or HEAD body."}
+{"n": 2736, "sha": "8d9d9fb06493e322c04d64b9234df0ae218e9500", "verdict": "cannot_tell", "reason": "The two-value return is visible, but the condition selecting this branch is outside the excerpt, so the no-files trigger cannot be confirmed."}
+{"n": 2737, "sha": "8da0abfa1a0b0de121bed615f419b4c9edaf95c8", "verdict": "filler", "reason": "The pre-2.6 simplejson requirement is removed, but the excerpt does not establish that those versions were unsupported or the dependency unnecessary."}
+{"n": 2738, "sha": "8da100f652793f95f7dfdad588c925dfac9e71a1", "verdict": "ok", "reason": ""}
+{"n": 2739, "sha": "8db8a7d82dad23b7e718f756c71f6420537e023e", "verdict": "filler", "reason": "The sudo setting is visible, but the excerpt does not verify a particular worker environment or performance improvement."}
+{"n": 2740, "sha": "8dc5f68bc1d9d28b79478f495be445ba048e8081", "verdict": "ok", "reason": ""}
+{"n": 2741, "sha": "8dcd9f12de656706af70122b84d3c5bfb7e77fda", "verdict": "ok", "reason": ""}
+{"n": 2742, "sha": "8dd51d22fc42abf98f8e75ff5722f4b0295015e5", "verdict": "ok", "reason": ""}
+{"n": 2743, "sha": "8ddba4662d71b8ce9504fa4cf0e52ff0c1ebba0a", "verdict": "ok", "reason": ""}
+{"n": 2744, "sha": "8de59f03a09be6567ee7a877ce9bbbabbe0b9a50", "verdict": "ok", "reason": ""}
+{"n": 2745, "sha": "8de9b2e1499ea6200e558cfa3c77e5ecacf78820", "verdict": "ok", "reason": ""}
+{"n": 2746, "sha": "8e040523a4d3ce6e80b2edb7d3112480d697ddc8", "verdict": "ok", "reason": ""}
+{"n": 2747, "sha": "8e049bd9eb49485dc98efd6f14ab7f76c084cf8b", "verdict": "ok", "reason": ""}
+{"n": 2748, "sha": "8e0a532cad39e28dc6e74002f79513dbb509bad2", "verdict": "filler", "reason": "CI requests 3.6 instead of 3.6-dev, but the message questions its availability and the excerpt does not show successful validation."}
+{"n": 2749, "sha": "8e17600ef60de4faf632acb55d15cb3c178de9bb", "verdict": "ok", "reason": ""}
+{"n": 2750, "sha": "8e1907429611b9c9d9792af55d73149bc4e6cc86", "verdict": "ok", "reason": ""}
+{"n": 2751, "sha": "8e2696b385399ccda20c768dc485f38b4b44cdac", "verdict": "ok", "reason": ""}
+{"n": 2752, "sha": "8e398336f8cc82f44c7b549bfa803b99d7159c25", "verdict": "filler", "reason": "The visible pins identify the new checkout version as 6.0.2, but the excerpt does not establish that this is the latest major release line."}
+{"n": 2753, "sha": "8e411d0f99310320463254e8a364271f64f14c78", "verdict": "wrong", "reason": "The test supplies an empty string and does not cover an absent header or a None input."}
+{"n": 2754, "sha": "8e69c9f0a16b37990df4430eb81a5138520689ac", "verdict": "ok", "reason": ""}
+{"n": 2755, "sha": "8e6e47af43d1d89a0201bd58e97c700bebbddd5e", "verdict": "ok", "reason": ""}
+{"n": 2756, "sha": "8e764f355da30bbbb5906fc5927d77d1a636fe37", "verdict": "filler", "reason": "The command switches from detox to tox's parallel mode, but the excerpt contains no performance comparison."}
+{"n": 2757, "sha": "8e8604d88bb6dc98a1fa5b0f040ba1a5b6dbc775", "verdict": "ok", "reason": ""}
+{"n": 2758, "sha": "8e93b100da6aa514a6d5d5bbb2a1863d079e4c24", "verdict": "ok", "reason": ""}
+{"n": 2759, "sha": "8e9446d3fb2635589a40d1a4e738b850dfc270fe", "verdict": "wrong", "reason": "Only the changelog note is deleted. The function implementation is untouched by the supplied change."}
+{"n": 2760, "sha": "8ea90a5ce7b085449a2b5c61743574bf911733ee", "verdict": "ok", "reason": ""}
+{"n": 2761, "sha": "8eafb8d3dfd9ead6e9f02f9854ef46720d712cb0", "verdict": "ok", "reason": ""}
+{"n": 2762, "sha": "8eb40c777e4a5d0967205404a170615eb96ca237", "verdict": "wrong", "reason": "The patch deletes the conversion to CookieJarError and catches AttributeError directly."}
+{"n": 2763, "sha": "8ebeb3dc3fa82bf9d670af2b54a23d9a0b161e35", "verdict": "ok", "reason": ""}
+{"n": 2764, "sha": "8ed941fa6991355753e698f6b253096d57f6c7e4", "verdict": "ok", "reason": ""}
+{"n": 2765, "sha": "8ef0e88220dd5c87e6489a174ce4d87654a6b2dc", "verdict": "ok", "reason": ""}
+{"n": 2766, "sha": "8ef20d5c36ffa648d438febe5088115ae31e856f", "verdict": "ok", "reason": ""}
+{"n": 2767, "sha": "8efb6cc870bd23de0d8d87708217d818236a733f", "verdict": "ok", "reason": ""}
+{"n": 2768, "sha": "8f0ac668da796b04df9901db58f5d4215be308dd", "verdict": "ok", "reason": ""}
+{"n": 2769, "sha": "8f17741849edb5e7eba0356f90cb17e43c938a2f", "verdict": "ok", "reason": ""}
+{"n": 2770, "sha": "8f20b7dc8f79046d0a1015b9605df5c30fa44197", "verdict": "ok", "reason": ""}
+{"n": 2771, "sha": "8f3da7b72c132e51e22e64f91d05230ac126a5dc", "verdict": "ok", "reason": ""}
+{"n": 2772, "sha": "8f3ddbeefba5f3c57310741259328dd84854bcef", "verdict": "ok", "reason": ""}
+{"n": 2773, "sha": "8f3f4e2744ed65b272835ebf08c6d3afe5c810c6", "verdict": "ok", "reason": ""}
+{"n": 2774, "sha": "8f58c095c54a84ad5527e804fcbd506f5b5d1a91", "verdict": "wrong", "reason": "The assignment sets the timeout, but the new comment explicitly limits its effect to Python 2.6 and later."}
+{"n": 2775, "sha": "8f591682e6a901baf0cc8a0393b5930252f0318a", "verdict": "ok", "reason": ""}
+{"n": 2776, "sha": "8f6cda9969f4a98c45ea2922f6bcbefc02256202", "verdict": "wrong", "reason": "Only getattr without a default is expected to raise for a missing attribute. hasattr is expected to return False."}
+{"n": 2777, "sha": "8f6e990066876d70728218b39ef7b07edde7ccaf", "verdict": "filler", "reason": "The commit is explicitly empty, but its purpose is unspecified."}
+{"n": 2778, "sha": "8f72c48548ef033b31f944e4ed4ada1e753d21d2", "verdict": "filler", "reason": "Alex's addition is shown, but the excerpt does not establish that the contributor list is complete."}
+{"n": 2779, "sha": "8f8062723ae75b25c6f7b1dead7a52e611734302", "verdict": "ok", "reason": ""}
+{"n": 2780, "sha": "8f8b212de8c2129d7954c6cd373762880375620a", "verdict": "filler", "reason": "The Ruff hook moves from 0.16.1 to 0.16.2, but the excerpt does not establish latest patch status."}
+{"n": 2781, "sha": "8f8dbec0d5a48ab39350a37b2c558ed95a4c8252", "verdict": "ok", "reason": ""}
+{"n": 2782, "sha": "8f9ce13e433013cd9bd4dbe9cf61c5b5f14b65ed", "verdict": "ok", "reason": ""}
+{"n": 2783, "sha": "8fa4302322f1a34053683b7f4c0d2ee5ef0ebd64", "verdict": "filler", "reason": "The pin and Read the Docs compatibility goal are shown, but no successful documentation build is shown."}
+{"n": 2784, "sha": "8fbb1e6d97cda90d588d4263a18906a52d147fba", "verdict": "ok", "reason": ""}
+{"n": 2785, "sha": "8fc6a65be892651e6f16597fcaf9e608ab5d958b", "verdict": "ok", "reason": ""}
+{"n": 2786, "sha": "8fd480df3fc0665c90ed9e9c18d0ca4eeab349bd", "verdict": "wrong", "reason": "The message mentions a NameError in an example, rather than a documentation rendering error. The visible deletion is decorative text."}
+{"n": 2787, "sha": "8fe6f8c6189e2ace5e2bd09eb2d0f098285cb889", "verdict": "ok", "reason": ""}
+{"n": 2788, "sha": "8fedec785a9b8bb111384ebfcaf6d138a1c48979", "verdict": "ok", "reason": ""}
+{"n": 2789, "sha": "8ff173b186f135670879db9fbe1e68a6b5209c89", "verdict": "ok", "reason": ""}
+{"n": 2790, "sha": "8ffb2462f99a51dd5d2d5c4054da9e986e669899", "verdict": "ok", "reason": ""}
+{"n": 2791, "sha": "8ffe17cb09aa1e5a2018248dccab500c33d2fd58", "verdict": "filler", "reason": "The cookie implementation changes, but the excerpt does not identify a particular parsing error or compatibility issue."}
+{"n": 2792, "sha": "9011852db06ae94e1c79900172a0000e846a44dd", "verdict": "ok", "reason": ""}
+{"n": 2793, "sha": "902d174d21c3837b4a724abb64fc5da7c8fc0d97", "verdict": "ok", "reason": ""}

@@ -34,6 +34,7 @@ from repo_rag.agent.citations import check_citations, chunks_from_results, repai
 from repo_rag.agent.commit_answer import enrich
 from repo_rag.agent.prompts import (
     BAKEOFF_ARMS,
+    COMMIT_TOOL_VARIANTS,
     HISTORY_BLOCK,
     HISTORY_TOOL_VARIANTS,
     HISTORY_TURN,
@@ -82,6 +83,7 @@ def toolset_for(settings: Settings) -> Toolset:
             production_schemas(
                 search_prs=variant != "no_search_prs",
                 file_history=variant in HISTORY_TOOL_VARIANTS,
+                get_commit=variant in COMMIT_TOOL_VARIANTS,
             ),
             production_prompt(variant),
             production_reminder(variant),
@@ -201,10 +203,16 @@ class RepoAgent:
 
     def _answer(self, state: AgentState) -> dict[str, Any]:
         errors: list[str] = []
+        commit_searches = 0
 
         def execute(name: str, arguments: dict) -> Any:
-            if name == "search_commits" and self.settings.agent_commit_query == "question":
-                arguments = {**arguments, "query": state["question"]}
+            nonlocal commit_searches
+            if name == "search_commits":
+                commit_searches += 1
+                if self.settings.agent_commit_query == "question":
+                    arguments = {**arguments, "query": state["question"]}
+                elif self.settings.agent_commit_query == "fused" and commit_searches == 1:
+                    arguments = {**arguments, "_question": state["question"]}
             if (
                 name == "search_code"
                 and self.settings.agent_toolset == "production"
@@ -332,7 +340,9 @@ class RepoAgent:
                 report["snapped"] = snapped
         model_answer = answer
         if isinstance(answer, str) and self.settings.agent_answer_facts:
-            answer = enrich(answer, abstain, searches, [c["name"] for c in trace["calls"]])
+            answer = enrich(
+                answer, abstain, searches, [c["name"] for c in trace["calls"]], trace["calls"]
+            )
         return {
             "result": {
                 "answer": answer,

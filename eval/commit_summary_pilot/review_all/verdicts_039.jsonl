@@ -1,0 +1,91 @@
+{"n": 3326, "sha": "af21ec6165c40c0c12f8dccc8379eb97de53da20", "verdict": "filler", "reason": "The title identifies the font-to-curve conversion, but the excerpt does not verify rendering across systems."}
+{"n": 3327, "sha": "af272d58276a9d1415a563e4ac763a6207742342", "verdict": "wrong", "reason": "The GET implementation opens a fixed address instead of using the URL from the Request object."}
+{"n": 3328, "sha": "af383b3968d1e27f82af3c655f9583732303f79f", "verdict": "wrong", "reason": "The option enables pip caching, but it does not configure reuse of an installed environment."}
+{"n": 3329, "sha": "af4fb8cedca7c331b8c914a40c477a2cb02055e1", "verdict": "ok", "reason": ""}
+{"n": 3330, "sha": "af52bf795e6d26a3819480938ffdeac466d754e8", "verdict": "filler", "reason": "The alias test is removed and the import becomes direct, but the excerpt does not establish deprecation of the namespace or removal of the aliases themselves."}
+{"n": 3331, "sha": "af5ae235e6525a924affba6c9f844e3d9f0fcabc", "verdict": "ok", "reason": ""}
+{"n": 3332, "sha": "af63554106df9559073ec7a7f36b47593556c2bd", "verdict": "ok", "reason": ""}
+{"n": 3333, "sha": "af66521381d9e6806ca80b7e297b704e6a4966c9", "verdict": "cannot_tell", "reason": "The HTTPS branch is restructured and a default CA path is visible, but the excerpt cuts off before the complete changed verification behavior can be compared."}
+{"n": 3334, "sha": "af6aa3e5729aa4e99716546915957ecf70bb894d", "verdict": "wrong", "reason": "The listed changes only remove hook dispatch calls from the two call sites, and do not show a new implementation that runs them elsewhere."}
+{"n": 3335, "sha": "af7729f64a97ab35e83a1a7971781e69d124d99e", "verdict": "wrong", "reason": "BytesIO is an example of an object with getvalue. The new fallback instead covers cases where a length was not established and the object supports seek."}
+{"n": 3336, "sha": "af791d48c6307988721391f9c594959c72631e47", "verdict": "wrong", "reason": "The removed line is a comment about sidebar templates, and the html_static_path setting is unchanged."}
+{"n": 3337, "sha": "af85e68f1f44b5afc7f54c0217b2617a7086650a", "verdict": "wrong", "reason": "The title mentions the README, but no file change is shown and the supposed content is speculative."}
+{"n": 3338, "sha": "af88af64e6c5bc026247f18e2e6de20605f51e7f", "verdict": "ok", "reason": ""}
+{"n": 3339, "sha": "af9dd61fcba5a1d0b3f75abf5499f6e1f845349c", "verdict": "ok", "reason": ""}
+{"n": 3340, "sha": "afa7594a2064dd019c968e42ec708561a992c433", "verdict": "filler", "reason": "The author says the status badge is not useful, but the excerpt does not establish that the badge was outdated or that the CI service was irrelevant."}
+{"n": 3341, "sha": "afaaae185ce23b0deffeff74083a4986322950ce", "verdict": "ok", "reason": ""}
+{"n": 3342, "sha": "afad1aab149d3ff1306816916269401eed7fe4c7", "verdict": "ok", "reason": ""}
+{"n": 3343, "sha": "afaed3343ab732904fb46eddb28d255bb31ce0e5", "verdict": "ok", "reason": ""}
+{"n": 3344, "sha": "afb1bd103a10813f277614479f669a6e4630320a", "verdict": "ok", "reason": ""}
+{"n": 3345, "sha": "afb508f6a77c0f31b7e318c34166662cbf0a5844", "verdict": "ok", "reason": ""}
+{"n": 3346, "sha": "afc6561fdbb0a9ca909dad72d6672c7525788f77", "verdict": "ok", "reason": ""}
+{"n": 3347, "sha": "afcc883d7f5968a8d64ea400335fb47f3f73d042", "verdict": "wrong", "reason": "The new branch attempts to format the message with an invalid %t specifier, which fails before the intended InvalidURL is raised."}
+{"n": 3348, "sha": "afd64822198206aef3b4b6fc7140fe351dfafd43", "verdict": "ok", "reason": ""}
+{"n": 3349, "sha": "b001fcf968f4a4f794dfd6ab39f91abd0ab8e48f", "verdict": "ok", "reason": ""}
+{"n": 3350, "sha": "b00d8bf474cf5e2850ba83a11b7e372dad4bf119", "verdict": "wrong", "reason": "The replacement removes the misspelled method call but introduces invalid syntax by duplicating if not."}
+{"n": 3351, "sha": "b0555b68e7da5a64c46ce24567dbfa178eca1259", "verdict": "wrong", "reason": "The release note names decode_unicode without identifying it as a function."}
+{"n": 3352, "sha": "b0657cf163b2ed3781896eb1712a8ae1b14125ab", "verdict": "wrong", "reason": "The guard rejects objects exposing a truthy prepare attribute rather than checking that the object is a PreparedRequest."}
+{"n": 3353, "sha": "b06690270500c9b550c989ed3ddf0115808e8796", "verdict": "ok", "reason": ""}
+{"n": 3354, "sha": "b0704b86de4f207c11b72c1ea4046be95af5f9e5", "verdict": "ok", "reason": ""}
+{"n": 3355, "sha": "b071c4955682275a699ad7b3ac3e8dd945fd6761", "verdict": "wrong", "reason": "The assertions define the expected successful behavior, but the commit describes the test as failing and contains no runtime fix."}
+{"n": 3356, "sha": "b079a4e03e1a07ce0dd10a3b17d795c9452c9691", "verdict": "cannot_tell", "reason": "The excerpt shows a content entry added to an example, but surrounding lines are absent, so it cannot be identified as a project configuration option."}
+{"n": 3357, "sha": "b07c1ebd859a32e1203c1d4ef27f1fb9e154e55e", "verdict": "ok", "reason": ""}
+{"n": 3358, "sha": "b08073a7c3c3a20254ad374ea7f351a5461a9489", "verdict": "ok", "reason": ""}
+{"n": 3359, "sha": "b09218d5aceff0062e59bb2d93150e0b48b1dcc2", "verdict": "ok", "reason": ""}
+{"n": 3360, "sha": "b0a0b509da5df358b1ab2f66f0aa6aebad27bd16", "verdict": "ok", "reason": ""}
+{"n": 3361, "sha": "b0ad2499c8641d29affc90f565e6628d333d2a96", "verdict": "wrong", "reason": "The patch prefers HTTPS where applicable, and at least one HTTP link is still visible in the supplied context."}
+{"n": 3362, "sha": "b0c19226c6b54557ad3037f01493ffea0585e71c", "verdict": "ok", "reason": ""}
+{"n": 3363, "sha": "b0db8cf2d8443a1f3a668f3add7919f332d5f3d6", "verdict": "ok", "reason": ""}
+{"n": 3364, "sha": "b0e025ade7ed30ed53ab61f542779af7e024932e", "verdict": "ok", "reason": ""}
+{"n": 3365, "sha": "b0e18650735dc667f76f6aff108877f03b729c23", "verdict": "ok", "reason": ""}
+{"n": 3366, "sha": "b0e2e4f284f619536b7f405122bb1a93900cd743", "verdict": "filler", "reason": "The URL import moves to urllib.parse and the authentication bytes conversion changes, but the excerpt does not establish formal deprecation of the old module path."}
+{"n": 3367, "sha": "b0e6c9bf85378acd079ca84a4481f361b47a2147", "verdict": "ok", "reason": ""}
+{"n": 3368, "sha": "b12272d7d158c080494181610c2cc648e9a35026", "verdict": "ok", "reason": ""}
+{"n": 3369, "sha": "b130b98086e1826bd0ade3fd9a899e49eeb253ec", "verdict": "ok", "reason": ""}
+{"n": 3370, "sha": "b141da36a45f64a717e78e7a2091b6680f015104", "verdict": "ok", "reason": ""}
+{"n": 3371, "sha": "b14584f36eca344ed5033d1d2f5a59490fadca56", "verdict": "ok", "reason": ""}
+{"n": 3372, "sha": "b149be5d864cc7f65ac22113db3d0e4d2ed2b49e", "verdict": "ok", "reason": ""}
+{"n": 3373, "sha": "b14a244ab4cb598d5f5b65209734b1bbca10d708", "verdict": "wrong", "reason": "The new outer condition runs the fallback try block when content is falsy. The edit does not add an immediate empty-string return."}
+{"n": 3374, "sha": "b14fa0764bc5e1340762e45af999334e9b74f642", "verdict": "ok", "reason": ""}
+{"n": 3375, "sha": "b15056d1d3c4ca3546c88b9fe390f0721b198c2e", "verdict": "ok", "reason": ""}
+{"n": 3376, "sha": "b15bccf35e19ee9e1af26cc5f1b52df7453411ac", "verdict": "ok", "reason": ""}
+{"n": 3377, "sha": "b1610df282c67cd87781be166549643e647704ee", "verdict": "ok", "reason": ""}
+{"n": 3378, "sha": "b1631b03bc8dbff0266225b2ecebed9880449c32", "verdict": "filler", "reason": "The README changes the URL but does not establish its official status or verify that it is the right destination."}
+{"n": 3379, "sha": "b176ccd481eb0c327e6b55254f580b59b3aecce4", "verdict": "ok", "reason": ""}
+{"n": 3380, "sha": "b17c61b618b1824f1f5d9edcacaf16801343a295", "verdict": "filler", "reason": "The revision bump does not establish that 0.15.21 is the latest stable release."}
+{"n": 3381, "sha": "b17ec8e1df8257c2756a779c27ccc5cc43b38a24", "verdict": "ok", "reason": ""}
+{"n": 3382, "sha": "b19d8785a468c20a42fb58239be8c4d01b44d23c", "verdict": "filler", "reason": "Adding a contributor does not establish that the list is complete."}
+{"n": 3383, "sha": "b1a360c2f1aca569476093348a9ee70eaab90da9", "verdict": "ok", "reason": ""}
+{"n": 3384, "sha": "b1a7dcd79915ec7a58043031da432b5841d4d8ec", "verdict": "filler", "reason": "The diff shows conversion to a list but does not identify iterator consumption as the cause of the failure."}
+{"n": 3385, "sha": "b1ba9173d09282e972d8694006d430894dd50d8a", "verdict": "ok", "reason": ""}
+{"n": 3386, "sha": "b1bcaecc66c5bbead66b74c565771fa4fa5cf6cc", "verdict": "ok", "reason": ""}
+{"n": 3387, "sha": "b1d0f9743e9de8a832d377fb7bd14729530cbe52", "verdict": "ok", "reason": ""}
+{"n": 3388, "sha": "b1d584e899dd423fa3882eddf154ba3c1a1fdd4d", "verdict": "ok", "reason": ""}
+{"n": 3389, "sha": "b1d73ddb509a3a2d3e10744e85f9cdebdbde90f0", "verdict": "ok", "reason": ""}
+{"n": 3390, "sha": "b1de7e728721750c21988895d3c9de8f627b81ea", "verdict": "ok", "reason": ""}
+{"n": 3391, "sha": "b1e28c7fd8a9fe15d16a9636950559869b46ea96", "verdict": "wrong", "reason": "The timeout was already set by the same call before this commit."}
+{"n": 3392, "sha": "b1e97650f7e1bed302246e08ff1eea26ef832fda", "verdict": "wrong", "reason": "The subject remains Requests. The verb changes from allow to allows."}
+{"n": 3393, "sha": "b1f3a2dd66f1da05976d7f60261ce0665d4b6469", "verdict": "ok", "reason": ""}
+{"n": 3394, "sha": "b20d171c1c11ecee83b7e4a0beead1e54902d37b", "verdict": "wrong", "reason": "The 303 rewrite also requires strict mode to be off and excludes HEAD requests."}
+{"n": 3395, "sha": "b227e3cb82c8d42ea27790d615ecafe12528d3bc", "verdict": "ok", "reason": ""}
+{"n": 3396, "sha": "b2289cd2d5d21bd31cf4a818a4e0ff6951b2317a", "verdict": "ok", "reason": ""}
+{"n": 3397, "sha": "b248328eb3f0d698ab0845db73fb73a32520175f", "verdict": "wrong", "reason": "The patch deletes a block within the template and leaves the template file in place."}
+{"n": 3398, "sha": "b252cd84037053bd7675d1ff41c102ce237cd0ae", "verdict": "ok", "reason": ""}
+{"n": 3399, "sha": "b257b10281837c1bbc08403758e9ad8ff7a87c68", "verdict": "ok", "reason": ""}
+{"n": 3400, "sha": "b25c87d7cb8d6a18a37fa12442b5f883f9e41741", "verdict": "ok", "reason": ""}
+{"n": 3401, "sha": "b26606cc3cb5c598819bc3be474368e7d4ecc0d2", "verdict": "ok", "reason": ""}
+{"n": 3402, "sha": "b26c85f081b083f71345fce13005f95ec242d2f6", "verdict": "wrong", "reason": "The release-note edit introduces misspellings rather than fixing a typo."}
+{"n": 3403, "sha": "b28531f4bb43b401e3e37e2da622aee21002e5b2", "verdict": "ok", "reason": ""}
+{"n": 3404, "sha": "b28673368b0a4236b3cfbb50fb15f846793a1c40", "verdict": "ok", "reason": ""}
+{"n": 3405, "sha": "b294b08fe3b08df9f646f64d1250f96193dab066", "verdict": "ok", "reason": ""}
+{"n": 3406, "sha": "b2a1d33f571518ca9a6148e7da787cc5827f897a", "verdict": "ok", "reason": ""}
+{"n": 3407, "sha": "b2ce5be9d049a73e0adb475156435b854355f234", "verdict": "cannot_tell", "reason": "The excerpt cuts off before the replacement lines, so it is unclear whether the original timeout message tests remain outside the removed wrapper."}
+{"n": 3408, "sha": "b2db089eefe7a38789429ad8d02a84d9ea6958a5", "verdict": "ok", "reason": ""}
+{"n": 3409, "sha": "b30b09e84c5709149e796af5cb07671db823af53", "verdict": "ok", "reason": ""}
+{"n": 3410, "sha": "b31a4399c7cdd0a7c5a7f2c4c7a320fbeb30ebff", "verdict": "ok", "reason": ""}
+{"n": 3411, "sha": "b336cb2bc616a63a93c6470c558fc1f576b77f90", "verdict": "filler", "reason": "The workflow updates the pinned checkout revision, and the excerpt does not establish that 5.0.0 was the latest major release."}
+{"n": 3412, "sha": "b34a496649667b9324caa634cb17e726e0cce1a5", "verdict": "ok", "reason": ""}
+{"n": 3413, "sha": "b351e906b62083b1dcfdb7a6c8aa8a4d3fb55ff4", "verdict": "filler", "reason": "The change switches both workflow triggers to main without establishing that main is the default branch."}
+{"n": 3414, "sha": "b355b678a9de0bd5e43bbb4d9299ab9fa8e6fd85", "verdict": "ok", "reason": ""}
+{"n": 3415, "sha": "b361a4c0562c41f1cbf3cacd72bc8201d5ade3b7", "verdict": "ok", "reason": ""}
+{"n": 3416, "sha": "b366ef039cf2d9cafaaeed063d44ebef2d7f801c", "verdict": "filler", "reason": "The example is rewrapped for presentation but the excerpt does not establish a display defect or verify the rendered result."}

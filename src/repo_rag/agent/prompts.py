@@ -166,6 +166,17 @@ why its message or changed files match; do not return the SHA alone.
 PR reviews in the data hold the reviewer, state and time only, not their comments: if asked what
 reviewers said, answer that review comments are not in the indexed data.
 """
+# Variant "commit_verify": commit_explain plus the get_commit tool and this paragraph. The
+# 2026-11-19 sort of the 35 missed commit questions found the model searching once and naming the
+# first plausible hit; this asks it to read the candidate before naming it, and to search again if
+# none fits.
+_PROD_COMMIT_VERIFY = """\
+For a bug report, search_commits gives candidates, not answers. Before you name a commit, call
+get_commit on the one or two best candidates and read the changed code: name a commit only if the
+code it changes is the code the report is about. If none of them fits, call search_commits again
+with different words (a function, file or error message from the report) instead of naming the
+closest one. If still nothing fits, say you found no matching commit.
+"""
 # Variant "commit_pr_commits": get_pr lists a merged PR's own commits next to its merge commit
 # (`pr_commits`); the merge commit holds no change, so a fix is named from that list. Built for
 # commit-088, where the model cited the merge SHA and ignored the list. Measured on the 27B
@@ -251,10 +262,12 @@ PROMPT_VARIANTS = (
     "history_grounded",
     "commit_pr_commits",
     "commit_explain",
+    "commit_verify",
 )
 
 
 HISTORY_TOOL_VARIANTS = ("history_grounded",)  # variants that also offer the file_history tool
+COMMIT_TOOL_VARIANTS = ("commit_verify",)  # variants that also offer the get_commit tool
 
 
 def production_prompt(variant: str = "baseline") -> str:
@@ -266,7 +279,11 @@ def production_prompt(variant: str = "baseline") -> str:
         _PROD_INTRO.format(
             count="Four"
             if variant == "no_search_prs"
-            else ("Eight" if variant in HISTORY_TOOL_VARIANTS else "Five")
+            else (
+                "Eight"
+                if variant in HISTORY_TOOL_VARIANTS
+                else ("Six" if variant in COMMIT_TOOL_VARIANTS else "Five")
+            )
         ),
         _PROD_ROUTING,
         {
@@ -279,10 +296,14 @@ def production_prompt(variant: str = "baseline") -> str:
             "history_grounded": _PROD_DOCS_HINT_NARROW + _PROD_HISTORY + _PROD_GROUNDED,
             "commit_pr_commits": _PROD_DOCS_HINT_NARROW,
             "commit_explain": _PROD_DOCS_HINT_NARROW,
+            "commit_verify": _PROD_DOCS_HINT_NARROW,
         }.get(variant, ""),
         _PROD_COMMITS,
-        _PROD_COMMIT_EXPLAIN if variant == "commit_explain" else "",
-        _PROD_PR_COMMITS if variant in ("commit_pr_commits", "commit_explain") else "",
+        _PROD_COMMIT_EXPLAIN if variant in ("commit_explain", "commit_verify") else "",
+        _PROD_COMMIT_VERIFY if variant == "commit_verify" else "",
+        _PROD_PR_COMMITS
+        if variant in ("commit_pr_commits", "commit_explain", "commit_verify")
+        else "",
         ""
         if variant == "no_search_prs"
         else (_PROD_PRS_NARROW if variant == "prs_narrow" else _PROD_PRS),

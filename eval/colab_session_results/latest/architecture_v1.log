@@ -1,0 +1,21 @@
+reranker on the server: none; used: False
+architecture-004 pass  12.1s  ['search_code']
+architecture-003 pass  13.1s  ['search_code']
+architecture-001 pass  14.5s  ['search_code']
+architecture-006 pass  8.0s  ['search_code']
+architecture-005 pass  9.5s  ['search_code']
+architecture-002 MISS  22.2s  ['search_code', 'search_code', 'search_code', 'search_code']
+architecture-007 MISS  15.2s  ['search_code']
+architecture-008 pass  9.8s  ['search_code']
+architecture-010 pass  12.8s  ['search_code']
+architecture-011 MISS  8.2s  ['search_code']
+architecture-009 pass  20.8s  ['search_code', 'search_code']
+architecture-012 pass  12.6s  ['search_code']
+architecture-013 pass  11.4s  ['search_code']
+architecture-014 pass  9.6s  ['search_code']
+architecture-015 pass  7.8s  ['search_code', 'search_code']
+
+type       passed   of  abstained  failed
+architecture      12   15          0       1
+
+wrote eval\agent_eval_results\agent_eval_production_commit_pr_commits_agent_eval_architecture_v1_extra3_notests_chars24000_in12288_20261118T234132.json

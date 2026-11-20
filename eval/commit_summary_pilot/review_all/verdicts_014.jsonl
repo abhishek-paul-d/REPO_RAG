@@ -1,0 +1,79 @@
+{"n": 1137, "sha": "39fe0068aa657764778782ce4ca11d5e3ee08c66", "verdict": "ok", "reason": ""}
+{"n": 1138, "sha": "3a2ea9debac665fed6f5bdac0f1084067e3f0060", "verdict": "filler", "reason": "The pin is shown, but stability and unexpected behavior in newer releases are unsupported."}
+{"n": 1139, "sha": "3a2eaa67a2931024c1caafe9395469a25c9b5ccb", "verdict": "ok", "reason": ""}
+{"n": 1140, "sha": "3a4f6ba8b3429b233dada1dddb2fe859119ba494", "verdict": "ok", "reason": ""}
+{"n": 1141, "sha": "3a5e2b2f3de4d46ea247ad88a26c09867d048712", "verdict": "ok", "reason": ""}
+{"n": 1142, "sha": "3a6348dbb9af4b811def72c67637bba04706916e", "verdict": "ok", "reason": ""}
+{"n": 1143, "sha": "3a6d9b09dbb6cf7c279fd5f6ef9a51ebeeb905de", "verdict": "ok", "reason": ""}
+{"n": 1144, "sha": "3a6dec98270d00fcf7950b1f468dedf72224e87d", "verdict": "ok", "reason": ""}
+{"n": 1145, "sha": "3a77b59df222920391359f052cab9319dda31ac7", "verdict": "ok", "reason": ""}
+{"n": 1146, "sha": "3a9d9f22791dfe8947d9b08ff83c80a5ed49bd95", "verdict": "ok", "reason": ""}
+{"n": 1147, "sha": "3aa7f24e74386516c44d7539bebe174083fed48b", "verdict": "wrong", "reason": "The old string has an opening quote, but it does not match the closing quote."}
+{"n": 1148, "sha": "3ac70defff233359fbd715ad6e02350c2519291d", "verdict": "ok", "reason": ""}
+{"n": 1149, "sha": "3ad66349ea651d13459d7cd2db1613c1b91b40e1", "verdict": "ok", "reason": ""}
+{"n": 1150, "sha": "3ae0ff36853d14b3bb23f1344df4889f0f44ed4c", "verdict": "ok", "reason": ""}
+{"n": 1151, "sha": "3aefb8edc1d27c3cbb221225f68eadef3a865ab2", "verdict": "filler", "reason": "The excerpt establishes the backup and names PreparedRequest as changed, but the stated relationship between the two is speculative."}
+{"n": 1152, "sha": "3af2f456d8c0a90bd6609f2205cd0b2d0f7f800e", "verdict": "filler", "reason": "The new error is explicit, but the prior wait already had a timeout and the source does not establish that it caused hangs."}
+{"n": 1153, "sha": "3af8af573068de7bb9b34758a1a7eb7ab7eb9e83", "verdict": "wrong", "reason": "The file deletions remove packaging support from this tree, but do not establish whether a Debian package is still provided elsewhere."}
+{"n": 1154, "sha": "3afd07451c7a5298da51f895701ddec431614388", "verdict": "ok", "reason": ""}
+{"n": 1155, "sha": "3b0d8b8e39c5d7ead5f11276a496378a9676aeb5", "verdict": "ok", "reason": ""}
+{"n": 1156, "sha": "3b0fcb620dd196acc20d03e259ba6fdb20b1a2c9", "verdict": "ok", "reason": ""}
+{"n": 1157, "sha": "3b2a489e13a2dc3c9d1ef919ad35e14cc5189f10", "verdict": "ok", "reason": ""}
+{"n": 1158, "sha": "3b325f1bc5df476c4c4e93c5a742d81e2c5bd950", "verdict": "ok", "reason": ""}
+{"n": 1159, "sha": "3b35f1c37d05107f7c6ec3e02e8ba16d5b82171a", "verdict": "ok", "reason": ""}
+{"n": 1160, "sha": "3b82b06adcb77c4a62ffd3ef7526d9f4385dfb00", "verdict": "wrong", "reason": "The gevent branch does not satisfy the final eventlet-only check, so it still raises when eventlet is unavailable."}
+{"n": 1161, "sha": "3b84be3c99edf49c4770882b83726b98751ec1c3", "verdict": "cannot_tell", "reason": "The excerpt shows the change to the get endpoint and removes old assertions, but does not show what the remaining requests assert."}
+{"n": 1162, "sha": "3b86c3c0e34e8f986726a5929acd1d45ee184c12", "verdict": "wrong", "reason": "The replacement uses another public host, so the test still relies on a third-party service and is not an exercise of a local server."}
+{"n": 1163, "sha": "3b956495c1c1e70951a73730d7bb8877f2f8147f", "verdict": "ok", "reason": ""}
+{"n": 1164, "sha": "3b9fc987b86fc536f1ad6a91c6c12e31ba4dcf91", "verdict": "filler", "reason": "The content of the removed comments is shown, but the excerpt does not establish that they were outdated."}
+{"n": 1165, "sha": "3bb13f8fbb9d4ed1a20bd33495cdc087eb062ca0", "verdict": "ok", "reason": ""}
+{"n": 1166, "sha": "3bc01eed6f8a112e40ba6fdb79fafef5376c1d4c", "verdict": "ok", "reason": ""}
+{"n": 1167, "sha": "3bc189b0afba0d6ea8c65f0e99a78196a4a6d8b6", "verdict": "wrong", "reason": "The fixture arguments are visible, but this commit does not establish that the fixture provides a local server or that all tests need it."}
+{"n": 1168, "sha": "3bc9a181a16418eb9486a158ec7d07256186ec40", "verdict": "cannot_tell", "reason": "The file list and message identify the FAQ, but the index excerpt ends before any entry linking to the FAQ is visible."}
+{"n": 1169, "sha": "3bd16ce9c5dc7a56078b80e12cf0d48208a24b64", "verdict": "ok", "reason": ""}
+{"n": 1170, "sha": "3bd5406c0628b4e917d5dc47eb0fbf0697e8ea3d", "verdict": "ok", "reason": ""}
+{"n": 1171, "sha": "3bd8afbff29e50b38f889b2f688785a669b9aafc", "verdict": "ok", "reason": ""}
+{"n": 1172, "sha": "3be097d450ee4ca8a2f9c1a3a58eb61ed19936b0", "verdict": "filler", "reason": "The hook is pinned to v0.15.14, but the excerpt does not establish that this is the latest stable release."}
+{"n": 1173, "sha": "3becc473665438d82482b54c9596b70ad0ab0315", "verdict": "wrong", "reason": "The changed sentence describes what may be supplied in place of the default, rather than identifying the default type."}
+{"n": 1174, "sha": "3bf6c63d522fa096bad1bf4873bc1a9accc8ed61", "verdict": "wrong", "reason": "Hooks were already treated as a mapping through get, so the change is not a list-to-dictionary transition."}
+{"n": 1175, "sha": "3c01cd708033295c65be3fd85dea9d453506c854", "verdict": "filler", "reason": "The badges are removed, but the excerpt does not indicate that either external link was broken or redundant."}
+{"n": 1176, "sha": "3c0b94047c1ccfca4ac4f2fe32afef0ae314094e", "verdict": "ok", "reason": ""}
+{"n": 1177, "sha": "3c0f0b9ab510d7ac6b556088d29fcc050c995357", "verdict": "ok", "reason": ""}
+{"n": 1178, "sha": "3c144351095c7849753e477da0482c044d36f1c4", "verdict": "ok", "reason": ""}
+{"n": 1179, "sha": "3c2f52d6813f181fc53b01f67ca25ef1fae0f321", "verdict": "wrong", "reason": "The code only broadens which exceptions Response.ok handles and cannot describe request failures that produce no response or raise other errors."}
+{"n": 1180, "sha": "3c32045da05cda554e65d3b943bb1128b2482c7f", "verdict": "ok", "reason": ""}
+{"n": 1181, "sha": "3c3bde5381ab13dabac0d05b6bb31b4668d020c8", "verdict": "wrong", "reason": "The whitespace hunk adds a blank line and does not remove one."}
+{"n": 1182, "sha": "3c680cc1c6ca3005ae1bee929af330d3187f24c1", "verdict": "wrong", "reason": "The vendor package entry point and codec are added as new files, with no evidence of a preexisting vendored idna version being refreshed."}
+{"n": 1183, "sha": "3c8decb92fb9062cac4bdd12d6c0d32fb3a2d119", "verdict": "filler", "reason": "The pin moves to 6.0.0, but the excerpt does not establish that this is the latest major release."}
+{"n": 1184, "sha": "3ca2722802cf4a23f8e2da650d0521ba7cdb0043", "verdict": "filler", "reason": "The test command changes, but the excerpt does not show that running py.test tests was outdated or incorrect."}
+{"n": 1185, "sha": "3cb75399812ad3b2ef6dd12d19cc814b9e48ab13", "verdict": "ok", "reason": ""}
+{"n": 1186, "sha": "3ccdfce2e5e7e85b5e5628788f440570f9306242", "verdict": "ok", "reason": ""}
+{"n": 1187, "sha": "3cceee3459e57fa56fb9218707230ab57b8995d4", "verdict": "ok", "reason": ""}
+{"n": 1188, "sha": "3cd87fac5d1f5a7d0cafd963c6eaea15c7139399", "verdict": "ok", "reason": ""}
+{"n": 1189, "sha": "3cdb777c234a1511c959083ff25847166158cdd3", "verdict": "cannot_tell", "reason": "The hunk confirms forwarding allow_redirects but omits the containing call, so the claim that the recipient is a session cannot be verified."}
+{"n": 1190, "sha": "3cec61481cd8b9dd8d208437d52fb6d5014f7c1d", "verdict": "ok", "reason": ""}
+{"n": 1191, "sha": "3cfc83b23bb274cb8ad0160acd548b2401fee5f2", "verdict": "ok", "reason": ""}
+{"n": 1192, "sha": "3d0a1eb90d67d6489feb76fd548df0416ec9c73b", "verdict": "ok", "reason": ""}
+{"n": 1193, "sha": "3d1444b829f63582b0acb6aa53b82b2693c19213", "verdict": "wrong", "reason": "The new PUT data docstring lists bytes only and instead adds the bytes wording to the headers parameter."}
+{"n": 1194, "sha": "3d22f9f5ab52a0a58b7ffca13ea5aba9f37b6536", "verdict": "ok", "reason": ""}
+{"n": 1195, "sha": "3d29f6535fb409e52369c8a6dfe8b76b5bb2bdc6", "verdict": "filler", "reason": "The commented-out call is removed, but the reason it was considered obsolete is not supplied."}
+{"n": 1196, "sha": "3d339ed7e61261832347190185113b890b55009e", "verdict": "ok", "reason": ""}
+{"n": 1197, "sha": "3d3f05884f65efaa74e44e469a74873699df271e", "verdict": "filler", "reason": "The connection pool parameter and removal of the opener are visible, but increased efficiency is not established."}
+{"n": 1198, "sha": "3d425ac19179979fbfb8712f34ee6be6565808b2", "verdict": "ok", "reason": ""}
+{"n": 1199, "sha": "3d448f843e82f8c35613ea3d5657e8215d068163", "verdict": "filler", "reason": "The code adds cookie flags, but the excerpt does not establish that the resulting command accurately represents all cookie values."}
+{"n": 1200, "sha": "3d49eb40f80325c5a9a720797661287ab309a7b8", "verdict": "ok", "reason": ""}
+{"n": 1201, "sha": "3d4d5ab0df6a0295599a49927de57fd039650358", "verdict": "filler", "reason": "The helper substitution and normal and safe-mode cases are shown, but greater test reliability is unsupported."}
+{"n": 1202, "sha": "3d542693bc57c93b6450200f2646bb9706a45b10", "verdict": "filler", "reason": "The dependency and import change are visible, but no specific compatibility improvement for modern Python versions is established."}
+{"n": 1203, "sha": "3d59569264b6f84258bcb92f580db072ab9dd68f", "verdict": "wrong", "reason": "The shipped certificate bundle is not changed in this commit, and the excerpt does not identify the certificates as the latest."}
+{"n": 1204, "sha": "3d813c9a7a67f6085a27c7122083a2a92bd41963", "verdict": "ok", "reason": ""}
+{"n": 1205, "sha": "3d8823cafc82fd9849eef6650a54a61554079b61", "verdict": "filler", "reason": "The property check replaces two status-code comparisons, but the excerpt does not establish the claimed consistency of the new behavior."}
+{"n": 1206, "sha": "3d8d465a90826b82580e11a2ee618a36cc8a5129", "verdict": "wrong", "reason": "The quoted old heading does not match the source text."}
+{"n": 1207, "sha": "3d968ff34dd9945f2a86396001408ba69c1ab3fd", "verdict": "ok", "reason": ""}
+{"n": 1208, "sha": "3da2f10290a0dc78e34031856438ef1fed4e7435", "verdict": "wrong", "reason": "Deleting the repository configuration does not establish that Travis will no longer show any updates, including those for other revisions or configured jobs."}
+{"n": 1209, "sha": "3dd2235ac5343ce0c4d4a4b7937f8ce2127f0612", "verdict": "wrong", "reason": "The only changed line is a TODO comment and does not add authentication support."}
+{"n": 1210, "sha": "3dd2a0443d44a8e30d77ddf55c3fba39062dc6f4", "verdict": "ok", "reason": ""}
+{"n": 1211, "sha": "3ddcc99131adc5773ef0a12035580298bee35f5f", "verdict": "ok", "reason": ""}
+{"n": 1212, "sha": "3de173e1c9dc9f5fd142eabf6aca5b4b1e93b14e", "verdict": "ok", "reason": ""}
+{"n": 1213, "sha": "3e012c16c39e832aad9f80f9c147edb51d99e0ff", "verdict": "wrong", "reason": "The edit replaces a colon with a visible return-arrow glyph, which is not a standard newline."}
+{"n": 1214, "sha": "3e233e4856b563c372774742f30d17842f4b8e42", "verdict": "filler", "reason": "The release note records the safe-verb redirect behavior, but preventing unexpected behavior is an inferred benefit."}
+{"n": 1215, "sha": "3e23e48239d74755b782f4beee012582fc0b7583", "verdict": "ok", "reason": ""}

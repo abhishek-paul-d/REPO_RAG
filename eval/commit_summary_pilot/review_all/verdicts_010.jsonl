@@ -1,0 +1,85 @@
+{"n": 783, "sha": "2a9ae4b367fc06eeb1c3c24d1c9f741396dd7576", "verdict": "wrong", "reason": "The old code already unquotes the path before quoting it, so the asserted double-encoding symptom is not shown."}
+{"n": 784, "sha": "2aa32c16dcb905e303b2bc19ea95d616fba28adf", "verdict": "ok", "reason": ""}
+{"n": 785, "sha": "2aab9a9a39fdfdfbd37cc8494259cb0ebb36a5e9", "verdict": "ok", "reason": ""}
+{"n": 786, "sha": "2aaf6ac03862d29ef8664aa8650a3c34ac4a0b2d", "verdict": "wrong", "reason": "The before-and-after spellings are different in the diff but identical in the summary."}
+{"n": 787, "sha": "2abe57458da005025338c0fc5dca69e71a530a1b", "verdict": "ok", "reason": ""}
+{"n": 788, "sha": "2ac391373329b2d8c67d34fd7c056ff9db16a5f9", "verdict": "ok", "reason": ""}
+{"n": 789, "sha": "2acce4221e38a76ba603e406b0b30db051b0c3e2", "verdict": "ok", "reason": ""}
+{"n": 790, "sha": "2ad18e0e10e7d7ecd5384c378f25ec8821a10a29", "verdict": "ok", "reason": ""}
+{"n": 791, "sha": "2ad3f079821769062ad6b8e91c927b1b345895d6", "verdict": "wrong", "reason": "The finally block can raise on sock.close when socket creation or binding fails before sock is assigned."}
+{"n": 792, "sha": "2af059797a33a1ee2132ed13e456413c18bc7aa2", "verdict": "filler", "reason": "The helper and UTF-8 argument are visible, but consistent behavior across request headers is an unspecified benefit."}
+{"n": 793, "sha": "2b202aabd7f7e3b7150603e7aa1097ef97379cae", "verdict": "ok", "reason": ""}
+{"n": 794, "sha": "2b23d6a9f7aa02561fe6d38be31cde4d609d0e2f", "verdict": "wrong", "reason": "Python permits the former line break inside the function call."}
+{"n": 795, "sha": "2b33bc289f78adde0df16589122d8cdc8eb09567", "verdict": "wrong", "reason": "The JSON request is separate from file uploads, and the commit changes tests only."}
+{"n": 796, "sha": "2b34880e2fa3fe6006bf64517e036f5ed74478d6", "verdict": "wrong", "reason": "The urllib3 assertions do not enforce the stated range and would accept some out-of-range versions."}
+{"n": 797, "sha": "2b3bd78685f9d30bf29e090b58f5aa1a3b799cdf", "verdict": "ok", "reason": ""}
+{"n": 798, "sha": "2b4ca0b0dc0af38110b69396cbb0e422c25b5271", "verdict": "filler", "reason": "The diff establishes import reordering and removal, but it does not establish that removing imports has no functional effect."}
+{"n": 799, "sha": "2b54b01ce2726a04f155ef29637b0d5011f965e2", "verdict": "ok", "reason": ""}
+{"n": 800, "sha": "2b5aed78d02a3bd3090e8926bfd20d4d7edc1e88", "verdict": "ok", "reason": ""}
+{"n": 801, "sha": "2b5cdc56f36f083666fb9abaed2adc9b9c60529b", "verdict": "ok", "reason": ""}
+{"n": 802, "sha": "2b6ebd25215b528c2cad3749973084276d9d74a8", "verdict": "ok", "reason": ""}
+{"n": 803, "sha": "2b8353d3b3e533945bb82d6510ed2dfb15663045", "verdict": "ok", "reason": ""}
+{"n": 804, "sha": "2b849545ea61f216e0699ad8454d24c609d0e3a4", "verdict": "cannot_tell", "reason": "The excerpt shows the two structured exception calls in HTTPConnectionPool but ends before the PoolManager and HTTPResponse hunks needed to check the broader attribution."}
+{"n": 805, "sha": "2b8e01bff7f8331b09c4ec599e24e57c10b1ad39", "verdict": "ok", "reason": ""}
+{"n": 806, "sha": "2bae0d295ba4d28392caf1aa4b8f95d54692db34", "verdict": "ok", "reason": ""}
+{"n": 807, "sha": "2bae57e0a6c764b1b28b3bbb1b3b0cd1cc9b4f14", "verdict": "wrong", "reason": "The commit changes release metadata and the changelog, with no implementation edit to Response.content."}
+{"n": 808, "sha": "2bb49ff386deab4e67e199450085720c1521411a", "verdict": "ok", "reason": ""}
+{"n": 809, "sha": "2bbd7ba1c2c5a56c0957be64b5f94f6a4b0243ca", "verdict": "ok", "reason": ""}
+{"n": 810, "sha": "2bc6aeb64e6eda4af5c8c1b2abc2f6fd45a8ebd9", "verdict": "filler", "reason": "The tagline relocation is shown, but improved visual spacing is a guessed motive."}
+{"n": 811, "sha": "2bc7762cb6c91f49e5b116d3eb9f93af01e331f2", "verdict": "ok", "reason": ""}
+{"n": 812, "sha": "2bcaff99eaffda691eadfa3298507db6ffe17ca9", "verdict": "ok", "reason": ""}
+{"n": 813, "sha": "2bcc4a774a8ca1556bd95c32f044d818f3547a40", "verdict": "ok", "reason": ""}
+{"n": 814, "sha": "2c0ff95d4d8daae7c0624b3a96584d722ebf6c38", "verdict": "wrong", "reason": "The Response change is a loop style edit and does not handle timeout exceptions."}
+{"n": 815, "sha": "2c11473816872ed2440eb305e6a920159e5e52a3", "verdict": "filler", "reason": "The setup steps are shown, but the edit does not establish that every new contributor can successfully complete setup."}
+{"n": 816, "sha": "2c153c155659e5be198fa1959907d80b6c5de67c", "verdict": "ok", "reason": ""}
+{"n": 817, "sha": "2c168d20a5b3ce7bbf711fd70c9a29b9d5c32be7", "verdict": "wrong", "reason": "A single requirements-file change does not establish that the entire project runs standalone."}
+{"n": 818, "sha": "2c193bda0c50481d3bff4ef4d90203c578afa294", "verdict": "filler", "reason": "The pins make the selected revisions explicit, but overall build stability is an unverified benefit."}
+{"n": 819, "sha": "2c1f51be0e840ea18ff1fee7998b16b961c0b412", "verdict": "ok", "reason": ""}
+{"n": 820, "sha": "2c20474bfeaec944ff225f80be4e8a05035d75c2", "verdict": "ok", "reason": ""}
+{"n": 821, "sha": "2c2138e811487b13020eb331482fb991fd399d4e", "verdict": "ok", "reason": ""}
+{"n": 822, "sha": "2c241d28011626da17dabed80e190ac84e5cf79c", "verdict": "ok", "reason": ""}
+{"n": 823, "sha": "2c2af651c4ae9327d11d159aaff10aa2ba4be335", "verdict": "ok", "reason": ""}
+{"n": 824, "sha": "2c438cacd1541bf9cdeb0eaa1b055a95e453561d", "verdict": "ok", "reason": ""}
+{"n": 825, "sha": "2c4849defeda74c191c35c4b1997547b1aae425e", "verdict": "ok", "reason": ""}
+{"n": 826, "sha": "2c55d269ce87d405c1bafbbcdc797c62a401167d", "verdict": "wrong", "reason": "Permitting 3XX statuses is the new default, so explicitly permitting them does not override it."}
+{"n": 827, "sha": "2c5b0207f5d37d14c54fcc690e2f2bc7b64618f2", "verdict": "cannot_tell", "reason": "The visible hunk shows the SSL helper switch, but the exception hunks are cut off before it is possible to tell whether any types were added."}
+{"n": 828, "sha": "2c5ea69e5df963a4914424639b2a7382cf82e4fb", "verdict": "ok", "reason": ""}
+{"n": 829, "sha": "2c71f2d52024b481ede5b3032fdffa055de7d8b5", "verdict": "ok", "reason": ""}
+{"n": 830, "sha": "2c76122a48c6a4b513930fed56c0aea5362d6c9c", "verdict": "filler", "reason": "The test covers one unknown hostname, so it does not establish correct handling of network failures generally."}
+{"n": 831, "sha": "2c7e920298d8bbd0f3b28972a5febf148fd33188", "verdict": "wrong", "reason": "The new condition is the reverse of the condition described in the summary."}
+{"n": 832, "sha": "2c8721540ad70cadb3c71912b1ab8577f2f8fd53", "verdict": "ok", "reason": ""}
+{"n": 833, "sha": "2c914126ba0c4865dc37c0a70f481091112a7dac", "verdict": "ok", "reason": ""}
+{"n": 834, "sha": "2cb052aa950a20744778af802acff240830505f3", "verdict": "ok", "reason": ""}
+{"n": 835, "sha": "2cb07872fe110e1addf6f15601349d4d64e1552b", "verdict": "ok", "reason": ""}
+{"n": 836, "sha": "2cb3abea55aa92e0964ff1e5b3780ad43535f157", "verdict": "ok", "reason": ""}
+{"n": 837, "sha": "2cb523b267df411a97388b147447e75e34880794", "verdict": "cannot_tell", "reason": "The hunk shows the grammatical correction but ends at has not issued a, so the object of that phrase cannot be checked."}
+{"n": 838, "sha": "2cc80155cbf758c8e6e948ef5fe52754a996a40b", "verdict": "ok", "reason": ""}
+{"n": 839, "sha": "2ccecf6dbd4e9130a53e9bb3b99d78f8490f9ce7", "verdict": "ok", "reason": ""}
+{"n": 840, "sha": "2cd05271be511162b9d0c10bfb310feb623bc927", "verdict": "ok", "reason": ""}
+{"n": 841, "sha": "2cee3bb57a464d0ae48892661a9edf44790d373b", "verdict": "wrong", "reason": "The commit message describes relocating the section, while the summary presents it as newly authored."}
+{"n": 842, "sha": "2cf0dad5738b877fffc2cc3c6013d4152dfc1860", "verdict": "filler", "reason": "The directive changes from requests to requests.models, but the excerpt does not demonstrate the resulting documentation links."}
+{"n": 843, "sha": "2d120e32dbb511bcabee02277d31d26fa986f576", "verdict": "cannot_tell", "reason": "The replacement line cuts off midway through the affected link, leaving the URL-versus-markup claim unresolved."}
+{"n": 844, "sha": "2d1b4482c5916433a642d66c6b3d0cd28058b39e", "verdict": "ok", "reason": ""}
+{"n": 845, "sha": "2d211d59a02accf250f50ddf8cf4dc2d5eeb16d7", "verdict": "ok", "reason": ""}
+{"n": 846, "sha": "2d2447e210cf0b9e8c7484bfc6f158de9b24c171", "verdict": "ok", "reason": ""}
+{"n": 847, "sha": "2d283c9f2ddc8a7c1429317f5e521671349839b2", "verdict": "ok", "reason": ""}
+{"n": 848, "sha": "2d2c831d071e181deceb80c8550ab6d231b7726e", "verdict": "ok", "reason": ""}
+{"n": 849, "sha": "2d30aeb7c6d7180b67e2bb01962f3383739a1c62", "verdict": "ok", "reason": ""}
+{"n": 850, "sha": "2d357f9c3b5985732450c898a7ae7c8febf00631", "verdict": "ok", "reason": ""}
+{"n": 851, "sha": "2d38f518348625cc9c6b8f5ee63a86bda784630e", "verdict": "ok", "reason": ""}
+{"n": 852, "sha": "2d39c0db054e158767ab4a755476844fe40787e7", "verdict": "ok", "reason": ""}
+{"n": 853, "sha": "2d3b68cf1edb40c0ae9d000e665a0accfbe4e458", "verdict": "ok", "reason": ""}
+{"n": 854, "sha": "2d4a89f5dc561dbf062ec5c85d6f6ca32a511042", "verdict": "ok", "reason": ""}
+{"n": 855, "sha": "2d5517682b3b38547634d153cea43d48fbc8cdb5", "verdict": "ok", "reason": ""}
+{"n": 856, "sha": "2d5e38f30ad9f3bd0e3a87518ae79ccbdf779369", "verdict": "ok", "reason": ""}
+{"n": 857, "sha": "2d5f54779ad174035c5437b3b3c1146b0eaf60fe", "verdict": "ok", "reason": ""}
+{"n": 858, "sha": "2d70647f72fc230aec3453349fc4475cd3341de7", "verdict": "wrong", "reason": "A Response built directly has request set to None, and the link is supplied in the request's response-building path."}
+{"n": 859, "sha": "2d763c90ae6ccee1a3c64bf70add776a2ba395ef", "verdict": "ok", "reason": ""}
+{"n": 860, "sha": "2d8440ea98301131edd537c4f2010b749f005e3b", "verdict": "ok", "reason": ""}
+{"n": 861, "sha": "2d9f953d4cf24f245764f2d700ab5024d6f22110", "verdict": "ok", "reason": ""}
+{"n": 862, "sha": "2da7fe08586aeaff614c017a9a834a22c937384a", "verdict": "ok", "reason": ""}
+{"n": 863, "sha": "2da86daa3a5869185d80ca90dc0acdf08d3690c1", "verdict": "ok", "reason": ""}
+{"n": 864, "sha": "2daa7b52a78984ab5e66358052fc8dfe93e251bd", "verdict": "filler", "reason": "The diff pins 5.1.0 but does not establish that it is the latest stable release."}
+{"n": 865, "sha": "2daf1cbad990f9baa86028500c229c9bb18fba51", "verdict": "wrong", "reason": "Removing the manifest's explicit include does not rule out other packaging rules that could still include the certificate."}
+{"n": 866, "sha": "2dc51c887f304c7718bb025ceca1448798283bb3", "verdict": "wrong", "reason": "The displayed IDE files are deleted, and the workflow is already listed as a changed file with no evidence of being introduced."}
+{"n": 867, "sha": "2dc556e0825bf3a235140c5af6b473945ebf4ab8", "verdict": "ok", "reason": ""}

@@ -1,0 +1,95 @@
+{"n": 1547, "sha": "4f0efdb77e33b340ae9e478c456634ef628e665a", "verdict": "ok", "reason": ""}
+{"n": 1548, "sha": "4f10605389812e84998e73e91754aeff0bc09b41", "verdict": "ok", "reason": ""}
+{"n": 1549, "sha": "4f1301f6ad24505e67125ee3b316c8e4cdbdf409", "verdict": "wrong", "reason": "The only added line imports HTTPError from urllib2, which is precisely the dependency the summary says was removed."}
+{"n": 1550, "sha": "4f34446b363d3dec84eedb410df79e5e3773cde9", "verdict": "ok", "reason": ""}
+{"n": 1551, "sha": "4f40b3befc2bb830ae48a2637e3af99fc5bbc768", "verdict": "ok", "reason": ""}
+{"n": 1552, "sha": "4f428228d7e48ac2b254d7a2d1869241c6fb213c", "verdict": "filler", "reason": "The None behavior is supported, but the excerpt does not identify any specific errors it prevents."}
+{"n": 1553, "sha": "4f49f6b3ed99cf73feaec762f96f44574ac54134", "verdict": "ok", "reason": ""}
+{"n": 1554, "sha": "4f5741e1ffd8bef185582bcba6145493d4abab15", "verdict": "ok", "reason": ""}
+{"n": 1555, "sha": "4f64938ff02438bf6b1e379371f5182d48397c32", "verdict": "wrong", "reason": "The removed import is at module scope, while only the variable assignment is removed from PreparedRequest."}
+{"n": 1556, "sha": "4f6dca42ea0fb3d1c4706e63e594e43f7a3237f7", "verdict": "ok", "reason": ""}
+{"n": 1557, "sha": "4f75f1f41d1301be93b7918ffb8140314ac5105d", "verdict": "ok", "reason": ""}
+{"n": 1558, "sha": "4f786e4f6240d3518d1add2faf49166301580732", "verdict": "ok", "reason": ""}
+{"n": 1559, "sha": "4f984b0fe66c0d47a9c34dbec1d035c1ac2ed897", "verdict": "ok", "reason": ""}
+{"n": 1560, "sha": "4f9d0e04552e7cfcc5bcc2a37cf9e548ca09ffd8", "verdict": "ok", "reason": ""}
+{"n": 1561, "sha": "4f9d598ff486396d9ad45c7e402abe099dec8f4a", "verdict": "ok", "reason": ""}
+{"n": 1562, "sha": "4f9e5521480e5b9fa760e0f19274441c363aca5e", "verdict": "ok", "reason": ""}
+{"n": 1563, "sha": "4fc7f4a255fff60d1033ec66b0d180390adf9306", "verdict": "ok", "reason": ""}
+{"n": 1564, "sha": "4fcf14e1240ba5e9e183fc1d785b7c5594857d5d", "verdict": "filler", "reason": "The sidebar and style rules are shown, but the rendered layout and full use of available space are not established."}
+{"n": 1565, "sha": "4ffae38627ea8d4a33fc50bbbed48bd14468972c", "verdict": "ok", "reason": ""}
+{"n": 1566, "sha": "4ffc3e4d1ffe9ab296583cae58150ccc76533d61", "verdict": "wrong", "reason": "The directive's double-colon marker stays in place and only the final colon after Note is removed."}
+{"n": 1567, "sha": "500dc7886712b1e2cb112b837769230544d88b1e", "verdict": "ok", "reason": ""}
+{"n": 1568, "sha": "500f15da1fe54e3773be42f7770680d1f86b699f", "verdict": "ok", "reason": ""}
+{"n": 1569, "sha": "5017aeb06c3893a1e500ae73d7d343b480a9c8c2", "verdict": "ok", "reason": ""}
+{"n": 1570, "sha": "50279dd83c378e2de73695db9ebe06a2ba079a1f", "verdict": "ok", "reason": ""}
+{"n": 1571, "sha": "50298bbf97b317f17b3e1cf9287e912fb5de886e", "verdict": "ok", "reason": ""}
+{"n": 1572, "sha": "504b960fb4b890a09d056ae70509aa8ecddb4ec1", "verdict": "ok", "reason": ""}
+{"n": 1573, "sha": "505d2487e31c2ac60ed9224b82441320d3af5077", "verdict": "ok", "reason": ""}
+{"n": 1574, "sha": "5072399f7af38ab14d638838a5e45818ca9ede41", "verdict": "wrong", "reason": "Removing absolute_import restores Python 2's implicit relative import behavior for the local modules."}
+{"n": 1575, "sha": "507409661335bd3dd8a7e39f04d07b42e519becc", "verdict": "wrong", "reason": "The new extension is used when generating the certificate, while the stated OpenSSL rejection occurs when using the regenerated certificate as a CA."}
+{"n": 1576, "sha": "508d47dc6e7458f2db3bc3b3bf629e0bdb1b798a", "verdict": "ok", "reason": ""}
+{"n": 1577, "sha": "508f4b1ca514b2f18adaba807eaa81e0c298b8e1", "verdict": "ok", "reason": ""}
+{"n": 1578, "sha": "5090ba79ac6393421a0cf01120e334d9b3c3f56b", "verdict": "ok", "reason": ""}
+{"n": 1579, "sha": "5091c15bd71ec934423a71ce1b53668cd15db68f", "verdict": "wrong", "reason": "The change described is in the release notes, and no namespace implementation file changes."}
+{"n": 1580, "sha": "5099688bfcb4d3d3180c320d8d5c4815320031da", "verdict": "wrong", "reason": "The inserted source line contains an HTML paragraph and entity, so it is not a blank source line."}
+{"n": 1581, "sha": "50c39fd95ada7242fc6bb0cbfd68be1e4a32ac3b", "verdict": "filler", "reason": "The shared pool manager and its settings are shown, but improved efficiency is not established."}
+{"n": 1582, "sha": "50daf9c0050f885bcc1276d01889c35b52ea3734", "verdict": "ok", "reason": ""}
+{"n": 1583, "sha": "51038497f6551e132bee06c1220daa69a7b7a71d", "verdict": "ok", "reason": ""}
+{"n": 1584, "sha": "511cc4c03449d58b42d59349363c766c60d48451", "verdict": "ok", "reason": ""}
+{"n": 1585, "sha": "512066488e039e048ff255d8322fbb53642166bd", "verdict": "wrong", "reason": "The commit records fragment handling in the changelog and does not implement it."}
+{"n": 1586, "sha": "512beb8795f49ed474e3d679dda9524853853378", "verdict": "ok", "reason": ""}
+{"n": 1587, "sha": "51360e1ede1fd48ff46117ff36737cf4bca411a5", "verdict": "ok", "reason": ""}
+{"n": 1588, "sha": "514b3f2345e5b80444b5b85e7cc4ac18a74925b1", "verdict": "filler", "reason": "The version pin changes to 2.14.2, but neither latest status nor any security feature is shown."}
+{"n": 1589, "sha": "514c1623fefff760bfa15a693aa38e474aba8560", "verdict": "filler", "reason": "The new count and badge are visible, but the source does not independently establish the count's accuracy or that the removed images were unused."}
+{"n": 1590, "sha": "5152c98223d46c76cb7e88cb833b0087daf83d54", "verdict": "ok", "reason": ""}
+{"n": 1591, "sha": "516f84f490ccd352672847c6a3d23c67a13b3f98", "verdict": "ok", "reason": ""}
+{"n": 1592, "sha": "51716c4ef390136b0d4b800ec7665dd5503e64fc", "verdict": "ok", "reason": ""}
+{"n": 1593, "sha": "5172d24e66d748459963bc6a344a68023e44e183", "verdict": "ok", "reason": ""}
+{"n": 1594, "sha": "5174ab43257e1675d119335166b40fdbb2d68bf3", "verdict": "wrong", "reason": "The added rstrip calls strip arbitrary trailing whitespace, so the change does not generally prevent loss of streamed data."}
+{"n": 1595, "sha": "51800bf36fab95748adad78a1da29b8d73bede45", "verdict": "ok", "reason": ""}
+{"n": 1596, "sha": "5184f0c5a9e3ec9c573c9e917d265c6204d3d9dd", "verdict": "ok", "reason": ""}
+{"n": 1597, "sha": "51938de6b74cdf15b000bd8da76467784f8293e6", "verdict": "ok", "reason": ""}
+{"n": 1598, "sha": "519b9cee969e7364654a05ed466db253d35370d3", "verdict": "ok", "reason": ""}
+{"n": 1599, "sha": "51de61f914fda8d4f6a8ac8c2852abcc82b0b94e", "verdict": "wrong", "reason": "Only version metadata and the changelog change, with no edit to packaging or wheel generation."}
+{"n": 1600, "sha": "51f76280784ff3ba39dcd69ec0f078f69409e1d7", "verdict": "ok", "reason": ""}
+{"n": 1601, "sha": "51feabbc27821c5acb7f0ceb932d19c0d79f16d1", "verdict": "wrong", "reason": "The newer-interpreter test checks only that the version string is nonempty, without validating its value."}
+{"n": 1602, "sha": "52054be6125efdb44a073fa6d62a81c8cd301129", "verdict": "ok", "reason": ""}
+{"n": 1603, "sha": "522d37c9597882db3fbd5fb08804b27b5fd8be4d", "verdict": "ok", "reason": ""}
+{"n": 1604, "sha": "523433f26cc6385b91fcc87186437474abd2cde1", "verdict": "filler", "reason": "The compression header is restored, but actual data-transfer efficiency is not shown."}
+{"n": 1605, "sha": "523906c54f23e0147cb8aacd3393ce6501a148fa", "verdict": "ok", "reason": ""}
+{"n": 1606, "sha": "5251882a03d2ecc3964a1cc4eed2b078348a241d", "verdict": "ok", "reason": ""}
+{"n": 1607, "sha": "525996654795a64c18e470b69cc75e240f47a87a", "verdict": "ok", "reason": ""}
+{"n": 1608, "sha": "5264c71d86c078f60b9880cc0f481c7fea2b41db", "verdict": "ok", "reason": ""}
+{"n": 1609, "sha": "526a0befc75a0e22ee42ee11a1879f892dae6e0a", "verdict": "ok", "reason": ""}
+{"n": 1610, "sha": "5287b8cd9f1eca624b57cb03ad5d1fb2db41bf9e", "verdict": "wrong", "reason": "The raw response assignment is in response construction, so the summary attributes it to the wrong method."}
+{"n": 1611, "sha": "5296b8be90cb79f0e2b36bbf9a6108e65bec0e23", "verdict": "wrong", "reason": "The guard counts current registrations of the handler, which is different from maintaining a count of processed 401 responses."}
+{"n": 1612, "sha": "529c423fb5906e8eff77ed1985fa4d48438dc3c1", "verdict": "ok", "reason": ""}
+{"n": 1613, "sha": "52a2efa2ae5d57c13bf6bb13901f1762af20a55a", "verdict": "wrong", "reason": "On Python 2.6 the conditional shell line itself exits unsuccessfully, even though it skips the README target."}
+{"n": 1614, "sha": "52a95cb93ab8b6c2c32398bd440fd9434232a13a", "verdict": "wrong", "reason": "The local variable is an alias of the updated cookie object, so the original cookie state is not separately preserved."}
+{"n": 1615, "sha": "52b5ed18c12d4b0f8c0572b7433f60c0e42928c6", "verdict": "wrong", "reason": "The CI target is deleted, and its JUnit reporting command is not merged into the remaining target."}
+{"n": 1616, "sha": "52b9f01e6eec430177ea160fa068dfb0a6f215be", "verdict": "ok", "reason": ""}
+{"n": 1617, "sha": "52bedf4c0b03a85c7e1361d0c3089b96f623ab10", "verdict": "wrong", "reason": "The defaults are unprefixed string literals, and a signature change does not establish what body the transport sends."}
+{"n": 1618, "sha": "52c0daff5f87adb1e89678139fdd054c8005e580", "verdict": "wrong", "reason": "The edit removes the specific reference to uploads resuming, but the summary attributes that explanation to the new comment."}
+{"n": 1619, "sha": "52d2e2ee4e37d9594ba62fd3caa952d537f699de", "verdict": "ok", "reason": ""}
+{"n": 1620, "sha": "52d328ec3c7f038765df4565d14070a04dc9ea6e", "verdict": "cannot_tell", "reason": "The excerpt stops in the license header before the CP949Prober implementation or reported charset name, so the EUC-KR claim cannot be verified."}
+{"n": 1621, "sha": "52de0ba0ce72c1f1809b7516d2987937955d7ecd", "verdict": "ok", "reason": ""}
+{"n": 1622, "sha": "52facb225722cb52757da44ee915af672435a149", "verdict": "ok", "reason": ""}
+{"n": 1623, "sha": "52facc7984bb2cdd3e985c429d423f8cc6da632e", "verdict": "filler", "reason": "The dependency is added, but the excerpt does not establish any SSL verification problem or how certifi is used at runtime."}
+{"n": 1624, "sha": "530198e0c011c2d08843046578c2e235da2855e6", "verdict": "filler", "reason": "The image directive is visible, but the rendered presentation and its improvement are not established."}
+{"n": 1625, "sha": "5309ad005f27b5ef4023c464d9f49614b1ee4c19", "verdict": "filler", "reason": "The parser call changes, but the excerpt does not identify any particular cookie format whose handling changes."}
+{"n": 1626, "sha": "531dc351263f1630a72eb4960b13b8df1233457f", "verdict": "ok", "reason": ""}
+{"n": 1627, "sha": "532756803d3b2b7155c31a57f1d5e3cf31224b5d", "verdict": "ok", "reason": ""}
+{"n": 1628, "sha": "533c384b875166eef837b4e0e45125cf8ad9c6b1", "verdict": "filler", "reason": "The README drops the shown HTML layout, but the excerpt does not establish rendering across different platforms."}
+{"n": 1629, "sha": "5345a89dc5121daffddcdab008ddfb324d6b87c8", "verdict": "ok", "reason": ""}
+{"n": 1630, "sha": "534cdd7587e5b8fe410db24094229718a630bf66", "verdict": "ok", "reason": ""}
+{"n": 1631, "sha": "534ee814fcb9d7b563413ea77ce6838090ead25f", "verdict": "wrong", "reason": "The longer timeout is exercised in a separate server instance and does not test recovery of the server that previously timed out."}
+{"n": 1632, "sha": "5351469472eccee7ed1a6cae53341446c520d807", "verdict": "wrong", "reason": "The header helper advertises available encoding support, while response decoding is handled by urllib3."}
+{"n": 1633, "sha": "535c51f5481ab6276ac43dc73264a6d24aefec0f", "verdict": "ok", "reason": ""}
+{"n": 1634, "sha": "536b583bc9d2b57f29109f9fa60af8855dfa18ab", "verdict": "ok", "reason": ""}
+{"n": 1635, "sha": "537ac3cf2205cde26de70df4dad7c2823a572f13", "verdict": "ok", "reason": ""}
+{"n": 1636, "sha": "537def4a4fb284a216f56f3bae308d28ccc67b1f", "verdict": "ok", "reason": ""}
+{"n": 1637, "sha": "538dbaecbea46f0768816590fc21289294612a2e", "verdict": "ok", "reason": ""}
+{"n": 1638, "sha": "538de55607eb1db8299f2b83421a91b9f533cb50", "verdict": "ok", "reason": ""}
+{"n": 1639, "sha": "539302a17d62c53ff6116144701a851cf700fe7b", "verdict": "filler", "reason": "The claim is removed, but the excerpt does not establish that it was misleading."}
+{"n": 1640, "sha": "5397ef71b37ebe1fdf8af95a9a3b561baffe9dd8", "verdict": "ok", "reason": ""}
+{"n": 1641, "sha": "53a0562331c4a825036a347e77984d68b310fcf3", "verdict": "ok", "reason": ""}

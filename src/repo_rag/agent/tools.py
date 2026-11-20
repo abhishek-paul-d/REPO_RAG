@@ -14,6 +14,7 @@ The added tools have not been through the Phase 7 bake-off; see docs/PROJECT_LOG
 
 from __future__ import annotations
 
+import re
 from typing import Any
 
 from repo_rag.agent.bakeoff import redact, validate_arguments
@@ -27,8 +28,10 @@ from repo_rag.history.git_tools import (
     pr_commits,
     releases_containing,
 )
+from repo_rag.history.issue_linker import strip_issue_references
 from repo_rag.history.metadata_db import names_of
 from repo_rag.retrieval.intent import detect_intent
+from repo_rag.retrieval.retrievers import weighted_rrf
 from repo_rag.store.manifest import Manifest
 from repo_rag.store.symbol_table import is_test_path
 
@@ -43,17 +46,43 @@ PR_ISSUE_K = 4  # per collection: top PRs and top issues are shown separately
 PR_TEXT_CHARS = 700
 PR_COMMITS_LIMIT = 5  # a PR's own commits listed next to its merge commit by get_pr
 ADDED_TOOLS = ("search_docs", "search_commits", "search_prs", "get_references", "find_callees")
+# Offered only by the `commit_verify` prompt variant.
+COMMIT_TOOLS = ("get_commit",)
 # Offered only by the `history_grounded` prompt variant.
 HISTORY_TOOLS = ("file_history", "compare_refs", "find_issues")
 RENAME_TOOLS = ("count_commits", "top_contributors", "change_frequency")  # follow renames there
 ISSUES_SHOWN = 10  # newest issues find_issues lists; the total is always given
 COMPARE_LIMIT = 15  # newest commits compare_refs lists; the total is always given
 HISTORY_LIMIT = 8  # newest changes returned by file_history unless the model asks for fewer
+_FRAMING_HINT = re.compile(
+    r"\b(?:fixed\s+before|this\s+repository|which\s+commit|earlier\s+fix|past\s+commit|bug\s+below)\b",
+    re.IGNORECASE,
+)
 
 
-def production_schemas(*, search_prs: bool = True, file_history: bool = False) -> dict[str, dict]:
+def strip_question_framing(question: str) -> str:
+    """Drop a short conversational lead-in before a pasted bug report, never a real title."""
+    text = question.strip()
+    if "\n\n" not in text:
+        return text
+    head, rest = text.split("\n\n", 1)
+    head_clean, rest_clean = head.strip(), rest.strip()
+    if (
+        head_clean.endswith("?")
+        and len(head_clean) <= 240
+        and len(rest_clean) >= 20
+        and _FRAMING_HINT.search(head_clean)
+    ):
+        return rest_clean
+    return text
+
+
+def production_schemas(
+    *, search_prs: bool = True, file_history: bool = False, get_commit: bool = False
+) -> dict[str, dict]:
     """The evaluated tools plus the added ones. `search_prs=False` leaves that one tool out of what
-    the model is offered (prompt variant `no_search_prs`)."""
+    the model is offered (prompt variant `no_search_prs`); `get_commit=True` adds the commit reader
+    (prompt variant `commit_verify`)."""
     schemas = tool_schemas()
     for name, description, fields, required in (
         (
@@ -65,8 +94,8 @@ def production_schemas(*, search_prs: bool = True, file_history: bool = False) -
         ),
         (
             "search_commits",
-            "Hybrid search over indexed commits (message, files, diff); top 5 with 12-character "
-            "SHAs. For finding earlier fixes of a bug.",
+            "Hybrid search over indexed commits (message, files, diff); top 5 in full plus up to "
+            "10 brief candidates with 12-character SHAs. For finding earlier fixes of a bug.",
             {"query": "string"},
             ["query"],
         ),
@@ -96,6 +125,15 @@ def production_schemas(*, search_prs: bool = True, file_history: bool = False) -
         schemas[name] = _schema(name, description, fields, required)
     if not search_prs:
         del schemas["search_prs"]
+    if get_commit:
+        schemas["get_commit"] = _schema(
+            "get_commit",
+            "Read one indexed commit: its full message, each changed file with added and removed "
+            "line counts, and the start of the diff. Give the 12-character SHA from a "
+            "search_commits result; use it to check a candidate before naming it.",
+            {"sha": "string"},
+            ["sha"],
+        )
     if file_history:
         schemas["file_history"] = _schema(
             "file_history",
@@ -185,7 +223,26 @@ class ProductionTools(BoundTools):
         if entry is None or not entry.chunks.get(kind):
             raise LookupError(f"{kind} are not indexed for {self.repo}")
 
-    def _search(self, kind: str, query: str) -> list:
+    def _fused_search(self, query: str, question: str) -> list:
+        """`agent_commit_query == "fused"`: the model's query and the user's question are both
+        searched and the two rankings merged by weighted RRF, so a good model query is kept and
+        the details of a pasted bug report are not lost."""
+        shortlist = max(SEARCH_K, self.settings.agent_commit_k)
+        depth = max(self.settings.retrieval_k, shortlist)
+        if self.settings.reranker_mode == "on":
+            depth = min(depth, self.settings.rerank_candidate_depth)
+        asked_query = strip_question_framing(question)
+        hits = self._search("commits", query, k=depth)
+        asked = self._search("commits", asked_query, k=depth)
+        by_id = {h.chunk_id: h for h in asked} | {h.chunk_id: h for h in hits}
+        fused = weighted_rrf(
+            {"model": [h.chunk_id for h in hits], "question": [h.chunk_id for h in asked]},
+            {"question": self.settings.agent_commit_fuse_question_weight},
+            self.settings.rrf_k,
+        )
+        return [by_id[cid] for cid, _ in fused][:shortlist]
+
+    def _search(self, kind: str, query: str, *, k: int | None = None) -> list:
         """Commit search re-scores its fused top 50 on the model server when one is attached
         (`reranker_mode == "on"`); if the server fails, fall back to the fused order."""
         filters = (
@@ -193,16 +250,20 @@ class ProductionTools(BoundTools):
             if kind == "commits" and self.settings.agent_commit_fix_only
             else None
         )
-        k = max(SEARCH_K, self.settings.agent_commit_k) if kind == "commits" else SEARCH_K
+        limit = (
+            k
+            if k is not None
+            else (max(SEARCH_K, self.settings.agent_commit_k) if kind == "commits" else SEARCH_K)
+        )
         if kind == "commits" and self.settings.reranker_mode == "on":
             try:
                 return self.retriever.search(
-                    self.repo, query, kind=kind, k=k, filters=filters, rerank=True
+                    self.repo, query, kind=kind, k=limit, filters=filters, rerank=True
                 )
             except RuntimeError:
                 self.rerank_failures += 1
         return self.retriever.search(
-            self.repo, query, kind=kind, k=k, filters=filters, rerank=False
+            self.repo, query, kind=kind, k=limit, filters=filters, rerank=False
         )
 
     rerank_failures = 0
@@ -378,9 +439,15 @@ class ProductionTools(BoundTools):
             return self._with_pr_commits(super().execute(name, args))
         if name in RENAME_TOOLS and self.settings.agent_prompt_variant in HISTORY_TOOL_VARIANTS:
             return self._following(name, args)
-        if name not in (*ADDED_TOOLS, *HISTORY_TOOLS):
+        if name not in (*ADDED_TOOLS, *HISTORY_TOOLS, *COMMIT_TOOLS):
             return super().execute(name, args)
-        validate_arguments(args, production_schemas(file_history=True)[name]["parameters"])
+        # `_question` is added by the agent graph, never by the model; it is not a schema field.
+        question = args.get("_question") if name == "search_commits" else None
+        args = {k: v for k, v in args.items() if k != "_question"}
+        schemas = production_schemas(file_history=True, get_commit=True)
+        validate_arguments(args, schemas[name]["parameters"])
+        if name == "get_commit":
+            return self._get_commit(args["sha"])
         if name == "file_history":
             return self._file_history(**args)
         if name == "compare_refs":
@@ -396,19 +463,50 @@ class ProductionTools(BoundTools):
         kind = "docs" if name == "search_docs" else "commits"
         self._indexed(kind)
         self.retriever.forget_cached_indexes()
-        hits = self._search(kind, args["query"])
+        if (
+            kind == "commits"
+            and isinstance(question, str)
+            and question.strip()
+            and self.settings.agent_commit_query == "fused"
+        ):
+            hits = self._fused_search(args["query"], question)
+        else:
+            hits = self._search(kind, args["query"])
         if kind == "docs":
             return [
                 {"text": h.document.page_content, "metadata": h.document.metadata} for h in hits
             ]
         full = hits[:SEARCH_K]
-        rows = [commit_row(h.document) for h in full]
+        hide = self.settings.agent_commit_hide_summary
+        rows = [commit_row(h.document, hide_summary=hide) for h in full]
         if self.settings.agent_prompt_variant in HISTORY_TOOL_VARIANTS:
             for row, hit in zip(rows, full, strict=True):
                 row["first_release"] = self._first_release(str(hit.document.metadata["commit_sha"]))
         # A wider shortlist (agent_commit_k > 5): the rest are one-liners, so 15 to 20 candidates
         # cost about what 5 full ones do.
-        return rows + [commit_brief(h.document) for h in hits[SEARCH_K:]]
+        return rows + [commit_brief(h.document, hide_summary=hide) for h in hits[SEARCH_K:]]
+
+    def _get_commit(self, sha: str) -> dict[str, Any]:
+        """One commit as the model reads it before naming it: the whole message and file list, and
+        the diff cut to `agent_commit_read_chars`. Issue numbers are removed from the message, as
+        in search results, so the tool shows what search matched on."""
+        record = self.db.find_commit(self.repo, sha)
+        diff = "\n".join(f"--- {f.old_path}\n+++ {f.path}\n{f.patch}" for f in record.files)
+        limit = self.settings.agent_commit_read_chars
+        return redact(
+            {
+                "sha": record.sha[:12],
+                "date": record.author_date[:10],
+                "author": record.author_name[:COMMIT_AUTHOR_CHARS],
+                "message": strip_issue_references(record.message),
+                "files": [
+                    {"path": f.path, "added": f.additions, "removed": f.deletions}
+                    for f in record.files
+                ],
+                "diff": strip_issue_references(diff)[:limit],
+                "diff_truncated": len(diff) > limit,
+            }
+        )
 
     def _first_release(self, sha: str) -> str:
         """The earliest tag containing the commit, or "unreleased". A hit's release is what tells
@@ -421,26 +519,58 @@ class ProductionTools(BoundTools):
         return tags[0].tag if tags else "unreleased"
 
 
-def commit_brief(document: Any) -> dict[str, Any]:
+def without_summary(text: str) -> str:
+    """The commit text minus a model-written `Summary:` line (see `agent_commit_hide_summary`)."""
+    return "\n".join(line for line in text.split("\n") if not line.startswith("Summary: "))
+
+
+def _brief_subject(content: str) -> str:
+    lines = content.splitlines()
+    if not lines:
+        return ""
+    first = lines[0]
+    if not first.startswith(("Files: ", "Symbols: ", "--- ", "+++ ", "@@ ")):
+        return first[:COMMIT_BRIEF_SUBJECT]
+    changes = [
+        line.strip()
+        for line in lines
+        if line.startswith(("+", "-")) and not line.startswith(("+++ ", "--- "))
+    ]
+    if not changes:
+        return ""
+    return ("(no message) " + " | ".join(changes))[:COMMIT_BRIEF_SUBJECT]
+
+
+def commit_brief(document: Any, *, hide_summary: bool = False) -> dict[str, Any]:
     """A shortlist row: short SHA, the commit's subject, and the files and symbols it touches."""
     meta = document.metadata
-    lines = document.page_content.split("\n", 3)
-    symbols = next((x[len("Symbols: ") :] for x in lines[:3] if x.startswith("Symbols: ")), "")
+    content = without_summary(document.page_content) if hide_summary else document.page_content
+    symbols = str(meta.get("symbols") or "")
+    if not symbols:
+        symbols = next(
+            (
+                line[len("Symbols: ") :]
+                for line in content.splitlines()
+                if line.startswith("Symbols: ")
+            ),
+            "",
+        )
     return redact(
         {
             "sha": str(meta["commit_sha"])[:12],
             "date": str(meta.get("author_date", ""))[:10],
             "author": str(meta.get("author_name", ""))[:COMMIT_AUTHOR_CHARS],
-            "subject": lines[0][:COMMIT_BRIEF_SUBJECT],
+            "subject": _brief_subject(content),
             "files_changed": str(meta.get("files_changed", ""))[:COMMIT_BRIEF_FIELD],
             "symbols": symbols[:COMMIT_BRIEF_FIELD],
         }
     )
 
 
-def commit_row(document: Any) -> dict[str, Any]:
+def commit_row(document: Any, *, hide_summary: bool = False) -> dict[str, Any]:
     """A commit hit as the model sees it: short SHA, message and files, a bounded diff excerpt."""
     meta = document.metadata
+    content = without_summary(document.page_content) if hide_summary else document.page_content
     return redact(
         {
             "sha": str(meta["commit_sha"])[:12],
@@ -448,6 +578,6 @@ def commit_row(document: Any) -> dict[str, Any]:
             "date": str(meta.get("author_date", ""))[:10],
             "author": str(meta.get("author_name", ""))[:COMMIT_AUTHOR_CHARS],
             "files_changed": str(meta.get("files_changed", ""))[:300],
-            "text": document.page_content[:COMMIT_TEXT_CHARS],
+            "text": content[:COMMIT_TEXT_CHARS],
         }
     )

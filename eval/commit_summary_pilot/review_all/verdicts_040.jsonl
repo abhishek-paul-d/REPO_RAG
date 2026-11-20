@@ -1,0 +1,87 @@
+{"n": 3417, "sha": "b36863b2c0ad2477335ff8104382965cecd6f4e9", "verdict": "wrong", "reason": "The utils import includes quote_plus alone."}
+{"n": 3418, "sha": "b37878d3407995e41fd3c160fd04d5d0afda1130", "verdict": "filler", "reason": "The alias addition is shown, but the excerpt does not establish an exhaustive list of standard names for 425."}
+{"n": 3419, "sha": "b37b977d205d8619b057d3e017083e42498692be", "verdict": "cannot_tell", "reason": "The release notes name session dictionary merging, but the version-only core diff does not establish where the feature was implemented."}
+{"n": 3420, "sha": "b37fbf30a3d47aca184c0d4551832096fc7e7bb0", "verdict": "ok", "reason": ""}
+{"n": 3421, "sha": "b3b2b192127b02984e201176a3eda040d480ee8f", "verdict": "wrong", "reason": "The new expression still short-circuits before extracting params when data is truthy."}
+{"n": 3422, "sha": "b3c8bb7bef748fb42e636f8759d6cec3e8ae7bf6", "verdict": "ok", "reason": ""}
+{"n": 3423, "sha": "b3e2410f4430c1933caaee018c288332fdd1082b", "verdict": "filler", "reason": "The CSS changes the selector and its width rule, but the excerpt does not show improved responsiveness on smaller screens."}
+{"n": 3424, "sha": "b3fbc810d2b509d2c05e4cd024ae93d8ba4e5751", "verdict": "ok", "reason": ""}
+{"n": 3425, "sha": "b41bb9ecb2d8e633ea693f36776930098f0584e4", "verdict": "ok", "reason": ""}
+{"n": 3426, "sha": "b4354fc66f1ed3b39b1752c3d1a0ccf8066509bf", "verdict": "ok", "reason": ""}
+{"n": 3427, "sha": "b444f21b1f1474d5cad1353afd2e75813d1458bd", "verdict": "ok", "reason": ""}
+{"n": 3428, "sha": "b44d6fdf498a6bf93d681b5307c031fca3a44ba8", "verdict": "wrong", "reason": "The added tag has neither a source attribute nor a hyperlink wrapper."}
+{"n": 3429, "sha": "b45a1081d28c90ea38995ac43df34020f3fce1db", "verdict": "wrong", "reason": "The replacement address still uses HTTPS."}
+{"n": 3430, "sha": "b45b329861ed77c264df4271e38771eec6238e64", "verdict": "wrong", "reason": "The entry announces the interface in the changelog without adding it to Requests."}
+{"n": 3431, "sha": "b473440cc1038ae9e745141ea4084291c7f8ea6d", "verdict": "ok", "reason": ""}
+{"n": 3432, "sha": "b479a62ec2c0a3c64d4a67540263b82afd68f55d", "verdict": "wrong", "reason": "The only supplied change adds an import and shows no proxy removal."}
+{"n": 3433, "sha": "b47effe5d890edec7cb1b9ffc2bd9a2625246d60", "verdict": "ok", "reason": ""}
+{"n": 3434, "sha": "b49547f1352a86e19eb23305641e0c6abbb083e0", "verdict": "ok", "reason": ""}
+{"n": 3435, "sha": "b4a4f38ccecba498085d3d0bb38463aac3b79419", "verdict": "ok", "reason": ""}
+{"n": 3436, "sha": "b4a7906bca61f94a5b7a0e177b0d85b3ee11604f", "verdict": "ok", "reason": ""}
+{"n": 3437, "sha": "b4b4661f461a132c6815daa3719a3200553464a9", "verdict": "ok", "reason": ""}
+{"n": 3438, "sha": "b4bc76f8ebe688afea622860990ddef1e5ec628b", "verdict": "cannot_tell", "reason": "The old code references http_error_msg unconditionally, but the omitted surrounding code leaves its previous value or assignment on success unclear."}
+{"n": 3439, "sha": "b4ca6c95b60230ad604f8b89440fef18cfaa3a8c", "verdict": "ok", "reason": ""}
+{"n": 3440, "sha": "b4d843bad22ecbe8366cd1dcc5536e7070ef0b81", "verdict": "ok", "reason": ""}
+{"n": 3441, "sha": "b4eac4c993219626ed96fcc0d5191c2cac6c8c0d", "verdict": "ok", "reason": ""}
+{"n": 3442, "sha": "b4eb8663afce7d6c5e06df8625c5307a6126ecb5", "verdict": "filler", "reason": "The fallback change is supported but the excerpt does not establish consistent certificate verification across environments."}
+{"n": 3443, "sha": "b51640b051e7732ed3fcdbccc5f0250392f4d740", "verdict": "ok", "reason": ""}
+{"n": 3444, "sha": "b5212ddc3dcde30e3d0e3daefcc49e2dd76049ff", "verdict": "filler", "reason": "The deletions are shown, but the excerpt does not establish that request handling is unaffected by removing these helpers."}
+{"n": 3445, "sha": "b53975327f624c3cbc0e0db86d52a4ad0288aea8", "verdict": "wrong", "reason": "The author explicitly chose a documentation update instead of imposing a scheme requirement."}
+{"n": 3446, "sha": "b565b79858a88652b1119674f7145c1357fcbb99", "verdict": "wrong", "reason": "The boxed flag runs tests in isolated subprocesses. It is not a memory boxing option."}
+{"n": 3447, "sha": "b5704a63ca335fa5d513083909fb8cc4aab23a91", "verdict": "filler", "reason": "The version and release-branch change are supported by the message, but it does not substantiate the claimed latest HTTP connection fixes and features."}
+{"n": 3448, "sha": "b58318163cadbe1f0738690eb779afcec786757e", "verdict": "ok", "reason": ""}
+{"n": 3449, "sha": "b58433fb74d040e7828a3a047a5ca25dba5751ab", "verdict": "ok", "reason": ""}
+{"n": 3450, "sha": "b5b8198fd1e872471f4523e0b450dfee33072242", "verdict": "ok", "reason": ""}
+{"n": 3451, "sha": "b5bd0f14cc6fe12a712d21d7881aab59d0dd9951", "verdict": "ok", "reason": ""}
+{"n": 3452, "sha": "b5c136152f4184387017ce570d2a499f21b6de14", "verdict": "ok", "reason": ""}
+{"n": 3453, "sha": "b5c2806e8c656332ad3664f14a3364d192214d81", "verdict": "ok", "reason": ""}
+{"n": 3454, "sha": "b5ca0c8d5826de2ec1da896f631b2bdc972e3a0d", "verdict": "ok", "reason": ""}
+{"n": 3455, "sha": "b5ce5029ea04b7e16fc96ec121cac2a35f077c97", "verdict": "ok", "reason": ""}
+{"n": 3456, "sha": "b5d2160ef8e5eb0b163a69e33f5deb31ecfabd32", "verdict": "filler", "reason": "The change preserves repr formatting for the invalid URL, so the suggestion that it fixes quoting is unsupported."}
+{"n": 3457, "sha": "b5eacad6381a0cd6d7140ece33f76d814fe172e9", "verdict": "wrong", "reason": "The replacement still describes future sponsor listings and does not revise the terms for existing sponsors."}
+{"n": 3458, "sha": "b5fac316885767b6c00c6b1199de5c8695513fdf", "verdict": "ok", "reason": ""}
+{"n": 3459, "sha": "b6127ca9ca7adf7f5a55c4fe6602afa5744707d0", "verdict": "ok", "reason": ""}
+{"n": 3460, "sha": "b639e66c816514e40604d46f0088fbceec1a5149", "verdict": "filler", "reason": "The matrix adds 3.12-dev, but the excerpt does not establish latest-version status or successful test execution."}
+{"n": 3461, "sha": "b639f17705ea593e73192b230d2c3945d2b7264b", "verdict": "filler", "reason": "The wording changes, but the excerpt supplies no design intent to substantiate the claimed improvement."}
+{"n": 3462, "sha": "b66427eab95298a4a42d0801873b3d3e5d6c3b0f", "verdict": "ok", "reason": ""}
+{"n": 3463, "sha": "b66871e87174f3ff7801e6935c9fc761db975855", "verdict": "ok", "reason": ""}
+{"n": 3464, "sha": "b670b61d544914092504227fb863751f8116e71d", "verdict": "ok", "reason": ""}
+{"n": 3465, "sha": "b675377dc2a0b5552877dce523d375fc4cb17b76", "verdict": "ok", "reason": ""}
+{"n": 3466, "sha": "b676bf3214fa917f20542b9d3d31577b47a73cc1", "verdict": "ok", "reason": ""}
+{"n": 3467, "sha": "b684dcb9bbf3aa557d1238e72062c4a29737dd1c", "verdict": "cannot_tell", "reason": "The annotation change is visible, but the supplied excerpt omits the definition of HooksInputType and does not establish its concrete accepted types."}
+{"n": 3468, "sha": "b69854e96e0486be287431896a6ae61f36150661", "verdict": "filler", "reason": "The direct import changes only the Python 3 branch, and correct behavior across versions is unverified."}
+{"n": 3469, "sha": "b6b90f4d9bd447c8ae41cd31d75547fdafc25159", "verdict": "filler", "reason": "The link text changes, but the excerpt supplies no basis for calling it the sponsor’s correct official name."}
+{"n": 3470, "sha": "b6d51d9f2b6156c339223790edc7a9dfbfca8631", "verdict": "ok", "reason": ""}
+{"n": 3471, "sha": "b6d6894f539f3568597901be354a54da7606062b", "verdict": "ok", "reason": ""}
+{"n": 3472, "sha": "b6e16799d0225af6a389eb040d940c9f97de63d2", "verdict": "wrong", "reason": "The new test issues a GET without selecting a backend or asserting how the redirect was handled."}
+{"n": 3473, "sha": "b6f6048cff7189afee6a4fb89f9f0cdca0095b66", "verdict": "filler", "reason": "The loop calls encode on every incoming value, but the excerpt identifies no specific encoding failure that it prevents."}
+{"n": 3474, "sha": "b70136cf52e8dfd5a950fecfe2aee820dc7926ef", "verdict": "ok", "reason": ""}
+{"n": 3475, "sha": "b725bfd3fb3e6bec9e15009985b8d30bdee66f51", "verdict": "wrong", "reason": "Encoding detection requires chardet to be installed, and guessing does not guarantee that decoded text is correct."}
+{"n": 3476, "sha": "b72e1d19aff997d00ef617a3aa0eea8ccdcc3984", "verdict": "wrong", "reason": "The draft does not implement working method validation."}
+{"n": 3477, "sha": "b72eb53a7303c290b1c18c40f1f918a7ec17c58d", "verdict": "ok", "reason": ""}
+{"n": 3478, "sha": "b7307298d28a30ed893d095338a36f7f62a7f1b9", "verdict": "ok", "reason": ""}
+{"n": 3479, "sha": "b73426aacac83197575775c3a6f2c5fcd45f2abc", "verdict": "wrong", "reason": "Google is still in the updated list."}
+{"n": 3480, "sha": "b738c97ec38c672a61ad91fe17405f18a4b80fbe", "verdict": "ok", "reason": ""}
+{"n": 3481, "sha": "b76326bf94382c9b44062435fd985d68b2e60edb", "verdict": "wrong", "reason": "The stated compatibility requirement is the new type attribute itself."}
+{"n": 3482, "sha": "b77c1a3debbca5f7317773a2a7a75540ad4c45cf", "verdict": "ok", "reason": ""}
+{"n": 3483, "sha": "b7809acb473cf084b467b0ec0a524c50bcbe225f", "verdict": "ok", "reason": ""}
+{"n": 3484, "sha": "b781acc7ab34d1ace2200e52e434ad1b54e54eb6", "verdict": "wrong", "reason": "The assertion accepts a present key with value None as well as an absent key."}
+{"n": 3485, "sha": "b782e6646219fffa5f1c82e5d1c53f7671d757a5", "verdict": "ok", "reason": ""}
+{"n": 3486, "sha": "b7842ab34b6cfae91b62eb1c251b0a460c3d62df", "verdict": "ok", "reason": ""}
+{"n": 3487, "sha": "b7970c2a463041d3dd7efa2d205f3bd08cb7aba7", "verdict": "filler", "reason": "The copyright string is reworded without evidence that the former wording was incorrect."}
+{"n": 3488, "sha": "b79dea97fd0d24bc1dbe52366565361c08675512", "verdict": "filler", "reason": "The release notes list three fixes without characterizing them as critical."}
+{"n": 3489, "sha": "b7b549b54571d03950b16afd2d01bc6ff0348224", "verdict": "wrong", "reason": "The release notes report a type annotation change and do not guarantee every runtime reason is a string."}
+{"n": 3490, "sha": "b7bd29734022e634634d908e10bbf7a5ac15e76b", "verdict": "wrong", "reason": "The commit does not upgrade the urllib3 dependency itself."}
+{"n": 3491, "sha": "b7c6aba848b10933f327fcce41970c29dc59051b", "verdict": "ok", "reason": ""}
+{"n": 3492, "sha": "b7c788cc56b6f2f1113555074fad848afa9caf0f", "verdict": "filler", "reason": "The helper names lose leading underscores, but the excerpt does not establish that the change makes them a supported public API."}
+{"n": 3493, "sha": "b7d0925d6b2c37e8ebe5ac4cdfffce08ffae7dde", "verdict": "ok", "reason": ""}
+{"n": 3494, "sha": "b7e33707627ed41531008a5a0d483437c3beed28", "verdict": "wrong", "reason": "The change is to the promised content of the first reply, and the response-time wording is unchanged."}
+{"n": 3495, "sha": "b7fc3a1250cb13ed3b55010ccc33f2681f0ffa4a", "verdict": "ok", "reason": ""}
+{"n": 3496, "sha": "b8049ba2012fe251c7351de6c2c4ad3b274df1f1", "verdict": "ok", "reason": ""}
+{"n": 3497, "sha": "b806ce15ba5d726f94f58aa247fe40b6e2972fb7", "verdict": "ok", "reason": ""}
+{"n": 3498, "sha": "b80ed77cddc2cb9d75c9e6d4f14b1eed9e5fb227", "verdict": "ok", "reason": ""}
+{"n": 3499, "sha": "b80f8aa47502d43a5e8d2654558e1e2db53a0ac2", "verdict": "wrong", "reason": "The revised docstring describes raising a stored error and gives no status-code condition."}
+{"n": 3500, "sha": "b825bbd4a21d7d6e2a0ce17527b25139b26808a2", "verdict": "ok", "reason": ""}
+{"n": 3501, "sha": "b8298b071032e90dd9de3af0a96cbb9ec9cb2e13", "verdict": "ok", "reason": ""}
+{"n": 3502, "sha": "b82e72eb04156f269aa393b1805e7d9de48f6b62", "verdict": "ok", "reason": ""}
+{"n": 3503, "sha": "b83131779c701720a9ae9efae78996277d416269", "verdict": "ok", "reason": ""}

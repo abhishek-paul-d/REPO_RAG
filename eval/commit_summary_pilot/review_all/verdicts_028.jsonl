@@ -1,0 +1,76 @@
+{"n": 2361, "sha": "79f5d532c6a9ffcbb32b8cfcae8ec542c2699ff1", "verdict": "ok", "reason": ""}
+{"n": 2362, "sha": "7a0cd16c1a5be16f3df395ee12ed11d0ddde7837", "verdict": "wrong", "reason": "The new condition explicitly selects the JSON path when data is an empty dictionary and json is present."}
+{"n": 2363, "sha": "7a0f3638b5fc8e196cfeebc4e506ea627d992483", "verdict": "ok", "reason": ""}
+{"n": 2364, "sha": "7a1a40e4455c3ee07bc0860b5e11a43ee2ec7c6e", "verdict": "wrong", "reason": "The deleted print lines were comments, and the runtime code shown is unchanged."}
+{"n": 2365, "sha": "7a281e74ecdd74f74efcd813165ec654b2e684f4", "verdict": "ok", "reason": ""}
+{"n": 2366, "sha": "7a404cf4ec5aac04d72dc507a981fee944b18cd8", "verdict": "ok", "reason": ""}
+{"n": 2367, "sha": "7a51337ce0c939a2b9232c86e434c4478dbd1949", "verdict": "ok", "reason": ""}
+{"n": 2368, "sha": "7a62b10ff2fb5091d77aaf63d1ab091713ead332", "verdict": "ok", "reason": ""}
+{"n": 2369, "sha": "7a9419ce356d0be0383ec83b14e66658ea7f96be", "verdict": "ok", "reason": ""}
+{"n": 2370, "sha": "7aa6c62d6d917e11f81b166d1d6c9e60340783ac", "verdict": "filler", "reason": "The bundled libraries are updated, but the excerpt does not establish that both revisions are the latest."}
+{"n": 2371, "sha": "7abfd92aeaeba82e1c527460b539667844fbb557", "verdict": "ok", "reason": ""}
+{"n": 2372, "sha": "7ad08c5edaf68330cb9753634f4b80dfca00f686", "verdict": "ok", "reason": ""}
+{"n": 2373, "sha": "7adb8686ac011d2172a47d2e777ee1d9b5b9907b", "verdict": "wrong", "reason": "The configured action locks threads, and no step closes an open issue or pull request."}
+{"n": 2374, "sha": "7ae662dec9104a98b13d5454e1a362eec2d7450c", "verdict": "wrong", "reason": "Reddit is named as a user of Requests and is not the module under documentation."}
+{"n": 2375, "sha": "7b190acf82e41f8203143ad08eb8c76aaffc2f14", "verdict": "wrong", "reason": "The pytest requirement is a minimum version, while only pytest-httpbin receives an exact pin."}
+{"n": 2376, "sha": "7b1b9df423ec08a2126c8e8650f7dc26a28cbaec", "verdict": "ok", "reason": ""}
+{"n": 2377, "sha": "7b378cb74266ccea308a83c5b0f7129cb4962567", "verdict": "filler", "reason": "The test covers decoded chunks for buffered and streaming responses, but the test addition itself does not prevent encoding errors."}
+{"n": 2378, "sha": "7b658388260a8ad24542795670e19c2cdd8767fc", "verdict": "wrong", "reason": "The added display placeholders show request objects and do not show response data."}
+{"n": 2379, "sha": "7b68c124d549853a1045cbeb5a16461799279780", "verdict": "ok", "reason": ""}
+{"n": 2380, "sha": "7b6ed48a86bc8bb4619445b5da859b7d603cd558", "verdict": "ok", "reason": ""}
+{"n": 2381, "sha": "7b79cea7384a2dd3df90ac748bac3c4a89ebce24", "verdict": "wrong", "reason": "The new base is taken from the response object rather than directly from the parent Request's URL attribute."}
+{"n": 2382, "sha": "7b819852b93300beaa38a3ec264e742889d55193", "verdict": "wrong", "reason": "The change checks the type of the body and treats a missing Content-Type separately from a present non-form type. No omitted signature generation is shown."}
+{"n": 2383, "sha": "7ba130a0cb66c94eae2604a4a59d55d4be9f2713", "verdict": "ok", "reason": ""}
+{"n": 2384, "sha": "7ba5a534ae9fc24e40b3ae6c480c9075d684727e", "verdict": "ok", "reason": ""}
+{"n": 2385, "sha": "7bc45877a86192af77645e156eb3744f95b47dae", "verdict": "cannot_tell", "reason": "The title and shown setup identify a regression test for cross-domain credential handling, but the excerpt cuts off before the request and its assertions."}
+{"n": 2386, "sha": "7bd47777a941237036ba8e15a2aaf2e93cc8e467", "verdict": "ok", "reason": ""}
+{"n": 2387, "sha": "7bdf37bc272da9ef92a8cf4d58ac886f4c6b2da1", "verdict": "wrong", "reason": "The corrected numeric mapping is 226, which belongs to the 2xx success class."}
+{"n": 2388, "sha": "7bf67b4101324a729d640818803582fb892520d4", "verdict": "filler", "reason": "The vendor update and connection changes are shown, but the excerpt does not establish compatibility or stability outcomes."}
+{"n": 2389, "sha": "7c206c74ba270bdfa2e748c33e4c6c89deea517b", "verdict": "wrong", "reason": "The new Timeout mapping is conditional and covers two underlying exception classes, rather than testing whether the time limit was exceeded."}
+{"n": 2390, "sha": "7c2306baec8da79f0e4b879127b77a7b37760bbc", "verdict": "ok", "reason": ""}
+{"n": 2391, "sha": "7c23fa364f5db898f6bdfbe7d568b0ce10e3f905", "verdict": "ok", "reason": ""}
+{"n": 2392, "sha": "7c2618eb828bcdb57d2f62b424b11bb3664eb760", "verdict": "filler", "reason": "The import move and E402 ignore rule are visible, but the excerpt does not establish that the codebase passes static analysis."}
+{"n": 2393, "sha": "7c271a466fe557f7c883f6105728f73f29cdb293", "verdict": "ok", "reason": ""}
+{"n": 2394, "sha": "7c3861a3226e69ba962f3f38c61e42a2eaf1dfcf", "verdict": "wrong", "reason": "The hunk removes two blank lines, rather than one."}
+{"n": 2395, "sha": "7c4821231fcd8af8ef1cd835713933ef3ae58032", "verdict": "ok", "reason": ""}
+{"n": 2396, "sha": "7c5151e8e71551f566edd10df943eb322a4a1dbc", "verdict": "wrong", "reason": "Python bytecode was already ignored, and the new bytecode entry only moves it later in the file."}
+{"n": 2397, "sha": "7c520ece69ade644d2e0c7a52e06ebaef8c5260f", "verdict": "ok", "reason": ""}
+{"n": 2398, "sha": "7c55446b7ec0978d38fceda5ad4bc45e5b26f1f1", "verdict": "ok", "reason": ""}
+{"n": 2399, "sha": "7c5d703466332b7d4db98843ef36c5f79f7a7ff9", "verdict": "ok", "reason": ""}
+{"n": 2400, "sha": "7c66e6f267016b84f9cbf55ebf10ee0219ea5562", "verdict": "wrong", "reason": "The proxy settings are passed to the follow-up request for the redirect, rather than a response constructor."}
+{"n": 2401, "sha": "7c67c4adf9020fe6e279f1633ca477ef2b89ae44", "verdict": "ok", "reason": ""}
+{"n": 2402, "sha": "7c71cb9643d2c6abafe37e12d03ad4b0c9027e1d", "verdict": "ok", "reason": ""}
+{"n": 2403, "sha": "7c80222afa17e3c02a41eb465f886699dfd56687", "verdict": "ok", "reason": ""}
+{"n": 2404, "sha": "7c91e27d0142c177add6a1f726712f58914d4f52", "verdict": "ok", "reason": ""}
+{"n": 2405, "sha": "7c958ee28e54be838785b9f4388045005a7f1ffb", "verdict": "ok", "reason": ""}
+{"n": 2406, "sha": "7ca0e86a6752a5a763e5e82d94f34a522a976708", "verdict": "ok", "reason": ""}
+{"n": 2407, "sha": "7cad64ac5a5e4cdf446f7fe7370ce27be5003122", "verdict": "filler", "reason": "The package key spellings and lockfile edits are visible, but the excerpt does not establish that only the new spellings are recognized correctly."}
+{"n": 2408, "sha": "7cc2d468c7e4620a32c829e2ff0117b3395cf6ab", "verdict": "cannot_tell", "reason": "The vendor version and queue import are shown, but the excerpt cuts off before exceptions.py, so the claim that both exception classes are new cannot be checked."}
+{"n": 2409, "sha": "7cc3d8dc6a24975617e388e674d93251c74749f1", "verdict": "ok", "reason": ""}
+{"n": 2410, "sha": "7cc898f9ed529ab585af6254b4872f80f9fc920b", "verdict": "filler", "reason": "The badge now reports master, but the excerpt does not establish that master is the project's default branch or that the badge renders correctly."}
+{"n": 2411, "sha": "7ce305fa8927f22501b061261c0ce57775ed9006", "verdict": "ok", "reason": ""}
+{"n": 2412, "sha": "7cefa939f5a0b25d8792a949b7ae708412d62681", "verdict": "wrong", "reason": "The metadata allows pip to select a compatible release, and does not guarantee an error for every interpreter excluded by this version."}
+{"n": 2413, "sha": "7cf6ca80a65d56d551101e74bcdc3d03e2df7736", "verdict": "ok", "reason": ""}
+{"n": 2414, "sha": "7d0374df2f478b0a93af2d8ca317f38b556ba486", "verdict": "wrong", "reason": "The timeout already existed at module scope and is relocated within the same module."}
+{"n": 2415, "sha": "7d085b188cbf71d2ba9a3124d7acfc57c75fe954", "verdict": "wrong", "reason": "The message describes a POST/302 regression test, while the 303-specific edit preserves the HEAD exception."}
+{"n": 2416, "sha": "7d190ef0108f8466e0a6b7db41b01cae944313cf", "verdict": "ok", "reason": ""}
+{"n": 2417, "sha": "7d217bf9bd0689318baff96bf0d11f5f3ddc15e1", "verdict": "ok", "reason": ""}
+{"n": 2418, "sha": "7d57e8ec55a95fdd818fb089533fbab8cc207989", "verdict": "filler", "reason": "The badge URLs now point to psf/requests, but the excerpt does not establish that the old badge was broken or the new one displays successfully."}
+{"n": 2419, "sha": "7d7d9ebacfb99ef1edb5412505a2402affedd848", "verdict": "ok", "reason": ""}
+{"n": 2420, "sha": "7d8b87c37f3a5fb993fd83eda6888ac217cd108e", "verdict": "cannot_tell", "reason": "The CA bundle IOError replacement is visible and the title mentions certificate files, but the hunk cuts off before the old and new client certificate-path behavior can be compared."}
+{"n": 2421, "sha": "7d8df1df573a01f20a80994685e9f6c375f9c63f", "verdict": "filler", "reason": "The action version is shown, but the excerpt does not establish that 1.13.0 was the latest stable release."}
+{"n": 2422, "sha": "7d91d3fb5c8c826f4972db36c27384fc0e6550b9", "verdict": "ok", "reason": ""}
+{"n": 2423, "sha": "7da16c584ae6ab9c87d4aeea857278ee886760f0", "verdict": "ok", "reason": ""}
+{"n": 2424, "sha": "7dc13e5cabaa857605c44f959846fdff77a88de8", "verdict": "wrong", "reason": "The example reads an individual relation entry, while the summary attributes its previous and current return shape to the links container itself."}
+{"n": 2425, "sha": "7dc75ce3ce6c897edb3fd34d659615119818a078", "verdict": "ok", "reason": ""}
+{"n": 2426, "sha": "7dd37d5ea91cd26c869a39b5a200136305c6f3bb", "verdict": "ok", "reason": ""}
+{"n": 2427, "sha": "7dd94941c84d28c329db1d7739ea32f8d41a131e", "verdict": "filler", "reason": "The three project aliases are explicit, but the excerpt does not establish that the short aliases are standards-defined."}
+{"n": 2428, "sha": "7de1495bf5df610887cb4bdd4cf8ac2c92bb9ff7", "verdict": "ok", "reason": ""}
+{"n": 2429, "sha": "7de5726a812c5ae2cb8204e2974b62ca2750c9d0", "verdict": "ok", "reason": ""}
+{"n": 2430, "sha": "7de6b1e1626b72ae473def49ccc1764d11323167", "verdict": "ok", "reason": ""}
+{"n": 2431, "sha": "7deee699ada6e5ec0d41c7561d9b5fa4cd80e535", "verdict": "ok", "reason": ""}
+{"n": 2432, "sha": "7e138f945ed6ec0179cf0619e0a3ad3f22db3c55", "verdict": "filler", "reason": "The import statement is added, but nothing in the excerpt verifies that the whole demo can be copied and run without errors."}
+{"n": 2433, "sha": "7e20b9193a59fe4925fbb93deddc3102355ac22f", "verdict": "wrong", "reason": "The replaced markup is single underscores, which were not a bold marker. The new markup uses single asterisks."}
+{"n": 2434, "sha": "7e20f32b02f3ee50408118bef3ea269e7769be80", "verdict": "ok", "reason": ""}
+{"n": 2435, "sha": "7e255177dc206ec22118ef98b3b857c598073bd9", "verdict": "ok", "reason": ""}
+{"n": 2436, "sha": "7e297ed95bdbd1018657f5d6000379ecdfa54423", "verdict": "ok", "reason": ""}

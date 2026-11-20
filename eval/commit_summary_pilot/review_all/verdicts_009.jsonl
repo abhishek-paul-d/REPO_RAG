@@ -1,0 +1,87 @@
+{"n": 696, "sha": "2621fe2bff136f62a158100010649c4f15f40154", "verdict": "ok", "reason": ""}
+{"n": 697, "sha": "264f5bd5e1a74b44fadc6a29cdaeb6e5e1b77936", "verdict": "ok", "reason": ""}
+{"n": 698, "sha": "265ef609d5903151374fba480aa81aafe68126ff", "verdict": "ok", "reason": ""}
+{"n": 699, "sha": "26664fa57853e97717b0a72244d35eeadaac48d9", "verdict": "ok", "reason": ""}
+{"n": 700, "sha": "2667c772b905aaba37dfefc33835ef769286776c", "verdict": "filler", "reason": "The manifest packages Python test files, but it does not establish that a downloaded source package alone can run the suite."}
+{"n": 701, "sha": "2669ab797ce769ecedf5493b04cb976f33e37210", "verdict": "ok", "reason": ""}
+{"n": 702, "sha": "2669f0c0b1e98c9ea36d2614d48b07ad150ea276", "verdict": "ok", "reason": ""}
+{"n": 703, "sha": "266d17c4def3edd1d02cd7ee1f8987dc429c10c1", "verdict": "filler", "reason": "The edit changes the approximation wording without establishing which description is more accurate."}
+{"n": 704, "sha": "267a852ba61041f96ac719a4914337f0b49c2f16", "verdict": "ok", "reason": ""}
+{"n": 705, "sha": "267ec2f9c32d16c17eb979cab1eb9b9feb8b5217", "verdict": "ok", "reason": ""}
+{"n": 706, "sha": "268672ab3334a1f57f5c4e972585857b49ce1da4", "verdict": "ok", "reason": ""}
+{"n": 707, "sha": "26ab951300d192ed3ab62fdb1f0548c961731e6a", "verdict": "ok", "reason": ""}
+{"n": 708, "sha": "26b104ecb92f31dbf2eb4029c1f7fb98c33ebdaa", "verdict": "ok", "reason": ""}
+{"n": 709, "sha": "26bea1e498d6e234fbc9ce8e07c0389bac73810b", "verdict": "ok", "reason": ""}
+{"n": 710, "sha": "26ed7c2e1dce4271f3a3b111a167a6dcca3acddf", "verdict": "ok", "reason": ""}
+{"n": 711, "sha": "270898e5215f121cbeecedae0bd6c07537692fef", "verdict": "ok", "reason": ""}
+{"n": 712, "sha": "2745db131a667a3d5457957cb3ed6adeb9b9949a", "verdict": "ok", "reason": ""}
+{"n": 713, "sha": "2758124a13cddff7244b97b5ffe3fddabb90bc18", "verdict": "filler", "reason": "The disclosure removes an image, but nothing identifies it as outdated."}
+{"n": 714, "sha": "2758b8b0f029abb9166eb1f124dcabe1bd35e949", "verdict": "ok", "reason": ""}
+{"n": 715, "sha": "27590605596a4c3e282181343102dbbd91dadadc", "verdict": "wrong", "reason": "Both named test cases are already present on the old side of the diff."}
+{"n": 716, "sha": "276024b170a249c0d8b551697db552cd0905b542", "verdict": "ok", "reason": ""}
+{"n": 717, "sha": "276202f51ee9967969eafc1880c4785c80d63d3b", "verdict": "ok", "reason": ""}
+{"n": 718, "sha": "2772413f3d7b0ac046257c6c67c684dda2f0903f", "verdict": "ok", "reason": ""}
+{"n": 719, "sha": "277d4a41ad000250bdb42322c8c238d2ff9a0df8", "verdict": "ok", "reason": ""}
+{"n": 720, "sha": "27812eb90248c021d7277a8823dd9c7885f497af", "verdict": "filler", "reason": "The source establishes the switch to IDNA2008 but provides no comparison showing stricter compliance."}
+{"n": 721, "sha": "27b6bfc2134454c7296513d85a40d38a839cdd55", "verdict": "ok", "reason": ""}
+{"n": 722, "sha": "27c83f71770a2a64d56b7d53f9cc67f53cf70ccd", "verdict": "wrong", "reason": "The hunk changes the cache condition, and the supplied text never identifies an infinite loop as the symptom."}
+{"n": 723, "sha": "27dd96cf3db0feb03afa325724d9c3aeb9d995ef", "verdict": "ok", "reason": ""}
+{"n": 724, "sha": "27e0981962d355b9532256f4dcb3d42f64b04d9c", "verdict": "ok", "reason": ""}
+{"n": 725, "sha": "27e814ad7682c2bd7ae8af503a9dcca7840cde64", "verdict": "ok", "reason": ""}
+{"n": 726, "sha": "27eb54a20a6f21cfe7138d4a26a8f41f5b2ced4b", "verdict": "ok", "reason": ""}
+{"n": 727, "sha": "27ee6e0f4550f5b76adb9fbc60db94436c3e0a2f", "verdict": "ok", "reason": ""}
+{"n": 728, "sha": "27f5a15364f921fc314eadf3b0370dbfc02c3190", "verdict": "filler", "reason": "The direct link is evident, but improved contributor visibility is an inferred benefit."}
+{"n": 729, "sha": "27f8b40d5cc6198148a58a8e65c8cff8f7c46a54", "verdict": "filler", "reason": "The workflow pins 7.0.0 without evidence about the latest upload functionality."}
+{"n": 730, "sha": "280c8b2a722568076c43d3fe9aac63d4183a984b", "verdict": "ok", "reason": ""}
+{"n": 731, "sha": "2814664e91d9a7516f0f5f156fb482b9109a8b5b", "verdict": "ok", "reason": ""}
+{"n": 732, "sha": "281aa5ebc49520374707035343b74a5263ede5bf", "verdict": "filler", "reason": "The added name is grounded, but a single addition does not establish the accuracy of the contributor list."}
+{"n": 733, "sha": "281ab5a8f9403135ffd05ff40f177529decd749e", "verdict": "ok", "reason": ""}
+{"n": 734, "sha": "28208392cd8a35e01761fb4f331a40d2e8a39ad4", "verdict": "filler", "reason": "The lockfile reversion is visible, but the reason about installation or compatibility is speculative."}
+{"n": 735, "sha": "2824867412bd0f510e7a71c61a7ec735907398e3", "verdict": "wrong", "reason": "The only changed file is the release history, and the summary presents the documented change as an implementation in this commit."}
+{"n": 736, "sha": "282b01a7c9feae30feccbd54e33afcc06197df62", "verdict": "ok", "reason": ""}
+{"n": 737, "sha": "283491f8b6a4204427f91a3327cbe6840f73e253", "verdict": "ok", "reason": ""}
+{"n": 738, "sha": "284deaa60931f9a5b1d5199d8fd25895dbb62e1b", "verdict": "ok", "reason": ""}
+{"n": 739, "sha": "28666e5d3ae04fede9a9078aba937b0ce6380adc", "verdict": "ok", "reason": ""}
+{"n": 740, "sha": "286ddb672d3ff39b1807402a7d9ca569a86516d6", "verdict": "ok", "reason": ""}
+{"n": 741, "sha": "28768b945c9caaf021e95c3bd82ffc8ea15d1fde", "verdict": "ok", "reason": ""}
+{"n": 742, "sha": "28855fd43a68bf26fec23aa9b548239e13255edf", "verdict": "ok", "reason": ""}
+{"n": 743, "sha": "28a9534383ed57c799a58ba57e53e0988ac385aa", "verdict": "ok", "reason": ""}
+{"n": 744, "sha": "28ae74dbada502b4d1091dca68a6899a7d2d159d", "verdict": "ok", "reason": ""}
+{"n": 745, "sha": "28b706da83fed39a04c05c84b032fbdf35a542e2", "verdict": "ok", "reason": ""}
+{"n": 746, "sha": "28da72b61692c6c2ce11b4a41ce4d2984d190745", "verdict": "ok", "reason": ""}
+{"n": 747, "sha": "28db6c3f53ce6d5c6e3fc51ab37cdc6a518ad2cb", "verdict": "ok", "reason": ""}
+{"n": 748, "sha": "28ee9788a071ac1314ed920ab5cb4af74ceee307", "verdict": "ok", "reason": ""}
+{"n": 749, "sha": "291859c199c481bf1e304e39613ca90b6f55f9f8", "verdict": "ok", "reason": ""}
+{"n": 750, "sha": "291b6b24b7a4645dc7b8b9ee8919c62c65b85fef", "verdict": "filler", "reason": "The message establishes the certificate mismatch but does not say the old domain was outdated."}
+{"n": 751, "sha": "291bc9ea079bb554d57802e79d792e8a21d5dff5", "verdict": "filler", "reason": "The replacement URL is explicit, but the descriptions of the old link as outdated and the new link as current are not established."}
+{"n": 752, "sha": "291d4742d63e523eb4353758039d145f2c1e2dfc", "verdict": "ok", "reason": ""}
+{"n": 753, "sha": "29271a4100b24008719cde605a4b641745dd4678", "verdict": "filler", "reason": "The added branch yields and clears a newline-terminated buffer, but the previous data loss or incomplete output is speculative."}
+{"n": 754, "sha": "29309201b66c19445719600297edbac74c1a4264", "verdict": "filler", "reason": "The excerpt shows the helper and blank lines being removed, but it does not show that the helper had no callers."}
+{"n": 755, "sha": "2936a77678efb0bcc974ac5f85c8d31917b1157e", "verdict": "ok", "reason": ""}
+{"n": 756, "sha": "29548bfab65be51d7a7589cd702adc6eb0961588", "verdict": "ok", "reason": ""}
+{"n": 757, "sha": "2962c236c90f28eb150a01cf1bffd65ce1068384", "verdict": "ok", "reason": ""}
+{"n": 758, "sha": "296928f36f9e6a1041769ebe3d15f322bff51206", "verdict": "ok", "reason": ""}
+{"n": 759, "sha": "296c21576245a1905943a021a56f6c57b0729473", "verdict": "ok", "reason": ""}
+{"n": 760, "sha": "296d8cc097b694ec8a9c4d8d7c00abed4755e5d5", "verdict": "filler", "reason": "The encoding comes from response headers, which does not guarantee that it is the correct encoding for the body."}
+{"n": 761, "sha": "297aa04beaee5e80845841f257723fc472fd6fd7", "verdict": "wrong", "reason": "The only edit inside RequestEncodingMixin is a blank line."}
+{"n": 762, "sha": "2981366f56d1e5b8d6cd26ca5b33d52fc55515c9", "verdict": "wrong", "reason": "The added return type is a Sphinx docstring field, with no Python method annotation."}
+{"n": 763, "sha": "2999c71e468a589595c4dfd01f8167f544dbe111", "verdict": "wrong", "reason": "The diff only forces prefetch on and provides no background execution mechanism."}
+{"n": 764, "sha": "29aa21a2fdd1421388c26a44ad32e55854470cf6", "verdict": "ok", "reason": ""}
+{"n": 765, "sha": "29aa7736ca24bb714996b8fe6c701ded7bae52e9", "verdict": "wrong", "reason": "The old code already accessed a property, and the excerpt does not support a failure of key existence checks or existing-key lookups."}
+{"n": 766, "sha": "29b191b5ea66f7d8e4f9a5db2cc6e0aec9c0d884", "verdict": "ok", "reason": ""}
+{"n": 767, "sha": "29db7b72161ee8423ce780e421a8913bb3073dfc", "verdict": "ok", "reason": ""}
+{"n": 768, "sha": "29ef1081583115c8bb2c8a592b883dc7c835240c", "verdict": "ok", "reason": ""}
+{"n": 769, "sha": "29f7a5bcfa0c4b95df66218c78ac8d219af48563", "verdict": "ok", "reason": ""}
+{"n": 770, "sha": "29fc8d1e9346a29b91513547d626e23f4c36e557", "verdict": "filler", "reason": "The versions and workflow jobs are visible, but the source does not establish that 4.0.0 is the latest major release."}
+{"n": 771, "sha": "2a0eff9c7130371874a07ec74806cc703ebad2cc", "verdict": "ok", "reason": ""}
+{"n": 772, "sha": "2a17e5237c90a537c96b486ef30cddf8b544a966", "verdict": "cannot_tell", "reason": "The excerpt confirms the emitted -L flag and shows -H in a comment, but it cuts off before the header command change."}
+{"n": 773, "sha": "2a27b123fd5bda2030e81995ff77e0e06f09ceca", "verdict": "ok", "reason": ""}
+{"n": 774, "sha": "2a2dd1389b73f231ea1cf74da538174b7486808d", "verdict": "filler", "reason": "The empty file list establishes that there are no changes, but the purpose as a placeholder or marker is conjecture."}
+{"n": 775, "sha": "2a2e7bd19082af86f4c4ed7c00d68b99970b7bb8", "verdict": "cannot_tell", "reason": "The excerpt confirms request passes the connection to send but ends before any changed connection forwarding in get or head."}
+{"n": 776, "sha": "2a34335dc3efacf545171bf81075c556aae49f5d", "verdict": "wrong", "reason": "The former path was already dynamic because it came directly from the module's __file__ variable."}
+{"n": 777, "sha": "2a5364cf72fb8156773d6304c0e3e21472de8002", "verdict": "ok", "reason": ""}
+{"n": 778, "sha": "2a6303e018ab2d0e5925c0afc44d529419bcc9d5", "verdict": "ok", "reason": ""}
+{"n": 779, "sha": "2a635ba87d7c7c3ef75e7f2013a2cd1a207a0e1a", "verdict": "ok", "reason": ""}
+{"n": 780, "sha": "2a6b835a5e08c7365b8a4d3bfea4dcd98ad2d205", "verdict": "ok", "reason": ""}
+{"n": 781, "sha": "2a6f290bc09324406708a4d404a88a45d848ddf9", "verdict": "ok", "reason": ""}
+{"n": 782, "sha": "2a7832b5b06d377c7c79d1170b07e41fbd1a5d7c", "verdict": "ok", "reason": ""}

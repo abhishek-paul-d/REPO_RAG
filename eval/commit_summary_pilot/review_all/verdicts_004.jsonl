@@ -1,0 +1,87 @@
+{"n": 264, "sha": "0e4efab270780726fbf4f8b6704f8f22741399d6", "verdict": "ok", "reason": ""}
+{"n": 265, "sha": "0e65dff008f8d18fd6545d4b3e1656e048f3306d", "verdict": "filler", "reason": "The commit removes a decoding step it calls unnecessary without establishing that the decoding was incorrect."}
+{"n": 266, "sha": "0e711f2f9d6b4ae13091d00ca4e04f6114159149", "verdict": "filler", "reason": "The release note introduces iter_lines without making an efficiency claim."}
+{"n": 267, "sha": "0e9d7aad2706d12d9fa27d90dfbdfc58d2adbf1b", "verdict": "wrong", "reason": "The artwork is added as source comments above the docstring, so it would not appear as part of that docstring in help output."}
+{"n": 268, "sha": "0eb0b89431d467197b361e4eab3c3399ff07b22e", "verdict": "ok", "reason": ""}
+{"n": 269, "sha": "0eb5b633aa9943b447c0033ba97c06bcb7bf0d72", "verdict": "ok", "reason": ""}
+{"n": 270, "sha": "0eb9a4c1617909bbbb465a9987c7cba0f515eaa6", "verdict": "ok", "reason": ""}
+{"n": 271, "sha": "0ec2780c291107b6686996e4b38f3d63e076eda7", "verdict": "ok", "reason": ""}
+{"n": 272, "sha": "0eccb547a29eda9c04d5e1cef586557846b19e92", "verdict": "ok", "reason": ""}
+{"n": 273, "sha": "0ed641a26ec2200de00e4bbf3d170c767375351e", "verdict": "ok", "reason": ""}
+{"n": 274, "sha": "0ee249247a18c7c76e7c5269e87f55a0fb9ebfc0", "verdict": "ok", "reason": ""}
+{"n": 275, "sha": "0ee6c1fa681dec4c9353d6ea719ae021f47e1bf8", "verdict": "wrong", "reason": "One conditional gzip-header update is removed, but the diff does not establish that automatic gzip headers were removed throughout the library."}
+{"n": 276, "sha": "0f1251bc13b479c2035949adb63915a905c76f78", "verdict": "ok", "reason": ""}
+{"n": 277, "sha": "0f2dcff72573c80fbabb022ba2f1421901269f3a", "verdict": "ok", "reason": ""}
+{"n": 278, "sha": "0f358eabe6f8e4c472a5030d9cd513965868bd6c", "verdict": "filler", "reason": "The schedule runs less often, but whether its previous activity was unnecessary is an inference."}
+{"n": 279, "sha": "0f57faba7007eede15a0207907c51cc954df5295", "verdict": "ok", "reason": ""}
+{"n": 280, "sha": "0f71067f643fff1a76deb8db7c7a2c280ba434d3", "verdict": "wrong", "reason": "The patch adds visible HTML spacing as well as a blank line, contrary to the claim that it makes no user-facing change."}
+{"n": 281, "sha": "0f76e17258d63d4d423b105da8c8810dbd8572a6", "verdict": "ok", "reason": ""}
+{"n": 282, "sha": "0f9bcfb86cd7651ebc8bda12f873ba616aafbff5", "verdict": "ok", "reason": ""}
+{"n": 283, "sha": "0fb13e0b6c092e1acf96e24cf01a621ea4ef5eac", "verdict": "ok", "reason": ""}
+{"n": 284, "sha": "0fc171091d1526b3961800c9f37f6667ee4705b5", "verdict": "filler", "reason": "The markup moves the call to action and the stylesheet removes a declaration, but the effect on rendering is not shown."}
+{"n": 285, "sha": "0ff28d7421ad6a0b40c35c0c92821d1cc5a050b5", "verdict": "wrong", "reason": "Removing the Makefile's init target does not eliminate the need to install dependencies somewhere."}
+{"n": 286, "sha": "1001bc671af1bcd4778c821a1d987be78626106e", "verdict": "ok", "reason": ""}
+{"n": 287, "sha": "101425ebfc747d4c0173fc42e64654c6bcb45fe1", "verdict": "ok", "reason": ""}
+{"n": 288, "sha": "10280c697dcfd3d334f1c9c381a11c324bb550bc", "verdict": "ok", "reason": ""}
+{"n": 289, "sha": "1031ec494212076a5e1b9d5398a95c96cb7c561e", "verdict": "ok", "reason": ""}
+{"n": 290, "sha": "103718847a9a15f5787618cb8a855742f9c08f59", "verdict": "ok", "reason": ""}
+{"n": 291, "sha": "10915e3b0d3708a093171211d51d0eea283dbe25", "verdict": "ok", "reason": ""}
+{"n": 292, "sha": "10968357a19a146332c8dfd8e6d17006d746e580", "verdict": "ok", "reason": ""}
+{"n": 293, "sha": "10b6d7794573b8099d944a5acc00d3b316ef12bc", "verdict": "wrong", "reason": "The API guide changes an example, while the visible advanced-guide change removes a prose reference rather than replacing an example."}
+{"n": 294, "sha": "10bc2f05d322fb3ec8559cf9ee1fc88c071f74a1", "verdict": "ok", "reason": ""}
+{"n": 295, "sha": "10cc4673f9a6570443394c6421042f2e822d2c86", "verdict": "ok", "reason": ""}
+{"n": 296, "sha": "10d23981736e0cd7d864b12cd8d12edd9a4d8b6d", "verdict": "ok", "reason": ""}
+{"n": 297, "sha": "10e5f874c717b553f4c021aeb25f1a10f83067ea", "verdict": "ok", "reason": ""}
+{"n": 298, "sha": "10eed6344cf255f48bdee0b665381969ba27bde9", "verdict": "ok", "reason": ""}
+{"n": 299, "sha": "110684ea024fa139b9e69324bfc7c7a0198973f3", "verdict": "ok", "reason": ""}
+{"n": 300, "sha": "1108058626450b863d154bb74d669754b480caa4", "verdict": "ok", "reason": ""}
+{"n": 301, "sha": "111336459e408778d2915ba61a24c9c961e9aa54", "verdict": "wrong", "reason": "The shown change removes the argument from r.send and forwards the pool into Request instead of removing it from the public helper."}
+{"n": 302, "sha": "111d2b77790bf49943c0dfa09b365371c24aec7e", "verdict": "wrong", "reason": "The notes list Content-Type parsing and consistency of header errors as separate fixes without the claimed cause-and-effect relationship."}
+{"n": 303, "sha": "1121f8b915000d8fd60fb8015286b9c9fd8abebc", "verdict": "wrong", "reason": "The general proxy is looked up first, with the scheme proxy used as the fallback."}
+{"n": 304, "sha": "113b67c06962df7b191d19811cb9ff58604467d6", "verdict": "ok", "reason": ""}
+{"n": 305, "sha": "11433d942dcc0bb9e321141ff04d378568c288fb", "verdict": "ok", "reason": ""}
+{"n": 306, "sha": "1143d4237f5e433a6181e6f7e1abcb1e7031120a", "verdict": "ok", "reason": ""}
+{"n": 307, "sha": "1145fe64a54d5d1f813b96bf2923aff954267554", "verdict": "ok", "reason": ""}
+{"n": 308, "sha": "115b438e6a3b4e3d29c932cbf3da160b07591020", "verdict": "ok", "reason": ""}
+{"n": 309, "sha": "115b51e68c95d5aeea10c40719cf770303f4da61", "verdict": "ok", "reason": ""}
+{"n": 310, "sha": "1164450dac7576e6e77d0c5976fbc0bb7111cd1c", "verdict": "ok", "reason": ""}
+{"n": 311, "sha": "117813ee2ef730d1338d5cd6d55c389089799002", "verdict": "cannot_tell", "reason": "The file-upload test is truncated before its pickle and send assertions, so only the ordinary request's full round trip is visible."}
+{"n": 312, "sha": "1185d6520248b8d553e2067d38de8f18762011f0", "verdict": "wrong", "reason": "The conflict test sets cookies using different path arguments, and both set calls occur before the expected exception."}
+{"n": 313, "sha": "1190afd14fca74292946d62c4c8169880a47ff67", "verdict": "ok", "reason": ""}
+{"n": 314, "sha": "11982c1f9f74ae0ea5776e57d9158174eec2a007", "verdict": "ok", "reason": ""}
+{"n": 315, "sha": "11a3eaec265735b63569bb165047d39df5ba465f", "verdict": "filler", "reason": "The iteration changes address these sites on Python 3, but the patch cannot establish compatibility for the entire library."}
+{"n": 316, "sha": "11ad502b80a10d3c4fe5631509f893a7bd20c2e9", "verdict": "ok", "reason": ""}
+{"n": 317, "sha": "11b12c3e07c542f9027b3cd3fac0d59573d28c2b", "verdict": "ok", "reason": ""}
+{"n": 318, "sha": "11b9b24ac9c6d7e2231493b3d8723de7715b0f2e", "verdict": "filler", "reason": "The import and proxy-manager edit are visible, but the claimed streamlining of the configuration logic is not established in the truncated hunk."}
+{"n": 319, "sha": "11c4315da3f3e66bac395c91eeb9ae694288a789", "verdict": "ok", "reason": ""}
+{"n": 320, "sha": "11cd2b825377ae237e2e88f6e46eed696db0ecf2", "verdict": "filler", "reason": "The test name's spelling is corrected, but both names already have the test prefix and the text shows no change to whether the suite runs."}
+{"n": 321, "sha": "11e5c8eab769f0303776f4b922004f34d37d3032", "verdict": "wrong", "reason": "The specific method list is replaced in the README, but the visible index text is a general description without that list."}
+{"n": 322, "sha": "11f63a330bc7b9026086e3d259f400f9c702b542", "verdict": "filler", "reason": "The version numbers are shown, but the claim that the new version was the latest stable release is unverified."}
+{"n": 323, "sha": "120a2f385a4d1b652451e6a6d8dc618437f72529", "verdict": "ok", "reason": ""}
+{"n": 324, "sha": "120e62900b83613228bbec68e3b4facb84a04b9e", "verdict": "ok", "reason": ""}
+{"n": 325, "sha": "12187155b4e4939165a2dcda9f6c35b5a8f71046", "verdict": "filler", "reason": "The formatting changes from a cross-reference to bold text, while the claim about readability is subjective."}
+{"n": 326, "sha": "12246afab87da55cf6b2da781a630eea33b4bf2a", "verdict": "ok", "reason": ""}
+{"n": 327, "sha": "122c4f05146836969b1c248bc3b03849caee1b58", "verdict": "ok", "reason": ""}
+{"n": 328, "sha": "12328d6e58d0b52f0a5f425f4dcd84236583c679", "verdict": "ok", "reason": ""}
+{"n": 329, "sha": "124c172c727f374a44b3c58cdf508f92b0dc959e", "verdict": "ok", "reason": ""}
+{"n": 330, "sha": "1253c780113a26872d320a76489d252ff281492b", "verdict": "filler", "reason": "The file list supports vendoring chardet, but does not establish the separate claim about what users must install to enable detection."}
+{"n": 331, "sha": "125619c7836c69bf12e50f0177921954a43213a9", "verdict": "cannot_tell", "reason": "The visible hunks show a fallback for importing poll, but end before any HTTPResponse change that would establish its role in that fallback."}
+{"n": 332, "sha": "1263b8660d1f28b4a564d9500e3d0fdb03b05bf4", "verdict": "ok", "reason": ""}
+{"n": 333, "sha": "12760f2295e332111abcd2a96e17ef41ad4640d6", "verdict": "ok", "reason": ""}
+{"n": 334, "sha": "1278ecdf71a312dc2268f3bfc0aabfab3c006dcf", "verdict": "ok", "reason": ""}
+{"n": 335, "sha": "127bbbb18dccc0bb0522377c7b81b99b63b84a68", "verdict": "wrong", "reason": "The only change imports poster, with no other evidence tying it to multipart submissions in this commit."}
+{"n": 336, "sha": "1285f576ae0a848de27af10d917c19b60940d1fa", "verdict": "ok", "reason": ""}
+{"n": 337, "sha": "12862617df7391a87f30d5bc30fffbcfd8fa3761", "verdict": "ok", "reason": ""}
+{"n": 338, "sha": "128b49a1fbefb076fa0e5e9770ca725a1a2f70bb", "verdict": "wrong", "reason": "The excerpt shows a single blank-line insertion and does not place it at the end of iter_lines."}
+{"n": 339, "sha": "12997080a8331f6b1e22aa91fad625a3be58b056", "verdict": "ok", "reason": ""}
+{"n": 340, "sha": "12d669781546a3874b608d80f6a885e3b56bdedd", "verdict": "filler", "reason": "The dependency is pinned to 0.0.4, but the text does not label that version stable or establish what the resolver previously selected."}
+{"n": 341, "sha": "12db1576e9d0ed897f799a8f382ee92db891988d", "verdict": "ok", "reason": ""}
+{"n": 342, "sha": "12ef43e407de2690361fb22261d0eef6a008b000", "verdict": "wrong", "reason": "The change removes a CI matrix entry without establishing that Requests dropped Python 3.2 support itself."}
+{"n": 343, "sha": "12f3c65e5a426ce32808cc456387ca7d7e7c5126", "verdict": "ok", "reason": ""}
+{"n": 344, "sha": "12fa108edeeb876d6a5f2a407ebe64dd7ae8339e", "verdict": "wrong", "reason": "The code concatenates the path and query directly, without showing the separator needed to form a path with a query string."}
+{"n": 345, "sha": "13060f89c73fc91232cbd5eef88fa37b7b80eb75", "verdict": "wrong", "reason": "The new curl flag follows redirects, while the remote-filename flag is already present on both sides."}
+{"n": 346, "sha": "130773a2d36c0d230fd9c3335bbf324bb5307cb2", "verdict": "filler", "reason": "The sponsor link and PayPal form change, but the record does not say the donation interface was obsolete."}
+{"n": 347, "sha": "1311c96eae86bbfe3f0fe7bef50a5904337fc53a", "verdict": "filler", "reason": "The image source changes, but the old link is not shown to be broken and the replacement is not verified."}
+{"n": 348, "sha": "132540956051e9486ffb3adcee95b47a71a37c80", "verdict": "ok", "reason": ""}
+{"n": 349, "sha": "134699faf9c7cb2d8fcbe505d0385b68b7d7a819", "verdict": "filler", "reason": "The new proxy API is shown, but the text does not identify the previous ProxyManager as deprecated."}
+{"n": 350, "sha": "1359094cc8a46732c146486b3feb0d6fa09ca7f0", "verdict": "filler", "reason": "The commit adds gzip test coverage without itself changing or establishing the correctness of the decompression implementation."}

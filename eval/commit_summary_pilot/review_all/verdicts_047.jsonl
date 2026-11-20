@@ -1,0 +1,87 @@
+{"n": 4055, "sha": "d44b67eb55f3dea5a36024b8c4ae6a5c37bca617", "verdict": "filler", "reason": "The pre-commit revision changes, but the excerpt does not establish latest-stable status."}
+{"n": 4056, "sha": "d4502aff8751bbb82e74974c8f6423865d1d210a", "verdict": "ok", "reason": ""}
+{"n": 4057, "sha": "d45eb53bc785b70021b3f8a52013c3f784bd5372", "verdict": "ok", "reason": ""}
+{"n": 4058, "sha": "d47522e6fbd4cbfce86da0a2dec84e7c06fa7a39", "verdict": "ok", "reason": ""}
+{"n": 4059, "sha": "d4965a4ec6fc205f6a35aa2ff33514e4903fd3c4", "verdict": "ok", "reason": ""}
+{"n": 4060, "sha": "d49f3e258ca6df6acb49ebdd4ab8996e7382fb36", "verdict": "filler", "reason": "The vendored version and affected areas are supported, but the excerpt does not establish latest-upstream status or identify the claimed fixes."}
+{"n": 4061, "sha": "d4aaef1e9a15a8d37dcaabe89b46f3948329b5a5", "verdict": "ok", "reason": ""}
+{"n": 4062, "sha": "d4bdd84364b602624096b1407c5d10936c6c9068", "verdict": "ok", "reason": ""}
+{"n": 4063, "sha": "d4c1eccb449f538e233623bd5b5e8f350f266e88", "verdict": "ok", "reason": ""}
+{"n": 4064, "sha": "d4db03da53fda82cd3ebc75cdb0c2ab89c39d7f6", "verdict": "ok", "reason": ""}
+{"n": 4065, "sha": "d4eabaaacc5ebbdaafbb619c7d809409e80c7c1b", "verdict": "ok", "reason": ""}
+{"n": 4066, "sha": "d505b94fa47dbce4eae4db09d0056b7808b71b01", "verdict": "wrong", "reason": "DeprecationWarning is subject to Python’s warning filters, so calling a function does not guarantee a visible warning."}
+{"n": 4067, "sha": "d50742f059ee40abb1d410c3b0d1115a8ea8d8fb", "verdict": "cannot_tell", "reason": "The FAQ move and support page are visible, but the excerpt does not show whether the index and Quickstart edits reflect those structural changes."}
+{"n": 4068, "sha": "d511e6f148d03b5e52228b54064a24eb47c9e756", "verdict": "wrong", "reason": "The shown release-history changes are whitespace edits. The README supplies the CookieJar announcement."}
+{"n": 4069, "sha": "d5256802d468e997f71ba2ff3069b327cf978a5e", "verdict": "ok", "reason": ""}
+{"n": 4070, "sha": "d528106876ff0754edde90e081bdb28341cb3ae5", "verdict": "ok", "reason": ""}
+{"n": 4071, "sha": "d52e9b8c80520e2e75745c3d980943b1f9919cd6", "verdict": "cannot_tell", "reason": "The URL cases are visible, but the utility test body is cut off, so the claim that it tests conversion rather than ASCII detection cannot be verified."}
+{"n": 4072, "sha": "d55213246434efc90a1d048b864daf8bb9d8b4bc", "verdict": "filler", "reason": "The upload command now uses Pipenv, but the excerpt does not establish that all required dependencies are present in that environment."}
+{"n": 4073, "sha": "d552e6c8847fb1a32880f1a2912af9b472f0f40d", "verdict": "ok", "reason": ""}
+{"n": 4074, "sha": "d5572ac13f0508711bf6e1f67689941ffa8692c1", "verdict": "wrong", "reason": "A tuple fixes the membership and order of that container, but does not make the response objects it contains immutable."}
+{"n": 4075, "sha": "d568f47278492e630cc990a259047c67991d007a", "verdict": "cannot_tell", "reason": "The new comparison is visible, but the request inputs that would establish exactly what equivalence the example demonstrates are absent."}
+{"n": 4076, "sha": "d569a2d6bca64dad10928ac36b318e9e5bc16414", "verdict": "ok", "reason": ""}
+{"n": 4077, "sha": "d57a5efab342c86e04ddb4608f489e50443cab57", "verdict": "ok", "reason": ""}
+{"n": 4078, "sha": "d58753344638992a63f4fe8e516c9f55a9a7f027", "verdict": "wrong", "reason": "Both loops stop when select reports no readable socket. The same waiting condition is still present."}
+{"n": 4079, "sha": "d58d8aa2f45c3575268d6d5250745ef69f9cf8b7", "verdict": "ok", "reason": ""}
+{"n": 4080, "sha": "d59510481ad624641ec404bac423e8ab44f0f41b", "verdict": "ok", "reason": ""}
+{"n": 4081, "sha": "d5a038463095c03b3fbd4ef6740fa3614f441ac4", "verdict": "wrong", "reason": "The removed whitespace is outside the string literals, so the commands themselves are unchanged."}
+{"n": 4082, "sha": "d5a05469f15f6a0437cdfcc6df5da61ae7da8bf8", "verdict": "cannot_tell", "reason": "The warning deletion is visible, but the excerpt does not include the rest of the README needed to verify its location at the end."}
+{"n": 4083, "sha": "d5c4cac0f4cc2f558099a55686ddb2e0bdc2dbd1", "verdict": "ok", "reason": ""}
+{"n": 4084, "sha": "d5e050da85089d98a0c0b5272274981de889626b", "verdict": "ok", "reason": ""}
+{"n": 4085, "sha": "d5f9a2a51c884099294f75ae9148ec0f64b0bab4", "verdict": "ok", "reason": ""}
+{"n": 4086, "sha": "d60845303bf877dde69ae2077d695646fc2a4579", "verdict": "ok", "reason": ""}
+{"n": 4087, "sha": "d60f4773b1f5932e2715b2c64b333649edbb405b", "verdict": "ok", "reason": ""}
+{"n": 4088, "sha": "d61540551943df57aa0dece5e44e130309dcafec", "verdict": "wrong", "reason": "The immutability and upstream guidance is copied prose, and the added class is an import hook."}
+{"n": 4089, "sha": "d63cd5f547963f428d88941b3b379cf450444ae0", "verdict": "ok", "reason": ""}
+{"n": 4090, "sha": "d63e94f552ebf77ccf45d97e5863ac46500fa2c7", "verdict": "ok", "reason": ""}
+{"n": 4091, "sha": "d6470870d08828c1d332ae446d5288eaab55d1f1", "verdict": "wrong", "reason": "The old else branch ran whenever the condition that raised was false."}
+{"n": 4092, "sha": "d64b9ad4bf1c14e21e0df3f0f4320fec81180e91", "verdict": "filler", "reason": "The version bump is shown, but the excerpt does not establish that the revision is the latest stable release."}
+{"n": 4093, "sha": "d64bf501d023c3f13999dddecc7e77ecf29f47e5", "verdict": "filler", "reason": "The import and blank line are removed, but the excerpt does not show the initialization effects of dropping packages."}
+{"n": 4094, "sha": "d66ffdbb2b24a5db8651970b1d2e918d650f0c0c", "verdict": "ok", "reason": ""}
+{"n": 4095, "sha": "d675abbd3f3883bc5a45895da2d63ffec5ed4634", "verdict": "ok", "reason": ""}
+{"n": 4096, "sha": "d675d83b1df5689aba066cf464507b8b04425ed1", "verdict": "wrong", "reason": "The image already occupied its own line before this change."}
+{"n": 4097, "sha": "d6827a37d00f3fcdac56e5dd978400e9ec1a7371", "verdict": "wrong", "reason": "Gevent is the patching tool, and the excerpt does not show that it was itself broken by the old patch."}
+{"n": 4098, "sha": "d697c37d3e5039cc3ebb7254d879872a7f4dc378", "verdict": "ok", "reason": ""}
+{"n": 4099, "sha": "d6b57c6fb25df19aa6fc376e3c2908afa2e3fe46", "verdict": "wrong", "reason": "The commit edits only the changelog, with no change to the help module."}
+{"n": 4100, "sha": "d6c2d8f1dc9d3d3cd1d9a57f1eb19aa93f8b2e99", "verdict": "ok", "reason": ""}
+{"n": 4101, "sha": "d6cde6a5dfee65da0c0fb8eacacd8c500618f674", "verdict": "ok", "reason": ""}
+{"n": 4102, "sha": "d6cf93e3989d03dcaa19f92619ddb0021ccb49f4", "verdict": "ok", "reason": ""}
+{"n": 4103, "sha": "d6db3901cb4ab7583b7592199ab96c367b9c651c", "verdict": "ok", "reason": ""}
+{"n": 4104, "sha": "d6e7e19100f9f2ccbb95cb98ec2c261a293802f2", "verdict": "filler", "reason": "The history entries are reordered and given new wording, but “official launch” is not established."}
+{"n": 4105, "sha": "d6ebc4a2f1f68b7e355fb7e4dd5ffc0845547f9f", "verdict": "filler", "reason": "The notes expect less timing variance and potentially lower certificate-load time, but do not establish a measured performance gain."}
+{"n": 4106, "sha": "d6ffd868ee3730f4e5c7d1595da37e2027a93eb8", "verdict": "ok", "reason": ""}
+{"n": 4107, "sha": "d7018e6d610dcf283e6c63a364b5f745be5c5b43", "verdict": "ok", "reason": ""}
+{"n": 4108, "sha": "d7026bfb2a015c2187009e7e159bc6abc251c355", "verdict": "wrong", "reason": "The default becomes CERT_REQUIRED only when CA certificates are present and cert_reqs is unspecified."}
+{"n": 4109, "sha": "d7107c2cdcdc380c610112bd22f292b2f2113b83", "verdict": "ok", "reason": ""}
+{"n": 4110, "sha": "d718e753834b84018014a23d663369ac27d1ab9c", "verdict": "cannot_tell", "reason": "The experimental matrix flag is shown, but the excerpt does not show how the workflow uses it or whether failures are nonblocking."}
+{"n": 4111, "sha": "d7227fbb7e07af35f23a0d370ab3b01661af9e40", "verdict": "ok", "reason": ""}
+{"n": 4112, "sha": "d72d1162142d1bf8b1b5711c664fbbd674f349d1", "verdict": "cannot_tell", "reason": "The session import and old helper definitions are visible, but the excerpt cuts off before showing how the wrappers obtain their session."}
+{"n": 4113, "sha": "d7490c9d2dc967f68c6ca38b73aa099bc888a04e", "verdict": "wrong", "reason": "The code deliberately assigns the same imported object to both aliases. The change is how the alias name is calculated."}
+{"n": 4114, "sha": "d74d61e97e017fe3902f2b9ac217ffb1a012da1e", "verdict": "wrong", "reason": "The connection-leak note is moved with identical wording."}
+{"n": 4115, "sha": "d758f0cf97b949b4782c3238f3ace01fa9d1b194", "verdict": "ok", "reason": ""}
+{"n": 4116, "sha": "d7700bebeb2094ef47e6e2a6e20a536244ad9871", "verdict": "ok", "reason": ""}
+{"n": 4117, "sha": "d77c0ec138c47bc554d627761042c995fa6803b1", "verdict": "ok", "reason": ""}
+{"n": 4118, "sha": "d789badbb25958e8ff5adb7c73dcfbabf583dde3", "verdict": "ok", "reason": ""}
+{"n": 4119, "sha": "d78ec90e7b6dbb853db33fd10686f3ba5c4874f1", "verdict": "wrong", "reason": "The two string fragments move to one line, while the frozenset assignment still spans lines."}
+{"n": 4120, "sha": "d7908a9fdef7bca16e384ca42478d69d1894c8b6", "verdict": "ok", "reason": ""}
+{"n": 4121, "sha": "d79e1bbaad72c0454c3f32f5b27cba56a26a0d57", "verdict": "ok", "reason": ""}
+{"n": 4122, "sha": "d7a3aa618839e304c324e6092953131a1f43c647", "verdict": "ok", "reason": ""}
+{"n": 4123, "sha": "d7e80731981dfaf454cb2227171edf0e32148770", "verdict": "wrong", "reason": "The badge target is Badge Fury, not PyPI."}
+{"n": 4124, "sha": "d7f49f3aa51a14f317cb4282c1f26642dad735b9", "verdict": "ok", "reason": ""}
+{"n": 4125, "sha": "d7f56ba9383575a6b7d361db0123a93c70a2b42f", "verdict": "ok", "reason": ""}
+{"n": 4126, "sha": "d801d7797e509add1245acc85cd006b6fec21beb", "verdict": "ok", "reason": ""}
+{"n": 4127, "sha": "d806ffc1cd0e5ceba17d0edd044e07855502f2d2", "verdict": "ok", "reason": ""}
+{"n": 4128, "sha": "d81ad06c64c03facd717ef49be5917c57090e196", "verdict": "ok", "reason": ""}
+{"n": 4129, "sha": "d81dfe266e630c3e7341cc2a1994303e243353e1", "verdict": "ok", "reason": ""}
+{"n": 4130, "sha": "d849d6e90753cf76425d75fd3cb35631f1a5c5b4", "verdict": "ok", "reason": ""}
+{"n": 4131, "sha": "d85c5356dc0cb0e288ff39c6802a1fcaaf7be635", "verdict": "filler", "reason": "The test is commented out for now, but the reason for disabling it is not supplied."}
+{"n": 4132, "sha": "d8666e190631b5330c2851bd354d07831afba114", "verdict": "filler", "reason": "The patch drops cgi and adds a parser, but the supplied excerpt does not demonstrate a memory reduction."}
+{"n": 4133, "sha": "d866d8a44d76ff2f013f27d3f5d2b5b2a7766923", "verdict": "ok", "reason": ""}
+{"n": 4134, "sha": "d87bcce6ad9d28bf6fe642543238af61d1ddf132", "verdict": "wrong", "reason": "The changelog asks about cookie support and does not confirm it as a shipped feature."}
+{"n": 4135, "sha": "d88240ba449f1c92006102adc475543d5e649ffa", "verdict": "cannot_tell", "reason": "The substitution to type(password) is visible, but the enclosing call is absent, so the claim that it logs an error rather than emitting another kind of diagnostic cannot be verified."}
+{"n": 4136, "sha": "d8829f9f242149174e50f45e021ffb81fbbced70", "verdict": "ok", "reason": ""}
+{"n": 4137, "sha": "d892e93589d48d5c5d8d9945ae58f40d66320f10", "verdict": "wrong", "reason": "The requirements file retains nose."}
+{"n": 4138, "sha": "d89f8c0d70195d1ee707426ac7f3bdab870e0a18", "verdict": "ok", "reason": ""}
+{"n": 4139, "sha": "d8b19573f38aa84db95a7e4d1f1c0a2fa26517eb", "verdict": "ok", "reason": ""}
+{"n": 4140, "sha": "d8b36c17185b61471eafa4f1b574a6995e8f38a8", "verdict": "ok", "reason": ""}
+{"n": 4141, "sha": "d8be2473d1a586a3673d728d49e10fd4286e3b0e", "verdict": "ok", "reason": ""}

@@ -161,23 +161,39 @@ def serve_model(
     host: str = "127.0.0.1",
     port: int = 8000,
     reranker: InstructionReranker | None = None,
+    concurrency: int = 1,
 ) -> ThreadingHTTPServer:
     """Build the server; the caller runs `serve_forever()` (usually on a thread).
 
-    GPU work is not re-entrant, so requests are served one at a time by serializing `generate`
-    and `rerank` behind one lock. A `reranker` adds `POST /rerank`.
+    GPU work is not re-entrant, so by default requests are served one at a time by serializing
+    `generate` and `rerank` behind one lock. A `reranker` adds `POST /rerank`.
+
+    `concurrency` > 1 lets that many `generate` calls run at once, for a model whose `generate`
+    is thread-safe and batches on its own (the vLLM client: each call is an HTTP request to a
+    server that batches). It cannot be combined with a reranker, which runs on the GPU itself.
     """
     if len(token) < 16:
         raise ValueError("Use a token of at least 16 characters")
-    serialized = _Serialized(model, reranker)
+    if concurrency < 1:
+        raise ValueError("concurrency must be at least 1")
+    if concurrency > 1 and reranker is not None:
+        raise ValueError("concurrency > 1 cannot be used with a reranker")
+    serialized = _Serialized(model, reranker, concurrency)
     server = ThreadingHTTPServer((host, port), make_handler(serialized, token, info))
     server.idle_seconds = serialized.idle_seconds  # type: ignore[attr-defined]
     return server
 
 
 class _Serialized:
-    def __init__(self, model: Generator, reranker: InstructionReranker | None = None) -> None:
+    def __init__(
+        self,
+        model: Generator,
+        reranker: InstructionReranker | None = None,
+        concurrency: int = 1,
+    ) -> None:
         self.model, self.reranker, self.lock = model, reranker, threading.Lock()
+        self.slots = threading.BoundedSemaphore(concurrency)
+        self.concurrency = concurrency
         self.can_rerank = reranker is not None
         self._count_lock = threading.Lock()
         self._busy = 0
@@ -197,7 +213,7 @@ class _Serialized:
     def generate(self, messages: list[dict[str, str]]) -> Generation:
         self._track(True)
         try:
-            with self.lock:
+            with self.lock if self.concurrency == 1 else self.slots:
                 return self.model.generate(messages)
         finally:
             self._track(False)

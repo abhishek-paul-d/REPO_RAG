@@ -1,0 +1,85 @@
+{"n": 1389, "sha": "47d0517d66e8cf5832768262221f0357ae134ad1", "verdict": "ok", "reason": ""}
+{"n": 1390, "sha": "47e71d1774745543b743bdf570d9d8e7151355e6", "verdict": "ok", "reason": ""}
+{"n": 1391, "sha": "47e96b80407b52ec45136391c77b089d71ccbe18", "verdict": "wrong", "reason": "The setup file adds chardet to Requests' requirements, with no evidence of a self-dependency in chardet."}
+{"n": 1392, "sha": "47e96c4e57964dd2db4806b2c24e02a89f3ae8bc", "verdict": "ok", "reason": ""}
+{"n": 1393, "sha": "47ecb3662d69e57a031b504d361e277f64109a30", "verdict": "wrong", "reason": "List in-place addition and extend both append all items and neither deduplicates them."}
+{"n": 1394, "sha": "47f170bb3502e1c48774d803cbff4add6a177dd7", "verdict": "ok", "reason": ""}
+{"n": 1395, "sha": "47f1f283857080b797c4b29a0aa6fb07793bb4d2", "verdict": "ok", "reason": ""}
+{"n": 1396, "sha": "47fa07dcd844663e7062713f510dd34fdf231b2d", "verdict": "ok", "reason": ""}
+{"n": 1397, "sha": "480a3821ab9ebfdd0830ad9907b99af99d251e66", "verdict": "ok", "reason": ""}
+{"n": 1398, "sha": "481622ff162a0a183df1ba284264e618615838fe", "verdict": "ok", "reason": ""}
+{"n": 1399, "sha": "48237afd9d064c639b9c2bcea7e75ab7b717b181", "verdict": "wrong", "reason": "The FAQ recommends a minimum version and explicitly includes later releases."}
+{"n": 1400, "sha": "483790083238d327c5969007a9677ea57cb11880", "verdict": "wrong", "reason": "The preexisting HTTPDigestAuth class and resend code show that the commit modifies an existing authentication flow."}
+{"n": 1401, "sha": "48396f97a9ffedebbb821ed625aaf91958df1d76", "verdict": "ok", "reason": ""}
+{"n": 1402, "sha": "483d00736c2e61a0e9285eb49bda32946ae990e8", "verdict": "filler", "reason": "The examples change URLs and credentials, but the source does not establish that the former ones were outdated."}
+{"n": 1403, "sha": "4840d4a3768d8eb4416875a921ad95ca9b86e789", "verdict": "ok", "reason": ""}
+{"n": 1404, "sha": "4847f5b8cd4071099f06e178856bc9e1b9193b2e", "verdict": "ok", "reason": ""}
+{"n": 1405, "sha": "4862d29a96d83c1503048b0e12de23aa2b8e4aa4", "verdict": "wrong", "reason": "The new base is specifically urllib3's HTTPError, so the diff does not establish compatibility with handlers for Requests' own HTTPError."}
+{"n": 1406, "sha": "48676caf57079434b1ccbac19496a75dd6ed4070", "verdict": "wrong", "reason": "The guard checks repository ownership and does not check the repository name or full identity."}
+{"n": 1407, "sha": "488a51d619c7175248fba1f904a834224c009966", "verdict": "filler", "reason": "The restored unconditional dependency is visible, but the excerpt does not identify a specific SSL verification issue that the reversion prevents."}
+{"n": 1408, "sha": "488b90f5acfafe65b428765aea70ebebd4afe58a", "verdict": "ok", "reason": ""}
+{"n": 1409, "sha": "4892a305d9cd658287b3320d18c60886b14b5b48", "verdict": "ok", "reason": ""}
+{"n": 1410, "sha": "489a412f96c87f90d5a4788ede2d7a8a8863c91d", "verdict": "ok", "reason": ""}
+{"n": 1411, "sha": "489f58ced52fc298c38534ecbed2c29ca8a126dd", "verdict": "filler", "reason": "The tuple becomes a list, but the excerpt does not establish a Python convention requiring either form for classifiers."}
+{"n": 1412, "sha": "48e2ecc14d998e342fec8de8f6a845887972de20", "verdict": "wrong", "reason": "The issue resolutions are listed in the release notes, and the commit does not change their implementations."}
+{"n": 1413, "sha": "48f59aa1f7587fbcb97df1b55aee356a94735b72", "verdict": "ok", "reason": ""}
+{"n": 1414, "sha": "48fe34447de02bfe9827321fafe3277741d77c38", "verdict": "ok", "reason": ""}
+{"n": 1415, "sha": "48ffb627fed0d76806f25fa934a8142be2cf8a87", "verdict": "ok", "reason": ""}
+{"n": 1416, "sha": "49066861863495f8e401ea22a25d01b07ccbab0e", "verdict": "ok", "reason": ""}
+{"n": 1417, "sha": "490ed74187019799f00bf09b992cb7c49e506c5d", "verdict": "filler", "reason": "The wrapper is shown, but the excerpt does not establish the rendered spacing or formatting."}
+{"n": 1418, "sha": "49140d68809064c6272b714c74414b849d9f75a9", "verdict": "ok", "reason": ""}
+{"n": 1419, "sha": "4916b1c2cee365bb4975645defe3ed115b161b30", "verdict": "ok", "reason": ""}
+{"n": 1420, "sha": "491a3c075d341a048c50b4a989b87da0c2a75992", "verdict": "ok", "reason": ""}
+{"n": 1421, "sha": "492133ba64660152d37418c2181747bfe81aa282", "verdict": "ok", "reason": ""}
+{"n": 1422, "sha": "4922daf4989d921dd873b93f5ec08e02ad2222b6", "verdict": "ok", "reason": ""}
+{"n": 1423, "sha": "492bda1343b6413eead297c4b4acf26f68b2a3f2", "verdict": "ok", "reason": ""}
+{"n": 1424, "sha": "493ea934699d10f5e7fae174403c59fd511b605b", "verdict": "ok", "reason": ""}
+{"n": 1425, "sha": "4942b40496b5c1b7dc4b3e14360dd68e8633554a", "verdict": "wrong", "reason": "The new section attributes OAuth 2 support specifically to requests-oauthlib, which the summary leaves unnamed."}
+{"n": 1426, "sha": "4947cd01ae4ebcfb1ce97345d1e9232c331331da", "verdict": "ok", "reason": ""}
+{"n": 1427, "sha": "495646bb6a89802a60208c2ab09749edba1f8e51", "verdict": "wrong", "reason": "The patch forwards the caller's prefetch value, which can still be false, so it does not prevent exhaustion for all async calls."}
+{"n": 1428, "sha": "495c3d500640ce39d53292fd9846a2354d203675", "verdict": "filler", "reason": "The new callable authentication path is shown, but the excerpt does not identify a prior symptom of credentials being ignored."}
+{"n": 1429, "sha": "495f87363b3a8b5856850aea5db15df15d597f77", "verdict": "ok", "reason": ""}
+{"n": 1430, "sha": "4972133a9bcbf98182a26d796e98c74453a224f9", "verdict": "filler", "reason": "The methods use geturl to reconstruct parsed URLs, but the excerpt does not establish a previous case-sensitivity problem."}
+{"n": 1431, "sha": "497695864b4866ba688c06ad4987560db81a617e", "verdict": "ok", "reason": ""}
+{"n": 1432, "sha": "498b446f141675026ae7364b922f03cde1de728c", "verdict": "wrong", "reason": "The deletion suppresses output that the old code actually printed, and the import is at module scope."}
+{"n": 1433, "sha": "49a3664222d9e17ab83d089e4d1b1e30c998f59c", "verdict": "wrong", "reason": "The removed assignment is in the redirect handler and does not show that every response previously contained all session cookies."}
+{"n": 1434, "sha": "49a38ac89a7bc7cbbeaa2322d4a5d45fcd590054", "verdict": "ok", "reason": ""}
+{"n": 1435, "sha": "49a7947bcb1af9727fd23ddea907ba53646c3e93", "verdict": "filler", "reason": "The rate-limit example is replaced, but the omitted values are not identified as outdated."}
+{"n": 1436, "sha": "49acab8033b59c417525818d046efa8443d8958d", "verdict": "wrong", "reason": "The funding entry enables a link where PSF can receive sponsorship and does not establish that PSF sponsors this project via GitHub."}
+{"n": 1437, "sha": "49b69b57db6fa20291c15c7d5ad9d8efff513740", "verdict": "ok", "reason": ""}
+{"n": 1438, "sha": "49bed18a8357cf60761e55bb88802233de78bbe3", "verdict": "ok", "reason": ""}
+{"n": 1439, "sha": "49ca72c8028353005588c0627be026956ca62d6c", "verdict": "ok", "reason": ""}
+{"n": 1440, "sha": "49d79546e88adddbff358a5bbafaa43aca30988f", "verdict": "ok", "reason": ""}
+{"n": 1441, "sha": "49e5df1ff9771810108a346cf8329c196cb099b2", "verdict": "wrong", "reason": "The summary reverses the old and new prerequisite names."}
+{"n": 1442, "sha": "49ec082a776790442600451b35b32fb5dc85f101", "verdict": "ok", "reason": ""}
+{"n": 1443, "sha": "49ecffb86ee1fd957980581fb990d2d27eb366f6", "verdict": "ok", "reason": ""}
+{"n": 1444, "sha": "49f1ec1efbd2ac934754b8fa974a2d9a0a083cbd", "verdict": "wrong", "reason": "The constructor shares a dictionary among instances and does not enforce a single Settings object."}
+{"n": 1445, "sha": "49f915fb90f135082a83f64a21cc901d0b0e4d15", "verdict": "filler", "reason": "The script prints response headers and constructs a Request, but the future testing purpose is speculative."}
+{"n": 1446, "sha": "4a01272fb3a56d718c82305e40d967dc0318bd32", "verdict": "wrong", "reason": "Putting legacy code in a backup file does not establish compatibility for callers of the active request implementation."}
+{"n": 1447, "sha": "4a28ffcfe9ef1888819e53ad6a9d212e115fb302", "verdict": "ok", "reason": ""}
+{"n": 1448, "sha": "4a309796225cfae96cf8473c8d70b5c71080011c", "verdict": "filler", "reason": "The missing-helper workaround is supported, but the new identity check does not establish different assertion semantics."}
+{"n": 1449, "sha": "4a3bee6cffadba86342829f4595301b81297ee22", "verdict": "wrong", "reason": "The newly inserted label is misspelled rather than corrected."}
+{"n": 1450, "sha": "4a3f55997bc73d9ff8312cfae68a028728b49f66", "verdict": "ok", "reason": ""}
+{"n": 1451, "sha": "4a41c591f88c3be7bb1319c8e6b8eba631fea8da", "verdict": "ok", "reason": ""}
+{"n": 1452, "sha": "4a540ff5f1f75fc1855dcf86b742c39a15968093", "verdict": "ok", "reason": ""}
+{"n": 1453, "sha": "4a5b5bc86eeb03e4d2c4914da6c2a258b15537d8", "verdict": "filler", "reason": "Commenting out the test disables it, but the excerpt gives no indication that the exclusion is temporary."}
+{"n": 1454, "sha": "4a5c94f4101ef26ee48aa578dd44506f8c948f79", "verdict": "ok", "reason": ""}
+{"n": 1455, "sha": "4a6a0c3c65be2033e11130125601a6c810ea5d10", "verdict": "ok", "reason": ""}
+{"n": 1456, "sha": "4a7fdef3ea70b7acd7f883c6d08a8fee4a2b24f1", "verdict": "wrong", "reason": "The API reference count changes, but the request entry is moved and the file list shows no implementation of a new method."}
+{"n": 1457, "sha": "4a87d1e62f0c3c6bcfe939cfad5099ebc45cfd2a", "verdict": "filler", "reason": "The span has an align attribute, but the excerpt does not establish that the rendered README centers the text or improves the layout."}
+{"n": 1458, "sha": "4a8e6415c76bee9c4a244010490794088e758f12", "verdict": "ok", "reason": ""}
+{"n": 1459, "sha": "4a9f3572a38796d71c5b40f1c506da03161b1c70", "verdict": "ok", "reason": ""}
+{"n": 1460, "sha": "4aad69594de6b3deb81dfa2b036585c1244fee3c", "verdict": "ok", "reason": ""}
+{"n": 1461, "sha": "4ab2550d667651e11229cf7e0489755fe6d998cc", "verdict": "wrong", "reason": "The runtime expression is unchanged and controls only whether a default Host header should be generated."}
+{"n": 1462, "sha": "4ab76943efb509032fb7d599c47b60cd6f8a6a1f", "verdict": "ok", "reason": ""}
+{"n": 1463, "sha": "4acdb99752e2411df542e99dd9baafae7e2ca8e8", "verdict": "ok", "reason": ""}
+{"n": 1464, "sha": "4ad73c3655a2c0fd3862e7803d02f1ff4006e18b", "verdict": "ok", "reason": ""}
+{"n": 1465, "sha": "4ada2e56644e1775e6cf4b2f8ad7c0c02bedff93", "verdict": "ok", "reason": ""}
+{"n": 1466, "sha": "4b0b1a3e9f2fc21b9dcd8b906f2ff02645aa697e", "verdict": "ok", "reason": ""}
+{"n": 1467, "sha": "4b0d53dcb7e1d152d1c04eeb02660b21f4f072e9", "verdict": "ok", "reason": ""}
+{"n": 1468, "sha": "4b66260cb7c88a41a971d2458d75efd556f2e00e", "verdict": "ok", "reason": ""}
+{"n": 1469, "sha": "4b69798796feeca5dc5c13643ce39d57de11ac70", "verdict": "ok", "reason": ""}
+{"n": 1470, "sha": "4b7c5dab0e565004d2e46b62d4fcc95737edf33d", "verdict": "ok", "reason": ""}
+{"n": 1471, "sha": "4b93bb40829a0db2a321fa5a8aba24b0b4982e77", "verdict": "ok", "reason": ""}
+{"n": 1472, "sha": "4b9e5d0ef3931a93bbab4a8be1decceae439714e", "verdict": "wrong", "reason": "The paragraph opening is indented in place and the closing tag moves below the attribution, with no evidence that both move to the end of the document."}
+{"n": 1473, "sha": "4bad1285b695771154eb9d17f42d49cfd6419538", "verdict": "ok", "reason": ""}

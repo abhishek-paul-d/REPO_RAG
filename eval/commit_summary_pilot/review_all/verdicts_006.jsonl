@@ -1,0 +1,82 @@
+{"n": 432, "sha": "170c46c06bd9b6f7233c95f998642ff365d47a0b", "verdict": "ok", "reason": ""}
+{"n": 433, "sha": "170d6269eb004aed085d2e770700bccf92ab0e40", "verdict": "ok", "reason": ""}
+{"n": 434, "sha": "17170a2ca7672c6b05282c45f91430a32d8521fc", "verdict": "ok", "reason": ""}
+{"n": 435, "sha": "171b370b0e3bbc0288fb0e4addcef16bf670e324", "verdict": "filler", "reason": "The visible function is revised, but the reason given about file detection or parsing errors is speculative."}
+{"n": 436, "sha": "1720e4bb87f5db29e9d9f42da1b0cbb1f52a7171", "verdict": "filler", "reason": "The chardet sentence is reworded, but the commit does not establish that it was factually inaccurate."}
+{"n": 437, "sha": "1722f289711e3d03b0e00fb548f3e8ea92544775", "verdict": "ok", "reason": ""}
+{"n": 438, "sha": "173890a48e9f064f0c034edf45109279d1d90a94", "verdict": "filler", "reason": "The action version increases, but its status as the latest stable release is unverified."}
+{"n": 439, "sha": "1749260c974265144a811389f47bde54b79c1cb5", "verdict": "filler", "reason": "The tests switch endpoints, but the commit does not establish instability of the old URLs or reliability of the new ones."}
+{"n": 440, "sha": "175452a6b62016b6c2fbb86cd97edba47f5ded6d", "verdict": "ok", "reason": ""}
+{"n": 441, "sha": "1758070cdc0ab3757f67f7eff0efecc0a1e753c9", "verdict": "filler", "reason": "The removed code is commented out, but the text does not establish that each line was obsolete."}
+{"n": 442, "sha": "175945b0bde38f30dd042c50119270f72b7c3295", "verdict": "filler", "reason": "Deleting the Git requirement is shown, but package-index replacement and the presumed installation motive are speculative."}
+{"n": 443, "sha": "176b3652877b7a9c1b6fce6248661101912abf6a", "verdict": "wrong", "reason": "The newly added sidebar link is for Requests-Toolbelt and the template is not identified as Certifi's documentation."}
+{"n": 444, "sha": "176ba43869ab391fdc7b8614da6a5877db1f9385", "verdict": "ok", "reason": ""}
+{"n": 445, "sha": "177dd90f18a8f4dc79a7d2049f0a3f4fcc5932a0", "verdict": "wrong", "reason": "The explanatory text still makes charset-normalizer conditional on chardet not already being installed."}
+{"n": 446, "sha": "177f4dd2a497e3db0e9d62ed0958183f4e9609c9", "verdict": "ok", "reason": ""}
+{"n": 447, "sha": "17852784e8026e779274366dd7b20609f0d397f7", "verdict": "ok", "reason": ""}
+{"n": 448, "sha": "178ff62b934c30278114028f654e42374206c291", "verdict": "wrong", "reason": "A bare raise already re-raises the current exception without replacing it with a generic error."}
+{"n": 449, "sha": "1790b1df172aaef9bb86858169abec0d8849311f", "verdict": "ok", "reason": ""}
+{"n": 450, "sha": "179f943300a73a1a14f1893b129b0df678eeb733", "verdict": "filler", "reason": "The link label is restyled without evidence that its previous display text contained a typo."}
+{"n": 451, "sha": "17aee319406fe13cb47196e186164f5c21b9f514", "verdict": "ok", "reason": ""}
+{"n": 452, "sha": "17b6c5742ca7118858962d73220968a2e281b82e", "verdict": "ok", "reason": ""}
+{"n": 453, "sha": "17d3e1d498cd8afade26a31ec313739a71550eed", "verdict": "ok", "reason": ""}
+{"n": 454, "sha": "17dd3c0a76893736917a1e0156b36df0877587d9", "verdict": "ok", "reason": ""}
+{"n": 455, "sha": "17e6e27a93131b7295165408e69b4cadb098b0d7", "verdict": "cannot_tell", "reason": "The excerpt shows the README example change but ends before the replacement statistics and FAQ hunk needed to check those claims."}
+{"n": 456, "sha": "17ecb6891c515511ce33250a3f39f752a9c59b55", "verdict": "ok", "reason": ""}
+{"n": 457, "sha": "18270e1059c8eaea2bced14caad2d35e78fe7e8a", "verdict": "filler", "reason": "The patch moves or deletes commented code and adds empty branches, but does not establish that the discarded comments were outdated."}
+{"n": 458, "sha": "182f92ab2602658802724d1204feade7a7117994", "verdict": "ok", "reason": ""}
+{"n": 459, "sha": "185450c5e116d3d614fe5ca717477d4251ca025e", "verdict": "ok", "reason": ""}
+{"n": 460, "sha": "18591920f3599d34a8c50d371d58d0d33bd4623f", "verdict": "wrong", "reason": "The payload is retained initially but is explicitly cleared on several redirect paths."}
+{"n": 461, "sha": "185f587a78e2d2df31ae8af8c95d97a012213df7", "verdict": "cannot_tell", "reason": "The excerpt stops within the stylesheet deletion and does not show whether templates were deleted or where the internationalization wrappers went."}
+{"n": 462, "sha": "1866f7596e2c9e20dddf5d8c570c44e496a71c57", "verdict": "ok", "reason": ""}
+{"n": 463, "sha": "186dcee8a0e6f6a165c88d1612a587de8ea1c639", "verdict": "filler", "reason": "The tagline changes, but the source does not explain any change in design philosophy or motive."}
+{"n": 464, "sha": "18857a0eedcebbfc40bb1ae431daed935cd51d56", "verdict": "ok", "reason": ""}
+{"n": 465, "sha": "1887f32b17326fdaced7b57da349dc5ad7873435", "verdict": "wrong", "reason": "The test changes the form input, but it does not validate the behavior of the test method itself."}
+{"n": 466, "sha": "188e7609b36eb2100abe3a6a5c3bbebcf1205cfb", "verdict": "ok", "reason": ""}
+{"n": 467, "sha": "18a6b601100db978f3a6e191816456e75bc47e0f", "verdict": "wrong", "reason": "The note describes a ConnectionError mistakenly reported as ConnectTimeout, not a change to the handling of actual timeouts."}
+{"n": 468, "sha": "18a736fbe67f5dfd03f95cc9e0d16cda54c9ea4d", "verdict": "ok", "reason": ""}
+{"n": 469, "sha": "18b26d20f7d0623e4b3df9fa6538e86069df3cdb", "verdict": "ok", "reason": ""}
+{"n": 470, "sha": "18b29ea00563a0bf8e15666806117444c87ac23f", "verdict": "ok", "reason": ""}
+{"n": 471, "sha": "18b5ee7d5bdedf2a2aac0c92910ced5e2479218e", "verdict": "filler", "reason": "The command stops requesting colored output, but the source does not establish any broader simplification of test execution."}
+{"n": 472, "sha": "18be26fc2a7f8d41b691762d826f235ae04f24fd", "verdict": "wrong", "reason": "Removing the handler lets certain conversion errors propagate, but not all malformed percent sequences reach conversion."}
+{"n": 473, "sha": "18c42e88f5adc0c547b23905b7c2a60c0ecfe789", "verdict": "ok", "reason": ""}
+{"n": 474, "sha": "18c8924f142f0cc19764d4630f7a13449a23c14e", "verdict": "ok", "reason": ""}
+{"n": 475, "sha": "18db8b8445951c6b2d77fcb5d4934e8ca2dd1d6e", "verdict": "filler", "reason": "The import becomes relative, but the commit does not establish package behavior across the installation and Python-path scenarios claimed."}
+{"n": 476, "sha": "18e37c9368e0a9623806eefe7de2bde4b376edb0", "verdict": "ok", "reason": ""}
+{"n": 477, "sha": "192083576d1e92627976db1bb0948956a4d9baa8", "verdict": "filler", "reason": "The clone URL changes to HTTPS, but the source does not identify a deprecation or blocked ports."}
+{"n": 478, "sha": "1933d3c70768db0e8ed509f683f9b830b6bfc44c", "verdict": "ok", "reason": ""}
+{"n": 479, "sha": "193eb428911ff27cda1c0812a3fd7a9656a65fda", "verdict": "ok", "reason": ""}
+{"n": 480, "sha": "194ff1ad891388794ce2e5af12c8d4e36df3cea0", "verdict": "wrong", "reason": "The helper now always sends an empty string and ignores a caller-supplied data value."}
+{"n": 481, "sha": "1960c3c29d09e45a13851ea49f883f461e89797a", "verdict": "cannot_tell", "reason": "The excerpt cuts off before the end of the expanded file, so there is no evidence of its final newline."}
+{"n": 482, "sha": "1960dabafdc09a3cd2a4878de99965e421786ee8", "verdict": "filler", "reason": "The title and file list support the vendored library switch but do not demonstrate continuity of encoding detection."}
+{"n": 483, "sha": "1971bdbe6726af224d92723b3f5f12f26aa4277f", "verdict": "ok", "reason": ""}
+{"n": 484, "sha": "1988d9cf72c3a3a6da87968e04ad57fb32df01cb", "verdict": "filler", "reason": "The helper extraction and new tests are shown, but the stated improvement in parsing robustness is unverified."}
+{"n": 485, "sha": "19919b44c4af95f125704c902acecdf83d70a3e4", "verdict": "ok", "reason": ""}
+{"n": 486, "sha": "1997dee3d9f0933bca99b2065463ad0a7afc7f10", "verdict": "ok", "reason": ""}
+{"n": 487, "sha": "19a1379ff580258cde568a6d24fc8298f0fd4ec2", "verdict": "filler", "reason": "The pytest lower bound is shown, but compatibility of every allowed version is not established."}
+{"n": 488, "sha": "19ba9f10979a6621d7329c8b60f57055ae37b132", "verdict": "ok", "reason": ""}
+{"n": 489, "sha": "19cfec28a8ee8f2044a883bc25406f7865fffeac", "verdict": "ok", "reason": ""}
+{"n": 490, "sha": "19cff44ec1b8eeec99459b504a681aa440f6344c", "verdict": "ok", "reason": ""}
+{"n": 491, "sha": "19d38d502fa606568dcf5eae42a211f1621bda83", "verdict": "wrong", "reason": "The caller passes a URL, but the new credential lookup uses self.url rather than that argument."}
+{"n": 492, "sha": "19db3ead4cd9bd0d9ac5d4615871ad3dcfde8144", "verdict": "wrong", "reason": "The manifest lists these files for future source distributions without showing that they were omitted from earlier builds."}
+{"n": 493, "sha": "19e1f2037c3db6269635b1e9de749efa29b1c8e1", "verdict": "ok", "reason": ""}
+{"n": 494, "sha": "1a08cea0079ab43f9552ad0795e5e24c19f605e4", "verdict": "ok", "reason": ""}
+{"n": 495, "sha": "1a4ba6c833f16283103d4eac488bd46640280bdf", "verdict": "filler", "reason": "The copyright year advances to 2017, but the source does not establish that this was the current year."}
+{"n": 496, "sha": "1a4dfad52d4aa419e98d8b3d709704cecaf3f7ba", "verdict": "ok", "reason": ""}
+{"n": 497, "sha": "1a7d1406cb4a7658436fb65ce87a991a73e71273", "verdict": "ok", "reason": ""}
+{"n": 498, "sha": "1a9f0be6df1c273f750c7abe56b404d4c5e0762d", "verdict": "ok", "reason": ""}
+{"n": 499, "sha": "1aa765825619be338678ec746abd5d312e6eb377", "verdict": "filler", "reason": "The relative import is shown, but the commit does not establish that users previously encountered installation-specific import failures."}
+{"n": 500, "sha": "1abd13700b32b82c4ce6e08e1e73be89fdbfd3e6", "verdict": "ok", "reason": ""}
+{"n": 501, "sha": "1acc4992d42950b54a7be1b0dcacdaac35d32436", "verdict": "ok", "reason": ""}
+{"n": 502, "sha": "1ad51b0a41aaaa48d6012891925f5cd5f5af955b", "verdict": "ok", "reason": ""}
+{"n": 503, "sha": "1adba3c9e94a7408584d0d819da6aa47b34ed0bd", "verdict": "ok", "reason": ""}
+{"n": 504, "sha": "1b1866934b407dfe10bd75a7d81bdeb218934f70", "verdict": "ok", "reason": ""}
+{"n": 505, "sha": "1b1f4ac77d778eb730790890ce764e5127758e02", "verdict": "ok", "reason": ""}
+{"n": 506, "sha": "1b2533f92db6d9cf4983db71af9446aa331cdf0c", "verdict": "ok", "reason": ""}
+{"n": 507, "sha": "1b2602344fe783c5422602ff5f7d03bf7928c0f3", "verdict": "ok", "reason": ""}
+{"n": 508, "sha": "1b417634721ec377abb7f17bc1f215e07202c2f7", "verdict": "filler", "reason": "The external image is removed, but the commit does not say that the image was outdated."}
+{"n": 509, "sha": "1b5317ea088b26e386c53e6a4f55558915467bb5", "verdict": "ok", "reason": ""}
+{"n": 510, "sha": "1b5bfe681b4c0a987e97ae78b2034db7b7ce3d01", "verdict": "ok", "reason": ""}
+{"n": 511, "sha": "1b70385d4ae7540084ef82886df3d943733db0d2", "verdict": "filler", "reason": "The listed encodings change, but the header gives them no explicit preference weights."}
+{"n": 512, "sha": "1b885614760d48c8417d275b5521849633773810", "verdict": "wrong", "reason": "The added registry section contains incomplete prose and an unfinished example rather than a feature description."}
+{"n": 513, "sha": "1bb91653ccb9ddb8252697eb10b506fb4108feb0", "verdict": "wrong", "reason": "The guide explains how to add cookies manually if desired, without imposing manual management for session cookies generally."}

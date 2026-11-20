@@ -1,0 +1,84 @@
+{"n": 4681, "sha": "f4f863f168d6e2c660cd73d158aaf330ba9070da", "verdict": "ok", "reason": ""}
+{"n": 4682, "sha": "f507a3ef12ce6e100f68741f68d39bcaf8a70c7a", "verdict": "ok", "reason": ""}
+{"n": 4683, "sha": "f519bbae3346b4bf0ff866e0659b7efbcf016eb1", "verdict": "ok", "reason": ""}
+{"n": 4684, "sha": "f51c489d38f7a1152be43ad103b3468db91cdd9c", "verdict": "ok", "reason": ""}
+{"n": 4685, "sha": "f521a25970140e187d43458efc2bdea37dc93f17", "verdict": "ok", "reason": ""}
+{"n": 4686, "sha": "f52287d9992f0cff892ab5b55ed12803791a78a7", "verdict": "ok", "reason": ""}
+{"n": 4687, "sha": "f524fe4934d41fc08173cd61f49c385207d42390", "verdict": "ok", "reason": ""}
+{"n": 4688, "sha": "f52c0032a325b593f6e9fc0485ad6bd0ce871f12", "verdict": "ok", "reason": ""}
+{"n": 4689, "sha": "f53aed16111903d4f1fcce204e4e7a6f1fc09ee9", "verdict": "wrong", "reason": "The guide distinguishes the content property’s full-download wait from streaming calls that wait for smaller pieces."}
+{"n": 4690, "sha": "f549efd43d4d9d9b8338b64317c15d4b6739e42e", "verdict": "ok", "reason": ""}
+{"n": 4691, "sha": "f54a4e3de186495a5254d21ae698c677c71b90c3", "verdict": "filler", "reason": "The diff adopts six iterators and avoids extra copying on Python 2, but does not establish a previously incompatible case."}
+{"n": 4692, "sha": "f553857beb4424786f8d665019686551905483d6", "verdict": "ok", "reason": ""}
+{"n": 4693, "sha": "f566bb21400cecf4dfe5a6c7d9bc7fb62abbb57d", "verdict": "ok", "reason": ""}
+{"n": 4694, "sha": "f5775594ccc0e2947b965c1fcf40747301a93974", "verdict": "filler", "reason": "The conversion changes to the compatibility helper, but the excerpt does not identify a specific encoding error it prevents."}
+{"n": 4695, "sha": "f58ab8bc033baf55b5d996340ba4a2cf5cdabdfb", "verdict": "filler", "reason": "Adding one contributor does not establish that the contributor list is exhaustive."}
+{"n": 4696, "sha": "f59a95713ebefcbcf4baf247d9ef193d5e8b83b0", "verdict": "ok", "reason": ""}
+{"n": 4697, "sha": "f5a2138e8ce658d7bf3883c14805589218b06a5f", "verdict": "ok", "reason": ""}
+{"n": 4698, "sha": "f5a2b75924805f10f8c42945ad96f9e7d9a3f33e", "verdict": "ok", "reason": ""}
+{"n": 4699, "sha": "f5a7aefc2dc123c65ec1c6d3e83949999b03876b", "verdict": "wrong", "reason": "The upper bound excludes version 3.0 and above."}
+{"n": 4700, "sha": "f5b0043c085d82e7eac93caa334d3f3dc08d1d1e", "verdict": "ok", "reason": ""}
+{"n": 4701, "sha": "f5b5c293b910ee997748e3cebf092d589309f684", "verdict": "wrong", "reason": "The change skips seek after an initial tell error, but the shown seek in the success branch has no added exception guard."}
+{"n": 4702, "sha": "f5bbb9714d66103280d0ca10742877f4522787ff", "verdict": "wrong", "reason": "The newly added comment says the test can still fail with certain DNS providers."}
+{"n": 4703, "sha": "f5c5536916085ba4b6b9002ad723a6d7c7c08ed6", "verdict": "filler", "reason": "The examples switch domains, but the excerpt does not establish that the former domain was obsolete or verify the replacement."}
+{"n": 4704, "sha": "f5c59743e7a45b68eaa82c83baaaed5607348afe", "verdict": "ok", "reason": ""}
+{"n": 4705, "sha": "f5e421e880761791bbec40556aa9abf15bf7f4f8", "verdict": "filler", "reason": "Both loop conditions are truthy as written, and no cross-version problem is described in the excerpt."}
+{"n": 4706, "sha": "f5f2ddfa747be428a66139644266e1cb7dcc3ae5", "verdict": "ok", "reason": ""}
+{"n": 4707, "sha": "f5f3e696abdd99da251f9b24e8fe063b12e2cb50", "verdict": "filler", "reason": "The targets are removed, but the excerpt does not establish that they were outdated or explain a replacement build process."}
+{"n": 4708, "sha": "f5ff05be1ed04bcc50e33af28fb54382466a32e8", "verdict": "ok", "reason": ""}
+{"n": 4709, "sha": "f60324a3de41c10dd7af17cadd4322c895068a25", "verdict": "ok", "reason": ""}
+{"n": 4710, "sha": "f60579ddda183e10888bd5059ba3033792ddb043", "verdict": "cannot_tell", "reason": "The alias assignments are shown without their surrounding imports or rebindings, so the exact string type assigned in both branches cannot be verified."}
+{"n": 4711, "sha": "f6072f1e14d2635d4af1f4c5b1925d3e902cc2a2", "verdict": "ok", "reason": ""}
+{"n": 4712, "sha": "f6107bc15198989b7de76020dac53f8f75028834", "verdict": "ok", "reason": ""}
+{"n": 4713, "sha": "f6252c2203dc3f9152056955266cce7050bc8e85", "verdict": "filler", "reason": "The guide removes easy_install instructions, but the excerpt does not establish formal deprecation."}
+{"n": 4714, "sha": "f63106005b3050b5a99833ec47b78667dc4766b2", "verdict": "filler", "reason": "The CSS adds a negative margin, but the excerpt does not demonstrate any change in line wrapping on mobile."}
+{"n": 4715, "sha": "f647352d01d933b1c16eace30a69edbb38cda61f", "verdict": "wrong", "reason": "Multipart improvements and data uploads on redirects are separate notes. The excerpt does not specify multipart redirect behavior."}
+{"n": 4716, "sha": "f64a0d782b2a9310340aba929f44bb887d2f27e0", "verdict": "filler", "reason": "The old HTTP link is replaced with HTTPS, but the excerpt does not verify the replacement site’s current status."}
+{"n": 4717, "sha": "f653b9ac58ad74441e118538619979edcf6749a5", "verdict": "ok", "reason": ""}
+{"n": 4718, "sha": "f65b790e9dcf688ac68024044a60d63004b65cda", "verdict": "ok", "reason": ""}
+{"n": 4719, "sha": "f66b35454ff156534675fa6c51d93d3046217496", "verdict": "ok", "reason": ""}
+{"n": 4720, "sha": "f66eafdffdc8fa9a33e97a7c8f0d927ef72a1fdb", "verdict": "wrong", "reason": "The method still uses tabs and the assignment that stored its method argument is deleted."}
+{"n": 4721, "sha": "f6707042d8b18d2a3737380bf58ff020872fb07b", "verdict": "ok", "reason": ""}
+{"n": 4722, "sha": "f687e9f3d8b01d6d99c4df1c539f9b5e3f4e7b4f", "verdict": "ok", "reason": ""}
+{"n": 4723, "sha": "f69934fb24a9e59f76a2c17993082259bf3a4d90", "verdict": "ok", "reason": ""}
+{"n": 4724, "sha": "f69d8c16ed47fa87b2cd0e7b8ad4ecf4871cb5c1", "verdict": "filler", "reason": "The bundled revision and affected modules are shown, but the excerpt does not establish that all claimed improvements were the latest upstream changes."}
+{"n": 4725, "sha": "f6a4ab02daa3103f9d595f4b62803a1267498949", "verdict": "ok", "reason": ""}
+{"n": 4726, "sha": "f6c0619d892a41dcf84933810ffda89e9f6b10d4", "verdict": "ok", "reason": ""}
+{"n": 4727, "sha": "f6d43b03fbb9a1e75ed63a9aa15738a8fce99b50", "verdict": "wrong", "reason": "The commit message distinguishes updating the essay URL in the contributing guide from adopting the Python code in the conduct file."}
+{"n": 4728, "sha": "f6e07bb27f9fe092dabb1945ef7fd515db7870fe", "verdict": "ok", "reason": ""}
+{"n": 4729, "sha": "f6e13ccfc4b50dc458ee374e5dba347205b9a2da", "verdict": "ok", "reason": ""}
+{"n": 4730, "sha": "f7024a60004db98e467260402e6c2f5338e9d619", "verdict": "filler", "reason": "The patch replaces Cookie.SimpleCookie construction and removes the domain parameter, but the excerpt does not establish deprecation or quantify a compatibility improvement."}
+{"n": 4731, "sha": "f705c41c1d55b1e023226f2803709c17e6b024bb", "verdict": "ok", "reason": ""}
+{"n": 4732, "sha": "f70e89a163208076f12577cd98ce09650b9d1241", "verdict": "ok", "reason": ""}
+{"n": 4733, "sha": "f7257eada6ed60e5a09eb09487f3a71ee982f015", "verdict": "ok", "reason": ""}
+{"n": 4734, "sha": "f72c13ffdad47ff684d102b6d9fb6122db899891", "verdict": "ok", "reason": ""}
+{"n": 4735, "sha": "f733ff01969b485614de91c3c1aab64d25c9eb41", "verdict": "ok", "reason": ""}
+{"n": 4736, "sha": "f7481adf45608d27853292ea733b9bee801dc13d", "verdict": "ok", "reason": ""}
+{"n": 4737, "sha": "f74a6707afe6f14a9edfb63a0d464e4aa93aca8f", "verdict": "ok", "reason": ""}
+{"n": 4738, "sha": "f74f5e3ebf0943163cd21b93fb682f790277aa19", "verdict": "ok", "reason": ""}
+{"n": 4739, "sha": "f74fc486be3ba16914a46df809ca33fbffb28629", "verdict": "ok", "reason": ""}
+{"n": 4740, "sha": "f7596c75dce4e87ab83bdf74e8f120a4b1a5ff03", "verdict": "ok", "reason": ""}
+{"n": 4741, "sha": "f75b9504fc8427c1617bac2dd1e1aa405c9f1b1b", "verdict": "ok", "reason": ""}
+{"n": 4742, "sha": "f75ee9fb6e9c651ce49a438634b6e9ced0560e1b", "verdict": "ok", "reason": ""}
+{"n": 4743, "sha": "f7822f7c4185b45527f171095c4edf8777efe51b", "verdict": "ok", "reason": ""}
+{"n": 4744, "sha": "f7917c305a4f05a86a3ae058036e2205dc0f47e7", "verdict": "ok", "reason": ""}
+{"n": 4745, "sha": "f7968b6797a50716a2f177ad23439a3c6bb9f683", "verdict": "wrong", "reason": "The return of None is limited to AttributeError and does not cover every invalid or failed stream read."}
+{"n": 4746, "sha": "f79d1ef42f646a1835eda6b1a50c54e7afe56784", "verdict": "ok", "reason": ""}
+{"n": 4747, "sha": "f7abfa8a1426b018b99c9ac3237331b55bf7103c", "verdict": "ok", "reason": ""}
+{"n": 4748, "sha": "f7be4e5f28335cc2c6d31be716c0a883b64b2a71", "verdict": "ok", "reason": ""}
+{"n": 4749, "sha": "f7c10ca74d0230ad4ece986a9cc4a2ebcb9136bf", "verdict": "wrong", "reason": "The previous restriction applies to the visible method-specific branch."}
+{"n": 4750, "sha": "f7c85685a8e484715649c13bacae6adc7f5f3908", "verdict": "ok", "reason": ""}
+{"n": 4751, "sha": "f7e4832472911bca058a4669d2e204792dbc8fbb", "verdict": "filler", "reason": "The spelling edit supplies no evidence that the documented restriction is accurate."}
+{"n": 4752, "sha": "f7e67c01ea750130e407adb6a702d02065125eb8", "verdict": "ok", "reason": ""}
+{"n": 4753, "sha": "f7fdfe8b9ab1aec824c61ead321263d5c90fa599", "verdict": "ok", "reason": ""}
+{"n": 4754, "sha": "f8032e08aeeff297ce72d8539be57207b97cf0f7", "verdict": "ok", "reason": ""}
+{"n": 4755, "sha": "f803dc6c991c2ba4874f98381a5686b2b198684d", "verdict": "ok", "reason": ""}
+{"n": 4756, "sha": "f8076fee5e00ca80ef2ba9aa25a28b530b7170fd", "verdict": "ok", "reason": ""}
+{"n": 4757, "sha": "f80984f37701003f0f06d86902a60cfd82fa85ef", "verdict": "ok", "reason": ""}
+{"n": 4758, "sha": "f80fbad4ff95152021f68703149c371f5b44c7cf", "verdict": "wrong", "reason": "The added line still lacks a terminating newline."}
+{"n": 4759, "sha": "f82382588f9ad8c0ac15dc4b401e5e7cad41e9ae", "verdict": "ok", "reason": ""}
+{"n": 4760, "sha": "f835843f876c9757e2bc66bcba0459784a2a595a", "verdict": "wrong", "reason": "The target URL is identical on both sides of the diff."}
+{"n": 4761, "sha": "f8603918db781ac72066de61d544a60f513faeaf", "verdict": "wrong", "reason": "The certificate was already listed on both lines."}
+{"n": 4762, "sha": "f8798a253adc21c63cac0c4df936f72f0a3b42ae", "verdict": "ok", "reason": ""}
+{"n": 4763, "sha": "f887906ec3def9d96b622f2da737f7b1cb13b3ea", "verdict": "ok", "reason": ""}
+{"n": 4764, "sha": "f897be58bf3b9eb589617b98bfbca3c0e188602d", "verdict": "ok", "reason": ""}

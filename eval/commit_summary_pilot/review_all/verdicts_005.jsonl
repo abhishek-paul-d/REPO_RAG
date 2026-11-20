@@ -1,0 +1,81 @@
+{"n": 351, "sha": "1360e77cb2c5c7956b9c2b6e510040fa73c6d7ee", "verdict": "ok", "reason": ""}
+{"n": 352, "sha": "1361506ae6ab1f25fd0d25147335a4576469d8a8", "verdict": "ok", "reason": ""}
+{"n": 353, "sha": "13716728e757a22ccdb700c5c7db52c8be33d034", "verdict": "ok", "reason": ""}
+{"n": 354, "sha": "1382d655ed916eb11d682c47449d451ce406ce47", "verdict": "ok", "reason": ""}
+{"n": 355, "sha": "139418475cd6bedd3d383cd3e442698b888c51c2", "verdict": "filler", "reason": "The quickstart's advice changes, but the commit does not establish any change to the API itself."}
+{"n": 356, "sha": "13a6e02ccd0b932b9cf8b8eb88cdb47ee118bbd1", "verdict": "wrong", "reason": "The fallback catches only io.UnsupportedOperation, rather than errors from fileno generally."}
+{"n": 357, "sha": "13d892bdbe9a2aa374959a166e8067c35253705d", "verdict": "ok", "reason": ""}
+{"n": 358, "sha": "13db806861188ae15a5fb23bd39610fdb0aba4f2", "verdict": "ok", "reason": ""}
+{"n": 359, "sha": "14081bed46399cac578182d48464b954e0fcdc17", "verdict": "ok", "reason": ""}
+{"n": 360, "sha": "14176d1d63b6a85308fd61a9a20c8aeed398043b", "verdict": "ok", "reason": ""}
+{"n": 361, "sha": "141ce93445da56330fea45916390940017ef2c7d", "verdict": "ok", "reason": ""}
+{"n": 362, "sha": "1421ffa32ab4709c9a7634493803bd55a3c6615f", "verdict": "wrong", "reason": "The retry counter is reset once per request, which is not a limit of one retry."}
+{"n": 363, "sha": "142b26ea7b4a4badd5ba98ed0e8490e3c7134592", "verdict": "wrong", "reason": "The docstring warns callers against raw access after close without saying that the method makes such access impossible."}
+{"n": 364, "sha": "142e24de7b456d09b88bbbe0b9c978755254ca95", "verdict": "filler", "reason": "The test asserts an authorization header under concurrent requests, but does not establish that there are no race conditions."}
+{"n": 365, "sha": "1435cf5affcc3822f8cb4e424bef0260083bfce5", "verdict": "ok", "reason": ""}
+{"n": 366, "sha": "1444d9033a11f6aed8d53333c4b93c72a4b91411", "verdict": "ok", "reason": ""}
+{"n": 367, "sha": "1447bccc057e7fbffdfecd75cd4922702489a14b", "verdict": "filler", "reason": "The links gain .html extensions, but successful resolution in the rendered documentation is not shown."}
+{"n": 368, "sha": "1451ba0c6d395c41f86da35036fa361c3a41bc90", "verdict": "ok", "reason": ""}
+{"n": 369, "sha": "146291795130cbe73e2a64f53c2a819244a4bd6b", "verdict": "ok", "reason": ""}
+{"n": 370, "sha": "1466ad713cf84738cd28f1224a7ab4a19e50e361", "verdict": "wrong", "reason": "The message says the old links redirected, contradicting the claim that they were broken."}
+{"n": 371, "sha": "147a305da8c7c5e1fa44d073f97c865f4e81bfd7", "verdict": "wrong", "reason": "The equality test checks one unrelated object and does not establish the behavior for all non-dict types."}
+{"n": 372, "sha": "147c24154e4315750f7513ca387f4b843bcc85d2", "verdict": "filler", "reason": "The new empty-dictionary defaults are shown, but the commit does not identify an error they prevent."}
+{"n": 373, "sha": "147c8511ddbfa5e8f71bbf5c18ede0c4ceb3bba4", "verdict": "ok", "reason": ""}
+{"n": 374, "sha": "1481e9ae6a3ef8f507b944840c98aea0f3f23920", "verdict": "ok", "reason": ""}
+{"n": 375, "sha": "148c1b5c13ddabd77b4f25981aaecdbe5c05bf9d", "verdict": "ok", "reason": ""}
+{"n": 376, "sha": "14a1839a454e4867813d9909141520aaf665a789", "verdict": "filler", "reason": "The two dates change to 2014, but the commit does not independently identify the year as current."}
+{"n": 377, "sha": "14a798882c75323848c342f0aa53dc7d8c8751aa", "verdict": "ok", "reason": ""}
+{"n": 378, "sha": "14a83339a74929eae193fbbefd3668cfa8943780", "verdict": "filler", "reason": "The wording changes from usually to typically, but a gain in precision is subjective."}
+{"n": 379, "sha": "14ba99f97503baeb341075312a5e173091f43329", "verdict": "wrong", "reason": "The summary names a formatter that is not established by the message or diff."}
+{"n": 380, "sha": "14bd9ebb455ab1fd8a08868b37d4b271658b0dee", "verdict": "filler", "reason": "The API conversion is commented out, but the record does not establish that this was temporary."}
+{"n": 381, "sha": "14c1102e0fdc99e2b6fc170d8d02bcb20676e2ee", "verdict": "ok", "reason": ""}
+{"n": 382, "sha": "14c323492a42415a4ad0a93f669bdf1c1b2e999a", "verdict": "wrong", "reason": "The binary diff shows the filename but supplies no evidence of an office or its location."}
+{"n": 383, "sha": "14d6fa1472cfbaaeb23c23ad4029bac82547c34d", "verdict": "cannot_tell", "reason": "The diff stops before the new metadata import, so the destination and extent of the described consolidation are not verifiable."}
+{"n": 384, "sha": "14d71fd41a31d0ce275c33e59c86d767c9c3768b", "verdict": "ok", "reason": ""}
+{"n": 385, "sha": "14da5cf180c4776f6a4aeeb8a6979ee885fc8c82", "verdict": "ok", "reason": ""}
+{"n": 386, "sha": "14ef4622634ae8746bce600523cbed15a119d15a", "verdict": "ok", "reason": ""}
+{"n": 387, "sha": "14fae695bfae24e88e1dbfedcf51542b1943e4f5", "verdict": "filler", "reason": "The visible changes move the authentication block, but the text does not establish newly standardized handling of authentication tuples."}
+{"n": 388, "sha": "1500632b602be698bfce682daeb01a2d64fc2d39", "verdict": "wrong", "reason": "The diff also removes code that initialized proxy_manager, which is a functional edit."}
+{"n": 389, "sha": "15054aa3909da2383e8cfa9abcd296ba46a7200f", "verdict": "ok", "reason": ""}
+{"n": 390, "sha": "1511dfa637643bae5b6111a20ecb80ec9ae26032", "verdict": "ok", "reason": ""}
+{"n": 391, "sha": "152faa2a0f97fb8744278ef9911b4116adeb4ab2", "verdict": "ok", "reason": ""}
+{"n": 392, "sha": "1532effb68aaa8eda8ee6a250b72de9e72c5de22", "verdict": "ok", "reason": ""}
+{"n": 393, "sha": "15396fb2f90e30f1abe7ed63ddcf07f7706ba75b", "verdict": "filler", "reason": "Both versions of the example describe certificates as available, so the new hostname does not demonstrate a correction of certificate validity."}
+{"n": 394, "sha": "1539d17366645132d435f62b132cbe84d1b16898", "verdict": "ok", "reason": ""}
+{"n": 395, "sha": "1553770014dc1579d74b79f7b20dea5184242ef4", "verdict": "wrong", "reason": "The summary reverses the direction of the spelling and markup change."}
+{"n": 396, "sha": "15585909c3dd3014e4083961c8a404709450151c", "verdict": "ok", "reason": ""}
+{"n": 397, "sha": "155863bf719aa8020a02557b14cd73385f3a4199", "verdict": "filler", "reason": "Roadmap items are removed, but the commit does not say they were outdated."}
+{"n": 398, "sha": "15597c27cd62c56892963545c526be7dcdd7854d", "verdict": "filler", "reason": "The Gratipay link is replaced, but the source does not establish that it was outdated."}
+{"n": 399, "sha": "15694fa2f7cc18f256dc2866e6206686de1ab795", "verdict": "filler", "reason": "The async extra is removed, while a simpler installation process is an unverified benefit."}
+{"n": 400, "sha": "15755be3c77b8d17edc7ef5b36121d012aad5926", "verdict": "ok", "reason": ""}
+{"n": 401, "sha": "15761fc1267f11d5ec348125c4c7b3ac58926b8e", "verdict": "ok", "reason": ""}
+{"n": 402, "sha": "15849947ec4b8b7c3c136a47e950499edfd36921", "verdict": "ok", "reason": ""}
+{"n": 403, "sha": "1588ad7c469b61cbfc8185e3d7326dff79afa81e", "verdict": "ok", "reason": ""}
+{"n": 404, "sha": "1595e43812bdfcc4ef16567780e872b9eb79d9d2", "verdict": "filler", "reason": "The wheel configuration names the license file, but the source establishes no compliance outcome."}
+{"n": 405, "sha": "15a3869006fa68d7ad34bc315842f2ca5b537311", "verdict": "ok", "reason": ""}
+{"n": 406, "sha": "15cf19431a99a5334458b9478223cec63a494549", "verdict": "filler", "reason": "The pinned version is clear, but its stability and any avoided update problems are unverified."}
+{"n": 407, "sha": "15de7d9dbabd6acc97267c1c6addb59a08c6367b", "verdict": "ok", "reason": ""}
+{"n": 408, "sha": "15e1f17bb6f3f978787dd23da0268388148bc3d5", "verdict": "ok", "reason": ""}
+{"n": 409, "sha": "15fde024f258989433a2b676856549468e9d3d94", "verdict": "ok", "reason": ""}
+{"n": 410, "sha": "1604e20fc87ce212cf3a02474a6d7509b640cbbb", "verdict": "ok", "reason": ""}
+{"n": 411, "sha": "1607a6a3e2565c329945c6e05576f27597be7549", "verdict": "ok", "reason": ""}
+{"n": 412, "sha": "160d36450350cbb8948657a60aa4f0cbe18c601e", "verdict": "ok", "reason": ""}
+{"n": 413, "sha": "162b751f6db97c1c3ae4fea4af4d75f89b2ec698", "verdict": "ok", "reason": ""}
+{"n": 414, "sha": "16459910a963c108529585fe8feb78f862d6d9ba", "verdict": "filler", "reason": "The patch adds a malformed-redirect test, but does not establish that the session implementation handles all such responses correctly."}
+{"n": 415, "sha": "165804b25e270ae5668d605aafaec15256e93dcf", "verdict": "ok", "reason": ""}
+{"n": 416, "sha": "1661bf654385c51c7a33e4fe9fd01c2873244df5", "verdict": "filler", "reason": "The decoding expression changes from str to unicode, but the text does not identify Python 2 compatibility as the reason."}
+{"n": 417, "sha": "1677c688cb66ee0cb3e2ac5bc10aa9dafc063e1e", "verdict": "ok", "reason": ""}
+{"n": 418, "sha": "168109f13c135d719a0be21ce220534e4b657aed", "verdict": "filler", "reason": "The new urllib3 imports are visible, but the alleged import or attribute failures are guesses."}
+{"n": 419, "sha": "168c3e691386602508213c992bac1d206b779358", "verdict": "ok", "reason": ""}
+{"n": 420, "sha": "169b7edcc3c732dc949cfed377cbecda797b94ac", "verdict": "ok", "reason": ""}
+{"n": 421, "sha": "16a17a3ca7134b0a56c49653165ef37cb6acfece", "verdict": "wrong", "reason": "Removing a packaging upper bound permits future-version installation but does not guarantee runtime compatibility."}
+{"n": 422, "sha": "16a7a26452b61ccd08b0a52e940d13e305c73e37", "verdict": "ok", "reason": ""}
+{"n": 423, "sha": "16b418b44a04981ec452df607730079a6178a804", "verdict": "ok", "reason": ""}
+{"n": 424, "sha": "16b56d822e8999e236a027735c518229314a611a", "verdict": "ok", "reason": ""}
+{"n": 425, "sha": "16c8241a8128920cfc4b64ea41418dbd6f5b36cb", "verdict": "wrong", "reason": "The changelog says only that the help command improves, without specifying changes to its output or diagnostic content."}
+{"n": 426, "sha": "16df2a09173b17a82d607c31a6826b7c5dd0fc57", "verdict": "filler", "reason": "The new constraint allows pytest 9.x, but does not establish that it is the latest series or identify any features or fixes."}
+{"n": 427, "sha": "16e5119b2ad8be05673b5f8762cd71edaa0cd882", "verdict": "ok", "reason": ""}
+{"n": 428, "sha": "16eeee14367550680d9c3cd084b9d4addd743755", "verdict": "wrong", "reason": "The Certifi link is deleted and the other link is relabeled, with no new Certifi reference shown."}
+{"n": 429, "sha": "16f6e25176ca8693a4c6aebdc5361ca064e8ef8f", "verdict": "ok", "reason": ""}
+{"n": 430, "sha": "16f9798208f2ef78e3ba91fc03584a522dd258a9", "verdict": "ok", "reason": ""}
+{"n": 431, "sha": "17088763e7ec86fc8e378e23a386199281c31e47", "verdict": "ok", "reason": ""}

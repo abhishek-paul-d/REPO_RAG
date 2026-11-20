@@ -29,7 +29,7 @@ limits stated next to it. Almost all of it is one repository, `psf/requests`.
 | Docs questions | 11/12 |
 | Exact facts through the model | 59/60 |
 | Architecture questions | 13/15 (original set), 8/10 (fresh set) |
-| Bug report to fix commit | 70/113 (62%) on the full test set; 5/10 on the old small set. The weak spot: treat answers as leads to check |
+| Bug report to fix commit | requests 76 to 78/113 (about 68%), Flask 100 to 101/136 (about 74%), three identical runs each. The weak spot: treat answers as leads to check |
 
 These are mechanical pass rates from single runs, on one repository. See
 [Measured results](#measured-results) for what each one does and does not show.
@@ -143,7 +143,7 @@ answer, or abstains when it should.
 | Issue to fixing PR (10) | 10/10 |
 | Out-of-scope probes (5) | 5/5 (correctly abstained) |
 | **Bug report to fix commit (10)** | **5/10** (old small set, before the commit changes below) |
-| **Bug report to fix commit (113)** | **70/113** (62%); 57/113 before the shortlist and tool-call changes |
+| **Bug report to fix commit (113)** | **76, 76 and 78/113** (about 68%) in three identical runs of the default prompt `commit_explain`; the earlier prompt scored 74/113, and 57/113 was before the shortlist and tool-call changes. See [Commit questions](#commit-questions-what-was-tried) |
 
 Caveats:
 
@@ -153,14 +153,12 @@ Caveats:
 - **Run-to-run movement** is about one question per set: the same questions scored 12/15 with CUDA
   graphs alone and 13/15 with graphs plus MTP, and one code question flipped between runs. Do not
   read differences of one question as gains.
-- **Commit questions** are the weak spot. On the 113 test pairs of psf/requests, the answer model
-  scores 70/113: a shortlist of 15 commits (the first 5 in full) and 6 tool calls for commit
-  questions raised it from 57/113. About 40 still fail, mostly a wrong commit or an abstention; the
-  gold commit is in the top 15 for about 70% of the pairs. The 10-question number below is older.
-  Earlier diagnosis on the small set showed the limit is retrieval ranking, model
-  selection and abstention, not query drift; a prompt change added about one question (6/10 to
-  7/10 on this set, a single run). The shipped default prompt was not re-measured at the current
-  speed settings. Treat answers to "which past commit fixed this?" as leads, not conclusions.
+- **Commit questions** are the weak spot. On the 113 test pairs of psf/requests the answer
+  model scores about 68% (three identical runs: 76, 76 and 78), so run-to-run noise is about two
+  questions. A shortlist of 15 commits (the first 5 in full) and 6 tool calls raised it from
+  57/113. Of 35 misses, 23 never had the gold commit among the 15 commits the model saw: the main
+  loss is retrieval, not the model's choice. Treat answers to "which past commit fixed this?" as
+  leads, not conclusions.
 - There is no fallback model. The previous model, `Qwen2.5-Coder-14B-Instruct`, scored code
   36/40, docs 10/12 and commit 3/10 under older limits; it was not re-measured under the current
   defaults and is unsupported.
@@ -195,6 +193,51 @@ source, git and `metadata.db`. Verdicts are in `eval/claude_review_27b/`.
 | Commit questions (113) | 70 pass by exact SHA; about 76 if 6 answers that are valid alternative fixes are counted. 67 of the 70 passes are a bare SHA with no explanation. One answer names the commit that introduced the bug as its fix |
 
 This is one reader and no human labels, on questions the system was tuned on.
+
+### Fresh questions and the commit-explanation prompt (2026-11-19, 27B, single runs)
+
+| Run | Result |
+|---|---|
+| 73 new questions (written after the tuned sets), shipped prompt, three runs | 72/73 each time, no question changed between runs |
+| Same questions with the answer guards on | 72/73, identical (no measured gain; the set is at its ceiling) |
+| Bug report to fix commit (113), default prompt | 74/113; 86 of 99 answers are a bare SHA |
+| Same, `commit_explain` prompt (the default since 2026-11-20) | 78/113; every answer says why the commit matches |
+| The 103 tuned questions | code 40/40, docs 11/12, history 11/11, refs 10/10, kind 5/5, commit 7/10, probes 5/5 |
+
+The fresh questions were written by an AI and are easy for this system, so they show it does not
+regress, not how strong it is. `commit_explain` makes more specific claims that have not been
+checked against the diffs. The code, docs, history and architecture questions have not been
+re-run under it yet (only the commit questions have).
+
+### Commit questions: what was tried
+
+Bug report to its own fix commit, 27B, single runs, one gold commit per question. Run-to-run
+noise is about two questions (identical controls: 76, 76, 78 of 113), so only the larger moves
+below mean anything, and none of the gains is significant on its own (sign test).
+
+| Setting | requests (113) | Flask (136) |
+|---|---:|---:|
+| Default prompt `commit_explain`, three identical runs | 76, 76, 78 | 101, 100, 101 |
+| Search with the model's query and the question merged (`fused`) | 79 | 103 |
+| Summary index for search, fused, summary hidden from the model | 82 and 84 | 106 and 107 |
+| Model must read candidates with `get_commit` before naming one (`verify`) | 69 (worse, p = 0.065) | not run |
+
+- **Summary index:** the 27B wrote a short plain-English summary of every commit; it is added to the
+  text that is *searched*, and the model still sees the raw commit. Retrieval alone (hybrid, 170
+  Flask queries over 3,829 commits): hit@1 93 to 99, hit@5 141 to 146, MRR 0.675 to 0.712. Showing
+  the summary to the model did not help (72/113 against 78/113), so it is hidden.
+- **Reading before naming made answers worse** on requests, so it stays off.
+- **Rejected on purpose:** a reranker (no gain, slower), and adding issue or PR text to the search
+  text (the gold commit's own issue text would leak the answer). A run restricted to fix-like
+  commits scored 85/113, but every gold commit passes that filter by construction, so it is an
+  upper bound, not a result.
+- **Not the default:** the summary index needs a 27B summary pass plus a GPU embedding run for each
+  repository. Both repos point the same way (ahead of every control run, by 4 to 8 questions), but it is not proven. Turn it on
+  with `agent_commit_query=fused` and `agent_commit_hide_summary=true`; the build steps are in
+  [docs/FLASK_COMMIT_RUNBOOK.md](docs/FLASK_COMMIT_RUNBOOK.md).
+- **Limits:** the questions are an issue and its own fix commit, not "find a similar past fix for
+  an unseen bug"; every gold commit has a fix-like message; the issue text is not part of the
+  question. About 9 gold commits have terse or non-code messages that no search can match.
 
 ### Speed
 
@@ -247,8 +290,8 @@ was not adopted. Filtering retrieval by repo adds 0.13 to 0.18 nDCG@10 for every
 
 Without reranking, source-path Hit@5 is 0.779 (requests 0.689, flask 0.850). The gold here is
 link-derived (an issue's own fix commit), so this does not measure how useful *similar* past
-fixes are to a developer. The 27B setup does not use the reranker, which is why the agent's
-commit score above (5/10) is far below this retrieval score.
+fixes are to a developer. The 27B setup does not use the reranker, so the agent's
+commit score above (about 68% on requests) is far below this retrieval score.
 
 ## Known limits
 
@@ -258,9 +301,9 @@ commit score above (5/10) is far below this retrieval score.
 - **No independent human labels.** The architecture labels were reviewed by the owner only (the
   Flask labels were not checked against source), and answer quality was judged by automatic
   checks and AI readers, not people. The review of the 27B's answers above is one AI reader.
-- **Commit answers are bare SHAs.** The answer to "which commit fixed this?" is usually just a
-  SHA, and a no-match is the generic "No relevant implementation was found". A user cannot tell a
-  confident answer from a guess.
+- **Commit answers can be wrong with confidence.** Since 2026-11-20 each answer says why the
+  commit matches, but about a third of bug reports still end in a wrong commit or an abstention.
+  Some wrong picks are a different, plausible fix of the same issue.
 - **History counts exclude merge commits** (4,883 of 6,495 for requests), by design; answers do not
   say so.
 - **Chunk granularity.** Merged chunks are labelled by their first symbol, so a question about the

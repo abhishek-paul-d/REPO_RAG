@@ -68,6 +68,7 @@ PARAMETERS = """
 # --- Parameters -------------------------------------------------------------
 DTYPE = "float32"      # matches the laptop's queries; "bfloat16" is faster and nearly identical
 DOC_BATCH = 8          # commit texts run to 2,048 tokens: large batches ran out of 40 GB before
+EMBED_BASELINE = True  # False: embed only the summary texts (half the time)
 """
 
 UPLOAD = """
@@ -114,10 +115,9 @@ gpu = torch.cuda.get_device_name(0) if torch.cuda.is_available() else "NONE (thi
 print("GPU:", gpu)
 embedder = LocalEmbeddings(Settings())
 shas = [c["sha"] for c in commits]
-texts = {
-    "baseline": [c["text"] for c in commits],
-    "summary": [pilot.with_summary(c["text"], c["summary"]) for c in commits],
-}
+texts = {"summary": [pilot.with_summary(c["text"], c["summary"]) for c in commits]}
+if EMBED_BASELINE:
+    texts = {"baseline": [c["text"] for c in commits], **texts}
 vectors = {}
 for name, batch in texts.items():
     started = time.perf_counter()
@@ -131,13 +131,14 @@ print(f"queries: {query_vectors.shape} in {time.perf_counter() - started:.0f} s"
 FIRST_ANSWER = """
 # A first answer on the GPU box: dense search only, the gold commit's rank inside this corpus.
 ranks = {}
-for name in ("baseline", "summary"):
+for name in vectors:
     ranks[name] = [
         pilot.ranks_for(pilot.dense_order(vectors[name], qv), shas, q["gold"])
         for q, qv in zip(queries, query_vectors)
     ]
     print(f"{name:9s}", pilot.summarize_ranks(ranks[name]))
-print("summary vs baseline:", pilot.compare_ranks(ranks["baseline"], ranks["summary"]))
+if "baseline" in ranks:
+    print("summary vs baseline:", pilot.compare_ranks(ranks["baseline"], ranks["summary"]))
 """
 
 SAVE = """
@@ -145,11 +146,26 @@ np.savez_compressed(
     "/content/pilot_vectors.npz",
     shas=np.array(shas),
     queries=query_vectors,
-    vectors_baseline=vectors["baseline"],
     vectors_summary=vectors["summary"],
+    **({"vectors_baseline": vectors["baseline"]} if "baseline" in vectors else {}),
 )
 print(f"pilot_vectors.npz: {os.path.getsize('/content/pilot_vectors.npz') / 1e6:.1f} MB")
 
+# 1) Save to Google Drive first: it survives a blocked download and a closed tab.
+import shutil
+
+try:
+    from google.colab import drive
+
+    drive.mount("/content/drive")
+    os.makedirs("/content/drive/MyDrive/repo_rag", exist_ok=True)
+    shutil.copy("/content/pilot_vectors.npz", "/content/drive/MyDrive/repo_rag/pilot_vectors.npz")
+    drive.flush_and_unmount()
+    print("SAVED TO DRIVE: My Drive/repo_rag/pilot_vectors.npz (check it before disconnecting)")
+except Exception as error:  # the file is still in /content: use the Files panel
+    print("Drive save FAILED:", error)
+
+# 2) Browser download as a second copy (browsers sometimes block this silently).
 from google.colab import files
 
 files.download("/content/pilot_vectors.npz")

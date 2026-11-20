@@ -1,0 +1,91 @@
+{"n": 2618, "sha": "87f3b0a5595d875515de15927e1d2803dbfda73c", "verdict": "ok", "reason": ""}
+{"n": 2619, "sha": "87f9a58d45a25254942be42f647bf1992aae2621", "verdict": "ok", "reason": ""}
+{"n": 2620, "sha": "87fb312534fda5aa7996d5172e726c0872cd042e", "verdict": "ok", "reason": ""}
+{"n": 2621, "sha": "88011f4032c3c53c2c989c528c1025339f43daa5", "verdict": "ok", "reason": ""}
+{"n": 2622, "sha": "8813787a12022e0a8a99ba5c8cf4c6eb6e127d36", "verdict": "ok", "reason": ""}
+{"n": 2623, "sha": "88177ec33fa0846aea0ecb121ffbb041c5f09cdc", "verdict": "wrong", "reason": "The original condition already exempted temporary redirects, so the newly added exemption is for the resume code."}
+{"n": 2624, "sha": "882b465968ca9b8baecd6449e42c3253d0f29bef", "verdict": "wrong", "reason": "The edit removes the terminating newline, rather than adding one."}
+{"n": 2625, "sha": "882ea76aa994918d3a62d9f31ad88533edd3ba03", "verdict": "cannot_tell", "reason": "The excerpt shows the decoder utility import, but cuts off during the authentication conditional before either claimed runtime change can be inspected."}
+{"n": 2626, "sha": "8836c4b12acc9cc1d86f13f7870ab4337506da33", "verdict": "ok", "reason": ""}
+{"n": 2627, "sha": "883caaf145fbe93bd0d208a6b864de9146087312", "verdict": "ok", "reason": ""}
+{"n": 2628, "sha": "884cb7a7fbaea704427ed878dfbdeae3744c9e71", "verdict": "wrong", "reason": "The parameter's polarity changes, but the original and new defaults both suppress the errors."}
+{"n": 2629, "sha": "884fc333a1a156fd3b94ebec5a0eaa94e0122cb6", "verdict": "ok", "reason": ""}
+{"n": 2630, "sha": "886f92324a4a030676fca440d33f34631c27acd9", "verdict": "ok", "reason": ""}
+{"n": 2631, "sha": "8873a090979ffb627b21d54c04e7ddd1943eea03", "verdict": "ok", "reason": ""}
+{"n": 2632, "sha": "889910c77a9618dc59dd800c17913e2b1644cee3", "verdict": "ok", "reason": ""}
+{"n": 2633, "sha": "88b435e7e84425e0372f3905f81caea6164f3ed4", "verdict": "filler", "reason": "The lint target's scope is narrowed, but the excerpt does not document actual lint failures in other files."}
+{"n": 2634, "sha": "88b5ebceb61d65197ada96a8b2e42ef1afa31af8", "verdict": "ok", "reason": ""}
+{"n": 2635, "sha": "88b64d271f2f58caadabfa9e5e45ff85c77d3944", "verdict": "ok", "reason": ""}
+{"n": 2636, "sha": "88c762e256647a03f10a7a8c8707043a1b33aa5b", "verdict": "ok", "reason": ""}
+{"n": 2637, "sha": "88d41430186b98166e20f7b6d8f100c72fcd07b3", "verdict": "ok", "reason": ""}
+{"n": 2638, "sha": "88dce9d854797c05d0ff296b70e0430535ef8aaf", "verdict": "ok", "reason": ""}
+{"n": 2639, "sha": "88f13598f32bd2da4099f4bb61a082d63fcf42c7", "verdict": "ok", "reason": ""}
+{"n": 2640, "sha": "88f28325c9fe1992803b91cbcfcb97cf9e4b4d16", "verdict": "wrong", "reason": "The new requirement spells the package name pytestt, so it does not declare a pytest minimum as claimed."}
+{"n": 2641, "sha": "88f79b74ce70815b343f5eeff871f0ee9e8cec67", "verdict": "ok", "reason": ""}
+{"n": 2642, "sha": "88fda942182517ee5cdb2f42a9e0094c5dcf5864", "verdict": "cannot_tell", "reason": "The header lookup now yields None for a missing key, but the excerpt omits the rest of the links property, so its return value cannot be checked."}
+{"n": 2643, "sha": "89178ebcdca2d83f7fa43c766f44f4a60248400f", "verdict": "wrong", "reason": "The new guards ignore any falsy domain or path filter, while the former code treated only None as absent."}
+{"n": 2644, "sha": "89192c64f04e9fa49adfc6cf35e10bd98bd64a8e", "verdict": "ok", "reason": ""}
+{"n": 2645, "sha": "891e52d72348d3bb2e5dfc243076992320b65f5d", "verdict": "ok", "reason": ""}
+{"n": 2646, "sha": "89241c525ea7bef5e3efdce2837e2b82f8754848", "verdict": "ok", "reason": ""}
+{"n": 2647, "sha": "892f2560c1fc99260a8cb073478c0c6e7245bd93", "verdict": "ok", "reason": ""}
+{"n": 2648, "sha": "892fbe09f60c9899c534e6c1b6606803dcea082b", "verdict": "ok", "reason": ""}
+{"n": 2649, "sha": "892fcd6cc0cadd8308fa55f229cc611377dfe07d", "verdict": "ok", "reason": ""}
+{"n": 2650, "sha": "897dd3aaa8f8d3856cf7351025192c5bb20aafba", "verdict": "cannot_tell", "reason": "The diff removes a blank line at line 4, but omits following context, so the claim that it is a trailing line cannot be checked."}
+{"n": 2651, "sha": "898079f7e2d4e9cf4a67a9824b98ae2193545ad0", "verdict": "wrong", "reason": "The license switch is recorded in the changelog and no license terms or packaging metadata are changed in the shown commit."}
+{"n": 2652, "sha": "898465756a600958fdfee6aef43134cab7d75a7d", "verdict": "ok", "reason": ""}
+{"n": 2653, "sha": "899c9a9522e963be6153da78937babf85b07857f", "verdict": "ok", "reason": ""}
+{"n": 2654, "sha": "89ab030cdb83a728a30e172bc65d27ba214d2eda", "verdict": "wrong", "reason": "The serializer changes shown include a comprehension, but create_cookie changes from keyword arguments to a dictionary literal."}
+{"n": 2655, "sha": "89c8cbbe0c8e1db50746ca0f5e68c754ec2d50b2", "verdict": "ok", "reason": ""}
+{"n": 2656, "sha": "89c90add2c4378f416194c05c6a4f5ae94ff7a31", "verdict": "ok", "reason": ""}
+{"n": 2657, "sha": "89cb408bb06d629f0932758abfafc9a17709cb82", "verdict": "ok", "reason": ""}
+{"n": 2658, "sha": "89cde235bec9374273281c1b4c9277c409246a6c", "verdict": "ok", "reason": ""}
+{"n": 2659, "sha": "89f0eb91b396619db6695b64e368950e36bdbe7f", "verdict": "filler", "reason": "The badge image moves to the static host, but the excerpt does not establish its relative reliability or show rendered output."}
+{"n": 2660, "sha": "8a0bae45c2efa8706c76d8af925d0dcd727cfc32", "verdict": "ok", "reason": ""}
+{"n": 2661, "sha": "8a1d53eb3ac19cabbb85e2bdfae418cd6fa84612", "verdict": "cannot_tell", "reason": "The Content-Type normalization is shown, but the excerpt cuts off before the new signing logic, so inclusion of query and body data cannot be verified."}
+{"n": 2662, "sha": "8a2014e265d6c8036eb35958b22bf8bd4e2a2c9e", "verdict": "filler", "reason": "The direct imports are shown, but the excerpt does not identify an initialization failure or show that the old references were incorrect."}
+{"n": 2663, "sha": "8a23dd94cb27a2127cf962a53829b329cdb460aa", "verdict": "filler", "reason": "The old mirror is described as defunct and the links are visible, but the excerpt does not establish that the new example works or that the list is comprehensive."}
+{"n": 2664, "sha": "8a42d5fb41cbca27f64ced4b8f087fb1001fac23", "verdict": "wrong", "reason": "The shown change switches the three Content-Length calculations, rather than running every automatically set header value through builtin_str."}
+{"n": 2665, "sha": "8a4a05aac071095ff26d5cf3b4949cbcd01b3cef", "verdict": "ok", "reason": ""}
+{"n": 2666, "sha": "8a4d5c4683304bc6f6bd9fcd09a1852957dafb64", "verdict": "wrong", "reason": "The added assertions extend an existing User-Agent test with another capitalization rather than introducing a new test method."}
+{"n": 2667, "sha": "8a58427d8aa73d6af81b6e5f6fd934b3386ef3de", "verdict": "ok", "reason": ""}
+{"n": 2668, "sha": "8a81a437d2357be314e8715d3827b8fec8f0055b", "verdict": "filler", "reason": "The UTF-8 default is removed, but the excerpt does not show a decoding failure or the behavior of the later fallback."}
+{"n": 2669, "sha": "8aa015ffc950a6a290f25bf935f26227ecd2eaa7", "verdict": "ok", "reason": ""}
+{"n": 2670, "sha": "8aa6fabd4d57ca0f9a5efc4a7d70fec338c94e2a", "verdict": "wrong", "reason": "The code prefixes the original scheme and network location with a literal slash, which can produce a double slash for a leading-slash location and does not resolve against the original path."}
+{"n": 2671, "sha": "8ac29b40e91910660afaa5d90529a1c6861e5014", "verdict": "ok", "reason": ""}
+{"n": 2672, "sha": "8ac2fe6eb170633b8b42e1af9b86e94729b339c2", "verdict": "ok", "reason": ""}
+{"n": 2673, "sha": "8ac5929ae199164f3a96a6f7a53c177a87018f43", "verdict": "ok", "reason": ""}
+{"n": 2674, "sha": "8ac6b266c923ee64680828fa288674667f070519", "verdict": "ok", "reason": ""}
+{"n": 2675, "sha": "8ad09b68ea69a00a9f28c7b82a8867526f5575b1", "verdict": "ok", "reason": ""}
+{"n": 2676, "sha": "8ad24ad430f96c21c6143fc21e75b755e7ac5b69", "verdict": "wrong", "reason": "The diff inserts form markup into an existing sidebar template rather than creating new template files."}
+{"n": 2677, "sha": "8ae4b440e347a232167caea2a64949efd35a7827", "verdict": "ok", "reason": ""}
+{"n": 2678, "sha": "8ae576193ccc9ba9b4ec6fa75d0d72354ce865e0", "verdict": "filler", "reason": "The excerpt explicitly says the commit is empty, but provides no evidence that it is a placeholder or marker."}
+{"n": 2679, "sha": "8af1d9331f44567b4f528d0969cb05357ab0c746", "verdict": "filler", "reason": "The conditional skips the README test on Python 2.6, but the excerpt does not identify the compatibility reason or validate all other environments."}
+{"n": 2680, "sha": "8af65a1eca7716ec5dd7a8068a8a0080f208abab", "verdict": "ok", "reason": ""}
+{"n": 2681, "sha": "8aff6f5ed0aca2dbe5b2eba242f0e3b96285c700", "verdict": "ok", "reason": ""}
+{"n": 2682, "sha": "8b03cd96cbdc79666ae49e1b0b63b53ddb4c6bdf", "verdict": "ok", "reason": ""}
+{"n": 2683, "sha": "8b03f6027832a9d79f951ca1e5f27278f8b72af4", "verdict": "ok", "reason": ""}
+{"n": 2684, "sha": "8b141b326aa7d56bcf283c1936eee9e26fe3bd59", "verdict": "filler", "reason": "The patch lets decoding errors propagate, but it does not change exception messages or establish how clear they will be."}
+{"n": 2685, "sha": "8b1b706903bb2bafd470ebfe46467daff0d95ff7", "verdict": "ok", "reason": ""}
+{"n": 2686, "sha": "8b2255d0f8b0bb472ec2193e4ac5c4d28336a5eb", "verdict": "ok", "reason": ""}
+{"n": 2687, "sha": "8b3f20ca9157f77c6a20bf9b29bba86fec3b04df", "verdict": "ok", "reason": ""}
+{"n": 2688, "sha": "8b5fa606ec2af3898f9e5ee46d79889cb3bfa82e", "verdict": "ok", "reason": ""}
+{"n": 2689, "sha": "8b640979ee06a03a57e72ba3ed73fcb73efc4c74", "verdict": "ok", "reason": ""}
+{"n": 2690, "sha": "8b750ee18222bc20528c724bf3eb05bc5831d9f7", "verdict": "ok", "reason": ""}
+{"n": 2691, "sha": "8b773a4fed7fa58be984d55511f8e9247cfa4202", "verdict": "filler", "reason": "The Connection entry is removed from the doctest output, but the excerpt does not establish what standard requests do or whether the sample is now generally accurate."}
+{"n": 2692, "sha": "8b792be81bfaa79fde1ee8de3b72e4e07ef4f6c1", "verdict": "ok", "reason": ""}
+{"n": 2693, "sha": "8b7fcfb49a38cd6ee1cbb4a52e0a4af57969abb3", "verdict": "ok", "reason": ""}
+{"n": 2694, "sha": "8b92b6513cdfdf42863937313eedf9d9a501df77", "verdict": "ok", "reason": ""}
+{"n": 2695, "sha": "8b9bc8fc0f63be84602387913c4b689f19efd028", "verdict": "ok", "reason": ""}
+{"n": 2696, "sha": "8b9f1b36bd87f9b3d4011246970f73c9869429aa", "verdict": "ok", "reason": ""}
+{"n": 2697, "sha": "8ba12ff4f3fb17ad5b9f21076474cbd7558ca881", "verdict": "ok", "reason": ""}
+{"n": 2698, "sha": "8bb8a9a37c694c95b9edb17474015a5193658cbf", "verdict": "ok", "reason": ""}
+{"n": 2699, "sha": "8bbc4fcb5718a2cc321a456422a80305c2351582", "verdict": "ok", "reason": ""}
+{"n": 2700, "sha": "8bce583b9547c7b82d44c8e97f37cf9a16cbe758", "verdict": "cannot_tell", "reason": "The release notes and CI matrix confirm dropped support, but the excerpt stops before the packaging and implementation changes needed to assess whether installation or execution is blocked."}
+{"n": 2701, "sha": "8be8105c424be63c644514dddc805b05a3f52a6e", "verdict": "ok", "reason": ""}
+{"n": 2702, "sha": "8bfa909ff2bcf8b51f19a5d612f82301f9afce3f", "verdict": "ok", "reason": ""}
+{"n": 2703, "sha": "8bfe0d873f382ec92e4000084bb7e00505bc29b2", "verdict": "ok", "reason": ""}
+{"n": 2704, "sha": "8c01865d62df56a8cd9f9e776febf456d91d2010", "verdict": "filler", "reason": "The same shorter logic is used across versions, but the excerpt does not establish consistent behavior across all inputs after removing coercion."}
+{"n": 2705, "sha": "8c2a36140b32975034c8ed20d034900dc4904f96", "verdict": "filler", "reason": "Using built-in next fixes the Python 3 iterator call, but no deprecation history for the former method is shown."}
+{"n": 2706, "sha": "8c34fa84770c34586fd0d83c05eafe0de6a85682", "verdict": "wrong", "reason": "The doc edit changes a reference to request.config into a reference to a config dictionary, and does not show a settings parameter being renamed."}
+{"n": 2707, "sha": "8c36da656df15111c423975381f523e0b9db7326", "verdict": "filler", "reason": "The new CodeQL action version is explicit, but the excerpt does not establish that it is the latest available scanning tool."}
+{"n": 2708, "sha": "8c57515696fb6386a16dbc3f1538c00e82c96204", "verdict": "ok", "reason": ""}

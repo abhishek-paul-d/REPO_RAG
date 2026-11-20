@@ -1,0 +1,5277 @@
+{
+ "dataset": "agent_eval_commit_full_v1.jsonl",
+ "dataset_sha256": "da7d08dd05094e7fad2ccd709de8d5efb43524ed7f0b476a9526defd416dbc76",
+ "toolset": "production",
+ "prompt_variant": "baseline",
+ "commit_query": "model",
+ "commit_fix_only": false,
+ "extra_files": 3,
+ "skip_tests": true,
+ "tool_result_chars": 24000,
+ "max_input_tokens": "12288",
+ "commit_k": 15,
+ "max_tool_calls": 4,
+ "citation_snap": false,
+ "abstain_retries": 0,
+ "tool_error_retries": 0,
+ "server": {
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+  "hardware": "NVIDIA A100-SXM4-40GB",
+  "max_input_tokens": "12288",
+  "decode_mode": "cuda-graphs + mtp3"
+ },
+ "rerank_used": false,
+ "rerank_failures": 0,
+ "llm_model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+ "table": {
+  "commit": {
+   "n": 113,
+   "passed": 74,
+   "abstained": 12,
+   "failed": 2,
+   "missed": [
+    "commitfull-005",
+    "commitfull-006",
+    "commitfull-010",
+    "commitfull-011",
+    "commitfull-012",
+    "commitfull-013",
+    "commitfull-015",
+    "commitfull-018",
+    "commitfull-019",
+    "commitfull-021",
+    "commitfull-024",
+    "commitfull-025",
+    "commitfull-026",
+    "commitfull-035",
+    "commitfull-036",
+    "commitfull-038",
+    "commitfull-040",
+    "commitfull-041",
+    "commitfull-043",
+    "commitfull-046",
+    "commitfull-051",
+    "commitfull-053",
+    "commitfull-055",
+    "commitfull-060",
+    "commitfull-067",
+    "commitfull-071",
+    "commitfull-077",
+    "commitfull-082",
+    "commitfull-083",
+    "commitfull-084",
+    "commitfull-085",
+    "commitfull-090",
+    "commitfull-094",
+    "commitfull-096",
+    "commitfull-098",
+    "commitfull-106",
+    "commitfull-107",
+    "commitfull-110",
+    "commitfull-113"
+   ]
+  }
+ },
+ "rows": [
+  {
+   "id": "commitfull-001",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nrequests.auth has an orphaned reference to ._oauth\n\nSymptom:\n\n```\nTraceback (most recent ca",
+   "answer": "f69934fb24a9\n\nMatched commit details:\n- f69934fb24a9 (2012-12-12, Matt McClure): Import oauthlib without the obsolete wrapper.; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "f69934fb24a9",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "requests.auth orphaned reference to ._oauth Client is not defined NameError"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 22.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-002",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAttributeError: 'HTTPAdapter' object has no attribute 'verify'\n\n``` python\ncerts = requests",
+   "answer": "910b2312d644\n\nMatched commit details:\n- 910b2312d644 (2012-12-17, Kenneth Reitz): fix verify bug; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "910b2312d644",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "HTTPAdapter object has no attribute verify cert_verify"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-003",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nrequests.get is ALWAYS sending content length\n\nHi,\n\nIt seems like that request.get always a",
+   "answer": "44b1e7ebeabd\n\nMatched commit details:\n- 44b1e7ebeabd (2013-01-24, Johnny Goodnow): Remove default Content-Length from GET requests.; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "44b1e7ebeabd",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "content-length header GET request always sent"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-004",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nOn redirect (302) params are doubled\n\nWhen the servers redirects (302) and the redirect url",
+   "answer": "9d33629b6d3f\n\nMatched commit details:\n- 9d33629b6d3f (2013-01-10, Kenneth Reitz): don't supply params for directs; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "9d33629b6d3f",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "redirect 302 params doubled location url params appended"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-005",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPOST and PUT on 307 redirect will re-POST without body\n\nWith requests 1.0.4, if one makes a",
+   "answer": "Yes. The closest prior fix is PR #1963 (commit 8d693a2a27d0, 2014-03-15, \"Do not use original request in redirect\"), which fixed the related bug where a POST that was redirected to a 303 and then to a 307 would re-POST using the original request. A later fix, PR #3655 (merge commit f72684e13c5074a671506d29c1b5638156680ea7, 2016-11-03, \"Rewind readable body before POST redirect\"), addressed the body being lost/hanging on 307 redirects for file-like bodies. The original issue #1084 (this exact report) was closed, and the 307 body-preservation behavior is covered by tests added in those commits.\n\nMatched commit details:\n- 8d693a2a27d0 (2014-03-15, Ian Cordasco): : Do not use original request in redirect; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. The closest prior fix is PR #1963 (commit 8d693a2a27d0, 2014-03-15, \"Do not use original request in redirect\"), which fixed the related bug where a POST that was redirected to a 303 and then to a 307 would re-POST using the original request. A later fix, PR #3655 (merge commit f72684e13c5074a671506d29c1b5638156680ea7, 2016-11-03, \"Rewind readable body before POST redirect\"), addressed the body being lost/hanging on 307 redirects for file-like bodies. The original issue #1084 (this exact report) was closed, and the 307 body-preservation behavior is covered by tests added in those commits.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_pr",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "307 redirect POST PUT body"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "307 redirect POST PUT body re-POST"
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1963
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 3655
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-006",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nResult of 'response' hook is stored in session.response and not returned\n\nhttps://github.co",
+   "answer": "4dfd6f3fc1f7\n\nMatched commit details:\n- 4dfd6f3fc1f7 (2013-02-12, Ian Cordasco): Dispatch hooks before following redirects; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "4dfd6f3fc1f7",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "response hook stored in session.response not returned dispatch_hook"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.4,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-007",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nNo means of authenticating redirects\n\nIn `requests/requests-kerberos` we use GSSAPI to not ",
+   "answer": "4dfd6f3fc1f7",
+   "model_answer": "4dfd6f3fc1f7",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "mutual authentication redirects GSSAPI kerberos authenticate redirects hook"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "mutual authentication redirects GSSAPI kerberos authenticate redirects hook"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 1183
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1185
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-008",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDefault value of allow_redirects in HEAD requests\n\nIn version 1.1.0 allow_redirects for HEA",
+   "answer": "a788cb72719a\n\nMatched commit details:\n- a788cb72719a (2013-02-20, Ian Cordasco): Missing line was allowing redirects with HEAD; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "a788cb72719a",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "allow_redirects HEAD default True"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-009",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nProblem with missing cookies after redirect\n\nI sent this by e-mail - no response. I think t",
+   "answer": "5bb2be9a2300\n\nMatched commit details:\n- 5bb2be9a2300 (2013-03-09, Miikka Koskinen): Use session cookies when following redirects; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "5bb2be9a2300",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "missing cookies after redirect 302 session cookie not sent on redirect"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-010",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nShould Session.send() ignore Session.proxies?\n\nMy test code:\n\n``` python\nimport requests\ns ",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- 7881aaa759ce (2011-09-25, Kenneth Reitz): clarity™\n- 2f33679cb39c (2012-02-20, Kenneth Reitz): spacing\n- 0cf0bde15853 (2011-09-25, Kenneth Reitz): session work",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_pr",
+    "get_pr",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Session.send proxies ignored merge_kwargs"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "Session.send proxies ignored merge_kwargs"
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1259
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 5735
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Session.send merge_environment_settings proxies"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.9,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commitfull-011",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSession.request doesn't have parameter return_response, contrary to what the docs say.\n\n```",
+   "answer": "ca0aea640d0c\n\nMatched commit details:\n- ca0aea640d0c (2013-04-02, Kamil Szot): Fix for the issue; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "ca0aea640d0c",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Session.request return_response parameter"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.4,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-012",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nCookies won't get deleted after update to 1.X\n\nRequests ignores `Set-Cookie: cookie_user=de",
+   "answer": "87abd9c6094f\n\nMatched commit details:\n- 87abd9c6094f (2014-01-12, Ian Cordasco): Use calendar.timegm when calculating cookie expiration; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "87abd9c6094f",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Set-Cookie expires 1970 cookie not deleted ignored"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-013",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nMissingSchema error raised when schema present\n\nAfter [this](https://github.com/kennethreit",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- 333ac101baff (2013-10-20, Kevin Burke): Add clarification to MissingSchema error\n- d24ee0e1dce2 (2012-03-25, Adam McKerlie): Created MissingSchema and InvalidSchema which inherits from RequestException and ValueError\n- 4246792b818c (2021-12-28, Nate Prewitt): Fix erroneous use of 'schema' instead of 'scheme'",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "MissingSchema error raised when schema present network location"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "MissingSchema No schema supplied prepare_url netloc"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 5.8,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commitfull-014",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nHeaders kwarg overrides Poster headers\n\nIf a caller uses both the `files` and `headers` kwa",
+   "answer": "9fdee250de7e\n\nMatched commit details:\n- 9fdee250de7e (2011-03-06, Kenneth Reitz): Better POSTER header compatibility (); ranked 13 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "9fdee250de7e",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_pr",
+    "get_references",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "headers kwarg overrides Poster headers multipart Content-Length iterable body"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "headers kwarg overrides Poster headers multipart files Content-Length"
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 14
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 13
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Poster headers preservation update req.headers multipart"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-015",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nrequests follows a PUT request's 301 and does a PUT request at the end\n\nNot only is that wr",
+   "answer": "f24d56a1ce65\n\nMatched commit details:\n- f24d56a1ce65 (2016-03-17, Ben): Consolidate logic for changing method during redirects; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "f24d56a1ce65",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "301 redirect PUT request content-length body"
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "redirect 301 PUT method change to GET POST behavior"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 4.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-016",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nTransport adapters don't work as advertised\n\nHaving:\n\n``` python\n  >>> import requests\n  >>",
+   "answer": "Yes, this was fixed before. The fix is commit 4c8af1fff47e (2013-05-15, by Łukasz Langa), titled ': transport adapters stored in ordered form', which changed Session.mount to keep adapters sorted by prefix length so the most specific prefix wins. The current implementation reflects this: Session.mount reorders self.adapters so longer prefixes come first (src/requests/sessions.py:888-905), and get_adapter returns the first matching prefix in that order (src/requests/sessions.py:831-886).\n\nMatched commit details:\n- 4c8af1fff47e (2013-05-15, Łukasz Langa): : transport adapters stored in ordered form; ranked 6 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes, this was fixed before. The fix is commit 4c8af1fff47e (2013-05-15, by Łukasz Langa), titled ': transport adapters stored in ordered form', which changed Session.mount to keep adapters sorted by prefix length so the most specific prefix wins. The current implementation reflects this: Session.mount reorders self.adapters so longer prefixes come first (src/requests/sessions.py:888-905), and get_adapter returns the first matching prefix in that order (src/requests/sessions.py:831-886).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Session.get_adapter transport adapter prefix matching order"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "get_adapter prefix longest match sort keys"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 7.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-017",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAdd note in docs about None not being as data\n\nSee this for more information\n\nhttps://githu",
+   "answer": "07ad75ee0434\n\nMatched commit details:\n- 07ad75ee0434 (2013-07-19, David Pursehouse): : Add note in docs about None not being sent as data; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "07ad75ee0434",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "None not being as data docs note"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-018",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nReplacing existing session headers is not done case-insensitively\n\nWhen updating a requests",
+   "answer": "Yes, a probable earlier fix is commit 73ca21ed8ca1, which changed PreparedRequest.prepare_headers to build the headers CaseInsensitiveDict from the supplied headers rather than from self.headers (requests/models.py). (src/requests/models.py:565-574)\n\nMatched commit details:\n- 73ca21ed8ca1 (2012-12-16, Bartek Sarul): Fixed a bug where user couldn't add custom headers.; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes, a probable earlier fix is commit 73ca21ed8ca1, which changed PreparedRequest.prepare_headers to build the headers CaseInsensitiveDict from the supplied headers rather than from self.headers (requests/models.py). (src/requests/models.py:565-574)",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "session headers case-insensitive update existing header name"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Session headers CaseInsensitiveDict case-insensitive update"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [
+     "src/requests/models.py:565-574"
+    ],
+    "uncited": false
+   },
+   "seconds": 6.9,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-019",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\ntest_unicode_multipart_post_fieldnames() fails sometimes\n\n```\nself = <test_requests.Request",
+   "answer": "003c795afed5\n\nMatched commit details:\n- 003c795afed5 (2013-05-21, Ib Lundgren): Only pass unicode fieldnames to urllib3.; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "003c795afed5",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "unicode multipart post fieldnames b'stuff' name encoding"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-020",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nrequests bumps into TooManyRedirects, curl/wget don't\n\nThe following invocation raises a To",
+   "answer": "2a9ae4b367fc",
+   "model_answer": "2a9ae4b367fc",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "TooManyRedirects redirect limit t.co"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "TooManyRedirects t.co redirect limit curl wget"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 161
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 163
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-021",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nUse MD5-sess authentication got  \"UnboundLocalError: local variable 'hash_utf8' referenced ",
+   "answer": "abe02ed89fa7\n\nMatched commit details:\n- abe02ed89fa7 (2016-04-29, Mark Shannon): Initialize hash_utf8 to None, preventing NameError. .; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "abe02ed89fa7",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "UnboundLocalError hash_utf8 MD5-sess authentication"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.9,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-022",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nCookies not persisted when set via functional API.\n\nCookies set as part of a call to `Sessi",
+   "answer": "39fe0068aa65\n\nMatched commit details:\n- 39fe0068aa65 (2013-09-28, daftshady): , added test case for cookie persistence.; ranked 3 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "39fe0068aa65",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "cookies not persisted when set via functional API Session.request redirect"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-023",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n\"č\" - UTF-8 UnicodeDecodeError\n\nTraceback (most recent call last):\nFile \"pysnap/get_snaps.p",
+   "answer": "5ee8b348ebab\n\nMatched commit details:\n- 5ee8b348ebab (2014-02-03, Martijn Pieters): Reinstate falling back to self.text for JSON responses; ranked 13 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "5ee8b348ebab",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "UnicodeDecodeError utf8 codec can't decode byte invalid continuation byte"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "UnicodeDecodeError utf8 codec can't decode byte invalid continuation byte json"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 1674
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1900
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 5.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-024",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPossible Memory Leak\n\nI have a very simple program that periodically retrieves an image fro",
+   "answer": "3c0b94047c1c\n\nMatched commit details:\n- 3c0b94047c1c (2012-07-17, Shivaram Lingamneni): address connection leak issue from ; ranked 5 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "3c0b94047c1c",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "memory leak requests get content growing working set"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.8,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-025",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nUnicode method names cause UnicodeDecodeError for some requests in Python 2.7.2\n\nThe follow",
+   "answer": "6da7e22a4ab0\n\nMatched commit details:\n- 6da7e22a4ab0 (2013-02-11, Denis Ryzhkov): Fix of UnicodeDecodeError on unicode header name that can be converted to ascii.; ranked 3 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "6da7e22a4ab0",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Unicode method names cause UnicodeDecodeError for some requests in Python 2.7.2"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-026",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRequest cookies should not be persisted to session\n\nAfter the fix for #1630, cookies sent w",
+   "answer": "No answer could be produced: the model's reply was not valid within the limits.",
+   "model_answer": "No answer could be produced: the model's reply was not valid within the limits.",
+   "abstain": true,
+   "failure": "budget",
+   "error": "",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_commits\",\"arguments\":{\"query\":\"0b68037 cookies set on individual requests not persisted\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr",
+    "search_prs",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "request cookies persisted to session"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "request cookies should not be persisted to session 1630"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 1728
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1729
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "1728 cookies not persisted session fix"
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "1728 request cookies not persisted session"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-027",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRequests encounters HTTP 400 while redirecting -- wget does not\n\nUsing the latest developme",
+   "answer": "62d29d510625",
+   "model_answer": "62d29d510625",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "HTTP 400 redirect t.co wget curl 301 Moved Permanently"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "HTTP 400 redirect t.co wget curl 301 Moved Permanently"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 174
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 175
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-028",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nGetting a public Google Spreadsheet doc gives you the too many redirects error\n\nIn version ",
+   "answer": "642bbf60604d\n\nMatched commit details:\n- 642bbf60604d (2013-12-17, Ian Cordasco): Sure cookies are persisted to the session, but those new cookies are not added; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "642bbf60604d",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "too many redirects google spreadsheet csv"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "google spreadsheet too many redirects csv"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 1805
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1808
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "cookies persisted session redirect cookiejar prepared request"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-029",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nResponse URLs are not unicode strings\n\nWhen running...\n\n```\n>>> u = requests.head('http://t",
+   "answer": "b37fbf30a3d4\n\nMatched commit details:\n- b37fbf30a3d4 (2012-01-20, Johannes Gorset): Decode response URL to a unicode string.; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "b37fbf30a3d4",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "response URL unicode string decode utf8"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-030",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nBrittle test\n\nThe test `test_expires_valid_str` fails on my OS X box, in Python 2.7:\n\n``` p",
+   "answer": "87abd9c6094f\n\nMatched commit details:\n- 87abd9c6094f (2014-01-12, Ian Cordasco): Use calendar.timegm when calculating cookie expiration; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "87abd9c6094f",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "test_expires_valid_str morsel_to_cookie expires timezone"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-031",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nResourceWarning in python 3.2+\n\nRequests issues a ResourceWarning in python 3.2+ as sockets",
+   "answer": "3155bc99362a\n\nMatched commit details:\n- 3155bc99362a (2014-11-07, Ian Cordasco): Close sessions created in the functional API; ranked 10 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "3155bc99362a",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "ResourceWarning unclosed socket not explicitly closed"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "ResourceWarning unclosed socket python 3.2"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 1882
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2326
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-032",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n301 redirect broken with latest pyopenssl/SNI\n\nWith the latest pyopenssl on Windows 64bit:\n",
+   "answer": "8b792be81bfa\n\nMatched commit details:\n- 8b792be81bfa (2014-01-28, Konstantinos Koukopoulos): on redirect pass URL as bytes.; ranked 8 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "8b792be81bfa",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "301 redirect unicode pyopenssl SNI bytes"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-033",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRemoving a default header of a session\n\n[The docs](http://docs.python-requests.org/en/lates",
+   "answer": "d2f647cee45f\n\nMatched commit details:\n- d2f647cee45f (2014-02-14, Ian Cordasco): Do not set headers with None value; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "d2f647cee45f",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "session header None value sent as string Accept-Encoding"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-034",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nrequest.history can be either a list or a tuple\n\nIMHO r.history should always be a list for",
+   "answer": "daf56b3f62f9\n\nMatched commit details:\n- daf56b3f62f9 (2014-03-15, Ian Cordasco): : A Response's history should be a list; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "daf56b3f62f9",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "request.history tuple list sessions"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-035",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nFix Auth Registry\n\nModule-level auth registry not functional.",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- 1b885614760d (2011-02-14, Kenneth Reitz): Readme update\n- 20e0ee496829 (2011-10-23, Kenneth Reitz): Remove AuthObject entirely.\n- 94c587d642eb (2011-10-23, Kenneth Reitz): Comment out authentication handlers",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "auth registry module-level not functional"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "auth registry module-level register"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 5.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commitfull-036",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nUncaught socket.timeout during post\n\nHallo requests devs (and thanks for an awesome lib)\n\nD",
+   "answer": "318f2460eed2\n\nMatched commit details:\n- 318f2460eed2 (2012-07-13, Leila Muhtasib): Differentiate between two types of timeout errors from urllib3; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "318f2460eed2",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "socket.timeout uncaught during post requests.exceptions.Timeout"
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "catch socket.timeout raise requests Timeout exception post"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 4.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-037",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDefault Authentication Overwrites Authentication Header\n\nHi,\n\nAnd thanks for maintaining re",
+   "answer": "No. The only related change was a documentation clarification (commit fcb8c8d33b72, PR #2945) that documented the precedence (auth= over .netrc over headers=); the behavior of overwriting a user-set Authorization header with .netrc credentials was not actually fixed in code. The PR that would have fixed it (#6555, \"Do not overwrite the Authorization header\") was closed without being merged.\n\nMatched commit details:\n- fcb8c8d33b72 (2015-12-20, Isa Hassen): Docs: clarify the precedence of `auth=` over `netrc`; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "No. The only related change was a documentation clarification (commit fcb8c8d33b72, PR #2945) that documented the precedence (auth= over .netrc over headers=); the behavior of overwriting a user-set Authorization header with .netrc credentials was not actually fixed in code. The PR that would have fixed it (#6555, \"Do not overwrite the Authorization header\") was closed without being merged.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_pr",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Authorization header overwritten by default authentication netrc"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "netrc overrides Authorization header set by user"
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 6555
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "do not overwrite Authorization header netrc prepare_request"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-038",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nOn Python 3, sending bytes automatically choses 'x-www-form-urlencoded' as the content_type",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- aded42f23247 (2012-08-28, ayanamist): Try to keep the header too if content-type is application/x-www-form-urlencoded\n- 8c737069a539 (2011-08-17, Rick Mak): Return the r.content as unicode.\n- a9822b0bb691 (2011-10-23, Kenneth Reitz): fix content uploads",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "bytes content_type x-www-form-urlencoded Python 3"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "prepare_body data bytes content_type x-www-form-urlencoded"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 5.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commitfull-039",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nTooManyRedirects not working in 2.4.0\n\nhi,\n\nif i try page which has permanent redirect to i",
+   "answer": "27c83f71770a\n\nMatched commit details:\n- 27c83f71770a (2014-09-07, Ian Cordasco): @Lukasa wrote the fix in; ranked 14 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "27c83f71770a",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "TooManyRedirects redirect to itself permanent redirect loop"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "TooManyRedirects not working 2.4.0 permanent redirect to itself"
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2210
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 5.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-040",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nrequests sends HTTP auth details in Host header\n\nI noticed that the Host header of my http ",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- d437c338d0bf (2013-02-06, Cory Benfield): Add Proxy-Auth header when proxies have credentials.\n- 3331e2aecdbf (2018-06-28, Bruce Merry): Strip Authorization header whenever root URL changes\n- 6fbfca90b602 (2020-03-17, hodbn): Send only one Host header in chunked request",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "HTTP auth credentials in Host header"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Host header credentials auth in URL netloc"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commitfull-041",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nLink header parsing breaks if attribute value has commas\n\nThe function parse_header_links d",
+   "answer": "No. The reported bug (issue #2250, \"Link header parsing breaks if attribute value has commas\") was only partially addressed: commit 4594667f07ca (2014-10-08) changed the split to re.split(\",\\ *<\", ...) so that commas followed by \"<\" no longer split inside attribute values, but the underlying problem of commas/semicolons inside quoted attribute values (e.g. Memento datetime) was never fully fixed. Related PRs #5464 (semicolon in href) and #7548 (equals signs) remain open/closed without being merged, and no commit fully resolves the reported parsing failure.\n\nMatched commit details:\n- 4594667f07ca (2014-10-08, mikecool1000): Update utils.py; ranked 5 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "No. The reported bug (issue #2250, \"Link header parsing breaks if attribute value has commas\") was only partially addressed: commit 4594667f07ca (2014-10-08) changed the split to re.split(\",\\ *<\", ...) so that commas followed by \"<\" no longer split inside attribute values, but the underlying problem of commas/semicolons inside quoted attribute values (e.g. Memento datetime) was never fully fixed. Related PRs #5464 (semicolon in href) and #7548 (equals signs) remain open/closed without being merged, and no commit fully resolves the reported parsing failure.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 1,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_pr",
+    "get_pr",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "parse_header_links link header commas attribute value datetime"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "link header parsing commas attribute value datetime memento"
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 4245
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 5464
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 7548
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.7,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-042",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nLink to the changelog in the sidebar of the documentation\n\nRight now it's unfortunately a b",
+   "answer": "589f2f6d6e4b\n\nMatched commit details:\n- 589f2f6d6e4b (2014-10-09, Ian Cordasco): Add Release History to the sidebar; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "589f2f6d6e4b",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "changelog sidebar documentation link"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-043",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nsession hooks doesn't work with v0.7.3\n\nI was able to add a hook to a session object in v0.",
+   "answer": "c165255e9888\n\nMatched commit details:\n- c165255e9888 (2011-11-18, Rolando Espinoza La fuente): use session's hooks as defaults for every requests.; ranked 7 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "c165255e9888",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "session hooks not working hooks dict args"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "session hooks not working v0.7.3 hooks dict args"
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 279
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 4.9,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-044",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nGittip renamed to Gratipay, layout needs updating\n\nGittip [was renamed to Gratipay](https:/",
+   "answer": "4d498db3ed23\n\nMatched commit details:\n- 4d498db3ed23 (2014-10-14, morganthrapp): Update sidebarintro.html; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "4d498db3ed23",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Gittip renamed Gratipay sidebar button cut off CSS layout"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "accepted through ALSO_ACCEPTED"
+  },
+  {
+   "id": "commitfull-045",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nurllib3 and chardet makefile workflow bug\n\nCurrently the requests/packages/urllib3 and requ",
+   "answer": "3a6348dbb9af\n\nMatched commit details:\n- 3a6348dbb9af (2014-10-19, syedsuhail): . Change urllib3 and chardet workflow; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "3a6348dbb9af",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "urllib3 chardet makefile clone removed packages"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-046",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nTracking chained redirection\n\nSometimes when you make a GET request the client follows mult",
+   "answer": "Yes. The feature requested in issue #23 (tracking chained redirection) was implemented as the Response.history attribute, which records the responses (and their URLs and status codes) followed during redirection. The commit that introduced this tracking is 1e1fb1e7a81b (\"Redirect history fix\"), and the history-tracking logic is implemented in src/requests/sessions.py:186-235 (resolve_redirects) and src/requests/sessions.py:801-829 (Session.send).\n\nMatched commit details:\n- 1e1fb1e7a81b (2011-07-23, Kenneth Reitz): Redirect history fix (); ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. The feature requested in issue #23 (tracking chained redirection) was implemented as the Response.history attribute, which records the responses (and their URLs and status codes) followed during redirection. The commit that introduced this tracking is 1e1fb1e7a81b (\"Redirect history fix\"), and the history-tracking logic is implemented in src/requests/sessions.py:186-235 (resolve_redirects) and src/requests/sessions.py:801-829 (Session.send).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_issue_meta",
+    "get_references",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "chained redirection tracking URL followed status code history"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "chained redirection track URL followed status code history"
+     }
+    },
+    {
+     "name": "get_issue_meta",
+     "arguments": {
+      "number": 23
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 23
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "history redirect response list track redirection"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 9.4,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-047",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nmethod = builtin_str(method) problem\n\nIn requests/sessions.py is a command:\n\nmethod = built",
+   "answer": "29ef10815831\n\nMatched commit details:\n- 29ef10815831 (2014-10-31, Ian Cordasco): Use to_native_string instead of builtin_str; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "29ef10815831",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "builtin_str method binary string b'GET' 404"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-048",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nUsing RecentlyUsedContainer for session cache breaks pickling\n\nThe changes in 387c8f8 have ",
+   "answer": "c8baf881257f\n\nMatched commit details:\n- c8baf881257f (2014-11-17, Ian Cordasco): Properly serialize RecentlyUsedContainers for cache; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "c8baf881257f",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "RecentlyUsedContainer pickle session cache threading lock"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-049",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRequests unable to follow/retrieve links with percent in url\n\nA simple requests.get(url) do",
+   "answer": "751b35c346e1\n\nMatched commit details:\n- 751b35c346e1 (2014-12-26, Ian Cordasco): Attempt to quote anyway if unquoting fails; ranked 7 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "751b35c346e1",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "percent in URL requests unable to follow links percent-encoding"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "requests unable to follow retrieve links with percent in url percent-encoding invalid"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 2356
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2393
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-050",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAttributeError while trying to read `content` attr\n\nIt seems that if there's a problem with",
+   "answer": "f7968b6797a5\n\nMatched commit details:\n- f7968b6797a5 (2011-11-04, Kenneth Reitz): r.content is None of there's an invalid response.; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "f7968b6797a5",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "AttributeError content raw read NoneType"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-051",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\ninfinite recursion on 401 error\n\nI'm using requests 0.7.4, and am having a strange problem ",
+   "answer": "5296b8be90cb\n\nMatched commit details:\n- 5296b8be90cb (2012-07-14, Victoria Mo): Fix infinite loop on wrong Digest Authentication (); ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "5296b8be90cb",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "infinite recursion 401 digest authentication maximum recursion depth"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-052",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nWrong digest header creation when server has qop=\"auth,auth-int\"\n\nI always get \"401 unautho",
+   "answer": "677bbe30d7b2\n\nMatched commit details:\n- 677bbe30d7b2 (2015-01-19, Ian Cordasco): Move noncebit to the only place it is used; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "677bbe30d7b2",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "digest auth qop auth-int 401 unauthorized build_digest_header"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-053",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nData argument introduced too early in Quickstart guide\n\nI'm following the quick start guide",
+   "answer": "Yes. The issue (#2418) was addressed by PR #2428, which moved the \"Custom Headers\" section after \"More complicated POST requests\" in the quickstart doc, though that PR was closed without merging. A related fix, PR #2672 (commit beaa7e4180ad), was merged and modified the \"Custom Headers\" example to remove the data argument, addressing the same confusion.\n\nMatched commit details:\n- beaa7e4180ad (2015-07-15, Peter Marsh): Fix quickstart \"Custom Headers\" example intro; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes. The issue (#2418) was addressed by PR #2428, which moved the \"Custom Headers\" section after \"More complicated POST requests\" in the quickstart doc, though that PR was closed without merging. A related fix, PR #2672 (commit beaa7e4180ad), was merged and modified the \"Custom Headers\" example to remove the data argument, addressing the same confusion.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_pr",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "quickstart guide data argument custom headers order"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "quickstart data argument introduced too early custom headers order"
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2428
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2672
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-054",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nError in `requests.packages.__init__` (version > 2.5.1)\n\nAfter update to requests 2.5.3 in ",
+   "answer": "1acc4992d429\n\nMatched commit details:\n- 1acc4992d429 (2015-03-13, Ian Cordasco): Parse version number out of requests/__init__.py; ranked 8 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "1acc4992d429",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_issue_meta",
+    "get_pr",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "requests.packages __init__ load_module AttributeError NoneType modules vendored pip machinery"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "requests.packages __init__ load_module AttributeError NoneType modules unvendored import error"
+     }
+    },
+    {
+     "name": "get_issue_meta",
+     "arguments": {
+      "number": 2462
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2486
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Extract version from requests/__init__.py instead of importing requests"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-055",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nIssue with pyinstaller\n\nCan't seem to wrap my head around this.\n\nhaving a problem compiling",
+   "answer": "0af19a05ce54\n\nMatched commit details:\n- 0af19a05ce54 (2012-11-27, Kenneth Reitz): fix chardet import; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "0af19a05ce54",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "pyinstaller requests chardet ImportError No module named"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-056",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nConsider adding return type documentation in docstrings\n\nIt would be great if the docstring",
+   "answer": "573d460aa7f7\n\nMatched commit details:\n- 573d460aa7f7 (2015-03-12, Ulrich Petri): Add return type field to entry-point docstrings; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "573d460aa7f7",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_issue_meta",
+    "get_pr",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "docstring return type rtype sphinx"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "docstring return type rtype sphinx"
+     }
+    },
+    {
+     "name": "get_issue_meta",
+     "arguments": {
+      "number": 2483
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2487
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Add return type field to entry-point docstrings"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-057",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAttributeError- LWPCookieJar instance has no attribute 'copy'\n\nHi,\nIn version 2.x:\n<b>[test",
+   "answer": "36093e69c70b\n\nMatched commit details:\n- 36093e69c70b (2015-04-05, Ian Cordasco): Copy a PreparedRequest's CookieJar reliably; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "36093e69c70b",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "LWPCookieJar copy AttributeError cookies PreparedRequest"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-058",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n__build__ out of sync? Still at 0x020503, looks like 2.5.3 rather than 2.6.0\n\nCould it be t",
+   "answer": "dacf69a16df7\n\nMatched commit details:\n- dacf69a16df7 (2015-04-05, Ian Cordasco): Fix build version number in metadata; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "dacf69a16df7",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "__build__ out of sync version 2.6.0 0x020503"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-059",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nGET request sends full url to server - should be path only\n\nThe command `requests.get(\"http",
+   "answer": "450495321281\n\nMatched commit details:\n- 450495321281 (2011-11-15, Kenneth Reitz): Only send URL path to servers; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "450495321281",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "GET request sends full url to server should be path only"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-060",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nContent-Encoding: Gzip not automatically decoded in 2.6.1\n\nWhen using requests on python 2.",
+   "answer": "No answer could be produced: the model's reply was not valid within the limits.",
+   "model_answer": "No answer could be produced: the model's reply was not valid within the limits.",
+   "abstain": true,
+   "failure": "budget",
+   "error": "",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_prs\",\"arguments\":{\"query\":\"fix gzip content-encoding regression 2.6.1 urllib3 decode_content\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "search_commits",
+    "search_commits",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Content-Encoding gzip not automatically decoded response content"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "Content-Encoding gzip not automatically decoded 2.6.1 response.content"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 2561
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "gzip content-encoding decode response 2.6.1 regression fix"
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "2.6.1 gzip content-encoding regression fix urllib3 decode_content"
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "fix gzip content-encoding not decoded 2.6.1"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 10.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "commitfull-061",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n[Proposal] New Release Management Process\n\nIn v2.6.1 we pulled in a new copy of urllib3. Ty",
+   "answer": "773e730d80aa\n\nMatched commit details:\n- 773e730d80aa (2015-04-24, Ian Cordasco): Add new release process to docs; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "773e730d80aa",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "search_prs",
+    "get_pr",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "urllib3 chunked encoding refactor v2.6.1 release vendored libraries"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "release management process vendored libraries urllib3 chunked encoding v2.6.1"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "release process only include changes to requests itself vendored libraries patch release"
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2570
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Add new release process to docs"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-062",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nTimeout ignored when following redirects\n\nTo reproduce, add a print to requests.models.Requ",
+   "answer": "f0edd4a3e020\n\nMatched commit details:\n- f0edd4a3e020 (2011-11-14, Raymond Penners): Pass along timeout when following redirects (); ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "f0edd4a3e020",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "timeout ignored when following redirects"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-063",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSame HTTPConnection object returned to pool twice\n\nNot totally sure how to reproduce this y",
+   "answer": "2e62df456ae8\n\nMatched commit details:\n- 2e62df456ae8 (2015-06-13, Cory Benfield): Avoid double releasing chunked upload connections; ranked 10 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "2e62df456ae8",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "same connection returned to pool twice connection pool is full"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "same connection returned to pool twice connection pool is full gevent"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 2636
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2640
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 5.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-064",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nutils.get_netrc_auth silently fails when netrc exists but fails to parse\n\nMy .netrc contain",
+   "answer": "a560e094279c\n\nMatched commit details:\n- a560e094279c (2015-06-29, David Pursehouse): Allow get_netrc_auth to raise parse/permission errors to caller; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "a560e094279c",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "get_netrc_auth NetrcParseError netrc parse error warning"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-065",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nCaseInsensitiveDict.__repr__ is unordered\n\nCaseInsensitiveDict.**repr** uses dict, and ther",
+   "answer": "b8a297baab50\n\nMatched commit details:\n- b8a297baab50 (2015-07-18, Ian Cordasco): Remove broken CaseInsensitiveDict repr test; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "b8a297baab50",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "CaseInsensitiveDict repr unordered ordered"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-066",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nProxies that depend on the URL\n\nCurrently the proxies dictionary supports only schemes as k",
+   "answer": "48fe34447de0\n\nMatched commit details:\n- 48fe34447de0 (2015-08-20, Jason Grout): Implement per-host proxies; ranked 3 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "48fe34447de0",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "proxy scheme hostname URL key selection"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-067",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nResponse.encoding should be available, overridable.\n\n- Japanese websites specify the incorr",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- b257b1028183 (2012-08-26, Kenneth Reitz): typo\n- 7cc3d8dc6a24 (2017-11-17, Dave Shawley): docs/quickstart: clarify raw response reading.\n- 10b6d7794573 (2013-09-12, homm): remove extra mention of dangerous `r.raw`",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_issue_meta",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Response.encoding charset override Japanese incorrect charset"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "Response.encoding should be available overridable Japanese websites incorrect charset"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 282
+     }
+    },
+    {
+     "name": "get_issue_meta",
+     "arguments": {
+      "number": 282
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "encoding overridable r.content raw response cached exclude compression"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commitfull-068",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPost request hangs in certain cases when body is a StringIO\n\nThis is related to a report fo",
+   "answer": "5397ef71b37e\n\nMatched commit details:\n- 5397ef71b37e (2015-11-10, Ian Cordasco): Fix super_len for partially read files; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "5397ef71b37e",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_references",
+    "get_pr",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "post request hangs StringIO body seek"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "post request hangs StringIO body seek content-length"
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 2872
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2873
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "super_len partially read files StringIO seek tell"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-069",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nmodels.Request.sent never set to `True`?\n\nWhile dissecting the `models.Request.send()` meth",
+   "answer": "c7b99f78192b\n\nMatched commit details:\n- c7b99f78192b (2011-11-27, Kenneth Reitz): Set Response.sent to True; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "c7b99f78192b",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Request sent never set to True send method"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-070",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nHTTPDigestAuth: Empty qop header in server challenge results in Authorization: None\n\nThis i",
+   "answer": "5c19d3e07b68\n\nMatched commit details:\n- 5c19d3e07b68 (2015-12-05, Matt Jordan): requests/auth: Handle an empty 'qop' attribute in a Authenticate challenge; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "5c19d3e07b68",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "HTTPDigestAuth empty qop header Authorization None"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-071",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nFile upload not working with HTTP digest authentication\n\nThis is due to a couple of issues ",
+   "answer": "3a9d9f22791d\n\nMatched commit details:\n- 3a9d9f22791d (2013-11-25, Akira Kitada): Fix hangs on streaming uploads with HTTPDigestAuth; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "3a9d9f22791d",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "HTTP digest authentication file upload 401 boundary"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-072",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nCompensate for urllib2's basic http retry\n\nSee http://bugs.python.org/issue8894 for more in",
+   "answer": "1421ffa32ab4\n\nMatched commit details:\n- 1421ffa32ab4 (2011-05-14, Kenneth Reitz): HTTP Basic recursion.; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "1421ffa32ab4",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "urllib2 basic http retry compensate"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-073",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPreparedRequest check: use duck typing?\n\nOkay, this is admittedly an edge case.\n\nI was atte",
+   "answer": "ae1ac2d4e075\n\nMatched commit details:\n- ae1ac2d4e075 (2016-04-21, Kevin Burke): Flip conditional in session.send(); ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "ae1ac2d4e075",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "PreparedRequest check duck typing"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-074",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nUnhandled exception on timeout in safe_mode\n\nIf safe_mode is specified, and a timeout occur",
+   "answer": "2c0ff95d4d8d\n\nMatched commit details:\n- 2c0ff95d4d8d (2011-12-22, Ori Livneh): Revert \"Revert \"Make safe_mode play nice with timeout ()\"\"; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "2c0ff95d4d8d",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "safe_mode timeout UnboundLocalError local variable r referenced before assignment"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-075",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\ndocs don't show correct max_redirects\n\nIn the docs, `max_redirects = None` (http://docs.pyt",
+   "answer": "de4c75bbadea\n\nMatched commit details:\n- de4c75bbadea (2016-06-01, Ian Cordasco): Update documentation of Session.max_redirects; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "de4c75bbadea",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "max_redirects docs DEFAULT_REDIRECT_LIMIT"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-076",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nURL proxy auth with empty passwords doesn't emit auth header.\n\nI'm using a proxy that requi",
+   "answer": "c97a530638bb\n\nMatched commit details:\n- c97a530638bb (2016-10-31, Pawel Miech): [httpAdapter] allow empty password in proxy credentials; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "c97a530638bb",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "proxy auth empty password 407 redirect auth header not sent"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-077",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAttributeError: 'NoneType' object has no attribute 'read'\n\nHello :)\r\n\r\nAfter a recent upgra",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- dddb41e34906 (2014-01-11, Cory Benfield): TypeError, not AttributeError on 3.3.\n- ee7fe02953d8 (2014-03-12, Cory Benfield): Ensure that .raw() is present after unpickling.\n- 6a9665239651 (2011-08-21, Den Shabalin): Refactor response.content into a property. This makes content attribute discoverable through dir(res",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "AttributeError NoneType object has no attribute read"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "NoneType object has no attribute read raw None response"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.8,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commitfull-078",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDigest Auth will auth regardless of status code\n\nDiscovered on IRC.\r\n\r\nThe digest auth hand",
+   "answer": "8a58427d8aa7\n\nMatched commit details:\n- 8a58427d8aa7 (2017-01-27, Matthew Medal): Only send HTTPDigestAuth on 4xx challenges; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "8a58427d8aa7",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "digest auth 401 status code check"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-079",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nHTTPS proxy connection not initialized if first request is chunked\n\nUsing code below, will ",
+   "answer": "26bea1e498d6\n\nMatched commit details:\n- 26bea1e498d6 (2023-04-22, Levi): Use urllib3 native chunking ability (); ranked 7 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "26bea1e498d6",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 1,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_pr",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "HTTPS proxy connection not initialized if first request is chunked CONNECT request never sent"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "HTTPS proxy connection not initialized if first request is chunked CONNECT"
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 4179
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "chunked encoding SSL proxy CONNECT request not sent"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-080",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nDocumentation issue: requests.request behavior unclear when 'data' parameter is dictionary\n",
+   "answer": "3d22f9f5ab52\n\nMatched commit details:\n- 3d22f9f5ab52 (2017-03-01, Lutz Horn): by mentioning form-encoding of dict; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "3d22f9f5ab52",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "documentation data parameter dictionary requests.request behavior unclear serialization"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-081",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPropose additional documentation for post data\n\n## Problem statement\r\n\r\nCurrent documentati",
+   "answer": "21972c460137\n\nMatched commit details:\n- 21972c460137 (2017-03-01, Gary Wu): Add proposed documentation change for post data; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "21972c460137",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "post data documentation multiple values same key quickstart"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-082",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nFix allow_redirects\n\nHi,\n\nI have problems with the \"allow_redirects\" to the Request object.",
+   "answer": "Yes, a related fix was made in commit fc512d89245c (\"Don't use redirect_cache if allow_redirects=False\").\n\nMatched commit details:\n- fc512d89245c (2016-02-05, Kenneth Reitz): Don't use redirect_cache if allow_redirects=False; ranked 6 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "Yes, a related fix was made in commit fc512d89245c (\"Don't use redirect_cache if allow_redirects=False\").",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "allow_redirects follows redirects fix"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "allow_redirects location in r.headers while loop redirect"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": true
+   },
+   "seconds": 6.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-083",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nUnfortunate header unicode interactions\n\nheader_expand (https://github.com/kennethreitz/req",
+   "answer": "dba7a5a7e20d\n\nMatched commit details:\n- dba7a5a7e20d (2011-08-28, Kenneth Reitz): shortcut strings; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "dba7a5a7e20d",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "header_expand unicode ValueError basestring"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-084",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSession with cert set can't do HTTP connections\n\nIt is not clear from the documentation if ",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- 82e69de44f22 (2012-03-14, <email omitted>): Exposed key_file and cert_file in requests, to support https client certificates.",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code",
+    "search_commits",
+    "search_prs",
+    "search_commits",
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "cert key_file HTTPConnectionPool AttributeError HTTP connection"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "cert key_file HTTPConnectionPool set cert attribute session"
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "fix cert set on session HTTP request AttributeError key_file"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "cert set session HTTP connection AttributeError key_file"
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "cert HTTP connection pool key_file AttributeError fix"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "session cert http request AttributeError"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 12.8,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commitfull-085",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nallow_redirects doesn't work\n\nI haven't had the opportunity to research this yet, but I tho",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- 5fdc25b029b5 (2018-10-20, Rich Abdill): Reverting redirect examples back to intended URLs\n- eaf9a688c560 (2016-11-15, Barbara Miller): Clarify allow_redirects\n- dacc1d8aafed (2012-03-30, Kenneth Reitz): default to true for redirects now, since safe",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "allow_redirects not working redirect url"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.4,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commitfull-086",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nsubmodules of requests.packages.urllib3 are not equal to urllib3's\n\nSee title. Caused by th",
+   "answer": "588e8f7f640f\n\nMatched commit details:\n- 588e8f7f640f (2017-05-29, Markus Unterwaditzer): Preserve identity of unbundled deps; ranked 6 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "588e8f7f640f",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "submodules of requests.packages.urllib3 are not equal to urllib3's unbundling"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-087",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAttributeError: module 'requests.packages' has no attribute 'urllib3'\n\nThis [commit](https:",
+   "answer": "1278ecdf71a3\n\nMatched commit details:\n- 1278ecdf71a3 (2017-05-29, Ryan Pineo): Fix requests.packages not having package attributes; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "1278ecdf71a3",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "requests.packages urllib3 AttributeError module has no attribute"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-088",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nMisleading exception with invalid protocol in proxy variable\n\nWhen the value of `https_prox",
+   "answer": "9a8a826f226e\n\nMatched commit details:\n- 9a8a826f226e (2017-10-26, Nehal J Wani): Check if host is invalid for proxy; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "9a8a826f226e",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "invalid protocol in proxy variable misleading exception https_proxy missing slash"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-089",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nClarification of timeline for removing Python 2.7 support\n\nHi, all. I'm trying to update so",
+   "answer": "a9ee0eef5a70\n\nMatched commit details:\n- a9ee0eef5a70 (2020-01-09, Sumana Harihareswara): Add Python 2 support entry in FAQ (); ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "a9ee0eef5a70",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Python 2.7 support removal timeline documentation"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-090",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nURL in readme (https://2.python-requests.org/) is http only\n\nThe URL `//2.python-requests.o",
+   "answer": "74b72ce42655\n\nMatched commit details:\n- 74b72ce42655 (2019-09-29, Alex K): documentation link fixed; ranked 8 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "74b72ce42655",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_pr",
+    "get_pr",
+    "get_pr",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "readme URL 2.python-requests.org http https protocol"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "readme URL 2.python-requests.org http https protocol link"
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 5233
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 5237
+     }
+    },
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1352
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "2.python-requests.org readme link readthedocs"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.9,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-091",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRunning requests in parallel from a zip archive can create race condition when unpacking th",
+   "answer": "24630743cecd\n\nMatched commit details:\n- 24630743cecd (2021-07-07, Bernát Gábor): Avoid zip extract racing condition by using read+write instead extract (); ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "24630743cecd",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "race condition unpacking cacerts.pem zip archive parallel"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-092",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\npytest.raises with a string as the second argument removed in pytest 5\n\nSee http://doc.pyte",
+   "answer": "427e8eb1e755\n\nMatched commit details:\n- 427e8eb1e755 (2020-05-09, Miro Hrončok): Fix test_conflicting_post_params to work on pytest 5 (); ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "427e8eb1e755",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "pytest.raises string second argument removed context manager form"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-093",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSession.prefetch not pickled and causing AttributeError on next request after unpickle\n\nCod",
+   "answer": "d569a2d6bca6\n\nMatched commit details:\n- d569a2d6bca6 (2012-04-13, Roman Haritonov): Add 'prefetch' to Session.__attrs__ and Requests.__init__; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "d569a2d6bca6",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Session prefetch pickle AttributeError"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-094",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nPreparing a request body without headers throws a TypeError\n\nI have a usecase where I need ",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- 628e393b9a25 (2013-01-11, Matt McClure): Resolves the parts of  in requests proper.\n- 1d5c4f3f0f49 (2013-03-27, Ian Cordasco): This should take care of \n- 31b35ab838df (2016-09-21, Nate Prewitt): removing redundant logic from prepare_content_length",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "prepare_body headers None TypeError Content-Length"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "prepare_body headers None Content-Length"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commitfull-095",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nr.text and r.json() return different results *in some cases*\n\nThis might be an interesting ",
+   "answer": "5855dd711f0a\n\nMatched commit details:\n- 5855dd711f0a (2020-11-29, jason): updated `get_encoding_from_headers` to return utf-8 if the content type is set to application/json, ; ranked 7 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "5855dd711f0a",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "r.text r.json() different results utf-8 decoding content-type application/json"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-096",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRedirect of multipart-encoded post\n\nI'm scripting a site that returns a redirect in respons",
+   "answer": "f3ad56f103e3\n\nMatched commit details:\n- f3ad56f103e3 (2012-04-12, Pierre Chapuis): Encode Multipart Post data at Request creation; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "f3ad56f103e3",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "redirect multipart-encoded post _encode_files NoneType data not iterable"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.8,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-097",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nConnection timeout (not Read, Wall or Total) is consistently taking twice as long\n\nI'm awar",
+   "answer": "a64f32ba453b\n\nMatched commit details:\n- a64f32ba453b (2023-12-13, Rodrigo Silva): Add note on connection timeout being larger than specified. ; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "a64f32ba453b",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "connection timeout twice as long connect timeout"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-098",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nresponse.json\n\nNever adding another decoded type. ever.",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- 12862617df73 (2023-09-14, anupam-arista): Update models.Response.json docstring clearer\n- db575eeedcfd (2021-07-26, Steve Berdy): Fix inconsistent exception type in response.json() method ()\n- 443d07e0d3bc (2015-10-02, Hosam Aly): : Update Quickstart documentation of Response.json()",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "response.json decoded type"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  },
+  {
+   "id": "commitfull-099",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nCaseInsensitiveDict __setitem__ faulty for differing-case keys\n\nI think I figured out the c",
+   "answer": "f7596c75dce4\n\nMatched commit details:\n- f7596c75dce4 (2013-04-30, Colin Dunklau): Rewrite CaseInsensitiveDict to work correctly/sanely; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "f7596c75dce4",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "CaseInsensitiveDict __setitem__ differing case keys header"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-100",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n[BUG] JSONDecodeError can't be deserialized - invalid JSON raises a BrokenProcessPool and c",
+   "answer": "3ff3ff21dd45\n\nMatched commit details:\n- 3ff3ff21dd45 (2024-01-31, Thomas Dehghani): - JSONDecodeError are not deserializable; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "3ff3ff21dd45",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "JSONDecodeError BrokenProcessPool deserialization pickling exceptions"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-101",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nLeading slash in uri followed by column fails\n\nLeading slash in uri followed by column fail",
+   "answer": "60389df6d69c\n\nMatched commit details:\n- 60389df6d69c (2024-02-21, Ian Stapleton Cordasco): Trim excess leading path separators; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "60389df6d69c",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "leading slash in uri followed by column fails parse_url host port NoneType"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-102",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\npytest.warns(None) is no longer supported\n\nNot sure what was this code supposed to mean (ma",
+   "answer": "cc23d1c6445d\n\nMatched commit details:\n- cc23d1c6445d (2024-04-11, Lumir Balhar): Fix compatibility with pytest 8; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "cc23d1c6445d",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "pytest.warns(None) no longer supported TypeError exceptions must be derived from Warning"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-103",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSSLV3_ALERT_HANDSHAKE_FAILURE after upgrade from 2.31.0 to 2.32.2\n\nAfter upgrading to reque",
+   "answer": "a62a2d35d918\n\nMatched commit details:\n- a62a2d35d918 (2024-05-22, Ian Stapleton Cordasco): Allow for overriding of specific pool key params; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "a62a2d35d918",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "SSLV3_ALERT_HANDSHAKE_FAILURE ssl_context custom adapter init_poolmanager"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-104",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRegenerating tests/certs/ with OpenSSL >= 3.2.0 causes test failures\n\nRegenerating `tests/c",
+   "answer": "507409661335\n\nMatched commit details:\n- 507409661335 (2025-02-17, Colin Watson): Add CA constraint to test CA; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "507409661335",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "regenerating tests/certs OpenSSL 3.2.0 test failures invalid CA certificate"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-105",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nQuickStart documentation error\n\nhttpbin post has a header item '\"X-Amzn-Trace-Id\" which cau",
+   "answer": "d568f4727849\n\nMatched commit details:\n- d568f4727849 (2026-03-03, Ethan Price): docs: clarify Quickstart POST example (); ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "d568f4727849",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "httpbin post X-Amzn-Trace-Id header documentation quickstart r1.text r2.text"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-106",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nParse Link headers (rfc5988)\n\n[Web Linking RFC](http://www.rfc-editor.org/rfc/rfc5988.txt)\n",
+   "answer": "f3159ed4f619\n\nMatched commit details:\n- f3159ed4f619 (2012-08-21, Rhys Elsmore): Added in a link handler as per; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "f3159ed4f619",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Parse Link headers rfc5988 response.links"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-107",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRequest_gzip = True\n\nIn order to receive gzipped content, requests should send the header:\n",
+   "answer": "1b70385d4ae7\n\nMatched commit details:\n- 1b70385d4ae7 (2012-09-23, Kenneth Reitz): change default accept-encoding; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "1b70385d4ae7",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "Accept-Encoding gzip header requests"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-108",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nAllow lists in the dict values of the hooks argument\n\nCurrently the Request class has a .re",
+   "answer": "4dd3d1a1a253\n\nMatched commit details:\n- 4dd3d1a1a253 (2012-09-20, Ian Cordasco): & add regression test.; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "4dd3d1a1a253",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "hooks argument list of hook functions Request init register_hook"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-109",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nOrder of operations\n\nSo I realized in changing github3.py's download creation function that",
+   "answer": "f48c78c9eebd\n\nMatched commit details:\n- f48c78c9eebd (2012-08-19, Ian Cordasco): Change ordering of data + params back.; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "f48c78c9eebd",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "_encode_files file tuples order data files ordering"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-110",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nos.environ['PYTHONDONTWRITEBYTECODE'] = '1' in setup.py breaks other packages\n\nos.environ['",
+   "answer": "aed5bf7cc744\n\nMatched commit details:\n- aed5bf7cc744 (2012-09-10, Ian Cordasco): As per the discussion on .; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "aed5bf7cc744",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "PYTHONDONTWRITEBYTECODE setup.py breaks other packages"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-111",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nrequests adds packages directory to sys.path\n\nImporting requests adds its internal packages",
+   "answer": "c03553ed4ae8\n\nMatched commit details:\n- c03553ed4ae8 (2012-10-21, Gabriel): Remove path hacks that break chardet in Python 3. .; ranked 14 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "c03553ed4ae8",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "requests adds packages directory to sys.path chardet import"
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "sys.path packages directory import requests"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 4.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-112",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nBe able to get the response content as a file like object\n\nIn some particular cases, it is ",
+   "answer": "891e52d72348\n\nMatched commit details:\n- 891e52d72348 (2011-06-29, Jérémy Bethmont): Added the possibility to access headers without fetching the whole body ().; ranked 2 of 15 search results; a text match on the report, not confirmed against the code.",
+   "model_answer": "891e52d72348",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "response content as file like object stream read without downloading body"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "commitfull-113",
+   "type": "commit",
+   "question": "A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nReal logging\n\n- WARNING for things that shouldn't happen and can cause unexpected behaviour",
+   "answer": "No relevant implementation was found in the retrieved context.\n\nNo confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes):\n- cd84b3ff943f (2015-12-30, Cory Benfield): Update to urllib3 1.14\n- 2eb682671db4 (2013-05-10, Randy Merrill): Adding an argument to the adapter for passing a block argument to the connection pool.\n- 84434fddee4b (2011-09-17, Kenneth Reitz): import urllib3",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_commits",
+    "search_prs",
+    "get_issue_meta",
+    "get_references",
+    "search_commits"
+   ],
+   "calls": [
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "logging levels WARNING ERROR INFO DEBUG"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "logging levels WARNING ERROR INFO DEBUG policy"
+     }
+    },
+    {
+     "name": "get_issue_meta",
+     "arguments": {
+      "number": 971
+     }
+    },
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 971
+     }
+    },
+    {
+     "name": "search_commits",
+     "arguments": {
+      "query": "logging level connection pool warning debug info"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 7.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "abstained"
+  }
+ ]
+}

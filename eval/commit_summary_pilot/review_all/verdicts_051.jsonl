@@ -1,0 +1,82 @@
+{"n": 4412, "sha": "e7598e006c051330ef9eb5b33b6c046484af5c2b", "verdict": "ok", "reason": ""}
+{"n": 4413, "sha": "e7615cbc6b4af5985c4e0d4848a426e2d35f79c3", "verdict": "ok", "reason": ""}
+{"n": 4414, "sha": "e766f0b67caa6facf4a9173f1dc3eb931dd16e24", "verdict": "ok", "reason": ""}
+{"n": 4415, "sha": "e76fa915341f750dff6f1ac77bc3d77ff7134450", "verdict": "ok", "reason": ""}
+{"n": 4416, "sha": "e771aa93861355a704fa6650d59e14256ea0ee89", "verdict": "ok", "reason": ""}
+{"n": 4417, "sha": "e788ca7ee629f7ed8700d31bbdf7a2930c1a7398", "verdict": "wrong", "reason": "The fallback for headers is on the dict attribute of resp.info(), and resp.info() still has to exist and run."}
+{"n": 4418, "sha": "e796aae504ac3170d01d0be92c87a9c39350bbf9", "verdict": "ok", "reason": ""}
+{"n": 4419, "sha": "e7ac8ea0c106be330912c2d043756a714d115e4a", "verdict": "ok", "reason": ""}
+{"n": 4420, "sha": "e7b31af784c25b1cbc390bad60ea19f24a0c7905", "verdict": "ok", "reason": ""}
+{"n": 4421, "sha": "e7b7574cfe0df12c19193757c0493582818cf5fb", "verdict": "ok", "reason": ""}
+{"n": 4422, "sha": "e7b8e9371a0ee9bb9bb8e2269474ca67088cdc86", "verdict": "filler", "reason": "The metadata declarations are removed, but the excerpt does not establish that their values were outdated."}
+{"n": 4423, "sha": "e7bc9bf1b2c8abb51b56981548632baed3b4fb87", "verdict": "cannot_tell", "reason": "The new request copies headers but shares hooks and body, and the remaining redirect logic is absent, so complete preservation of the original cannot be verified."}
+{"n": 4424, "sha": "e7bcc3b33219afc4084ef4b163df9279aa40e8b6", "verdict": "wrong", "reason": "The Python 2 assignments alias bytes to Unicode after rebinding str, so the excerpt contradicts the cross-version consistency claim."}
+{"n": 4425, "sha": "e7c9bbb96f8cebe873e26bf2f5f306c130e98e7d", "verdict": "ok", "reason": ""}
+{"n": 4426, "sha": "e7cce354c1aff7badfe464e07204ccd41a522a7d", "verdict": "ok", "reason": ""}
+{"n": 4427, "sha": "e7e395549f8b60777f00c244dabd2bd9f89271b6", "verdict": "wrong", "reason": "The check raises once the recorded history reaches thirty, with no requirement for the history to exceed thirty."}
+{"n": 4428, "sha": "e7ed1224d222838ef9addf3bfa188ece82c9f9e7", "verdict": "ok", "reason": ""}
+{"n": 4429, "sha": "e7efce91fbb8ded451f698147957eb333d7507dc", "verdict": "filler", "reason": "The import list is edited, but the supplied excerpt does not establish that the removed aliases were unused."}
+{"n": 4430, "sha": "e7f5bd634d3fa757f067b297a3d20f1760777a23", "verdict": "wrong", "reason": "The relative imports address lookup inside the bundled namespace rather than a standalone-use issue."}
+{"n": 4431, "sha": "e81357449787799ecc4afac44c661e1db18babf9", "verdict": "ok", "reason": ""}
+{"n": 4432, "sha": "e8205c01310fcd846e081d2d8a818a0949a12125", "verdict": "ok", "reason": ""}
+{"n": 4433, "sha": "e820ac7c402594977f14f74d24bb4d4d59136cc4", "verdict": "filler", "reason": "The logo filename changes, but the excerpt does not substantiate increased prominence in the rendered README."}
+{"n": 4434, "sha": "e8234a013752ee8bae05c142d1950023c4a9fa8b", "verdict": "wrong", "reason": "Although the future directive is named absolute_import, the actual submodule imports become explicitly relative."}
+{"n": 4435, "sha": "e831947be43bc97b39d6e6e573cb0842b67fea80", "verdict": "wrong", "reason": "The comment describes best-effort RFC compliance and the diff only adds a default and its documentation."}
+{"n": 4436, "sha": "e84a7c7e6f9a46f111132e1bd188e99848927773", "verdict": "wrong", "reason": "On Windows the absent environment variable is populated with the remote URL before the local fallback is evaluated."}
+{"n": 4437, "sha": "e84d84b5b8660efa66feb66564683628944505bb", "verdict": "filler", "reason": "The import source changes, but the excerpt does not identify a specific behavior or compatibility reason."}
+{"n": 4438, "sha": "e85920455485389a99719184ae4fee4848352328", "verdict": "ok", "reason": ""}
+{"n": 4439, "sha": "e85b857a35ddd4031535e6e960229155cc9cb4cc", "verdict": "ok", "reason": ""}
+{"n": 4440, "sha": "e8668fb5129c27f38d2bc4917e7f9abfe946f9ff", "verdict": "ok", "reason": ""}
+{"n": 4441, "sha": "e8683f00a601a59e971e5a31dbb4328f7e5d4acb", "verdict": "ok", "reason": ""}
+{"n": 4442, "sha": "e89eba79dfb51e7d88de1fe85ba2b61ed92a8dac", "verdict": "ok", "reason": ""}
+{"n": 4443, "sha": "e8a4784c8fa8cb137c6d1c102059f0b2f501c175", "verdict": "ok", "reason": ""}
+{"n": 4444, "sha": "e8a9bd7415986278fe41736a3c224232b9f98c39", "verdict": "ok", "reason": ""}
+{"n": 4445, "sha": "e8bdcdb0a754ce3ec46fe167dfbd0e23f22e5ff7", "verdict": "wrong", "reason": "A leading underscore signals an internal attribute but does not enforce access or mutation restrictions."}
+{"n": 4446, "sha": "e8c0a99cb11c630b1e778a8c7e6b33b36d8088a7", "verdict": "ok", "reason": ""}
+{"n": 4447, "sha": "e8c2fc15852128a9da5f7db53ddd8f068624a71b", "verdict": "ok", "reason": ""}
+{"n": 4448, "sha": "e8d02ea0bbc05042e618a7ca115f4fca7b2deeb9", "verdict": "ok", "reason": ""}
+{"n": 4449, "sha": "e8d20926d380a02bba4b03530eae6fbf54374b21", "verdict": "ok", "reason": ""}
+{"n": 4450, "sha": "e8d2c015eecda8273612dd4562425e00cd164ba5", "verdict": "ok", "reason": ""}
+{"n": 4451, "sha": "e8d9bc55bc9fae82e3ba934d3f7a93e94a72d094", "verdict": "ok", "reason": ""}
+{"n": 4452, "sha": "e8dbecb4dbed3e835021977cf43f225a76bc5ec3", "verdict": "wrong", "reason": "A manifest inclusion controls the source archive and does not by itself install a standalone test module."}
+{"n": 4453, "sha": "e8f3fc33bb66fccde7d7316ab0afef7d1d601183", "verdict": "ok", "reason": ""}
+{"n": 4454, "sha": "e8ff405fce85bce50d41f57a894aa14331a1b564", "verdict": "filler", "reason": "The explicit export list is removed, but the reason for relying on remaining module names is not stated."}
+{"n": 4455, "sha": "e90852d20c9bc44c465e55234c01432711627d94", "verdict": "ok", "reason": ""}
+{"n": 4456, "sha": "e912a6f5da30e9a5507fd14cb6cb32f7e05611c0", "verdict": "ok", "reason": ""}
+{"n": 4457, "sha": "e91fe9b2b8911bd0ca75ef64966c02292b5021eb", "verdict": "ok", "reason": ""}
+{"n": 4458, "sha": "e946665c5953ab40e6dbb29cc8c496ee625fdadd", "verdict": "ok", "reason": ""}
+{"n": 4459, "sha": "e94c812c2d02427e924b72adfa3572e911eba2ca", "verdict": "ok", "reason": ""}
+{"n": 4460, "sha": "e958511df085ace98cfcc45c69129553ba07ee9e", "verdict": "ok", "reason": ""}
+{"n": 4461, "sha": "e976ea839b55e07f01a962c5bb38bedb543a2df7", "verdict": "ok", "reason": ""}
+{"n": 4462, "sha": "e98d71de135fceff1ce08fc52adb78f239e2c3c0", "verdict": "ok", "reason": ""}
+{"n": 4463, "sha": "e9a1e35f8989691afe99407d9b65a67684aa8bac", "verdict": "filler", "reason": "The pool lookup no longer receives the request timeout, but the excerpt does not identify unexpected delays that this prevents."}
+{"n": 4464, "sha": "e9b1217cff710307e5de9fb8ce2fc21eb79acec3", "verdict": "wrong", "reason": "The alias path uses a constant replacement for target and does not retain the individual module name or suffix."}
+{"n": 4465, "sha": "e9be7c1a58ff31b04633526c425714b272b457e8", "verdict": "ok", "reason": ""}
+{"n": 4466, "sha": "e9c2b917d2ba340e440f3da35846167c86c610a8", "verdict": "ok", "reason": ""}
+{"n": 4467, "sha": "e9c94e0f0662c33aa3a94c784f64ae575ce97c7b", "verdict": "ok", "reason": ""}
+{"n": 4468, "sha": "e9ca4b39b4c2c27e67c6ae78b659d5fd8fe43f90", "verdict": "wrong", "reason": "The new import uses urllib.poolmanager, which is not a standard urllib module."}
+{"n": 4469, "sha": "e9f94e698d3cb1e84d383dbc5a7393e55140b542", "verdict": "ok", "reason": ""}
+{"n": 4470, "sha": "e9fa2e2da3076e4f55f18b3f4a169c7b3916b272", "verdict": "ok", "reason": ""}
+{"n": 4471, "sha": "ea1d5f36480c7f9ba9d15aebd94d3df7db95dd72", "verdict": "ok", "reason": ""}
+{"n": 4472, "sha": "ea2b639d31270003855552a9f0c3617d7878ffd9", "verdict": "filler", "reason": "The excerpt shows the SSL exception fallback and timeout wording, but does not substantiate the general consistency claim for the changed HTTP modules."}
+{"n": 4473, "sha": "ea4570da5714deac86d6438ebac3f0b2ecea1ee6", "verdict": "ok", "reason": ""}
+{"n": 4474, "sha": "ea49261a279c9e8216f25410a9e9611b758c2611", "verdict": "filler", "reason": "The lock-threads pin advances as stated, but the excerpt does not establish that the new version is the latest stable release."}
+{"n": 4475, "sha": "ea9436a5d6a5934a906e91202349aabf9af75d15", "verdict": "wrong", "reason": "Having default ports on both URLs is insufficient for the new exemption if the scheme changes."}
+{"n": 4476, "sha": "ea99d5e0d962b48ecc6ced6e218ad85fc12ee56e", "verdict": "ok", "reason": ""}
+{"n": 4477, "sha": "eab2ab9faa0c61a899692978a0b67f657290931e", "verdict": "cannot_tell", "reason": "The release note names Response.ok but does not establish whether it is a method or an attribute in this revision."}
+{"n": 4478, "sha": "ead8fba84b12e7496c65272a07de47d553aa0ca0", "verdict": "ok", "reason": ""}
+{"n": 4479, "sha": "eae641485bf46081f0f36726716f27034e814d50", "verdict": "ok", "reason": ""}
+{"n": 4480, "sha": "eaf1264879d8aebfc160a385889e9e0483810456", "verdict": "ok", "reason": ""}
+{"n": 4481, "sha": "eaf9a688c5606577c2520b2decf03c56eb35e875", "verdict": "wrong", "reason": "The updated docstring lists seven verbs and does not say the option applies to every HTTP method."}
+{"n": 4482, "sha": "eb07385b025798baf921d3cb3b398c8794524fd9", "verdict": "ok", "reason": ""}
+{"n": 4483, "sha": "eb124353af330f8e1249e568e521795652fefb11", "verdict": "ok", "reason": ""}
+{"n": 4484, "sha": "eb173bc819c72580deed2d54190d340cc769e529", "verdict": "ok", "reason": ""}
+{"n": 4485, "sha": "eb2c14889fccd3e2526aab31e57c452e47848335", "verdict": "wrong", "reason": "The removed spacer is an HTML paragraph with a nonbreaking space, rather than a blank source line."}
+{"n": 4486, "sha": "eb39a557bde2ea9f72733f9e98227b057d675892", "verdict": "ok", "reason": ""}
+{"n": 4487, "sha": "eb692cb1e172cd3397412955a5f99b36544449a8", "verdict": "ok", "reason": ""}
+{"n": 4488, "sha": "eb6a6b1a234e520d9ef6263fc1f35758ca1b662a", "verdict": "ok", "reason": ""}
+{"n": 4489, "sha": "ebd3e36ad526a9a6af08ed2045b709ba0a2b5df4", "verdict": "ok", "reason": ""}
+{"n": 4490, "sha": "ebdd5cabab290033add5cd4a516514c658e6484c", "verdict": "ok", "reason": ""}
+{"n": 4491, "sha": "ebf71906798ec82f34e07d3168f8b8aecaf8a3be", "verdict": "ok", "reason": ""}
+{"n": 4492, "sha": "ec0b708b1856be4803ab10eeb50824f739baf0ce", "verdict": "ok", "reason": ""}
+{"n": 4493, "sha": "ec109c9ac89bf945715a429010706539a262e502", "verdict": "wrong", "reason": "The join operation is unchanged. Only the way its empty bytes separator is constructed differs."}

@@ -1,0 +1,92 @@
+{"n": 1297, "sha": "42c45df84d64b04da4702a94d7fa42d01501b218", "verdict": "ok", "reason": ""}
+{"n": 1298, "sha": "42d0a2169eb894df0fc3c3788925bfd107765597", "verdict": "ok", "reason": ""}
+{"n": 1299, "sha": "42d4eaf6eaad8b43e1048b8ac06aec760c2285ab", "verdict": "ok", "reason": ""}
+{"n": 1300, "sha": "42ddc4c9e8faff8103adf1e083f0260945357646", "verdict": "ok", "reason": ""}
+{"n": 1301, "sha": "42eaeb4da87330107f2b314793ec52dfd3395412", "verdict": "filler", "reason": "The workflow comments show 6.2.0 despite the commit message saying 6.1.0, but latest status and improvements are unverified."}
+{"n": 1302, "sha": "42ec8b08f2446d0d69cb0c71816f6105dddc814d", "verdict": "wrong", "reason": "The previous branch already assigned ca_cert_dir only for directories, so the edit does not correct the distinction claimed."}
+{"n": 1303, "sha": "42ee255c80374d974e696b73fa0c6685afb34cff", "verdict": "ok", "reason": ""}
+{"n": 1304, "sha": "430e87d0fd738adde494ccfe7d3fb3882fd8ca02", "verdict": "ok", "reason": ""}
+{"n": 1305, "sha": "4316af7ae82553f094b101d69b3e9c28ebbf0c18", "verdict": "ok", "reason": ""}
+{"n": 1306, "sha": "4320f81bf4c6a6b6f97dbfb7a6ba667dd71c4977", "verdict": "ok", "reason": ""}
+{"n": 1307, "sha": "433452f9f147ce14dae0389c46a2f35ea4be9e30", "verdict": "wrong", "reason": "The setup script reads the version from its own package, and the excerpt does not say that Requests is already installed as a separate dependency."}
+{"n": 1308, "sha": "435bd1242a618237e1c3150216e2cf50af586288", "verdict": "ok", "reason": ""}
+{"n": 1309, "sha": "43669183ce3199533680f0552c96cb1aa33dbfea", "verdict": "wrong", "reason": "The example uses the intended function name, but the retained params expression is invalid Python syntax."}
+{"n": 1310, "sha": "43790c4d3212afec36e6a5dc303546dc6705db7b", "verdict": "wrong", "reason": "The changed lines are README examples, with no implementation edit to either function signature."}
+{"n": 1311, "sha": "43854067d42f53fece38348b2ce0bf12af95a09e", "verdict": "ok", "reason": ""}
+{"n": 1312, "sha": "43a64d9515169c1f8ccb231749aba931fa7a5be8", "verdict": "wrong", "reason": "The edit inserts a letter rather than a space."}
+{"n": 1313, "sha": "43b90d7f72c4793aa538dd7eac2ac126da2a3aaf", "verdict": "filler", "reason": "Using localhost removes the external host dependency for the case, but it does not establish overall test reliability."}
+{"n": 1314, "sha": "43ed689d97266476871ff38cd45ba551e934ef63", "verdict": "filler", "reason": "The Twitter update section is removed, but the excerpt does not identify it as outdated."}
+{"n": 1315, "sha": "4401620111bee0a7319bf1cb4bd0852f7c854bf6", "verdict": "ok", "reason": ""}
+{"n": 1316, "sha": "4404e7e328114868a272b99ffc81b4c74ecd06ed", "verdict": "wrong", "reason": "The change supplies a default scheme only when one is needed, so it does not force every proxy connection to HTTP."}
+{"n": 1317, "sha": "44106f18b75bfbafa63b1a1910366d57d554bc41", "verdict": "ok", "reason": ""}
+{"n": 1318, "sha": "44161ac373199716c4231aa5cb5011a08d2d6ed4", "verdict": "ok", "reason": ""}
+{"n": 1319, "sha": "4419e7183f07cd5a5123b6e193e841f9a2ab3907", "verdict": "wrong", "reason": "Deleting this helper does not establish that all automated tests and linting were removed from the repository."}
+{"n": 1320, "sha": "44256ffe7cbdcf8b8a14bfd6f3333d6977851883", "verdict": "ok", "reason": ""}
+{"n": 1321, "sha": "44277441d6bc55254a54d827fcae9cb025371465", "verdict": "ok", "reason": ""}
+{"n": 1322, "sha": "443d07e0d3bcbf5a23314a4ddf95c67bba533ddb", "verdict": "ok", "reason": ""}
+{"n": 1323, "sha": "4441697e4945cee192b3a33bbe28d60b6463e26d", "verdict": "filler", "reason": "The spacing before the literal-block marker changes, but both forms are valid reStructuredText and the rendered result is not shown."}
+{"n": 1324, "sha": "4443b1a847b190010c2972a658924b98b5db6360", "verdict": "wrong", "reason": "The diff changes dependency grouping and adds requirements, with no parenthesis removal."}
+{"n": 1325, "sha": "4452934929b3addd7c8188d4ea8132b41157daef", "verdict": "filler", "reason": "The comments and commented-out code are removed, but the excerpt does not establish why they were obsolete."}
+{"n": 1326, "sha": "44663b5e8e54f170b4633307b79b1be69fd49f64", "verdict": "ok", "reason": ""}
+{"n": 1327, "sha": "446911b8539af0f5ae2dcf558fec4a6c0cd8af44", "verdict": "ok", "reason": ""}
+{"n": 1328, "sha": "4493acc5eec9707957ad18f3ccffb3910e8ee50c", "verdict": "wrong", "reason": "The change rewrites the assertion form and the shown request does not pass a safe-mode option."}
+{"n": 1329, "sha": "4497a26c376c60360d05644b574be0db3c887fe3", "verdict": "ok", "reason": ""}
+{"n": 1330, "sha": "44aa6806f3bf2255c151ec2661b8765ca190c0c4", "verdict": "ok", "reason": ""}
+{"n": 1331, "sha": "44b1e7ebeabdf28ad1abccca1ef06eefe84d334c", "verdict": "wrong", "reason": "The POST and PUT restriction is attached to the fallback assignment of zero, rather than to all Content-Length handling."}
+{"n": 1332, "sha": "44c9b7e93b47333f910177773f3edcafa51ece59", "verdict": "ok", "reason": ""}
+{"n": 1333, "sha": "44d402c1e61c6a3570fa75ebcb4c21de65ea7f5d", "verdict": "filler", "reason": "Cookie support appears on the roadmap, but the excerpt does not give a delivery timeline."}
+{"n": 1334, "sha": "44dbf8cf40ef5ebf221a95680b690599548d214a", "verdict": "filler", "reason": "The Roman numerals change from 2017 to 2018, but the excerpt does not establish the edit's current year."}
+{"n": 1335, "sha": "44e426e4ff7c8f4113d3754becc5678db1c0db6f", "verdict": "ok", "reason": ""}
+{"n": 1336, "sha": "4504953212816c4de0cd8177faf1270e42cb31f9", "verdict": "ok", "reason": ""}
+{"n": 1337, "sha": "4516bd45b23dccf819e1d3d564415276ccbe7b07", "verdict": "ok", "reason": ""}
+{"n": 1338, "sha": "45478d5be1a7b42e6b97351d304cc959b0949a78", "verdict": "ok", "reason": ""}
+{"n": 1339, "sha": "45506d1f39be8cc055814227952e53d94d3cb10d", "verdict": "ok", "reason": ""}
+{"n": 1340, "sha": "456c42b00d15c1ffb7fe610e4dad9164ab3eb6f0", "verdict": "filler", "reason": "The changelog records the change in cookie persistence, but describes no expectation about retained state."}
+{"n": 1341, "sha": "458008653c39285c6f2d71552d5ea91b6a56ed9c", "verdict": "filler", "reason": "The Makefile changes the test runner and adds its dependencies, but the reason about improving isolation is not supplied."}
+{"n": 1342, "sha": "458496d43e9ff08dd285d4b67b5bb889bca3480f", "verdict": "ok", "reason": ""}
+{"n": 1343, "sha": "4585a7fbdaaebf19d213eb16326afae2e9382abe", "verdict": "ok", "reason": ""}
+{"n": 1344, "sha": "458cb64e3d4505fa58686cf3b019a91f74967447", "verdict": "filler", "reason": "The test settings are removed and the entry point changes, but the former files and command are not shown to be outdated or deprecated."}
+{"n": 1345, "sha": "4594667f07cac83ea95a19747dea1588aa2cb59e", "verdict": "ok", "reason": ""}
+{"n": 1346, "sha": "45992769b2a4adcb4859da73417e8da92e4ae967", "verdict": "ok", "reason": ""}
+{"n": 1347, "sha": "459a91c54fc42ef385ca24811ea0833f38fd433b", "verdict": "ok", "reason": ""}
+{"n": 1348, "sha": "459f8dfccb7ee2e1dc9e041b7aebc2392219c35e", "verdict": "ok", "reason": ""}
+{"n": 1349, "sha": "45c2e679e0923cd8519db31b31d0573928c6d1f4", "verdict": "filler", "reason": "The formatting substitutions are shown, but the redirect-limit message retains the same wording and more clarity is not demonstrated."}
+{"n": 1350, "sha": "45c6897128c1e20a98cf259101067123a4768793", "verdict": "wrong", "reason": "The examples name the wrong module variable after import, and the shown GET call also has invalid syntax."}
+{"n": 1351, "sha": "45c9ecc82ad4ed99166b4aa6279cd52d80045333", "verdict": "ok", "reason": ""}
+{"n": 1352, "sha": "45e30048f0bca3fc2fad22aba8b7fa4f67f9af2b", "verdict": "wrong", "reason": "The helper used by the test named HTTPS actually returns the HTTP URL base, so it does not provide an HTTPS request endpoint."}
+{"n": 1353, "sha": "45fabf4b9642b262e457d52660daefb160be3ad9", "verdict": "ok", "reason": ""}
+{"n": 1354, "sha": "461497f5be722fa010a691bb6951d13d8df63688", "verdict": "ok", "reason": ""}
+{"n": 1355, "sha": "46184236dc177fb68c7863445609149d0ac243ea", "verdict": "ok", "reason": ""}
+{"n": 1356, "sha": "46188256ee5955147cce4c0af91958b1681b47b1", "verdict": "ok", "reason": ""}
+{"n": 1357, "sha": "463ca76cc44f5ae2ee15e217e0ffa5305ef14ae5", "verdict": "ok", "reason": ""}
+{"n": 1358, "sha": "464279f48d2aa3aea75edd037b7020eb23682002", "verdict": "ok", "reason": ""}
+{"n": 1359, "sha": "4656c9b89b61d8ba16cd117c611d2a878c572053", "verdict": "ok", "reason": ""}
+{"n": 1360, "sha": "466a70f7c1ff4a268df3ff2f28a8afb78046b8bd", "verdict": "filler", "reason": "The endpoints are replaced, but the excerpt does not establish that the old endpoint was deprecated or that the new URL is currently functional."}
+{"n": 1361, "sha": "4673d3dfa7c9f97a2b0950066ec53623fd0d0a41", "verdict": "ok", "reason": ""}
+{"n": 1362, "sha": "467766cfe8b2f4f13f5bee1346b9ab7a8cbfcb62", "verdict": "ok", "reason": ""}
+{"n": 1363, "sha": "4677ba5cd9ba5a1aed98b9b60d3e1431a0ca2cb9", "verdict": "ok", "reason": ""}
+{"n": 1364, "sha": "4687951a04f7bd85db55a1f9a9dcf742ce7c5194", "verdict": "ok", "reason": ""}
+{"n": 1365, "sha": "46a4e731da7bec512c95abe3fdf1296641484921", "verdict": "wrong", "reason": "The instruction is edited in the issue template, with no change to module documentation."}
+{"n": 1366, "sha": "46a770e03f6991c357fe5f245bf035d779b887f6", "verdict": "ok", "reason": ""}
+{"n": 1367, "sha": "46a930941a40a4b5e074402a6dba2bf7d9658e25", "verdict": "ok", "reason": ""}
+{"n": 1368, "sha": "46b6207f05f0f91c88a69156f88afa7e92c560cf", "verdict": "wrong", "reason": "The values wrapped in list are data items rather than the file fields themselves."}
+{"n": 1369, "sha": "46b7f19857278c4422ca69ce6bae8d63de9880f3", "verdict": "ok", "reason": ""}
+{"n": 1370, "sha": "46d646064ca0836a7d7b4d50ea2c762d12ff8ce1", "verdict": "ok", "reason": ""}
+{"n": 1371, "sha": "46e01db7853ae5d0670598b49dab5055acbbe3fb", "verdict": "ok", "reason": ""}
+{"n": 1372, "sha": "46e939b5525d9c72b677340985582b04b128478a", "verdict": "ok", "reason": ""}
+{"n": 1373, "sha": "46fd297c3ac903793a99fd9712f04d747a027538", "verdict": "ok", "reason": ""}
+{"n": 1374, "sha": "46ff4b386281f619506c13f8a6548ecd3e4d3559", "verdict": "ok", "reason": ""}
+{"n": 1375, "sha": "4707d11004a201a89257fa3ab5365fb3dc9d2f90", "verdict": "ok", "reason": ""}
+{"n": 1376, "sha": "470af31f4a5e9edfae1c818f5104ee83f5f541cb", "verdict": "filler", "reason": "The POST-to-GET rule is explicit, but the excerpt does not establish how browsers handle this redirect."}
+{"n": 1377, "sha": "470af42bf203327f84d5554cf99b4b7207b47abb", "verdict": "ok", "reason": ""}
+{"n": 1378, "sha": "47378164ef18323a96b443db4a415057bc3d92ce", "verdict": "wrong", "reason": "The old alias is a complete three-character token and the attempted guard is an invalid raw string literal."}
+{"n": 1379, "sha": "474e17b0af27b397e6abcb7eca3353775993426c", "verdict": "wrong", "reason": "Only requests.api loses an __all__ definition, and the async edit removes an import."}
+{"n": 1380, "sha": "47510486eccc2d06ef7e5de7ce6a79e30780322d", "verdict": "ok", "reason": ""}
+{"n": 1381, "sha": "476938ab8d6722e76d0311cde8230f1ed524a01e", "verdict": "wrong", "reason": "The change drops universal-wheel configuration but does not determine which interpreter an individual wheel build can target."}
+{"n": 1382, "sha": "476ab203bc00cb57a7be24fb500b95447294ec92", "verdict": "ok", "reason": ""}
+{"n": 1383, "sha": "478d49027fe920e334ae8eacd1182ede39f8b5f7", "verdict": "ok", "reason": ""}
+{"n": 1384, "sha": "47914226c2968802f2cdee3f6f0f6e06e4472f64", "verdict": "wrong", "reason": "The added predicate only requires at least one truthy value and does not validate that the credential fields are all nonempty or otherwise valid."}
+{"n": 1385, "sha": "47a36de74e7697a3030bb0d8d6f324b868001ec4", "verdict": "wrong", "reason": "The original statement about Python 3 remains word for word, followed by a new sentence."}
+{"n": 1386, "sha": "47aba0cc20a3d44aa83bdde849ff39fc8b20d094", "verdict": "filler", "reason": "The method formerly checked the parameter, and the excerpt does not establish whether callers supplied it."}
+{"n": 1387, "sha": "47b98bc90f84e1ebd2ca220843df5cb49f6db99a", "verdict": "ok", "reason": ""}
+{"n": 1388, "sha": "47cb8bae1afedb600007683048eff4572850a34e", "verdict": "ok", "reason": ""}

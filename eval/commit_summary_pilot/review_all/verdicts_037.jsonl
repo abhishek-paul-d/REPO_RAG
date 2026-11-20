@@ -1,0 +1,84 @@
+{"n": 3165, "sha": "a609f726e633018ebd0f11d59d7c63f54945b1be", "verdict": "ok", "reason": ""}
+{"n": 3166, "sha": "a61a861cfb8ae9a0bb14e4fce7859a5ed865840c", "verdict": "ok", "reason": ""}
+{"n": 3167, "sha": "a62a2d35d918baa8e793f7aa4fb41527644dfca5", "verdict": "ok", "reason": ""}
+{"n": 3168, "sha": "a634611dd1bbf1455723cff0af2ecc30866d880c", "verdict": "filler", "reason": "The three action pins move to 4.36.0, but the excerpt does not establish latest minor release status."}
+{"n": 3169, "sha": "a6360ca134623a9faecfe64b51e86f42bffb4dd9", "verdict": "wrong", "reason": "The previous code already chose MD5 when the key was absent. The change separates the optional challenge field from the normalized internal selection."}
+{"n": 3170, "sha": "a63ae02e345ef772d96802b1dd3eee730144e16b", "verdict": "wrong", "reason": "The text is an attribute-documentation comment rather than a class docstring, and it describes certificate file paths."}
+{"n": 3171, "sha": "a6412b02ba271a7a8e6fc4a74ecf6295cb06ddbe", "verdict": "ok", "reason": ""}
+{"n": 3172, "sha": "a6415cf8956cce8a07b8821b9a4dbb703cd1750c", "verdict": "ok", "reason": ""}
+{"n": 3173, "sha": "a64a62088ad2598fd2c69b46216cf05cba381228", "verdict": "wrong", "reason": "The changed numbers occur as displayed outputs in the status-code lookup documentation and are not tied to endpoints or a runtime lookup table."}
+{"n": 3174, "sha": "a64f32ba453bc19aa679018838bee8ef8cc9a68b", "verdict": "ok", "reason": ""}
+{"n": 3175, "sha": "a67cc5c5a98e79545caa89f665bf1528c0c832f4", "verdict": "wrong", "reason": "The convenience wrapper already accepts cookies. The change is the keyword it forwards to the generic request function."}
+{"n": 3176, "sha": "a688f026dc9051a61f9ba6ffd6a9457640ce6374", "verdict": "wrong", "reason": "The title describes a deprecation and the only change deletes a test, so it does not establish that the feature has been removed."}
+{"n": 3177, "sha": "a68d1b4517395e4845fa8405f043f8aa3110f83c", "verdict": "ok", "reason": ""}
+{"n": 3178, "sha": "a68f7169a5fa26e7f6bec646c86dfe128497b0bf", "verdict": "ok", "reason": ""}
+{"n": 3179, "sha": "a694ab5c00b8dc4c38691cac48899d337c83a011", "verdict": "ok", "reason": ""}
+{"n": 3180, "sha": "a699ddd14a305d933105de7900a079034bbc545f", "verdict": "wrong", "reason": "The response receives generic configuration used for Unicode decoding, while the connection pool changes occur separately in the session and request path."}
+{"n": 3181, "sha": "a69cf7e71cc1294fb93cb2d4e7655fab08658dc5", "verdict": "ok", "reason": ""}
+{"n": 3182, "sha": "a6a83420662b4ae2edda6949cf584415d3495c8e", "verdict": "ok", "reason": ""}
+{"n": 3183, "sha": "a6cf27a77f6f5dd6116096e95c16e7c1a616b419", "verdict": "wrong", "reason": "The existing security policy is edited in place. The documentation is being pointed to that policy, not a newly created file."}
+{"n": 3184, "sha": "a6ee9757a748a70f51206aa2b618aa3ef94f4394", "verdict": "ok", "reason": ""}
+{"n": 3185, "sha": "a6ffd97ef150f50eb1a0e0e54edf217831011753", "verdict": "ok", "reason": ""}
+{"n": 3186, "sha": "a703e24573d46871f5cd63631e33778281981f24", "verdict": "ok", "reason": ""}
+{"n": 3187, "sha": "a721d590b4e13b641b3171a081e7d6a7b3d8b6f2", "verdict": "ok", "reason": ""}
+{"n": 3188, "sha": "a7223f86a976410bb904fb2e983440c94175aa75", "verdict": "wrong", "reason": "The reversal goes from while True to while 1, and the removed/added lines show the opposite order from the summary's description of the reverted change."}
+{"n": 3189, "sha": "a7239aab84b59534fb5e6eb7b83a97dcf913f8de", "verdict": "filler", "reason": "Both callers and conditions are inverted consistently with the flag rename, and the excerpt does not show a redirect behavior defect being corrected."}
+{"n": 3190, "sha": "a74481a1d496cfa77d6ecf23b6a3fe34b3012084", "verdict": "ok", "reason": ""}
+{"n": 3191, "sha": "a74568d8d5bc3cc47679261467485f944833cb93", "verdict": "ok", "reason": ""}
+{"n": 3192, "sha": "a74e95478822e59c2ae659c6af77148530d36ff9", "verdict": "ok", "reason": ""}
+{"n": 3193, "sha": "a75ba04eed165da54416e4b32f26a6bb566d8203", "verdict": "ok", "reason": ""}
+{"n": 3194, "sha": "a76f4925b512b481375f0886a5b675d3e8522b34", "verdict": "wrong", "reason": "The new delay is one second, rather than one hundredth of a second."}
+{"n": 3195, "sha": "a77054f90fd3947db03838d3f244ee802c388314", "verdict": "ok", "reason": ""}
+{"n": 3196, "sha": "a775435c4b3ecb9f8f49b91ccb5403a071a0a4ee", "verdict": "filler", "reason": "The workflow versions are explicit, but nothing in the excerpt establishes that 4.1.0 is the latest minor release."}
+{"n": 3197, "sha": "a776e7cb3e57e56a2d9974b730e6f5e7776751a4", "verdict": "wrong", "reason": "The parsed URL component is kept in a distinct variable and passed to urlunparse, rather than discarded."}
+{"n": 3198, "sha": "a788cb72719a6bd3cd103c0df762d5f983cda134", "verdict": "filler", "reason": "The explicit HEAD default is shown, but the excerpt does not establish that any standard HTTP convention requires it."}
+{"n": 3199, "sha": "a7944ba94f725e30a7a652f425a0d049c16ae1ba", "verdict": "ok", "reason": ""}
+{"n": 3200, "sha": "a7969c5c42d5ce99a067e93015f83d86f5a0d403", "verdict": "wrong", "reason": "The removed lines are repeated script blocks inside jobs. The job definitions themselves are not deleted by the shown hunks."}
+{"n": 3201, "sha": "a7aa86a933523a31e426d2e2aab01247c65ea87e", "verdict": "ok", "reason": ""}
+{"n": 3202, "sha": "a7b5e3191d1b121e452e83798287209d12ade7ee", "verdict": "ok", "reason": ""}
+{"n": 3203, "sha": "a7c5d5e8ac7b4fac71352ef359a5af6b812a9a4c", "verdict": "ok", "reason": ""}
+{"n": 3204, "sha": "a7c87edebe395416571ad9cac7a37e2a8122b31d", "verdict": "wrong", "reason": "The title is a remark about dropping Python 2.4, not a project name or version release."}
+{"n": 3205, "sha": "a7d072a7c01bef07e487311072732d57feb49755", "verdict": "ok", "reason": ""}
+{"n": 3206, "sha": "a7d280cb3d9e24ceb9330b7157cf4e4d985c7a60", "verdict": "ok", "reason": ""}
+{"n": 3207, "sha": "a7da1ab3498b10ec3a3582244c94b2845f8a8e71", "verdict": "filler", "reason": "The configured Ubuntu release changes, but the excerpt does not establish the runner image's support status."}
+{"n": 3208, "sha": "a7da521a62b248b999b856594ad68c82fac9f498", "verdict": "ok", "reason": ""}
+{"n": 3209, "sha": "a7e1c745dc23c18e836febd672416ed0c5d8d8ae", "verdict": "ok", "reason": ""}
+{"n": 3210, "sha": "a7e2da804c0589eb2fba9f6a099ac50fa6a9515d", "verdict": "wrong", "reason": "The excerpt shows a binary artwork change and does not establish a Flourish extension or its use in an interface."}
+{"n": 3211, "sha": "a7e724161665895cd6328a90b65c4acdec2fe236", "verdict": "ok", "reason": ""}
+{"n": 3212, "sha": "a7fef5875688bce4435fd356c4442ffdad1dd49d", "verdict": "ok", "reason": ""}
+{"n": 3213, "sha": "a80bd7708d620ba1797aed1ca0840996fa137517", "verdict": "wrong", "reason": "The new code uses a bare return, which yields None implicitly rather than returning it explicitly."}
+{"n": 3214, "sha": "a829ef9b46b524cf13b40d86288cb338d45665a3", "verdict": "ok", "reason": ""}
+{"n": 3215, "sha": "a82f4de38ddd31fa8a5773e60fc2f4324ca79d45", "verdict": "ok", "reason": ""}
+{"n": 3216, "sha": "a83268b01b1784799b6c32e725dabbde488f0b76", "verdict": "ok", "reason": ""}
+{"n": 3217, "sha": "a83685ce00995808725bd07cb3ce8f785178b5e8", "verdict": "ok", "reason": ""}
+{"n": 3218, "sha": "a8555d811df0a4aaf2dd1f083ba0bc71679101ca", "verdict": "ok", "reason": ""}
+{"n": 3219, "sha": "a8695ecd32f18135ae5f34f466382993a4cb7d3d", "verdict": "ok", "reason": ""}
+{"n": 3220, "sha": "a86af4477ec377223c10ddd6bf2fe90f508e1b60", "verdict": "ok", "reason": ""}
+{"n": 3221, "sha": "a89530aef59af2eb7b7619e571003f916e6c4626", "verdict": "ok", "reason": ""}
+{"n": 3222, "sha": "a8972a5bd24e50a380af22e4f33d1d1c4cd740b3", "verdict": "ok", "reason": ""}
+{"n": 3223, "sha": "a89d5c003a8708e9555968f810311f3e019281c4", "verdict": "wrong", "reason": "The old numeric comparison already returned True below 400 without raising for error status. The revert changes how the boolean is computed."}
+{"n": 3224, "sha": "a8a4c9828aea6f5159cddc2786d4a74426f9dd4f", "verdict": "ok", "reason": ""}
+{"n": 3225, "sha": "a8cf5b85027e523c54d3d496ee5467eac90555bd", "verdict": "wrong", "reason": "The replacement deletes the escaped quote sequence as a whole, while the test preserves ordinary wrapping quotes."}
+{"n": 3226, "sha": "a8e77688f0a610bc8f8d304f2d15094aac149ac7", "verdict": "ok", "reason": ""}
+{"n": 3227, "sha": "a8e9c1b436e9a35c271d8b690eefbc0d3d18df0f", "verdict": "ok", "reason": ""}
+{"n": 3228, "sha": "a8fdba15b12550a9bb08b1fa1e4d78b5d9508c1f", "verdict": "wrong", "reason": "The new boolean assertion passes for a value other than the False singleton, reversing the check for the expected False value."}
+{"n": 3229, "sha": "a9033912b392900e3ab0b1d93e2545f05fabc467", "verdict": "ok", "reason": ""}
+{"n": 3230, "sha": "a91905d78e1eb33af3614b24b0405ebf1f20e58d", "verdict": "filler", "reason": "The constraints and compatibility goal are shown, but the excerpt does not establish that the suite now runs reliably or avoids all newer-version failures."}
+{"n": 3231, "sha": "a91ac242f3616d3051f2ba28a81d6fc637c58a7c", "verdict": "wrong", "reason": "The previous optional parameters could be passed positionally. The new signature accepts optional arguments only as keywords."}
+{"n": 3232, "sha": "a939423006aff0cba39448572ee438b23d6d99d4", "verdict": "wrong", "reason": "The assertion checks the None sentinel, which differs from an empty string or byte string."}
+{"n": 3233, "sha": "a94541d38c8883457195a1a388c56172fc2df745", "verdict": "ok", "reason": ""}
+{"n": 3234, "sha": "a9470fe31f0c9590dafeac4b53f91fbf11fd6677", "verdict": "ok", "reason": ""}
+{"n": 3235, "sha": "a94e9b5308ffcc3d2913ab873e9810a6601a67da", "verdict": "wrong", "reason": "The change includes client certificate settings in pool selection rather than introducing mutual TLS support from scratch."}
+{"n": 3236, "sha": "a950322b0794a451491d51bd8596623964c5b323", "verdict": "ok", "reason": ""}
+{"n": 3237, "sha": "a95bfd30324b59f54de7b18ae6209aecfe5c87fc", "verdict": "cannot_tell", "reason": "The new send kwargs include allow_redirects, but the excerpt cuts off before the send call and timing changes, so the explanation of the elapsed test cannot be checked."}
+{"n": 3238, "sha": "a9822b0bb6917cbc04d7c3d3d7f287b5961283eb", "verdict": "ok", "reason": ""}
+{"n": 3239, "sha": "a982b0d90346febf9c0b4df042fc80fc18cc93dd", "verdict": "filler", "reason": "The adapter changes how the proxy manager is constructed and the session starts collecting environment proxies, but the excerpt does not verify that the new wrapping is correct."}
+{"n": 3240, "sha": "a9860c4faed86a480f02a4bfa67f4e3c07cf6f4a", "verdict": "cannot_tell", "reason": "The paragraph is removed and reinserted later, but the added line is truncated before its ending, so the claimed period deletion cannot be checked."}
+{"n": 3241, "sha": "a987729712c3fa150fc86550495f6ed2aff4bfc0", "verdict": "ok", "reason": ""}
+{"n": 3242, "sha": "a98ec717f2312f6882a90deded17ef75cbbb1991", "verdict": "wrong", "reason": "KeepAliveTests is a class within test_keep_alive.py, not the name of the updated module."}
+{"n": 3243, "sha": "a9963e38414b3d5ee4f79d2026794a2382717da3", "verdict": "filler", "reason": "The normalization is shown, but the excerpt does not establish a particular lowercase input error or a general authentication success guarantee."}
+{"n": 3244, "sha": "a9d05f06cddf8eb74786f22c4e331e5d7c2ce6ca", "verdict": "filler", "reason": "The deleted development requirements file is visible, but the excerpt does not show whether dependencies moved elsewhere or tools became unused."}
+{"n": 3245, "sha": "a9e18e9106fc78ca8ab668ab1d164c27309f1466", "verdict": "ok", "reason": ""}
+{"n": 3246, "sha": "a9ec28a1b4288e6368f855f442817633d3a7f7da", "verdict": "ok", "reason": ""}
+{"n": 3247, "sha": "a9ee0eef5a70acb9ed35622b3675574b11f92cb4", "verdict": "ok", "reason": ""}
+{"n": 3248, "sha": "aa04cc9b427432358398aac713c2574193ecc691", "verdict": "wrong", "reason": "The wrappers provide an overridable default, but the core condition still includes a separate see_other rule that can trigger a redirect."}

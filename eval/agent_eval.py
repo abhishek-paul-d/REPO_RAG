@@ -20,8 +20,10 @@ import json
 import random
 import re
 import sys
+import threading
 import time
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any
 
@@ -39,6 +41,20 @@ ARCH_SOURCE = ROOT / "eval/datasets/architecture_v1/requests.jsonl"
 ARCH_DATASET = ROOT / "eval/datasets/agent_eval_architecture_v1.jsonl"
 COMMIT_FULL_DATASET = ROOT / "eval/datasets/agent_eval_commit_full_v1.jsonl"
 BUGFIX = ROOT / "eval/datasets/phase5_bugfix_v2/repos/psf__requests/pairs.jsonl"
+
+
+def bugfix_pairs_path(repo: str) -> Path:
+    """The phase5 bug -> fix pairs of one repository (psf/requests, pallets/flask, ...)."""
+    return ROOT / "eval/datasets/phase5_bugfix_v2/repos" / repo.replace("/", "__") / "pairs.jsonl"
+
+
+def commit_full_path(repo: str) -> Path:
+    """The commit-question file of a repository; psf/requests keeps its original name."""
+    if repo == REPO:
+        return COMMIT_FULL_DATASET
+    return ROOT / f"eval/datasets/agent_eval_commit_full_{repo.replace('/', '__')}_v1.jsonl"
+
+
 SAMPLE = {
     "pr_fact": 8, "closes": 3, "refs_out": 5, "refs_in": 5, "kind_issue": 3, "kind_pr": 2,
     "prsearch": 5,
@@ -305,12 +321,16 @@ def build_architecture() -> None:
     print(f"{len(records)} architecture questions; sha256 {sha256_of(ARCH_DATASET)[:12]}")
 
 
-def build_commit_full() -> None:
-    """Every `test`-split bug -> fix pair of psf/requests as a commit question (113), in pair-id
-    order. The frozen 10-question set is a sample of the same pairs; 113 questions can show a
-    difference of a few questions that 10 cannot. The dev pairs (28) are not used here, so they stay
-    available for choosing a setting."""
-    pairs = [json.loads(line) for line in BUGFIX.read_text(encoding="utf-8").splitlines()]
+def build_commit_full(repo: str = REPO) -> None:
+    """Every `test`-split bug -> fix pair of a repository as a commit question (113 for
+    psf/requests), in pair-id order. The frozen 10-question set is a sample of the same pairs; 113
+    questions can show a difference of a few questions that 10 cannot. The dev pairs (28 for
+    psf/requests) are not used here, so they stay available for choosing a setting."""
+    target = commit_full_path(repo)
+    pairs = [
+        json.loads(line)
+        for line in bugfix_pairs_path(repo).read_text(encoding="utf-8").splitlines()
+    ]
     tests = sorted((p for p in pairs if p["split"] == "test"), key=lambda p: p["id"])
     records = []
     for number, pair in enumerate(tests, start=1):
@@ -325,10 +345,10 @@ def build_commit_full() -> None:
                 "expect": {"shas": [s[:12] for s in shas]},
             }
         )
-    COMMIT_FULL_DATASET.write_text(
+    target.write_text(
         "\n".join(json.dumps(r, ensure_ascii=False) for r in records) + "\n", encoding="utf-8"
     )
-    print(f"{len(records)} commit questions; sha256 {sha256_of(COMMIT_FULL_DATASET)[:12]}")
+    print(f"{len(records)} commit questions in {target.name}; sha256 {sha256_of(target)[:12]}")
 
 
 def audit_probes(records: list[dict[str, Any]], clone: Path) -> None:
@@ -452,6 +472,21 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
 # ----------------------------------------------------------------------------- running
 
 
+class LockedEmbeddings:
+    """Shares one embedding model between worker threads: one call at a time."""
+
+    def __init__(self, inner: Any) -> None:
+        self.inner, self.lock = inner, threading.Lock()
+
+    def embed_query(self, text: str) -> list[float]:
+        with self.lock:
+            return self.inner.embed_query(text)
+
+    def embed_documents(self, texts: list[str]) -> list[list[float]]:
+        with self.lock:
+            return self.inner.embed_documents(texts)
+
+
 def run(
     url: str,
     token: str,
@@ -471,6 +506,11 @@ def run(
     max_input_tokens: int | None = None,
     commit_k: int | None = None,
     max_tool_calls: int | None = None,
+    workers: int = 1,
+    hide_summary: bool = False,
+    fuse_weight: float | None = None,
+    commit_bm25_weight: float | None = None,
+    repo: str = REPO,
 ) -> None:
     from repo_rag.agent.remote_llm import RemoteChatModel
     from repo_rag.agent.runtime import build_agent
@@ -492,6 +532,15 @@ def run(
             "agent_abstain_retries": abstain_retries,
             "agent_tool_error_retries": tool_error_retries,
             **({"agent_commit_k": commit_k} if commit_k else {}),
+            "agent_commit_hide_summary": hide_summary,
+            **(
+                {"agent_commit_fuse_question_weight": fuse_weight}
+                if fuse_weight is not None
+                else {}
+            ),
+            **(
+                {"commit_bm25_weight": commit_bm25_weight} if commit_bm25_weight is not None else {}
+            ),
             **(
                 {"agent_max_tool_calls": max_tool_calls, "agent_max_turns": max_tool_calls + 1}
                 if max_tool_calls
@@ -510,10 +559,33 @@ def run(
         )
     factory = model.reranker_factory(info) if rerank else None
     print(f"reranker on the server: {info.get('rerank') or 'none'}; used: {factory is not None}")
-    agent = build_agent(REPO, model, settings, reranker_factory=factory)
-    tools = getattr(agent.execute, "__self__", None)  # the bound tools object, if any
-    rows = []
-    for index, record in enumerate(records, 1):
+    # One agent per worker thread, built inside that thread: its SQLite connections must be used
+    # by the thread that opened them. Building is one thread at a time, because loading the
+    # embedding model or opening a Chroma client from several threads at once failed ("Cannot
+    # copy out of meta tensor", "Could not connect to tenant"). The embedding model is loaded once
+    # here, shared, and used under a lock. With workers=1 this is the single agent every earlier
+    # run used.
+    from repo_rag.store.embeddings import get_embeddings
+
+    shared = LockedEmbeddings(get_embeddings(settings)) if workers > 1 else None
+    if shared is not None:
+        shared.embed_query("warm up")  # loads the model now, in this thread
+    local = threading.local()
+    build_lock = threading.Lock()
+
+    def agent_for_thread() -> Any:
+        if not hasattr(local, "agent"):
+            with build_lock:
+                local.agent = build_agent(
+                    repo, model, settings, embeddings=shared, reranker_factory=factory
+                )
+        return local.agent
+
+    def answer(record: dict[str, Any]) -> dict[str, Any]:
+        return answer_with(agent_for_thread(), record)
+
+    def answer_with(agent: Any, record: dict[str, Any]) -> dict[str, Any]:
+        tools = getattr(agent.execute, "__self__", None)  # the bound tools object, if any
         started = time.perf_counter()
         failures_before = getattr(tools, "rerank_failures", 0)
         result = agent.ask(record["question"], thread_id=record["id"])
@@ -542,11 +614,17 @@ def run(
             "rerank_failures": getattr(tools, "rerank_failures", 0) - failures_before,
             **score(record, result),
         }
-        rows.append(row)
         mark = "pass" if row["passed"] else "MISS"
-        print(
-            f"[{index}/{len(records)}] {record['id']:<12} {mark}  {row['seconds']}s  {row['tools']}"
-        )
+        print(f"{record['id']:<12} {mark}  {row['seconds']}s  {row['tools']}", flush=True)
+        return row
+
+    if workers > 1:
+        # Questions are independent; the server batches the concurrent requests. Rows keep the
+        # dataset order. Seconds per question now include time spent waiting on the server.
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            rows = list(pool.map(answer, records))
+    else:
+        rows = [answer(record) for record in records]
     table = summarize(rows)
     stamp = time.strftime("%Y%m%dT%H%M%S")
     RESULTS_DIR.mkdir(exist_ok=True)
@@ -555,6 +633,16 @@ def run(
         tag += f"_{dataset.stem}"
     if commit_query != "model":
         tag += f"_cq-{commit_query}"
+    if fuse_weight is not None and commit_query == "fused":
+        tag += f"_fw{fuse_weight:g}"
+    if commit_bm25_weight is not None:
+        tag += f"_cbm{commit_bm25_weight:g}"
+    if hide_summary:
+        tag += "_nosummary"
+    if repo != REPO:
+        tag += f"_repo-{repo.replace('/', '__')}"
+    if settings.data_dir.name != "data":  # an experiment index, e.g. data/exp_summaries
+        tag += f"_idx-{settings.data_dir.name}"
     if commit_fix_only:
         tag += "_fixonly"
     if extra_files:
@@ -585,6 +673,11 @@ def run(
                 "prompt_variant": variant,
                 "commit_query": commit_query,
                 "commit_fix_only": commit_fix_only,
+                "repo": repo,
+                "hide_summary": hide_summary,
+                "fuse_weight": fuse_weight,
+                "commit_bm25_weight": commit_bm25_weight,
+                "data_dir": settings.data_dir.name,
                 "extra_files": extra_files,
                 "skip_tests": skip_tests,
                 "tool_result_chars": tool_chars or settings.agent_tool_result_chars,
@@ -622,9 +715,11 @@ def main() -> None:
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("build")
     sub.add_parser("build-architecture")
-    sub.add_parser("build-commit-full")
+    build_commits = sub.add_parser("build-commit-full")
+    build_commits.add_argument("--repo", default=REPO, help="owner/name (default psf/requests)")
     sub.add_parser("build-architecture-fresh")
     runner = sub.add_parser("run")
+    runner.add_argument("--repo", default=REPO, help="owner/name of the indexed repository")
     runner.add_argument("--url", required=True)
     runner.add_argument("--token", required=True)
     runner.add_argument("--types", help="comma list, e.g. history,refs")
@@ -646,9 +741,27 @@ def main() -> None:
     )
     runner.add_argument(
         "--commit-query",
-        choices=["model", "question"],
+        choices=["model", "question", "fused"],
         default="model",
-        help="search_commits searches the model's query (default) or the user's whole question",
+        help="search_commits searches the model's query (default), the user's whole question, "
+        "or both with the two rankings merged (fused)",
+    )
+    runner.add_argument(
+        "--fuse-weight",
+        type=float,
+        default=None,
+        help="fused only: weight of the question's ranking next to the model query's (default 1)",
+    )
+    runner.add_argument(
+        "--commit-bm25-weight",
+        type=float,
+        default=None,
+        help="optional BM25 weight override for commits only (default: Settings.bm25_weight)",
+    )
+    runner.add_argument(
+        "--hide-summary",
+        action="store_true",
+        help="show the model commits without their Summary: line (index with summaries only)",
     )
     runner.add_argument(
         "--commit-fix-only",
@@ -710,11 +823,17 @@ def main() -> None:
     runner.add_argument(
         "--repeat", type=int, default=1, help="run the selected questions this many times"
     )
+    runner.add_argument(
+        "--workers",
+        type=int,
+        default=1,
+        help="questions asked at once (the server must allow concurrent requests; default 1)",
+    )
     args = parser.parse_args()
     if args.command == "build":
         build()
     elif args.command == "build-commit-full":
-        build_commit_full()
+        build_commit_full(args.repo)
     elif args.command == "build-architecture":
         build_architecture()
     elif args.command == "build-architecture-fresh":
@@ -741,6 +860,11 @@ def main() -> None:
                 args.max_input_tokens,
                 args.commit_k,
                 args.max_tool_calls,
+                args.workers,
+                args.hide_summary,
+                args.fuse_weight,
+                args.commit_bm25_weight,
+                args.repo,
             )
 
 

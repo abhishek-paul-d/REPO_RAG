@@ -118,6 +118,9 @@ uv run uvicorn repo_rag.api.server:app --reload
 uv run streamlit run src/repo_rag/ui/app.py        # chat UI; paste the URL + token from notebooks/serve_model_on_colab.ipynb
 uv run repo-rag sync-github <owner/repo> --max-prs 100000 --max-issues 100000   # PRs + issues into metadata.db (needs GITHUB_TOKEN; the default cap is 500)
 uv run python eval/agent_eval.py build|run --url <colab url> --token <token>      # exploratory 93-question check of the agent, per question type
+uv run python eval/commit_failure_sort.py out.json        # where the gold commit ranked for every missed commit question (A/B/C/D buckets)
+uv run python eval/commit_lenient_score.py RESULT.json    # strict vs lenient scoring (sibling commits naming the same issue count)
+uv run python eval/commit_session.py --url <colab url> --token <token> --workers 8   # commit experiments in one Colab session: control x2, fused, verify, fix-only, hidden summaries
 uv run pytest -q                          # offline; network tests deselected
 uv run pytest -m network                  # tests that clone from GitHub
 uv run ruff check . && uv run ruff format .

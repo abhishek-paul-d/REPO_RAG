@@ -1,0 +1,94 @@
+{"n": 1825, "sha": "5c92c72e2cd18010048af1a3028a80e808ad4ec6", "verdict": "filler", "reason": "The old loop is valid Python, and the excerpt does not establish a formal deprecation."}
+{"n": 1826, "sha": "5cb55a84a7d3f2f5c586f9ca45b51e106d616d40", "verdict": "filler", "reason": "The four binary assets are added, but their intended use in documentation or promotion is speculative."}
+{"n": 1827, "sha": "5cc2129c736953a2e762332295f306354393f7bb", "verdict": "ok", "reason": ""}
+{"n": 1828, "sha": "5cd116d078ca885f81c89390d1e5ebe8cd7f5068", "verdict": "ok", "reason": ""}
+{"n": 1829, "sha": "5cdcf58b3b57a9407af8280a9ab14f63742e339c", "verdict": "filler", "reason": "The lines are rewrapped, but the excerpt gives no standard line-length limit."}
+{"n": 1830, "sha": "5ce25688e0a88a892d33cdb23ff6e097ff6829d9", "verdict": "ok", "reason": ""}
+{"n": 1831, "sha": "5ce4b69c9f96dd0fc142e7d058c55eaae49c5afd", "verdict": "cannot_tell", "reason": "The imports are visible, but the excerpt cuts off before the adapter method bodies and the OldRequest hunks needed to check the behavioral descriptions."}
+{"n": 1832, "sha": "5cfbb0aaf50e451179ede8bcd43ca55fbdfebad5", "verdict": "wrong", "reason": "The generator reads the next length line without discarding the CRLF after a payload, so correct chunked iteration is not established."}
+{"n": 1833, "sha": "5d0635473446121afeea34d109504a44be14d4e0", "verdict": "cannot_tell", "reason": "The revised reference is cut off in the middle of the URL, so the specific hyperlink correction cannot be determined."}
+{"n": 1834, "sha": "5d0ffd85cef1f85124ab38a9207f9d4d734910cf", "verdict": "ok", "reason": ""}
+{"n": 1835, "sha": "5d31ddbf7b3f512dd3c61952d2c16e980a2b7dc1", "verdict": "wrong", "reason": "The only addition is a blank line and it does not change JSON handling."}
+{"n": 1836, "sha": "5d87e1aeba0f98d13b7827c8472dab26eb3bd13e", "verdict": "ok", "reason": ""}
+{"n": 1837, "sha": "5d9063828150c349dcafffefbd952b194817ba05", "verdict": "ok", "reason": ""}
+{"n": 1838, "sha": "5d9699bbdc332319bd91d8a2cbd55cfa697453cb", "verdict": "ok", "reason": ""}
+{"n": 1839, "sha": "5daa6cc63c23ea3e880b52666715e501679537e3", "verdict": "ok", "reason": ""}
+{"n": 1840, "sha": "5db661a9e46eca3e86c0d7716f0318fc63c213a3", "verdict": "ok", "reason": ""}
+{"n": 1841, "sha": "5dcbdb50fc9652cbeffeec22a21d1196e938bfca", "verdict": "ok", "reason": ""}
+{"n": 1842, "sha": "5dcc03945765a7e7b7044b5f41ff5ee8d707c49b", "verdict": "ok", "reason": ""}
+{"n": 1843, "sha": "5e175ef24ce93a14b145a55d1a7f31267602f7b2", "verdict": "ok", "reason": ""}
+{"n": 1844, "sha": "5e60279a1955534c5fc5ed530d9862ecfcbeab35", "verdict": "ok", "reason": ""}
+{"n": 1845, "sha": "5e6ecdad9f69b1ff789a17733b8edc6fd7091bd8", "verdict": "ok", "reason": ""}
+{"n": 1846, "sha": "5e7cb71cd719394f8fc56ea55da3f58bb22ae2b6", "verdict": "wrong", "reason": "The new identifier is a development build, not a release candidate."}
+{"n": 1847, "sha": "5e860c08d8b3f14bcdf0382b0535da39a4d5a02e", "verdict": "wrong", "reason": "The call to iter_content creates an iterator but never advances it, so the test does not explicitly read the advertised first part of that body."}
+{"n": 1848, "sha": "5e86103387b39ec4b9a443e0eaacd994d04adf48", "verdict": "ok", "reason": ""}
+{"n": 1849, "sha": "5e94f38001fdaccda924aab9e5f0ffc064492129", "verdict": "ok", "reason": ""}
+{"n": 1850, "sha": "5eb2df1acf60640a21165dc66a76167cae18d83c", "verdict": "filler", "reason": "The source establishes that the commit is empty but gives no placeholder or marker purpose."}
+{"n": 1851, "sha": "5eb3a17b55992163e5958fc30775194d96b8f7ed", "verdict": "ok", "reason": ""}
+{"n": 1852, "sha": "5eb78876e19a7cd0b04965281273dc5ae25962d7", "verdict": "cannot_tell", "reason": "The excerpt shows new calls to get_connection_for_url but cuts off before a definition that could establish whether the helper was introduced in this commit."}
+{"n": 1853, "sha": "5ec2c96f0298d2bbac523396683cfb9f3ce971f9", "verdict": "ok", "reason": ""}
+{"n": 1854, "sha": "5ec7576f2311b5b881ff2426e05b6b35a9aa8bdb", "verdict": "ok", "reason": ""}
+{"n": 1855, "sha": "5ecf789a6f2c50a69854e2663083aeea1a0ff683", "verdict": "ok", "reason": ""}
+{"n": 1856, "sha": "5ed62e11373fa0124cecbd32b14d2de90411cff8", "verdict": "filler", "reason": "The conversion is removed for a falsy content value, but the excerpt does not establish what return type results in every case."}
+{"n": 1857, "sha": "5ee8b348ebab9a7c427a87355dd089c83ee74be9", "verdict": "ok", "reason": ""}
+{"n": 1858, "sha": "5eea4a3767797af6a0b994723a4280382328ce03", "verdict": "ok", "reason": ""}
+{"n": 1859, "sha": "5ef429efe38b2a65946c9fd4cedcd69cfbc05553", "verdict": "ok", "reason": ""}
+{"n": 1860, "sha": "5f06b8196e8a652101b32fdffcd0d10e8b961fd2", "verdict": "ok", "reason": ""}
+{"n": 1861, "sha": "5f16a8a6b1684095f78b14533e1fe492265ce442", "verdict": "ok", "reason": ""}
+{"n": 1862, "sha": "5f1c3c22ff7c7bb89a4e017e3f336cbc88e189c3", "verdict": "ok", "reason": ""}
+{"n": 1863, "sha": "5f2607ffca88c5547ada0197e7ebed69eba232d3", "verdict": "filler", "reason": "The dependency name changes, but the excerpt does not identify a required testing framework version."}
+{"n": 1864, "sha": "5f2fef5bb57c2f2bc627ccb50f472f513e64dbab", "verdict": "ok", "reason": ""}
+{"n": 1865, "sha": "5f306dbe990454fc8dbc12f766fc46590c4a3cfd", "verdict": "filler", "reason": "The Markdown metadata is added, but the excerpt does not establish how the previous description rendered on PyPI."}
+{"n": 1866, "sha": "5f338446f9eabd956e7e132668f330d9de4fc368", "verdict": "wrong", "reason": "The new comment documents a Session attribute and does not add or describe a constructor parameter."}
+{"n": 1867, "sha": "5f38c1209ed1ed71d1cd4d535fb67f3a96ebb570", "verdict": "ok", "reason": ""}
+{"n": 1868, "sha": "5f3b95992b2d2e451e7feae8e1243a08ac423951", "verdict": "wrong", "reason": "The former markup is specifically an emphasis element, and the new symbol markup has two opening span tags."}
+{"n": 1869, "sha": "5f3ff9b9e4d3d44960467e7877e06e9efa22f20b", "verdict": "ok", "reason": ""}
+{"n": 1870, "sha": "5f404a0592bba18c5eae7b2aead033f3d0cb27ff", "verdict": "ok", "reason": ""}
+{"n": 1871, "sha": "5f44d7972956471c5b14f0dab898dff70ebc3179", "verdict": "ok", "reason": ""}
+{"n": 1872, "sha": "5f4d0d08defe1e34aa1cdcb41f24343934135e7e", "verdict": "ok", "reason": ""}
+{"n": 1873, "sha": "5f576ad22f5510f3f13dc866542b63664624b16a", "verdict": "ok", "reason": ""}
+{"n": 1874, "sha": "5f603ae787d6d98a8c1384fb693da21efd3c2b18", "verdict": "ok", "reason": ""}
+{"n": 1875, "sha": "5f768b191d76a6d582839e9ac0b2b564fdab41e9", "verdict": "filler", "reason": "The minimum certifi version rises, but the excerpt does not establish the claim of improved security."}
+{"n": 1876, "sha": "5f7a3a74aab1625c2bb65f643197ee885e3da576", "verdict": "ok", "reason": ""}
+{"n": 1877, "sha": "5f7b8ab0a7af12d4491542677a6ad5a32c24d1d1", "verdict": "ok", "reason": ""}
+{"n": 1878, "sha": "5f824fb01958fd5d41a29e2eae3569c132de254f", "verdict": "filler", "reason": "The logo filename changes and a banner is deleted, but the excerpt does not establish that the banner was outdated."}
+{"n": 1879, "sha": "5f9fecd3aa0ce584eeb1ab7d8211e0f8b510a73e", "verdict": "ok", "reason": ""}
+{"n": 1880, "sha": "5fa4e74d61d9093ee7e0a7bf1e2a56b6c0780c9a", "verdict": "ok", "reason": ""}
+{"n": 1881, "sha": "5fc10bf1f5185f330f8471c738ce753b3e231008", "verdict": "filler", "reason": "The compatible-release constraint allows patch upgrades, but the excerpt does not identify a dependency conflict it prevents."}
+{"n": 1882, "sha": "5fcaf45c33c35aa36794bddf97da82545ada5fff", "verdict": "ok", "reason": ""}
+{"n": 1883, "sha": "5fcd843eb23e8e84cd5f60c6d372ef4d678f80fe", "verdict": "wrong", "reason": "The old implementation already rejects extra positional arguments when called as a bound method."}
+{"n": 1884, "sha": "5fdc25b029b582464e90c0374ce3b3297a3ccd60", "verdict": "ok", "reason": ""}
+{"n": 1885, "sha": "5fe24abfb99fd9850352329de9c4c091a8a71a05", "verdict": "ok", "reason": ""}
+{"n": 1886, "sha": "5fedbbf7f07e8cd96c9c9bf000a88c0e42d603c4", "verdict": "filler", "reason": "The deleted local environment path is shown, but the excerpt does not establish that it was stale."}
+{"n": 1887, "sha": "5ff165a1e2b30d5568c058b11139038963b4f979", "verdict": "wrong", "reason": "The code validates by constructing dict(files), which also accepts suitable two-item lists rather than requiring tuple objects."}
+{"n": 1888, "sha": "5fff2c757b7e95b22610a171e6eb07c2d12acdda", "verdict": "ok", "reason": ""}
+{"n": 1889, "sha": "60041f51693fd6107ad91337222aa3dc125720ac", "verdict": "ok", "reason": ""}
+{"n": 1890, "sha": "60047ade64b0b882cbc94e047198818ab580911e", "verdict": "filler", "reason": "The workflow pins 3.25.0, but no latest status, features or fixes are established by the excerpt."}
+{"n": 1891, "sha": "600ee2bf2b4c9e8ae7e8de11e4e999e514f9cd15", "verdict": "cannot_tell", "reason": "The lockfile excerpt shows a SHA256 hash for Werkzeug but ends before the remaining dependency entries needed to check the all-pins claim."}
+{"n": 1892, "sha": "601a2b8c749c05bafc4b9845c938dc94e5f16f33", "verdict": "ok", "reason": ""}
+{"n": 1893, "sha": "60226cc25c0bec7933d14f38b9f043ff9d8419b6", "verdict": "filler", "reason": "There are no file changes, but the purpose as a marker or placeholder is not given."}
+{"n": 1894, "sha": "60389df6d69ce833164696dcf36cbb43336d3426", "verdict": "ok", "reason": ""}
+{"n": 1895, "sha": "60558fdcc454baeb864868c01c5c43b2d1b774f1", "verdict": "wrong", "reason": "The POST heading is already present and the commit adds examples beneath it."}
+{"n": 1896, "sha": "60865f21aea4eb319d5b916adcc76de10c64e506", "verdict": "ok", "reason": ""}
+{"n": 1897, "sha": "6087015f1c66941ea6e8f9be02ce0ef8054f5595", "verdict": "wrong", "reason": "The old print call is valid Python with optional whitespace before the parenthesis."}
+{"n": 1898, "sha": "608c61dcd97961fee57d2f3de710229539bb16c4", "verdict": "ok", "reason": ""}
+{"n": 1899, "sha": "608d05706696b292a6af021954cfbc2515a102fa", "verdict": "filler", "reason": "The command selects 25 processes, but no timing evidence supports a significant speedup."}
+{"n": 1900, "sha": "60917e0b9ffce90967051fe34cfdecbe817f9665", "verdict": "ok", "reason": ""}
+{"n": 1901, "sha": "60a5a393d8c42bfeb83f17eca6fcd04faaa6fd49", "verdict": "ok", "reason": ""}
+{"n": 1902, "sha": "60b37e54b56ae9b1f3457bfda6178c001cdddcc4", "verdict": "ok", "reason": ""}
+{"n": 1903, "sha": "60b591eaac1836998550f555cd6d28a2c87b4f84", "verdict": "filler", "reason": "The width and responsive rules are shown, but the excerpt does not establish that they eliminate clipping or keep all rendered content readable."}
+{"n": 1904, "sha": "60b9fb17af46c8a2d7367ce101f223abb3a21d0c", "verdict": "ok", "reason": ""}
+{"n": 1905, "sha": "60cffb076b0b39baaf5da892cb36c9a503d0bd3d", "verdict": "ok", "reason": ""}
+{"n": 1906, "sha": "60ea7f0c2def461a9ddc20e7af0fc90b68dbe0de", "verdict": "filler", "reason": "The rebuilt default and new proxy tests are shown, but the excerpt does not identify a connection error the change prevents."}
+{"n": 1907, "sha": "6106a63eb6c0fa490efa73d44388ac25b1b08af4", "verdict": "ok", "reason": ""}
+{"n": 1908, "sha": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60", "verdict": "filler", "reason": "The three workflow pins change to 4.38.0, but no specific latest features or fixes are established."}
+{"n": 1909, "sha": "61313903453ee68677c5afe0a8cb3e26f8215f9c", "verdict": "wrong", "reason": "The existing test method remains and only one assertion is removed."}
+{"n": 1910, "sha": "6140d082416eb70730940181fe19b723d72e0311", "verdict": "ok", "reason": ""}
+{"n": 1911, "sha": "6140fac6aae936fb0ce067c5b278be54e27cf1f3", "verdict": "ok", "reason": ""}
+{"n": 1912, "sha": "61421843bc794ce9f12e6c72d0f0d160df7bdbe7", "verdict": "ok", "reason": ""}
+{"n": 1913, "sha": "61617e74ed23d82393509c61aac07bfc5a5ea2e4", "verdict": "wrong", "reason": "The excerpt establishes the new ValueError but does not show that unsupported events used to be silently ignored."}
+{"n": 1914, "sha": "6166ba7e131ef77f9748488a02dc5e699928a17d", "verdict": "ok", "reason": ""}
+{"n": 1915, "sha": "617091e74762c0be3f9fdf51ac6bbcf63d306457", "verdict": "wrong", "reason": "The changelog refers to RequestsCookieJar by name but does not identify it as a module."}
+{"n": 1916, "sha": "617bc8cc1c1b34b11954cf9e4caec3a25a07167b", "verdict": "ok", "reason": ""}
+{"n": 1917, "sha": "618514231bd24d7eec7b8d486f4a55cb7ef8d522", "verdict": "ok", "reason": ""}
+{"n": 1918, "sha": "6195edc075b5960cdc2699c8556be35406247f61", "verdict": "ok", "reason": ""}

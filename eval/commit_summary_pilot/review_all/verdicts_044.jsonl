@@ -1,0 +1,88 @@
+{"n": 3787, "sha": "c65c780849563c891f35ffc98d3198b71011c012", "verdict": "ok", "reason": ""}
+{"n": 3788, "sha": "c678a7b4026bbb7bebbae836017f67114d463e79", "verdict": "ok", "reason": ""}
+{"n": 3789, "sha": "c6827de846ff987366ea8014f94dcc6fba3e78f8", "verdict": "ok", "reason": ""}
+{"n": 3790, "sha": "c6973d31ca5490b6901aa82abd65873b1a1dd187", "verdict": "filler", "reason": "The added file pins its listed packages, but the excerpt does not establish that it covers every project dependency."}
+{"n": 3791, "sha": "c69e3eed312404e469dae250592ea6c5b20ebc64", "verdict": "wrong", "reason": "The fix returns pool capacity after closing the underlying connection. It does not enable reuse of that open connection."}
+{"n": 3792, "sha": "c6a634715637e971e485766bfa37c73613ab7b82", "verdict": "wrong", "reason": "requests/sessions.py is library source, alongside the distinct documentation and test files."}
+{"n": 3793, "sha": "c6a80640d16871cf88d2d71ddd04aaf23e854f3f", "verdict": "filler", "reason": "The manifest change adds requirements.txt to the source archive, but the excerpt does not document an installation failure or establish that one would occur."}
+{"n": 3794, "sha": "c6ab21c103c9460088bd0446ef4e4336cb4801ab", "verdict": "ok", "reason": ""}
+{"n": 3795, "sha": "c6acfef3d08c80d36ba33d60c3925265ca53ea35", "verdict": "ok", "reason": ""}
+{"n": 3796, "sha": "c6c8d649af10cd5660b625fca4f44bd00541d518", "verdict": "ok", "reason": ""}
+{"n": 3797, "sha": "c6db87978f1ab5556d5c9e06978b2d8657d3c571", "verdict": "cannot_tell", "reason": "The visible hash is lockfile metadata, and the excerpt ends before any package entries that would verify updated package hashes."}
+{"n": 3798, "sha": "c6e18b04e33cae3006b26b3fea0e1e3b4afb8ffa", "verdict": "ok", "reason": ""}
+{"n": 3799, "sha": "c6eea58081dca411a3bd260d208ab3fbaaf512f1", "verdict": "ok", "reason": ""}
+{"n": 3800, "sha": "c6fa5bb1cd06ab6d8206ddb4c07572c77f26b9a3", "verdict": "wrong", "reason": "The Quickstart hunk changes the object’s type from Response to Request as well as changing the link markup."}
+{"n": 3801, "sha": "c70b7bb01224811dce17d7135f636639a37c98c7", "verdict": "ok", "reason": ""}
+{"n": 3802, "sha": "c71ac7917aa2718b48121dd2d1ee30ae915a126c", "verdict": "ok", "reason": ""}
+{"n": 3803, "sha": "c71f48b5f1d989644e26b9004c2af7a6f27d4708", "verdict": "ok", "reason": ""}
+{"n": 3804, "sha": "c73646da0018063f7ddd03514e6cde55e82bb640", "verdict": "wrong", "reason": "The assertions check that the content stayed unread in cases where it was not supposed to be prefetched."}
+{"n": 3805, "sha": "c73f65335268da9b7ee9a793d8923ab8ce710457", "verdict": "ok", "reason": ""}
+{"n": 3806, "sha": "c74b66a53e21b209531be87f9d8374ceb4542d9e", "verdict": "ok", "reason": ""}
+{"n": 3807, "sha": "c7514faf4aa55be634d6e25ce16eb72974b948ae", "verdict": "ok", "reason": ""}
+{"n": 3808, "sha": "c75eaec8527b32a5b1bdf95c1c70f34a33f508d6", "verdict": "ok", "reason": ""}
+{"n": 3809, "sha": "c78c5002b5b48123a2ed15bdf7ab036daeab745b", "verdict": "wrong", "reason": "An important width declaration changes cascade priority but cannot guarantee final width in every layout."}
+{"n": 3810, "sha": "c7933453cff05a297d4d1cdacb7fb49480e6924c", "verdict": "filler", "reason": "The new version is shown, but its support status is not established."}
+{"n": 3811, "sha": "c799b8167a13416833ad3b4f3298261a477e826f", "verdict": "filler", "reason": "The message identifies the old links as dead, but the diff does not verify that the replacement destinations are reachable."}
+{"n": 3812, "sha": "c79d61b9537635e88c3198172c58e29cf6ef26d5", "verdict": "ok", "reason": ""}
+{"n": 3813, "sha": "c7a4819c84eef36e1f13191f95fe82abd39a62cf", "verdict": "ok", "reason": ""}
+{"n": 3814, "sha": "c7b99f78192bdff62fad4f92039396c0dfbe4fb8", "verdict": "cannot_tell", "reason": "The assignment is visible in Request.send, but the omitted surrounding branch does not establish exactly when it runs or whether it reliably indicates a successful dispatch."}
+{"n": 3815, "sha": "c7c2ebf1a7b4b0f4149b3935b781e1392015e2d6", "verdict": "ok", "reason": ""}
+{"n": 3816, "sha": "c7e087cf562d173ec62fa384aa028746798f96c8", "verdict": "ok", "reason": ""}
+{"n": 3817, "sha": "c80121df91997535f4c27f9c44c7aca10ad39af6", "verdict": "ok", "reason": ""}
+{"n": 3818, "sha": "c803e3af55e38a848e6c9340cd2f141cb012bc87", "verdict": "ok", "reason": ""}
+{"n": 3819, "sha": "c8098670357f2954ce4db2eb1fa9c7483c5f63d0", "verdict": "ok", "reason": ""}
+{"n": 3820, "sha": "c8110222a532821d27b0ade3ebdd7d0cb9545f80", "verdict": "wrong", "reason": "Removing the property setter changes what happens when a caller assigns to content."}
+{"n": 3821, "sha": "c8226f69e13b9a076f725965e2ed462216c2f4c3", "verdict": "ok", "reason": ""}
+{"n": 3822, "sha": "c840bc7d0962d253afd4c8a72c242cbf2b882dc0", "verdict": "wrong", "reason": "The example shows a call to status_code(), rather than attribute access."}
+{"n": 3823, "sha": "c86b09b3c67a437f8851d3be9232b0a1c8585e20", "verdict": "ok", "reason": ""}
+{"n": 3824, "sha": "c88fd8cc9dabb40d4737f61cbbbb87555ca88a00", "verdict": "ok", "reason": ""}
+{"n": 3825, "sha": "c8914bd4d4c7e9e7638cdb43d5a3513315f19028", "verdict": "ok", "reason": ""}
+{"n": 3826, "sha": "c8916a08deb8be25d2be38c646fab9b2ab1fb8f7", "verdict": "ok", "reason": ""}
+{"n": 3827, "sha": "c89a3e207ea01c78a193b13da6172427be86ac45", "verdict": "ok", "reason": ""}
+{"n": 3828, "sha": "c8a0fc6aa2131c9bfa7ac3903c01d522fca3d346", "verdict": "filler", "reason": "The import change is shown, but the excerpt does not establish header-order behavior for every supported Python version."}
+{"n": 3829, "sha": "c8a68334a7523faf5f09b3f9b1e1cca658c2aba6", "verdict": "wrong", "reason": "BaseException is a standard Python base class and is not deprecated."}
+{"n": 3830, "sha": "c8ad4f0b73bb37d1eecb369142a6d267b77cc994", "verdict": "ok", "reason": ""}
+{"n": 3831, "sha": "c8b2f7a37babe3033bd762a81f648bda02717e45", "verdict": "ok", "reason": ""}
+{"n": 3832, "sha": "c8baf881257ff3194879ad79bef81c27007b4dcf", "verdict": "filler", "reason": "The pickle issue is explained, but the excerpt never ties it to caching whole session objects."}
+{"n": 3833, "sha": "c8cc2d0421a35e8001b8ddd584777dc0d1b30963", "verdict": "filler", "reason": "The relocation and imports are supported, but no change in error-handling consistency is established."}
+{"n": 3834, "sha": "c8d3dcb315bbda047e90eceef37924b1b89d221b", "verdict": "ok", "reason": ""}
+{"n": 3835, "sha": "c8d8b4b513986ef415cdfbcf0fc6006bcd5492d6", "verdict": "ok", "reason": ""}
+{"n": 3836, "sha": "c8f2b3a722d95be95036da13dd9a2a363ed2cd10", "verdict": "cannot_tell", "reason": "The assignment to do_block changes, but the excerpt omits the enclosing branch needed to determine how streaming is affected."}
+{"n": 3837, "sha": "c8f3add5ed31bbb82cb337435295200a3525920a", "verdict": "ok", "reason": ""}
+{"n": 3838, "sha": "c8fc19a7799f34915a9a9e1ccfa2cb99ecd404da", "verdict": "ok", "reason": ""}
+{"n": 3839, "sha": "c900b4379b9bda3fb8491fa3bd96fdfa2f163a3f", "verdict": "ok", "reason": ""}
+{"n": 3840, "sha": "c910b958f0694a5e5e7a517cf5b9bdec5f2fef03", "verdict": "ok", "reason": ""}
+{"n": 3841, "sha": "c91f83fbad8a4e1a8ecf971d69dfee3e1cf7a31d", "verdict": "ok", "reason": ""}
+{"n": 3842, "sha": "c93419f5125b2e836507eb243531985383faa8b6", "verdict": "wrong", "reason": "The change aliases urllib3’s class, and Python’s built-in timeout exception is TimeoutError, not Timeout."}
+{"n": 3843, "sha": "c951f0543c86ad7a3f90ead98f581c0af1865abd", "verdict": "ok", "reason": ""}
+{"n": 3844, "sha": "c952e9e4e07ebaf579aaf8924ff6f7c61710c8c8", "verdict": "wrong", "reason": "One stub points at a different package, so the shown stubs do not all re-export working urllib3 components."}
+{"n": 3845, "sha": "c95b63736dc5bd0928a3d7ef095418831c496386", "verdict": "ok", "reason": ""}
+{"n": 3846, "sha": "c97a530638bba86576f3e40b49cb0e061b790bdd", "verdict": "ok", "reason": ""}
+{"n": 3847, "sha": "c9b0f8f19d3ddce13974d77dcd29147269ae4b15", "verdict": "wrong", "reason": "The quotes are added to example output in the README, with no change to return types or runtime representation."}
+{"n": 3848, "sha": "c9b49202302085c5b121b5f56962d148f5f21962", "verdict": "ok", "reason": ""}
+{"n": 3849, "sha": "c9b8750597ded352b367e9d308387b007c92ea50", "verdict": "ok", "reason": ""}
+{"n": 3850, "sha": "c9ef5653cc7df3d2eb7d6065ee68294551bdde40", "verdict": "ok", "reason": ""}
+{"n": 3851, "sha": "c9f5614417fc2b997e2e5223d8bdacf07b9e13be", "verdict": "ok", "reason": ""}
+{"n": 3852, "sha": "ca033b83fe0ba8ea5c9424345df85c61fed0f597", "verdict": "ok", "reason": ""}
+{"n": 3853, "sha": "ca0aea640d0cce01c126220b74362c9014cabbd6", "verdict": "cannot_tell", "reason": "The added branch returns req, but the excerpt does not show its type or whether it has already been sent."}
+{"n": 3854, "sha": "ca0d08eedaa9d0c79ccd9c69fedae89ed7812c53", "verdict": "cannot_tell", "reason": "Proxy selection is shown in get_connection, but the excerpt cuts off at the new send signature before showing whether it accepts proxy configuration."}
+{"n": 3855, "sha": "ca15d4808734c86801c8f3d80c9152c35a163dc3", "verdict": "wrong", "reason": "The release notes distinguish non-HTTP schemes from missing schemes, and require an ASCII hostname for the IDNA fallback."}
+{"n": 3856, "sha": "ca187abd13052fee100909076358fca89b473e0f", "verdict": "ok", "reason": ""}
+{"n": 3857, "sha": "ca26c1a2532b97099e0523a2e4bd70ff1a0922f9", "verdict": "filler", "reason": "The session lookup changes as described, but the excerpt does not establish that passing a user session previously failed."}
+{"n": 3858, "sha": "ca2ebc5b682452bc870efb2f7123feda9a80a8ea", "verdict": "ok", "reason": ""}
+{"n": 3859, "sha": "ca303cda0a4664bf925ba2eecdd4c5abf1987443", "verdict": "ok", "reason": ""}
+{"n": 3860, "sha": "ca35c847a203b264edb57a2d6d3a2700ac69dcde", "verdict": "ok", "reason": ""}
+{"n": 3861, "sha": "ca428504d485b0495b5e794cdd1b47bbb0bd890f", "verdict": "filler", "reason": "The class persists settings, but the excerpt does not show connection reuse or improved handling of persistent connections."}
+{"n": 3862, "sha": "ca45da39fae6d405ee291fd898133c9ad8740c6c", "verdict": "wrong", "reason": "The deleted argument belongs to a call inside Session.request, not the method signature."}
+{"n": 3863, "sha": "ca57e93ebfefd9d60feb29611371b419f2624b5d", "verdict": "ok", "reason": ""}
+{"n": 3864, "sha": "ca66267d2cf8adc67ed8857f3f57b45ffde21e01", "verdict": "ok", "reason": ""}
+{"n": 3865, "sha": "ca6f9af5dba09591007b15a7368bc0f006b7cc50", "verdict": "ok", "reason": ""}
+{"n": 3866, "sha": "ca78ca96115cb254855afb3d966d24e92c973a20", "verdict": "filler", "reason": "The workflow’s inline version is 7.0.0 despite the title saying 6.0.0. The excerpt does not establish which release was latest."}
+{"n": 3867, "sha": "ca7ee6865671a96fbdd39dd6fbce988df9141570", "verdict": "wrong", "reason": "The environment assignment is module-level and applies independent of the argument. Setting it after startup does not itself change bytecode writing in the current Python process."}
+{"n": 3868, "sha": "ca85b4ec6ce2428891d2e1ae72dad2b873c87bbe", "verdict": "ok", "reason": ""}
+{"n": 3869, "sha": "cac2077c36ca841bdee8b2978677325e0754eaec", "verdict": "ok", "reason": ""}
+{"n": 3870, "sha": "caf91bd1755bca36c8cae16e5ba6b8fcdcc89ba5", "verdict": "ok", "reason": ""}
+{"n": 3871, "sha": "cb0914407b6bb8153c8be5d52bc497e1d10b04ac", "verdict": "ok", "reason": ""}
+{"n": 3872, "sha": "cb0a96fbf30c2b8bc0b45833bac89ed3c1d4e0eb", "verdict": "wrong", "reason": "The redirect flag changes, but the separate allow_redirects option was already False and stays False."}
+{"n": 3873, "sha": "cb0d4efba295614436e4706a871e585f78226a6f", "verdict": "ok", "reason": ""}
+{"n": 3874, "sha": "cb15310d6aacd1c1e3b3345b6096d24ea2b79d49", "verdict": "wrong", "reason": "The predicate checks the characters in the encoded token rather than redefining which decoded characters are unreserved."}

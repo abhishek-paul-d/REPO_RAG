@@ -1,0 +1,351 @@
+# Answer sample
+
+Read these against the evidence; a pass here is only mechanical.
+
+## fresh_default
+
+- `fresh2-code-028` MISS | 'How does the library check whether an IP address is inside a CIDR range?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-code-013` MISS | 'How does a Request become a PreparedRequest?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-code-025` MISS | 'What does the library collect for a bug report, such as platform and library versions?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-code-029` MISS | 'How does the library decode a response body when the encoding is unknown or wrong?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-docs-037` MISS | 'How do I read the Link header of a response as links?'
+  - No answer could be produced: a tool failed (search_docs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-docs-031` MISS | 'How do I upload a file with a custom filename and content type?'
+  - No answer could be produced: a tool failed (search_docs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-docs-035` MISS | 'How do I delay downloading the response body until I want it?'
+  - No answer could be produced: a tool failed (search_docs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-docs-038` MISS | 'How do I save binary response content such as an image?'
+  - No answer could be produced: a tool failed (search_docs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-history-048` PASS | 'Which release first contained the change merged in PR #7196 in psf/requests?'
+  - v2.33.0
+- `fresh2-history-047` PASS | 'Which issues does PR #1030 in psf/requests close?'
+  - - 1027
+- `fresh2-history-045` PASS | 'Who authored PR #6500 in psf/requests?'
+  - dependabot
+- `fresh2-history-054` PASS | 'Who made the most commits in psf/requests in 2022, not counting merge commits?'
+  - Nate Prewitt  Note: commit counts cover non-merge commits only (merge commits are not indexed).  Activity from the commit history: - Nate Prewitt: 21 commits in this history, first 2022-01-03, most recent 2022-06-29
+- `fresh2-kind-061` PASS | 'Is #2672 in psf/requests a pull request or an issue?'
+  - pull request
+- `fresh2-kind-062` PASS | 'Is #1125 in psf/requests a pull request or an issue?'
+  - pull request
+- `fresh2-kind-059` PASS | 'Is #5166 in psf/requests a pull request or an issue?'
+  - issue
+- `fresh2-kind-060` PASS | 'Is #6344 in psf/requests a pull request or an issue?'
+  - issue
+- `fresh2-probe-071` MISS | 'How do I use requests with gRPC streaming?'
+  - No answer could be produced: a tool failed (search_docs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-probe-070` MISS | 'Where does requests implement a Redis caching layer?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-probe-069` MISS | 'How does requests encrypt files at rest with AES?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-probe-072` MISS | 'Which function in requests trains a machine-learning model?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-prsearch-067` MISS | 'In psf/requests, which issue is about: "how can i pass gmail\'s cookie to requests session?"? Give its number.'
+  - No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-prsearch-068` MISS | 'In psf/requests, which issue is about: "rfe: please provide support for latest `urllib3`"? Give its number.'
+  - No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-prsearch-064` MISS | 'In psf/requests, which pull request is about: "docs - clarify json() error exception for python 3"? Give its number.'
+  - No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-prsearch-066` MISS | 'In psf/requests, which issue is about: "timeout exception: session.get() vs requests.get() behavior discrepancy"? Give i'
+  - No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-refs-055` PASS | 'Which other PRs or issues does #7339 in psf/requests mention in its title or body?'
+  - - 6990
+- `fresh2-refs-057` PASS | 'Which PRs or issues in psf/requests mention #1750 in their title or body?'
+  - - 5671
+- `fresh2-refs-058` PASS | 'Which PRs or issues in psf/requests mention #1847 in their title or body?'
+  - - 1850
+- `fresh2-refs-056` PASS | 'Which other PRs or issues does #7251 in psf/requests mention in its title or body?'
+  - - 7228
+
+## fresh_guards
+
+- `fresh2-code-016` MISS | 'What does preparing authentication do when no auth argument is given but the URL itself carries credentials?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-code-018` MISS | 'What happens when two cookies with the same name exist for different domains and I read one by name?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-code-004` MISS | 'How does the redirect mixin find out where a redirect points to?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-code-012` MISS | 'What decides that a response is a permanent redirect?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-docs-037` MISS | 'How do I read the Link header of a response as links?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-docs-036` MISS | 'Does requests keep connections alive, and how do I turn that off?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-docs-034` MISS | 'How do I upload a large file without loading it all into memory?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-docs-035` MISS | 'How do I delay downloading the response body until I want it?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-history-048` PASS | 'Which release first contained the change merged in PR #7196 in psf/requests?'
+  - v2.33.0
+- `fresh2-history-054` PASS | 'Who made the most commits in psf/requests in 2022, not counting merge commits?'
+  - Nate Prewitt  Note: commit counts cover non-merge commits only (merge commits are not indexed).  Activity from the commit history: - Nate Prewitt: 21 commits in this history, first 2022-01-03, most recent 2022-06-29
+- `fresh2-history-049` PASS | 'Which release first contained the change merged in PR #4996 in psf/requests?'
+  - v2.23.0
+- `fresh2-history-045` PASS | 'Who authored PR #6500 in psf/requests?'
+  - dependabot
+- `fresh2-kind-059` PASS | 'Is #5166 in psf/requests a pull request or an issue?'
+  - issue
+- `fresh2-kind-061` PASS | 'Is #2672 in psf/requests a pull request or an issue?'
+  - pull request
+- `fresh2-kind-062` PASS | 'Is #1125 in psf/requests a pull request or an issue?'
+  - pull request
+- `fresh2-kind-060` PASS | 'Is #6344 in psf/requests a pull request or an issue?'
+  - issue
+- `fresh2-probe-072` MISS | 'Which function in requests trains a machine-learning model?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-probe-069` MISS | 'How does requests encrypt files at rest with AES?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-probe-071` MISS | 'How do I use requests with gRPC streaming?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-probe-070` MISS | 'Where does requests implement a Redis caching layer?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-prsearch-065` MISS | 'In psf/requests, which pull request is about: "only the path should be unquoted/quoted."? Give its number.'
+  - No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-prsearch-064` MISS | 'In psf/requests, which pull request is about: "docs - clarify json() error exception for python 3"? Give its number.'
+  - No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-prsearch-068` MISS | 'In psf/requests, which issue is about: "rfe: please provide support for latest `urllib3`"? Give its number.'
+  - No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-prsearch-066` MISS | 'In psf/requests, which issue is about: "timeout exception: session.get() vs requests.get() behavior discrepancy"? Give i'
+  - No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-refs-055` PASS | 'Which other PRs or issues does #7339 in psf/requests mention in its title or body?'
+  - - 6990
+- `fresh2-refs-058` PASS | 'Which PRs or issues in psf/requests mention #1847 in their title or body?'
+  - - 1850
+- `fresh2-refs-057` PASS | 'Which PRs or issues in psf/requests mention #1750 in their title or body?'
+  - - 5671
+- `fresh2-refs-056` PASS | 'Which other PRs or issues does #7251 in psf/requests mention in its title or body?'
+  - - 7228
+
+## commit_default
+
+- `commitfull-103` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSSLV3_ALERT'
+  - No answer could be produced: a tool failed (search_commits: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `commitfull-019` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\ntest_unicod'
+  - No answer could be produced: a tool failed (search_commits: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `commitfull-070` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nHTTPDigestA'
+  - No answer could be produced: a tool failed (search_commits: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `commitfull-058` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n__build__ o'
+  - No answer could be produced: a tool failed (search_commits: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+
+## commit_explain
+
+- `commitfull-012` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nCookies won'
+  - No answer could be produced: a tool failed (search_commits: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `commitfull-011` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSession.req'
+  - No answer could be produced: a tool failed (search_commits: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `commitfull-041` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nLink header'
+  - No answer could be produced: a tool failed (search_commits: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `commitfull-113` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nReal loggin'
+  - No relevant implementation was found in the retrieved context.  No confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes): - 913ef867be5b (2012-08-27, ayanamist): Use logger instead of direct logging call. - fb49481ddfae (2013-04-10, Sorin Sbarnea): Updated documentation indicating that logging is done via requests.packages.urllib3 instead of reque - ceb88ac077fa (2016-01-22, shoma): Fix api doc of debug logging for Python 3
+
+## regression_default
+
+- `code-033` MISS | 'Uploading a file object that was partially read sends the wrong Content-Length'
+  - No answer could be produced: a tool failed (search_commits: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `code-032` MISS | 'response.text shows garbled characters for a page that has no charset in its headers'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `code-007` MISS | 'How does streaming a download in chunks work?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `code-020` MISS | 'How are HTTP header names handled case-insensitively?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `commit-087` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nOrder of op'
+  - No answer could be produced: a tool failed (search_commits: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `commit-083` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nGittip rena'
+  - No answer could be produced: a tool failed (search_commits: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `commit-080` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRequest coo'
+  - No answer could be produced: a tool failed (search_commits: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `commit-088` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n301 redirec'
+  - No answer could be produced: a tool failed (search_commits: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `docs-046` MISS | 'How do I use HTTP basic authentication?'
+  - No answer could be produced: a tool failed (search_docs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `docs-049` MISS | 'What license is requests released under?'
+  - No answer could be produced: a tool failed (search_docs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `docs-044` MISS | 'How do I run the test suite?'
+  - No answer could be produced: a tool failed (search_docs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `docs-051` MISS | 'What is a Session object and why would I use one?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `history-062` PASS | 'Which issues does PR #2271 in psf/requests close?'
+  - - 2250
+- `history-057` PASS | 'Who merged PR #2442 in psf/requests?'
+  - sigmavirus24
+- `history-060` PASS | 'Who authored PR #137 in psf/requests?'
+  - monkeython
+- `history-054` PASS | 'Who merged PR #5206 in psf/requests?'
+  - sethmlarson
+- `kind-078` PASS | 'Is #1669 in psf/requests a pull request or an issue?'
+  - pull request
+- `kind-077` PASS | 'Is #1637 in psf/requests a pull request or an issue?'
+  - pull request
+- `kind-075` PASS | 'Is #1983 in psf/requests a pull request or an issue?'
+  - issue
+- `kind-074` PASS | 'Is #1517 in psf/requests a pull request or an issue?'
+  - issue
+- `probe-091` MISS | 'How does requests implement a WebSocket client?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `probe-090` MISS | 'Where does requests implement GraphQL query batching?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `probe-089` MISS | "How does requests integrate with Django's ORM?"
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `probe-093` MISS | 'How does requests map responses onto SQLAlchemy models?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `prsearch-094` MISS | 'In psf/requests, which pull request is about: "handle multiple qop types"? Give its number.'
+  - No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `prsearch-098` MISS | 'In psf/requests, which pull request is about: "add to authors and fix case"? Give its number.'
+  - No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `prsearch-101` MISS | 'In psf/requests, which issue is about: ""content-type header: application/x-www-form-urlencoded" won\'t be overridden"? G'
+  - No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `prsearch-103` MISS | 'In psf/requests, which issue is about: "how to add parameters --groups x25519"? Give its number.'
+  - No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `refs-065` PASS | 'Which other PRs or issues does #5500 in psf/requests mention in its title or body?'
+  - - 5443 - 5492 - 5496
+- `refs-066` PASS | 'Which other PRs or issues does #1097 in psf/requests mention in its title or body?'
+  - - 1096
+- `refs-072` PASS | 'Which PRs or issues in psf/requests mention #3780 in their title or body?'
+  - - 3783
+- `refs-064` PASS | 'Which other PRs or issues does #265 in psf/requests mention in its title or body?'
+  - - 174
+
+## architecture_v1
+
+- `architecture-014` MISS | 'How are compatibility shims, dependency checks and the public exception hierarchy separated?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `architecture-002` MISS | 'Trace a one-off HTTP call from a convenience entry point to the network connection pool.'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `architecture-012` MISS | 'Trace streamed response data from the raw connection through content decoding and iteration.'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `architecture-009` MISS | 'Where do authentication strategies live, and how do request preparation and redirect handling invoke them?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+
+## architecture_fresh
+
+- `archfresh-007` MISS | 'Which parts decide whether a request body is sent with a content length or chunked?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `archfresh-009` MISS | 'How is the character encoding of a response chosen when its text is read?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `archfresh-005` MISS | 'How is a response body decoded as JSON, including guessing its encoding, and which errors surface?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `archfresh-008` MISS | 'Which components release network connections when a session or a response is closed?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+
+## fresh_repeat_2
+
+- `fresh2-code-026` MISS | 'What does a RequestException keep, and how does it find its request?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-code-008` MISS | 'How are proxy connection managers created and reused, and how is a SOCKS proxy handled?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-code-028` PASS | 'How does the library check whether an IP address is inside a CIDR range?'
+  - The library checks whether an IP address is inside a CIDR range with the address_in_network function, which converts the IP and the network address to 32-bit integers via socket.inet_aton, builds a netmask from the /bits prefix using dotted_netmask, and returns True when (ipaddr & netmask) == (network & netmask) (src/requests/utils.py:722-733). The dotted_netmask helper converts a /xx prefix into a dotted netmask by computing 0xFFFFFFFF ^ (1 << 32 - mask) - 1 and formatting it with socket.inet_ntoa (src/requests/utils.py:736-744). This is used by should_bypass_proxies, which first validates the CIDR with is_valid_cidr and then calls address_in_network to decide whether the hostname's IP fall
+- `fresh2-code-007` MISS | 'How does the transport adapter get a connection, and when does it go through a proxy manager?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-docs-040` PASS | 'How do I write my own authentication scheme?'
+  - Subclass requests.auth.AuthBase and implement the __call__() method, which receives the Request object, modifies it (e.g. adds headers), and returns it; then pass an instance as the auth argument to a request method (docs/user/authentication.rst:118-144). For example, define a class with __init__ to store auth data and __call__ to set the required header, then call requests.get(url, auth=MyAuth()) (docs/user/advanced.rst:488-524).
+- `fresh2-docs-037` MISS | 'How do I read the Link header of a response as links?'
+  - No answer could be produced: a tool failed (search_docs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-docs-035` PASS | 'How do I delay downloading the response body until I want it?'
+  - Set the stream parameter to True when making the request so only the response headers are downloaded and the body is deferred until you access it. For example: r = requests.get(url, stream=True) (docs/user/advanced.rst:300-329). You can then retrieve the body later via r.content, or use r.iter_content()/r.iter_lines() for finer control (docs/user/advanced.rst:300-329). Note that with stream=True the connection stays open until you consume all the data or call r.close(), so prefer a with statement: with requests.get(url, stream=True) as r: ... (docs/user/advanced.rst:300-334).
+- `fresh2-docs-034` PASS | 'How do I upload a large file without loading it all into memory?'
+  - To upload a large file without loading it all into memory, pass a file-like object as the request body so Requests streams it. Open the file in binary mode and use it as data: with open('massive-body', 'rb') as f: requests.post('http://some.url/streamed', data=f) (docs/user/advanced.rst:349-366). For a very large file sent as multipart/form-data, Requests does not stream by default; use the separate requests-toolbelt package for that (docs/user/quickstart.rst:349-366).
+- `fresh2-history-048` PASS | 'Which release first contained the change merged in PR #7196 in psf/requests?'
+  - v2.33.0
+- `fresh2-history-051` PASS | 'Which release first contained the change merged in PR #6170 in psf/requests?'
+  - v2.28.1
+- `fresh2-history-053` PASS | 'Who made the most commits in psf/requests in 2019, not counting merge commits?'
+  - Kenneth Reitz  Note: commit counts cover non-merge commits only (merge commits are not indexed).  Activity from the commit history: - Kenneth Reitz: 177 commits in this history, first 2019-02-28, most recent 2019-09-23
+- `fresh2-history-046` PASS | 'Which issues does PR #2326 in psf/requests close?'
+  - - 1685 - 1882
+- `fresh2-kind-059` PASS | 'Is #5166 in psf/requests a pull request or an issue?'
+  - issue
+- `fresh2-kind-060` PASS | 'Is #6344 in psf/requests a pull request or an issue?'
+  - issue
+- `fresh2-kind-062` PASS | 'Is #1125 in psf/requests a pull request or an issue?'
+  - pull request
+- `fresh2-kind-061` PASS | 'Is #2672 in psf/requests a pull request or an issue?'
+  - pull request
+- `fresh2-probe-073` PASS | 'How does requests parse YAML configuration files?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-probe-071` MISS | 'How do I use requests with gRPC streaming?'
+  - No answer could be produced: a tool failed (search_docs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-probe-069` MISS | 'How does requests encrypt files at rest with AES?'
+  - No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-probe-072` PASS | 'Which function in requests trains a machine-learning model?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-prsearch-063` PASS | 'In psf/requests, which pull request is about: "enhance raise_for_status() to include response content"? Give its number.'
+  - - 6882  Details from the search results: - #6882 (pull request, closed): PR #6882: Enhance raise_for_status() to include response content
+- `fresh2-prsearch-065` MISS | 'In psf/requests, which pull request is about: "only the path should be unquoted/quoted."? Give its number.'
+  - No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.
+- `fresh2-prsearch-068` PASS | 'In psf/requests, which issue is about: "rfe: please provide support for latest `urllib3`"? Give its number.'
+  - 6278  Details from the search results: - #6278 (issue, closed): Issue #6278: RFE: please provide support for latest `urllib3`
+- `fresh2-prsearch-067` PASS | 'In psf/requests, which issue is about: "how can i pass gmail\'s cookie to requests session?"? Give its number.'
+  - 3624  Details from the search results: - #3624 (issue, closed): Issue #3624: how can I pass gmail's cookie to requests session?
+- `fresh2-refs-056` PASS | 'Which other PRs or issues does #7251 in psf/requests mention in its title or body?'
+  - - 7228
+- `fresh2-refs-058` PASS | 'Which PRs or issues in psf/requests mention #1847 in their title or body?'
+  - - 1850
+- `fresh2-refs-055` PASS | 'Which other PRs or issues does #7339 in psf/requests mention in its title or body?'
+  - - 6990
+- `fresh2-refs-057` PASS | 'Which PRs or issues in psf/requests mention #1750 in their title or body?'
+  - - 5671
+
+## fresh_repeat_3
+
+- `fresh2-code-014` PASS | 'How are cookies attached to an outgoing request?'
+  - Cookies are attached by PreparedRequest.prepare_cookies, which stores the given cookies in a CookieJar (using cookiejar_from_dict for non-CookieJar input) and then calls get_cookie_header to generate a Cookie header string, setting it on self.headers if not None (src/requests/models.py:699-729). get_cookie_header wraps the PreparedRequest in a MockRequest, calls jar.add_cookie_header on it, and returns the resulting 'Cookie' header value (src/requests/cookies.py:114-161).
+- `fresh2-code-027` PASS | 'How does the library parse a header value such as Digest realm and qop into a dictionary?'
+  - The library parses a header value like a Digest challenge into a dictionary using parse_dict_header, which iterates over the items produced by _parse_list_header; for each item without an '=' it stores the key with value None, otherwise it splits on the first '=' into name and value, and if the value is wrapped in double quotes it strips the quotes and unquotes it via unquote_header_value before storing it in the result dict (src/requests/utils.py:439-471). The unquoting step removes surrounding double quotes and reverses backslash escapes for non-filename values (src/requests/utils.py:474-497). In HTTPDigestAuth.handle_401, the 'www-authenticate' header is read, the leading 'digest ' prefix
+- `fresh2-code-002` PASS | 'What default settings does a brand new Session start with?'
+  - A new Session starts with: headers set to default_headers() (src/requests/sessions.py:442-488); auth = None (src/requests/sessions.py:442-488); proxies = {} (src/requests/sessions.py:442-488); hooks = default_hooks() (src/requests/sessions.py:442-488); params = {} (src/requests/sessions.py:442-488); stream = False (src/requests/sessions.py:442-488); verify = True (src/requests/sessions.py:442-488); cert = None (src/requests/sessions.py:442-488); max_redirects = DEFAULT_REDIRECT_LIMIT (30) (src/requests/sessions.py:442-488); trust_env = True (src/requests/sessions.py:490-503); cookies = an empty RequestsCookieJar via cookiejar_from_dict({}) (src/requests/sessions.py:490-503); and adapters wit
+- `fresh2-code-004` PASS | 'How does the redirect mixin find out where a redirect points to?'
+  - The redirect mixin determines the redirect target in SessionRedirectMixin.get_redirect_target, which checks resp.is_redirect and, if true, reads the 'location' header from the response, re-encodes it from latin1 to utf8, and returns it as a native string; otherwise it returns None (src/requests/sessions.py:127-152). The is_redirect property is True when the response has a 'location' header and its status code is in REDIRECT_STATI (src/requests/models.py:861-913). resolve_redirects then uses get_redirect_target to extract the next URL, resolving relative locations against resp.url with urljoin (src/requests/sessions.py:237-280, src/requests/sessions.py:282-307).
+- `fresh2-docs-033` PASS | 'How do I send a request body that is generated piece by piece?'
+  - Provide a generator (or any iterator without a length) as the body to send a chunk-encoded request, e.g. define gen() that yields pieces and call requests.post('http://some.url/chunked', data=gen()) (docs/user/advanced.rst:368-389). For large streams or files you can also pass a file-like object to data (docs/user/advanced.rst:349-366).
+- `fresh2-docs-034` PASS | 'How do I upload a large file without loading it all into memory?'
+  - To upload a large file without loading it all into memory, pass a file-like object as the request body so Requests streams it. Open the file in binary mode and use it as the data argument, e.g. `with open('massive-body', 'rb') as f: requests.post('http://some.url/streamed', data=f)` (docs/user/advanced.rst:349-366). If you need to stream a very large file as a multipart/form-data request, Requests does not support that by default; use the separate `requests-toolbelt` package instead (docs/user/quickstart.rst:349-366).
+- `fresh2-docs-031` PASS | 'How do I upload a file with a custom filename and content type?'
+  - To upload a file with a custom filename and content type, pass a tuple to the files dict where the tuple is (filename, file_object, content_type, headers). For example: files = {'file': ('report.xls', open('report.xls', 'rb'), 'application/vnd.ms-excel', {'Expires': '0'})} then requests.post(url, files=files) (docs/user/quickstart.rst:319-329).
+- `fresh2-docs-037` PASS | 'How do I read the Link header of a response as links?'
+  - Requests automatically parses Link headers into a dictionary you can access via the response's .links attribute, keyed by the rel value. For example, after r = requests.head(url), r.links["next"] returns {'url': '...', 'rel': 'next'} and r.links["last"] returns {'url': '...', 'rel': 'last'} (docs/user/advanced.rst:944-966).
+- `fresh2-history-050` PASS | 'Which release first contained the change merged in PR #4387 in psf/requests?'
+  - v2.19.0
+- `fresh2-history-051` PASS | 'Which release first contained the change merged in PR #6170 in psf/requests?'
+  - v2.28.1
+- `fresh2-history-049` PASS | 'Which release first contained the change merged in PR #4996 in psf/requests?'
+  - v2.23.0
+- `fresh2-history-054` PASS | 'Who made the most commits in psf/requests in 2022, not counting merge commits?'
+  - Nate Prewitt  Note: commit counts cover non-merge commits only (merge commits are not indexed).  Activity from the commit history: - Nate Prewitt: 21 commits in this history, first 2022-01-03, most recent 2022-06-29
+- `fresh2-kind-059` PASS | 'Is #5166 in psf/requests a pull request or an issue?'
+  - issue
+- `fresh2-kind-062` PASS | 'Is #1125 in psf/requests a pull request or an issue?'
+  - pull request
+- `fresh2-kind-061` PASS | 'Is #2672 in psf/requests a pull request or an issue?'
+  - pull request
+- `fresh2-kind-060` PASS | 'Is #6344 in psf/requests a pull request or an issue?'
+  - issue
+- `fresh2-probe-073` PASS | 'How does requests parse YAML configuration files?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-probe-069` PASS | 'How does requests encrypt files at rest with AES?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-probe-070` PASS | 'Where does requests implement a Redis caching layer?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-probe-072` PASS | 'Which function in requests trains a machine-learning model?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-prsearch-065` PASS | 'In psf/requests, which pull request is about: "only the path should be unquoted/quoted."? Give its number.'
+  - - 149  Details from the search results: - #149 (pull request, merged): PR #149: Only the path should be unquoted/quoted.
+- `fresh2-prsearch-063` PASS | 'In psf/requests, which pull request is about: "enhance raise_for_status() to include response content"? Give its number.'
+  - - 6882  Details from the search results: - #6882 (pull request, closed): PR #6882: Enhance raise_for_status() to include response content
+- `fresh2-prsearch-067` PASS | 'In psf/requests, which issue is about: "how can i pass gmail\'s cookie to requests session?"? Give its number.'
+  - 3624  Details from the search results: - #3624 (issue, closed): Issue #3624: how can I pass gmail's cookie to requests session?
+- `fresh2-prsearch-068` PASS | 'In psf/requests, which issue is about: "rfe: please provide support for latest `urllib3`"? Give its number.'
+  - 6278  Details from the search results: - #6278 (issue, closed): Issue #6278: RFE: please provide support for latest `urllib3`
+- `fresh2-refs-055` PASS | 'Which other PRs or issues does #7339 in psf/requests mention in its title or body?'
+  - - 6990
+- `fresh2-refs-058` PASS | 'Which PRs or issues in psf/requests mention #1847 in their title or body?'
+  - - 1850
+- `fresh2-refs-057` PASS | 'Which PRs or issues in psf/requests mention #1750 in their title or body?'
+  - - 5671
+- `fresh2-refs-056` PASS | 'Which other PRs or issues does #7251 in psf/requests mention in its title or body?'
+  - - 7228
+

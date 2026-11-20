@@ -1,0 +1,78 @@
+{"n": 186, "sha": "0a760ff025e933cbd1c5017bb5f2dfc9aa1dd6a3", "verdict": "cannot_tell", "reason": "The visible lockfile changes omit the dependency key for the two version values and cut off before the rest of the update."}
+{"n": 187, "sha": "0a7d98871c08029c9562699fde92ba293a3a791a", "verdict": "ok", "reason": ""}
+{"n": 188, "sha": "0a7f662aa70d39b6c3b5c804be00af5731292550", "verdict": "ok", "reason": ""}
+{"n": 189, "sha": "0a8bb2e1b375cb1538ca54288031e7aff1169ef4", "verdict": "wrong", "reason": "The new parameters default to None and a false request value cannot override a truthy session setting."}
+{"n": 190, "sha": "0ab7a52f7c04998ae68ed7da442fce32293e0fb5", "verdict": "ok", "reason": ""}
+{"n": 191, "sha": "0abb69b1cb3fbad9db7b52be363e939673c5c429", "verdict": "ok", "reason": ""}
+{"n": 192, "sha": "0ad075c430a2f2b1d428dd50b4726dc0742d15ce", "verdict": "ok", "reason": ""}
+{"n": 193, "sha": "0ad2792873d99451be4501ea010c8d0398460921", "verdict": "ok", "reason": ""}
+{"n": 194, "sha": "0ae8524e3b2765a0d1f6a32eef47dfc58f156845", "verdict": "ok", "reason": ""}
+{"n": 195, "sha": "0aedef07c3df33727b0d76a9e8323e07a9a76b6f", "verdict": "filler", "reason": "The diff describes support and order preservation for tuple lists, but previous errors or incorrect ordering are speculative."}
+{"n": 196, "sha": "0aee4834970714c399f1375830400ff66104bd92", "verdict": "filler", "reason": "The publication commands change, but the source does not identify the former upload command as deprecated."}
+{"n": 197, "sha": "0af19a05ce54bbb9e306771710e6eac15506d4c3", "verdict": "ok", "reason": ""}
+{"n": 198, "sha": "0af8ff940538357d3357814430be78dfdbdc4a94", "verdict": "ok", "reason": ""}
+{"n": 199, "sha": "0b013558704edc6b9aeeef566460b28e019052c4", "verdict": "cannot_tell", "reason": "The new link list is truncated before its last URL, so the text does not show whether the recommended-packages link was removed or repositioned."}
+{"n": 200, "sha": "0b22bc9b4243808628e417959a4ada0d803ae515", "verdict": "wrong", "reason": "The restored cookie branch contains only pass, so it does not implement cookie handling."}
+{"n": 201, "sha": "0b2517465d0dbf04f33fcf577f93f437d1b5c5b6", "verdict": "filler", "reason": "The new tagline is shown, but its effect on the initial user experience is unverified."}
+{"n": 202, "sha": "0b29964bf8fd51cc0287a58fff4ce548da393682", "verdict": "ok", "reason": ""}
+{"n": 203, "sha": "0b34812afccc17c9d40c72c88f62c289d389faa9", "verdict": "filler", "reason": "The description changes, while describing the new text as more professional is subjective."}
+{"n": 204, "sha": "0b36d925f653b10e62c8653f3918ffffb3d1a954", "verdict": "ok", "reason": ""}
+{"n": 205, "sha": "0b401c76b6e80a4eecf3c690085b2553f6e261ca", "verdict": "ok", "reason": ""}
+{"n": 206, "sha": "0b41cec7a42682da52a24c87ff6b2c341f101005", "verdict": "ok", "reason": ""}
+{"n": 207, "sha": "0b424e1637ea552b4b653795838c5f747aa989f5", "verdict": "ok", "reason": ""}
+{"n": 208, "sha": "0b42772663d50fddc4fec9e5fc397eaff00dfe3f", "verdict": "ok", "reason": ""}
+{"n": 209, "sha": "0b475dd65487f2c14efa6f917657a0f1d19bae02", "verdict": "filler", "reason": "The commit targets test changes, but the evidence does not establish better coverage or reliability or why the pool manager was changed."}
+{"n": 210, "sha": "0b6dc091f50965250d9c421d8aadaa701186a1b9", "verdict": "filler", "reason": "Path quoting is supported by the diff, while the claim about avoiding malformed requests or parsing failures is speculative."}
+{"n": 211, "sha": "0b719f037c5558c2b063eb9d65e234d9f521035c", "verdict": "wrong", "reason": "The declaration becomes important while the selector and its specificity do not change."}
+{"n": 212, "sha": "0b9a2a158135c1d8214f0562af14164ecd96b540", "verdict": "ok", "reason": ""}
+{"n": 213, "sha": "0ba21a79c49117495e2c4f70264f366dea6e480e", "verdict": "filler", "reason": "The handle links are replaced with a name, but improved readability is an unverified evaluation."}
+{"n": 214, "sha": "0ba8c44260209ff518809a6b5b307d443e8dfe67", "verdict": "ok", "reason": ""}
+{"n": 215, "sha": "0bb200515c0fa9d5e12d21ea563ed5e134912bec", "verdict": "filler", "reason": "The test import changes to urllib3 directly, but the commit does not identify the old path as deprecated."}
+{"n": 216, "sha": "0bb8be0e5ba58dfff9648b4058acaa927837e605", "verdict": "ok", "reason": ""}
+{"n": 217, "sha": "0bbdbac17fc40cc193679e7e84cfd06c6ae7eb9d", "verdict": "ok", "reason": ""}
+{"n": 218, "sha": "0bcf634135e7038c2aa8b4b8b2490ad5c1db5c23", "verdict": "ok", "reason": ""}
+{"n": 219, "sha": "0bee888f73ea5c32547e6d684ad778f6fd0edeb0", "verdict": "ok", "reason": ""}
+{"n": 220, "sha": "0bf60c8876cddb5b203c652834ab8c6da55e4ce5", "verdict": "filler", "reason": "The new guard for missing encoded data is visible, but the precise error or unexpected behavior is unspecified."}
+{"n": 221, "sha": "0bfbacd8b15ddb6e0c3bc86eb81d969ff4bcc0ae", "verdict": "ok", "reason": ""}
+{"n": 222, "sha": "0bfc029b5e549cb41b7c4999b96f3dfe892baf84", "verdict": "ok", "reason": ""}
+{"n": 223, "sha": "0bff2d94e624651d02756e37e50af3cc1569abcf", "verdict": "filler", "reason": "The checkout version bump is shown, but the text does not establish that 4.2.0 was the latest stable release."}
+{"n": 224, "sha": "0c036feb89913417a7ec78c7db00269da26e2fa7", "verdict": "ok", "reason": ""}
+{"n": 225, "sha": "0c08ca715484528b41d6957937f1d7af255d897a", "verdict": "ok", "reason": ""}
+{"n": 226, "sha": "0c0bab3ad0bdf15204aa2b0f426304a6dd655da0", "verdict": "ok", "reason": ""}
+{"n": 227, "sha": "0c21aa55309a522d29fbca76ecb0aa40eda06abe", "verdict": "filler", "reason": "The reference and section changes are shown, but describing their placement as more logical or the removed headings as redundant is subjective."}
+{"n": 228, "sha": "0c2bbe73982a70623fb81bf16b2507ea0ca80b99", "verdict": "ok", "reason": ""}
+{"n": 229, "sha": "0c4342a3a67834ce99ad73a7f3a6a0fe1780b19b", "verdict": "ok", "reason": ""}
+{"n": 230, "sha": "0c4b973dcf74a3c2fe0c3123e7d4637d8ccea481", "verdict": "ok", "reason": ""}
+{"n": 231, "sha": "0c609b59abfa25e00e320034e46c5bf4443078b6", "verdict": "filler", "reason": "The commit replaces the cookie merge method, but does not show a specific failure or establish the broader safety claim."}
+{"n": 232, "sha": "0c88ae42e637223cfc7f82fb37995ddfdebf199e", "verdict": "ok", "reason": ""}
+{"n": 233, "sha": "0caa2432123bab2d991e635ce558226d019d7bc7", "verdict": "ok", "reason": ""}
+{"n": 234, "sha": "0cb6ddaecf8fe88f3c6ba9ae60aa6b9d063f0ca1", "verdict": "ok", "reason": ""}
+{"n": 235, "sha": "0cb7376db0c725574939aa12367a654b2e10aaeb", "verdict": "wrong", "reason": "The new section lists Andrey Petrov without assigning him the development lead role."}
+{"n": 236, "sha": "0cd23d8d6e9fee70e4cc51c37e0b6a111411f2c0", "verdict": "wrong", "reason": "The old assignment calls a length helper rather than constructing a super object."}
+{"n": 237, "sha": "0cd6959f1907dc50423ca147fa797f17a64d26af", "verdict": "ok", "reason": ""}
+{"n": 238, "sha": "0cd9f5855e395c04bf99a68e0059784fb9a90cf3", "verdict": "ok", "reason": ""}
+{"n": 239, "sha": "0cf0bde15853a704ed3fb4fd928187bdc90a3e9a", "verdict": "wrong", "reason": "A local None removes the key from the merged result even if a default existed."}
+{"n": 240, "sha": "0cf9ede580e3c661a1fdabdf0f4ce3a484cac363", "verdict": "filler", "reason": "The build fix removes a test option, but the text does not say that the option itself was invalid or unsupported."}
+{"n": 241, "sha": "0d07d1afb3a610605093c143822e5746ca8784a3", "verdict": "ok", "reason": ""}
+{"n": 242, "sha": "0d183c41a9ea3afd22e789932d43c7c111eb8ef5", "verdict": "ok", "reason": ""}
+{"n": 243, "sha": "0d1a779030c1b26f9decda889b3e140d89bdeef9", "verdict": "ok", "reason": ""}
+{"n": 244, "sha": "0d25f8a00ca5ee768d498f0b229bde1a61e97bb4", "verdict": "ok", "reason": ""}
+{"n": 245, "sha": "0d52ef7084a6839376be182dd91e9e003d3275ff", "verdict": "ok", "reason": ""}
+{"n": 246, "sha": "0d5347e6281c85059be176fe650b0aa7128f1dcb", "verdict": "ok", "reason": ""}
+{"n": 247, "sha": "0d6773c68ca04cc90c004cb3a98313dd035c5e22", "verdict": "ok", "reason": ""}
+{"n": 248, "sha": "0d7de50dbd7eacb0242506454363c71925d7241a", "verdict": "ok", "reason": ""}
+{"n": 249, "sha": "0d7de6430eef0cf09f9662746daf0c28d83f144e", "verdict": "ok", "reason": ""}
+{"n": 250, "sha": "0d82afa0c375f635ad26e98b3af4f99563586386", "verdict": "filler", "reason": "The image addition is visible, but the design benefit is subjective."}
+{"n": 251, "sha": "0d8c08cd22018bbda2ba4eef07af49f42d5b9006", "verdict": "ok", "reason": ""}
+{"n": 252, "sha": "0d8d99de660ecdd3561e5b52d9641d4cb20c5ab1", "verdict": "ok", "reason": ""}
+{"n": 253, "sha": "0dae52220b274890af08ac040bd90747146c3d90", "verdict": "filler", "reason": "The encoder replacement is visible, but the source does not call the previous function deprecated or establish reliability."}
+{"n": 254, "sha": "0db1d3d6753d6a1e5bee25b874b4eed757009425", "verdict": "ok", "reason": ""}
+{"n": 255, "sha": "0db4dab03e37f41827ef9fa713c3ec95876a3628", "verdict": "ok", "reason": ""}
+{"n": 256, "sha": "0dbda6665d65b186107e01b03ae901684a7f5ecb", "verdict": "ok", "reason": ""}
+{"n": 257, "sha": "0dd4752598719c4466e46c58e9de862bdb925934", "verdict": "ok", "reason": ""}
+{"n": 258, "sha": "0dd6c4020535bbd45f25580dae5037b77cc1b707", "verdict": "filler", "reason": "The traceback import is removed, but the displayed text does not establish that it was unused."}
+{"n": 259, "sha": "0df505bd7cd6c256651b5847a1e26e3bbb0d36c5", "verdict": "wrong", "reason": "The patch adds a Unicode prefix to one example while removing it from another."}
+{"n": 260, "sha": "0dff06a7b9eb337ce02838f1e4cb9b042c9f3f52", "verdict": "ok", "reason": ""}
+{"n": 261, "sha": "0e28c8f1dc1db297fb2ba5a953bee2097a554c38", "verdict": "ok", "reason": ""}
+{"n": 262, "sha": "0e322af87745eff34caffe4df68456ebc20d9068", "verdict": "ok", "reason": ""}
+{"n": 263, "sha": "0e4ae38f0c93d4f92a96c774bd52c069d12a4798", "verdict": "ok", "reason": ""}

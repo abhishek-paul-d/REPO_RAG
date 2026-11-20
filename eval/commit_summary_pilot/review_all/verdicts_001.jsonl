@@ -1,0 +1,96 @@
+{"n": 1, "sha": "0008b035e2204ea7d1df5d62bd009e51df44aa17", "verdict": "filler", "reason": "The changelog says there was a Digest Auth fix without establishing a security-related correction."}
+{"n": 2, "sha": "000c1053035812ee765a4f4a967eb69dba400a04", "verdict": "ok", "reason": ""}
+{"n": 3, "sha": "003c795afed5f3b12c3ea8af12affbeb1218d7da", "verdict": "filler", "reason": "The diff shows bytes-to-Unicode normalization without showing the claimed possibility of errors."}
+{"n": 4, "sha": "0051837af4fb8b21aac101cbb91f2f81a1853013", "verdict": "ok", "reason": ""}
+{"n": 5, "sha": "005571d1180835eb5266a3fdbdbe8fdae57d90c2", "verdict": "ok", "reason": ""}
+{"n": 6, "sha": "005f93fd0f2ead34af4c42d245b0c2ed2f91ba09", "verdict": "wrong", "reason": "The summary swaps the restored test and the renamed parameterized test."}
+{"n": 7, "sha": "00600b38f45dc234f825f609cea63d24e7e690af", "verdict": "wrong", "reason": "The action SHAs shown are unchanged and the version strings are new comments."}
+{"n": 8, "sha": "007963afde4d856803e61357c64f29329a361ad9", "verdict": "ok", "reason": ""}
+{"n": 9, "sha": "0086f97b6553ac323565e8653eae678e380219ae", "verdict": "wrong", "reason": "The call attempts to infer the filename from the field key, not from the file-like value being read."}
+{"n": 10, "sha": "008ab18a7702fa158607595e56ff9e64143c6031", "verdict": "ok", "reason": ""}
+{"n": 11, "sha": "008c77c911f504cd72f7e097f1744daaadab2162", "verdict": "ok", "reason": ""}
+{"n": 12, "sha": "00b13673e32e45d2eb6517c0cf81915467331d8f", "verdict": "ok", "reason": ""}
+{"n": 13, "sha": "00b4ca3b744fa25d3c4aabf49774eaa40caf9f33", "verdict": "ok", "reason": ""}
+{"n": 14, "sha": "00c0a80e6bb51550bda18ab47e985ddd963b4303", "verdict": "ok", "reason": ""}
+{"n": 15, "sha": "00c6ad58b765032276f479a6336ad3a2c0ff025a", "verdict": "cannot_tell", "reason": "The visible diff ends before the relocated default-bundle branch, so preservation of that behavior cannot be verified."}
+{"n": 16, "sha": "00d8c24fe171db90cf2226f7753e00ca706b50ae", "verdict": "ok", "reason": ""}
+{"n": 17, "sha": "00d900c575c05473ddd95cdf6adeaaf520687671", "verdict": "ok", "reason": ""}
+{"n": 18, "sha": "00f066a467901bdbb107396c015c17275fb59cc6", "verdict": "ok", "reason": ""}
+{"n": 19, "sha": "00f83fb0c64aa48a27a3da2df590530ef7eeff85", "verdict": "ok", "reason": ""}
+{"n": 20, "sha": "00fa902c7de4f3722fbfb6cec89f828c912c03fa", "verdict": "ok", "reason": ""}
+{"n": 21, "sha": "012cc33d44073ce2dc93a9b91368cbe6c5246014", "verdict": "filler", "reason": "Using local httpbin is documented, but the statement that it ensures reliable runs is unverified."}
+{"n": 22, "sha": "012f0334ce43fe23044fc58e4246a804db88650d", "verdict": "filler", "reason": "Preventing data loss is a generic benefit beyond the documented overwrite option."}
+{"n": 23, "sha": "01353d3b4afe3afa838f8f5c08e5f30a5b50cb05", "verdict": "ok", "reason": ""}
+{"n": 24, "sha": "01411e37d65111d9bf09ac7ba82338664b595a0f", "verdict": "ok", "reason": ""}
+{"n": 25, "sha": "015d6b78d5035a6a19402b21cd963cd13ec82f83", "verdict": "ok", "reason": ""}
+{"n": 26, "sha": "0163a836a104bfd03ceb27055e88d726b53be1ff", "verdict": "filler", "reason": "Replacing the license file read removes that dependency, while successful builds across distributions are unverified."}
+{"n": 27, "sha": "01789038412d8998458face8dc8a0e7843f7e68f", "verdict": "wrong", "reason": "The diff removes one explicit Xenial setting and does not make Xenial the default for all test jobs."}
+{"n": 28, "sha": "0192aac24123735b3eaf9b08df46429bb770c283", "verdict": "ok", "reason": ""}
+{"n": 29, "sha": "01993d21dc7d6fa8f0acf657425d2fead9b2ddea", "verdict": "ok", "reason": ""}
+{"n": 30, "sha": "01b22a7e127d1b9c90d02a7101267b12ef1ed2ec", "verdict": "wrong", "reason": "The history entry already names version 0.3.3 and changes only its date."}
+{"n": 31, "sha": "01b58ba04e694384119e33b05726b81757022b2e", "verdict": "ok", "reason": ""}
+{"n": 32, "sha": "01e405c6116c94d92057f7aaea58d51d1d7f90a7", "verdict": "filler", "reason": "The change aligns byte and text types, but the displayed text does not establish that the mismatch caused crashes."}
+{"n": 33, "sha": "01f982da506a7a97266a1b64413a7823b59e07da", "verdict": "ok", "reason": ""}
+{"n": 34, "sha": "021dc729f0b71a3030cefdbec7fb57a0e80a6cfd", "verdict": "ok", "reason": ""}
+{"n": 35, "sha": "0228851f19aaf4b0f620c74cb08d295329431a3e", "verdict": "ok", "reason": ""}
+{"n": 36, "sha": "022c370bcd2d1870469da7b3d0769fa4b33d5ffe", "verdict": "ok", "reason": ""}
+{"n": 37, "sha": "023ab755e5404fe379a22e0b8536aa668792b71a", "verdict": "ok", "reason": ""}
+{"n": 38, "sha": "02408973c6da4bd89401d2a1994b4ea26dc260c9", "verdict": "ok", "reason": ""}
+{"n": 39, "sha": "024db279c48edfaafe4b6b97921b292c6687a4e3", "verdict": "ok", "reason": ""}
+{"n": 40, "sha": "02618c8df5071d608a8c8341e4a44e26f58215d5", "verdict": "ok", "reason": ""}
+{"n": 41, "sha": "02834e353d7a9d9a6dff5a2c2ee5ba477f83d46c", "verdict": "ok", "reason": ""}
+{"n": 42, "sha": "02a5d7ba6807171c9958d97c469f2932ad3eec71", "verdict": "ok", "reason": ""}
+{"n": 43, "sha": "02ab1ba5bd2f30beaaa81423f313a0031c1ff13c", "verdict": "filler", "reason": "The example uses an uppercase method name, but the text does not establish a protocol requirement."}
+{"n": 44, "sha": "02cf3dce3786becb89f631185e8207080b0b726c", "verdict": "ok", "reason": ""}
+{"n": 45, "sha": "02dcc40acd53ffbabd9c1d4bdd584ea8491a739d", "verdict": "wrong", "reason": "The patch adds a failing test and does not ensure that runtime multipart serialization succeeds."}
+{"n": 46, "sha": "02ea563a063f11c7c0bff1545ecb42402566081d", "verdict": "filler", "reason": "The responsive layout changes are shown, but the claimed improvement to the user experience is an unmeasured benefit."}
+{"n": 47, "sha": "02eb5a2cd34d36548ebb08528c73ca66c2a398d9", "verdict": "wrong", "reason": "The source mentions local development or testing and does not limit suitability to local development alone."}
+{"n": 48, "sha": "02f422d132708b2142545100aab725d80ac0f806", "verdict": "ok", "reason": ""}
+{"n": 49, "sha": "02f6555536a9dee5e5bb83a5e4b96cc6d754c090", "verdict": "ok", "reason": ""}
+{"n": 50, "sha": "02f852cc41aec89e1f5147cc87732927b80b8420", "verdict": "filler", "reason": "The guide invites additional detail in a native language, while the benefit of better translation is inferred."}
+{"n": 51, "sha": "030b9763b5dd24bbde7938d5aafb63f411d75b6a", "verdict": "wrong", "reason": "The new fallback is a two-element tuple of empty strings, and the diff does not establish a colon-only URL case."}
+{"n": 52, "sha": "030d877ed51fc3676e402f824b3108c69c440df8", "verdict": "filler", "reason": "The changelog replaces the reference, but the supplied text does not establish that either spelling is the intended interface name."}
+{"n": 53, "sha": "030dcce20cb8b4a82e7b0e5e09b7a8f33121938d", "verdict": "filler", "reason": "The visible changes switch selected links to HTTPS without establishing that all references were converted."}
+{"n": 54, "sha": "030ead9c36b59d2e18f6381f3f8c96c6e4de0090", "verdict": "ok", "reason": ""}
+{"n": 55, "sha": "0352ec0bd3aabb131b0cbb649f2062d59fc8f4a1", "verdict": "ok", "reason": ""}
+{"n": 56, "sha": "036b5d34fd2d25a8c9acfe09cebbf6306c60ff40", "verdict": "ok", "reason": ""}
+{"n": 57, "sha": "03743b15ed30a030629231da6ba0ecc23240bf66", "verdict": "ok", "reason": ""}
+{"n": 58, "sha": "037b38badb31cd379e985881b8077a4aa148fd58", "verdict": "wrong", "reason": "RequestEncodingMixin is listed as a symbol inside the models module, not as a module."}
+{"n": 59, "sha": "03893d9b7fffb4c679f9e104c29c8fb1d9cc9ec6", "verdict": "ok", "reason": ""}
+{"n": 60, "sha": "03944f4cd62fb906cb20eebda86b150358923564", "verdict": "ok", "reason": ""}
+{"n": 61, "sha": "03957eb1c2b9a1e5e6d61f5e930d7c5ed7cfe853", "verdict": "ok", "reason": ""}
+{"n": 62, "sha": "03a3ca500491ed55c90255398fa514be017efe10", "verdict": "wrong", "reason": "The previous return value has two empty string elements, not zero elements."}
+{"n": 63, "sha": "03ae9bee74fbfb0a389be1ee3bd59e691f7017d4", "verdict": "ok", "reason": ""}
+{"n": 64, "sha": "03babafc7b16bd84b13f405fd66ccb1751f4aaee", "verdict": "wrong", "reason": "The code immediately dereferences each weak reference and stores the original objects, which remain linked."}
+{"n": 65, "sha": "03c8e23dbbc6690220141bb685fac08ac9494177", "verdict": "filler", "reason": "The hook list is reduced, but the text does not establish that the removed hooks were unused."}
+{"n": 66, "sha": "03d96aa9f7f53783bbac5002b2349c7b0725b495", "verdict": "filler", "reason": "The empty commit is shown, but its purpose as a placeholder or marker is speculative."}
+{"n": 67, "sha": "03dd91093bfa4a0eae23824c3ad98a052da16cfa", "verdict": "ok", "reason": ""}
+{"n": 68, "sha": "03ddf26596b4c10f12483817550fb4f7feb861ea", "verdict": "wrong", "reason": "The test checks cached response content and does not return the data it checks."}
+{"n": 69, "sha": "03e5f5daf33ddb44fec4815c35a49072bdc3b2a4", "verdict": "filler", "reason": "The patch adds PySocks to the test requirements, but successful execution of the suite is unverified."}
+{"n": 70, "sha": "03f444e601e6608f68f3a09d708af93e4512560a", "verdict": "ok", "reason": ""}
+{"n": 71, "sha": "042ccfcf99d1c06ec5d6fda41c04801550b53c3a", "verdict": "filler", "reason": "The binary license image is added, but its necessity or use inside an application is unshown."}
+{"n": 72, "sha": "0442122d34ba79b67b3ab80d04729259a01cd6c6", "verdict": "ok", "reason": ""}
+{"n": 73, "sha": "046302c0cbe94588cdaf6460dfc49219b49db389", "verdict": "ok", "reason": ""}
+{"n": 74, "sha": "047056c1501966055d77b80ffcdeedd6df316428", "verdict": "wrong", "reason": "The setting shown disables sudo but the commit does not establish a specific executor or faster runtime."}
+{"n": 75, "sha": "0477018761c67152cdcc0b83d56f27e701e65b9e", "verdict": "ok", "reason": ""}
+{"n": 76, "sha": "0488c640e2fa0d6d5f193c536179be08ee348917", "verdict": "wrong", "reason": "The diff removes one entry and moves the FAQ without showing that it is the only remaining page."}
+{"n": 77, "sha": "048997daa003ec03148e5036de9d1d48c3673fdd", "verdict": "wrong", "reason": "The deletion starts at line 2, so it does not remove the entire contents of the file."}
+{"n": 78, "sha": "048c926b46a9216f0fbafffc96e0e3ff926776d3", "verdict": "filler", "reason": "The content type is corrected, but the source does not show the resulting PyPI rendering."}
+{"n": 79, "sha": "04b5c837015b1182c5ce315d3656c0e6e7397e4d", "verdict": "ok", "reason": ""}
+{"n": 80, "sha": "04bb965c87218c74437cd3e1c2fa09866b07b3c0", "verdict": "ok", "reason": ""}
+{"n": 81, "sha": "04bcab80574c7c2f1cf8e090ca34cd44a96b1e64", "verdict": "filler", "reason": "The diff shows a no-op branch being commented out, while the claim that it was redundant is unverified."}
+{"n": 82, "sha": "04bcb74970c49ea6bda3881cb02beed2e3359b7b", "verdict": "filler", "reason": "Adding a slash to a pathless URL is shown, but the routing and parsing consequences are speculative."}
+{"n": 83, "sha": "04c0bcc9b482180351d9a9f1e1e70bb5b8186784", "verdict": "wrong", "reason": "The str alias exists in both versions, and no missing alias or compatibility failure is shown."}
+{"n": 84, "sha": "04c329d703784f4d44bb9472f51e7723caabd264", "verdict": "wrong", "reason": "The added expression leaves the read call open and does not successfully load text as claimed."}
+{"n": 85, "sha": "04c456b8775a2560d0fffad445745793929a82f0", "verdict": "filler", "reason": "The new cached property is visible, but the text supplies no evidence that lookups are faster."}
+{"n": 86, "sha": "04cdd0f2e70f8e9254ec306ed6d34fe55f7f382f", "verdict": "ok", "reason": ""}
+{"n": 87, "sha": "04d750509b90da728e53aee8d7516426e5a1a293", "verdict": "filler", "reason": "The revision advances to 0.15.12, but the text does not establish that it was the latest patch release."}
+{"n": 88, "sha": "04ed1e512214a9065ee083b525f2a31d43a82aeb", "verdict": "ok", "reason": ""}
+{"n": 89, "sha": "04ee58382251c9e750b272ee022c37268941d6e3", "verdict": "ok", "reason": ""}
+{"n": 90, "sha": "04faf59f49f2dba71bf6bd8661a3469ed7ab1e62", "verdict": "ok", "reason": ""}
+{"n": 91, "sha": "0512132b916ca5e17f56adf4b0aaba31f374eb36", "verdict": "filler", "reason": "The badge receives a link, but the change does not establish the accuracy of the build status it displays."}
+{"n": 92, "sha": "0514dea6fc5e6335b9dbef6f29d226469eaab202", "verdict": "ok", "reason": ""}
+{"n": 93, "sha": "051d3bb601c9cb5a4b14cfc6244c680ed220f44a", "verdict": "ok", "reason": ""}
+{"n": 94, "sha": "053613688bcabb05818403014dc594bfdc2cbe22", "verdict": "ok", "reason": ""}
+{"n": 95, "sha": "0536e5b708bea4e1ef25930bd7b4a8cfe930d6ce", "verdict": "filler", "reason": "The diff adds documentation for prefetch without establishing that the parameter was itself new."}
+{"n": 96, "sha": "054891ab5eab54256cce05edbaf86a11807a5ba8", "verdict": "wrong", "reason": "Feature Overview is already the hunk's section heading, and the additions are subsections beneath it."}

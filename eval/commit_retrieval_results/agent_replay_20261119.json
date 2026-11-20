@@ -1,0 +1,5672 @@
+{
+  "model_bm25_0.3": {
+    "summary": {
+      "n": 113,
+      "hit@1": 33,
+      "hit@5": 61,
+      "hit@10": 75,
+      "hit@15": 81,
+      "hit@30": 88,
+      "not_in_30": 25,
+      "mrr": 0.421
+    },
+    "rows": [
+      {
+        "id": "commitfull-001",
+        "gold": [
+          "f69934fb24a9"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-002",
+        "gold": [
+          "910b2312d644"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-003",
+        "gold": [
+          "44b1e7ebeabd"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-004",
+        "gold": [
+          "9d33629b6d3f"
+        ],
+        "rank": 17
+      },
+      {
+        "id": "commitfull-005",
+        "gold": [
+          "88177ec33fa0"
+        ],
+        "rank": 11
+      },
+      {
+        "id": "commitfull-006",
+        "gold": [
+          "e1c4fe21d47d"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-007",
+        "gold": [
+          "4dfd6f3fc1f7"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-008",
+        "gold": [
+          "a788cb72719a"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-009",
+        "gold": [
+          "5bb2be9a2300"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-010",
+        "gold": [
+          "478d49027fe9"
+        ],
+        "rank": 16
+      },
+      {
+        "id": "commitfull-011",
+        "gold": [
+          "1abd13700b32"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-012",
+        "gold": [
+          "d22ac0009847"
+        ],
+        "rank": 16
+      },
+      {
+        "id": "commitfull-013",
+        "gold": [
+          "afcc883d7f59"
+        ],
+        "rank": 29
+      },
+      {
+        "id": "commitfull-014",
+        "gold": [
+          "9fdee250de7e"
+        ],
+        "rank": 13
+      },
+      {
+        "id": "commitfull-015",
+        "gold": [
+          "c5d0a0931e1a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-016",
+        "gold": [
+          "4c8af1fff47e"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-017",
+        "gold": [
+          "07ad75ee0434"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-018",
+        "gold": [
+          "f7596c75dce4"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-019",
+        "gold": [
+          "2a34335dc3ef"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-020",
+        "gold": [
+          "2a9ae4b367fc"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-021",
+        "gold": [
+          "3501ea463432",
+          "6931bd67153f"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-022",
+        "gold": [
+          "39fe0068aa65",
+          "d22eaf96e2a1"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-023",
+        "gold": [
+          "5ee8b348ebab"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-024",
+        "gold": [
+          "3155bc99362a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-025",
+        "gold": [
+          "495f87363b3a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-026",
+        "gold": [
+          "8bfe0d873f38"
+        ],
+        "rank": 16
+      },
+      {
+        "id": "commitfull-027",
+        "gold": [
+          "62d29d510625"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-028",
+        "gold": [
+          "642bbf60604d"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-029",
+        "gold": [
+          "b37fbf30a3d4"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-030",
+        "gold": [
+          "87abd9c6094f"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-031",
+        "gold": [
+          "3155bc99362a"
+        ],
+        "rank": 10
+      },
+      {
+        "id": "commitfull-032",
+        "gold": [
+          "8b792be81bfa"
+        ],
+        "rank": 8
+      },
+      {
+        "id": "commitfull-033",
+        "gold": [
+          "d2f647cee45f"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-034",
+        "gold": [
+          "daf56b3f62f9"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-035",
+        "gold": [
+          "2814664e91d9"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-036",
+        "gold": [
+          "47d0517d66e8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-037",
+        "gold": [
+          "fcb8c8d33b72"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-038",
+        "gold": [
+          "3faff0b8ea2c"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-039",
+        "gold": [
+          "27c83f71770a"
+        ],
+        "rank": 14
+      },
+      {
+        "id": "commitfull-040",
+        "gold": [
+          "6e1db2173321"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-041",
+        "gold": [
+          "ce1ac8854323"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-042",
+        "gold": [
+          "589f2f6d6e4b"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-043",
+        "gold": [
+          "6ac1e0269134"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-044",
+        "gold": [
+          "96efb5ec9638"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-045",
+        "gold": [
+          "3a6348dbb9af"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-046",
+        "gold": [
+          "cd8ce63a3b68"
+        ],
+        "rank": 13
+      },
+      {
+        "id": "commitfull-047",
+        "gold": [
+          "29ef10815831"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-048",
+        "gold": [
+          "c8baf881257f"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-049",
+        "gold": [
+          "751b35c346e1"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-050",
+        "gold": [
+          "f7968b6797a5"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-051",
+        "gold": [
+          "8c90c610cd15"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-052",
+        "gold": [
+          "677bbe30d7b2"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-053",
+        "gold": [
+          "6e2f1eb40209"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-054",
+        "gold": [
+          "1acc4992d429"
+        ],
+        "rank": 8
+      },
+      {
+        "id": "commitfull-055",
+        "gold": [
+          "1b5bfe681b4c",
+          "6ea3f2ada871"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-056",
+        "gold": [
+          "573d460aa7f7"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-057",
+        "gold": [
+          "36093e69c70b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-058",
+        "gold": [
+          "dacf69a16df7"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-059",
+        "gold": [
+          "450495321281"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-060",
+        "gold": [
+          "ca66267d2cf8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-061",
+        "gold": [
+          "773e730d80aa"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-062",
+        "gold": [
+          "f0edd4a3e020"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-063",
+        "gold": [
+          "2e62df456ae8"
+        ],
+        "rank": 10
+      },
+      {
+        "id": "commitfull-064",
+        "gold": [
+          "a560e094279c"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-065",
+        "gold": [
+          "b8a297baab50"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-066",
+        "gold": [
+          "48fe34447de0"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-067",
+        "gold": [
+          "296d8cc097b6"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-068",
+        "gold": [
+          "5397ef71b37e"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-069",
+        "gold": [
+          "c7b99f78192b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-070",
+        "gold": [
+          "5c19d3e07b68"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-071",
+        "gold": [
+          "f3ad56f103e3"
+        ],
+        "rank": 12
+      },
+      {
+        "id": "commitfull-072",
+        "gold": [
+          "1421ffa32ab4"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-073",
+        "gold": [
+          "ae1ac2d4e075"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-074",
+        "gold": [
+          "12f3c65e5a42",
+          "2c0ff95d4d8d",
+          "91766548d10c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-075",
+        "gold": [
+          "de4c75bbadea"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-076",
+        "gold": [
+          "c97a530638bb"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-077",
+        "gold": [
+          "4f428228d7e4"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-078",
+        "gold": [
+          "8a58427d8aa7"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-079",
+        "gold": [
+          "26bea1e498d6"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-080",
+        "gold": [
+          "3d22f9f5ab52"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-081",
+        "gold": [
+          "21972c460137"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-082",
+        "gold": [
+          "9b2d7382bfc8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-083",
+        "gold": [
+          "0a17badb21c2"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-084",
+        "gold": [
+          "af66521381d9"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-085",
+        "gold": [
+          "9b2d7382bfc8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-086",
+        "gold": [
+          "588e8f7f640f"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-087",
+        "gold": [
+          "1278ecdf71a3"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-088",
+        "gold": [
+          "9a8a826f226e"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-089",
+        "gold": [
+          "a9ee0eef5a70"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-090",
+        "gold": [
+          "d2590ee46c06"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-091",
+        "gold": [
+          "24630743cecd"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-092",
+        "gold": [
+          "427e8eb1e755"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-093",
+        "gold": [
+          "d569a2d6bca6"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-094",
+        "gold": [
+          "9cae7be94f0a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-095",
+        "gold": [
+          "5855dd711f0a"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-096",
+        "gold": [
+          "6b09e6ee347e"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-097",
+        "gold": [
+          "a64f32ba453b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-098",
+        "gold": [
+          "fe7348cc530f"
+        ],
+        "rank": 8
+      },
+      {
+        "id": "commitfull-099",
+        "gold": [
+          "f7596c75dce4"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-100",
+        "gold": [
+          "3ff3ff21dd45"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-101",
+        "gold": [
+          "60389df6d69c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-102",
+        "gold": [
+          "cc23d1c6445d"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-103",
+        "gold": [
+          "a62a2d35d918"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-104",
+        "gold": [
+          "507409661335"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-105",
+        "gold": [
+          "d568f4727849"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-106",
+        "gold": [
+          "d8dcd3531662"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-107",
+        "gold": [
+          "c3c90bb09c9f"
+        ],
+        "rank": 19
+      },
+      {
+        "id": "commitfull-108",
+        "gold": [
+          "4dd3d1a1a253"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-109",
+        "gold": [
+          "f48c78c9eebd"
+        ],
+        "rank": 16
+      },
+      {
+        "id": "commitfull-110",
+        "gold": [
+          "91a9c397466d"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-111",
+        "gold": [
+          "c03553ed4ae8"
+        ],
+        "rank": 14
+      },
+      {
+        "id": "commitfull-112",
+        "gold": [
+          "891e52d72348"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-113",
+        "gold": [
+          "4a9f3572a387"
+        ],
+        "rank": 6
+      }
+    ]
+  },
+  "model_bm25_0.1": {
+    "summary": {
+      "n": 113,
+      "hit@1": 33,
+      "hit@5": 60,
+      "hit@10": 73,
+      "hit@15": 82,
+      "hit@30": 89,
+      "not_in_30": 24,
+      "mrr": 0.416
+    },
+    "rows": [
+      {
+        "id": "commitfull-001",
+        "gold": [
+          "f69934fb24a9"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-002",
+        "gold": [
+          "910b2312d644"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-003",
+        "gold": [
+          "44b1e7ebeabd"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-004",
+        "gold": [
+          "9d33629b6d3f"
+        ],
+        "rank": 13
+      },
+      {
+        "id": "commitfull-005",
+        "gold": [
+          "88177ec33fa0"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-006",
+        "gold": [
+          "e1c4fe21d47d"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-007",
+        "gold": [
+          "4dfd6f3fc1f7"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-008",
+        "gold": [
+          "a788cb72719a"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-009",
+        "gold": [
+          "5bb2be9a2300"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-010",
+        "gold": [
+          "478d49027fe9"
+        ],
+        "rank": 16
+      },
+      {
+        "id": "commitfull-011",
+        "gold": [
+          "1abd13700b32"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-012",
+        "gold": [
+          "d22ac0009847"
+        ],
+        "rank": 12
+      },
+      {
+        "id": "commitfull-013",
+        "gold": [
+          "afcc883d7f59"
+        ],
+        "rank": 24
+      },
+      {
+        "id": "commitfull-014",
+        "gold": [
+          "9fdee250de7e"
+        ],
+        "rank": 12
+      },
+      {
+        "id": "commitfull-015",
+        "gold": [
+          "c5d0a0931e1a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-016",
+        "gold": [
+          "4c8af1fff47e"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-017",
+        "gold": [
+          "07ad75ee0434"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-018",
+        "gold": [
+          "f7596c75dce4"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-019",
+        "gold": [
+          "2a34335dc3ef"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-020",
+        "gold": [
+          "2a9ae4b367fc"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-021",
+        "gold": [
+          "3501ea463432",
+          "6931bd67153f"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-022",
+        "gold": [
+          "39fe0068aa65",
+          "d22eaf96e2a1"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-023",
+        "gold": [
+          "5ee8b348ebab"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-024",
+        "gold": [
+          "3155bc99362a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-025",
+        "gold": [
+          "495f87363b3a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-026",
+        "gold": [
+          "8bfe0d873f38"
+        ],
+        "rank": 18
+      },
+      {
+        "id": "commitfull-027",
+        "gold": [
+          "62d29d510625"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-028",
+        "gold": [
+          "642bbf60604d"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-029",
+        "gold": [
+          "b37fbf30a3d4"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-030",
+        "gold": [
+          "87abd9c6094f"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-031",
+        "gold": [
+          "3155bc99362a"
+        ],
+        "rank": 17
+      },
+      {
+        "id": "commitfull-032",
+        "gold": [
+          "8b792be81bfa"
+        ],
+        "rank": 12
+      },
+      {
+        "id": "commitfull-033",
+        "gold": [
+          "d2f647cee45f"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-034",
+        "gold": [
+          "daf56b3f62f9"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-035",
+        "gold": [
+          "2814664e91d9"
+        ],
+        "rank": 29
+      },
+      {
+        "id": "commitfull-036",
+        "gold": [
+          "47d0517d66e8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-037",
+        "gold": [
+          "fcb8c8d33b72"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-038",
+        "gold": [
+          "3faff0b8ea2c"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-039",
+        "gold": [
+          "27c83f71770a"
+        ],
+        "rank": 19
+      },
+      {
+        "id": "commitfull-040",
+        "gold": [
+          "6e1db2173321"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-041",
+        "gold": [
+          "ce1ac8854323"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-042",
+        "gold": [
+          "589f2f6d6e4b"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-043",
+        "gold": [
+          "6ac1e0269134"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-044",
+        "gold": [
+          "96efb5ec9638"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-045",
+        "gold": [
+          "3a6348dbb9af"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-046",
+        "gold": [
+          "cd8ce63a3b68"
+        ],
+        "rank": 11
+      },
+      {
+        "id": "commitfull-047",
+        "gold": [
+          "29ef10815831"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-048",
+        "gold": [
+          "c8baf881257f"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-049",
+        "gold": [
+          "751b35c346e1"
+        ],
+        "rank": 9
+      },
+      {
+        "id": "commitfull-050",
+        "gold": [
+          "f7968b6797a5"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-051",
+        "gold": [
+          "8c90c610cd15"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-052",
+        "gold": [
+          "677bbe30d7b2"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-053",
+        "gold": [
+          "6e2f1eb40209"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-054",
+        "gold": [
+          "1acc4992d429"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-055",
+        "gold": [
+          "1b5bfe681b4c",
+          "6ea3f2ada871"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-056",
+        "gold": [
+          "573d460aa7f7"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-057",
+        "gold": [
+          "36093e69c70b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-058",
+        "gold": [
+          "dacf69a16df7"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-059",
+        "gold": [
+          "450495321281"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-060",
+        "gold": [
+          "ca66267d2cf8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-061",
+        "gold": [
+          "773e730d80aa"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-062",
+        "gold": [
+          "f0edd4a3e020"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-063",
+        "gold": [
+          "2e62df456ae8"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-064",
+        "gold": [
+          "a560e094279c"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-065",
+        "gold": [
+          "b8a297baab50"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-066",
+        "gold": [
+          "48fe34447de0"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-067",
+        "gold": [
+          "296d8cc097b6"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-068",
+        "gold": [
+          "5397ef71b37e"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-069",
+        "gold": [
+          "c7b99f78192b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-070",
+        "gold": [
+          "5c19d3e07b68"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-071",
+        "gold": [
+          "f3ad56f103e3"
+        ],
+        "rank": 11
+      },
+      {
+        "id": "commitfull-072",
+        "gold": [
+          "1421ffa32ab4"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-073",
+        "gold": [
+          "ae1ac2d4e075"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-074",
+        "gold": [
+          "12f3c65e5a42",
+          "2c0ff95d4d8d",
+          "91766548d10c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-075",
+        "gold": [
+          "de4c75bbadea"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-076",
+        "gold": [
+          "c97a530638bb"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-077",
+        "gold": [
+          "4f428228d7e4"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-078",
+        "gold": [
+          "8a58427d8aa7"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-079",
+        "gold": [
+          "26bea1e498d6"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-080",
+        "gold": [
+          "3d22f9f5ab52"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-081",
+        "gold": [
+          "21972c460137"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-082",
+        "gold": [
+          "9b2d7382bfc8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-083",
+        "gold": [
+          "0a17badb21c2"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-084",
+        "gold": [
+          "af66521381d9"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-085",
+        "gold": [
+          "9b2d7382bfc8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-086",
+        "gold": [
+          "588e8f7f640f"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-087",
+        "gold": [
+          "1278ecdf71a3"
+        ],
+        "rank": 12
+      },
+      {
+        "id": "commitfull-088",
+        "gold": [
+          "9a8a826f226e"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-089",
+        "gold": [
+          "a9ee0eef5a70"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-090",
+        "gold": [
+          "d2590ee46c06"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-091",
+        "gold": [
+          "24630743cecd"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-092",
+        "gold": [
+          "427e8eb1e755"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-093",
+        "gold": [
+          "d569a2d6bca6"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-094",
+        "gold": [
+          "9cae7be94f0a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-095",
+        "gold": [
+          "5855dd711f0a"
+        ],
+        "rank": 8
+      },
+      {
+        "id": "commitfull-096",
+        "gold": [
+          "6b09e6ee347e"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-097",
+        "gold": [
+          "a64f32ba453b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-098",
+        "gold": [
+          "fe7348cc530f"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-099",
+        "gold": [
+          "f7596c75dce4"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-100",
+        "gold": [
+          "3ff3ff21dd45"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-101",
+        "gold": [
+          "60389df6d69c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-102",
+        "gold": [
+          "cc23d1c6445d"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-103",
+        "gold": [
+          "a62a2d35d918"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-104",
+        "gold": [
+          "507409661335"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-105",
+        "gold": [
+          "d568f4727849"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-106",
+        "gold": [
+          "d8dcd3531662"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-107",
+        "gold": [
+          "c3c90bb09c9f"
+        ],
+        "rank": 30
+      },
+      {
+        "id": "commitfull-108",
+        "gold": [
+          "4dd3d1a1a253"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-109",
+        "gold": [
+          "f48c78c9eebd"
+        ],
+        "rank": 12
+      },
+      {
+        "id": "commitfull-110",
+        "gold": [
+          "91a9c397466d"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-111",
+        "gold": [
+          "c03553ed4ae8"
+        ],
+        "rank": 15
+      },
+      {
+        "id": "commitfull-112",
+        "gold": [
+          "891e52d72348"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-113",
+        "gold": [
+          "4a9f3572a387"
+        ],
+        "rank": 8
+      }
+    ]
+  },
+  "model_bm25_0.0": {
+    "summary": {
+      "n": 113,
+      "hit@1": 31,
+      "hit@5": 61,
+      "hit@10": 71,
+      "hit@15": 79,
+      "hit@30": 88,
+      "not_in_30": 25,
+      "mrr": 0.396
+    },
+    "rows": [
+      {
+        "id": "commitfull-001",
+        "gold": [
+          "f69934fb24a9"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-002",
+        "gold": [
+          "910b2312d644"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-003",
+        "gold": [
+          "44b1e7ebeabd"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-004",
+        "gold": [
+          "9d33629b6d3f"
+        ],
+        "rank": 13
+      },
+      {
+        "id": "commitfull-005",
+        "gold": [
+          "88177ec33fa0"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-006",
+        "gold": [
+          "e1c4fe21d47d"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-007",
+        "gold": [
+          "4dfd6f3fc1f7"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-008",
+        "gold": [
+          "a788cb72719a"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-009",
+        "gold": [
+          "5bb2be9a2300"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-010",
+        "gold": [
+          "478d49027fe9"
+        ],
+        "rank": 16
+      },
+      {
+        "id": "commitfull-011",
+        "gold": [
+          "1abd13700b32"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-012",
+        "gold": [
+          "d22ac0009847"
+        ],
+        "rank": 11
+      },
+      {
+        "id": "commitfull-013",
+        "gold": [
+          "afcc883d7f59"
+        ],
+        "rank": 21
+      },
+      {
+        "id": "commitfull-014",
+        "gold": [
+          "9fdee250de7e"
+        ],
+        "rank": 14
+      },
+      {
+        "id": "commitfull-015",
+        "gold": [
+          "c5d0a0931e1a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-016",
+        "gold": [
+          "4c8af1fff47e"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-017",
+        "gold": [
+          "07ad75ee0434"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-018",
+        "gold": [
+          "f7596c75dce4"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-019",
+        "gold": [
+          "2a34335dc3ef"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-020",
+        "gold": [
+          "2a9ae4b367fc"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-021",
+        "gold": [
+          "3501ea463432",
+          "6931bd67153f"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-022",
+        "gold": [
+          "39fe0068aa65",
+          "d22eaf96e2a1"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-023",
+        "gold": [
+          "5ee8b348ebab"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-024",
+        "gold": [
+          "3155bc99362a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-025",
+        "gold": [
+          "495f87363b3a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-026",
+        "gold": [
+          "8bfe0d873f38"
+        ],
+        "rank": 23
+      },
+      {
+        "id": "commitfull-027",
+        "gold": [
+          "62d29d510625"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-028",
+        "gold": [
+          "642bbf60604d"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-029",
+        "gold": [
+          "b37fbf30a3d4"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-030",
+        "gold": [
+          "87abd9c6094f"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-031",
+        "gold": [
+          "3155bc99362a"
+        ],
+        "rank": 25
+      },
+      {
+        "id": "commitfull-032",
+        "gold": [
+          "8b792be81bfa"
+        ],
+        "rank": 16
+      },
+      {
+        "id": "commitfull-033",
+        "gold": [
+          "d2f647cee45f"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-034",
+        "gold": [
+          "daf56b3f62f9"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-035",
+        "gold": [
+          "2814664e91d9"
+        ],
+        "rank": 26
+      },
+      {
+        "id": "commitfull-036",
+        "gold": [
+          "47d0517d66e8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-037",
+        "gold": [
+          "fcb8c8d33b72"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-038",
+        "gold": [
+          "3faff0b8ea2c"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-039",
+        "gold": [
+          "27c83f71770a"
+        ],
+        "rank": 22
+      },
+      {
+        "id": "commitfull-040",
+        "gold": [
+          "6e1db2173321"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-041",
+        "gold": [
+          "ce1ac8854323"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-042",
+        "gold": [
+          "589f2f6d6e4b"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-043",
+        "gold": [
+          "6ac1e0269134"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-044",
+        "gold": [
+          "96efb5ec9638"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-045",
+        "gold": [
+          "3a6348dbb9af"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-046",
+        "gold": [
+          "cd8ce63a3b68"
+        ],
+        "rank": 11
+      },
+      {
+        "id": "commitfull-047",
+        "gold": [
+          "29ef10815831"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-048",
+        "gold": [
+          "c8baf881257f"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-049",
+        "gold": [
+          "751b35c346e1"
+        ],
+        "rank": 14
+      },
+      {
+        "id": "commitfull-050",
+        "gold": [
+          "f7968b6797a5"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-051",
+        "gold": [
+          "8c90c610cd15"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-052",
+        "gold": [
+          "677bbe30d7b2"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-053",
+        "gold": [
+          "6e2f1eb40209"
+        ],
+        "rank": 10
+      },
+      {
+        "id": "commitfull-054",
+        "gold": [
+          "1acc4992d429"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-055",
+        "gold": [
+          "1b5bfe681b4c",
+          "6ea3f2ada871"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-056",
+        "gold": [
+          "573d460aa7f7"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-057",
+        "gold": [
+          "36093e69c70b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-058",
+        "gold": [
+          "dacf69a16df7"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-059",
+        "gold": [
+          "450495321281"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-060",
+        "gold": [
+          "ca66267d2cf8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-061",
+        "gold": [
+          "773e730d80aa"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-062",
+        "gold": [
+          "f0edd4a3e020"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-063",
+        "gold": [
+          "2e62df456ae8"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-064",
+        "gold": [
+          "a560e094279c"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-065",
+        "gold": [
+          "b8a297baab50"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-066",
+        "gold": [
+          "48fe34447de0"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-067",
+        "gold": [
+          "296d8cc097b6"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-068",
+        "gold": [
+          "5397ef71b37e"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-069",
+        "gold": [
+          "c7b99f78192b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-070",
+        "gold": [
+          "5c19d3e07b68"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-071",
+        "gold": [
+          "f3ad56f103e3"
+        ],
+        "rank": 15
+      },
+      {
+        "id": "commitfull-072",
+        "gold": [
+          "1421ffa32ab4"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-073",
+        "gold": [
+          "ae1ac2d4e075"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-074",
+        "gold": [
+          "12f3c65e5a42",
+          "2c0ff95d4d8d",
+          "91766548d10c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-075",
+        "gold": [
+          "de4c75bbadea"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-076",
+        "gold": [
+          "c97a530638bb"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-077",
+        "gold": [
+          "4f428228d7e4"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-078",
+        "gold": [
+          "8a58427d8aa7"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-079",
+        "gold": [
+          "26bea1e498d6"
+        ],
+        "rank": 9
+      },
+      {
+        "id": "commitfull-080",
+        "gold": [
+          "3d22f9f5ab52"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-081",
+        "gold": [
+          "21972c460137"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-082",
+        "gold": [
+          "9b2d7382bfc8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-083",
+        "gold": [
+          "0a17badb21c2"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-084",
+        "gold": [
+          "af66521381d9"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-085",
+        "gold": [
+          "9b2d7382bfc8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-086",
+        "gold": [
+          "588e8f7f640f"
+        ],
+        "rank": 9
+      },
+      {
+        "id": "commitfull-087",
+        "gold": [
+          "1278ecdf71a3"
+        ],
+        "rank": 20
+      },
+      {
+        "id": "commitfull-088",
+        "gold": [
+          "9a8a826f226e"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-089",
+        "gold": [
+          "a9ee0eef5a70"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-090",
+        "gold": [
+          "d2590ee46c06"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-091",
+        "gold": [
+          "24630743cecd"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-092",
+        "gold": [
+          "427e8eb1e755"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-093",
+        "gold": [
+          "d569a2d6bca6"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-094",
+        "gold": [
+          "9cae7be94f0a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-095",
+        "gold": [
+          "5855dd711f0a"
+        ],
+        "rank": 11
+      },
+      {
+        "id": "commitfull-096",
+        "gold": [
+          "6b09e6ee347e"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-097",
+        "gold": [
+          "a64f32ba453b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-098",
+        "gold": [
+          "fe7348cc530f"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-099",
+        "gold": [
+          "f7596c75dce4"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-100",
+        "gold": [
+          "3ff3ff21dd45"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-101",
+        "gold": [
+          "60389df6d69c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-102",
+        "gold": [
+          "cc23d1c6445d"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-103",
+        "gold": [
+          "a62a2d35d918"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-104",
+        "gold": [
+          "507409661335"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-105",
+        "gold": [
+          "d568f4727849"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-106",
+        "gold": [
+          "d8dcd3531662"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-107",
+        "gold": [
+          "c3c90bb09c9f"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-108",
+        "gold": [
+          "4dd3d1a1a253"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-109",
+        "gold": [
+          "f48c78c9eebd"
+        ],
+        "rank": 13
+      },
+      {
+        "id": "commitfull-110",
+        "gold": [
+          "91a9c397466d"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-111",
+        "gold": [
+          "c03553ed4ae8"
+        ],
+        "rank": 21
+      },
+      {
+        "id": "commitfull-112",
+        "gold": [
+          "891e52d72348"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-113",
+        "gold": [
+          "4a9f3572a387"
+        ],
+        "rank": 10
+      }
+    ]
+  },
+  "fused_d15_raw_bm25_0.3": {
+    "summary": {
+      "n": 113,
+      "hit@1": 36,
+      "hit@5": 68,
+      "hit@10": 75,
+      "hit@15": 84,
+      "hit@30": 89,
+      "not_in_30": 24,
+      "mrr": 0.435
+    },
+    "rows": [
+      {
+        "id": "commitfull-001",
+        "gold": [
+          "f69934fb24a9"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-002",
+        "gold": [
+          "910b2312d644"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-003",
+        "gold": [
+          "44b1e7ebeabd"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-004",
+        "gold": [
+          "9d33629b6d3f"
+        ],
+        "rank": 24
+      },
+      {
+        "id": "commitfull-005",
+        "gold": [
+          "88177ec33fa0"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-006",
+        "gold": [
+          "e1c4fe21d47d"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-007",
+        "gold": [
+          "4dfd6f3fc1f7"
+        ],
+        "rank": 14
+      },
+      {
+        "id": "commitfull-008",
+        "gold": [
+          "a788cb72719a"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-009",
+        "gold": [
+          "5bb2be9a2300"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-010",
+        "gold": [
+          "478d49027fe9"
+        ],
+        "rank": 27
+      },
+      {
+        "id": "commitfull-011",
+        "gold": [
+          "1abd13700b32"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-012",
+        "gold": [
+          "d22ac0009847"
+        ],
+        "rank": 17
+      },
+      {
+        "id": "commitfull-013",
+        "gold": [
+          "afcc883d7f59"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-014",
+        "gold": [
+          "9fdee250de7e"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-015",
+        "gold": [
+          "c5d0a0931e1a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-016",
+        "gold": [
+          "4c8af1fff47e"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-017",
+        "gold": [
+          "07ad75ee0434"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-018",
+        "gold": [
+          "f7596c75dce4"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-019",
+        "gold": [
+          "2a34335dc3ef"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-020",
+        "gold": [
+          "2a9ae4b367fc"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-021",
+        "gold": [
+          "3501ea463432",
+          "6931bd67153f"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-022",
+        "gold": [
+          "39fe0068aa65",
+          "d22eaf96e2a1"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-023",
+        "gold": [
+          "5ee8b348ebab"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-024",
+        "gold": [
+          "3155bc99362a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-025",
+        "gold": [
+          "495f87363b3a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-026",
+        "gold": [
+          "8bfe0d873f38"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-027",
+        "gold": [
+          "62d29d510625"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-028",
+        "gold": [
+          "642bbf60604d"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-029",
+        "gold": [
+          "b37fbf30a3d4"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-030",
+        "gold": [
+          "87abd9c6094f"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-031",
+        "gold": [
+          "3155bc99362a"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-032",
+        "gold": [
+          "8b792be81bfa"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-033",
+        "gold": [
+          "d2f647cee45f"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-034",
+        "gold": [
+          "daf56b3f62f9"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-035",
+        "gold": [
+          "2814664e91d9"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-036",
+        "gold": [
+          "47d0517d66e8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-037",
+        "gold": [
+          "fcb8c8d33b72"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-038",
+        "gold": [
+          "3faff0b8ea2c"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-039",
+        "gold": [
+          "27c83f71770a"
+        ],
+        "rank": 16
+      },
+      {
+        "id": "commitfull-040",
+        "gold": [
+          "6e1db2173321"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-041",
+        "gold": [
+          "ce1ac8854323"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-042",
+        "gold": [
+          "589f2f6d6e4b"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-043",
+        "gold": [
+          "6ac1e0269134"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-044",
+        "gold": [
+          "96efb5ec9638"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-045",
+        "gold": [
+          "3a6348dbb9af"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-046",
+        "gold": [
+          "cd8ce63a3b68"
+        ],
+        "rank": 9
+      },
+      {
+        "id": "commitfull-047",
+        "gold": [
+          "29ef10815831"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-048",
+        "gold": [
+          "c8baf881257f"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-049",
+        "gold": [
+          "751b35c346e1"
+        ],
+        "rank": 14
+      },
+      {
+        "id": "commitfull-050",
+        "gold": [
+          "f7968b6797a5"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-051",
+        "gold": [
+          "8c90c610cd15"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-052",
+        "gold": [
+          "677bbe30d7b2"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-053",
+        "gold": [
+          "6e2f1eb40209"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-054",
+        "gold": [
+          "1acc4992d429"
+        ],
+        "rank": 15
+      },
+      {
+        "id": "commitfull-055",
+        "gold": [
+          "1b5bfe681b4c",
+          "6ea3f2ada871"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-056",
+        "gold": [
+          "573d460aa7f7"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-057",
+        "gold": [
+          "36093e69c70b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-058",
+        "gold": [
+          "dacf69a16df7"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-059",
+        "gold": [
+          "450495321281"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-060",
+        "gold": [
+          "ca66267d2cf8"
+        ],
+        "rank": 14
+      },
+      {
+        "id": "commitfull-061",
+        "gold": [
+          "773e730d80aa"
+        ],
+        "rank": 14
+      },
+      {
+        "id": "commitfull-062",
+        "gold": [
+          "f0edd4a3e020"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-063",
+        "gold": [
+          "2e62df456ae8"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-064",
+        "gold": [
+          "a560e094279c"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-065",
+        "gold": [
+          "b8a297baab50"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-066",
+        "gold": [
+          "48fe34447de0"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-067",
+        "gold": [
+          "296d8cc097b6"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-068",
+        "gold": [
+          "5397ef71b37e"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-069",
+        "gold": [
+          "c7b99f78192b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-070",
+        "gold": [
+          "5c19d3e07b68"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-071",
+        "gold": [
+          "f3ad56f103e3"
+        ],
+        "rank": 18
+      },
+      {
+        "id": "commitfull-072",
+        "gold": [
+          "1421ffa32ab4"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-073",
+        "gold": [
+          "ae1ac2d4e075"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-074",
+        "gold": [
+          "12f3c65e5a42",
+          "2c0ff95d4d8d",
+          "91766548d10c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-075",
+        "gold": [
+          "de4c75bbadea"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-076",
+        "gold": [
+          "c97a530638bb"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-077",
+        "gold": [
+          "4f428228d7e4"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-078",
+        "gold": [
+          "8a58427d8aa7"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-079",
+        "gold": [
+          "26bea1e498d6"
+        ],
+        "rank": 12
+      },
+      {
+        "id": "commitfull-080",
+        "gold": [
+          "3d22f9f5ab52"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-081",
+        "gold": [
+          "21972c460137"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-082",
+        "gold": [
+          "9b2d7382bfc8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-083",
+        "gold": [
+          "0a17badb21c2"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-084",
+        "gold": [
+          "af66521381d9"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-085",
+        "gold": [
+          "9b2d7382bfc8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-086",
+        "gold": [
+          "588e8f7f640f"
+        ],
+        "rank": 12
+      },
+      {
+        "id": "commitfull-087",
+        "gold": [
+          "1278ecdf71a3"
+        ],
+        "rank": 9
+      },
+      {
+        "id": "commitfull-088",
+        "gold": [
+          "9a8a826f226e"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-089",
+        "gold": [
+          "a9ee0eef5a70"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-090",
+        "gold": [
+          "d2590ee46c06"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-091",
+        "gold": [
+          "24630743cecd"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-092",
+        "gold": [
+          "427e8eb1e755"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-093",
+        "gold": [
+          "d569a2d6bca6"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-094",
+        "gold": [
+          "9cae7be94f0a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-095",
+        "gold": [
+          "5855dd711f0a"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-096",
+        "gold": [
+          "6b09e6ee347e"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-097",
+        "gold": [
+          "a64f32ba453b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-098",
+        "gold": [
+          "fe7348cc530f"
+        ],
+        "rank": 14
+      },
+      {
+        "id": "commitfull-099",
+        "gold": [
+          "f7596c75dce4"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-100",
+        "gold": [
+          "3ff3ff21dd45"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-101",
+        "gold": [
+          "60389df6d69c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-102",
+        "gold": [
+          "cc23d1c6445d"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-103",
+        "gold": [
+          "a62a2d35d918"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-104",
+        "gold": [
+          "507409661335"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-105",
+        "gold": [
+          "d568f4727849"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-106",
+        "gold": [
+          "d8dcd3531662"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-107",
+        "gold": [
+          "c3c90bb09c9f"
+        ],
+        "rank": 13
+      },
+      {
+        "id": "commitfull-108",
+        "gold": [
+          "4dd3d1a1a253"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-109",
+        "gold": [
+          "f48c78c9eebd"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-110",
+        "gold": [
+          "91a9c397466d"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-111",
+        "gold": [
+          "c03553ed4ae8"
+        ],
+        "rank": 9
+      },
+      {
+        "id": "commitfull-112",
+        "gold": [
+          "891e52d72348"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-113",
+        "gold": [
+          "4a9f3572a387"
+        ],
+        "rank": 9
+      }
+    ]
+  },
+  "fused_d50_clean_bm25_0.3": {
+    "summary": {
+      "n": 113,
+      "hit@1": 39,
+      "hit@5": 69,
+      "hit@10": 80,
+      "hit@15": 83,
+      "hit@30": 90,
+      "not_in_30": 23,
+      "mrr": 0.458
+    },
+    "rows": [
+      {
+        "id": "commitfull-001",
+        "gold": [
+          "f69934fb24a9"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-002",
+        "gold": [
+          "910b2312d644"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-003",
+        "gold": [
+          "44b1e7ebeabd"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-004",
+        "gold": [
+          "9d33629b6d3f"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-005",
+        "gold": [
+          "88177ec33fa0"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-006",
+        "gold": [
+          "e1c4fe21d47d"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-007",
+        "gold": [
+          "4dfd6f3fc1f7"
+        ],
+        "rank": 27
+      },
+      {
+        "id": "commitfull-008",
+        "gold": [
+          "a788cb72719a"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-009",
+        "gold": [
+          "5bb2be9a2300"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-010",
+        "gold": [
+          "478d49027fe9"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-011",
+        "gold": [
+          "1abd13700b32"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-012",
+        "gold": [
+          "d22ac0009847"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-013",
+        "gold": [
+          "afcc883d7f59"
+        ],
+        "rank": 27
+      },
+      {
+        "id": "commitfull-014",
+        "gold": [
+          "9fdee250de7e"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-015",
+        "gold": [
+          "c5d0a0931e1a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-016",
+        "gold": [
+          "4c8af1fff47e"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-017",
+        "gold": [
+          "07ad75ee0434"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-018",
+        "gold": [
+          "f7596c75dce4"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-019",
+        "gold": [
+          "2a34335dc3ef"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-020",
+        "gold": [
+          "2a9ae4b367fc"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-021",
+        "gold": [
+          "3501ea463432",
+          "6931bd67153f"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-022",
+        "gold": [
+          "39fe0068aa65",
+          "d22eaf96e2a1"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-023",
+        "gold": [
+          "5ee8b348ebab"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-024",
+        "gold": [
+          "3155bc99362a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-025",
+        "gold": [
+          "495f87363b3a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-026",
+        "gold": [
+          "8bfe0d873f38"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-027",
+        "gold": [
+          "62d29d510625"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-028",
+        "gold": [
+          "642bbf60604d"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-029",
+        "gold": [
+          "b37fbf30a3d4"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-030",
+        "gold": [
+          "87abd9c6094f"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-031",
+        "gold": [
+          "3155bc99362a"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-032",
+        "gold": [
+          "8b792be81bfa"
+        ],
+        "rank": 10
+      },
+      {
+        "id": "commitfull-033",
+        "gold": [
+          "d2f647cee45f"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-034",
+        "gold": [
+          "daf56b3f62f9"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-035",
+        "gold": [
+          "2814664e91d9"
+        ],
+        "rank": 17
+      },
+      {
+        "id": "commitfull-036",
+        "gold": [
+          "47d0517d66e8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-037",
+        "gold": [
+          "fcb8c8d33b72"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-038",
+        "gold": [
+          "3faff0b8ea2c"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-039",
+        "gold": [
+          "27c83f71770a"
+        ],
+        "rank": 22
+      },
+      {
+        "id": "commitfull-040",
+        "gold": [
+          "6e1db2173321"
+        ],
+        "rank": 8
+      },
+      {
+        "id": "commitfull-041",
+        "gold": [
+          "ce1ac8854323"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-042",
+        "gold": [
+          "589f2f6d6e4b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-043",
+        "gold": [
+          "6ac1e0269134"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-044",
+        "gold": [
+          "96efb5ec9638"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-045",
+        "gold": [
+          "3a6348dbb9af"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-046",
+        "gold": [
+          "cd8ce63a3b68"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-047",
+        "gold": [
+          "29ef10815831"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-048",
+        "gold": [
+          "c8baf881257f"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-049",
+        "gold": [
+          "751b35c346e1"
+        ],
+        "rank": 15
+      },
+      {
+        "id": "commitfull-050",
+        "gold": [
+          "f7968b6797a5"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-051",
+        "gold": [
+          "8c90c610cd15"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-052",
+        "gold": [
+          "677bbe30d7b2"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-053",
+        "gold": [
+          "6e2f1eb40209"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-054",
+        "gold": [
+          "1acc4992d429"
+        ],
+        "rank": 24
+      },
+      {
+        "id": "commitfull-055",
+        "gold": [
+          "1b5bfe681b4c",
+          "6ea3f2ada871"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-056",
+        "gold": [
+          "573d460aa7f7"
+        ],
+        "rank": 12
+      },
+      {
+        "id": "commitfull-057",
+        "gold": [
+          "36093e69c70b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-058",
+        "gold": [
+          "dacf69a16df7"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-059",
+        "gold": [
+          "450495321281"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-060",
+        "gold": [
+          "ca66267d2cf8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-061",
+        "gold": [
+          "773e730d80aa"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-062",
+        "gold": [
+          "f0edd4a3e020"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-063",
+        "gold": [
+          "2e62df456ae8"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-064",
+        "gold": [
+          "a560e094279c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-065",
+        "gold": [
+          "b8a297baab50"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-066",
+        "gold": [
+          "48fe34447de0"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-067",
+        "gold": [
+          "296d8cc097b6"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-068",
+        "gold": [
+          "5397ef71b37e"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-069",
+        "gold": [
+          "c7b99f78192b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-070",
+        "gold": [
+          "5c19d3e07b68"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-071",
+        "gold": [
+          "f3ad56f103e3"
+        ],
+        "rank": 18
+      },
+      {
+        "id": "commitfull-072",
+        "gold": [
+          "1421ffa32ab4"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-073",
+        "gold": [
+          "ae1ac2d4e075"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-074",
+        "gold": [
+          "12f3c65e5a42",
+          "2c0ff95d4d8d",
+          "91766548d10c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-075",
+        "gold": [
+          "de4c75bbadea"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-076",
+        "gold": [
+          "c97a530638bb"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-077",
+        "gold": [
+          "4f428228d7e4"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-078",
+        "gold": [
+          "8a58427d8aa7"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-079",
+        "gold": [
+          "26bea1e498d6"
+        ],
+        "rank": 16
+      },
+      {
+        "id": "commitfull-080",
+        "gold": [
+          "3d22f9f5ab52"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-081",
+        "gold": [
+          "21972c460137"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-082",
+        "gold": [
+          "9b2d7382bfc8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-083",
+        "gold": [
+          "0a17badb21c2"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-084",
+        "gold": [
+          "af66521381d9"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-085",
+        "gold": [
+          "9b2d7382bfc8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-086",
+        "gold": [
+          "588e8f7f640f"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-087",
+        "gold": [
+          "1278ecdf71a3"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-088",
+        "gold": [
+          "9a8a826f226e"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-089",
+        "gold": [
+          "a9ee0eef5a70"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-090",
+        "gold": [
+          "d2590ee46c06"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-091",
+        "gold": [
+          "24630743cecd"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-092",
+        "gold": [
+          "427e8eb1e755"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-093",
+        "gold": [
+          "d569a2d6bca6"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-094",
+        "gold": [
+          "9cae7be94f0a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-095",
+        "gold": [
+          "5855dd711f0a"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-096",
+        "gold": [
+          "6b09e6ee347e"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-097",
+        "gold": [
+          "a64f32ba453b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-098",
+        "gold": [
+          "fe7348cc530f"
+        ],
+        "rank": 9
+      },
+      {
+        "id": "commitfull-099",
+        "gold": [
+          "f7596c75dce4"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-100",
+        "gold": [
+          "3ff3ff21dd45"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-101",
+        "gold": [
+          "60389df6d69c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-102",
+        "gold": [
+          "cc23d1c6445d"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-103",
+        "gold": [
+          "a62a2d35d918"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-104",
+        "gold": [
+          "507409661335"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-105",
+        "gold": [
+          "d568f4727849"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-106",
+        "gold": [
+          "d8dcd3531662"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-107",
+        "gold": [
+          "c3c90bb09c9f"
+        ],
+        "rank": 13
+      },
+      {
+        "id": "commitfull-108",
+        "gold": [
+          "4dd3d1a1a253"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-109",
+        "gold": [
+          "f48c78c9eebd"
+        ],
+        "rank": 9
+      },
+      {
+        "id": "commitfull-110",
+        "gold": [
+          "91a9c397466d"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-111",
+        "gold": [
+          "c03553ed4ae8"
+        ],
+        "rank": 8
+      },
+      {
+        "id": "commitfull-112",
+        "gold": [
+          "891e52d72348"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-113",
+        "gold": [
+          "4a9f3572a387"
+        ],
+        "rank": 6
+      }
+    ]
+  },
+  "fused_d50_clean_bm25_0.1": {
+    "summary": {
+      "n": 113,
+      "hit@1": 36,
+      "hit@5": 66,
+      "hit@10": 78,
+      "hit@15": 81,
+      "hit@30": 90,
+      "not_in_30": 23,
+      "mrr": 0.44
+    },
+    "rows": [
+      {
+        "id": "commitfull-001",
+        "gold": [
+          "f69934fb24a9"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-002",
+        "gold": [
+          "910b2312d644"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-003",
+        "gold": [
+          "44b1e7ebeabd"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-004",
+        "gold": [
+          "9d33629b6d3f"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-005",
+        "gold": [
+          "88177ec33fa0"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-006",
+        "gold": [
+          "e1c4fe21d47d"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-007",
+        "gold": [
+          "4dfd6f3fc1f7"
+        ],
+        "rank": 27
+      },
+      {
+        "id": "commitfull-008",
+        "gold": [
+          "a788cb72719a"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-009",
+        "gold": [
+          "5bb2be9a2300"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-010",
+        "gold": [
+          "478d49027fe9"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-011",
+        "gold": [
+          "1abd13700b32"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-012",
+        "gold": [
+          "d22ac0009847"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-013",
+        "gold": [
+          "afcc883d7f59"
+        ],
+        "rank": 25
+      },
+      {
+        "id": "commitfull-014",
+        "gold": [
+          "9fdee250de7e"
+        ],
+        "rank": 8
+      },
+      {
+        "id": "commitfull-015",
+        "gold": [
+          "c5d0a0931e1a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-016",
+        "gold": [
+          "4c8af1fff47e"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-017",
+        "gold": [
+          "07ad75ee0434"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-018",
+        "gold": [
+          "f7596c75dce4"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-019",
+        "gold": [
+          "2a34335dc3ef"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-020",
+        "gold": [
+          "2a9ae4b367fc"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-021",
+        "gold": [
+          "3501ea463432",
+          "6931bd67153f"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-022",
+        "gold": [
+          "39fe0068aa65",
+          "d22eaf96e2a1"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-023",
+        "gold": [
+          "5ee8b348ebab"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-024",
+        "gold": [
+          "3155bc99362a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-025",
+        "gold": [
+          "495f87363b3a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-026",
+        "gold": [
+          "8bfe0d873f38"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-027",
+        "gold": [
+          "62d29d510625"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-028",
+        "gold": [
+          "642bbf60604d"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-029",
+        "gold": [
+          "b37fbf30a3d4"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-030",
+        "gold": [
+          "87abd9c6094f"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-031",
+        "gold": [
+          "3155bc99362a"
+        ],
+        "rank": 9
+      },
+      {
+        "id": "commitfull-032",
+        "gold": [
+          "8b792be81bfa"
+        ],
+        "rank": 9
+      },
+      {
+        "id": "commitfull-033",
+        "gold": [
+          "d2f647cee45f"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-034",
+        "gold": [
+          "daf56b3f62f9"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-035",
+        "gold": [
+          "2814664e91d9"
+        ],
+        "rank": 18
+      },
+      {
+        "id": "commitfull-036",
+        "gold": [
+          "47d0517d66e8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-037",
+        "gold": [
+          "fcb8c8d33b72"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-038",
+        "gold": [
+          "3faff0b8ea2c"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-039",
+        "gold": [
+          "27c83f71770a"
+        ],
+        "rank": 23
+      },
+      {
+        "id": "commitfull-040",
+        "gold": [
+          "6e1db2173321"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-041",
+        "gold": [
+          "ce1ac8854323"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-042",
+        "gold": [
+          "589f2f6d6e4b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-043",
+        "gold": [
+          "6ac1e0269134"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-044",
+        "gold": [
+          "96efb5ec9638"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-045",
+        "gold": [
+          "3a6348dbb9af"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-046",
+        "gold": [
+          "cd8ce63a3b68"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-047",
+        "gold": [
+          "29ef10815831"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-048",
+        "gold": [
+          "c8baf881257f"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-049",
+        "gold": [
+          "751b35c346e1"
+        ],
+        "rank": 17
+      },
+      {
+        "id": "commitfull-050",
+        "gold": [
+          "f7968b6797a5"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-051",
+        "gold": [
+          "8c90c610cd15"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-052",
+        "gold": [
+          "677bbe30d7b2"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-053",
+        "gold": [
+          "6e2f1eb40209"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-054",
+        "gold": [
+          "1acc4992d429"
+        ],
+        "rank": 20
+      },
+      {
+        "id": "commitfull-055",
+        "gold": [
+          "1b5bfe681b4c",
+          "6ea3f2ada871"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-056",
+        "gold": [
+          "573d460aa7f7"
+        ],
+        "rank": 12
+      },
+      {
+        "id": "commitfull-057",
+        "gold": [
+          "36093e69c70b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-058",
+        "gold": [
+          "dacf69a16df7"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-059",
+        "gold": [
+          "450495321281"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-060",
+        "gold": [
+          "ca66267d2cf8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-061",
+        "gold": [
+          "773e730d80aa"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-062",
+        "gold": [
+          "f0edd4a3e020"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-063",
+        "gold": [
+          "2e62df456ae8"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-064",
+        "gold": [
+          "a560e094279c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-065",
+        "gold": [
+          "b8a297baab50"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-066",
+        "gold": [
+          "48fe34447de0"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-067",
+        "gold": [
+          "296d8cc097b6"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-068",
+        "gold": [
+          "5397ef71b37e"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-069",
+        "gold": [
+          "c7b99f78192b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-070",
+        "gold": [
+          "5c19d3e07b68"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-071",
+        "gold": [
+          "f3ad56f103e3"
+        ],
+        "rank": 18
+      },
+      {
+        "id": "commitfull-072",
+        "gold": [
+          "1421ffa32ab4"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-073",
+        "gold": [
+          "ae1ac2d4e075"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-074",
+        "gold": [
+          "12f3c65e5a42",
+          "2c0ff95d4d8d",
+          "91766548d10c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-075",
+        "gold": [
+          "de4c75bbadea"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-076",
+        "gold": [
+          "c97a530638bb"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-077",
+        "gold": [
+          "4f428228d7e4"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-078",
+        "gold": [
+          "8a58427d8aa7"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-079",
+        "gold": [
+          "26bea1e498d6"
+        ],
+        "rank": 14
+      },
+      {
+        "id": "commitfull-080",
+        "gold": [
+          "3d22f9f5ab52"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-081",
+        "gold": [
+          "21972c460137"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-082",
+        "gold": [
+          "9b2d7382bfc8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-083",
+        "gold": [
+          "0a17badb21c2"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-084",
+        "gold": [
+          "af66521381d9"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-085",
+        "gold": [
+          "9b2d7382bfc8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-086",
+        "gold": [
+          "588e8f7f640f"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-087",
+        "gold": [
+          "1278ecdf71a3"
+        ],
+        "rank": 19
+      },
+      {
+        "id": "commitfull-088",
+        "gold": [
+          "9a8a826f226e"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-089",
+        "gold": [
+          "a9ee0eef5a70"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-090",
+        "gold": [
+          "d2590ee46c06"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-091",
+        "gold": [
+          "24630743cecd"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-092",
+        "gold": [
+          "427e8eb1e755"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-093",
+        "gold": [
+          "d569a2d6bca6"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-094",
+        "gold": [
+          "9cae7be94f0a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-095",
+        "gold": [
+          "5855dd711f0a"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-096",
+        "gold": [
+          "6b09e6ee347e"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-097",
+        "gold": [
+          "a64f32ba453b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-098",
+        "gold": [
+          "fe7348cc530f"
+        ],
+        "rank": 9
+      },
+      {
+        "id": "commitfull-099",
+        "gold": [
+          "f7596c75dce4"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-100",
+        "gold": [
+          "3ff3ff21dd45"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-101",
+        "gold": [
+          "60389df6d69c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-102",
+        "gold": [
+          "cc23d1c6445d"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-103",
+        "gold": [
+          "a62a2d35d918"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-104",
+        "gold": [
+          "507409661335"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-105",
+        "gold": [
+          "d568f4727849"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-106",
+        "gold": [
+          "d8dcd3531662"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-107",
+        "gold": [
+          "c3c90bb09c9f"
+        ],
+        "rank": 20
+      },
+      {
+        "id": "commitfull-108",
+        "gold": [
+          "4dd3d1a1a253"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-109",
+        "gold": [
+          "f48c78c9eebd"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-110",
+        "gold": [
+          "91a9c397466d"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-111",
+        "gold": [
+          "c03553ed4ae8"
+        ],
+        "rank": 11
+      },
+      {
+        "id": "commitfull-112",
+        "gold": [
+          "891e52d72348"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-113",
+        "gold": [
+          "4a9f3572a387"
+        ],
+        "rank": 7
+      }
+    ]
+  },
+  "fused_d50_clean_bm25_0.0": {
+    "summary": {
+      "n": 113,
+      "hit@1": 38,
+      "hit@5": 63,
+      "hit@10": 76,
+      "hit@15": 82,
+      "hit@30": 90,
+      "not_in_30": 23,
+      "mrr": 0.443
+    },
+    "rows": [
+      {
+        "id": "commitfull-001",
+        "gold": [
+          "f69934fb24a9"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-002",
+        "gold": [
+          "910b2312d644"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-003",
+        "gold": [
+          "44b1e7ebeabd"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-004",
+        "gold": [
+          "9d33629b6d3f"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-005",
+        "gold": [
+          "88177ec33fa0"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-006",
+        "gold": [
+          "e1c4fe21d47d"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-007",
+        "gold": [
+          "4dfd6f3fc1f7"
+        ],
+        "rank": 25
+      },
+      {
+        "id": "commitfull-008",
+        "gold": [
+          "a788cb72719a"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-009",
+        "gold": [
+          "5bb2be9a2300"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-010",
+        "gold": [
+          "478d49027fe9"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-011",
+        "gold": [
+          "1abd13700b32"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-012",
+        "gold": [
+          "d22ac0009847"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-013",
+        "gold": [
+          "afcc883d7f59"
+        ],
+        "rank": 23
+      },
+      {
+        "id": "commitfull-014",
+        "gold": [
+          "9fdee250de7e"
+        ],
+        "rank": 8
+      },
+      {
+        "id": "commitfull-015",
+        "gold": [
+          "c5d0a0931e1a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-016",
+        "gold": [
+          "4c8af1fff47e"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-017",
+        "gold": [
+          "07ad75ee0434"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-018",
+        "gold": [
+          "f7596c75dce4"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-019",
+        "gold": [
+          "2a34335dc3ef"
+        ],
+        "rank": 3
+      },
+      {
+        "id": "commitfull-020",
+        "gold": [
+          "2a9ae4b367fc"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-021",
+        "gold": [
+          "3501ea463432",
+          "6931bd67153f"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-022",
+        "gold": [
+          "39fe0068aa65",
+          "d22eaf96e2a1"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-023",
+        "gold": [
+          "5ee8b348ebab"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-024",
+        "gold": [
+          "3155bc99362a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-025",
+        "gold": [
+          "495f87363b3a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-026",
+        "gold": [
+          "8bfe0d873f38"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-027",
+        "gold": [
+          "62d29d510625"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-028",
+        "gold": [
+          "642bbf60604d"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-029",
+        "gold": [
+          "b37fbf30a3d4"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-030",
+        "gold": [
+          "87abd9c6094f"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-031",
+        "gold": [
+          "3155bc99362a"
+        ],
+        "rank": 14
+      },
+      {
+        "id": "commitfull-032",
+        "gold": [
+          "8b792be81bfa"
+        ],
+        "rank": 9
+      },
+      {
+        "id": "commitfull-033",
+        "gold": [
+          "d2f647cee45f"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-034",
+        "gold": [
+          "daf56b3f62f9"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-035",
+        "gold": [
+          "2814664e91d9"
+        ],
+        "rank": 15
+      },
+      {
+        "id": "commitfull-036",
+        "gold": [
+          "47d0517d66e8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-037",
+        "gold": [
+          "fcb8c8d33b72"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-038",
+        "gold": [
+          "3faff0b8ea2c"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-039",
+        "gold": [
+          "27c83f71770a"
+        ],
+        "rank": 24
+      },
+      {
+        "id": "commitfull-040",
+        "gold": [
+          "6e1db2173321"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-041",
+        "gold": [
+          "ce1ac8854323"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-042",
+        "gold": [
+          "589f2f6d6e4b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-043",
+        "gold": [
+          "6ac1e0269134"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-044",
+        "gold": [
+          "96efb5ec9638"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-045",
+        "gold": [
+          "3a6348dbb9af"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-046",
+        "gold": [
+          "cd8ce63a3b68"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-047",
+        "gold": [
+          "29ef10815831"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-048",
+        "gold": [
+          "c8baf881257f"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-049",
+        "gold": [
+          "751b35c346e1"
+        ],
+        "rank": 20
+      },
+      {
+        "id": "commitfull-050",
+        "gold": [
+          "f7968b6797a5"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-051",
+        "gold": [
+          "8c90c610cd15"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-052",
+        "gold": [
+          "677bbe30d7b2"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-053",
+        "gold": [
+          "6e2f1eb40209"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-054",
+        "gold": [
+          "1acc4992d429"
+        ],
+        "rank": 21
+      },
+      {
+        "id": "commitfull-055",
+        "gold": [
+          "1b5bfe681b4c",
+          "6ea3f2ada871"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-056",
+        "gold": [
+          "573d460aa7f7"
+        ],
+        "rank": 13
+      },
+      {
+        "id": "commitfull-057",
+        "gold": [
+          "36093e69c70b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-058",
+        "gold": [
+          "dacf69a16df7"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-059",
+        "gold": [
+          "450495321281"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-060",
+        "gold": [
+          "ca66267d2cf8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-061",
+        "gold": [
+          "773e730d80aa"
+        ],
+        "rank": 12
+      },
+      {
+        "id": "commitfull-062",
+        "gold": [
+          "f0edd4a3e020"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-063",
+        "gold": [
+          "2e62df456ae8"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-064",
+        "gold": [
+          "a560e094279c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-065",
+        "gold": [
+          "b8a297baab50"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-066",
+        "gold": [
+          "48fe34447de0"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-067",
+        "gold": [
+          "296d8cc097b6"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-068",
+        "gold": [
+          "5397ef71b37e"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-069",
+        "gold": [
+          "c7b99f78192b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-070",
+        "gold": [
+          "5c19d3e07b68"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-071",
+        "gold": [
+          "f3ad56f103e3"
+        ],
+        "rank": 19
+      },
+      {
+        "id": "commitfull-072",
+        "gold": [
+          "1421ffa32ab4"
+        ],
+        "rank": 5
+      },
+      {
+        "id": "commitfull-073",
+        "gold": [
+          "ae1ac2d4e075"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-074",
+        "gold": [
+          "12f3c65e5a42",
+          "2c0ff95d4d8d",
+          "91766548d10c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-075",
+        "gold": [
+          "de4c75bbadea"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-076",
+        "gold": [
+          "c97a530638bb"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-077",
+        "gold": [
+          "4f428228d7e4"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-078",
+        "gold": [
+          "8a58427d8aa7"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-079",
+        "gold": [
+          "26bea1e498d6"
+        ],
+        "rank": 12
+      },
+      {
+        "id": "commitfull-080",
+        "gold": [
+          "3d22f9f5ab52"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-081",
+        "gold": [
+          "21972c460137"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-082",
+        "gold": [
+          "9b2d7382bfc8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-083",
+        "gold": [
+          "0a17badb21c2"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-084",
+        "gold": [
+          "af66521381d9"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-085",
+        "gold": [
+          "9b2d7382bfc8"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-086",
+        "gold": [
+          "588e8f7f640f"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-087",
+        "gold": [
+          "1278ecdf71a3"
+        ],
+        "rank": 26
+      },
+      {
+        "id": "commitfull-088",
+        "gold": [
+          "9a8a826f226e"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-089",
+        "gold": [
+          "a9ee0eef5a70"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-090",
+        "gold": [
+          "d2590ee46c06"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-091",
+        "gold": [
+          "24630743cecd"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-092",
+        "gold": [
+          "427e8eb1e755"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-093",
+        "gold": [
+          "d569a2d6bca6"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-094",
+        "gold": [
+          "9cae7be94f0a"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-095",
+        "gold": [
+          "5855dd711f0a"
+        ],
+        "rank": 6
+      },
+      {
+        "id": "commitfull-096",
+        "gold": [
+          "6b09e6ee347e"
+        ],
+        "rank": null
+      },
+      {
+        "id": "commitfull-097",
+        "gold": [
+          "a64f32ba453b"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-098",
+        "gold": [
+          "fe7348cc530f"
+        ],
+        "rank": 8
+      },
+      {
+        "id": "commitfull-099",
+        "gold": [
+          "f7596c75dce4"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-100",
+        "gold": [
+          "3ff3ff21dd45"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-101",
+        "gold": [
+          "60389df6d69c"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-102",
+        "gold": [
+          "cc23d1c6445d"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-103",
+        "gold": [
+          "a62a2d35d918"
+        ],
+        "rank": 9
+      },
+      {
+        "id": "commitfull-104",
+        "gold": [
+          "507409661335"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-105",
+        "gold": [
+          "d568f4727849"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-106",
+        "gold": [
+          "d8dcd3531662"
+        ],
+        "rank": 7
+      },
+      {
+        "id": "commitfull-107",
+        "gold": [
+          "c3c90bb09c9f"
+        ],
+        "rank": 24
+      },
+      {
+        "id": "commitfull-108",
+        "gold": [
+          "4dd3d1a1a253"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-109",
+        "gold": [
+          "f48c78c9eebd"
+        ],
+        "rank": 4
+      },
+      {
+        "id": "commitfull-110",
+        "gold": [
+          "91a9c397466d"
+        ],
+        "rank": 1
+      },
+      {
+        "id": "commitfull-111",
+        "gold": [
+          "c03553ed4ae8"
+        ],
+        "rank": 13
+      },
+      {
+        "id": "commitfull-112",
+        "gold": [
+          "891e52d72348"
+        ],
+        "rank": 2
+      },
+      {
+        "id": "commitfull-113",
+        "gold": [
+          "4a9f3572a387"
+        ],
+        "rank": 8
+      }
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{"n": 514, "sha": "1bc377b1885c9a04d19483cb14d945cd25ac2836", "verdict": "filler", "reason": "The examples move to r.text, but the source does not say that r.content was deprecated."}
+{"n": 515, "sha": "1be2a55a39b0738c7e07f3bd356306de2683f04e", "verdict": "ok", "reason": ""}
+{"n": 516, "sha": "1be6a17edc0580ca9a21bd820d391a5a7b28a96f", "verdict": "filler", "reason": "The alias is shown, but a collision with another Timeout import is inferred rather than demonstrated."}
+{"n": 517, "sha": "1bf4af63952227b74a583b5ec5445f130af9d163", "verdict": "ok", "reason": ""}
+{"n": 518, "sha": "1c0abbd74b1ef39f15adbb3af10a998ea8af88d9", "verdict": "ok", "reason": ""}
+{"n": 519, "sha": "1c13c5e6f35cf05c4de758714bc99919e9bbbb43", "verdict": "ok", "reason": ""}
+{"n": 520, "sha": "1c19e6148f9a5bcad2be25d27759bc94275b0ccd", "verdict": "ok", "reason": ""}
+{"n": 521, "sha": "1c20d01f10e13a0c2f9348b062d04d5f222542db", "verdict": "ok", "reason": ""}
+{"n": 522, "sha": "1c30ef453b2087cee5a300481ac092af9edf6509", "verdict": "filler", "reason": "The class is removed, but the commit calls it old without establishing a formal deprecation."}
+{"n": 523, "sha": "1c34ac3ae66ef05820d781bde7ae8eda673eaa46", "verdict": "ok", "reason": ""}
+{"n": 524, "sha": "1c38e1f5f64c5da8a39a890d9205dd49297a9914", "verdict": "ok", "reason": ""}
+{"n": 525, "sha": "1c49660b84c88eeb2695796ce4a68903c00e00c5", "verdict": "filler", "reason": "The version bump is shown, but the record does not identify any upstream improvements or establish this was the latest release."}
+{"n": 526, "sha": "1c54014daff8fa237820d5c67dcbd1aa2f585927", "verdict": "ok", "reason": ""}
+{"n": 527, "sha": "1c5c6eeb7a82d3825b538b077fb42803c37359ab", "verdict": "wrong", "reason": "The non-execution comment refers to the callback, and the old test body still constructed a request."}
+{"n": 528, "sha": "1c5ce723d8ac41a97209c8c936d218c28f682157", "verdict": "wrong", "reason": "The added multipart code contains an unclosed mapping expression and would not run as shown."}
+{"n": 529, "sha": "1c73ec22e93c15d584cab3c14578e03e6313bad4", "verdict": "ok", "reason": ""}
+{"n": 530, "sha": "1c8a1417115c31ead7891bf89951de194b20b5e1", "verdict": "ok", "reason": ""}
+{"n": 531, "sha": "1ca1c52e698b13d3d5cc0755a6450306d880b933", "verdict": "ok", "reason": ""}
+{"n": 532, "sha": "1ca423ec804efa39fd397bdaaea58a8661db3afa", "verdict": "ok", "reason": ""}
+{"n": 533, "sha": "1cb3b797fe1d762322eb1ab3463a615cadc51ee3", "verdict": "ok", "reason": ""}
+{"n": 534, "sha": "1cb759a9d97f9f3245ed67facaca1fedff3ca833", "verdict": "ok", "reason": ""}
+{"n": 535, "sha": "1cd173a82c6a88d53340775d85a5620bc50955bc", "verdict": "ok", "reason": ""}
+{"n": 536, "sha": "1cdd1d04cec8aa0ba9067a9fcef57e0b92c3ad3a", "verdict": "ok", "reason": ""}
+{"n": 537, "sha": "1ced0040bdc7da87b9fb05c57fc2443be012caf9", "verdict": "ok", "reason": ""}
+{"n": 538, "sha": "1cf1699e37139daa37913e989c91fa130a2472fe", "verdict": "ok", "reason": ""}
+{"n": 539, "sha": "1cfe59299b1f81a070704a6a519f1329b4393a7a", "verdict": "ok", "reason": ""}
+{"n": 540, "sha": "1d021c5cc1fe3d8757834d09d265fe76a01fd911", "verdict": "ok", "reason": ""}
+{"n": 541, "sha": "1d0a5b2665ce73dac5f27f9f698f451ca3812579", "verdict": "wrong", "reason": "Moving the return statement to a deeper indentation can change when it executes, so behavioral equivalence is unsupported."}
+{"n": 542, "sha": "1d1831ba40fe53a37e5ab87e9913dd1c52349066", "verdict": "ok", "reason": ""}
+{"n": 543, "sha": "1d1927bb2b957658212ef89eb3cefdcc0a942033", "verdict": "ok", "reason": ""}
+{"n": 544, "sha": "1d2abea94b2323352e18648154a163c96136b689", "verdict": "ok", "reason": ""}
+{"n": 545, "sha": "1d2ee524d897fd010ef6a401fdf7d7ca6c82928f", "verdict": "ok", "reason": ""}
+{"n": 546, "sha": "1d31b361484b8db673f980d9589900874ec3fde8", "verdict": "filler", "reason": "The code switches to the direct urllib3 import, but the text does not establish a deprecation or show a prior import error."}
+{"n": 547, "sha": "1d3787a0eaffdb7679859db42613faf22ced0bbb", "verdict": "wrong", "reason": "The entry moves under previous keepers, so the appended description is not presented as a new current role."}
+{"n": 548, "sha": "1d41e8dc97ffed6678afc5cb81c8e2b8c8b827de", "verdict": "ok", "reason": ""}
+{"n": 549, "sha": "1d42d9d2741d36c469fca38bc7e7a5383e3b7bd9", "verdict": "ok", "reason": ""}
+{"n": 550, "sha": "1d5c4f3f0f49e04165303952ccc5fd1c70aee7c1", "verdict": "ok", "reason": ""}
+{"n": 551, "sha": "1d76cb3572276fa52430169c4603541a42f521be", "verdict": "ok", "reason": ""}
+{"n": 552, "sha": "1d7fd6c8b305351ba34280492fa3a9cf968cfbb8", "verdict": "wrong", "reason": "The deleted early return could suppress an exception from inside the context, whereas the restoration code itself is simply made conditional."}
+{"n": 553, "sha": "1da121356181844967fae02aedc17384e435581d", "verdict": "wrong", "reason": "The visible test describes resetting a counter to handle another server challenge, not preventing the challenge from being resent."}
+{"n": 554, "sha": "1da1490bcd120e61f4f7f96062ec570d3b0a905e", "verdict": "filler", "reason": "The automatic Host header is documented, but the source does not identify an actual connection or routing problem."}
+{"n": 555, "sha": "1da52c04d47bf1339f563203b01719ac1875ea5e", "verdict": "ok", "reason": ""}
+{"n": 556, "sha": "1da54de5dc1558eaaba0d6fe89eb641ead493cd6", "verdict": "ok", "reason": ""}
+{"n": 557, "sha": "1da62a65d9b28306c3be7ad603b2721374ce7d13", "verdict": "ok", "reason": ""}
+{"n": 558, "sha": "1dbaddd75e04365a822cf4bcf05f332a5f845ed6", "verdict": "filler", "reason": "The algorithms added are shown, but their characterization as stronger is not tied to a comparison in the commit."}
+{"n": 559, "sha": "1dcf3b71223b8a5895e7bf28f0c4f4045cfe8af5", "verdict": "ok", "reason": ""}
+{"n": 560, "sha": "1de14e6a93d2f84b1aaea198785c05b2e51d933b", "verdict": "ok", "reason": ""}
+{"n": 561, "sha": "1ded0ad3d55a100234f0f06e37315bd65664e8f5", "verdict": "ok", "reason": ""}
+{"n": 562, "sha": "1dfa631dae035c253a86b7e3aff0df38f3fbb324", "verdict": "wrong", "reason": "The new target still runs tests, so the diff shows a change in the test entry point rather than replacing the suite itself."}
+{"n": 563, "sha": "1e1fb1e7a81b0a925e772e20db24e4ef5c94ae72", "verdict": "wrong", "reason": "The visible edit removes the explicit redirect flag assignment and changes the condition for entering the block."}
+{"n": 564, "sha": "1e253cd0b35c97605fb6aab636e4ce0be32f9686", "verdict": "ok", "reason": ""}
+{"n": 565, "sha": "1e3eb4ef9e21dded404909142b92fd7506b701f2", "verdict": "ok", "reason": ""}
+{"n": 566, "sha": "1e46cbb4f031b242fb04bfc881150b11a2e93602", "verdict": "ok", "reason": ""}
+{"n": 567, "sha": "1e5fad7433772b648fcbc921e2a79de5c4c6be8b", "verdict": "ok", "reason": ""}
+{"n": 568, "sha": "1e64fbcb559d3ca51790ec1e04385c5bfb625dc9", "verdict": "ok", "reason": ""}
+{"n": 569, "sha": "1e7ae063ce1b2368023baacd90dcb718611bd37d", "verdict": "wrong", "reason": "The shown blank-line deletion is inside the class, and no surrounding lines establish that it was the trailing line."}
+{"n": 570, "sha": "1ea27b35649571abb796f7cffbab83938d882a8d", "verdict": "ok", "reason": ""}
+{"n": 571, "sha": "1ebf3afb24e21cced0fab67e55294ed397d714c0", "verdict": "wrong", "reason": "The added prose expresses an opinion about Python usage without stating a standard."}
+{"n": 572, "sha": "1ec08bedd40b3854702011771fc2763cb7b1cb52", "verdict": "ok", "reason": ""}
+{"n": 573, "sha": "1ecb593c7be7d6465cf61356f3bdada3849b84fd", "verdict": "ok", "reason": ""}
+{"n": 574, "sha": "1efd06a87da37c074f7590ff5968090d849cea3f", "verdict": "wrong", "reason": "Iterating a dictionary yields keys, while the previous expression returned key-value pairs, so the stated equivalence does not follow."}
+{"n": 575, "sha": "1f05867493215d51790f965419149e45ad765ac0", "verdict": "ok", "reason": ""}
+{"n": 576, "sha": "1f0e5775f28d6c2db3430fdc16a095762816bf87", "verdict": "filler", "reason": "The text describes recording HTTP interactions, but does not describe the purpose as managing test data."}
+{"n": 577, "sha": "1f3e53b32ec603c8859dacc2dbe17b875fcd2fe3", "verdict": "filler", "reason": "The old gzip comment is removed, but nothing shown establishes that its description was inaccurate or outdated."}
+{"n": 578, "sha": "1f48a4c9ea81d6b2128a7e1199be2dfbb81b643d", "verdict": "ok", "reason": ""}
+{"n": 579, "sha": "1f6589ec3a1ee910f9a65cc3ceac60b26677bc0e", "verdict": "filler", "reason": "The hook version advances, but the commit does not establish that it was the latest stable release."}
+{"n": 580, "sha": "1f6de03baf534b21746b632a4d33889118fb73bb", "verdict": "filler", "reason": "The os.path import is removed, but there is no evidence in the excerpt that it was unused."}
+{"n": 581, "sha": "1f83ccb3084b67a357e1026cd1f96999e8f832ac", "verdict": "filler", "reason": "The donation text and widget are removed, but the commit does not characterize Gittip as outdated."}
+{"n": 582, "sha": "1f85ce86700130e17e553b943e85048345d36041", "verdict": "filler", "reason": "The warning is moved and emphasized, but a softer tone is an interpretation rather than a change stated by the commit."}
+{"n": 583, "sha": "1f9425ca53ebbce4e87edab93cbcbcdfa037c289", "verdict": "ok", "reason": ""}
+{"n": 584, "sha": "1f9ec06e224faa0be23eb7959fab347e8374ba73", "verdict": "ok", "reason": ""}
+{"n": 585, "sha": "1fa168eea43d4a26896cb25fac1385b22da875ca", "verdict": "ok", "reason": ""}
+{"n": 586, "sha": "1fa1cdd2a334d5acb9f3d9ca11ab4eaaec794292", "verdict": "ok", "reason": ""}
+{"n": 587, "sha": "1faa76a86fe170fcab8ddfeb0d069ca10793f8a3", "verdict": "filler", "reason": "The new streaming path and legacy fallback are shown, but a performance improvement is not demonstrated."}
+{"n": 588, "sha": "1fb4bd82f7f566c3e2993cb76dcd47192d62baea", "verdict": "wrong", "reason": "The summary invents a dependency name from the commit title."}
+{"n": 589, "sha": "1fcda912dbac57cd4e0f557fb611ea46c200cb4e", "verdict": "ok", "reason": ""}
+{"n": 590, "sha": "1ffce4f7dcb646c4c4b357c214aa9ad77e69f645", "verdict": "ok", "reason": ""}
+{"n": 591, "sha": "2019450b43511289d45c6b3e7376f2813e1c27b4", "verdict": "ok", "reason": ""}
+{"n": 592, "sha": "20290e3f2c55037dfced04e91550b2a213dcfa65", "verdict": "filler", "reason": "The download claim moves and the informal wording changes position, but a gain in flow is subjective."}
+{"n": 593, "sha": "2029a8a93113dbcd0fab98f987933794d6ac3094", "verdict": "filler", "reason": "The change clears pooled connections from each proxy manager without establishing that every proxy-related resource is released."}
+{"n": 594, "sha": "20319044a3e8b73993da667828992dd111ca145c", "verdict": "ok", "reason": ""}
+{"n": 595, "sha": "204649521bf8d165690b78a349d0f7c10d03bb99", "verdict": "ok", "reason": ""}
+{"n": 596, "sha": "20aed5488b117d82abc4a22cdb6585d06a02a70f", "verdict": "ok", "reason": ""}
+{"n": 597, "sha": "20b10aed1bbe277745a74953b6dc73290bfa82fa", "verdict": "ok", "reason": ""}
+{"n": 598, "sha": "20b4bb7c363822f6706522a1d2c018a094d32fb7", "verdict": "ok", "reason": ""}
+{"n": 599, "sha": "20c930e48e31916481d6d45bcbb079f7c4670b18", "verdict": "ok", "reason": ""}
+{"n": 600, "sha": "20cd46426fda1b048afa90955f445424efa4be46", "verdict": "ok", "reason": ""}
+{"n": 601, "sha": "20e0ee4968298815ed8a3cd7de01a17e8451cd6c", "verdict": "filler", "reason": "The message supports removing AuthObject, but does not establish that the class had no callers."}
+{"n": 602, "sha": "20f802764142a1886db239ff7b147e3b5433e5f9", "verdict": "ok", "reason": ""}
+{"n": 603, "sha": "210095fd08f790a1ce640354a91c1a264a291360", "verdict": "ok", "reason": ""}
+{"n": 604, "sha": "21010ee25a7803f2283487cbc8e4abc87602f259", "verdict": "ok", "reason": ""}

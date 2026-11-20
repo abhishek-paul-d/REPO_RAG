@@ -84,6 +84,9 @@ env = {{**os.environ, 'VLLM_USE_FLASHINFER_SAMPLER': '0', 'PATH': path}}
 # second). Startup compiles for several minutes. The mode is shown in the health line.
 ENFORCE_EAGER = False
 MTP_TOKENS = 3
+# Requests served at once. vLLM batches them (max_num_seqs below); the eval's --workers N asks
+# N questions at a time. 1 = one request at a time, as in every earlier measurement.
+CONCURRENCY = 8
 DECODE_MODE = ('eager' if ENFORCE_EAGER else 'cuda-graphs') + (
     f' + mtp{{MTP_TOKENS}}' if MTP_TOKENS else ''
 )
@@ -145,10 +148,12 @@ PORT = 8000
 TOKEN = secrets.token_urlsafe(24)   # new every session; only someone holding it can generate
 info = {'model': settings.llm_model, 'hardware': model.hardware,
         'max_input_tokens': str(settings.agent_max_input_tokens),
-        'decode_mode': globals().get('DECODE_MODE', 'transformers')}
+        'decode_mode': globals().get('DECODE_MODE', 'transformers'),
+        'concurrency': str(globals().get('CONCURRENCY', 1))}
 if reranker is not None:
     info['rerank'] = RERANKER_MODEL
-server = serve_model(model, TOKEN, info, port=PORT, reranker=reranker)
+server = serve_model(model, TOKEN, info, port=PORT, reranker=reranker,
+                     concurrency=globals().get('CONCURRENCY', 1))
 threading.Thread(target=server.serve_forever, daemon=True).start()
 print(f'model server listening on 127.0.0.1:{PORT}')
 """

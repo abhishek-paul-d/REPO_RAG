@@ -320,6 +320,24 @@ class MetadataDB:
         ).fetchone()
         return record_from_dict(_safe_payload(json.loads(row[0]))) if row else None
 
+    def find_commit(self, repo: str, sha_prefix: str) -> CommitRecord:
+        """The one commit whose SHA starts with `sha_prefix` (at least 7 hex characters).
+
+        Raises LookupError when none matches or the prefix is ambiguous; the agent's `get_commit`
+        tool gives that message back to the model."""
+        prefix = sha_prefix.strip().lower()
+        if len(prefix) < 7 or not re.fullmatch(r"[0-9a-f]+", prefix):
+            raise LookupError("give at least 7 hexadecimal characters of the commit SHA")
+        rows = self.connection.execute(
+            "SELECT record_json FROM history_commits WHERE repo=? AND sha LIKE ? LIMIT 2",
+            (repo, prefix + "%"),
+        ).fetchall()
+        if not rows:
+            raise LookupError(f"no indexed commit starts with {prefix}")
+        if len(rows) > 1:
+            raise LookupError(f"{prefix} matches more than one commit; give more characters")
+        return record_from_dict(_safe_payload(json.loads(rows[0][0])))
+
     def query_commits(
         self, repo: str, *, is_fix: bool | None = None, limit: int = 50
     ) -> list[CommitRecord]:

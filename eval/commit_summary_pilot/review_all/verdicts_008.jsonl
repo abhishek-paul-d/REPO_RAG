@@ -1,0 +1,91 @@
+{"n": 605, "sha": "2109afc144f98f98320e6747d37961282efe1404", "verdict": "ok", "reason": ""}
+{"n": 606, "sha": "2110f7d18c67ce42073b440df0853447df842e99", "verdict": "ok", "reason": ""}
+{"n": 607, "sha": "2131ba4dda0197b5795096b703fee3d0980b9c42", "verdict": "ok", "reason": ""}
+{"n": 608, "sha": "2140c98fa493404888744f3917636ec0950f9671", "verdict": "ok", "reason": ""}
+{"n": 609, "sha": "2144213c307691710c9d665700860fc4993c3035", "verdict": "ok", "reason": ""}
+{"n": 610, "sha": "2153b21152ae86ff760b5e693ac88d998fd9ddcc", "verdict": "ok", "reason": ""}
+{"n": 611, "sha": "2159c802706fffaa4193f6c07d5695ebe20a9976", "verdict": "ok", "reason": ""}
+{"n": 612, "sha": "215d3984cc72fe617a9d52e9420050fb93a3ccda", "verdict": "filler", "reason": "The commit calls this a setup cleanup but gives no visible diff showing changes to installation or distribution behavior."}
+{"n": 613, "sha": "2161d8f78d71f619c07132add0b1966f62e40c6f", "verdict": "ok", "reason": ""}
+{"n": 614, "sha": "217a9d50cd1cceba3455d3d4ffdf08af736e51c8", "verdict": "ok", "reason": ""}
+{"n": 615, "sha": "2185fac6261bd4a3e625f7bdb267696d7ba1bf56", "verdict": "ok", "reason": ""}
+{"n": 616, "sha": "218978601f2ab711ec83e5bd18d439d2c2970efc", "verdict": "ok", "reason": ""}
+{"n": 617, "sha": "219490ea7fe0907bb12222e913cb4d1a63483e3c", "verdict": "filler", "reason": "The test switches to bytes and slicing, but the record does not identify a formal deprecation or name the Python versions affected."}
+{"n": 618, "sha": "21972c4601378fcad28cbc63466775b76d6a888a", "verdict": "ok", "reason": ""}
+{"n": 619, "sha": "219d9a7297efc5673a8c77400204130d66bca311", "verdict": "ok", "reason": ""}
+{"n": 620, "sha": "21acc6b73219eaf242f9e4f806338b045133c5cc", "verdict": "ok", "reason": ""}
+{"n": 621, "sha": "21c2146be451a623012ca561c8322f970e7eeb4a", "verdict": "ok", "reason": ""}
+{"n": 622, "sha": "21c88c829aade9347d74b69546f2541ae2a66caf", "verdict": "wrong", "reason": "The address helper previously caught a broader exception class, so the edit lets unrelated errors propagate rather than preventing them."}
+{"n": 623, "sha": "21c9680a1132ec20aea5c56e2657163e175615f8", "verdict": "ok", "reason": ""}
+{"n": 624, "sha": "21ccf8f8c0266ca9d713c6717a25015b6c0bd748", "verdict": "ok", "reason": ""}
+{"n": 625, "sha": "21e2d0c34a7f3e7b661ca93cb6afd3c0fcffa3c9", "verdict": "ok", "reason": ""}
+{"n": 626, "sha": "21e51b504e6d53c6a1aafabffdb328536cbf18de", "verdict": "filler", "reason": "The ignore entry is shown, but the temporary purpose and reason for excluding the file are speculative."}
+{"n": 627, "sha": "21f60fe8dfe2ebbde2318f763f585d7de18d3d6f", "verdict": "ok", "reason": ""}
+{"n": 628, "sha": "2203c3bccd5e4888a16d73247d540fd6e359d29c", "verdict": "wrong", "reason": "The branch checks self.cookiejar but passes a bare cookiejar name, so the shown code does not use the request's supplied jar as claimed."}
+{"n": 629, "sha": "22075f02d0f41ee8d6e7328361b59c3b2d54bdaf", "verdict": "wrong", "reason": "A host match with a value of None now triggers the scheme fallback, which the previous get call did not do."}
+{"n": 630, "sha": "22120d423e5bd5981f8e4c715d3a26071ff8d278", "verdict": "ok", "reason": ""}
+{"n": 631, "sha": "221bed27dda5e3c2c051de72b5553c73d6183985", "verdict": "wrong", "reason": "The patch imports a registration function but adds no call that registers any openers."}
+{"n": 632, "sha": "22433163b35bb451e4804b8d757ef25d58e1171a", "verdict": "ok", "reason": ""}
+{"n": 633, "sha": "2246a52a364b794f38daf073b085d7d669446e73", "verdict": "ok", "reason": ""}
+{"n": 634, "sha": "2255c34a65b5b1353004dc8d49cc397cd794ec15", "verdict": "ok", "reason": ""}
+{"n": 635, "sha": "2256fd2bc40f946bcb42c8bcb4c40ee14394a111", "verdict": "wrong", "reason": "The old entity name is misspelled, so the patch does not replace one valid nonbreaking-space entity with another."}
+{"n": 636, "sha": "226b5c7b0aafc3cb744eb79a666d9a1bd0803a47", "verdict": "ok", "reason": ""}
+{"n": 637, "sha": "22798ca32babce0cefe6b11d9421216f2f8ffa85", "verdict": "ok", "reason": ""}
+{"n": 638, "sha": "228c5e68aedc7d5d1e4b5bcc49aa4ae4811fbecd", "verdict": "ok", "reason": ""}
+{"n": 639, "sha": "2297d3340375bca1c2c3bd015e5b8ee96bbfbecc", "verdict": "ok", "reason": ""}
+{"n": 640, "sha": "22b5a39098223f51fcd2df238e13f9bac86b35a4", "verdict": "ok", "reason": ""}
+{"n": 641, "sha": "22d12b0501fa633b80bcda303a718696e408ebfb", "verdict": "ok", "reason": ""}
+{"n": 642, "sha": "22db55a8896b69e53d0a3cc2764c27b832c81478", "verdict": "ok", "reason": ""}
+{"n": 643, "sha": "22e31b4b737c2a3b61b3ab4fccd534b2eee65a87", "verdict": "ok", "reason": ""}
+{"n": 644, "sha": "22fdecba521610466f4316ad4a22c6f25870b46f", "verdict": "ok", "reason": ""}
+{"n": 645, "sha": "23051979f431ba7512c68968f44a9ff498c112a3", "verdict": "ok", "reason": ""}
+{"n": 646, "sha": "234a55da6a23f61591d0cb3267f15c529d8fab2f", "verdict": "ok", "reason": ""}
+{"n": 647, "sha": "2357b13824952b4380c0fd2939eae827595f6ad3", "verdict": "ok", "reason": ""}
+{"n": 648, "sha": "2361a6fc79f3af84550478cd43e0f9ab26e714f4", "verdict": "ok", "reason": ""}
+{"n": 649, "sha": "2374d0fd7a6ac34bd6e5cd7d39c73e856162740b", "verdict": "wrong", "reason": "The patch edits README call examples rather than Python method signatures, and the shown calls have malformed parameter syntax."}
+{"n": 650, "sha": "23842865e973f9aacd58fa935f1fec5c2069de11", "verdict": "wrong", "reason": "The edit introduces a malformed scheme in place of a valid HTTP scheme, rather than correcting a URL typo."}
+{"n": 651, "sha": "23953c0c875219a715f081cf3de7c149a7629ccf", "verdict": "filler", "reason": "The version advances, but the text does not establish that the new version is the latest stable release."}
+{"n": 652, "sha": "23ac7256eaa7667d417ae91da7f9b90a5a07eb19", "verdict": "wrong", "reason": "The badge is visibly repositioned in rendered documentation, so the claim of no user-facing change is too broad."}
+{"n": 653, "sha": "23b0535a0dd5a80f4fd5cde314e2bf287905c33e", "verdict": "wrong", "reason": "The new final line is also explicitly marked as having no newline."}
+{"n": 654, "sha": "23d5761bd4676c6bcbe99d4da27b190837330bb7", "verdict": "ok", "reason": ""}
+{"n": 655, "sha": "23d8522285bd7d7b4a1da46325aeac8814d87076", "verdict": "ok", "reason": ""}
+{"n": 656, "sha": "23d9b077d8b2db9d13c1edd97ffb65b0582631d0", "verdict": "ok", "reason": ""}
+{"n": 657, "sha": "23ee58d6ec47a06358008cb7a4ab4f9556edc285", "verdict": "ok", "reason": ""}
+{"n": 658, "sha": "23ff27ea4b285bb55f7e87a62719e52a491141cf", "verdict": "wrong", "reason": "The request description is an attribute documentation comment, not a docstring on a property."}
+{"n": 659, "sha": "2401f149750337970300383634f3942e9da3c68f", "verdict": "ok", "reason": ""}
+{"n": 660, "sha": "2411b1f56aa0259e3ddb6c85c55c5dd1b9d0a082", "verdict": "ok", "reason": ""}
+{"n": 661, "sha": "241656355bbc03f24d04578e3e523bee9ca70269", "verdict": "ok", "reason": ""}
+{"n": 662, "sha": "2416c2dd4769eba61b1364c88c8ce27b0f7b8bcf", "verdict": "wrong", "reason": "The changed image is identified as flourish.png, with no evidence that it is the project logo."}
+{"n": 663, "sha": "242d3113c09d10ba9a11dbcc05e0310a1e7568af", "verdict": "ok", "reason": ""}
+{"n": 664, "sha": "2432dd62085629c775abc269ec92e7f13a63b73f", "verdict": "ok", "reason": ""}
+{"n": 665, "sha": "244172bdd4b66ec7fdebdc76850b9ee08412a16c", "verdict": "ok", "reason": ""}
+{"n": 666, "sha": "245c6edec34efd3216da2bd685a73fe411399b82", "verdict": "ok", "reason": ""}
+{"n": 667, "sha": "24630743cecd3d0e9db7bee7e47381dbadf2d789", "verdict": "ok", "reason": ""}
+{"n": 668, "sha": "2468058feabb51aa5a9f47d00d3859ebc0d9df96", "verdict": "wrong", "reason": "The patch appends dependencies to an existing file, and the xdist entry has no version pin."}
+{"n": 669, "sha": "248122a69787651ce157ba3b4cac49c3e827ed98", "verdict": "ok", "reason": ""}
+{"n": 670, "sha": "24819e8aae62170ed2c8439e400cc16423207660", "verdict": "wrong", "reason": "The fixture lists test cases whose individual inputs are tuples of pairs, not lists of tuples passed as inputs."}
+{"n": 671, "sha": "248211453d9bc47c0e1754b1269c7a4f7119e4a5", "verdict": "ok", "reason": ""}
+{"n": 672, "sha": "248d3e9f0f8ea1657d9329f8b188a81ca2a65ecc", "verdict": "ok", "reason": ""}
+{"n": 673, "sha": "24bcb9eab60d2db5e71979ea391b3e5675daff1f", "verdict": "ok", "reason": ""}
+{"n": 674, "sha": "24da41005c5d36922516d22aa9d596ec88a1a8d8", "verdict": "ok", "reason": ""}
+{"n": 675, "sha": "24dfbfde552bb8ce48eec415714cbe793cfa95bd", "verdict": "ok", "reason": ""}
+{"n": 676, "sha": "24e46d030389fed88c86e3b9fa31b2b5a0f37cc3", "verdict": "ok", "reason": ""}
+{"n": 677, "sha": "24ed8c9457be0fd8fe3c5ac32d5c32e6996593ef", "verdict": "ok", "reason": ""}
+{"n": 678, "sha": "24ffc3610a23ab46a43c0ed5a883a066595e516d", "verdict": "wrong", "reason": "The old form is a contraction, not a possessive pronoun."}
+{"n": 679, "sha": "250896b7f3a049843dc976f9e466f90e145108cc", "verdict": "filler", "reason": "The mocked response removes the live network dependency, but the source does not establish reliable execution more broadly."}
+{"n": 680, "sha": "251f73f65d46ff5de64b8ae2e6c6fe38c1a28808", "verdict": "ok", "reason": ""}
+{"n": 681, "sha": "25299400fafc5f1dead16f04eb258dc60b59c148", "verdict": "ok", "reason": ""}
+{"n": 682, "sha": "25340ebad09a38e0748aeb26232102022a03ec94", "verdict": "ok", "reason": ""}
+{"n": 683, "sha": "253cba373bc393526a15da38aa364ac10631e53c", "verdict": "wrong", "reason": "The new helper is an ordinary method, and the visible iter_lines change only alters the default argument."}
+{"n": 684, "sha": "2546bafdde7ba1900e5a905acb21e7eb3de0d723", "verdict": "ok", "reason": ""}
+{"n": 685, "sha": "254adf9dc8f11257c59961408b06a3d80af086c6", "verdict": "wrong", "reason": "The new import statement is syntactically invalid as shown, so the intended conditional packaging behavior is not ensured."}
+{"n": 686, "sha": "256c86f8f7deb5375c38b6cc55c3d54d0366d283", "verdict": "ok", "reason": ""}
+{"n": 687, "sha": "2584c48e8d744148e96a4ed5d8feda824887398d", "verdict": "filler", "reason": "The cookie loading call changes, but the text does not give a deprecation for the old method."}
+{"n": 688, "sha": "25939d8784dc8bec784b8129152efa4443daa82f", "verdict": "ok", "reason": ""}
+{"n": 689, "sha": "25a9c9fb22723f88b1a30ebce14749be3f3212c3", "verdict": "ok", "reason": ""}
+{"n": 690, "sha": "25d1ffda8cc213733623a1957216b20890a84a25", "verdict": "ok", "reason": ""}
+{"n": 691, "sha": "25dc07e8ed5504c5388440068722500c19df4daa", "verdict": "ok", "reason": ""}
+{"n": 692, "sha": "25f2806f23d2a88920a3558f8bc4f798a115d014", "verdict": "filler", "reason": "The name is newly listed, but the record does not establish when the credited contributions occurred."}
+{"n": 693, "sha": "25f86f13476e5fc2394dd0ef5152d34c62252042", "verdict": "wrong", "reason": "The diff shows three specific link edits and does not establish that PyPI is the only remaining link in the template."}
+{"n": 694, "sha": "260763a83d26d829c5308dfc937793a302a70f7a", "verdict": "filler", "reason": "The icon and label change, but a friendlier appearance is a subjective interpretation."}
+{"n": 695, "sha": "260e32a7c329c868ae59c045ef8521f6f9003778", "verdict": "wrong", "reason": "The assignment is to the module-level settings instance, not a change inside the Settings class."}

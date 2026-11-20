@@ -1,0 +1,73 @@
+{"n": 1474, "sha": "4bad52caa224a83b3e49b2063fcb21e7b85bbae9", "verdict": "filler", "reason": "The source establishes the version and affected detection modules, but it does not establish higher detection accuracy."}
+{"n": 1475, "sha": "4bd06cd325f4b7213708ff520f346c177ba218d9", "verdict": "filler", "reason": "The workflow pins v3.5.3 without evidence that it is the latest major checkout release."}
+{"n": 1476, "sha": "4bd79e397304d46dfccd76f36c07f66c0295ff82", "verdict": "wrong", "reason": "The new limit is exclusive, so chardet 7 is still outside the allowed range."}
+{"n": 1477, "sha": "4bda7b66e7ece5be51b459edd046a70915b4792c", "verdict": "filler", "reason": "The image reference is visible, but the excerpt does not identify what the photo depicts."}
+{"n": 1478, "sha": "4bf88661720782670e14a0904a28ee897180b429", "verdict": "wrong", "reason": "The all keys take priority over scheme-specific settings, so all is not simply a fallback default."}
+{"n": 1479, "sha": "4c04469cfb22c31871b33c0344c73f636109fda9", "verdict": "ok", "reason": ""}
+{"n": 1480, "sha": "4c11fb7f04e1f3bc1fcc0901a81c6af99778e904", "verdict": "ok", "reason": ""}
+{"n": 1481, "sha": "4c13678587f1fa7b23ad5c765ddf3ea056d18eb1", "verdict": "ok", "reason": ""}
+{"n": 1482, "sha": "4c155de9fd7defc2cd761af2beb7370e44bda94a", "verdict": "wrong", "reason": "The two new lines extend an existing test, with no separate test method added."}
+{"n": 1483, "sha": "4c192ec5acd4417fe60b5a63ea3c6a5c034c1d45", "verdict": "wrong", "reason": "The diff moves to explicit relative imports rather than absolute imports."}
+{"n": 1484, "sha": "4c21106222f954b77531ccbcba69407327ceab38", "verdict": "wrong", "reason": "Converting bytes to str is legal in Python 3, but its representation does not compare equal to the empty text string."}
+{"n": 1485, "sha": "4c300c2067517738e80c3e908279828a6edc7de3", "verdict": "ok", "reason": ""}
+{"n": 1486, "sha": "4c320ac3a2f1e6610678e808f4d05f95dd981d2a", "verdict": "filler", "reason": "The version restriction and configuration edits are shown, but the excerpt does not identify a compatibility problem."}
+{"n": 1487, "sha": "4c3432b759ccd58ebdaf443167cca07ff17c63ea", "verdict": "ok", "reason": ""}
+{"n": 1488, "sha": "4c3b9df6091b65d8c72763222bd5fdefb7231149", "verdict": "filler", "reason": "The renamed option and inverse meaning are shown, but the source does not establish a standard streaming convention."}
+{"n": 1489, "sha": "4c61fef13f53db220f95032b72e6e374970bf272", "verdict": "ok", "reason": ""}
+{"n": 1490, "sha": "4c647cd8b743822dc1af652ec5f96285d86a0d5d", "verdict": "wrong", "reason": "Only the build constant changes, while the version stays at 1.0.0."}
+{"n": 1491, "sha": "4c6540898c101a606e1a50e539f01a82163bdae0", "verdict": "filler", "reason": "Parsing no longer lowercases the entire URL first, but the excerpt does not establish a prior failure involving case-sensitive components."}
+{"n": 1492, "sha": "4c800e9aea2059660b8306b0fc8f9e9a4232cb3e", "verdict": "wrong", "reason": "The affected workflow list contains four files and does not establish that every GitHub Actions workflow was updated."}
+{"n": 1493, "sha": "4c82dbab6fc3ad4b66babb1b01d21a26db602579", "verdict": "wrong", "reason": "The new condition groups zero with other falsy lengths instead of distinguishing an explicitly null length from zero."}
+{"n": 1494, "sha": "4c8af1fff47eea5f52c7b333101c221399c8c613", "verdict": "cannot_tell", "reason": "The ordered storage is visible, but the excerpt ends before the mount implementation needed to verify the most-recent-adapter precedence claim."}
+{"n": 1495, "sha": "4c8b428bbd3800cafa0e3764512eb719f67315f0", "verdict": "ok", "reason": ""}
+{"n": 1496, "sha": "4c8d1b9a7dc909a02fa0304d00b87b664edc385d", "verdict": "ok", "reason": ""}
+{"n": 1497, "sha": "4ca4865170ac98226ca214854975ce02062cdcac", "verdict": "ok", "reason": ""}
+{"n": 1498, "sha": "4cac9f07c45692942a17a2adeacbb64ebeed95de", "verdict": "ok", "reason": ""}
+{"n": 1499, "sha": "4cae63a2976a247977a983d584efc558ecb3cd2c", "verdict": "ok", "reason": ""}
+{"n": 1500, "sha": "4cd54d2f8798928b31b67ff1a9361759a40aff5f", "verdict": "ok", "reason": ""}
+{"n": 1501, "sha": "4cd65385f88dfa179991cce3e394012efd86b509", "verdict": "ok", "reason": ""}
+{"n": 1502, "sha": "4cd95aa49611ed3d2f9819e594825f755285c117", "verdict": "ok", "reason": ""}
+{"n": 1503, "sha": "4ce644079570de42d0166c019b4c9bdf42349bca", "verdict": "ok", "reason": ""}
+{"n": 1504, "sha": "4ce9520a1cfa2e91abe5a923498f49e1fdb2e4ee", "verdict": "ok", "reason": ""}
+{"n": 1505, "sha": "4cf4362610ae85c6df467b1caad5043bdefed6bf", "verdict": "ok", "reason": ""}
+{"n": 1506, "sha": "4cfc5bcd965ed060bf109edad28c89c93c0f8562", "verdict": "ok", "reason": ""}
+{"n": 1507, "sha": "4d00d47a5a7eec2dc8e145dc2d9c2a6f68270496", "verdict": "filler", "reason": "The Twine publishing flow is shown, but the excerpt does not establish the old command's deprecation or compatibility with current PyPI requirements."}
+{"n": 1508, "sha": "4d06e4019f3a30a38fbdc3f59156f08f74d6c76e", "verdict": "ok", "reason": ""}
+{"n": 1509, "sha": "4d07cad175cfb7309ef730f3730c7b6201144dd4", "verdict": "ok", "reason": ""}
+{"n": 1510, "sha": "4d0c6cefd033c39b80bd7efb74c53f91c5ec9903", "verdict": "ok", "reason": ""}
+{"n": 1511, "sha": "4d2875da114c5f08bb8806ef0be881a27449a94d", "verdict": "ok", "reason": ""}
+{"n": 1512, "sha": "4d38790b5bd076ca38802147a2ad827a958eb767", "verdict": "ok", "reason": ""}
+{"n": 1513, "sha": "4d394574f5555a8ddcc38f707e0c9f57f55d9a3b", "verdict": "wrong", "reason": "The optimization and dependency changes are described in the release notes, with only version metadata changed in code."}
+{"n": 1514, "sha": "4d3a9defd25bebae524c15647b897a3459365410", "verdict": "filler", "reason": "The switch to httpbin and the added cookie assertion are shown, but comparative reliability is not established."}
+{"n": 1515, "sha": "4d498db3ed2398bf777a64121bdd974f7dc93b0a", "verdict": "wrong", "reason": "The summary repeats the unit from the message, but the iframe uses pt in both versions."}
+{"n": 1516, "sha": "4d5091c2875d487c1d5ca958ed8e6f3397e042fe", "verdict": "ok", "reason": ""}
+{"n": 1517, "sha": "4d51e6d20179bdc906c45506c0817b6b677589ae", "verdict": "ok", "reason": ""}
+{"n": 1518, "sha": "4d5e534467b9f9b0e35bef8e71f8e460475f05f0", "verdict": "ok", "reason": ""}
+{"n": 1519, "sha": "4d6871d9176c13affe625b1885278d396a39f21d", "verdict": "ok", "reason": ""}
+{"n": 1520, "sha": "4d8cb3244e8e4f84b250c10a48e025f9a8bf6137", "verdict": "ok", "reason": ""}
+{"n": 1521, "sha": "4d97b5b39a7a461ae8942970c0de48062c2c839f", "verdict": "ok", "reason": ""}
+{"n": 1522, "sha": "4d97cc75069e532395d748ca9ff9b3aa2a8c9cb8", "verdict": "ok", "reason": ""}
+{"n": 1523, "sha": "4da4792844017b7b7e5f78cf106e34a68a08af96", "verdict": "ok", "reason": ""}
+{"n": 1524, "sha": "4dc48aea6320ab23de1b2f3adecfc68c4013e407", "verdict": "filler", "reason": "The global logging call is removed, but the excerpt does not show the prior log output or establish that it was unexpected."}
+{"n": 1525, "sha": "4dc48b6521805515b9a3a7a06670d9f5984dd45c", "verdict": "filler", "reason": "The module deletion and defaults file are indicated, but simpler access or modification for users is not established."}
+{"n": 1526, "sha": "4dd3d1a1a2534f2996a368ebe26114bf974e15f9", "verdict": "ok", "reason": ""}
+{"n": 1527, "sha": "4decc7986e32bb8f3511df3dd0c9b1c1d57453c1", "verdict": "wrong", "reason": "The encoding guess is conditional and has a fallback, so the excerpt does not establish that all unspecified JSON bodies get the correct encoding."}
+{"n": 1528, "sha": "4df5aadb010d99862f16ea4175a2aef9450bc33b", "verdict": "ok", "reason": ""}
+{"n": 1529, "sha": "4dfa51ae030e59ddaf9e3736dfdc2e85818a7575", "verdict": "ok", "reason": ""}
+{"n": 1530, "sha": "4dfd6f3fc1f73c013163b1dec8f24accf99df69d", "verdict": "ok", "reason": ""}
+{"n": 1531, "sha": "4dffe5efaa73c1ae4a082442e201f413b5e5bea7", "verdict": "wrong", "reason": "The hunk edits Python version classifiers only, without implementing support for a new interpreter."}
+{"n": 1532, "sha": "4e063459881519ef3d9aeaedd4ad96aa6d293bba", "verdict": "wrong", "reason": "The command is indented in the GitHub issue template, with no module documentation changed."}
+{"n": 1533, "sha": "4e1bbe1288d6ad60fafbb44d014d8ff0d3e3ea9b", "verdict": "filler", "reason": "The ignore list gains E128, but the excerpt does not show false positives or whether the flagged continuations were valid."}
+{"n": 1534, "sha": "4e2ecd698700698dc1ad0daedf910f3dfa53a4ee", "verdict": "ok", "reason": ""}
+{"n": 1535, "sha": "4e383642a9ebb82a67eaeed199d0fbbb31991e3c", "verdict": "ok", "reason": ""}
+{"n": 1536, "sha": "4e44c2ab640f01739602da46929a24ded1516081", "verdict": "filler", "reason": "The ignore rule is removed, but the rationale about team consistency or project requirements is speculative."}
+{"n": 1537, "sha": "4e568c18991fb033290375f467b74384da10a60b", "verdict": "wrong", "reason": "The old code already signed requests, and the fix adds the missing query parameters to the signing input rather than providing a missing signature."}
+{"n": 1538, "sha": "4e5c4a6ab7bb0195dececdd19bb8505b872fe120", "verdict": "filler", "reason": "The configuration removal is apparent, but the excerpt does not identify config as deprecated."}
+{"n": 1539, "sha": "4e6cf21d8231b28a9bbfdd94392137255e434033", "verdict": "ok", "reason": ""}
+{"n": 1540, "sha": "4e7beef860aae511a79df97203c1be50dda35049", "verdict": "wrong", "reason": "Skipping the hostname-specific lookup only assigns a local candidate and does not establish that all hostname-free URLs return None."}
+{"n": 1541, "sha": "4e7e2707e34c4f2d5785a4204528904dddb477a7", "verdict": "ok", "reason": ""}
+{"n": 1542, "sha": "4e8b68086559703e2266475cbdaee847039a3a1b", "verdict": "ok", "reason": ""}
+{"n": 1543, "sha": "4ea09e49f7d518d365e7c6f7ff6ed9ca70d6ec2e", "verdict": "ok", "reason": ""}
+{"n": 1544, "sha": "4eb2759400b6bc8a6289a4fd37779c21b6894b3c", "verdict": "wrong", "reason": "Setting the flag does not establish that unsafe operations are blocked."}
+{"n": 1545, "sha": "4ed3d1b3204caa6806a36125a39589044a02e807", "verdict": "wrong", "reason": "The upgrade applies to the listed checkout pins, and the file list does not establish that it touches every workflow."}
+{"n": 1546, "sha": "4edf1ae55f361c7cb9b3deab88c67505fa797263", "verdict": "ok", "reason": ""}

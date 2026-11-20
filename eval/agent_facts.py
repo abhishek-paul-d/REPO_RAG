@@ -33,7 +33,9 @@ sys.path.insert(0, str(ROOT / "src"))
 FACTS = ROOT / "eval/datasets/httpx_facts.jsonl"
 CHECKOUT = ROOT / "data/repos/encode__httpx"
 DATA_DIR = ROOT / "data/answer_bakeoff_capsule"
-if not DATA_DIR.exists():  # the capsule was moved with the other scratch data (2026-11 reorganisation)
+if (
+    not DATA_DIR.exists()
+):  # the capsule was moved with the other scratch data (2026-11 reorganisation)
     DATA_DIR = ROOT / "experiments/data_scratch/answer_bakeoff_capsule"
 RESULTS_DIR = ROOT / "eval/agent_eval_results"
 TARGET = 0.90

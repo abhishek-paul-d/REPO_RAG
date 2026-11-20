@@ -1,0 +1,88 @@
+{"n": 4240, "sha": "dee3693ea004e2f859e4fba4cfedb376e4d0bb2b", "verdict": "ok", "reason": ""}
+{"n": 4241, "sha": "def20cdb0cf1d4fcc3aa4cd3164602d6c4029ac3", "verdict": "filler", "reason": "The message explains the decision for iter_json, but it does not establish that the Session.close stub was an experimental feature rejected for the same reason."}
+{"n": 4242, "sha": "df0dc2b67a5fcf82f6688af3f26e19c9379373f7", "verdict": "ok", "reason": ""}
+{"n": 4243, "sha": "df272b7740d970a97ad243c061863892e072661a", "verdict": "ok", "reason": ""}
+{"n": 4244, "sha": "df2c80e28eb2ed0dbc1a9f86ae65fb5e756936ce", "verdict": "ok", "reason": ""}
+{"n": 4245, "sha": "df34ed7a003e0029b24258c3eed5ee5f954d1e4b", "verdict": "ok", "reason": ""}
+{"n": 4246, "sha": "df419fa6fa5db2c539145cc823c7106c00bb2b13", "verdict": "wrong", "reason": "The patch vendors an implementation, and the file list shows no integration that adds a new multipart or streaming capability to Requests itself."}
+{"n": 4247, "sha": "df56f38bb44b256eadcec267c42366fe6726462b", "verdict": "ok", "reason": ""}
+{"n": 4248, "sha": "df5dcb8a7d60d74ee8c1fb955f1dc2fca84566fe", "verdict": "wrong", "reason": "On Python 3, str of empty bytes is the nonempty string representation b'', so the new equality test still fails for an empty bytes return value."}
+{"n": 4249, "sha": "df641e74ffa294d30f0cc9bf951b7f9614aac18d", "verdict": "wrong", "reason": "The shown assignment includes the response itself after appending it, rather than containing only prior responses."}
+{"n": 4250, "sha": "df66fa7975dd359c97161848a175122a5406ee06", "verdict": "ok", "reason": ""}
+{"n": 4251, "sha": "df7aece2c8aef689a4b1f71126b93a5f09a3d168", "verdict": "ok", "reason": ""}
+{"n": 4252, "sha": "dfa0a2925f2bba7dd922a23fc9237ce306ea42b1", "verdict": "ok", "reason": ""}
+{"n": 4253, "sha": "dfa41afd43a15222eb7a2db35feadd36dba4b445", "verdict": "ok", "reason": ""}
+{"n": 4254, "sha": "dfa59c2d97485ef018939ff85a7d1b957719df70", "verdict": "wrong", "reason": "The edit uses reStructuredText inline-literal syntax in an RST document."}
+{"n": 4255, "sha": "dfad00a6e84bc75b12468ca29ccf4f971c813fc8", "verdict": "cannot_tell", "reason": "The image moves from the top to the area following the example, but the remainder of the README is absent and its bottom placement cannot be verified."}
+{"n": 4256, "sha": "dfb4ef7be0ff69f24cc3b3da2596acd41a450d26", "verdict": "wrong", "reason": "The command selects a tag reachable from the checked-out history and does not sort all releases for the most recent one."}
+{"n": 4257, "sha": "dfbfb2303fbc19c07a4a0141af1d70857ef0d44f", "verdict": "ok", "reason": ""}
+{"n": 4258, "sha": "dfc3e2433836813fe6b93b8e182a761aa6c0ee05", "verdict": "wrong", "reason": "The dependency marker includes PyPy versions below 3.7 as well."}
+{"n": 4259, "sha": "dfd667df96f9d8102100fdf85292e6dbf4b4e22e", "verdict": "wrong", "reason": "The apparent_encoding property already has a description, which gains a period."}
+{"n": 4260, "sha": "dfd85f2099117adf8058d3f71e196cbfc5254760", "verdict": "ok", "reason": ""}
+{"n": 4261, "sha": "dfe0e9382d69f0ae995c7499b73efe2426881e10", "verdict": "ok", "reason": ""}
+{"n": 4262, "sha": "dfe46c1b7f55c9377caecba2119be14d3cce74e5", "verdict": "ok", "reason": ""}
+{"n": 4263, "sha": "dfe7d877eb094070be5efd35b415aa70ce16adad", "verdict": "ok", "reason": ""}
+{"n": 4264, "sha": "dff383ce8f7a7f1c348c1cb5ea970a59fbe48527", "verdict": "ok", "reason": ""}
+{"n": 4265, "sha": "e007a5a13f3234db499a83a10fa891125d77a3ff", "verdict": "ok", "reason": ""}
+{"n": 4266, "sha": "e00e50d01a84d421cb9f128e4f3a60a96203bee5", "verdict": "ok", "reason": ""}
+{"n": 4267, "sha": "e02eb69fcca2403db7daa733672ca39418d3d120", "verdict": "filler", "reason": "The AppVeyor command changes, but the excerpt contains no successful Windows run to substantiate the claimed outcome."}
+{"n": 4268, "sha": "e02fb2eb6c2acfa67793a2c77a3c7bd47998a024", "verdict": "ok", "reason": ""}
+{"n": 4269, "sha": "e034dd1140cb6b6862d5ebc633ba94d332fc2bb2", "verdict": "ok", "reason": ""}
+{"n": 4270, "sha": "e0359b272513c4ff9921ded7ccb60e9ae480781e", "verdict": "wrong", "reason": "The example invokes get with a bare string that supplies no scheme or host."}
+{"n": 4271, "sha": "e038aad3ccbd5526346150bd37c8c8a8ee0a0b9b", "verdict": "ok", "reason": ""}
+{"n": 4272, "sha": "e08981ee46ebe923a8101ca8e005b3f3687a8fa4", "verdict": "ok", "reason": ""}
+{"n": 4273, "sha": "e08b853a0c001bda8215819c9cbcb7381e8c2c24", "verdict": "ok", "reason": ""}
+{"n": 4274, "sha": "e0ab287317fcde8fa4631bc7bee5aa1749bc4ac5", "verdict": "ok", "reason": ""}
+{"n": 4275, "sha": "e0ae2b415513268df3b56cb1d396b01f2888dcdf", "verdict": "cannot_tell", "reason": "The API docstrings visibly add dictionary support, but the excerpt cuts off before the Request and Response changes that would verify the claim about those classes."}
+{"n": 4276, "sha": "e0ba82949b82aa387c5fe519f6717007d682fa0d", "verdict": "ok", "reason": ""}
+{"n": 4277, "sha": "e0d1b09ffe01d8de3f144fa02bae7071c0b25da2", "verdict": "wrong", "reason": "The guard checks for disabled redirects, so its intended effect would be the reverse of the summary. It also misspells the request attribute."}
+{"n": 4278, "sha": "e0e5b2e3aa23a805c8bc8adbd54af57ff37ead5c", "verdict": "ok", "reason": ""}
+{"n": 4279, "sha": "e0fed46561b609cee05e12472425949d7962585b", "verdict": "ok", "reason": ""}
+{"n": 4280, "sha": "e102c1b4ca68c19920dfb835f89719985f532b2c", "verdict": "filler", "reason": "The option is disabled for Read the Docs, but the excerpt does not identify the incompatibility as a rendering issue."}
+{"n": 4281, "sha": "e11302018b72679505503241c9276a46c163e14a", "verdict": "ok", "reason": ""}
+{"n": 4282, "sha": "e11989e8ec5885ea36b9be25641fbd4ce9f0c4dd", "verdict": "ok", "reason": ""}
+{"n": 4283, "sha": "e11caeb39ffd2f4c56b7be0499959bcb215526a8", "verdict": "ok", "reason": ""}
+{"n": 4284, "sha": "e127ecab3f36b9a88c3a8e6ca169dabade41800a", "verdict": "ok", "reason": ""}
+{"n": 4285, "sha": "e12d053ab81c3b8580f6f4855eb194813caf6c70", "verdict": "wrong", "reason": "The httpbin helper only loses a blank line. The slash removal is in its callers."}
+{"n": 4286, "sha": "e15280e49d9ee15bd7b5f3a00862d5f0a720b8e1", "verdict": "wrong", "reason": "The commit changes a test URL and does not alter library authentication."}
+{"n": 4287, "sha": "e1528ce3be5a0798d509ae774ac7c3667b17ef29", "verdict": "ok", "reason": ""}
+{"n": 4288, "sha": "e1539ac8ffd0b786bc2420552df79769561e79cf", "verdict": "filler", "reason": "The informal note does not identify an underlying change or establish its significance."}
+{"n": 4289, "sha": "e153b94190359f9d7dbdd0753d182bf672baab9d", "verdict": "ok", "reason": ""}
+{"n": 4290, "sha": "e1562afb583ed500e2cce6e7714d69c48ac10bad", "verdict": "cannot_tell", "reason": "The excerpt confirms the tunnel-attribute guard, but cuts off during the host-comparison hunk before a logic change can be verified."}
+{"n": 4291, "sha": "e15834da8eb69e57a024ba205c5483e53ce39d16", "verdict": "ok", "reason": ""}
+{"n": 4292, "sha": "e15ae8f9a757447807932f29c0b6af687e1d6a85", "verdict": "ok", "reason": ""}
+{"n": 4293, "sha": "e1615e0f1e342d89d09df8289c0b32d3b0e9fd6a", "verdict": "ok", "reason": ""}
+{"n": 4294, "sha": "e1659ed7afb674006f6ce07f9908a7bccb7a8474", "verdict": "wrong", "reason": "Publishing still runs the same command inline, while test is a separate branch."}
+{"n": 4295, "sha": "e17111a5dd3049a614cbb2ad2db2bf1c4f72edfd", "verdict": "ok", "reason": ""}
+{"n": 4296, "sha": "e1714e678ec90d6ed67f95b83ed7e7c2c1a6925f", "verdict": "ok", "reason": ""}
+{"n": 4297, "sha": "e17155151b1af8fcd48300e3e5a8f11298fa0fe3", "verdict": "ok", "reason": ""}
+{"n": 4298, "sha": "e185aec92072ead19b03b9cbb86764b607c58a81", "verdict": "ok", "reason": ""}
+{"n": 4299, "sha": "e18879932287c2bf4bcee4ddf6ccb8a69b6fc656", "verdict": "ok", "reason": ""}
+{"n": 4300, "sha": "e18e79d8202a58186d7376d491a2a922e2a9454f", "verdict": "ok", "reason": ""}
+{"n": 4301, "sha": "e1b5e19c78e6230f04b5131c820689c17532be74", "verdict": "filler", "reason": "The URL import switches to six.moves for cross-version compatibility, but the excerpt does not establish a deprecation."}
+{"n": 4302, "sha": "e1c0646f95930cfbd1b404aa820eda3f9836080f", "verdict": "ok", "reason": ""}
+{"n": 4303, "sha": "e1c4fe21d47df1ec10ef8a46aecdcb0ecfeac67e", "verdict": "wrong", "reason": "The old code already placed the hook result on the session. The replacement assigns it to the local response and removes adapter dispatch."}
+{"n": 4304, "sha": "e1dfb7c8839553abae206bb55dfdf22dd5225f2d", "verdict": "wrong", "reason": "The package provides an HTTP service for testing. The change shows no dependency of normal Requests operation on it."}
+{"n": 4305, "sha": "e1eb569751af7015b568561d0a964a810d4a4254", "verdict": "ok", "reason": ""}
+{"n": 4306, "sha": "e203d50e10386e026c48c09a206ab0ce7b1e6ce1", "verdict": "filler", "reason": "The reported measurement changes from monthly to daily, but the excerpt does not establish that the former figure was outdated."}
+{"n": 4307, "sha": "e2142a1e542d9039d5608eaeb9dfb46743f26d38", "verdict": "wrong", "reason": "The shell expression is unchanged. Only its YAML representation changes."}
+{"n": 4308, "sha": "e22e3a50592a9495e0000686bf7825c9422a82db", "verdict": "ok", "reason": ""}
+{"n": 4309, "sha": "e231de6ddc17e48d852ff04ccb479b68ba93e398", "verdict": "ok", "reason": ""}
+{"n": 4310, "sha": "e253eba5ed8922affe50089548a15fbda298fefd", "verdict": "ok", "reason": ""}
+{"n": 4311, "sha": "e2645826be0449842dcc812e31541c5254c69e05", "verdict": "wrong", "reason": "UTF-8 is the decoding input encoding. The result is Unicode text rather than UTF-8 bytes."}
+{"n": 4312, "sha": "e26ccb34eb1c0d3948bfd9e50ffe333605ae554d", "verdict": "ok", "reason": ""}
+{"n": 4313, "sha": "e27241df7380d3123ed82fdd9917dba1c8b7549a", "verdict": "wrong", "reason": "The text adds NIH to a list of users and does not establish a project affiliation."}
+{"n": 4314, "sha": "e272ec13c36fa83f4e14d8bfc7a3b63ab7cd08b2", "verdict": "ok", "reason": ""}
+{"n": 4315, "sha": "e28c1c9bfa286b0badb10ddbbeb1fd965f57cad6", "verdict": "wrong", "reason": "The commit adds failing tests and does not change the property implementation."}
+{"n": 4316, "sha": "e292f302b75f0ccf08763cb6eca7e568b309ed3f", "verdict": "ok", "reason": ""}
+{"n": 4317, "sha": "e2961b9f91e55199fac9d67f82180d06b0a7be35", "verdict": "wrong", "reason": "Unquoting the whole URL before parsing can turn encoded characters into URL delimiters, so correct extraction is not guaranteed."}
+{"n": 4318, "sha": "e2a36dda0a4bd0b09d76fe6bf30e6fca4d2822ca", "verdict": "ok", "reason": ""}
+{"n": 4319, "sha": "e2ad0d0fe8f4bff1640417f67e7e321f030c1bed", "verdict": "ok", "reason": ""}
+{"n": 4320, "sha": "e2af50b7c9183b65766c6d84ad760c2a689f00ad", "verdict": "wrong", "reason": "The class inherits only from object, which provides no get method."}
+{"n": 4321, "sha": "e2c4da7dd2f4a50bf8b386724c7b6f016b10504e", "verdict": "ok", "reason": ""}
+{"n": 4322, "sha": "e2d6a92150de44722a305959b2326376343aedce", "verdict": "cannot_tell", "reason": "The changelog example is incomplete and does not establish which call raises the URL errors or whether the object named r is a request or a response."}
+{"n": 4323, "sha": "e2f5a135c3048d7e6d0b2907ea8811c6943740d3", "verdict": "ok", "reason": ""}
+{"n": 4324, "sha": "e2fa8d3654b48a3ef3d268624d365bb2dfbf0927", "verdict": "ok", "reason": ""}
+{"n": 4325, "sha": "e2fce5e60c23308b41838a74d45a0e3f77b32843", "verdict": "ok", "reason": ""}
+{"n": 4326, "sha": "e32840f6319eb1879a4828dc410b50352877fb64", "verdict": "ok", "reason": ""}
+{"n": 4327, "sha": "e3288d5e3354e90d26a3885f6ddab8fdf1d462d1", "verdict": "filler", "reason": "The mirror URL and example are updated, but the excerpt does not establish that installations from the new mirror succeed."}

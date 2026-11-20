@@ -1,0 +1,2985 @@
+{
+ "dataset": "agent_eval_fresh_v2.jsonl",
+ "dataset_sha256": "b4f215712346aeafc32b6ceab7224f1a8cfcbebdd5a9861c146e780e72d58408",
+ "toolset": "production",
+ "prompt_variant": "commit_pr_commits",
+ "commit_query": "model",
+ "commit_fix_only": false,
+ "extra_files": 3,
+ "skip_tests": true,
+ "tool_result_chars": 24000,
+ "max_input_tokens": "12288",
+ "commit_k": 15,
+ "max_tool_calls": 4,
+ "citation_snap": false,
+ "abstain_retries": 0,
+ "tool_error_retries": 0,
+ "server": {
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+  "hardware": "NVIDIA A100-SXM4-40GB",
+  "max_input_tokens": "12288",
+  "decode_mode": "cuda-graphs + mtp3",
+  "concurrency": "8"
+ },
+ "rerank_used": false,
+ "rerank_failures": 0,
+ "llm_model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+ "table": {
+  "code": {
+   "n": 30,
+   "passed": 28,
+   "abstained": 0,
+   "failed": 1,
+   "missed": [
+    "fresh2-code-001",
+    "fresh2-code-029"
+   ]
+  },
+  "docs": {
+   "n": 10,
+   "passed": 10,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  },
+  "history": {
+   "n": 14,
+   "passed": 14,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  },
+  "refs": {
+   "n": 4,
+   "passed": 4,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  },
+  "kind": {
+   "n": 4,
+   "passed": 4,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  },
+  "prsearch": {
+   "n": 6,
+   "passed": 6,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  },
+  "probe": {
+   "n": 5,
+   "passed": 5,
+   "abstained": 5,
+   "failed": 0,
+   "missed": []
+  }
+ },
+ "rows": [
+  {
+   "id": "fresh2-code-001",
+   "type": "code",
+   "question": "When I call requests.get(url), which function does the real work, and what does it do with the Session it creates?",
+   "answer": "No answer could be produced: a tool failed (search_code: ValueError: Could not connect to tenant default_tenant. Are you sure it exists?). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: ValueError: Could not connect to tenant default_tenant. Are you sure it exists?). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: ValueError: Could not connect to tenant default_tenant. Are you sure it exists?",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"requests.get url Session real work\"}}\n\n",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "requests.get url Session real work"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 40.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-002",
+   "type": "code",
+   "question": "What default settings does a brand new Session start with?",
+   "answer": "A new Session starts with: headers set to default_headers() (src/requests/sessions.py:442-488); auth = None (src/requests/sessions.py:442-488); proxies = {} (src/requests/sessions.py:442-488); hooks = default_hooks() (src/requests/sessions.py:442-488); params = {} (src/requests/sessions.py:442-488); stream = False (src/requests/sessions.py:442-488); verify = True (src/requests/sessions.py:442-488); cert = None (src/requests/sessions.py:442-488); max_redirects = DEFAULT_REDIRECT_LIMIT (30) (src/requests/sessions.py:442-488); trust_env = True (src/requests/sessions.py:490-503); cookies = an empty RequestsCookieJar via cookiejar_from_dict({}) (src/requests/sessions.py:490-503); and adapters with HTTPAdapter mounted for both 'https://' and 'http://' (src/requests/sessions.py:490-503).",
+   "model_answer": "A new Session starts with: headers set to default_headers() (src/requests/sessions.py:442-488); auth = None (src/requests/sessions.py:442-488); proxies = {} (src/requests/sessions.py:442-488); hooks = default_hooks() (src/requests/sessions.py:442-488); params = {} (src/requests/sessions.py:442-488); stream = False (src/requests/sessions.py:442-488); verify = True (src/requests/sessions.py:442-488); cert = None (src/requests/sessions.py:442-488); max_redirects = DEFAULT_REDIRECT_LIMIT (30) (src/requests/sessions.py:442-488); trust_env = True (src/requests/sessions.py:490-503); cookies = an empty RequestsCookieJar via cookiejar_from_dict({}) (src/requests/sessions.py:490-503); and adapters with HTTPAdapter mounted for both 'https://' and 'http://' (src/requests/sessions.py:490-503).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Session default settings initialization"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 12,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 56.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-003",
+   "type": "code",
+   "question": "After the adapter returns a response, what does Session.send do with it before handing it back?",
+   "answer": "After the adapter returns the response, Session.send computes the elapsed time and sets r.elapsed to a timedelta, then runs the response hooks via dispatch_hook(\"response\", hooks, r, **kwargs), and finally persists cookies by calling extract_cookies_to_jar for each response in r.history (if any) and for the final response itself (src/requests/sessions.py:752-799).",
+   "model_answer": "After the adapter returns the response, Session.send computes the elapsed time and sets r.elapsed to a timedelta, then runs the response hooks via dispatch_hook(\"response\", hooks, r, **kwargs), and finally persists cookies by calling extract_cookies_to_jar for each response in r.history (if any) and for the final response itself (src/requests/sessions.py:752-799).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Session.send adapter response"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 54.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-004",
+   "type": "code",
+   "question": "How does the redirect mixin find out where a redirect points to?",
+   "answer": "The redirect mixin determines the redirect target in SessionRedirectMixin.get_redirect_target, which checks resp.is_redirect and, if true, reads the 'location' header from the response, re-encodes it from latin1 to utf8, and returns it as a native string; otherwise it returns None (src/requests/sessions.py:127-152). The is_redirect property is True when the response has a 'location' header and its status code is in REDIRECT_STATI (src/requests/models.py:861-913). resolve_redirects then uses get_redirect_target to extract the next URL, resolving relative locations against resp.url with urljoin (src/requests/sessions.py:237-280, src/requests/sessions.py:282-307).",
+   "model_answer": "The redirect mixin determines the redirect target in SessionRedirectMixin.get_redirect_target, which checks resp.is_redirect and, if true, reads the 'location' header from the response, re-encodes it from latin1 to utf8, and returns it as a native string; otherwise it returns None (src/requests/sessions.py:127-152). The is_redirect property is True when the response has a 'location' header and its status code is in REDIRECT_STATI (src/requests/models.py:861-913). resolve_redirects then uses get_redirect_target to extract the next URL, resolving relative locations against resp.url with urljoin (src/requests/sessions.py:237-280, src/requests/sessions.py:282-307).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "redirect mixin find where redirect points to"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 55.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-005",
+   "type": "code",
+   "question": "How are request-level and session-level hook lists combined?",
+   "answer": "Request-level and session-level hook lists are combined by merge_hooks, which first handles the special case where either side's 'response' hook list is empty (returning the non-empty side) to avoid breaking session hooks, and otherwise delegates to merge_setting, which builds an OrderedDict from the session hooks and then updates it with the request hooks so request-level hooks take precedence (src/requests/sessions.py:76-124).",
+   "model_answer": "Request-level and session-level hook lists are combined by merge_hooks, which first handles the special case where either side's 'response' hook list is empty (returning the non-empty side) to avoid breaking session hooks, and otherwise delegates to merge_setting, which builds an OrderedDict from the session hooks and then updates it with the request hooks so request-level hooks take precedence (src/requests/sessions.py:76-124).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "request-level session-level hook lists combined"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 14.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-006",
+   "type": "code",
+   "question": "How does the transport adapter turn a urllib3 response into a requests Response object?",
+   "answer": "The HTTPAdapter.build_response method converts a urllib3 response into a requests Response by creating a new Response() and copying over the status code from resp.status, the headers into a CaseInsensitiveDict, the encoding via get_encoding_from_headers, the raw urllib3 response as response.raw, the reason from response.raw.reason, the URL from the prepared request (decoding if bytes), extracting cookies into the response's cookie jar via extract_cookies_to_jar, and finally attaching the original request and the adapter as the connection (src/requests/adapters.py:365-401).",
+   "model_answer": "The HTTPAdapter.build_response method converts a urllib3 response into a requests Response by creating a new Response() and copying over the status code from resp.status, the headers into a CaseInsensitiveDict, the encoding via get_encoding_from_headers, the raw urllib3 response as response.raw, the reason from response.raw.reason, the URL from the prepared request (decoding if bytes), extracting cookies into the response's cookie jar via extract_cookies_to_jar, and finally attaching the original request and the adapter as the connection (src/requests/adapters.py:365-401).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "transport adapter urllib3 response to requests Response"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 8.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-007",
+   "type": "code",
+   "question": "How does the transport adapter get a connection, and when does it go through a proxy manager?",
+   "answer": "The transport adapter (HTTPAdapter) gets a connection via get_connection_with_tls_context, which first calls select_proxy(request.url, proxies) to decide whether a proxy applies (src/requests/adapters.py:455-510). If a proxy is selected, it prepends a scheme if needed, parses the proxy URL (raising InvalidProxyURL if the host is missing), then calls self.proxy_manager_for(proxy) and obtains the connection from that proxy manager via proxy_manager.connection_from_host(**host_params, pool_kwargs=pool_kwargs) (src/requests/adapters.py:455-510). If no proxy is selected, it goes straight to the regular pool manager with self.poolmanager.connection_from_host(**host_params, pool_kwargs=pool_kwargs) (src/requests/adapters.py:455-510). The proxy manager itself is obtained from proxy_manager_for, which caches managers in self.proxy_manager keyed by proxy URL; for a 'socks' scheme it builds a SOCKSProxyManager (with username/password from the proxy URL), otherwise it builds a manager via proxy_from_url with proxy headers, and returns the cached or newly created manager (src/requests/adapters.py:269-305). The deprecated get_connection follows the same logic but uses connection_from_url instead of connection_from_host (src/requests/adapters.py:512-563).",
+   "model_answer": "The transport adapter (HTTPAdapter) gets a connection via get_connection_with_tls_context, which first calls select_proxy(request.url, proxies) to decide whether a proxy applies (src/requests/adapters.py:455-510). If a proxy is selected, it prepends a scheme if needed, parses the proxy URL (raising InvalidProxyURL if the host is missing), then calls self.proxy_manager_for(proxy) and obtains the connection from that proxy manager via proxy_manager.connection_from_host(**host_params, pool_kwargs=pool_kwargs) (src/requests/adapters.py:455-510). If no proxy is selected, it goes straight to the regular pool manager with self.poolmanager.connection_from_host(**host_params, pool_kwargs=pool_kwargs) (src/requests/adapters.py:455-510). The proxy manager itself is obtained from proxy_manager_for, which caches managers in self.proxy_manager keyed by proxy URL; for a 'socks' scheme it builds a SOCKSProxyManager (with username/password from the proxy URL), otherwise it builds a manager via proxy_from_url with proxy headers, and returns the cached or newly created manager (src/requests/adapters.py:269-305). The deprecated get_connection follows the same logic but uses connection_from_url instead of connection_from_host (src/requests/adapters.py:512-563).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "transport adapter get connection proxy manager"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 5,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 12.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-008",
+   "type": "code",
+   "question": "How are proxy connection managers created and reused, and how is a SOCKS proxy handled?",
+   "answer": "Proxy connection managers are created and cached per proxy URL in HTTPAdapter.proxy_manager_for: if the proxy is already in self.proxy_manager it is reused; otherwise a new manager is created and stored in self.proxy_manager[proxy] (src/requests/adapters.py:269-305). For a SOCKS proxy, the proxy string is checked with proxy.lower().startswith(\"socks\"); the username and password are extracted via get_auth_from_url(proxy), and a SOCKSProxyManager is constructed with those credentials plus num_pools, maxsize and block from the adapter's pool settings (src/requests/adapters.py:269-305). The SOCKSProxyManager is imported from urllib3.contrib.socks, with a fallback that raises InvalidSchema if the dependency is missing (src/requests/adapters.py:1-67). The manager is then used to obtain a connection: get_connection_with_tls_context calls self.proxy_manager_for(proxy) and then proxy_manager.connection_from_host(...) to get the connection pool (src/requests/adapters.py:455-510).",
+   "model_answer": "Proxy connection managers are created and cached per proxy URL in HTTPAdapter.proxy_manager_for: if the proxy is already in self.proxy_manager it is reused; otherwise a new manager is created and stored in self.proxy_manager[proxy] (src/requests/adapters.py:269-305). For a SOCKS proxy, the proxy string is checked with proxy.lower().startswith(\"socks\"); the username and password are extracted via get_auth_from_url(proxy), and a SOCKSProxyManager is constructed with those credentials plus num_pools, maxsize and block from the adapter's pool settings (src/requests/adapters.py:269-305). The SOCKSProxyManager is imported from urllib3.contrib.socks, with a fallback that raises InvalidSchema if the dependency is missing (src/requests/adapters.py:1-67). The manager is then used to obtain a connection: get_connection_with_tls_context calls self.proxy_manager_for(proxy) and then proxy_manager.connection_from_host(...) to get the connection pool (src/requests/adapters.py:455-510).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "proxy connection manager SOCKS proxy"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 10.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-009",
+   "type": "code",
+   "question": "Which pool settings does the HTTP adapter pass to urllib3's pool manager?",
+   "answer": "The HTTPAdapter passes num_pools (from pool_connections), maxsize (from pool_maxsize), and block (from pool_block) to urllib3's PoolManager, along with any extra pool_kwargs (src/requests/adapters.py:239-267).",
+   "model_answer": "The HTTPAdapter passes num_pools (from pool_connections), maxsize (from pool_maxsize), and block (from pool_block) to urllib3's PoolManager, along with any extra pool_kwargs (src/requests/adapters.py:239-267).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "urllib3 pool manager HTTP adapter pool settings"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 9.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-010",
+   "type": "code",
+   "question": "How does a Response decide whether it counts as true or false, and what does ok check?",
+   "answer": "A Response counts as true when its status code is less than 400: __bool__ (and the legacy __nonzero__) simply return self.ok (src/requests/models.py:840-858). The ok property returns True if self.raise_for_status() does not raise an HTTPError, and False if it does; in other words it is True for status codes below 400 and False for 400 and above, and it is not a check for exactly 200 OK (src/requests/models.py:861-874).",
+   "model_answer": "A Response counts as true when its status code is less than 400: __bool__ (and the legacy __nonzero__) simply return self.ok (src/requests/models.py:840-858). The ok property returns True if self.raise_for_status() does not raise an HTTPError, and False if it does; in other words it is True for status codes below 400 and False for 400 and above, and it is not a check for exactly 200 OK (src/requests/models.py:861-874).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Response __bool__ ok property"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 12.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-011",
+   "type": "code",
+   "question": "Where can a subclass of the transport adapter add extra headers to every request, and what does the default do?",
+   "answer": "A subclass of the transport adapter can add extra headers to every request by overriding the add_headers method on HTTPAdapter (src/requests/adapters.py:565-611). The default implementation does nothing (it simply passes), so no headers are added unless a subclass overrides it (src/requests/adapters.py:565-611).",
+   "model_answer": "A subclass of the transport adapter can add extra headers to every request by overriding the add_headers method on HTTPAdapter (src/requests/adapters.py:565-611). The default implementation does nothing (it simply passes), so no headers are added unless a subclass overrides it (src/requests/adapters.py:565-611).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "transport adapter add extra headers to every request subclass"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 8.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-012",
+   "type": "code",
+   "question": "What decides that a response is a permanent redirect?",
+   "answer": "A response is a permanent redirect when it has a 'location' header and its status code is one of the permanent redirect codes, 301 (moved_permanently) or 308 (permanent_redirect), as checked by Response.is_permanent_redirect (src/requests/models.py:861-913). The status code names map to 301 and 308 in src/requests/status_codes.py:1-59.",
+   "model_answer": "A response is a permanent redirect when it has a 'location' header and its status code is one of the permanent redirect codes, 301 (moved_permanently) or 308 (permanent_redirect), as checked by Response.is_permanent_redirect (src/requests/models.py:861-913). The status code names map to 301 and 308 in src/requests/status_codes.py:1-59.",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "permanent redirect status code 301"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 9.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-013",
+   "type": "code",
+   "question": "How does a Request become a PreparedRequest?",
+   "answer": "A Request becomes a PreparedRequest by calling Request.prepare(), which constructs a new PreparedRequest and passes the Request's method, url, headers, files, data, json, params, auth, cookies, and hooks into PreparedRequest.prepare() (src/requests/models.py:355-375). PreparedRequest.prepare() then runs a fixed sequence of sub-preparers: prepare_method, prepare_url, prepare_headers, prepare_cookies, prepare_body, prepare_auth, and finally prepare_hooks, with prepare_auth last so auth schemes can operate on a fully prepared request (src/requests/models.py:424-452). Alternatively, Session.prepare_request() builds a PreparedRequest by merging the Request's settings with the Session's (cookies, auth, headers, params, hooks) before calling the same PreparedRequest.prepare() (src/requests/sessions.py:511-555).",
+   "model_answer": "A Request becomes a PreparedRequest by calling Request.prepare(), which constructs a new PreparedRequest and passes the Request's method, url, headers, files, data, json, params, auth, cookies, and hooks into PreparedRequest.prepare() (src/requests/models.py:355-375). PreparedRequest.prepare() then runs a fixed sequence of sub-preparers: prepare_method, prepare_url, prepare_headers, prepare_cookies, prepare_body, prepare_auth, and finally prepare_hooks, with prepare_auth last so auth schemes can operate on a fully prepared request (src/requests/models.py:424-452). Alternatively, Session.prepare_request() builds a PreparedRequest by merging the Request's settings with the Session's (cookies, auth, headers, params, hooks) before calling the same PreparedRequest.prepare() (src/requests/sessions.py:511-555).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Request become PreparedRequest prepare"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 14.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-014",
+   "type": "code",
+   "question": "How are cookies attached to an outgoing request?",
+   "answer": "Cookies are attached by PreparedRequest.prepare_cookies, which stores the given cookies in a CookieJar (using cookiejar_from_dict for non-CookieJar input) and then calls get_cookie_header to generate a Cookie header string, setting it on self.headers if not None (src/requests/models.py:699-729). get_cookie_header wraps the PreparedRequest in a MockRequest, calls jar.add_cookie_header on it, and returns the resulting 'Cookie' header value (src/requests/cookies.py:114-161).",
+   "model_answer": "Cookies are attached by PreparedRequest.prepare_cookies, which stores the given cookies in a CookieJar (using cookiejar_from_dict for non-CookieJar input) and then calls get_cookie_header to generate a Cookie header string, setting it on self.headers if not None (src/requests/models.py:699-729). get_cookie_header wraps the PreparedRequest in a MockRequest, calls jar.add_cookie_header on it, and returns the resulting 'Cookie' header value (src/requests/cookies.py:114-161).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "cookies attached to outgoing request"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 9.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-015",
+   "type": "code",
+   "question": "How is a prepared request copied?",
+   "answer": "A PreparedRequest is copied by the copy() method, which creates a new PreparedRequest and assigns the method, url, a shallow copy of headers (or None), a copy of the cookie jar via _copy_cookie_jar, the body, hooks, and _body_position (src/requests/models.py:424-481). The cookie jar is copied by _copy_cookie_jar, which returns None for None, calls the jar's own copy() for a RequestsCookieJar, or otherwise makes a shallow copy, clears it, and re-adds each cookie as a shallow copy (src/requests/cookies.py:479-495).",
+   "model_answer": "A PreparedRequest is copied by the copy() method, which creates a new PreparedRequest and assigns the method, url, a shallow copy of headers (or None), a copy of the cookie jar via _copy_cookie_jar, the body, hooks, and _body_position (src/requests/models.py:424-481). The cookie jar is copied by _copy_cookie_jar, which returns None for None, calls the jar's own copy() for a RequestsCookieJar, or otherwise makes a shallow copy, clears it, and re-adds each cookie as a shallow copy (src/requests/cookies.py:479-495).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "prepared request copy"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 8.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-016",
+   "type": "code",
+   "question": "What does preparing authentication do when no auth argument is given but the URL itself carries credentials?",
+   "answer": "When no auth argument is given, prepare_auth extracts credentials from the URL itself: it calls get_auth_from_url on self.url and, if any part of the resulting (username, password) tuple is non-empty, uses that tuple as the auth (src/requests/models.py:672-697). get_auth_from_url parses the URL and returns the unquoted username and password, or an empty tuple if the URL has no credentials (src/requests/utils.py:1070-1084). If the extracted auth is a two-element tuple, it is special-cased into an HTTPBasicAuth handler, which then sets the Authorization header to a Basic auth string (src/requests/models.py:680-697, src/requests/auth.py:85-107).",
+   "model_answer": "When no auth argument is given, prepare_auth extracts credentials from the URL itself: it calls get_auth_from_url on self.url and, if any part of the resulting (username, password) tuple is non-empty, uses that tuple as the auth (src/requests/models.py:672-697). get_auth_from_url parses the URL and returns the unquoted username and password, or an empty tuple if the URL has no credentials (src/requests/utils.py:1070-1084). If the extracted auth is a two-element tuple, it is special-cased into an HTTPBasicAuth handler, which then sets the Authorization header to a Basic auth string (src/requests/models.py:680-697, src/requests/auth.py:85-107).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "preparing authentication no auth argument URL carries credentials"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "prepare_auth extract credentials from URL if no auth explicitly provided"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 18.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-017",
+   "type": "code",
+   "question": "How does setting a cookie to the value None behave in the cookie jar?",
+   "answer": "Setting a cookie to None in the RequestsCookieJar does not store a cookie; it removes the cookie by name. In RequestsCookieJar.set, if value is None it calls remove_cookie_by_name(self, name, domain=kwargs.get(\"domain\"), path=kwargs.get(\"path\")) and returns, so the cookie is unset (src/requests/cookies.py:229-291). remove_cookie_by_name iterates the jar, collects matching cookies by name (and optionally domain/path), and calls cookiejar.clear(domain, path, name) for each, effectively deleting them (src/requests/cookies.py:164-188).",
+   "model_answer": "Setting a cookie to None in the RequestsCookieJar does not store a cookie; it removes the cookie by name. In RequestsCookieJar.set, if value is None it calls remove_cookie_by_name(self, name, domain=kwargs.get(\"domain\"), path=kwargs.get(\"path\")) and returns, so the cookie is unset (src/requests/cookies.py:229-291). remove_cookie_by_name iterates the jar, collects matching cookies by name (and optionally domain/path), and calls cookiejar.clear(domain, path, name) for each, effectively deleting them (src/requests/cookies.py:164-188).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "cookie jar set cookie value None"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 10.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-018",
+   "type": "code",
+   "question": "What happens when two cookies with the same name exist for different domains and I read one by name?",
+   "answer": "When you read a cookie by name without specifying a domain, the behavior depends on which method you use. The dict-style __getitem__ and get() both call _find_no_duplicates, which raises a CookieConflictError if more than one cookie matches the given name (and optional domain/path), so two cookies with the same name for different domains will trigger that error (src/requests/cookies.py:423-452, src/requests/cookies.py:191-227). Internally, Requests uses _find, which does not raise on conflicts but instead arbitrarily returns the value of the first matching cookie it encounters while iterating the jar (src/requests/cookies.py:401-421). To avoid the conflict, pass the domain (and optionally path) arguments to get() or use _find, which narrows the match to a single cookie (src/requests/cookies.py:401-421, src/requests/cookies.py:191-227).",
+   "model_answer": "When you read a cookie by name without specifying a domain, the behavior depends on which method you use. The dict-style __getitem__ and get() both call _find_no_duplicates, which raises a CookieConflictError if more than one cookie matches the given name (and optional domain/path), so two cookies with the same name for different domains will trigger that error (src/requests/cookies.py:423-452, src/requests/cookies.py:191-227). Internally, Requests uses _find, which does not raise on conflicts but instead arbitrarily returns the value of the first matching cookie it encounters while iterating the jar (src/requests/cookies.py:401-421). To avoid the conflict, pass the domain (and optionally path) arguments to get() or use _find, which narrows the match to a single cookie (src/requests/cookies.py:401-421, src/requests/cookies.py:191-227).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "cookie same name different domain read by name"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 5,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 10.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-019",
+   "type": "code",
+   "question": "How does the library build a Cookie object from a name and a value, and which arguments does it reject?",
+   "answer": "The library builds a Cookie via create_cookie(name, value, **kwargs), which starts from a default dict (version 0, name, value, port None, domain '', path '/', secure False, expires None, discard True, comment None, comment_url None, rest {'HttpOnly': None}, rfc2109 False), then rejects any keyword argument not in that default set by raising TypeError listing the unexpected keyword arguments, and finally updates the dict with the allowed kwargs, computes port_specified/domain_specified/domain_initial_dot/path_specified, and returns cookielib.Cookie(**result) (src/requests/cookies.py:479-528).",
+   "model_answer": "The library builds a Cookie via create_cookie(name, value, **kwargs), which starts from a default dict (version 0, name, value, port None, domain '', path '/', secure False, expires None, discard True, comment None, comment_url None, rest {'HttpOnly': None}, rfc2109 False), then rejects any keyword argument not in that default set by raising TypeError listing the unexpected keyword arguments, and finally updates the dict with the allowed kwargs, computes port_specified/domain_specified/domain_initial_dot/path_specified, and returns cookielib.Cookie(**result) (src/requests/cookies.py:479-528).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Cookie object from name and value reject arguments"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 8.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-020",
+   "type": "code",
+   "question": "How are two cookie sources merged into one jar?",
+   "answer": "Two cookie sources are merged by merge_cookies, which takes a target CookieJar and a second source that is either a dict or a CookieJar (src/requests/cookies.py:599-625). If the source is a dict, it calls cookiejar_from_dict with overwrite=False so existing cookies in the jar are not replaced (src/requests/cookies.py:579-600). If the source is a CookieJar, it prefers the jar's update method when available, otherwise it iterates the source jar and calls set_cookie on each cookie (src/requests/cookies.py:602-625). The update method on RequestsCookieJar copies each cookie from the other jar via set_cookie, or falls back to MutableMapping.update for dict-like inputs (src/requests/cookies.py:383-392).",
+   "model_answer": "Two cookie sources are merged by merge_cookies, which takes a target CookieJar and a second source that is either a dict or a CookieJar (src/requests/cookies.py:599-625). If the source is a dict, it calls cookiejar_from_dict with overwrite=False so existing cookies in the jar are not replaced (src/requests/cookies.py:579-600). If the source is a CookieJar, it prefers the jar's update method when available, otherwise it iterates the source jar and calls set_cookie on each cookie (src/requests/cookies.py:602-625). The update method on RequestsCookieJar copies each cookie from the other jar via set_cookie, or falls back to MutableMapping.update for dict-like inputs (src/requests/cookies.py:383-392).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "merge cookie sources into one jar"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-021",
+   "type": "code",
+   "question": "How is a cookie removed by name?",
+   "answer": "A cookie is removed by name via the module-level function remove_cookie_by_name, which iterates over the CookieJar, collects every cookie whose name matches (optionally also matching domain and path), and then calls cookiejar.clear(domain, path, name) for each collected cookie, making it O(n) (src/requests/cookies.py:164-188). The RequestsCookieJar exposes this through __delitem__, which simply calls remove_cookie_by_name(self, name) (src/requests/cookies.py:348-399), and through set(), which, when the value is None, calls remove_cookie_by_name with the optional domain and path kwargs to unset the cookie (src/requests/cookies.py:229-291).",
+   "model_answer": "A cookie is removed by name via the module-level function remove_cookie_by_name, which iterates over the CookieJar, collects every cookie whose name matches (optionally also matching domain and path), and then calls cookiejar.clear(domain, path, name) for each collected cookie, making it O(n) (src/requests/cookies.py:164-188). The RequestsCookieJar exposes this through __delitem__, which simply calls remove_cookie_by_name(self, name) (src/requests/cookies.py:348-399), and through set(), which, when the value is None, calls remove_cookie_by_name with the optional domain and path kwargs to unset the cookie (src/requests/cookies.py:229-291).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "remove cookie by name"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-022",
+   "type": "code",
+   "question": "How is a cookie Morsel from the standard library turned into a requests cookie?",
+   "answer": "A standard-library Morsel is converted by the morsel_to_cookie function, which reads the Morsel's attributes and calls create_cookie to build a cookielib Cookie. It computes expires from max-age (as current time plus the integer max-age, raising TypeError if not an integer) or from the expires string parsed with the template '%a, %d-%b-%Y %H:%M:%S GMT' via calendar.timegm (src/requests/cookies.py:531-576). It then passes comment, comment_url (set to bool of comment), discard=False, domain, expires, name (morsel.key), path, port=None, rest={'HttpOnly': morsel['httponly']}, rfc2109=False, secure (bool of morsel['secure']), value (morsel.value), and version (morsel['version'] or 0) into create_cookie (src/requests/cookies.py:531-576). create_cookie fills in defaults for any unspecified fields, sets the *_specified and domain_initial_dot flags, and returns a cookielib.Cookie (src/requests/cookies.py:479-528). This conversion is invoked from RequestsCookieJar.set when the assigned value is an instance of Morsel (src/requests/cookies.py:229-291).",
+   "model_answer": "A standard-library Morsel is converted by the morsel_to_cookie function, which reads the Morsel's attributes and calls create_cookie to build a cookielib Cookie. It computes expires from max-age (as current time plus the integer max-age, raising TypeError if not an integer) or from the expires string parsed with the template '%a, %d-%b-%Y %H:%M:%S GMT' via calendar.timegm (src/requests/cookies.py:531-576). It then passes comment, comment_url (set to bool of comment), discard=False, domain, expires, name (morsel.key), path, port=None, rest={'HttpOnly': morsel['httponly']}, rfc2109=False, secure (bool of morsel['secure']), value (morsel.value), and version (morsel['version'] or 0) into create_cookie (src/requests/cookies.py:531-576). create_cookie fills in defaults for any unspecified fields, sets the *_specified and domain_initial_dot flags, and returns a cookielib.Cookie (src/requests/cookies.py:479-528). This conversion is invoked from RequestsCookieJar.set when the assigned value is an instance of Morsel (src/requests/cookies.py:229-291).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Morsel requests cookie convert"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 12.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-023",
+   "type": "code",
+   "question": "What does requests check about library versions when it is imported?",
+   "answer": "On import, requests calls check_compatibility with the installed urllib3, chardet, and charset_normalizer versions (src/requests/__init__.py:111-186). It asserts urllib3 is not a 'dev' install and is at least 1.21.1 (src/requests/__init__.py:60-108). For character detection, if chardet is present it must be >= 3.0.2 and < 8.0.0; otherwise charset_normalizer must be >= 2.0.0 and < 4.0.0; if neither is found it warns that no acceptable character detection dependency was found (src/requests/__init__.py:60-108). If any assertion fails, it emits a RequestsDependencyWarning that urllib3 or chardet/charset_normalizer doesn't match a supported version (src/requests/__init__.py:111-186). Additionally, when SNI is unavailable and pyopenssl is injected, it checks the cryptography version and warns if it is older than 1.3.4 (src/requests/__init__.py:111-186, src/requests/__init__.py:60-108).",
+   "model_answer": "On import, requests calls check_compatibility with the installed urllib3, chardet, and charset_normalizer versions (src/requests/__init__.py:111-186). It asserts urllib3 is not a 'dev' install and is at least 1.21.1 (src/requests/__init__.py:60-108). For character detection, if chardet is present it must be >= 3.0.2 and < 8.0.0; otherwise charset_normalizer must be >= 2.0.0 and < 4.0.0; if neither is found it warns that no acceptable character detection dependency was found (src/requests/__init__.py:60-108). If any assertion fails, it emits a RequestsDependencyWarning that urllib3 or chardet/charset_normalizer doesn't match a supported version (src/requests/__init__.py:111-186). Additionally, when SNI is unavailable and pyopenssl is injected, it checks the cryptography version and warns if it is older than 1.3.4 (src/requests/__init__.py:111-186, src/requests/__init__.py:60-108).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "check library versions on import urllib3 charset_normalizer idna"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 6,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-024",
+   "type": "code",
+   "question": "How does the library decide whether to use chardet or charset_normalizer?",
+   "answer": "The library decides in _resolve_char_detection, which tries to import the libraries in the order (\"chardet\", \"charset_normalizer\") and returns the first one that imports successfully, so chardet is preferred when both are installed (src/requests/compat.py:36-46). The resulting module is bound to the name chardet at import time (src/requests/compat.py:49-52).",
+   "model_answer": "The library decides in _resolve_char_detection, which tries to import the libraries in the order (\"chardet\", \"charset_normalizer\") and returns the first one that imports successfully, so chardet is preferred when both are installed (src/requests/compat.py:36-46). The resulting module is bound to the name chardet at import time (src/requests/compat.py:49-52).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "chardet charset_normalizer detect encoding"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 10.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-025",
+   "type": "code",
+   "question": "What does the library collect for a bug report, such as platform and library versions?",
+   "answer": "The library's bug report helper, info(), collects: the platform system and release (src/requests/help.py:67-132); the Python implementation name and version via _implementation() (src/requests/help.py:35-64); the system SSL/OpenSSL version (src/requests/help.py:67-132); whether pyOpenSSL and charset_normalizer are in use (src/requests/help.py:67-132); and the versions of the dependencies pyOpenSSL (including its OpenSSL version number), urllib3, chardet, charset_normalizer, cryptography, and idna, plus the requests library's own version (src/requests/help.py:67-132).",
+   "model_answer": "The library's bug report helper, info(), collects: the platform system and release (src/requests/help.py:67-132); the Python implementation name and version via _implementation() (src/requests/help.py:35-64); the system SSL/OpenSSL version (src/requests/help.py:67-132); whether pyOpenSSL and charset_normalizer are in use (src/requests/help.py:67-132); and the versions of the dependencies pyOpenSSL (including its OpenSSL version number), urllib3, chardet, charset_normalizer, cryptography, and idna, plus the requests library's own version (src/requests/help.py:67-132).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "bug report platform library version collect"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 5,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-026",
+   "type": "code",
+   "question": "What does a RequestException keep, and how does it find its request?",
+   "answer": "A RequestException keeps two attributes, `response` and `request` (src/requests/exceptions.py:19-39). In __init__ it pops `response` and `request` from kwargs, storing them as self.response and self.request; if a response was given but no request was, and the response has a `request` attribute, it sets self.request to response.request (src/requests/exceptions.py:27-39).",
+   "model_answer": "A RequestException keeps two attributes, `response` and `request` (src/requests/exceptions.py:19-39). In __init__ it pops `response` and `request` from kwargs, storing them as self.response and self.request; if a response was given but no request was, and the response has a `request` attribute, it sets self.request to response.request (src/requests/exceptions.py:27-39).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "RequestException class request"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 9.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-027",
+   "type": "code",
+   "question": "How does the library parse a header value such as Digest realm and qop into a dictionary?",
+   "answer": "The library parses a header value like a Digest challenge into a dictionary using parse_dict_header, which iterates over the items produced by _parse_list_header; for each item without an '=' it stores the key with value None, otherwise it splits on the first '=' into name and value, and if the value is wrapped in double quotes it strips the quotes and unquotes it via unquote_header_value before storing it in the result dict (src/requests/utils.py:439-471). The unquoting step removes surrounding double quotes and reverses backslash escapes for non-filename values (src/requests/utils.py:474-497). In HTTPDigestAuth.handle_401, the 'www-authenticate' header is read, the leading 'digest ' prefix is stripped with a regex, and the remainder is passed to parse_dict_header to populate self._thread_local.chal, which then supplies realm, nonce, qop, algorithm and opaque to build_digest_header (src/requests/auth.py:268-319).",
+   "model_answer": "The library parses a header value like a Digest challenge into a dictionary using parse_dict_header, which iterates over the items produced by _parse_list_header; for each item without an '=' it stores the key with value None, otherwise it splits on the first '=' into name and value, and if the value is wrapped in double quotes it strips the quotes and unquotes it via unquote_header_value before storing it in the result dict (src/requests/utils.py:439-471). The unquoting step removes surrounding double quotes and reverses backslash escapes for non-filename values (src/requests/utils.py:474-497). In HTTPDigestAuth.handle_401, the 'www-authenticate' header is read, the leading 'digest ' prefix is stripped with a regex, and the remainder is passed to parse_dict_header to populate self._thread_local.chal, which then supplies realm, nonce, qop, algorithm and opaque to build_digest_header (src/requests/auth.py:268-319).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "parse header value Digest realm qop into dictionary"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 10.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-028",
+   "type": "code",
+   "question": "How does the library check whether an IP address is inside a CIDR range?",
+   "answer": "The library checks whether an IP address is inside a CIDR range with the address_in_network function, which converts the IP and the network address to 32-bit integers via socket.inet_aton, derives the netmask from the /bits prefix using dotted_netmask, and returns True when (ipaddr & netmask) == (network & netmask) (src/requests/utils.py:722-733). The dotted_netmask helper converts a /xx prefix into a dotted netmask by computing 0xFFFFFFFF ^ (1 << 32 - mask) - 1 and formatting it with socket.inet_ntoa (src/requests/utils.py:736-744). This is used by should_bypass_proxies, which first validates the CIDR with is_valid_cidr and then calls address_in_network to decide whether the hostname's IP falls within a no_proxy CIDR entry (src/requests/utils.py:810-870).",
+   "model_answer": "The library checks whether an IP address is inside a CIDR range with the address_in_network function, which converts the IP and the network address to 32-bit integers via socket.inet_aton, derives the netmask from the /bits prefix using dotted_netmask, and returns True when (ipaddr & netmask) == (network & netmask) (src/requests/utils.py:722-733). The dotted_netmask helper converts a /xx prefix into a dotted netmask by computing 0xFFFFFFFF ^ (1 << 32 - mask) - 1 and formatting it with socket.inet_ntoa (src/requests/utils.py:736-744). This is used by should_bypass_proxies, which first validates the CIDR with is_valid_cidr and then calls address_in_network to decide whether the hostname's IP falls within a no_proxy CIDR entry (src/requests/utils.py:810-870).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "check whether an IP address is inside a CIDR range"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.2,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-code-029",
+   "type": "code",
+   "question": "How does the library decode a response body when the encoding is unknown or wrong?",
+   "answer": "When the encoding is unknown, Response.text falls back to self.apparent_encoding, which guesses the encoding using charset_normalizer or chardet (src/requests/models.py:1034-1089). It then decodes with str(self.content, encoding or \"utf-8\", errors=\"replace\"); if that raises LookupError or TypeError (e.g. a misspelled or None encoding), it decodes blindly with str(self.content, errors=\"replace\") (src/requests/models.py:1034-1089). For JSON, Response.json first tries guess_json_utf on the raw bytes when no encoding is set, and if that UTF codec fails it falls back to self.text, which uses the apparent-encoding guess (src/requests/models.py:1091-1142). The header-based encoding is obtained via get_encoding_from_headers, which returns the charset parameter, defaults to ISO-8859-1 for text types, and utf-8 for application/json (src/requests/utils.py:569-630).",
+   "model_answer": "When the encoding is unknown, Response.text falls back to self.apparent_encoding, which guesses the encoding using charset_normalizer or chardet (src/requests/models.py:1034-1089). It then decodes with str(self.content, encoding or \"utf-8\", errors=\"replace\"); if that raises LookupError or TypeError (e.g. a misspelled or None encoding), it decodes blindly with str(self.content, errors=\"replace\") (src/requests/models.py:1034-1089). For JSON, Response.json first tries guess_json_utf on the raw bytes when no encoding is set, and if that UTF codec fails it falls back to self.text, which uses the apparent-encoding guess (src/requests/models.py:1091-1142). The header-based encoding is obtained via get_encoding_from_headers, which returns the charset parameter, defaults to ISO-8859-1 for text types, and utf-8 for application/json (src/requests/utils.py:569-630).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "decode response body encoding unknown wrong charset"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 4,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 11.9,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "no cited range overlaps the gold range"
+  },
+  {
+   "id": "fresh2-code-030",
+   "type": "code",
+   "question": "How are names like requests.codes.ok created, and what happens for an unknown name?",
+   "answer": "Names like requests.codes.ok are created by the _init() function in src/requests/status_codes.py:101-128, which iterates over the _codes mapping (src/requests/status_codes.py:1-59) and calls setattr(codes, title, code) for each name, plus an upper-case version for names not starting with a backslash or slash. The codes object is a LookupDict (src/requests/structures.py:96-130). For an unknown name, attribute access falls through to LookupDict.__getattr__, which raises AttributeError (src/requests/structures.py:96-130), while item access codes['unknown'] returns None via __getitem__ (src/requests/structures.py:96-130).",
+   "model_answer": "Names like requests.codes.ok are created by the _init() function in src/requests/status_codes.py:101-128, which iterates over the _codes mapping (src/requests/status_codes.py:1-59) and calls setattr(codes, title, code) for each name, plus an upper-case version for names not starting with a backslash or slash. The codes object is a LookupDict (src/requests/structures.py:96-130). For an unknown name, attribute access falls through to LookupDict.__getattr__, which raises AttributeError (src/requests/structures.py:96-130), while item access codes['unknown'] returns None via __getitem__ (src/requests/structures.py:96-130).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "requests.codes ok name unknown attribute"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 5,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 10.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-docs-031",
+   "type": "docs",
+   "question": "How do I upload a file with a custom filename and content type?",
+   "answer": "To upload a file with a custom filename and content type, pass a tuple to the files dict where the tuple is (filename, file_object, content_type, headers). For example: files = {'file': ('report.xls', open('report.xls', 'rb'), 'application/vnd.ms-excel', {'Expires': '0'})} then requests.post(url, files=files) (docs/user/quickstart.rst:319-329).",
+   "model_answer": "To upload a file with a custom filename and content type, pass a tuple to the files dict where the tuple is (filename, file_object, content_type, headers). For example: files = {'file': ('report.xls', open('report.xls', 'rb'), 'application/vnd.ms-excel', {'Expires': '0'})} then requests.post(url, files=files) (docs/user/quickstart.rst:319-329).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "upload file custom filename content type"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 8.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-docs-032",
+   "type": "docs",
+   "question": "How do I upload several files in one request?",
+   "answer": "Set the files parameter to a list of tuples of (form_field_name, file_info), e.g. multiple_files = [('images', ('foo.png', open('foo.png', 'rb'), 'image/png')), ('images', ('bar.png', open('bar.png', 'rb'), 'image/png'))] then requests.post(url, files=multiple_files) (docs/user/advanced.rst:391-406). Open files in binary mode (docs/user/advanced.rst:407-421).",
+   "model_answer": "Set the files parameter to a list of tuples of (form_field_name, file_info), e.g. multiple_files = [('images', ('foo.png', open('foo.png', 'rb'), 'image/png')), ('images', ('bar.png', open('bar.png', 'rb'), 'image/png'))] then requests.post(url, files=multiple_files) (docs/user/advanced.rst:391-406). Open files in binary mode (docs/user/advanced.rst:407-421).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "upload several files in one request multiple files"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 5.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-docs-033",
+   "type": "docs",
+   "question": "How do I send a request body that is generated piece by piece?",
+   "answer": "Provide a generator (or any iterator without a length) as the body to send a chunk-encoded request, e.g. define gen() that yields pieces and call requests.post('http://some.url/chunked', data=gen()) (docs/user/advanced.rst:368-389). For large streams or files you can also pass a file-like object to data (docs/user/advanced.rst:349-366).",
+   "model_answer": "Provide a generator (or any iterator without a length) as the body to send a chunk-encoded request, e.g. define gen() that yields pieces and call requests.post('http://some.url/chunked', data=gen()) (docs/user/advanced.rst:368-389). For large streams or files you can also pass a file-like object to data (docs/user/advanced.rst:349-366).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "send a request body that is generated piece by piece streaming generator"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 6.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-docs-034",
+   "type": "docs",
+   "question": "How do I upload a large file without loading it all into memory?",
+   "answer": "To upload a large file without loading it all into memory, pass a file-like object as the request body so Requests streams it. Open the file in binary mode and use it as the data argument, e.g. `with open('massive-body', 'rb') as f: requests.post('http://some.url/streamed', data=f)` (docs/user/advanced.rst:349-366). If you need to stream a very large file as a multipart/form-data request, Requests does not support that by default; use the separate `requests-toolbelt` package instead (docs/user/quickstart.rst:349-366).",
+   "model_answer": "To upload a large file without loading it all into memory, pass a file-like object as the request body so Requests streams it. Open the file in binary mode and use it as the data argument, e.g. `with open('massive-body', 'rb') as f: requests.post('http://some.url/streamed', data=f)` (docs/user/advanced.rst:349-366). If you need to stream a very large file as a multipart/form-data request, Requests does not support that by default; use the separate `requests-toolbelt` package instead (docs/user/quickstart.rst:349-366).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "upload large file without loading into memory streaming"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 7.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-docs-035",
+   "type": "docs",
+   "question": "How do I delay downloading the response body until I want it?",
+   "answer": "Use the stream parameter set to True when making the request; this defers downloading the response body until you access the Response.content attribute (docs/user/advanced.rst:300-329). For example: r = requests.get(url, stream=True). You can then retrieve the body conditionally via r.content, or use Response.iter_content()/iter_lines() for finer control (docs/user/advanced.rst:300-329). Note that with stream=True the connection stays open until you consume all the data or call Response.close(), so prefer a with statement to ensure it is closed (docs/user/advanced.rst:300-334).",
+   "model_answer": "Use the stream parameter set to True when making the request; this defers downloading the response body until you access the Response.content attribute (docs/user/advanced.rst:300-329). For example: r = requests.get(url, stream=True). You can then retrieve the body conditionally via r.content, or use Response.iter_content()/iter_lines() for finer control (docs/user/advanced.rst:300-329). Note that with stream=True the connection stays open until you consume all the data or call Response.close(), so prefer a with statement to ensure it is closed (docs/user/advanced.rst:300-334).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "delay downloading the response body until I want it"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 6.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-docs-036",
+   "type": "docs",
+   "question": "Does requests keep connections alive, and how do I turn that off?",
+   "answer": "Yes — thanks to urllib3, keep-alive is 100% automatic within a session, so any requests made within a session automatically reuse the appropriate connection (docs/user/advanced.rst:336-347). To turn it off, simply don't use a Session: make each request with the top-level functions (e.g. requests.get(...)) instead of a Session instance, since connection pooling/reuse only happens through a Session (docs/user/advanced.rst:10-52).",
+   "model_answer": "Yes — thanks to urllib3, keep-alive is 100% automatic within a session, so any requests made within a session automatically reuse the appropriate connection (docs/user/advanced.rst:336-347). To turn it off, simply don't use a Session: make each request with the top-level functions (e.g. requests.get(...)) instead of a Session instance, since connection pooling/reuse only happens through a Session (docs/user/advanced.rst:10-52).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "keep connections alive session connection pooling disable"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 7.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-docs-037",
+   "type": "docs",
+   "question": "How do I read the Link header of a response as links?",
+   "answer": "Requests automatically parses Link headers into a dictionary you can access via the response's .links attribute, keyed by the rel value. For example, after r = requests.head(url), r.links[\"next\"] returns {'url': '...', 'rel': 'next'} and r.links[\"last\"] returns {'url': '...', 'rel': 'last'} (docs/user/advanced.rst:944-966).",
+   "model_answer": "Requests automatically parses Link headers into a dictionary you can access via the response's .links attribute, keyed by the rel value. For example, after r = requests.head(url), r.links[\"next\"] returns {'url': '...', 'rel': 'next'} and r.links[\"last\"] returns {'url': '...', 'rel': 'last'} (docs/user/advanced.rst:944-966).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "read Link header of a response as links"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 6.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-docs-038",
+   "type": "docs",
+   "question": "How do I save binary response content such as an image?",
+   "answer": "Access the response body as bytes via r.content, then write it to a file in binary mode; for an image you can also open it with PIL using BytesIO(r.content) (docs/user/quickstart.rst:121-140).",
+   "model_answer": "Access the response body as bytes via r.content, then write it to a file in binary mode; for an image you can also open it with PIL using BytesIO(r.content) (docs/user/quickstart.rst:121-140).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "save binary response content image"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 1,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 4.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-docs-039",
+   "type": "docs",
+   "question": "How do I check a response's status code by name instead of by number?",
+   "answer": "Compare r.status_code against the built-in lookup object requests.codes, e.g. r.status_code == requests.codes.ok (docs/user/quickstart.rst:369-404). The lookup object is documented under Status Code Lookup (docs/api.rst:108-113).",
+   "model_answer": "Compare r.status_code against the built-in lookup object requests.codes, e.g. r.status_code == requests.codes.ok (docs/user/quickstart.rst:369-404). The lookup object is documented under Status Code Lookup (docs/api.rst:108-113).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "check response status code by name instead of number"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 2,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 5.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-docs-040",
+   "type": "docs",
+   "question": "How do I write my own authentication scheme?",
+   "answer": "To write your own authentication scheme, subclass requests.auth.AuthBase and implement the __call__() method, which receives the Request object, modifies it (e.g., adds headers), and returns it (docs/user/authentication.rst:118-144). For example, define a class with __call__(self, r) that sets the required auth data and returns r, then pass an instance to a request via the auth argument, e.g. requests.get(url, auth=MyAuth()) (docs/user/authentication.rst:118-144). A fuller example with an __init__ to store auth-related data is shown in the Custom Authentication section (docs/user/advanced.rst:488-524).",
+   "model_answer": "To write your own authentication scheme, subclass requests.auth.AuthBase and implement the __call__() method, which receives the Request object, modifies it (e.g., adds headers), and returns it (docs/user/authentication.rst:118-144). For example, define a class with __call__(self, r) that sets the required auth data and returns r, then pass an instance to a request via the auth argument, e.g. requests.get(url, auth=MyAuth()) (docs/user/authentication.rst:118-144). A fuller example with an __init__ to store auth-related data is shown in the Custom Authentication section (docs/user/advanced.rst:488-524).",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "write your own authentication scheme"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "checked": true,
+    "valid": 3,
+    "removed": [],
+    "attached": [],
+    "uncited": false
+   },
+   "seconds": 7.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-041",
+   "type": "history",
+   "question": "Who merged PR #7422 in psf/requests?",
+   "answer": "nateprewitt",
+   "model_answer": "nateprewitt",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 7422
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-042",
+   "type": "history",
+   "question": "Who merged PR #3615 in psf/requests?",
+   "answer": "Lukasa",
+   "model_answer": "Lukasa",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 3615
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-043",
+   "type": "history",
+   "question": "Who merged PR #6416 in psf/requests?",
+   "answer": "nateprewitt",
+   "model_answer": "nateprewitt",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 6416
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-044",
+   "type": "history",
+   "question": "Who authored PR #3892 in psf/requests?",
+   "answer": "vpfautz",
+   "model_answer": "vpfautz",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 3892
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-045",
+   "type": "history",
+   "question": "Who authored PR #6500 in psf/requests?",
+   "answer": "dependabot",
+   "model_answer": "dependabot",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 6500
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-046",
+   "type": "history",
+   "question": "Which issues does PR #2326 in psf/requests close?",
+   "answer": "- 1685\n- 1882",
+   "model_answer": "- 1685\n- 1882",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2326
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "fresh2-history-047",
+   "type": "history",
+   "question": "Which issues does PR #1030 in psf/requests close?",
+   "answer": "- 1027",
+   "model_answer": "- 1027",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1030
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "fresh2-history-048",
+   "type": "history",
+   "question": "Which release first contained the change merged in PR #7196 in psf/requests?",
+   "answer": "v2.33.0",
+   "model_answer": "v2.33.0",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 7196
+     }
+    },
+    {
+     "name": "releases_containing",
+     "arguments": {
+      "sha": "0c2bbe73982a70623fb81bf16b2507ea0ca80b99"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 4.3,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-049",
+   "type": "history",
+   "question": "Which release first contained the change merged in PR #4996 in psf/requests?",
+   "answer": "v2.23.0",
+   "model_answer": "v2.23.0",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 4996
+     }
+    },
+    {
+     "name": "releases_containing",
+     "arguments": {
+      "sha": "ada50499a0de44219a581ade3e8cebfa5c7334e4"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 5.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-050",
+   "type": "history",
+   "question": "Which release first contained the change merged in PR #4387 in psf/requests?",
+   "answer": "v2.19.0",
+   "model_answer": "v2.19.0",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 4387
+     }
+    },
+    {
+     "name": "releases_containing",
+     "arguments": {
+      "sha": "c3f2553114fdaf83b9c646a73987bbd2f13285e1"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 4.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-051",
+   "type": "history",
+   "question": "Which release first contained the change merged in PR #6170 in psf/requests?",
+   "answer": "v2.28.1",
+   "model_answer": "v2.28.1",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 6170
+     }
+    },
+    {
+     "name": "releases_containing",
+     "arguments": {
+      "sha": "16b418b44a04981ec452df607730079a6178a804"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 5.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-052",
+   "type": "history",
+   "question": "Who made the most commits in psf/requests in 2016, not counting merge commits?",
+   "answer": "Kenneth Reitz\n\nNote: commit counts cover non-merge commits only (merge commits are not indexed).\n\nActivity from the commit history:\n- Kenneth Reitz: 116 commits in this history, first 2016-01-15, most recent 2016-12-23",
+   "model_answer": "Kenneth Reitz",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "top_contributors"
+   ],
+   "calls": [
+    {
+     "name": "top_contributors",
+     "arguments": {
+      "since": "2016-01-01",
+      "until": "2017-01-01",
+      "limit": 1
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-053",
+   "type": "history",
+   "question": "Who made the most commits in psf/requests in 2019, not counting merge commits?",
+   "answer": "Kenneth Reitz\n\nNote: commit counts cover non-merge commits only (merge commits are not indexed).\n\nActivity from the commit history:\n- Kenneth Reitz: 177 commits in this history, first 2019-02-28, most recent 2019-09-23",
+   "model_answer": "Kenneth Reitz",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "top_contributors"
+   ],
+   "calls": [
+    {
+     "name": "top_contributors",
+     "arguments": {
+      "since": "2019-01-01",
+      "until": "2020-01-01",
+      "limit": 1
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-054",
+   "type": "history",
+   "question": "Who made the most commits in psf/requests in 2022, not counting merge commits?",
+   "answer": "Nate Prewitt\n\nNote: commit counts cover non-merge commits only (merge commits are not indexed).\n\nActivity from the commit history:\n- Nate Prewitt: 21 commits in this history, first 2022-01-03, most recent 2022-06-29",
+   "model_answer": "Nate Prewitt",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "top_contributors"
+   ],
+   "calls": [
+    {
+     "name": "top_contributors",
+     "arguments": {
+      "since": "2022-01-01",
+      "until": "2023-01-01",
+      "limit": 1
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-refs-055",
+   "type": "refs",
+   "question": "Which other PRs or issues does #7339 in psf/requests mention in its title or body?",
+   "answer": "- 6990",
+   "model_answer": "- 6990",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 7339
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "fresh2-refs-056",
+   "type": "refs",
+   "question": "Which other PRs or issues does #7251 in psf/requests mention in its title or body?",
+   "answer": "- 7228",
+   "model_answer": "- 7228",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 7251
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "fresh2-refs-057",
+   "type": "refs",
+   "question": "Which PRs or issues in psf/requests mention #1750 in their title or body?",
+   "answer": "- 5671",
+   "model_answer": "- 5671",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 1750
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "fresh2-refs-058",
+   "type": "refs",
+   "question": "Which PRs or issues in psf/requests mention #1847 in their title or body?",
+   "answer": "- 1850",
+   "model_answer": "- 1850",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 1847
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "fresh2-kind-059",
+   "type": "kind",
+   "question": "Is #5166 in psf/requests a pull request or an issue?",
+   "answer": "issue",
+   "model_answer": "issue",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "get_issue_meta"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 5166
+     }
+    },
+    {
+     "name": "get_issue_meta",
+     "arguments": {
+      "number": 5166
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 4.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-kind-060",
+   "type": "kind",
+   "question": "Is #6344 in psf/requests a pull request or an issue?",
+   "answer": "issue",
+   "model_answer": "issue",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "get_issue_meta"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 6344
+     }
+    },
+    {
+     "name": "get_issue_meta",
+     "arguments": {
+      "number": 6344
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 4.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-kind-061",
+   "type": "kind",
+   "question": "Is #2672 in psf/requests a pull request or an issue?",
+   "answer": "pull request",
+   "model_answer": "pull request",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2672
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-kind-062",
+   "type": "kind",
+   "question": "Is #1125 in psf/requests a pull request or an issue?",
+   "answer": "pull request",
+   "model_answer": "pull request",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1125
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-prsearch-063",
+   "type": "prsearch",
+   "question": "In psf/requests, which pull request is about: \"enhance raise_for_status() to include response content\"? Give its number.",
+   "answer": "- 6882\n\nDetails from the search results:\n- #6882 (pull request, closed): PR #6882: Enhance raise_for_status() to include response content",
+   "model_answer": "- 6882",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "enhance raise_for_status() to include response content"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-prsearch-064",
+   "type": "prsearch",
+   "question": "In psf/requests, which pull request is about: \"docs - clarify json() error exception for python 3\"? Give its number.",
+   "answer": "- 5259\n\nDetails from the search results:\n- #5259 (pull request, closed): PR #5259: docs - clarify json() error exception for Python 3",
+   "model_answer": "- 5259",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "docs clarify json() error exception for python 3"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-prsearch-065",
+   "type": "prsearch",
+   "question": "In psf/requests, which pull request is about: \"only the path should be unquoted/quoted.\"? Give its number.",
+   "answer": "- 149\n\nDetails from the search results:\n- #149 (pull request, merged): PR #149: Only the path should be unquoted/quoted.",
+   "model_answer": "- 149",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "only the path should be unquoted/quoted"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 5.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-prsearch-066",
+   "type": "prsearch",
+   "question": "In psf/requests, which issue is about: \"timeout exception: session.get() vs requests.get() behavior discrepancy\"? Give its number.",
+   "answer": "5381\n\nDetails from the search results:\n- #5381 (issue, closed): Issue #5381: timeout exception: session.get() vs requests.get() behavior discrepancy",
+   "model_answer": "5381",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "timeout exception: session.get() vs requests.get() behavior discrepancy"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-prsearch-067",
+   "type": "prsearch",
+   "question": "In psf/requests, which issue is about: \"how can i pass gmail's cookie to requests session?\"? Give its number.",
+   "answer": "3624\n\nDetails from the search results:\n- #3624 (issue, closed): Issue #3624: how can I pass gmail's cookie to requests session?",
+   "model_answer": "3624",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "how can i pass gmail's cookie to requests session"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-prsearch-068",
+   "type": "prsearch",
+   "question": "In psf/requests, which issue is about: \"rfe: please provide support for latest `urllib3`\"? Give its number.",
+   "answer": "6278\n\nDetails from the search results:\n- #6278 (issue, closed): Issue #6278: RFE: please provide support for latest `urllib3`",
+   "model_answer": "6278",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "rfe: please provide support for latest urllib3"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 9.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-probe-069",
+   "type": "probe",
+   "question": "How does requests encrypt files at rest with AES?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "encrypt files at rest AES"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.9,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-probe-070",
+   "type": "probe",
+   "question": "Where does requests implement a Redis caching layer?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Redis caching layer"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 8.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-probe-071",
+   "type": "probe",
+   "question": "How do I use requests with gRPC streaming?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "requests gRPC streaming"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-probe-072",
+   "type": "probe",
+   "question": "Which function in requests trains a machine-learning model?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "train machine learning model"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-probe-073",
+   "type": "probe",
+   "question": "How does requests parse YAML configuration files?",
+   "answer": "No relevant implementation was found in the retrieved context.",
+   "model_answer": "No relevant implementation was found in the retrieved context.",
+   "abstain": true,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "parse YAML configuration file"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 6.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  }
+ ]
+}

@@ -1,0 +1,84 @@
+{"n": 4328, "sha": "e32e7108d03b8dea58f953e9f5ce517239fd08f1", "verdict": "ok", "reason": ""}
+{"n": 4329, "sha": "e331a288f369973f5de0ec8901c94cae4fa87286", "verdict": "ok", "reason": ""}
+{"n": 4330, "sha": "e350bea167b0bbbd6bc5da6d42036bc560ccde15", "verdict": "cannot_tell", "reason": "The new method returns self.content, but the excerpt does not show what that attribute represents on this version of Request."}
+{"n": 4331, "sha": "e355d6ac6cbc8278ec5935986216e32541b80dd1", "verdict": "ok", "reason": ""}
+{"n": 4332, "sha": "e35ace77bfe246d083c5ff247357a5e5e6196c45", "verdict": "wrong", "reason": "The replacement opens an align attribute quote and never closes it, so it does not supply valid centered heading markup."}
+{"n": 4333, "sha": "e35c829b59b8504e11b6f9dad48efd18ccc69edb", "verdict": "ok", "reason": ""}
+{"n": 4334, "sha": "e36083b89cf729a7dc12a3f505106141f4e58e02", "verdict": "ok", "reason": ""}
+{"n": 4335, "sha": "e361622fae03f08b16c48a0a1414a718d9d45d25", "verdict": "wrong", "reason": "The alternate exceptions are listed in the commit message, not added to the API documentation."}
+{"n": 4336, "sha": "e36f34597ca96c40dbb81d63a8fe9ac0860b8dc3", "verdict": "cannot_tell", "reason": "The validator definitions are visible, but the excerpt ends before the check_header_validity hunk and does not establish whether the function was introduced or extended."}
+{"n": 4337, "sha": "e38046e6c65b8f03026d13d339a9bacf849b2d85", "verdict": "wrong", "reason": "The diff deletes only a blank line, despite the detailed description in the commit message."}
+{"n": 4338, "sha": "e3ad31f3be58790b719c4798f4f3dbdc19518819", "verdict": "ok", "reason": ""}
+{"n": 4339, "sha": "e3bdec5934a4bdd00405acbb714aec81980f6097", "verdict": "ok", "reason": ""}
+{"n": 4340, "sha": "e3c771f36bbec5d116181229b58182435a2da461", "verdict": "ok", "reason": ""}
+{"n": 4341, "sha": "e3c7b43fc98aab11bd228498a775a528a06429f0", "verdict": "ok", "reason": ""}
+{"n": 4342, "sha": "e3d0ac7c9dae7468dc98ebe19052148256cc0757", "verdict": "ok", "reason": ""}
+{"n": 4343, "sha": "e40342afbe43a4190f319c2ddc29533cfee990ac", "verdict": "cannot_tell", "reason": "The register command is shown, but the excerpt omits the other publish recipe lines needed to verify its order relative to upload."}
+{"n": 4344, "sha": "e403a8a42c3fb94e95c48e71fdb944811a2b45f4", "verdict": "ok", "reason": ""}
+{"n": 4345, "sha": "e40a3d609411a2e496053b0401aa5a832c2038fe", "verdict": "filler", "reason": "The image source changes from PNG to SVG, but the excerpt does not demonstrate improved image quality."}
+{"n": 4346, "sha": "e40c1637c915e112fabaffb39fcd73beed56ff4b", "verdict": "cannot_tell", "reason": "The helper has different merge behavior for dictionaries and jars, and the truncated Session call does not show whether the original session jar is passed or copied."}
+{"n": 4347, "sha": "e41c2c2d965f6afb908c5acb595234d2bc5d2fe1", "verdict": "filler", "reason": "The note is removed, but the excerpt does not establish the certificate-bundle requirements of downstream packages."}
+{"n": 4348, "sha": "e43b438729b31a1295b372d8668c4f2b3132f016", "verdict": "ok", "reason": ""}
+{"n": 4349, "sha": "e45b428960ff3927812fc9b555e2ac627ba95769", "verdict": "wrong", "reason": "The new early-hints alias is attached to 102, whereas Early Hints is status 103."}
+{"n": 4350, "sha": "e45d4253436ecc282f4b546ec632fdb6681bc725", "verdict": "ok", "reason": ""}
+{"n": 4351, "sha": "e46251b727479f8c477424afaddc80d2eb388e67", "verdict": "ok", "reason": ""}
+{"n": 4352, "sha": "e46351cfbd1ee908fecdd54c52bd928c370b4c05", "verdict": "cannot_tell", "reason": "The shown test with a WITH_PARAMS name passes custom headers only, and the excerpt does not show whether another added test exercises query parameters."}
+{"n": 4353, "sha": "e4693eba4f429230d482ca50d0a537fc13ea6884", "verdict": "ok", "reason": ""}
+{"n": 4354, "sha": "e477fce2112dc7078363c34798facbde7be4f7c4", "verdict": "ok", "reason": ""}
+{"n": 4355, "sha": "e47e80b92f354efe5db7049b40f9cadc4ea7566e", "verdict": "ok", "reason": ""}
+{"n": 4356, "sha": "e4974c7ff55e95e6a04755f46bc71dd6c028f831", "verdict": "ok", "reason": ""}
+{"n": 4357, "sha": "e4adef522645bfbeb5f7f56d0cd539f5c57a1b92", "verdict": "ok", "reason": ""}
+{"n": 4358, "sha": "e4b56049ad1908365615ed53e4d36b4f916ca695", "verdict": "wrong", "reason": "The helper receives the response’s cookie jar, not the session’s."}
+{"n": 4359, "sha": "e4c4c80b82e14cf60e43653d6934a7d862f00fa5", "verdict": "ok", "reason": ""}
+{"n": 4360, "sha": "e4c690e7bcf90c78bc052b52b284c1fa599b1f8f", "verdict": "ok", "reason": ""}
+{"n": 4361, "sha": "e4d15c464929e87a6648c57f32c422dc5bfecef3", "verdict": "filler", "reason": "The refactor is visible, but the excerpt does not establish a performance gain."}
+{"n": 4362, "sha": "e4d85710807ce02b902927f70254471c685c1429", "verdict": "ok", "reason": ""}
+{"n": 4363, "sha": "e5053cd32269ce9122ab7643e112e21518005b63", "verdict": "ok", "reason": ""}
+{"n": 4364, "sha": "e50c61bc866ff4358e6ef320b4f1f31b979bd45e", "verdict": "ok", "reason": ""}
+{"n": 4365, "sha": "e50dc12b0f620ff80a0d2026b5b0a5282894bfd4", "verdict": "ok", "reason": ""}
+{"n": 4366, "sha": "e50e5945294f79ee9ab4ec69de24d14f9b26a7ae", "verdict": "ok", "reason": ""}
+{"n": 4367, "sha": "e511bc72777a94c45d004e010c597925092e1efe", "verdict": "cannot_tell", "reason": "Request’s attribute and the shared type alias change in the shown hunks, but the Session edits are cut off, so the claimed Session attribute change cannot be verified."}
+{"n": 4368, "sha": "e514920e190bbda3ddd35242bf566e7d752725a1", "verdict": "ok", "reason": ""}
+{"n": 4369, "sha": "e52932c427438c30c3600a690fb8093a1d643ef3", "verdict": "ok", "reason": ""}
+{"n": 4370, "sha": "e55d3d06582e0cd950651199e37411974599475f", "verdict": "ok", "reason": ""}
+{"n": 4371, "sha": "e5666b93cf89886d399ee5bd794a2e76b948564d", "verdict": "ok", "reason": ""}
+{"n": 4372, "sha": "e56cc117575ae31937f9fe19ebcf9d1a35eccae8", "verdict": "ok", "reason": ""}
+{"n": 4373, "sha": "e56d05d2303ed60a90e8306e4496b09ac4a1bae9", "verdict": "wrong", "reason": "The new last contributor line still lacks a final newline."}
+{"n": 4374, "sha": "e57b5bf05c4e39281b5547b1bd05a5074dc96df3", "verdict": "ok", "reason": ""}
+{"n": 4375, "sha": "e5894e99b708ce08c5573722c35ff548590ba43c", "verdict": "filler", "reason": "The trailing blank line is removed, but the excerpt does not show that the module passes all style checks."}
+{"n": 4376, "sha": "e5d6630888e530053ca3167363772fc0f54249d5", "verdict": "ok", "reason": ""}
+{"n": 4377, "sha": "e5f1053b3095a15a84ba948780abd1ca76d122fd", "verdict": "ok", "reason": ""}
+{"n": 4378, "sha": "e5fc88ad37418cc7d52c15011c06b10c46b02dff", "verdict": "ok", "reason": ""}
+{"n": 4379, "sha": "e60e82c7299b332ed42a633622e0205a72a9bed5", "verdict": "ok", "reason": ""}
+{"n": 4380, "sha": "e624ae8aeadc63b473e1d57f1bec71b4f713cf32", "verdict": "ok", "reason": ""}
+{"n": 4381, "sha": "e634ab73b27f111a1e280f6553a63620293340fa", "verdict": "wrong", "reason": "Changing quote delimiters leaves the same file path and does not change how it is opened or read."}
+{"n": 4382, "sha": "e63569041a1635574c1d2931875622152b015749", "verdict": "wrong", "reason": "The new last line is still marked as having no final newline."}
+{"n": 4383, "sha": "e63d481a7a0d4cb169405fb8c074f6ca9b19e582", "verdict": "filler", "reason": "The added image reference is visible, but its contents and effect on the rendered contributor list are unverified."}
+{"n": 4384, "sha": "e63d846b15753ca1f51d6afe3405eb2c8c7d655e", "verdict": "cannot_tell", "reason": "The excerpt shows the Markdown table removed and the beginning of a style block, but omits the remaining markup needed to describe the replacement grid."}
+{"n": 4385, "sha": "e63dd1a66b1bedbf14ee730c5b7b093e0451ce3c", "verdict": "filler", "reason": "The badge image URL changes, but the excerpt does not establish that the old image was broken or the replacement displays."}
+{"n": 4386, "sha": "e63dff0a3ac0ad87981fa3cb56049803bb6953b8", "verdict": "ok", "reason": ""}
+{"n": 4387, "sha": "e6448578776f6abe5116017103f6503369dccf1b", "verdict": "ok", "reason": ""}
+{"n": 4388, "sha": "e6490039749ae6b1a3305a9bab2b826979b5fb56", "verdict": "ok", "reason": ""}
+{"n": 4389, "sha": "e65360dbaf252a136a011adf639e5dce880a2412", "verdict": "wrong", "reason": "Direct access removes the default of 1 and can raise if the value attribute is absent."}
+{"n": 4390, "sha": "e656222188475369ec3493cdeb37d398a7e7e1c5", "verdict": "ok", "reason": ""}
+{"n": 4391, "sha": "e65d0ac9e3cfa89c4c9513ff1782f22e3f976d3a", "verdict": "ok", "reason": ""}
+{"n": 4392, "sha": "e65f52aae4e347ecfbf1010745e899519ad5c6e6", "verdict": "ok", "reason": ""}
+{"n": 4393, "sha": "e663c77e70a24fb1fc409326a5989728855ec4a9", "verdict": "ok", "reason": ""}
+{"n": 4394, "sha": "e66a07b28651ddeab4297fbf3a600cb42b21dfe6", "verdict": "filler", "reason": "The pin changes to 5.0.0, but the excerpt does not establish latest-major-version status."}
+{"n": 4395, "sha": "e67cd15bc81943cba10786cb3f5de0473d9e8550", "verdict": "ok", "reason": ""}
+{"n": 4396, "sha": "e6959412aa7f0d54e01d9448a90da84de1fec0f2", "verdict": "ok", "reason": ""}
+{"n": 4397, "sha": "e6990162e5ff8934f49f3c46affce0f77e40ff05", "verdict": "ok", "reason": ""}
+{"n": 4398, "sha": "e69a3a41f630fd580256f3b9b4004cbca1da6665", "verdict": "wrong", "reason": "The patch swaps a package-level import and does not change which HTTP client sends requests."}
+{"n": 4399, "sha": "e6a32d6283f2c9b98287fb9bf4a071bfcf41a243", "verdict": "ok", "reason": ""}
+{"n": 4400, "sha": "e6afc37be5154fb6a068eb0dc066a5c1c30b0e80", "verdict": "wrong", "reason": "The changed configuration uses Pipfile’s editable dependency syntax, and does not establish any pip-tools format change."}
+{"n": 4401, "sha": "e6cce7a5bd51aa0ff916987b9c070753f702ccde", "verdict": "wrong", "reason": "The shown conditional is valid syntax. The new handler can catch a SyntaxError raised by imported code, not a parse error in auth.py itself."}
+{"n": 4402, "sha": "e6d5e5319ecba82021143624c1040d0ad01bce41", "verdict": "cannot_tell", "reason": "Both signatures and docstrings add multipart_files, but the excerpt does not show it forwarded or used to encode an upload."}
+{"n": 4403, "sha": "e6e3589c36181ae952493ae3ff37f21a450110aa", "verdict": "filler", "reason": "The worker count now comes from cpu_count(), but the excerpt does not establish improved resource use in Travis."}
+{"n": 4404, "sha": "e6f218f3f6c365bc919218fae9d0726473043079", "verdict": "ok", "reason": ""}
+{"n": 4405, "sha": "e70179a6201ba2149d61356badd908900680821d", "verdict": "ok", "reason": ""}
+{"n": 4406, "sha": "e706d18cf893198a26ca3f41dd5014dabd87ae89", "verdict": "ok", "reason": ""}
+{"n": 4407, "sha": "e7084940e1461833f2b6da840e36b87ba03a6c26", "verdict": "ok", "reason": ""}
+{"n": 4408, "sha": "e715d7184b98f6c2a8c4810e7524e2e9a5a033c3", "verdict": "ok", "reason": ""}
+{"n": 4409, "sha": "e7247ce3f6d8115a6bc191e5ef816e04da82aa25", "verdict": "ok", "reason": ""}
+{"n": 4410, "sha": "e725f30625563e32a1a8f31438d2820baaa83c28", "verdict": "ok", "reason": ""}
+{"n": 4411, "sha": "e752455b6f1b5913305a9014f3c0b535ba054069", "verdict": "ok", "reason": ""}

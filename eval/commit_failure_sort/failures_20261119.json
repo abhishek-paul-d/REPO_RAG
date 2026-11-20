@@ -1,0 +1,1757 @@
+{
+ "commitfull-005": {
+  "id": "commitfull-005",
+  "gold": [
+   "88177ec33fa0"
+  ],
+  "gold_subject": [
+   "Finally resolve #1084",
+   "2013-03-27"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/sessions.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 11,
+    "cited": [
+     {
+      "sha": "8d693a2a27d0",
+      "subject": "Fix #1955: Do not use original request in redirect",
+      "date": "2014-03-15",
+      "same_pr": null,
+      "shared_files": [
+       "requests/sessions.py"
+      ]
+     },
+     {
+      "sha": "40402cd0dd04",
+      "subject": "adding rewind for re-POST bodies",
+      "date": "2016-11-02",
+      "same_pr": null,
+      "shared_files": [
+       "requests/sessions.py"
+      ]
+     }
+    ],
+    "answer": "Yes. The closest prior fix is commit 8d693a2a27d0 (PR #1963, \"Do not use original request in redirect\"), which fixed the related bug where a POST that was redirected (e.g. via 303 to GET, then 307) would reuse the original request and re-POST incorrectly. A later commit 40402cd0dd04 (PR #3655, \"Rewi"
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 11,
+    "cited": [
+     {
+      "sha": "8d693a2a27d0",
+      "subject": "Fix #1955: Do not use original request in redirect",
+      "date": "2014-03-15",
+      "same_pr": null,
+      "shared_files": [
+       "requests/sessions.py"
+      ]
+     }
+    ],
+    "answer": "Yes. The closest prior fix is PR #1963 (commit 8d693a2a27d0, 'Do not use original request in redirect'), which fixed the related bug where a POST that was redirected to a 303 then to a 307 would re-POST using the original request. A later fix, PR #3655 (merge commit f72684e13c5074a671506d29c1b563815"
+   }
+  },
+  "title": "POST and PUT on 307 redirect will re-POST without body  With requests 1.0.4, if one makes a POST or PUT request to a resource which returns a 307 temporary redi"
+ },
+ "commitfull-010": {
+  "id": "commitfull-010",
+  "gold": [
+   "478d49027fe9"
+  ],
+  "gold_subject": [
+   "Add correct defaults in Session.send()",
+   "2013-03-27"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/sessions.py",
+   "test_requests.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 16,
+    "cited": [
+     {
+      "sha": "325ea7b7e209",
+      "subject": "Use session defaults instead of arbitrary ones",
+      "date": "2013-03-29",
+      "same_pr": null,
+      "shared_files": [
+       "requests/sessions.py"
+      ]
+     }
+    ],
+    "answer": "Yes, this was fixed before. The current Session.send() resolves proxies from the session when none are passed explicitly, so Session.proxies is no longer ignored (src/requests/sessions.py:752-799). The probable fix is commit 325ea7b7e209, 'Use session defaults instead of arbitrary ones', which chang"
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 16,
+    "cited": [
+     {
+      "sha": "325ea7b7e209",
+      "subject": "Use session defaults instead of arbitrary ones",
+      "date": "2013-03-29",
+      "same_pr": null,
+      "shared_files": [
+       "requests/sessions.py"
+      ]
+     }
+    ],
+    "answer": "Yes, this was fixed before. The current Session.send() resolves proxies from the session when none are passed explicitly, using resolve_proxies(request, self.proxies, self.trust_env) (src/requests/sessions.py:752-799). The fix that introduced using session defaults in send() is commit 325ea7b7e209 ("
+   }
+  },
+  "title": "Should Session.send() ignore Session.proxies?  My test code:  ``` python import requests s = requests.Session() s.proxies = {'http': 'myproxy:3128'} r = request"
+ },
+ "commitfull-012": {
+  "id": "commitfull-012",
+  "gold": [
+   "d22ac0009847"
+  ],
+  "gold_subject": [
+   "fix #1287: Make sure expired cookies get removed from session.cookies",
+   "2013-04-04"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/sessions.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 16,
+    "cited": [
+     {
+      "sha": "87abd9c6094f",
+      "subject": "Use calendar.timegm when calculating cookie expiration",
+      "date": "2014-01-12",
+      "same_pr": null,
+      "shared_files": []
+     },
+     {
+      "sha": "ea4570da5714",
+      "subject": "cookies: Fix bugs found during CI",
+      "date": "2013-12-06",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "Yes. The most probable fix is commit 87abd9c6094f (2014-01-12, \"Use calendar.timegm when calculating cookie expiration\"), which changed morsel_to_cookie in requests/cookies.py to compute the cookie expiration with calendar.timegm instead of time.mktime minus time.timezone, so a Set-Cookie with expir"
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 16,
+    "cited": [
+     {
+      "sha": "87abd9c6094f",
+      "subject": "Use calendar.timegm when calculating cookie expiration",
+      "date": "2014-01-12",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "87abd9c6094f"
+   }
+  },
+  "title": "Cookies won't get deleted after update to 1.X  Requests ignores `Set-Cookie: cookie_user=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; domain=.netload"
+ },
+ "commitfull-013": {
+  "id": "commitfull-013",
+  "gold": [
+   "afcc883d7f59"
+  ],
+  "gold_subject": [
+   "Fix #1293",
+   "2013-04-06"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/models.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 29,
+    "cited": [
+     {
+      "sha": "087a27aba97d",
+      "subject": "Partially addresses Issue #1572",
+      "date": "2014-11-15",
+      "same_pr": null,
+      "shared_files": [
+       "requests/models.py"
+      ]
+     }
+    ],
+    "answer": "Yes, this was fixed before. The current code in prepare_url raises MissingSchema only when the scheme is absent, and separately raises InvalidURL when the host is absent, so a URL that has a scheme but no network location no longer triggers MissingSchema (src/requests/models.py:483-542). The commit "
+   },
+   "default": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": 29,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   }
+  },
+  "title": "MissingSchema error raised when schema present  After [this](https://github.com/kennethreitz/requests/commit/ca85b4ec6ce2428891d2e1ae72dad2b873c87bbe) commit, a"
+ },
+ "commitfull-018": {
+  "id": "commitfull-018",
+  "gold": [
+   "f7596c75dce4"
+  ],
+  "gold_subject": [
+   "Rewrite CaseInsensitiveDict to work correctly/sanely",
+   "2013-04-30"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "AUTHORS.rst",
+   "requests/structures.py",
+   "requests/utils.py",
+   "test_requests.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "73ca21ed8ca1",
+      "subject": "Fixed a bug where user couldn't add custom headers.",
+      "date": "2012-12-16",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "Yes, a probable earlier fix is commit 73ca21ed8ca1, which changed PreparedRequest.prepare_headers to build self.headers from the passed headers via CaseInsensitiveDict instead of wrapping the existing self.headers, addressing the case-insensitive header update behavior (requests/models.py). (src/req"
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "73ca21ed8ca1",
+      "subject": "Fixed a bug where user couldn't add custom headers.",
+      "date": "2012-12-16",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "Yes, a related fix was made in commit 73ca21ed8ca1, which fixed a bug where user couldn't add custom headers by changing PreparedRequest.prepare_headers to use CaseInsensitiveDict(headers) instead of CaseInsensitiveDict(self.headers) (requests/models.py). (src/requests/models.py:565-574)"
+   }
+  },
+  "title": "Replacing existing session headers is not done case-insensitively  When updating a requests.sessions.Session object's headers with a differently-cased existing "
+ },
+ "commitfull-021": {
+  "id": "commitfull-021",
+  "gold": [
+   "3501ea463432",
+   "6931bd67153f"
+  ],
+  "gold_subject": [
+   "Fixed #1623. Added 'MD5-sess' algorithm to HTTPDigestAuth",
+   "2013-09-26"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/auth.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 2,
+    "cited": [
+     {
+      "sha": "abe02ed89fa7",
+      "subject": "Initialize hash_utf8 to None, preventing NameError. Fixes #3138.",
+      "date": "2016-04-29",
+      "same_pr": null,
+      "shared_files": [
+       "requests/auth.py"
+      ]
+     }
+    ],
+    "answer": "Yes. Commit abe02ed89fa7 (2016-04-29, by Mark Shannon) initializes hash_utf8 to None in HTTPDigestAuth, preventing the NameError/UnboundLocalError when the MD5-sess algorithm path references hash_utf8 before assignment (requests/auth.py)."
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 2,
+    "cited": [
+     {
+      "sha": "abe02ed89fa7",
+      "subject": "Initialize hash_utf8 to None, preventing NameError. Fixes #3138.",
+      "date": "2016-04-29",
+      "same_pr": null,
+      "shared_files": [
+       "requests/auth.py"
+      ]
+     }
+    ],
+    "answer": "abe02ed89fa7"
+   }
+  },
+  "title": "Use MD5-sess authentication got  \"UnboundLocalError: local variable 'hash_utf8' referenced before assignment\"  Error Message:  Traceback (most recent call last)"
+ },
+ "commitfull-024": {
+  "id": "commitfull-024",
+  "gold": [
+   "3155bc99362a"
+  ],
+  "gold_subject": [
+   "Close sessions created in the functional API",
+   "2014-11-07"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/api.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "3c0b94047c1c",
+      "subject": "address connection leak issue from #520",
+      "date": "2012-08-05",
+      "same_pr": null,
+      "shared_files": [
+       "requests/api.py"
+      ]
+     },
+     {
+      "sha": "32a861b2eddc",
+      "subject": "Fixed memory leak (see http://bugs.python.org/issue1208304)",
+      "date": "2011-08-09",
+      "same_pr": null,
+      "shared_files": []
+     },
+     {
+      "sha": "730c0e2e2bef",
+      "subject": "Initial stop-the-bleeding fix",
+      "date": "2012-01-29",
+      "same_pr": null,
+      "shared_files": []
+     },
+     {
+      "sha": "b98cc8b4e9d8",
+      "subject": "Revert \"Initial stop-the-bleeding fix\"",
+      "date": "2012-01-29",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "Yes. The most directly matching fix is commit 3c0b94047c1c (2012-07-17, Shivaram Lingamneni), which addressed the connection/memory leak by making prefetch default to True so sockets are returned to the urllib3 connection pool on request end, adding Session.close(), and having the module-level API ("
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "3c0b94047c1c",
+      "subject": "address connection leak issue from #520",
+      "date": "2012-08-05",
+      "same_pr": null,
+      "shared_files": [
+       "requests/api.py"
+      ]
+     }
+    ],
+    "answer": "3c0b94047c1c"
+   }
+  },
+  "title": "Possible Memory Leak  I have a very simple program that periodically retrieves an image from an IP camera. I've noticed that the working set of this program gro"
+ },
+ "commitfull-025": {
+  "id": "commitfull-025",
+  "gold": [
+   "495f87363b3a"
+  ],
+  "gold_subject": [
+   "fixed #1723",
+   "2013-11-04"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/api.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "8c01865d62df",
+      "subject": "Remove unicode encoding for HTTP method.",
+      "date": "2012-12-17",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "Yes, a probable match is commit 8c01865d62df, which removed the unicode encoding of the HTTP method in prepare_method (requests/models.py), addressing UnicodeDecodeError with unicode method names on Python 2."
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "8c01865d62df",
+      "subject": "Remove unicode encoding for HTTP method.",
+      "date": "2012-12-17",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "Yes, this was fixed before. The commit that removed the unicode encoding of the HTTP method (which caused the UnicodeDecodeError when a unicode method like u'POST' was passed) is 8c01865d62df, by Eric Scrivner, which changed prepare_method to no longer call unicode(method) (src/requests/models.py:42"
+   }
+  },
+  "title": "Unicode method names cause UnicodeDecodeError for some requests in Python 2.7.2  The following example works fine:  ``` files = {u'file': open(u'/usr/bin/diff',"
+ },
+ "commitfull-026": {
+  "id": "commitfull-026",
+  "gold": [
+   "8bfe0d873f38"
+  ],
+  "gold_subject": [
+   "Store the request cookiejar in PreparedRequest.cookies fix #1728",
+   "2013-12-04"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/auth.py",
+   "requests/models.py",
+   "requests/sessions.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": true,
+    "n_search": 2,
+    "gold_rank_first_query": 16,
+    "cited": [],
+    "answer": "No answer could be produced: the model's reply was not valid within the limits."
+   },
+   "default": {
+    "abstain": true,
+    "n_search": 2,
+    "gold_rank_first_query": 16,
+    "cited": [],
+    "answer": "No answer could be produced: the model's reply was not valid within the limits."
+   }
+  },
+  "title": "Request cookies should not be persisted to session  After the fix for #1630, cookies sent with a request are now incorrectly persisted to the session.  Specific"
+ },
+ "commitfull-035": {
+  "id": "commitfull-035",
+  "gold": [
+   "2814664e91d9"
+  ],
+  "gold_subject": [
+   "Fixes #20.",
+   "2011-04-15"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/core.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   },
+   "default": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   }
+  },
+  "title": "Fix Auth Registry  Module-level auth registry not functional."
+ },
+ "commitfull-036": {
+  "id": "commitfull-036",
+  "gold": [
+   "47d0517d66e8"
+  ],
+  "gold_subject": [
+   "handle urllib3 api changes; closes #2045",
+   "2014-07-29"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/compat.py",
+   "requests/models.py",
+   "test_requests.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "318f2460eed2",
+      "subject": "Differentiate between two types of timeout errors from urllib3",
+      "date": "2012-07-13",
+      "same_pr": null,
+      "shared_files": [
+       "requests/models.py"
+      ]
+     },
+     {
+      "sha": "a00dc1abf37a",
+      "subject": "Raise Timeout on request timeouts",
+      "date": "2011-05-20",
+      "same_pr": null,
+      "shared_files": [
+       "requests/models.py"
+      ]
+     }
+    ],
+    "answer": "Yes, this was fixed before. Commit 318f2460eed2 (\"Differentiate between two types of timeout errors from urllib3\") added handling in requests/models.py so that a urllib3 TimeoutError is caught and re-raised as a requests Timeout exception instead of leaking a raw socket.timeout. A related earlier fi"
+   }
+  },
+  "title": "Uncaught socket.timeout during post  Hallo requests devs (and thanks for an awesome lib)  During a specific `requests.post` I most of the time get a `requests.e"
+ },
+ "commitfull-037": {
+  "id": "commitfull-037",
+  "gold": [
+   "fcb8c8d33b72"
+  ],
+  "gold_subject": [
+   "Docs: clarify the precedence of `auth=` over `netrc`",
+   "2015-12-21"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "docs/user/authentication.rst",
+   "docs/user/quickstart.rst"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": 1,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   },
+   "default": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": 1,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   }
+  },
+  "title": "Default Authentication Overwrites Authentication Header  Hi,  And thanks for maintaining requests. When I set an Authorization header in a request, I do not exp"
+ },
+ "commitfull-038": {
+  "id": "commitfull-038",
+  "gold": [
+   "3faff0b8ea2c"
+  ],
+  "gold_subject": [
+   "Check for basestring, not just str",
+   "2014-05-27"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/models.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "dacaae520a84",
+      "subject": "bytes data fix for python3",
+      "date": "2012-02-15",
+      "same_pr": null,
+      "shared_files": [
+       "requests/models.py"
+      ]
+     }
+    ],
+    "answer": "Yes, this was fixed before. Commit dacaae520a84 (\"bytes data fix for python3\") addressed the issue where bytes data was being treated as form-urlencoded instead of sent as-is. The current code in src/requests/models.py:603-652 shows the fix: when data is a basestring or has a read method, content_ty"
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "dacaae520a84",
+      "subject": "bytes data fix for python3",
+      "date": "2012-02-15",
+      "same_pr": null,
+      "shared_files": [
+       "requests/models.py"
+      ]
+     }
+    ],
+    "answer": "Yes, this was fixed before. The commit is dacaae520a84, titled 'bytes data fix for python3' by Kenneth Reitz (2012-02-15), which changed requests/models.py so that bytes data is no longer treated as form-urlencoded. The current code confirms the fix: in prepare_body, content_type is set to None when"
+   }
+  },
+  "title": "On Python 3, sending bytes automatically choses 'x-www-form-urlencoded' as the content_type  Is this on purpose. I would have assumed bytes to mean \"send this u"
+ },
+ "commitfull-039": {
+  "id": "commitfull-039",
+  "gold": [
+   "27c83f71770a"
+  ],
+  "gold_subject": [
+   "Fix #2207",
+   "2014-09-07"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/sessions.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 14,
+    "cited": [
+     {
+      "sha": "ac44b482971d",
+      "subject": "Avoid getting stuck in a loop",
+      "date": "2014-09-22",
+      "same_pr": null,
+      "shared_files": [
+       "requests/sessions.py"
+      ]
+     }
+    ],
+    "answer": "Yes, a probable earlier fix is commit ac44b482971d, 'Avoid getting stuck in a loop' (Ian Cordasco, 2014-09-22), which changed requests/sessions.py to prevent infinite redirect loops; the current code raises TooManyRedirects once the redirect history reaches max_redirects (src/requests/sessions.py:18"
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 14,
+    "cited": [
+     {
+      "sha": "c3444f8c7abd",
+      "subject": "don't make duplicate requests for permanent redirects",
+      "date": "2014-06-12",
+      "same_pr": null,
+      "shared_files": [
+       "requests/sessions.py"
+      ]
+     },
+     {
+      "sha": "ac44b482971d",
+      "subject": "Avoid getting stuck in a loop",
+      "date": "2014-09-22",
+      "same_pr": null,
+      "shared_files": [
+       "requests/sessions.py"
+      ]
+     }
+    ],
+    "answer": "Yes. The bug where a permanent redirect to itself caused an infinite loop without raising TooManyRedirects was fixed in commit c3444f8c7abd ('don't make duplicate requests for permanent redirects', 2014-06-12), which modified requests/models.py and requests/sessions.py. A related loop-avoidance fix "
+   }
+  },
+  "title": "TooManyRedirects not working in 2.4.0  hi,  if i try page which has permanent redirect to it self, requests (2.4.0) cant raise TooManyRedirects exception. In 2."
+ },
+ "commitfull-040": {
+  "id": "commitfull-040",
+  "gold": [
+   "6e1db2173321"
+  ],
+  "gold_subject": [
+   "fix #2247",
+   "2014-09-25"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/adapters.py",
+   "requests/utils.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": 6,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   },
+   "default": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": 6,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   }
+  },
+  "title": "requests sends HTTP auth details in Host header  I noticed that the Host header of my http requests generated by `requests` have the HTTP auth credentials, like"
+ },
+ "commitfull-041": {
+  "id": "commitfull-041",
+  "gold": [
+   "ce1ac8854323"
+  ],
+  "gold_subject": [
+   "Fixed #2250",
+   "2014-10-09"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/utils.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 1,
+    "cited": [
+     {
+      "sha": "4594667f07ca",
+      "subject": "Update utils.py",
+      "date": "2014-10-08",
+      "same_pr": null,
+      "shared_files": [
+       "requests/utils.py"
+      ]
+     }
+    ],
+    "answer": "Yes. Commit 4594667f07ca (2014-10-08, mikecool1000) changed parse_header_links in requests/utils.py from value.split(\",\") to re.split(\",\\ *<\", value), which is a probable fix for link headers whose attribute values contain commas (e.g. Memento datetime values)."
+   },
+   "default": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": 2,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   }
+  },
+  "title": "Link header parsing breaks if attribute value has commas  The function parse_header_links does not parse link headers correctly if the attribute value for a lin"
+ },
+ "commitfull-043": {
+  "id": "commitfull-043",
+  "gold": [
+   "6ac1e0269134"
+  ],
+  "gold_subject": [
+   "hooks fix #227",
+   "2011-10-26"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/sessions.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 1,
+    "cited": [
+     {
+      "sha": "5bf396d5d12b",
+      "subject": "Honor session hooks",
+      "date": "2013-10-07",
+      "same_pr": null,
+      "shared_files": [
+       "requests/sessions.py"
+      ]
+     }
+    ],
+    "answer": "Yes, this was fixed before. The bug where session hooks were not honored (because the merge broke when request_hooks == {'response': []}) was addressed by commit 5bf396d5d12b, which added the merge_hooks function to properly merge request and session hooks (src/requests/sessions.py:68-88)."
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 1,
+    "cited": [
+     {
+      "sha": "c165255e9888",
+      "subject": "use session's hooks as defaults for every requests.",
+      "date": "2011-11-18",
+      "same_pr": null,
+      "shared_files": [
+       "requests/sessions.py"
+      ]
+     }
+    ],
+    "answer": "c165255e9888"
+   }
+  },
+  "title": "session hooks doesn't work with v0.7.3  I was able to add a hook to a session object in v0.6.x but now it doesn't work  ``` def print_url(args):     print args["
+ },
+ "commitfull-046": {
+  "id": "commitfull-046",
+  "gold": [
+   "cd8ce63a3b68"
+  ],
+  "gold_subject": [
+   "Custom RedirectHandler and .history support.",
+   "2011-05-14"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/models.py",
+   "requests/monkeys.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 13,
+    "cited": [
+     {
+      "sha": "1e1fb1e7a81b",
+      "subject": "Redirect history fix (Closes #91)",
+      "date": "2011-07-23",
+      "same_pr": null,
+      "shared_files": [
+       "requests/models.py"
+      ]
+     }
+    ],
+    "answer": "No. The feature request (issue #23, \"Tracking chained redirection\") was closed without a dedicated fix; the closest related work is the `Response.history` property (e.g. commit 1e1fb1e7a81b, \"Redirect history fix\") and PR #1913 (\"Improve API for manual redirection-following\"), but neither implements"
+   },
+   "default": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": 13,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   }
+  },
+  "title": "Tracking chained redirection  Sometimes when you make a GET request the client follows multiple redirections. It would be cool to keep track of the URL followed"
+ },
+ "commitfull-051": {
+  "id": "commitfull-051",
+  "gold": [
+   "8c90c610cd15"
+  ],
+  "gold_subject": [
+   "v0.7.6",
+   "2011-11-07"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "HISTORY.rst",
+   "requests/__init__.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "c3e6c41fc164",
+      "subject": "Fix infinite loop on wrong Digest Authentication",
+      "date": "2012-04-12",
+      "same_pr": null,
+      "shared_files": []
+     },
+     {
+      "sha": "5296b8be90cb",
+      "subject": "Fix infinite loop on wrong Digest Authentication (Issue #547)",
+      "date": "2012-07-14",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "Yes. The most direct earlier fix for this exact symptom (infinite recursion / loop on a 401 with Digest auth) is commit c3e6c41fc164, \"Fix infinite loop on wrong Digest Authentication\" (Pierre Chapuis, 2012-04-12), which changed requests/auth.py::HTTPDigestAuth.handle_401 to deregister the hook and "
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "5296b8be90cb",
+      "subject": "Fix infinite loop on wrong Digest Authentication (Issue #547)",
+      "date": "2012-07-14",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "5296b8be90cb"
+   }
+  },
+  "title": "infinite recursion on 401 error  I'm using requests 0.7.4, and am having a strange problem with a GET that is digest protected.  The request takes a long time ("
+ },
+ "commitfull-054": {
+  "id": "commitfull-054",
+  "gold": [
+   "1acc4992d429"
+  ],
+  "gold_subject": [
+   "Parse version number out of requests/__init__.py",
+   "2015-03-13"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "setup.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 2,
+    "gold_rank_first_query": 8,
+    "cited": [
+     {
+      "sha": "2669f0c0b1e9",
+      "subject": "Fix when packages are unvendored",
+      "date": "2015-02-28",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "Yes. The probable fix is commit 2669f0c0b1e9, \"Fix when packages are unvendored\", which modifies requests/packages/__init__.py (the VendorAlias find_module/load_module machinery) to handle the case where vendored packages are unvendored, matching the reported AttributeError in requests/packages/__in"
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 8,
+    "cited": [
+     {
+      "sha": "2669f0c0b1e9",
+      "subject": "Fix when packages are unvendored",
+      "date": "2015-02-28",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "2669f0c0b1e9"
+   }
+  },
+  "title": "Error in `requests.packages.__init__` (version > 2.5.1)  After update to requests 2.5.3 in my project I got such error.   ```   File \"/home/pavel/Python/project"
+ },
+ "commitfull-055": {
+  "id": "commitfull-055",
+  "gold": [
+   "1b5bfe681b4c",
+   "6ea3f2ada871"
+  ],
+  "gold_subject": [
+   "Place VendorAlias first in meta_path",
+   "2015-04-05"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/packages/__init__.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "ad761abcdd2f",
+      "subject": "every chardet package maps to requests.packages.chardet.* package respectively",
+      "date": "2023-10-31",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "Yes. PR #6562 fixed the PyInstaller-related chardet import problem (issue #6223) by making every chardet subpackage map to its corresponding requests.packages.chardet.* package; the fix commit is ad761abcdd2f (merged as eea3bbf9ac635f465ee6c9903dc57c677952dafd)."
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "0af19a05ce54",
+      "subject": "fix chardet import",
+      "date": "2012-11-27",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "0af19a05ce54"
+   }
+  },
+  "title": "Issue with pyinstaller  Can't seem to wrap my head around this.  having a problem compiling a windows exe in python 2.7.9 that uses the requests library and can"
+ },
+ "commitfull-060": {
+  "id": "commitfull-060",
+  "gold": [
+   "ca66267d2cf8"
+  ],
+  "gold_subject": [
+   "Add release notes for 2.6.2",
+   "2015-04-23"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "HISTORY.rst",
+   "requests/__init__.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": true,
+    "n_search": 3,
+    "gold_rank_first_query": null,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   },
+   "default": {
+    "abstain": true,
+    "n_search": 4,
+    "gold_rank_first_query": null,
+    "cited": [],
+    "answer": "No answer could be produced: the model's reply was not valid within the limits."
+   }
+  },
+  "title": "Content-Encoding: Gzip not automatically decoded in 2.6.1  When using requests on python 2.7.8 ubuntu 14.10 from pypi, the current version 2.6.1 exhibits differ"
+ },
+ "commitfull-061": {
+  "id": "commitfull-061",
+  "gold": [
+   "773e730d80aa"
+  ],
+  "gold_subject": [
+   "Add new release process to docs",
+   "2015-04-24"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "docs/community/release-process.rst",
+   "docs/index.rst"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [],
+    "answer": "Yes. This was addressed by PR #2570 \"Add new release process to docs\", which closed issue #2569 (the exact proposal). The PR was merged by kennethreitz on 2015-04-25, but the indexed record has an empty merge_commit_sha, so no specific commit SHA is available in the data."
+   }
+  },
+  "title": "[Proposal] New Release Management Process  In v2.6.1 we pulled in a new copy of urllib3. Typically this doesn't negatively affect us but in this case we've seen"
+ },
+ "commitfull-067": {
+  "id": "commitfull-067",
+  "gold": [
+   "296d8cc097b6"
+  ],
+  "gold_subject": [
+   "new (elegant) request decoding model.",
+   "2011-11-19"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/models.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 2,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "ab23536b1b08",
+      "subject": "quickstart for encoding",
+      "date": "2011-11-19",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "Yes. Issue #282 (\"Response.encoding should be available, overridable.\") was closed on 2011-11-19, the same day as commit ab23536b1b08 (\"quickstart for encoding\"), which documented that r.encoding is set from HTTP headers and can be manually overridden. This is a probable match, not a certain one."
+   },
+   "default": {
+    "abstain": true,
+    "n_search": 2,
+    "gold_rank_first_query": null,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   }
+  },
+  "title": "Response.encoding should be available, overridable.  - Japanese websites specify the incorrect charset.  - `r.content` would decode as accessed. only raw respon"
+ },
+ "commitfull-071": {
+  "id": "commitfull-071",
+  "gold": [
+   "f3ad56f103e3"
+  ],
+  "gold_subject": [
+   "Encode Multipart Post data at Request creation",
+   "2012-04-12"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/models.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 12,
+    "cited": [
+     {
+      "sha": "3a9d9f22791d",
+      "subject": "Fix hangs on streaming uploads with HTTPDigestAuth",
+      "date": "2013-11-25",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "Yes. Commit 3a9d9f22791d (\"Fix hangs on streaming uploads with HTTPDigestAuth\") is a probable match: it addresses the same problem where, after a 401 challenge, the resent request's file-like body had already been consumed, by rewinding the file position before resending (requests/auth.py)."
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 12,
+    "cited": [
+     {
+      "sha": "3a9d9f22791d",
+      "subject": "Fix hangs on streaming uploads with HTTPDigestAuth",
+      "date": "2013-11-25",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "3a9d9f22791d"
+   }
+  },
+  "title": "File upload not working with HTTP digest authentication  This is due to a couple of issues involved with the fact that it is necessary to create two requests an"
+ },
+ "commitfull-077": {
+  "id": "commitfull-077",
+  "gold": [
+   "4f428228d7e4"
+  ],
+  "gold_subject": [
+   "Make Response.content() return None if status_code is None",
+   "2016-11-23"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/models.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   },
+   "default": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   }
+  },
+  "title": "AttributeError: 'NoneType' object has no attribute 'read'  Hello :)\r \r After a recent upgrade for our [coala](https://github.com/coala/coala) project to `reques"
+ },
+ "commitfull-082": {
+  "id": "commitfull-082",
+  "gold": [
+   "9b2d7382bfc8"
+  ],
+  "gold_subject": [
+   "Conform api.* arguments to api.request arguments.",
+   "2011-05-27"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/api.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "6f84ce72f28a",
+      "subject": "Fixed logic for auto redirect in GET and HEAD methods.",
+      "date": "2011-09-02",
+      "same_pr": null,
+      "shared_files": [
+       "requests/api.py"
+      ]
+     }
+    ],
+    "answer": "Yes, a probable earlier fix is commit 6f84ce72f28a, 'Fixed logic for auto redirect in GET and HEAD methods.' (2011-08-29), which changed the redirect-following logic in requests/models.py (and requests/api.py) so that GET/HEAD no longer always follow redirects regardless of allow_redirects; its chan"
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "6f84ce72f28a",
+      "subject": "Fixed logic for auto redirect in GET and HEAD methods.",
+      "date": "2011-09-02",
+      "same_pr": null,
+      "shared_files": [
+       "requests/api.py"
+      ]
+     }
+    ],
+    "answer": "6f84ce72f28a"
+   }
+  },
+  "title": "Fix allow_redirects  Hi,  I have problems with the \"allow_redirects\" to the Request object. It seems that if you specify \"allow_redirects=False\" it still follow"
+ },
+ "commitfull-084": {
+  "id": "commitfull-084",
+  "gold": [
+   "af66521381d9"
+  ],
+  "gold_subject": [
+   "Fix #4025",
+   "2017-05-18"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/adapters.py",
+   "tests/test_requests.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": true,
+    "n_search": 2,
+    "gold_rank_first_query": null,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   },
+   "default": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   }
+  },
+  "title": "Session with cert set can't do HTTP connections  It is not clear from the documentation if this is supposed to work, but it did work previously.\r \r If you set t"
+ },
+ "commitfull-085": {
+  "id": "commitfull-085",
+  "gold": [
+   "9b2d7382bfc8"
+  ],
+  "gold_subject": [
+   "Conform api.* arguments to api.request arguments.",
+   "2011-05-27"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/api.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "fc512d89245c",
+      "subject": "Don't use redirect_cache if allow_redirects=False",
+      "date": "2016-02-05",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "Yes. The most probable earlier fix is commit fc512d89245c, \"Don't use redirect_cache if allow_redirects=False\" (Kenneth Reitz, 2016-02-05), which changed requests/sessions.py so the redirect cache is only consulted when allow_redirects is True, directly addressing the reported symptom where a redire"
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "fc512d89245c",
+      "subject": "Don't use redirect_cache if allow_redirects=False",
+      "date": "2016-02-05",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "fc512d89245c"
+   }
+  },
+  "title": "allow_redirects doesn't work  I haven't had the opportunity to research this yet, but I thought I'd go ahead and submit it because it might be a while until I c"
+ },
+ "commitfull-090": {
+  "id": "commitfull-090",
+  "gold": [
+   "d2590ee46c06"
+  ],
+  "gold_subject": [
+   "Change documentation website to requests.readthedocs.io (#5236)",
+   "2019-10-24"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "CONTRIBUTING.md",
+   "HISTORY.md",
+   "README.md",
+   "docs/_templates/sidebarintro.html",
+   "docs/_templates/sidebarlogo.html",
+   "docs/community/faq.rst"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "74b72ce42655",
+      "subject": "documentation link fixed",
+      "date": "2019-09-29",
+      "same_pr": null,
+      "shared_files": [
+       "README.md"
+      ]
+     }
+    ],
+    "answer": "Yes. The fix is commit 74b72ce42655, which removed the remaining references to 2.python-requests.org from the README and replaced them with requests.readthedocs.io (PR #5233, 'Fix broken URLS in readme')."
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 2,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "74b72ce42655",
+      "subject": "documentation link fixed",
+      "date": "2019-09-29",
+      "same_pr": null,
+      "shared_files": [
+       "README.md"
+      ]
+     }
+    ],
+    "answer": "Yes. The issue (issue #5212) was addressed by PR #5233, which replaced the remaining 2.python-requests.org references in the README with requests.readthedocs.io. The fix commit is 74b72ce42655 (referenced in the PR body as the commit that removed the references). Note: PR #5233 itself was closed wit"
+   }
+  },
+  "title": "URL in readme (https://2.python-requests.org/) is http only  The URL `//2.python-requests.org/` (which is in the readme) automatically resolves to `https://2.py"
+ },
+ "commitfull-094": {
+  "id": "commitfull-094",
+  "gold": [
+   "9cae7be94f0a"
+  ],
+  "gold_subject": [
+   "Clarify that PreparedRequests should not be manually created",
+   "2020-06-18"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/models.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   },
+   "default": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   }
+  },
+  "title": "Preparing a request body without headers throws a TypeError  I have a usecase where I need to generate the body of a `PreparedRequest` without anything else kno"
+ },
+ "commitfull-096": {
+  "id": "commitfull-096",
+  "gold": [
+   "6b09e6ee347e"
+  ],
+  "gold_subject": [
+   "redirects clear files also ",
+   "2012-05-08"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/models.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "f3ad56f103e3",
+      "subject": "Encode Multipart Post data at Request creation",
+      "date": "2012-04-12",
+      "same_pr": null,
+      "shared_files": [
+       "requests/models.py"
+      ]
+     }
+    ],
+    "answer": "Yes. Commit f3ad56f103e3 (\"Encode Multipart Post data at Request creation\") is a probable match: it modifies requests/models.py and the _encode_files method, which is exactly where the reported TypeError ('NoneType' object is not iterable) occurs when a redirect re-encodes a multipart post with data"
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": null,
+    "cited": [
+     {
+      "sha": "f3ad56f103e3",
+      "subject": "Encode Multipart Post data at Request creation",
+      "date": "2012-04-12",
+      "same_pr": null,
+      "shared_files": [
+       "requests/models.py"
+      ]
+     }
+    ],
+    "answer": "f3ad56f103e3"
+   }
+  },
+  "title": "Redirect of multipart-encoded post  I'm scripting a site that returns a redirect in response to the post of a multipart-encoded form.  When I do so, I get the f"
+ },
+ "commitfull-098": {
+  "id": "commitfull-098",
+  "gold": [
+   "fe7348cc530f"
+  ],
+  "gold_subject": [
+   "yay json",
+   "2012-05-08"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/models.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": 8,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   },
+   "default": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": 8,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   }
+  },
+  "title": "response.json  Never adding another decoded type. ever."
+ },
+ "commitfull-107": {
+  "id": "commitfull-107",
+  "gold": [
+   "c3c90bb09c9f"
+  ],
+  "gold_subject": [
+   "default headers and content encoding settings",
+   "2011-07-23"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/config.py",
+   "requests/models.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 19,
+    "cited": [
+     {
+      "sha": "1b70385d4ae7",
+      "subject": "change default accept-encoding",
+      "date": "2012-09-23",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "Yes. The behavior of sending an Accept-Encoding header that includes gzip is implemented in the default headers: DEFAULT_ACCEPT_ENCODING is built from make_headers(accept_encoding=True) (src/requests/utils.py:85-93) and default_headers() sets \"Accept-Encoding\": DEFAULT_ACCEPT_ENCODING (src/requests/"
+   },
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 19,
+    "cited": [
+     {
+      "sha": "1b70385d4ae7",
+      "subject": "change default accept-encoding",
+      "date": "2012-09-23",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "Yes. The default Accept-Encoding header including gzip is set in default_headers (src/requests/utils.py:911-962), and the value comes from DEFAULT_ACCEPT_ENCODING (src/requests/utils.py:85-93). The commit that changed the default accept-encoding to include gzip is 1b70385d4ae7."
+   }
+  },
+  "title": "Request_gzip = True  In order to receive gzipped content, requests should send the header:  ``` 'Accept-Encoding': 'gzip' ```"
+ },
+ "commitfull-113": {
+  "id": "commitfull-113",
+  "gold": [
+   "4a9f3572a387"
+  ],
+  "gold_subject": [
+   "logging handlers",
+   "2012-12-14"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/__init__.py",
+   "requests/defaults.py",
+   "requests/models.py",
+   "tests/test_cookies.py"
+  ],
+  "runs": {
+   "explain": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": 6,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   },
+   "default": {
+    "abstain": true,
+    "n_search": 1,
+    "gold_rank_first_query": 6,
+    "cited": [],
+    "answer": "No relevant implementation was found in the retrieved context."
+   }
+  },
+  "title": "Real logging  - WARNING for things that shouldn't happen and can cause unexpected behaviour or problems,  - ERROR for when things are broken,  - INFO for major "
+ },
+ "commitfull-006": {
+  "id": "commitfull-006",
+  "gold": [
+   "e1c4fe21d47d"
+  ],
+  "gold_subject": [
+   "Fix #1106",
+   "2013-01-19"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/adapters.py",
+   "requests/sessions.py"
+  ],
+  "runs": {
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 3,
+    "cited": [
+     {
+      "sha": "4dfd6f3fc1f7",
+      "subject": "Dispatch hooks before following redirects",
+      "date": "2013-02-12",
+      "same_pr": null,
+      "shared_files": [
+       "requests/sessions.py"
+      ]
+     }
+    ],
+    "answer": "4dfd6f3fc1f7"
+   }
+  },
+  "title": "Result of 'response' hook is stored in session.response and not returned  https://github.com/kennethreitz/requests/blob/master/requests/sessions.py#L298  Should"
+ },
+ "commitfull-011": {
+  "id": "commitfull-011",
+  "gold": [
+   "1abd13700b32"
+  ],
+  "gold_subject": [
+   "Closes #1280",
+   "2013-04-02"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/sessions.py"
+  ],
+  "runs": {
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 2,
+    "cited": [
+     {
+      "sha": "ca0aea640d0c",
+      "subject": "Fix for the issue https://github.com/kennethreitz/requests/issues/1280",
+      "date": "2013-04-02",
+      "same_pr": null,
+      "shared_files": [
+       "requests/sessions.py"
+      ]
+     }
+    ],
+    "answer": "ca0aea640d0c"
+   }
+  },
+  "title": "Session.request doesn't have parameter return_response, contrary to what the docs say.  ``` def request(self, method, url,     params=None,     data=None,     h"
+ },
+ "commitfull-019": {
+  "id": "commitfull-019",
+  "gold": [
+   "2a34335dc3ef"
+  ],
+  "gold_subject": [
+   "Fix #1374",
+   "2013-05-22"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "test_requests.py"
+  ],
+  "runs": {
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 3,
+    "cited": [
+     {
+      "sha": "003c795afed5",
+      "subject": "Only pass unicode fieldnames to urllib3.",
+      "date": "2013-05-21",
+      "same_pr": null,
+      "shared_files": [
+       "test_requests.py"
+      ]
+     }
+    ],
+    "answer": "003c795afed5"
+   }
+  },
+  "title": "test_unicode_multipart_post_fieldnames() fails sometimes  ``` self = <test_requests.RequestsTestCase testMethod=test_unicode_multipart_post_fieldnames>      def"
+ },
+ "commitfull-031": {
+  "id": "commitfull-031",
+  "gold": [
+   "3155bc99362a"
+  ],
+  "gold_subject": [
+   "Close sessions created in the functional API",
+   "2014-11-07"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/api.py"
+  ],
+  "runs": {
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 10,
+    "cited": [
+     {
+      "sha": "3c0b94047c1c",
+      "subject": "address connection leak issue from #520",
+      "date": "2012-08-05",
+      "same_pr": null,
+      "shared_files": [
+       "requests/api.py"
+      ]
+     }
+    ],
+    "answer": "3c0b94047c1c"
+   }
+  },
+  "title": "ResourceWarning in python 3.2+  Requests issues a ResourceWarning in python 3.2+ as sockets are not explicitly closed before garbage collection occurs. While Re"
+ },
+ "commitfull-083": {
+  "id": "commitfull-083",
+  "gold": [
+   "0a17badb21c2"
+  ],
+  "gold_subject": [
+   "header_expand: handle Unicode strings (closes #400)",
+   "2012-02-13"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/utils.py",
+   "test_requests.py"
+  ],
+  "runs": {
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 7,
+    "cited": [
+     {
+      "sha": "dba7a5a7e20d",
+      "subject": "shortcut strings",
+      "date": "2011-08-28",
+      "same_pr": null,
+      "shared_files": [
+       "requests/utils.py"
+      ]
+     }
+    ],
+    "answer": "dba7a5a7e20d"
+   }
+  },
+  "title": "Unfortunate header unicode interactions  header_expand (https://github.com/kennethreitz/requests/blob/develop/requests/utils.py#L149) has a fast path which only"
+ },
+ "commitfull-106": {
+  "id": "commitfull-106",
+  "gold": [
+   "d8dcd3531662"
+  ],
+  "gold_subject": [
+   "Fixes #711!",
+   "2012-08-21"
+  ],
+  "gold_pr": [],
+  "gold_files": [
+   "requests/models.py"
+  ],
+  "runs": {
+   "default": {
+    "abstain": false,
+    "n_search": 1,
+    "gold_rank_first_query": 6,
+    "cited": [
+     {
+      "sha": "f3159ed4f619",
+      "subject": "Added in a link handler as per issue #711",
+      "date": "2012-08-21",
+      "same_pr": null,
+      "shared_files": []
+     }
+    ],
+    "answer": "f3159ed4f619"
+   }
+  },
+  "title": "Parse Link headers (rfc5988)  [Web Linking RFC](http://www.rfc-editor.org/rfc/rfc5988.txt)  GitHub uses these for pagination in their API for example. Potential"
+ }
+}

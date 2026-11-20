@@ -1,0 +1,3408 @@
+{
+ "dataset": "agent_eval_fresh_v2.jsonl",
+ "dataset_sha256": "b4f215712346aeafc32b6ceab7224f1a8cfcbebdd5a9861c146e780e72d58408",
+ "toolset": "production",
+ "prompt_variant": "commit_pr_commits",
+ "commit_query": "model",
+ "commit_fix_only": false,
+ "extra_files": 3,
+ "skip_tests": true,
+ "tool_result_chars": 24000,
+ "max_input_tokens": "12288",
+ "commit_k": 15,
+ "max_tool_calls": 4,
+ "citation_snap": true,
+ "abstain_retries": 1,
+ "tool_error_retries": 1,
+ "server": {
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+  "hardware": "NVIDIA A100-SXM4-40GB",
+  "max_input_tokens": "12288",
+  "decode_mode": "cuda-graphs + mtp3",
+  "concurrency": "8"
+ },
+ "rerank_used": false,
+ "rerank_failures": 0,
+ "llm_model": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+ "table": {
+  "code": {
+   "n": 30,
+   "passed": 0,
+   "abstained": 0,
+   "failed": 30,
+   "missed": [
+    "fresh2-code-001",
+    "fresh2-code-002",
+    "fresh2-code-003",
+    "fresh2-code-004",
+    "fresh2-code-005",
+    "fresh2-code-006",
+    "fresh2-code-007",
+    "fresh2-code-008",
+    "fresh2-code-009",
+    "fresh2-code-010",
+    "fresh2-code-011",
+    "fresh2-code-012",
+    "fresh2-code-013",
+    "fresh2-code-014",
+    "fresh2-code-015",
+    "fresh2-code-016",
+    "fresh2-code-017",
+    "fresh2-code-018",
+    "fresh2-code-019",
+    "fresh2-code-020",
+    "fresh2-code-021",
+    "fresh2-code-022",
+    "fresh2-code-023",
+    "fresh2-code-024",
+    "fresh2-code-025",
+    "fresh2-code-026",
+    "fresh2-code-027",
+    "fresh2-code-028",
+    "fresh2-code-029",
+    "fresh2-code-030"
+   ]
+  },
+  "docs": {
+   "n": 10,
+   "passed": 0,
+   "abstained": 0,
+   "failed": 10,
+   "missed": [
+    "fresh2-docs-031",
+    "fresh2-docs-032",
+    "fresh2-docs-033",
+    "fresh2-docs-034",
+    "fresh2-docs-035",
+    "fresh2-docs-036",
+    "fresh2-docs-037",
+    "fresh2-docs-038",
+    "fresh2-docs-039",
+    "fresh2-docs-040"
+   ]
+  },
+  "history": {
+   "n": 14,
+   "passed": 14,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  },
+  "refs": {
+   "n": 4,
+   "passed": 4,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  },
+  "kind": {
+   "n": 4,
+   "passed": 4,
+   "abstained": 0,
+   "failed": 0,
+   "missed": []
+  },
+  "prsearch": {
+   "n": 6,
+   "passed": 0,
+   "abstained": 0,
+   "failed": 6,
+   "missed": [
+    "fresh2-prsearch-063",
+    "fresh2-prsearch-064",
+    "fresh2-prsearch-065",
+    "fresh2-prsearch-066",
+    "fresh2-prsearch-067",
+    "fresh2-prsearch-068"
+   ]
+  },
+  "probe": {
+   "n": 5,
+   "passed": 0,
+   "abstained": 0,
+   "failed": 5,
+   "missed": [
+    "fresh2-probe-069",
+    "fresh2-probe-070",
+    "fresh2-probe-071",
+    "fresh2-probe-072",
+    "fresh2-probe-073"
+   ]
+  }
+ },
+ "rows": [
+  {
+   "id": "fresh2-code-001",
+   "type": "code",
+   "question": "When I call requests.get(url), which function does the real work, and what does it do with the Session it creates?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"def get url Session\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "requests.get url Session real work"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "def get url Session"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 31.7,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-002",
+   "type": "code",
+   "question": "What default settings does a brand new Session start with?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"Session __init__ default settings headers auth\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "get_symbol",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Session default settings initialization"
+     }
+    },
+    {
+     "name": "get_symbol",
+     "arguments": {
+      "symbol": "Session"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Session __init__ default settings headers auth"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 33.5,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-003",
+   "type": "code",
+   "question": "After the adapter returns a response, what does Session.send do with it before handing it back?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"Session send response adapter get_adapter\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "get_symbol",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Session.send adapter response"
+     }
+    },
+    {
+     "name": "get_symbol",
+     "arguments": {
+      "symbol": "send"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Session send response adapter get_adapter"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 34.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-004",
+   "type": "code",
+   "question": "How does the redirect mixin find out where a redirect points to?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"redirect mixin\"}}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "redirect mixin find where redirect points to"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "redirect mixin"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 33.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-005",
+   "type": "code",
+   "question": "How are request-level and session-level hook lists combined?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"hook list request session combine\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "request-level session-level hook lists combined"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "hook list request session combine"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-006",
+   "type": "code",
+   "question": "How does the transport adapter turn a urllib3 response into a requests Response object?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"urllib3 response requests Response adapter\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "transport adapter urllib3 response to requests Response"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "urllib3 response requests Response adapter"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 17.9,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-007",
+   "type": "code",
+   "question": "How does the transport adapter get a connection, and when does it go through a proxy manager?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"proxy manager connection transport\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "transport adapter get connection proxy manager"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "proxy manager connection transport"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 17.8,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-008",
+   "type": "code",
+   "question": "How are proxy connection managers created and reused, and how is a SOCKS proxy handled?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"SOCKS proxy connection manager\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "proxy connection manager SOCKS proxy"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "SOCKS proxy connection manager"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 17.4,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-009",
+   "type": "code",
+   "question": "Which pool settings does the HTTP adapter pass to urllib3's pool manager?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"urllib3 PoolManager maxsize pool_connections pool_maxsize\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "urllib3 pool manager HTTP adapter pool settings"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "urllib3 PoolManager maxsize pool_connections pool_maxsize"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-010",
+   "type": "code",
+   "question": "How does a Response decide whether it counts as true or false, and what does ok check?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"class Response ok property boolean\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Response __bool__ ok property"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "class Response ok property boolean"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 19.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-011",
+   "type": "code",
+   "question": "Where can a subclass of the transport adapter add extra headers to every request, and what does the default do?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"transport adapter headers request\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "transport adapter add extra headers to every request subclass"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "transport adapter headers request"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-012",
+   "type": "code",
+   "question": "What decides that a response is a permanent redirect?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"redirect 301 permanent\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "permanent redirect status code 301"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "redirect 301 permanent"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 19.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-013",
+   "type": "code",
+   "question": "How does a Request become a PreparedRequest?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"class PreparedRequest prepare method\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Request become PreparedRequest prepare"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "class PreparedRequest prepare method"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.5,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-014",
+   "type": "code",
+   "question": "How are cookies attached to an outgoing request?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"cookie header request\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "cookies attached to outgoing request"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "cookie header request"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.5,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-015",
+   "type": "code",
+   "question": "How is a prepared request copied?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"copy prepared request\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "prepared request copy"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "copy prepared request"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 17.7,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-016",
+   "type": "code",
+   "question": "What does preparing authentication do when no auth argument is given but the URL itself carries credentials?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"prepare authentication credentials URL\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "preparing authentication no auth argument URL carries credentials"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "prepare authentication credentials URL"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 19.4,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-017",
+   "type": "code",
+   "question": "How does setting a cookie to the value None behave in the cookie jar?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"cookie None value delete\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "cookie jar set cookie value None"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "cookie None value delete"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 39.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-018",
+   "type": "code",
+   "question": "What happens when two cookies with the same name exist for different domains and I read one by name?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"cookie jar get cookie by name domain\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "cookie same name different domain read by name"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "cookie jar get cookie by name domain"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 38.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-019",
+   "type": "code",
+   "question": "How does the library build a Cookie object from a name and a value, and which arguments does it reject?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"Cookie name value constructor\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Cookie object from name and value reject arguments"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Cookie name value constructor"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 17.5,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-020",
+   "type": "code",
+   "question": "How are two cookie sources merged into one jar?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"cookie jar merge sources\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "merge cookie sources into one jar"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "cookie jar merge sources"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-021",
+   "type": "code",
+   "question": "How is a cookie removed by name?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"delete_cookie\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "remove cookie by name"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "delete_cookie"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 17.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-022",
+   "type": "code",
+   "question": "How is a cookie Morsel from the standard library turned into a requests cookie?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"Morsel cookie\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Morsel requests cookie convert"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Morsel cookie"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 17.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-023",
+   "type": "code",
+   "question": "What does requests check about library versions when it is imported?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"check_compatible urllib3 version import requests\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "check library versions on import urllib3 charset_normalizer idna"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "check_compatible urllib3 version import requests"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 17.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-024",
+   "type": "code",
+   "question": "How does the library decide whether to use chardet or charset_normalizer?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"charset_normalizer chardet\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "chardet charset_normalizer detect encoding"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "charset_normalizer chardet"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 19.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-025",
+   "type": "code",
+   "question": "What does the library collect for a bug report, such as platform and library versions?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"bug report system information platform version\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "bug report platform library version collect"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "bug report system information platform version"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 19.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-026",
+   "type": "code",
+   "question": "What does a RequestException keep, and how does it find its request?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"class RequestException request property request\"}}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "get_symbol",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "RequestException class request"
+     }
+    },
+    {
+     "name": "get_symbol",
+     "arguments": {
+      "symbol": "RequestException"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "class RequestException request property request"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.9,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-027",
+   "type": "code",
+   "question": "How does the library parse a header value such as Digest realm and qop into a dictionary?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"Digest realm qop parse header\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "parse header value Digest realm qop into dictionary"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Digest realm qop parse header"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 17.8,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-028",
+   "type": "code",
+   "question": "How does the library check whether an IP address is inside a CIDR range?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"CIDR range IP address contains\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "check whether an IP address is inside a CIDR range"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "CIDR range IP address contains"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.7,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-029",
+   "type": "code",
+   "question": "How does the library decode a response body when the encoding is unknown or wrong?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"decode response body encoding charset\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "decode response body encoding unknown wrong charset"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "decode response body encoding charset"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-code-030",
+   "type": "code",
+   "question": "How are names like requests.codes.ok created, and what happens for an unknown name?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"codes ok __getattr__ name\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "requests.codes ok name unknown attribute"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "codes ok __getattr__ name"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.4,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-docs-031",
+   "type": "docs",
+   "question": "How do I upload a file with a custom filename and content type?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"upload file custom filename content type\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_docs",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "upload file custom filename content type"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "upload file custom filename content type"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 17.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-docs-032",
+   "type": "docs",
+   "question": "How do I upload several files in one request?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"upload multiple files in one request multipart\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_docs",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "upload several files in one request multiple files"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "upload multiple files in one request multipart"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-docs-033",
+   "type": "docs",
+   "question": "How do I send a request body that is generated piece by piece?",
+   "answer": "No answer could be produced: a tool failed (search_docs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_docs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_docs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_docs\",\"arguments\":{\"query\":\"streaming request body generator yield chunks\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_docs",
+    "search_docs"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "send a request body that is generated piece by piece streaming generator"
+     }
+    },
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "streaming request body generator yield chunks"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-docs-034",
+   "type": "docs",
+   "question": "How do I upload a large file without loading it all into memory?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"upload large file streaming without loading into memory\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_docs",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "upload large file without loading into memory streaming"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "upload large file streaming without loading into memory"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.9,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-docs-035",
+   "type": "docs",
+   "question": "How do I delay downloading the response body until I want it?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"delay downloading the response body until I want it\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_docs",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "delay downloading the response body until I want it"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "delay downloading the response body until I want it"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 17.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-docs-036",
+   "type": "docs",
+   "question": "Does requests keep connections alive, and how do I turn that off?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"keep-alive connection pooling Session adapter\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_docs",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "keep connections alive session connection pooling disable"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "keep-alive connection pooling Session adapter"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-docs-037",
+   "type": "docs",
+   "question": "How do I read the Link header of a response as links?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"read Link header of a response as links\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_docs",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "read Link header of a response as links"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "read Link header of a response as links"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.1,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-docs-038",
+   "type": "docs",
+   "question": "How do I save binary response content such as an image?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"save binary response content image\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_docs",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "save binary response content image"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "save binary response content image"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-docs-039",
+   "type": "docs",
+   "question": "How do I check a response's status code by name instead of by number?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"check response status code by name instead of number\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_docs",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "check response status code by name instead of number"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "check response status code by name instead of number"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 17.5,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-docs-040",
+   "type": "docs",
+   "question": "How do I write my own authentication scheme?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"authentication scheme\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_docs",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "write your own authentication scheme"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "authentication scheme"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 17.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-history-041",
+   "type": "history",
+   "question": "Who merged PR #7422 in psf/requests?",
+   "answer": "nateprewitt",
+   "model_answer": "nateprewitt",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 7422
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-042",
+   "type": "history",
+   "question": "Who merged PR #3615 in psf/requests?",
+   "answer": "Lukasa",
+   "model_answer": "Lukasa",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 3615
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-043",
+   "type": "history",
+   "question": "Who merged PR #6416 in psf/requests?",
+   "answer": "nateprewitt",
+   "model_answer": "nateprewitt",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 6416
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-044",
+   "type": "history",
+   "question": "Who authored PR #3892 in psf/requests?",
+   "answer": "vpfautz",
+   "model_answer": "vpfautz",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 3892
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-045",
+   "type": "history",
+   "question": "Who authored PR #6500 in psf/requests?",
+   "answer": "dependabot",
+   "model_answer": "dependabot",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 6500
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-046",
+   "type": "history",
+   "question": "Which issues does PR #2326 in psf/requests close?",
+   "answer": "- 1685\n- 1882",
+   "model_answer": "- 1685\n- 1882",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2326
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.5,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "fresh2-history-047",
+   "type": "history",
+   "question": "Which issues does PR #1030 in psf/requests close?",
+   "answer": "- 1027",
+   "model_answer": "- 1027",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1030
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.4,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "fresh2-history-048",
+   "type": "history",
+   "question": "Which release first contained the change merged in PR #7196 in psf/requests?",
+   "answer": "v2.33.0",
+   "model_answer": "v2.33.0",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 7196
+     }
+    },
+    {
+     "name": "releases_containing",
+     "arguments": {
+      "sha": "0c2bbe73982a70623fb81bf16b2507ea0ca80b99"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-049",
+   "type": "history",
+   "question": "Which release first contained the change merged in PR #4996 in psf/requests?",
+   "answer": "v2.23.0",
+   "model_answer": "v2.23.0",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 4996
+     }
+    },
+    {
+     "name": "releases_containing",
+     "arguments": {
+      "sha": "ada50499a0de44219a581ade3e8cebfa5c7334e4"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-050",
+   "type": "history",
+   "question": "Which release first contained the change merged in PR #4387 in psf/requests?",
+   "answer": "v2.19.0",
+   "model_answer": "v2.19.0",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 4387
+     }
+    },
+    {
+     "name": "releases_containing",
+     "arguments": {
+      "sha": "c3f2553114fdaf83b9c646a73987bbd2f13285e1"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-051",
+   "type": "history",
+   "question": "Which release first contained the change merged in PR #6170 in psf/requests?",
+   "answer": "v2.28.1",
+   "model_answer": "v2.28.1",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "releases_containing"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 6170
+     }
+    },
+    {
+     "name": "releases_containing",
+     "arguments": {
+      "sha": "16b418b44a04981ec452df607730079a6178a804"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-052",
+   "type": "history",
+   "question": "Who made the most commits in psf/requests in 2016, not counting merge commits?",
+   "answer": "Kenneth Reitz\n\nNote: commit counts cover non-merge commits only (merge commits are not indexed).\n\nActivity from the commit history:\n- Kenneth Reitz: 116 commits in this history, first 2016-01-15, most recent 2016-12-23",
+   "model_answer": "Kenneth Reitz",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "top_contributors"
+   ],
+   "calls": [
+    {
+     "name": "top_contributors",
+     "arguments": {
+      "since": "2016-01-01",
+      "until": "2017-01-01",
+      "limit": 1
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-053",
+   "type": "history",
+   "question": "Who made the most commits in psf/requests in 2019, not counting merge commits?",
+   "answer": "Kenneth Reitz\n\nNote: commit counts cover non-merge commits only (merge commits are not indexed).\n\nActivity from the commit history:\n- Kenneth Reitz: 177 commits in this history, first 2019-02-28, most recent 2019-09-23",
+   "model_answer": "Kenneth Reitz",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "top_contributors"
+   ],
+   "calls": [
+    {
+     "name": "top_contributors",
+     "arguments": {
+      "since": "2019-01-01",
+      "until": "2020-01-01",
+      "limit": 1
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-history-054",
+   "type": "history",
+   "question": "Who made the most commits in psf/requests in 2022, not counting merge commits?",
+   "answer": "Nate Prewitt\n\nNote: commit counts cover non-merge commits only (merge commits are not indexed).\n\nActivity from the commit history:\n- Nate Prewitt: 21 commits in this history, first 2022-01-03, most recent 2022-06-29",
+   "model_answer": "Nate Prewitt",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "top_contributors"
+   ],
+   "calls": [
+    {
+     "name": "top_contributors",
+     "arguments": {
+      "since": "2022-01-01",
+      "until": "2023-01-01",
+      "limit": 1
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.6,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-refs-055",
+   "type": "refs",
+   "question": "Which other PRs or issues does #7339 in psf/requests mention in its title or body?",
+   "answer": "- 6990",
+   "model_answer": "- 6990",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 7339
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.8,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "fresh2-refs-056",
+   "type": "refs",
+   "question": "Which other PRs or issues does #7251 in psf/requests mention in its title or body?",
+   "answer": "- 7228",
+   "model_answer": "- 7228",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 7251
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "fresh2-refs-057",
+   "type": "refs",
+   "question": "Which PRs or issues in psf/requests mention #1750 in their title or body?",
+   "answer": "- 5671",
+   "model_answer": "- 5671",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 1750
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "fresh2-refs-058",
+   "type": "refs",
+   "question": "Which PRs or issues in psf/requests mention #1847 in their title or body?",
+   "answer": "- 1850",
+   "model_answer": "- 1850",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_references"
+   ],
+   "calls": [
+    {
+     "name": "get_references",
+     "arguments": {
+      "number": 1847
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.0,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": "missing []; extra []"
+  },
+  {
+   "id": "fresh2-kind-059",
+   "type": "kind",
+   "question": "Is #5166 in psf/requests a pull request or an issue?",
+   "answer": "issue",
+   "model_answer": "issue",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "get_issue_meta"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 5166
+     }
+    },
+    {
+     "name": "get_issue_meta",
+     "arguments": {
+      "number": 5166
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-kind-060",
+   "type": "kind",
+   "question": "Is #6344 in psf/requests a pull request or an issue?",
+   "answer": "issue",
+   "model_answer": "issue",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr",
+    "get_issue_meta"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 6344
+     }
+    },
+    {
+     "name": "get_issue_meta",
+     "arguments": {
+      "number": 6344
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 3.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-kind-061",
+   "type": "kind",
+   "question": "Is #2672 in psf/requests a pull request or an issue?",
+   "answer": "pull request",
+   "model_answer": "pull request",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 2672
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 2.1,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-kind-062",
+   "type": "kind",
+   "question": "Is #1125 in psf/requests a pull request or an issue?",
+   "answer": "pull request",
+   "model_answer": "pull request",
+   "abstain": false,
+   "failure": "",
+   "error": "",
+   "raw_reply": "",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 0
+   },
+   "tools": [
+    "get_pr"
+   ],
+   "calls": [
+    {
+     "name": "get_pr",
+     "arguments": {
+      "number": 1125
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 1.7,
+   "rerank_failures": 0,
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-prsearch-063",
+   "type": "prsearch",
+   "question": "In psf/requests, which pull request is about: \"enhance raise_for_status() to include response content\"? Give its number.",
+   "answer": "No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_prs\",\"arguments\":{\"query\":\"raise_for_status response content\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_prs",
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "enhance raise_for_status() to include response content"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "raise_for_status response content"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 20.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-prsearch-064",
+   "type": "prsearch",
+   "question": "In psf/requests, which pull request is about: \"docs - clarify json() error exception for python 3\"? Give its number.",
+   "answer": "No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_prs\",\"arguments\":{\"query\":\"clarify json error exception python 3 docs\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_prs",
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "docs clarify json() error exception for python 3"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "clarify json error exception python 3 docs"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 20.0,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-prsearch-065",
+   "type": "prsearch",
+   "question": "In psf/requests, which pull request is about: \"only the path should be unquoted/quoted.\"? Give its number.",
+   "answer": "No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_prs\",\"arguments\":{\"query\":\"path should be unquoted quoted\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_prs",
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "only the path should be unquoted/quoted"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "path should be unquoted quoted"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 19.5,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-prsearch-066",
+   "type": "prsearch",
+   "question": "In psf/requests, which issue is about: \"timeout exception: session.get() vs requests.get() behavior discrepancy\"? Give its number.",
+   "answer": "No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_prs\",\"arguments\":{\"query\":\"timeout exception session.get requests.get behavior discrepancy\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_prs",
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "timeout exception: session.get() vs requests.get() behavior discrepancy"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "timeout exception session.get requests.get behavior discrepancy"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-prsearch-067",
+   "type": "prsearch",
+   "question": "In psf/requests, which issue is about: \"how can i pass gmail's cookie to requests session?\"? Give its number.",
+   "answer": "No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_prs\",\"arguments\":{\"query\":\"pass gmail cookie to requests session\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_prs",
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "how can i pass gmail's cookie to requests session"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "pass gmail cookie to requests session"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-prsearch-068",
+   "type": "prsearch",
+   "question": "In psf/requests, which issue is about: \"rfe: please provide support for latest `urllib3`\"? Give its number.",
+   "answer": "No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_prs: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_prs\",\"arguments\":{\"query\":\"support for latest urllib3\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_prs",
+    "search_prs"
+   ],
+   "calls": [
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "rfe: please provide support for latest urllib3"
+     }
+    },
+    {
+     "name": "search_prs",
+     "arguments": {
+      "query": "support for latest urllib3"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.9,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": "failed"
+  },
+  {
+   "id": "fresh2-probe-069",
+   "type": "probe",
+   "question": "How does requests encrypt files at rest with AES?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"AES encryption file at rest\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "encrypt files at rest AES"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "AES encryption file at rest"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 19.3,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-probe-070",
+   "type": "probe",
+   "question": "Where does requests implement a Redis caching layer?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"redis cache\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "Redis caching layer"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "redis cache"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 18.8,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-probe-071",
+   "type": "probe",
+   "question": "How do I use requests with gRPC streaming?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"requests gRPC streaming\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_docs",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_docs",
+     "arguments": {
+      "query": "requests gRPC streaming"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "requests gRPC streaming"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 22.6,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-probe-072",
+   "type": "probe",
+   "question": "Which function in requests trains a machine-learning model?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"train model\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "train machine learning model"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "train model"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 19.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  },
+  {
+   "id": "fresh2-probe-073",
+   "type": "probe",
+   "question": "How does requests parse YAML configuration files?",
+   "answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "model_answer": "No answer could be produced: a tool failed (search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.). Commit, PR and issue data may not be indexed for this repository.",
+   "abstain": true,
+   "failure": "tool",
+   "error": "search_code: NotImplementedError: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.",
+   "raw_reply": "{\"type\":\"tool_call\",\"name\":\"search_code\",\"arguments\":{\"query\":\"yaml load config\"}}",
+   "parse_retries": 0,
+   "guards": {
+    "abstain_retries": 0,
+    "tool_error_recoveries": 1
+   },
+   "tools": [
+    "search_code",
+    "search_code"
+   ],
+   "calls": [
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "parse YAML configuration file"
+     }
+    },
+    {
+     "name": "search_code",
+     "arguments": {
+      "query": "yaml load config"
+     }
+    }
+   ],
+   "unverified_shas": [],
+   "citations": {
+    "valid": 0,
+    "removed": [],
+    "attached": [],
+    "uncited": false,
+    "checked": false
+   },
+   "seconds": 26.2,
+   "rerank_failures": 0,
+   "passed": false,
+   "detail": ""
+  }
+ ]
+}

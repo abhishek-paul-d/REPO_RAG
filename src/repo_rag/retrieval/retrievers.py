@@ -195,11 +195,16 @@ class HybridRetriever:
         similarity = {str(d.metadata["chunk_id"]): s for d, s in dense}
 
         # BM25 (skipped, with a warning, if the index file is missing).
+        bm25_weight = (
+            settings.commit_bm25_weight
+            if kind == "commits" and settings.commit_bm25_weight is not None
+            else settings.bm25_weight
+        )
         bm25_ids: list[str] = []
         index = self._bm25_index(repo, kind)
         if index is None:
             log.warning("no BM25 index for %s/%s; using dense search only", repo, kind)
-        elif settings.bm25_weight > 0:
+        elif bm25_weight > 0:
 
             def accept(meta: dict[str, str]) -> bool:
                 return in_scope(meta["path"]) and all(
@@ -213,7 +218,7 @@ class HybridRetriever:
 
         fused = weighted_rrf(
             {"dense": dense_ids, "bm25": bm25_ids},
-            {"dense": settings.dense_weight, "bm25": settings.bm25_weight},
+            {"dense": settings.dense_weight, "bm25": bm25_weight},
             settings.rrf_k,
         )
         dense_rank = {cid: r for r, cid in enumerate(dense_ids, start=1)}

@@ -1,0 +1,95 @@
+{"n": 1730, "sha": "583859b8204a1e9dd8a337f1ca06e31e8f79b5f8", "verdict": "wrong", "reason": "The test adds an explicit hooks value, but the excerpt does not show a required parameter or an argument-binding error."}
+{"n": 1731, "sha": "584cfb664d72d3e9f1f2a5f2ed205ad8356fb5c1", "verdict": "wrong", "reason": "The code loads an external script, but the excerpt does not establish that the script performs tracking or analytics."}
+{"n": 1732, "sha": "58501d1ec7fc931167a0c2ec95e5d734af7cd04d", "verdict": "ok", "reason": ""}
+{"n": 1733, "sha": "5855dd711f0ab9c9c4782574b8814b1e4c7f98cc", "verdict": "filler", "reason": "The branch assumes UTF-8 for an unset charset; the excerpt does not establish that this always produces correct decoding."}
+{"n": 1734, "sha": "5861254d8f5df33820b333be8d7ee28b40da99a5", "verdict": "ok", "reason": ""}
+{"n": 1735, "sha": "587385bfe0d48da1f33635c23bcb792650e5ef1f", "verdict": "ok", "reason": ""}
+{"n": 1736, "sha": "587eb193ddbc2dfc10c2bdbf1718cd2267a0e77f", "verdict": "ok", "reason": ""}
+{"n": 1737, "sha": "5887b136e38dbd572064b9189a92f68d526e6318", "verdict": "ok", "reason": ""}
+{"n": 1738, "sha": "588b6bbf8a3b03b4b12fe8e6a36ca923eb705c23", "verdict": "ok", "reason": ""}
+{"n": 1739, "sha": "588e8f7f640f774e71d61b53ccb34d310172e0ad", "verdict": "ok", "reason": ""}
+{"n": 1740, "sha": "589f13ca9d81a3ba2bace8b889f84b8b7c5e4881", "verdict": "ok", "reason": ""}
+{"n": 1741, "sha": "589f2f6d6e4b3934637c7de2b3e56b298cf21343", "verdict": "ok", "reason": ""}
+{"n": 1742, "sha": "58b1c69b6a40749f7dcc03f6489e5486e50f7ea2", "verdict": "ok", "reason": ""}
+{"n": 1743, "sha": "58bf1588401410e771797c06a8def16a9c7f53ff", "verdict": "ok", "reason": ""}
+{"n": 1744, "sha": "58c77bac27ce853d4b60a067d11a8b85dbc251b3", "verdict": "ok", "reason": ""}
+{"n": 1745, "sha": "58cea7a7282999adafdc19a4e82e2d09207ab568", "verdict": "ok", "reason": ""}
+{"n": 1746, "sha": "58d5e0318e688f08373496dc3fee1d4977902958", "verdict": "ok", "reason": ""}
+{"n": 1747, "sha": "58d63d55bc0cbbb1d543a4165f2e80a808c5577e", "verdict": "ok", "reason": ""}
+{"n": 1748, "sha": "58e018af136190a2c757b13bf9371cecc2d51273", "verdict": "ok", "reason": ""}
+{"n": 1749, "sha": "58e0a6f4a020db660119f1c9459ab37ba55b92d4", "verdict": "ok", "reason": ""}
+{"n": 1750, "sha": "58e3dd9de85c98214b8838e133881fc263e5a3ac", "verdict": "filler", "reason": "The format changes from percent-f to percent-s, but the excerpt does not establish the former artifact or guarantee the new value is numeric."}
+{"n": 1751, "sha": "58e513579a0934dbd737077f3069c04d68cf1a52", "verdict": "ok", "reason": ""}
+{"n": 1752, "sha": "590350f8d094c216051510ed1dd18fe871b53b72", "verdict": "ok", "reason": ""}
+{"n": 1753, "sha": "590ce29743d6c8d68f3885a949a93fdb68f4d142", "verdict": "filler", "reason": "The new state methods and verify entry are supported, but the excerpt does not establish error-free serialization for all session configurations."}
+{"n": 1754, "sha": "592fb34a3d7091f7c8bea3dc3c555f52b5e2a7fd", "verdict": "ok", "reason": ""}
+{"n": 1755, "sha": "59372826180b860f4b7f4928bf20d7da1a07d584", "verdict": "ok", "reason": ""}
+{"n": 1756, "sha": "593734b77092439b533e8e0599be6d204867b751", "verdict": "wrong", "reason": "The new condition calls a misspelled method, so it cannot reliably preserve forward-slash aliases."}
+{"n": 1757, "sha": "5962c0ea8609837454e79bad9e0a94ae5099ad23", "verdict": "ok", "reason": ""}
+{"n": 1758, "sha": "596aceb185c3ca013e83db70eeeff3014d8e3a40", "verdict": "cannot_tell", "reason": "The API page changes the count and moves an existing directive, but the excerpt ends before the code-file hunks that could show a newly added method."}
+{"n": 1759, "sha": "596ca83f0c66460deb82af07b13ce724b9f46474", "verdict": "ok", "reason": ""}
+{"n": 1760, "sha": "597ace5718eb116819966213e8772458a9141c29", "verdict": "filler", "reason": "The named imports are removed, but the excerpt does not establish whether users accessed the imported names through the API module."}
+{"n": 1761, "sha": "597f0ae5fd2bf512737d022b8bc9f908657c47fc", "verdict": "wrong", "reason": "The change wraps the existing error and does not give all wrapped socket errors a common message."}
+{"n": 1762, "sha": "5984296b6a4cea1b20a6747127c335d95595e7d9", "verdict": "filler", "reason": "The tox matrix gains Python 3.13, but the excerpt does not establish that it is the latest interpreter."}
+{"n": 1763, "sha": "599a8f11f85349a4b71115bf9736d26305eb391c", "verdict": "ok", "reason": ""}
+{"n": 1764, "sha": "599f8343512277671d08e043a0505a82630c641d", "verdict": "wrong", "reason": "The previous line uses valid Python formatting and keyword syntax."}
+{"n": 1765, "sha": "59b29d02f8c4674a9922df53c9df9f960e6eaf34", "verdict": "ok", "reason": ""}
+{"n": 1766, "sha": "59c6aebd606e3c5fb7b684817faa92051fc0295a", "verdict": "ok", "reason": ""}
+{"n": 1767, "sha": "59c747b793cd84589edece4e905fd175af16686a", "verdict": "ok", "reason": ""}
+{"n": 1768, "sha": "59c8d813818110aac29fd104c2fa012387c2004c", "verdict": "ok", "reason": ""}
+{"n": 1769, "sha": "59dac47346a04d66a7d885ecfd30f7d55b80106f", "verdict": "filler", "reason": "The emoji line moves between visible sections, but the resulting visual improvement is subjective and not shown."}
+{"n": 1770, "sha": "59dd3ed4596809a56d5103b45a20f61c18d72e77", "verdict": "wrong", "reason": "The changelog refers to URL-encoded data without establishing support for non-ASCII characters in the URL address itself."}
+{"n": 1771, "sha": "59f12c9669c53c5cb110870cc94e8181831f45ab", "verdict": "ok", "reason": ""}
+{"n": 1772, "sha": "59f5a1089a05bb768e1c86804cc8a6d023c9cb43", "verdict": "wrong", "reason": "A trailing comma is optional for the last dictionary item, and the source gives no evidence that the old dictionary failed to parse."}
+{"n": 1773, "sha": "59f8aa2adf1d3d06bcbf7ce6b13743a1639a5401", "verdict": "ok", "reason": ""}
+{"n": 1774, "sha": "59f916ca4a6a8e55528988cfc1bee445e71c4602", "verdict": "ok", "reason": ""}
+{"n": 1775, "sha": "5a18066c451ce6d5cd8a4b3dbcb229d7e3af2492", "verdict": "ok", "reason": ""}
+{"n": 1776, "sha": "5a1e738ea9c399c3f59977f2f98b083986d6037a", "verdict": "wrong", "reason": "The idna support is documented in the changelog, with no dependency constraint changed in this commit."}
+{"n": 1777, "sha": "5a26241287162ff592c81dbfbbd013e309c85c05", "verdict": "ok", "reason": ""}
+{"n": 1778, "sha": "5a280a11bcfa822742a2914fa01a19ed4b45d034", "verdict": "ok", "reason": ""}
+{"n": 1779, "sha": "5a2e5af3a428006aac1b2b3353a123aa5ddaab72", "verdict": "ok", "reason": ""}
+{"n": 1780, "sha": "5a3aae73ba73ac4c72f1944836efc6158893181b", "verdict": "ok", "reason": ""}
+{"n": 1781, "sha": "5a3aeedd1824e38ca2fe66752d54dcf22bd3785d", "verdict": "ok", "reason": ""}
+{"n": 1782, "sha": "5a616ee980ae2cc9d42f8d0221420ad9eed4b2e0", "verdict": "ok", "reason": ""}
+{"n": 1783, "sha": "5a69137ac871c38f4597b574e93de07d9ff9655f", "verdict": "ok", "reason": ""}
+{"n": 1784, "sha": "5a7d461230b174cda57a2b73deb142e15683183e", "verdict": "ok", "reason": ""}
+{"n": 1785, "sha": "5a7ec361f4bf093e251d4953bcf6a432717cf690", "verdict": "ok", "reason": ""}
+{"n": 1786, "sha": "5a7fbbb00d5b09b515bfe1e0b2768a29452d5ee6", "verdict": "ok", "reason": ""}
+{"n": 1787, "sha": "5a8a8f2bd304ff77077b77c766977919c33ac5c8", "verdict": "ok", "reason": ""}
+{"n": 1788, "sha": "5a9097dc4b8c90a3b501a403177ec5314064e395", "verdict": "ok", "reason": ""}
+{"n": 1789, "sha": "5aa1881959378b37b13a488dfcbd740063874dd7", "verdict": "wrong", "reason": "The contributor's name is already present and the new text only adds GitHub profile information."}
+{"n": 1790, "sha": "5aa66615870beeb7b0ed3af27457f689db262ab3", "verdict": "ok", "reason": ""}
+{"n": 1791, "sha": "5aa6a9b654cca5666a2e5715936f1694ce8d5ee4", "verdict": "ok", "reason": ""}
+{"n": 1792, "sha": "5ab79e2514b663ac8e0a82981efe0a5e69efe01c", "verdict": "ok", "reason": ""}
+{"n": 1793, "sha": "5ac53c69c78703e7eb782758b4a66c087bacd5f3", "verdict": "ok", "reason": ""}
+{"n": 1794, "sha": "5add08fc848a6c96460c00453f2cc649cf3e056e", "verdict": "cannot_tell", "reason": "The title identifies duplicate image requests, but the excerpt cuts off in the CSS before the JavaScript and layout needed to check the sidebar-specific diagnosis."}
+{"n": 1795, "sha": "5afe11ba1c00680edaee91b92ba87486997965f7", "verdict": "ok", "reason": ""}
+{"n": 1796, "sha": "5b30e960eb6ebb62f22c52653f4b134e917594a2", "verdict": "ok", "reason": ""}
+{"n": 1797, "sha": "5b363d1a57780fe339d66e85fd0cde8f22ae9629", "verdict": "wrong", "reason": "The stated lint motivation is continuation formatting, and there is no evidence of a line-length violation."}
+{"n": 1798, "sha": "5b4b64c3467fd7a3c03f91ee641aaa348b6bed3b", "verdict": "ok", "reason": ""}
+{"n": 1799, "sha": "5b4e9aff0ea2d0876de33f57cece4b06fe4bc194", "verdict": "ok", "reason": ""}
+{"n": 1800, "sha": "5b5d8a81b7094a4131e40da1eaf127fec341bfa0", "verdict": "filler", "reason": "The removed code was commented out, but the excerpt does not establish whether it was obsolete."}
+{"n": 1801, "sha": "5b5ff6920102e013cf041bd342459e4e0613294f", "verdict": "wrong", "reason": "The old example uses a lowercase factory call, while the replacement uses the class constructor and changes the pattern rather than correcting a spelling."}
+{"n": 1802, "sha": "5b73f2ea6100277f6400f399f585117b47068b4a", "verdict": "wrong", "reason": "The single addition is a comment and does not register any cookies or change request behavior."}
+{"n": 1803, "sha": "5b801847c4c14760cf0d50e9ada172303c708962", "verdict": "filler", "reason": "The empty commit has no changes, but its purpose as a placeholder or marker is unsupported."}
+{"n": 1804, "sha": "5ba43d0fe5ff5b1705e94ae1b7f2abfe744c56d4", "verdict": "ok", "reason": ""}
+{"n": 1805, "sha": "5bb01fbfe8dec618c630e39009930c6306135f33", "verdict": "ok", "reason": ""}
+{"n": 1806, "sha": "5bb18810d4a9bad0255628dde7d3d2825ca5113a", "verdict": "wrong", "reason": "The code formats Python's object identity, which is not guaranteed to be a memory address across implementations."}
+{"n": 1807, "sha": "5bb2be9a2300ccc3c1901d2f85afb79cfb9e02f1", "verdict": "wrong", "reason": "The change supplies a combined cookie jar, which is not evidence that every cookie is placed on the wire for every redirect."}
+{"n": 1808, "sha": "5bc919a24f1a28bb0e47725977a6f5cf690a8d30", "verdict": "ok", "reason": ""}
+{"n": 1809, "sha": "5be412db133b46288409a9bb195c24f9e74cf405", "verdict": "wrong", "reason": "The deleted print expressions were comments and were not executable debug output."}
+{"n": 1810, "sha": "5be6c21b140bb0c140527cb843b6b474594f165b", "verdict": "wrong", "reason": "The summary names a different file from the one shown."}
+{"n": 1811, "sha": "5bf396d5d12bf9debc667a509c84f640560da517", "verdict": "ok", "reason": ""}
+{"n": 1812, "sha": "5bff8e362f83fc43b56278cd2dcdec3a06d043aa", "verdict": "ok", "reason": ""}
+{"n": 1813, "sha": "5c132c98ca605ca390e2a2ddbb42f01f749fa484", "verdict": "ok", "reason": ""}
+{"n": 1814, "sha": "5c15fffaca3573d2a03cc9aeb80af212601a2405", "verdict": "filler", "reason": "The fixture replaces the public URL, but the excerpt does not independently establish a reliability improvement."}
+{"n": 1815, "sha": "5c19d3e07b68145c7af9ad70dcaa2e48dd06b0b5", "verdict": "ok", "reason": ""}
+{"n": 1816, "sha": "5c1bc201c46297d39d591e5d30e0e65a989bd22c", "verdict": "ok", "reason": ""}
+{"n": 1817, "sha": "5c389cf3f533846456de9f56d1fea5687a0e2671", "verdict": "ok", "reason": ""}
+{"n": 1818, "sha": "5c47ce1136ed12e992fe3404b8e6634060bcd411", "verdict": "wrong", "reason": "The edit is for Python 2.6 compatibility, and the old assertion method is not specific to Python 3."}
+{"n": 1819, "sha": "5c4aa1f4b7ef64845b523494dbf652e6c24c10ee", "verdict": "ok", "reason": ""}
+{"n": 1820, "sha": "5c5c13a28f48770d826cdebfb7bd62dffd15c117", "verdict": "ok", "reason": ""}
+{"n": 1821, "sha": "5c63bc33fe5801cbf64bf2f5f8c846e18ebecc5c", "verdict": "wrong", "reason": "The commit only edits the changelog and does not implement the features or fixes it describes."}
+{"n": 1822, "sha": "5c65f6d01e7713e2f644244d9cf09f685e6a18c1", "verdict": "ok", "reason": ""}
+{"n": 1823, "sha": "5c72601599b085985f5b345717e8e8d127091c81", "verdict": "ok", "reason": ""}
+{"n": 1824, "sha": "5c81fba1eba9187886bf98dbce395cd119f1ccfd", "verdict": "ok", "reason": ""}

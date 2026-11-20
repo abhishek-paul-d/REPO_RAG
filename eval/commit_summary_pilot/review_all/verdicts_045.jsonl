@@ -1,0 +1,93 @@
+{"n": 3875, "sha": "cb1bd313e1116dc68d90eb919df1b5a5d792bab5", "verdict": "ok", "reason": ""}
+{"n": 3876, "sha": "cb233a101d6333cf1895e3f46bde11874fcaba07", "verdict": "ok", "reason": ""}
+{"n": 3877, "sha": "cb2c800518423e0042789ab09f8f6e719428a444", "verdict": "ok", "reason": ""}
+{"n": 3878, "sha": "cb2e87210c0af4217aa9a1159a08c5634cd85ab2", "verdict": "ok", "reason": ""}
+{"n": 3879, "sha": "cb44e165e56fe58c4fb4394f796ab53877b352c5", "verdict": "ok", "reason": ""}
+{"n": 3880, "sha": "cb4c2c0b6507d0978859cf824ca396902ba81064", "verdict": "ok", "reason": ""}
+{"n": 3881, "sha": "cb7fcd7ebddb45917fb7a526d3627feb2d7738b9", "verdict": "wrong", "reason": "The existing OrderedDict workaround remains a recommendation for controlling default header order, and the edit only fixes its link label."}
+{"n": 3882, "sha": "cb8f9756e3cf57a12ea5619609460f29f930fd3d", "verdict": "ok", "reason": ""}
+{"n": 3883, "sha": "cb9620780ff6c69b88ec0400d3fd140e28a7aec2", "verdict": "ok", "reason": ""}
+{"n": 3884, "sha": "cbc7c2d1c9ceaa0ae73a1da3ceb3b29ed278d785", "verdict": "ok", "reason": ""}
+{"n": 3885, "sha": "cbccc5f07e63bf4fe50e6eb94599b8888074689f", "verdict": "wrong", "reason": "No license text is replaced, and the added img tag lacks its closing angle bracket."}
+{"n": 3886, "sha": "cbce031327be4f1b4b5fd041ff4dcaa8efa2ce53", "verdict": "ok", "reason": ""}
+{"n": 3887, "sha": "cc1b9da2351a3b93e3a1bfc95676ffc74cebb45b", "verdict": "cannot_tell", "reason": "The introduction button is renamed, but the excerpt cuts off before the button hunk in the logo template."}
+{"n": 3888, "sha": "cc23d1c6445d61c1e6905cae4861d6e3c3244274", "verdict": "ok", "reason": ""}
+{"n": 3889, "sha": "cc2c54093e97965b38d0ae1611bb19cd503d6888", "verdict": "cannot_tell", "reason": "The auth branch begins in the excerpt, but the credential formatting and final command are cut off, so the resulting command’s validity cannot be checked."}
+{"n": 3890, "sha": "cc350d54b7274a2274af780d34288f4a23bdb6fa", "verdict": "ok", "reason": ""}
+{"n": 3891, "sha": "cc4b0b110f60b495f0f159150a9e99553d43aa4c", "verdict": "filler", "reason": "The defaults dictionary is removed, but the excerpt does not establish that each removed setting was redundant."}
+{"n": 3892, "sha": "cc7bee19f0f1490d3bfd321bf94f6367c4ed3c7a", "verdict": "ok", "reason": ""}
+{"n": 3893, "sha": "cc851818c2a052131e78ba432adf73eaef0865cd", "verdict": "ok", "reason": ""}
+{"n": 3894, "sha": "ccb7fdd8c23e9d1181b455be1e21c82623fd78d4", "verdict": "ok", "reason": ""}
+{"n": 3895, "sha": "ccb9eb28e1c45e7b835f6d6fd74ff2e7e1a80eb2", "verdict": "cannot_tell", "reason": "The HACKING deletion and beginning of the Settings edit are visible, but the excerpt omits the tox change and its relation to them."}
+{"n": 3896, "sha": "ccbffe5a533182e721be2e04bb201039e73bbdae", "verdict": "wrong", "reason": "The hunk edits the example traceback text rather than an executable raise statement."}
+{"n": 3897, "sha": "ccc03b93ef003de381cdafc5f483080a85553e94", "verdict": "wrong", "reason": "The hunk adds two blank lines."}
+{"n": 3898, "sha": "ccd14ddc81bbc23afa33c10643e24dfa07513f2e", "verdict": "ok", "reason": ""}
+{"n": 3899, "sha": "ccea28db071e057d161567329d0844357789a5c3", "verdict": "ok", "reason": ""}
+{"n": 3900, "sha": "cceceecb68d6ee51c3d2c504a49fabc6138502b9", "verdict": "wrong", "reason": "urllib exists in Python. The incorrect part of the example was the poolmanager import path."}
+{"n": 3901, "sha": "ccf4ca8929ec88e84616ecbc0176a26b3042f0bd", "verdict": "ok", "reason": ""}
+{"n": 3902, "sha": "ccf55045a65d17630bfe28c7b90e99c318b7c6f5", "verdict": "ok", "reason": ""}
+{"n": 3903, "sha": "cd01aa466621932dd9a00551b1550d61eab6c4da", "verdict": "ok", "reason": ""}
+{"n": 3904, "sha": "cd056cd62109e1b6af16031cf9bc57cb5c38bbbf", "verdict": "wrong", "reason": "The previous UTF-8 decode ignored invalid bytes, so those bytes did not make that decode fail."}
+{"n": 3905, "sha": "cd0d0a2b1779f38206ec0029f8ed7efd321aa2cc", "verdict": "wrong", "reason": "The shown edits insert new whitespace-only lines instead of appending whitespace to existing lines."}
+{"n": 3906, "sha": "cd1278ef99bab2ba72d9d854e387dd65384e956f", "verdict": "ok", "reason": ""}
+{"n": 3907, "sha": "cd2beaf04a840e2280d29eb4087f62abde4a36bb", "verdict": "ok", "reason": ""}
+{"n": 3908, "sha": "cd4c701186c0f21025996017612ec57bfc70145b", "verdict": "ok", "reason": ""}
+{"n": 3909, "sha": "cd5eb629616012fcfa2835a633e04cdc47c33ec9", "verdict": "ok", "reason": ""}
+{"n": 3910, "sha": "cd6eb30b20eba6d348a2b2cfedf220feb07b33c6", "verdict": "ok", "reason": ""}
+{"n": 3911, "sha": "cd84b3ff943f733c2e76bb047ab2d3a60cac5ba2", "verdict": "filler", "reason": "The vendor update and version are visible, but the excerpt does not substantiate unspecified fixes or a compatibility benefit."}
+{"n": 3912, "sha": "cd8ce63a3b6850afb5ba3c3677f5715907468f7e", "verdict": "ok", "reason": ""}
+{"n": 3913, "sha": "cd90742ed94d901759e26766197d0ce7c7bd9c8e", "verdict": "ok", "reason": ""}
+{"n": 3914, "sha": "cda95d3cdee339f10d48287395368e31c386f296", "verdict": "ok", "reason": ""}
+{"n": 3915, "sha": "cdab4fabf448f287f6f537265aa23ac06a080599", "verdict": "ok", "reason": ""}
+{"n": 3916, "sha": "cdbc2e271529f467b278b2760f12ee0b5d6930d3", "verdict": "ok", "reason": ""}
+{"n": 3917, "sha": "cdd0613aecba646f431b1a4e9164aa7b9d8e24be", "verdict": "ok", "reason": ""}
+{"n": 3918, "sha": "cde3b88f3e93a9503810acc0ded890025fcbc119", "verdict": "ok", "reason": ""}
+{"n": 3919, "sha": "cde5a4a5d50ba967813e1bb35041eaa5f7dd2264", "verdict": "wrong", "reason": "The patch adds an exception entry to the existing API reference without adding a page."}
+{"n": 3920, "sha": "ce122cc811e937d72272c28231065363d351d3d1", "verdict": "filler", "reason": "The initial value changes from False to None, but the excerpt does not identify any erroneous consumer or condition it fixes."}
+{"n": 3921, "sha": "ce1945c78025af0ec235d70d8cb501bfe7623145", "verdict": "wrong", "reason": "Raw strings are ordinary strings, and the syntax error is in the raw prefix literal that ends with a single backslash."}
+{"n": 3922, "sha": "ce1ac88543238c865e797eb59bbaa092c4d43ec7", "verdict": "ok", "reason": ""}
+{"n": 3923, "sha": "ce234d53a5b8d829eca4f27857e6ea2625575fe8", "verdict": "filler", "reason": "The message describes faster version extraction, but the excerpt contains no evidence that installation overall is faster."}
+{"n": 3924, "sha": "ce3b85a62ee2bd12463aa2937a6b66a5a5e35a2d", "verdict": "filler", "reason": "The assignment is removed, but the excerpt does not establish that success was unused or that behavior is identical."}
+{"n": 3925, "sha": "ce42b338f4a1ddcb52c7b7624a43163ebe9d527a", "verdict": "filler", "reason": "The docstring entries are removed without establishing that their corresponding settings were outdated."}
+{"n": 3926, "sha": "ce4927e5d36e02bfb9de064f87e6027fff8c1a1f", "verdict": "ok", "reason": ""}
+{"n": 3927, "sha": "ce52825d125f7b58a426b0c88c619af21b71ed0d", "verdict": "wrong", "reason": "Coverage was a conditional script step, not a separate pipeline job."}
+{"n": 3928, "sha": "ce5b5fe227f939cd0195aa47822b8404357ced5d", "verdict": "wrong", "reason": "The note about HTTPError belongs to the behavioral-changes section, while the distinct bugfix is for Digest authentication."}
+{"n": 3929, "sha": "ce64cce14ef5914216fe52a40496f47b4631d13c", "verdict": "wrong", "reason": "The added next member is a method and has no property decorator."}
+{"n": 3930, "sha": "ce6762ff63084c41d0a8fa34fb19fb770cc2a45f", "verdict": "filler", "reason": "The dash becomes a hyphen, but the excerpt does not show a prior difference across editors or terminals."}
+{"n": 3931, "sha": "ce7957c085d912bd1b225460d159b19eaf3e6510", "verdict": "ok", "reason": ""}
+{"n": 3932, "sha": "ce7c86cc5816e8412956e251c22cca73101136b7", "verdict": "filler", "reason": "The stated goal is better failure output, but the excerpt does not show that every replacement produces a descriptive message."}
+{"n": 3933, "sha": "ce882a2eae4eaffc4e4f31d9b5917701f714b619", "verdict": "ok", "reason": ""}
+{"n": 3934, "sha": "ceb42dd5defe9b05a72f27addc1977a2d54948fa", "verdict": "wrong", "reason": "Removing one script does not establish that the site loads no third-party tracking or advertising code."}
+{"n": 3935, "sha": "ceb88ac077fad7b801b3fad306826916774a173c", "verdict": "wrong", "reason": "The literal example includes both imports unconditionally, so it does not run as written on Python 3."}
+{"n": 3936, "sha": "ced3779126326b0da4a0fff47dbd8cc182119b16", "verdict": "wrong", "reason": "The badge moves upward, from farther down the opening section to immediately after the title."}
+{"n": 3937, "sha": "ced6550a2555002f6c081d75547f30fd3fc5e29c", "verdict": "filler", "reason": "The message explains why the old domain needed replacement, but the excerpt does not demonstrate reliable failure with the new domain."}
+{"n": 3938, "sha": "cee8fae65efc1d4557d1b2291963a729444a5f42", "verdict": "ok", "reason": ""}
+{"n": 3939, "sha": "cef08304197b8b8747015d94a1700716202355ee", "verdict": "wrong", "reason": "The delimiter has the same value before and after the edit."}
+{"n": 3940, "sha": "cef1811415a97ecb377165d9639b79c4952b9b06", "verdict": "ok", "reason": ""}
+{"n": 3941, "sha": "cf01a743aff009b18c42c553a53640d44f026f5c", "verdict": "ok", "reason": ""}
+{"n": 3942, "sha": "cf07efa534e150241a097f4300bb8cf5f78970fc", "verdict": "ok", "reason": ""}
+{"n": 3943, "sha": "cf0a5089f585af4e271566d6b0da66be1e9c8ee5", "verdict": "ok", "reason": ""}
+{"n": 3944, "sha": "cf0b8ed291b18e548fa98223fbc706212714ccee", "verdict": "filler", "reason": "The sponsor label is edited, but the excerpt does not establish that this reflected an official rebranding."}
+{"n": 3945, "sha": "cf36d8c7538b2b04adbfea933398f890cd9a85d9", "verdict": "ok", "reason": ""}
+{"n": 3946, "sha": "cf37f63ccb36d47fdd71a6f33b0aaf9a49ba59a0", "verdict": "wrong", "reason": "The pickling note already exists and only gains punctuation."}
+{"n": 3947, "sha": "cf3c99890d73f4bc8605c1cd7fbfa4ff1a28237e", "verdict": "cannot_tell", "reason": "The type check is introduced as an elif. The omitted earlier branch determines which non-integer values, such as None, can bypass it."}
+{"n": 3948, "sha": "cf54f60367199042d56334c9a1e2a75546025933", "verdict": "ok", "reason": ""}
+{"n": 3949, "sha": "cf5ddecc4cfcbf0fa75958c2d44f68b1518a632b", "verdict": "ok", "reason": ""}
+{"n": 3950, "sha": "cf77263ad466229633b72e54c29ea512d7be1b7b", "verdict": "ok", "reason": ""}
+{"n": 3951, "sha": "cf82d4406be55c71983d05d7f6e18917540b5c69", "verdict": "ok", "reason": ""}
+{"n": 3952, "sha": "cf938420f88d8d534ef8b717b30da724c1e31091", "verdict": "filler", "reason": "The old module path is unavailable on Python 3, but the excerpt gives no evidence of a formal deprecation."}
+{"n": 3953, "sha": "cf94c96a68904b0c541425bb2eb0ee816d6a4e4c", "verdict": "ok", "reason": ""}
+{"n": 3954, "sha": "cf9da5b52e5e3f97c1d87940f8d19c7c3383dcba", "verdict": "ok", "reason": ""}
+{"n": 3955, "sha": "cfa627ae62cebff20edf0816ce327c61603ef6a8", "verdict": "ok", "reason": ""}
+{"n": 3956, "sha": "cfb1a478acd43aead67acd249ca5caf2480101d6", "verdict": "wrong", "reason": "The fully qualified name is a bundled subpackage, not a separate dependency requirement."}
+{"n": 3957, "sha": "cfb7fd8f28b2d5ba98ffb659e8f3f3dd05b97754", "verdict": "wrong", "reason": "The new guidance explicitly says nearly all, twice."}
+{"n": 3958, "sha": "cfb9e66b04136f014412a8d638b2d69603557c1d", "verdict": "wrong", "reason": "The PreparedRequest, redirect and Unicode changes are documented in the release notes, without runtime changes in this commit."}
+{"n": 3959, "sha": "cfbbd15de72a616fd9c648e1a0724acf2528db1b", "verdict": "wrong", "reason": "The patch checks for one attribute rather than validating the value’s type or every required operation."}
+{"n": 3960, "sha": "cfc19b4ddea93926d99619d9cb6e3db68f6c5fc3", "verdict": "ok", "reason": ""}
+{"n": 3961, "sha": "cfc1a76381ac3b728456f0d02a81acf38cfca4db", "verdict": "filler", "reason": "The deletion removes the automatic import, but the excerpt does not identify an initialization error that would otherwise escape its RuntimeError handler."}
+{"n": 3962, "sha": "cfc3db06cfb7fed8adcdae97aecc8800b86f7225", "verdict": "ok", "reason": ""}
+{"n": 3963, "sha": "cfd38263d1a8b3c6754c261a93d842fd5090deb8", "verdict": "ok", "reason": ""}
+{"n": 3964, "sha": "cfd6e25749dd17c6b511043a6720b672f74029ed", "verdict": "ok", "reason": ""}
+{"n": 3965, "sha": "cfdd00f3a382ed2c35ca318756bb60aef1a1a99b", "verdict": "ok", "reason": ""}
+{"n": 3966, "sha": "cfeb485434ec544f57ccfcd3204b1880d821e8ac", "verdict": "cannot_tell", "reason": "The notes say “Don't fail on netrc” without saying which conditions were fixed, so the missing-credentials scenario cannot be verified."}
+{"n": 3967, "sha": "cfee8308772a3c931539688f9928ca6ff81d36cf", "verdict": "cannot_tell", "reason": "The excerpt cuts off before the substantive substitutions and final command, so equivalent output cannot be verified."}

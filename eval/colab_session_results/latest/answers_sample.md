@@ -1,0 +1,351 @@
+# Answer sample
+
+Read these against the evidence; a pass here is only mechanical.
+
+## fresh_default
+
+- `fresh2-code-028` PASS | 'How does the library check whether an IP address is inside a CIDR range?'
+  - The library checks membership with address_in_network, which converts the IP and the network address to 32-bit integers via socket.inet_aton, derives the netmask from the /bits prefix using dotted_netmask, and returns True when (ipaddr & netmask) == (network & netmask) (src/requests/utils.py:722-733). The helper dotted_netmask converts a /xx prefix into a dotted netmask by computing 0xFFFFFFFF ^ (1 << 32 - mask) - 1 and formatting it with socket.inet_ntoa (src/requests/utils.py:736-744). This is used by should_bypass_proxies, which first validates the CIDR with is_valid_cidr and then calls address_in_network for IPv4 hostnames (src/requests/utils.py:810-870).
+- `fresh2-code-013` PASS | 'How does a Request become a PreparedRequest?'
+  - A Request becomes a PreparedRequest by calling Request.prepare(), which constructs a new PreparedRequest and passes the Request's method, url, headers, files, data, json, params, auth, cookies, and hooks into PreparedRequest.prepare() (src/requests/models.py:355-375). PreparedRequest.prepare() then runs a fixed sequence of sub-preparers: prepare_method, prepare_url, prepare_headers, prepare_cookies, prepare_body, prepare_auth, and finally prepare_hooks, with prepare_auth last so auth schemes can operate on a fully prepared request and prepare_hooks after it so authenticators can add hooks (src/requests/models.py:424-452). Alternatively, Session.prepare_request() builds a PreparedRequest by m
+- `fresh2-code-025` PASS | 'What does the library collect for a bug report, such as platform and library versions?'
+  - The library's bug report helper, info(), collects: the platform system and release (src/requests/help.py:67-132); the Python implementation name and version via _implementation() (src/requests/help.py:35-64); the system SSL/OpenSSL version (src/requests/help.py:67-132); whether pyOpenSSL and charset_normalizer are in use (src/requests/help.py:67-132); and the versions of the dependencies pyOpenSSL (including its OpenSSL version number), urllib3, chardet, charset_normalizer, cryptography, and idna, plus the requests library's own version (src/requests/help.py:67-132).
+- `fresh2-code-029` MISS | 'How does the library decode a response body when the encoding is unknown or wrong?'
+  - When the encoding is unknown, Response.text falls back to self.apparent_encoding, which guesses the encoding using charset_normalizer or chardet (src/requests/models.py:1034-1089). It then decodes with str(self.content, encoding or "utf-8", errors="replace"); if that raises LookupError or TypeError (e.g. a misspelled or None encoding), it decodes blindly with str(self.content, errors="replace") (src/requests/models.py:1034-1089). For JSON, Response.json first tries to detect UTF-8/-16/-32 via guess_json_utf when no encoding is set, and if that decoding fails it falls back to self.text, which uses the apparent-encoding guess (src/requests/models.py:1091-1142). The header-based encoding is obt
+- `fresh2-docs-037` PASS | 'How do I read the Link header of a response as links?'
+  - Requests automatically parses Link headers into a dictionary you can access via the response's .links attribute, keyed by the rel value. For example, after r = requests.head(url), r.links["next"] returns {'url': '...', 'rel': 'next'} and r.links["last"] returns {'url': '...', 'rel': 'last'} (docs/user/advanced.rst:944-966).
+- `fresh2-docs-031` PASS | 'How do I upload a file with a custom filename and content type?'
+  - To upload a file with a custom filename and content type, pass a tuple to the files dict where the tuple is (filename, file_object, content_type, headers). For example: files = {'file': ('report.xls', open('report.xls', 'rb'), 'application/vnd.ms-excel', {'Expires': '0'})} then requests.post(url, files=files) (docs/user/quickstart.rst:319-329).
+- `fresh2-docs-035` PASS | 'How do I delay downloading the response body until I want it?'
+  - Set the stream parameter to True when making the request so only the response headers are downloaded and the body is deferred until you access Response.content (docs/user/advanced.rst:300-329). You can then retrieve the body conditionally, e.g. if int(r.headers['content-length']) < TOO_LONG: content = r.content (docs/user/advanced.rst:300-329). For finer control use Response.iter_content() or Response.iter_lines(), or read the undecoded body from Response.raw (docs/user/advanced.rst:300-329). Note that with stream=True the connection is not returned to the pool until you consume all the data or call Response.close(), so wrap the request in a with statement to ensure it is closed (docs/user/a
+- `fresh2-docs-038` PASS | 'How do I save binary response content such as an image?'
+  - Access the response body as bytes via r.content, then write it to a file in binary mode, e.g. open('image.png','wb').write(r.content); for an image you can also do Image.open(BytesIO(r.content)) (docs/user/quickstart.rst:121-140).
+- `fresh2-history-048` PASS | 'Which release first contained the change merged in PR #7196 in psf/requests?'
+  - v2.33.0
+- `fresh2-history-047` PASS | 'Which issues does PR #1030 in psf/requests close?'
+  - - 1027
+- `fresh2-history-045` PASS | 'Who authored PR #6500 in psf/requests?'
+  - dependabot
+- `fresh2-history-054` PASS | 'Who made the most commits in psf/requests in 2022, not counting merge commits?'
+  - Nate Prewitt  Note: commit counts cover non-merge commits only (merge commits are not indexed).  Activity from the commit history: - Nate Prewitt: 21 commits in this history, first 2022-01-03, most recent 2022-06-29
+- `fresh2-kind-061` PASS | 'Is #2672 in psf/requests a pull request or an issue?'
+  - pull request
+- `fresh2-kind-062` PASS | 'Is #1125 in psf/requests a pull request or an issue?'
+  - pull request
+- `fresh2-kind-059` PASS | 'Is #5166 in psf/requests a pull request or an issue?'
+  - issue
+- `fresh2-kind-060` PASS | 'Is #6344 in psf/requests a pull request or an issue?'
+  - issue
+- `fresh2-probe-071` PASS | 'How do I use requests with gRPC streaming?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-probe-070` PASS | 'Where does requests implement a Redis caching layer?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-probe-069` PASS | 'How does requests encrypt files at rest with AES?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-probe-072` PASS | 'Which function in requests trains a machine-learning model?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-prsearch-067` PASS | 'In psf/requests, which issue is about: "how can i pass gmail\'s cookie to requests session?"? Give its number.'
+  - 3624  Details from the search results: - #3624 (issue, closed): Issue #3624: how can I pass gmail's cookie to requests session?
+- `fresh2-prsearch-068` PASS | 'In psf/requests, which issue is about: "rfe: please provide support for latest `urllib3`"? Give its number.'
+  - 6278  Details from the search results: - #6278 (issue, closed): Issue #6278: RFE: please provide support for latest `urllib3`
+- `fresh2-prsearch-064` PASS | 'In psf/requests, which pull request is about: "docs - clarify json() error exception for python 3"? Give its number.'
+  - - 5259  Details from the search results: - #5259 (pull request, closed): PR #5259: docs - clarify json() error exception for Python 3
+- `fresh2-prsearch-066` PASS | 'In psf/requests, which issue is about: "timeout exception: session.get() vs requests.get() behavior discrepancy"? Give i'
+  - 5381  Details from the search results: - #5381 (issue, closed): Issue #5381: timeout exception: session.get() vs requests.get() behavior discrepancy
+- `fresh2-refs-055` PASS | 'Which other PRs or issues does #7339 in psf/requests mention in its title or body?'
+  - - 6990
+- `fresh2-refs-057` PASS | 'Which PRs or issues in psf/requests mention #1750 in their title or body?'
+  - - 5671
+- `fresh2-refs-058` PASS | 'Which PRs or issues in psf/requests mention #1847 in their title or body?'
+  - - 1850
+- `fresh2-refs-056` PASS | 'Which other PRs or issues does #7251 in psf/requests mention in its title or body?'
+  - - 7228
+
+## fresh_guards
+
+- `fresh2-code-016` PASS | 'What does preparing authentication do when no auth argument is given but the URL itself carries credentials?'
+  - When no auth argument is given, prepare_auth extracts credentials from the URL itself: it calls get_auth_from_url on self.url and, if any part of the resulting (username, password) tuple is non-empty, uses that tuple as the auth (src/requests/models.py:672-697). get_auth_from_url parses the URL and returns the unquoted username and password, or an empty tuple if the URL has no credentials (src/requests/utils.py:1070-1084). If the extracted auth is a two-element tuple, it is special-cased into an HTTPBasicAuth handler, which then sets the Authorization header to a Basic auth string (src/requests/models.py:680-697, src/requests/auth.py:85-105).
+- `fresh2-code-018` PASS | 'What happens when two cookies with the same name exist for different domains and I read one by name?'
+  - When you read a cookie by name without specifying a domain, the behavior depends on which method you use. The dict-style __getitem__ and get() both call _find_no_duplicates, which raises a CookieConflictError if more than one cookie matches the given name (and optional domain/path), so two cookies with the same name for different domains will trigger that error (src/requests/cookies.py:423-452, src/requests/cookies.py:191-227). Internally, Requests uses _find, which does not raise on conflicts but instead arbitrarily returns the value of the first matching cookie it encounters while iterating the jar (src/requests/cookies.py:401-421). To avoid the conflict, pass the domain (and optionally pa
+- `fresh2-code-004` PASS | 'How does the redirect mixin find out where a redirect points to?'
+  - The redirect mixin determines the redirect target in SessionRedirectMixin.get_redirect_target, which checks resp.is_redirect and, if true, reads the 'location' header from the response, re-encodes it from latin1 to utf8, and returns it as a native string; otherwise it returns None (src/requests/sessions.py:127-152). The is_redirect property is True when the response has a 'location' header and its status code is in REDIRECT_STATI (src/requests/models.py:861-913). resolve_redirects then uses get_redirect_target to extract the next URL, resolving relative locations against resp.url with urljoin (src/requests/sessions.py:237-280, src/requests/sessions.py:282-307).
+- `fresh2-code-012` PASS | 'What decides that a response is a permanent redirect?'
+  - A response is a permanent redirect when it has a 'location' header and its status code is one of the permanent redirect codes, 301 (moved_permanently) or 308 (permanent_redirect), as checked by Response.is_permanent_redirect (src/requests/models.py:861-913). The numeric values for these codes are defined in src/requests/status_codes.py:1-59.
+- `fresh2-docs-037` PASS | 'How do I read the Link header of a response as links?'
+  - Requests automatically parses Link headers into a dictionary you can access via the response's .links attribute, keyed by the rel value. For example, after r = requests.head(url), r.links["next"] returns {'url': '...', 'rel': 'next'} and r.links["last"] returns {'url': '...', 'rel': 'last'} (docs/user/advanced.rst:944-966).
+- `fresh2-docs-036` PASS | 'Does requests keep connections alive, and how do I turn that off?'
+  - Yes — thanks to urllib3, keep-alive is 100% automatic within a session, so any requests made within a session automatically reuse the appropriate connection (docs/user/advanced.rst:336-347). To turn it off, simply don't use a Session: make each request with the top-level functions (e.g. requests.get(...)) instead of a Session instance, since connection pooling/reuse only happens through a Session (docs/user/advanced.rst:10-52).
+- `fresh2-docs-034` PASS | 'How do I upload a large file without loading it all into memory?'
+  - To upload a large file without loading it all into memory, pass a file-like object as the request body so Requests streams it. Open the file in binary mode and use it as data: with open('massive-body', 'rb') as f: requests.post('http://some.url/streamed', data=f) (docs/user/advanced.rst:349-366). For a very large file sent as multipart/form-data, Requests does not stream by default; use the separate requests-toolbelt package for that (docs/user/quickstart.rst:349-366).
+- `fresh2-docs-035` PASS | 'How do I delay downloading the response body until I want it?'
+  - Set the stream parameter to True when making the request so only the response headers are downloaded and the body is deferred until you access Response.content (docs/user/advanced.rst:300-329). You can then retrieve the body conditionally, e.g. if int(r.headers['content-length']) < TOO_LONG: content = r.content (docs/user/advanced.rst:300-329). For finer control use Response.iter_content() or Response.iter_lines(), or read the undecoded body from Response.raw (docs/user/advanced.rst:300-329). Note that with stream=True the connection is not returned to the pool until you consume all the data or call Response.close(), so wrap the request in a with statement to ensure it is closed (docs/user/a
+- `fresh2-history-048` PASS | 'Which release first contained the change merged in PR #7196 in psf/requests?'
+  - v2.33.0
+- `fresh2-history-054` PASS | 'Who made the most commits in psf/requests in 2022, not counting merge commits?'
+  - Nate Prewitt  Note: commit counts cover non-merge commits only (merge commits are not indexed).  Activity from the commit history: - Nate Prewitt: 21 commits in this history, first 2022-01-03, most recent 2022-06-29
+- `fresh2-history-049` PASS | 'Which release first contained the change merged in PR #4996 in psf/requests?'
+  - v2.23.0
+- `fresh2-history-045` PASS | 'Who authored PR #6500 in psf/requests?'
+  - dependabot
+- `fresh2-kind-059` PASS | 'Is #5166 in psf/requests a pull request or an issue?'
+  - issue
+- `fresh2-kind-061` PASS | 'Is #2672 in psf/requests a pull request or an issue?'
+  - pull request
+- `fresh2-kind-062` PASS | 'Is #1125 in psf/requests a pull request or an issue?'
+  - pull request
+- `fresh2-kind-060` PASS | 'Is #6344 in psf/requests a pull request or an issue?'
+  - issue
+- `fresh2-probe-072` PASS | 'Which function in requests trains a machine-learning model?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-probe-069` PASS | 'How does requests encrypt files at rest with AES?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-probe-071` PASS | 'How do I use requests with gRPC streaming?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-probe-070` PASS | 'Where does requests implement a Redis caching layer?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-prsearch-065` PASS | 'In psf/requests, which pull request is about: "only the path should be unquoted/quoted."? Give its number.'
+  - - 149  Details from the search results: - #149 (pull request, merged): PR #149: Only the path should be unquoted/quoted.
+- `fresh2-prsearch-064` PASS | 'In psf/requests, which pull request is about: "docs - clarify json() error exception for python 3"? Give its number.'
+  - - 5259  Details from the search results: - #5259 (pull request, closed): PR #5259: docs - clarify json() error exception for Python 3
+- `fresh2-prsearch-068` PASS | 'In psf/requests, which issue is about: "rfe: please provide support for latest `urllib3`"? Give its number.'
+  - 6278  Details from the search results: - #6278 (issue, closed): Issue #6278: RFE: please provide support for latest `urllib3`
+- `fresh2-prsearch-066` PASS | 'In psf/requests, which issue is about: "timeout exception: session.get() vs requests.get() behavior discrepancy"? Give i'
+  - 5381  Details from the search results: - #5381 (issue, closed): Issue #5381: timeout exception: session.get() vs requests.get() behavior discrepancy
+- `fresh2-refs-055` PASS | 'Which other PRs or issues does #7339 in psf/requests mention in its title or body?'
+  - - 6990
+- `fresh2-refs-058` PASS | 'Which PRs or issues in psf/requests mention #1847 in their title or body?'
+  - - 1850
+- `fresh2-refs-057` PASS | 'Which PRs or issues in psf/requests mention #1750 in their title or body?'
+  - - 5671
+- `fresh2-refs-056` PASS | 'Which other PRs or issues does #7251 in psf/requests mention in its title or body?'
+  - - 7228
+
+## commit_default
+
+- `commitfull-103` PASS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSSLV3_ALERT'
+  - a62a2d35d918  Matched commit details: - a62a2d35d918 (2024-05-22, Ian Stapleton Cordasco): Allow for overriding of specific pool key params; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.
+- `commitfull-019` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\ntest_unicod'
+  - 003c795afed5  Matched commit details: - 003c795afed5 (2013-05-21, Ib Lundgren): Only pass unicode fieldnames to urllib3.; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.
+- `commitfull-070` PASS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nHTTPDigestA'
+  - 5c19d3e07b68  Matched commit details: - 5c19d3e07b68 (2015-12-05, Matt Jordan): requests/auth: Handle an empty 'qop' attribute in a Authenticate challenge; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.
+- `commitfull-058` PASS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n__build__ o'
+  - dacf69a16df7  Matched commit details: - dacf69a16df7 (2015-04-05, Ian Cordasco): Fix build version number in metadata; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.
+
+## commit_explain
+
+- `commitfull-012` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nCookies won'
+  - Yes. The most probable fix is commit 87abd9c6094f (2014-01-12, "Use calendar.timegm when calculating cookie expiration"), which changed morsel_to_cookie in requests/cookies.py to compute the cookie expiration with calendar.timegm instead of time.mktime minus time.timezone, so a Set-Cookie with expires=Thu, 01-Jan-1970 00:00:01 GMT is correctly treated as expired and the cookie is deleted. A related earlier fix is ea4570da5714 (2013-12-05, "cookies: Fix bugs found during CI"), which also adjusted the expires calculation in morsel_to_cookie. These are probable matches based on their messages and changed files, not certain ones.  Matched commit details: - 87abd9c6094f (2014-01-12, Ian Cordasco)
+- `commitfull-011` PASS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nSession.req'
+  - Yes. Commit ca0aea640d0c (2013-04-02, Kamil Szot) added the return_response parameter to Session.request, matching the docs; it was later reverted by 54ed5ed469ff, and the docstring was corrected by 1abd13700b32 to remove the return_response documentation.  Matched commit details: - ca0aea640d0c (2013-04-02, Kamil Szot): Fix for the issue; ranked 1 of 15 search results; a text match on the report, not confirmed against the code. - 54ed5ed469ff (2013-04-02, Kenneth Reitz): Revert "Fix for the issue ; ranked 5 of 15 search results; a text match on the report, not confirmed against the code. - 1abd13700b32 (2013-04-02, Ian Cordasco): Correct the doc-string for Session#request that I copied with
+- `commitfull-041` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nLink header'
+  - Yes. Commit 4594667f07ca (2014-10-08, mikecool1000) changed parse_header_links in requests/utils.py from value.split(",") to re.split(",\ *<", value), which is a probable fix for link headers whose attribute values contain commas (e.g. Memento datetime values).  Matched commit details: - 4594667f07ca (2014-10-08, mikecool1000): Update utils.py; ranked 3 of 15 search results; a text match on the report, not confirmed against the code.
+- `commitfull-113` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nReal loggin'
+  - No relevant implementation was found in the retrieved context.  No confident match. Closest candidates from the commit search (unverified leads, not confirmed fixes): - 913ef867be5b (2012-08-27, ayanamist): Use logger instead of direct logging call. - fb49481ddfae (2013-04-10, Sorin Sbarnea): Updated documentation indicating that logging is done via requests.packages.urllib3 instead of reque - ceb88ac077fa (2016-01-22, shoma): Fix api doc of debug logging for Python 3
+
+## regression_default
+
+- `code-033` PASS | 'Uploading a file object that was partially read sends the wrong Content-Length'
+  - The fix is in super_len, which now seeks to the end to compute total_length and then seeks back to the current position, returning max(0, total_length - current_position) so a partially read file-like object reports the remaining bytes rather than the full file size (src/requests/utils.py:160-228). This value is used by prepare_content_length to set the Content-Length header (src/requests/models.py:654-697) and by prepare_body for streamed bodies (src/requests/models.py:603-652). The fix was introduced in commit 5397ef71b37e ("Fix super_len for partially read files").  Matched commit details: - 5397ef71b37e (2015-11-10, Ian Cordasco): Fix super_len for partially read files; ranked 9 of 15 se
+- `code-032` PASS | 'response.text shows garbled characters for a page that has no charset in its headers'
+  - When a response has no charset in its headers, Response.text falls back to auto-detection via apparent_encoding (charset_normalizer or chardet) and decodes with errors="replace", which can produce garbled characters if the guess is wrong (src/requests/models.py:1034-1089). The encoding is determined solely from HTTP headers per RFC 2616; if you know the correct encoding, set r.encoding before accessing .text (src/requests/models.py:1034-1089).
+- `code-007` PASS | 'How does streaming a download in chunks work?'
+  - Streaming a download in chunks is done by Response.iter_content, which yields the response body in pieces instead of loading it all into memory (src/requests/models.py:914-965). When the request was made with stream=True, the inner generate() function reads from the underlying urllib3 raw stream via self.raw.stream(chunk_size, decode_content=True), yielding each chunk as it arrives and translating protocol, decoding, timeout, and SSL errors into requests exceptions (src/requests/models.py:914-965). If the raw object is a standard file-like object without a stream method, it instead loops calling self.raw.read(chunk_size) until an empty chunk is returned (src/requests/models.py:914-965). The 
+- `code-020` PASS | 'How are HTTP header names handled case-insensitively?'
+  - HTTP header names are handled case-insensitively by the CaseInsensitiveDict class, which stores each header using its lowercased name as the lookup key while preserving the original cased key alongside the value (src/requests/structures.py:20-74). Setting an item uses key.lower() for the store key (src/requests/structures.py:63-66), and retrieval, deletion, and containment all use key.lower() so that, for example, headers['content-encoding'] matches a stored 'Content-Encoding' (src/requests/structures.py:67-74). Iteration and keys() return the original cased keys (src/requests/structures.py:70-72), while lower_items() yields lowercase keys (src/requests/structures.py:76-78), and equality com
+- `commit-087` PASS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nOrder of op'
+  - f48c78c9eebd  Matched commit details: - f48c78c9eebd (2012-08-19, Ian Cordasco): Change ordering of data + params back.; ranked 4 of 15 search results; a text match on the report, not confirmed against the code.
+- `commit-083` PASS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nGittip rena'
+  - 4d498db3ed23  Matched commit details: - 4d498db3ed23 (2014-10-14, morganthrapp): Update sidebarintro.html; ranked 1 of 15 search results; a text match on the report, not confirmed against the code.
+- `commit-080` MISS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\nRequest coo'
+  - No answer could be produced: the model's reply was not valid within the limits.
+- `commit-088` PASS | 'A user reports the bug below. Was something like this fixed before in this repository? If so, which commit?\n\n301 redirec'
+  - 8b792be81bfa  Matched commit details: - 8b792be81bfa (2014-01-28, Konstantinos Koukopoulos): on redirect pass URL as bytes.; ranked 8 of 15 search results; a text match on the report, not confirmed against the code.
+- `docs-046` PASS | 'How do I use HTTP basic authentication?'
+  - To use HTTP Basic Auth, import HTTPBasicAuth and pass it as the auth argument: from requests.auth import HTTPBasicAuth; basic = HTTPBasicAuth('user', 'pass'); requests.get('https://httpbin.org/basic-auth/user/pass', auth=basic) (docs/user/authentication.rst:13-33). You can also use the shorthand tuple form, which is exactly the same: requests.get('https://httpbin.org/basic-auth/user/pass', auth=('user', 'pass')) (docs/user/authentication.rst:13-33). If no auth argument is given, Requests will try to read credentials for the hostname from the user's netrc file and send the request with HTTP Basic Auth (docs/user/authentication.rst:36-56).
+- `docs-049` PASS | 'What license is requests released under?'
+  - Apache 2.0 (docs/api.rst:193-202, pyproject.toml:26-56).
+- `docs-044` PASS | 'How do I run the test suite?'
+  - Run the test suite with `make test`, which executes `python -m pytest tests` (Makefile:1-27). For CI-style runs with a JUnit report, use `make ci`, which runs `python -m pytest tests --junitxml=report.xml` (Makefile:1-27). You can also run coverage with `make coverage` (Makefile:1-27).
+- `docs-051` MISS | 'What is a Session object and why would I use one?'
+  - A Session object is a Requests session that provides cookie persistence, connection-pooling, and configuration (src/requests/sessions.py:395-440). You would use one to maintain state across multiple requests, such as keeping cookies and reusing connections, and it can be used directly or as a context manager (src/requests/sessions.py:395-440).
+- `history-062` PASS | 'Which issues does PR #2271 in psf/requests close?'
+  - - 2250
+- `history-057` PASS | 'Who merged PR #2442 in psf/requests?'
+  - sigmavirus24
+- `history-060` PASS | 'Who authored PR #137 in psf/requests?'
+  - monkeython
+- `history-054` PASS | 'Who merged PR #5206 in psf/requests?'
+  - sethmlarson
+- `kind-078` PASS | 'Is #1669 in psf/requests a pull request or an issue?'
+  - pull request
+- `kind-077` PASS | 'Is #1637 in psf/requests a pull request or an issue?'
+  - pull request
+- `kind-075` PASS | 'Is #1983 in psf/requests a pull request or an issue?'
+  - issue
+- `kind-074` PASS | 'Is #1517 in psf/requests a pull request or an issue?'
+  - issue
+- `probe-091` PASS | 'How does requests implement a WebSocket client?'
+  - No relevant implementation was found in the retrieved context.
+- `probe-090` PASS | 'Where does requests implement GraphQL query batching?'
+  - No relevant implementation was found in the retrieved context.
+- `probe-089` PASS | "How does requests integrate with Django's ORM?"
+  - No relevant implementation was found in the retrieved context.
+- `probe-093` PASS | 'How does requests map responses onto SQLAlchemy models?'
+  - No relevant implementation was found in the retrieved context.
+- `prsearch-094` PASS | 'In psf/requests, which pull request is about: "handle multiple qop types"? Give its number.'
+  - - 1602  Details from the search results: - #1602 (pull request, merged): PR #1602: Handle multiple qop types
+- `prsearch-098` PASS | 'In psf/requests, which pull request is about: "add to authors and fix case"? Give its number.'
+  - - 2172  Details from the search results: - #2172 (pull request, merged): PR #2172: Add to authors and fix case
+- `prsearch-101` PASS | 'In psf/requests, which issue is about: ""content-type header: application/x-www-form-urlencoded" won\'t be overridden"? G'
+  - 1608  Details from the search results: - #1608 (issue, closed): Issue #1608: "Content-Type header: application/x-www-form-urlencoded" won't be overridden
+- `prsearch-103` PASS | 'In psf/requests, which issue is about: "how to add parameters --groups x25519"? Give its number.'
+  - 6197  Details from the search results: - #6197 (issue, closed): Issue #6197: how to add parameters --groups X25519
+- `refs-065` PASS | 'Which other PRs or issues does #5500 in psf/requests mention in its title or body?'
+  - - 5443 - 5492 - 5496
+- `refs-066` PASS | 'Which other PRs or issues does #1097 in psf/requests mention in its title or body?'
+  - - 1096
+- `refs-072` PASS | 'Which PRs or issues in psf/requests mention #3780 in their title or body?'
+  - - 3783
+- `refs-064` PASS | 'Which other PRs or issues does #265 in psf/requests mention in its title or body?'
+  - - 174
+
+## architecture_v1
+
+- `architecture-014` PASS | 'How are compatibility shims, dependency checks and the public exception hierarchy separated?'
+  - The three concerns are separated into distinct modules. Compatibility shims live in src/requests/compat.py, which previously handled Python 2/3 import compatibility and now resolves character-detection libraries (src/requests/compat.py:1-82), while src/requests/packages.py provides backwards-compatible re-exposure of urllib3/idna/chardet under requests.packages (src/requests/packages.py:1-23). Dependency checks are centralized in src/requests/__init__.py: check_compatibility validates urllib3, chardet and charset_normalizer version ranges and _check_cryptography warns on old cryptography (src/requests/__init__.py:60-108); the module then calls check_compatibility inside a try/except that emi
+- `architecture-002` MISS | 'Trace a one-off HTTP call from a convenience entry point to the network connection pool.'
+  - No answer could be produced: the model's reply was not valid within the limits.
+- `architecture-012` PASS | 'Trace streamed response data from the raw connection through content decoding and iteration.'
+  - Streamed response data flows from the raw urllib3 connection through Response.iter_content, which yields chunks from self.raw.stream(chunk_size, decode_content=True) when the raw object has a stream method, or falls back to self.raw.read(chunk_size) for file-like objects, marking self._content_consumed True (src/requests/models.py:914-965). The Response.content property joins these chunks into a single bytes value via b"".join(self.iter_content(CONTENT_CHUNK_SIZE)) (src/requests/models.py:1034-1089), and Response.text decodes that content using the response encoding or an apparent-encoding fallback (src/requests/models.py:1034-1089). Iterating a response directly uses iter_content(128) (src/
+- `architecture-009` PASS | 'Where do authentication strategies live, and how do request preparation and redirect handling invoke them?'
+  - Authentication strategies live in src/requests/auth.py, where classes such as HTTPBasicAuth (src/requests/auth.py:85-121) and HTTPDigestAuth (src/requests/auth.py:268-319) subclass AuthBase and implement a __call__ that mutates a PreparedRequest. Request preparation invokes them through PreparedRequest.prepare, which calls prepare_auth last so schemes like OAuth can work on a fully prepared request (src/requests/models.py:424-481); prepare_auth resolves the auth (from the argument or the URL), wraps a 2-tuple in HTTPBasicAuth, calls the auth handler on the request, copies the handler's changes back, and recomputes Content-Length (src/requests/models.py:654-697). Redirect handling invokes the
+
+## architecture_fresh
+
+- `archfresh-007` PASS | 'Which parts decide whether a request body is sent with a content length or chunked?'
+  - The decision is made in PreparedRequest.prepare_body, which checks whether the data is a stream/iterable and whether its length can be determined via super_len: if a length is available it sets the Content-Length header, otherwise it sets Transfer-Encoding: chunked (src/requests/models.py:603-652). For non-streamed bodies it calls prepare_content_length, which sets Content-Length when a length exists and falls back to chunked when it does not, and sets Content-Length to 0 for methods other than GET/HEAD with no body (src/requests/models.py:654-697). The length itself is computed by super_len, which uses __len__, .len, or fileno/fstat to determine the size (src/requests/utils.py:160-199).
+- `archfresh-009` PASS | 'How is the character encoding of a response chosen when its text is read?'
+  - When a response's text is read, the encoding is first taken from the response's `encoding` attribute, which is derived from the HTTP headers: the `charset` parameter of the `content-type` header is used if present, otherwise `ISO-8859-1` is assumed for `text/*` types and `utf-8` for `application/json` (src/requests/utils.py:569-587). If `self.encoding` is None, the code falls back to `self.apparent_encoding`, which guesses the encoding using `charset_normalizer` or `chardet` (src/requests/models.py:1034-1089). The content is then decoded with that encoding, defaulting to `utf-8` if the encoding is still None, using `errors="replace"`; if a `LookupError` or `TypeError` occurs, it decodes blin
+- `archfresh-005` PASS | 'How is a response body decoded as JSON, including guessing its encoding, and which errors surface?'
+  - Response.json decodes the body by first checking whether an encoding is already set; if not, and the content is longer than 3 bytes, it calls guess_json_utf on the raw bytes to detect UTF-8, UTF-16 (LE/BE), or UTF-32 (LE/BE) from BOMs and null-byte patterns (src/requests/models.py:1091-1142, src/requests/utils.py:1008-1037). If a UTF codec is detected, it decodes the bytes with that codec and passes the result to complexjson.loads; a UnicodeDecodeError is silently swallowed (falling through to the text-based path), while a JSONDecodeError is re-raised as requests.exceptions.JSONDecodeError (src/requests/models.py:1091-1142). If no encoding was detected, or the UTF decode failed, it falls bac
+- `archfresh-008` PASS | 'Which components release network connections when a session or a response is closed?'
+  - The Response component releases the connection back to the pool when closed: Response.close() calls self.raw.close() if content was not consumed and then invokes the raw object's release_conn() to return the connection to the pool (src/requests/models.py:1144-1184). The HTTPAdapter component disposes of internal state by closing the PoolManager and any active ProxyManager, which closes any pooled connections, in HTTPAdapter.close() (src/requests/adapters.py:512-563).
+
+## fresh_repeat_2
+
+- `fresh2-code-026` PASS | 'What does a RequestException keep, and how does it find its request?'
+  - A RequestException keeps two attributes, `response` and `request` (src/requests/exceptions.py:19-39). In __init__ it pops `response` and `request` from kwargs, storing them as self.response and self.request; if a response was given but no request was, and the response has a `request` attribute, it sets self.request to response.request (src/requests/exceptions.py:27-39).
+- `fresh2-code-008` PASS | 'How are proxy connection managers created and reused, and how is a SOCKS proxy handled?'
+  - Proxy connection managers are created and cached per proxy URL in HTTPAdapter.proxy_manager_for: if the proxy is already in self.proxy_manager it is reused; otherwise a new manager is created and stored in self.proxy_manager[proxy] (src/requests/adapters.py:269-305). For a SOCKS proxy, the proxy string is checked with proxy.lower().startswith("socks"); the username and password are extracted via get_auth_from_url(proxy), and a SOCKSProxyManager is constructed with those credentials plus num_pools, maxsize and block from the adapter's pool settings (src/requests/adapters.py:269-305). The SOCKSProxyManager is imported from urllib3.contrib.socks, and if that import fails a stub is defined that 
+- `fresh2-code-028` PASS | 'How does the library check whether an IP address is inside a CIDR range?'
+  - The library checks whether an IP address is inside a CIDR range with the address_in_network function, which converts the IP and the network address to 32-bit integers via socket.inet_aton, derives the netmask from the /bits prefix using dotted_netmask, and returns True when (ipaddr & netmask) == (network & netmask) (src/requests/utils.py:722-733). The dotted_netmask helper converts a /xx prefix into a dotted netmask by computing 0xFFFFFFFF ^ (1 << 32 - mask) - 1 and formatting it with socket.inet_ntoa (src/requests/utils.py:736-744). This is used by should_bypass_proxies, which first validates the CIDR with is_valid_cidr and then calls address_in_network to decide whether the hostname's IP f
+- `fresh2-code-007` PASS | 'How does the transport adapter get a connection, and when does it go through a proxy manager?'
+  - The transport adapter (HTTPAdapter) gets a connection via get_connection_with_tls_context, which first calls select_proxy(request.url, proxies) to decide whether a proxy applies (src/requests/adapters.py:455-510). If a proxy is selected, it prepends a scheme if needed, parses the proxy URL (raising InvalidProxyURL if the host is missing), then calls self.proxy_manager_for(proxy) and obtains the connection from that proxy manager via proxy_manager.connection_from_host(**host_params, pool_kwargs=pool_kwargs) (src/requests/adapters.py:455-510). If no proxy is selected, it instead gets the connection directly from the regular pool manager via self.poolmanager.connection_from_host(**host_params, 
+- `fresh2-docs-040` PASS | 'How do I write my own authentication scheme?'
+  - Subclass requests.auth.AuthBase and implement the __call__() method, which receives the Request object, modifies it (e.g. adds headers), and returns it; then pass an instance as the auth argument to a request method (docs/user/authentication.rst:118-144). For example, define a class with __init__ to store auth data and __call__ to set the required header, then call requests.get(url, auth=MyAuth()) (docs/user/advanced.rst:488-524).
+- `fresh2-docs-037` PASS | 'How do I read the Link header of a response as links?'
+  - Requests automatically parses Link headers into the response's .links dictionary, so you can access each link by its rel value, e.g. r.links["next"] returns {'url': '...', 'rel': 'next'} (docs/user/advanced.rst:944-966).
+- `fresh2-docs-035` PASS | 'How do I delay downloading the response body until I want it?'
+  - Set the stream parameter to True when making the request so only the response headers are downloaded and the body is deferred until you access Response.content (docs/user/advanced.rst:300-329). You can then retrieve the body conditionally, e.g. if int(r.headers['content-length']) < TOO_LONG: content = r.content (docs/user/advanced.rst:300-329). For finer control use Response.iter_content() or Response.iter_lines(), or read the undecoded body from Response.raw (docs/user/advanced.rst:300-329). Note that with stream=True the connection is not returned to the pool until you consume all the data or call Response.close(), so wrap the request in a with statement to ensure it is closed (docs/user/a
+- `fresh2-docs-034` PASS | 'How do I upload a large file without loading it all into memory?'
+  - To upload a large file without loading it all into memory, pass a file-like object as the request body so Requests streams it. Open the file in binary mode and use it as the data argument, e.g. `with open('massive-body', 'rb') as f: requests.post('http://some.url/streamed', data=f)` (docs/user/advanced.rst:349-366). If you need to stream a very large file as a multipart/form-data request, Requests does not support that by default; use the separate `requests-toolbelt` package instead (docs/user/quickstart.rst:349-366).
+- `fresh2-history-048` PASS | 'Which release first contained the change merged in PR #7196 in psf/requests?'
+  - v2.33.0
+- `fresh2-history-051` PASS | 'Which release first contained the change merged in PR #6170 in psf/requests?'
+  - v2.28.1
+- `fresh2-history-053` PASS | 'Who made the most commits in psf/requests in 2019, not counting merge commits?'
+  - Kenneth Reitz  Note: commit counts cover non-merge commits only (merge commits are not indexed).  Activity from the commit history: - Kenneth Reitz: 177 commits in this history, first 2019-02-28, most recent 2019-09-23
+- `fresh2-history-046` PASS | 'Which issues does PR #2326 in psf/requests close?'
+  - - 1685 - 1882
+- `fresh2-kind-059` PASS | 'Is #5166 in psf/requests a pull request or an issue?'
+  - issue
+- `fresh2-kind-060` PASS | 'Is #6344 in psf/requests a pull request or an issue?'
+  - issue
+- `fresh2-kind-062` PASS | 'Is #1125 in psf/requests a pull request or an issue?'
+  - pull request
+- `fresh2-kind-061` PASS | 'Is #2672 in psf/requests a pull request or an issue?'
+  - pull request
+- `fresh2-probe-073` PASS | 'How does requests parse YAML configuration files?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-probe-071` PASS | 'How do I use requests with gRPC streaming?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-probe-069` PASS | 'How does requests encrypt files at rest with AES?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-probe-072` PASS | 'Which function in requests trains a machine-learning model?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-prsearch-063` PASS | 'In psf/requests, which pull request is about: "enhance raise_for_status() to include response content"? Give its number.'
+  - - 6882  Details from the search results: - #6882 (pull request, closed): PR #6882: Enhance raise_for_status() to include response content
+- `fresh2-prsearch-065` PASS | 'In psf/requests, which pull request is about: "only the path should be unquoted/quoted."? Give its number.'
+  - - 149  Details from the search results: - #149 (pull request, merged): PR #149: Only the path should be unquoted/quoted.
+- `fresh2-prsearch-068` PASS | 'In psf/requests, which issue is about: "rfe: please provide support for latest `urllib3`"? Give its number.'
+  - 6278  Details from the search results: - #6278 (issue, closed): Issue #6278: RFE: please provide support for latest `urllib3`
+- `fresh2-prsearch-067` PASS | 'In psf/requests, which issue is about: "how can i pass gmail\'s cookie to requests session?"? Give its number.'
+  - 3624  Details from the search results: - #3624 (issue, closed): Issue #3624: how can I pass gmail's cookie to requests session?
+- `fresh2-refs-056` PASS | 'Which other PRs or issues does #7251 in psf/requests mention in its title or body?'
+  - - 7228
+- `fresh2-refs-058` PASS | 'Which PRs or issues in psf/requests mention #1847 in their title or body?'
+  - - 1850
+- `fresh2-refs-055` PASS | 'Which other PRs or issues does #7339 in psf/requests mention in its title or body?'
+  - - 6990
+- `fresh2-refs-057` PASS | 'Which PRs or issues in psf/requests mention #1750 in their title or body?'
+  - - 5671
+
+## fresh_repeat_3
+
+- `fresh2-code-014` PASS | 'How are cookies attached to an outgoing request?'
+  - Cookies are attached by PreparedRequest.prepare_cookies, which stores the given cookies in a CookieJar (converting a dict via cookiejar_from_dict) and then calls get_cookie_header to build a 'Cookie' header string that it assigns to self.headers['Cookie'] (src/requests/models.py:699-729). get_cookie_header wraps the PreparedRequest in a MockRequest, calls jar.add_cookie_header on it, and returns the resulting 'Cookie' header value (src/requests/cookies.py:114-161).
+- `fresh2-code-027` PASS | 'How does the library parse a header value such as Digest realm and qop into a dictionary?'
+  - The library parses a header value like a Digest challenge into a dictionary using parse_dict_header, which iterates over the items produced by _parse_list_header; for each item without an '=' it stores the key with value None, otherwise it splits on the first '=' into name and value, and if the value is wrapped in double quotes it strips the quotes and unquotes it via unquote_header_value before storing it in the result dict (src/requests/utils.py:439-471). In HTTPDigestAuth.handle_401, the 'www-authenticate' header is read, the leading 'digest ' token is removed with a regex, and the remainder is passed to parse_dict_header to populate self._thread_local.chal, from which realm, nonce, qop, 
+- `fresh2-code-002` PASS | 'What default settings does a brand new Session start with?'
+  - A new Session starts with: headers set to default_headers() (src/requests/sessions.py:442-488); auth = None (src/requests/sessions.py:442-488); proxies = {} (src/requests/sessions.py:442-488); hooks = default_hooks() (src/requests/sessions.py:442-488); params = {} (src/requests/sessions.py:442-488); stream = False (src/requests/sessions.py:442-488); verify = True (src/requests/sessions.py:442-488); cert = None (src/requests/sessions.py:442-488); max_redirects = DEFAULT_REDIRECT_LIMIT (30) (src/requests/sessions.py:442-488); trust_env = True (src/requests/sessions.py:490-503); cookies = an empty RequestsCookieJar via cookiejar_from_dict({}) (src/requests/sessions.py:490-503); and adapters wit
+- `fresh2-code-004` PASS | 'How does the redirect mixin find out where a redirect points to?'
+  - The redirect mixin determines the redirect target in SessionRedirectMixin.get_redirect_target, which checks resp.is_redirect and, if true, reads the 'location' header from the response, re-encodes it from latin1 to utf8, and returns it as a native string; otherwise it returns None (src/requests/sessions.py:127-152). The is_redirect property is True when the response has a 'location' header and its status code is in REDIRECT_STATI (src/requests/models.py:861-913). resolve_redirects then uses get_redirect_target to extract the next URL, resolving relative locations against resp.url with urljoin (src/requests/sessions.py:237-280, src/requests/sessions.py:282-307).
+- `fresh2-docs-033` PASS | 'How do I send a request body that is generated piece by piece?'
+  - Provide a generator (or any iterator without a length) as the body to send a chunk-encoded request, e.g. define gen() that yields pieces and call requests.post('http://some.url/chunked', data=gen()) (docs/user/advanced.rst:368-389). For large streams or files you can also pass a file-like object to data (docs/user/advanced.rst:349-366).
+- `fresh2-docs-034` PASS | 'How do I upload a large file without loading it all into memory?'
+  - To upload a large file without loading it all into memory, pass a file-like object as the request body so Requests streams it. Open the file in binary mode and use it as the data argument, e.g. `with open('massive-body', 'rb') as f: requests.post('http://some.url/streamed', data=f)` (docs/user/advanced.rst:349-366). If you need to stream a very large file as a multipart/form-data request, Requests does not support that by default; use the separate `requests-toolbelt` package instead (docs/user/quickstart.rst:349-366).
+- `fresh2-docs-031` PASS | 'How do I upload a file with a custom filename and content type?'
+  - To upload a file with a custom filename and content type, pass a tuple to the files dict: the filename, the file object opened in binary mode, and the content type (optionally followed by a headers dict). Example: files = {'file': ('report.xls', open('report.xls', 'rb'), 'application/vnd.ms-excel', {'Expires': '0'})} then requests.post(url, files=files) (docs/user/quickstart.rst:319-329). It is strongly recommended to open files in binary mode (docs/user/advanced.rst:407-421).
+- `fresh2-docs-037` PASS | 'How do I read the Link header of a response as links?'
+  - Requests automatically parses Link headers into the response's .links dictionary, so you can access each link by its rel value, e.g. r.links["next"] returns {'url': '...', 'rel': 'next'} (docs/user/advanced.rst:944-966).
+- `fresh2-history-050` PASS | 'Which release first contained the change merged in PR #4387 in psf/requests?'
+  - v2.19.0
+- `fresh2-history-051` PASS | 'Which release first contained the change merged in PR #6170 in psf/requests?'
+  - v2.28.1
+- `fresh2-history-049` PASS | 'Which release first contained the change merged in PR #4996 in psf/requests?'
+  - v2.23.0
+- `fresh2-history-054` PASS | 'Who made the most commits in psf/requests in 2022, not counting merge commits?'
+  - Nate Prewitt  Note: commit counts cover non-merge commits only (merge commits are not indexed).  Activity from the commit history: - Nate Prewitt: 21 commits in this history, first 2022-01-03, most recent 2022-06-29
+- `fresh2-kind-059` PASS | 'Is #5166 in psf/requests a pull request or an issue?'
+  - issue
+- `fresh2-kind-062` PASS | 'Is #1125 in psf/requests a pull request or an issue?'
+  - pull request
+- `fresh2-kind-061` PASS | 'Is #2672 in psf/requests a pull request or an issue?'
+  - pull request
+- `fresh2-kind-060` PASS | 'Is #6344 in psf/requests a pull request or an issue?'
+  - issue
+- `fresh2-probe-073` PASS | 'How does requests parse YAML configuration files?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-probe-069` PASS | 'How does requests encrypt files at rest with AES?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-probe-070` PASS | 'Where does requests implement a Redis caching layer?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-probe-072` PASS | 'Which function in requests trains a machine-learning model?'
+  - No relevant implementation was found in the retrieved context.
+- `fresh2-prsearch-065` PASS | 'In psf/requests, which pull request is about: "only the path should be unquoted/quoted."? Give its number.'
+  - - 149  Details from the search results: - #149 (pull request, merged): PR #149: Only the path should be unquoted/quoted.
+- `fresh2-prsearch-063` PASS | 'In psf/requests, which pull request is about: "enhance raise_for_status() to include response content"? Give its number.'
+  - - 6882  Details from the search results: - #6882 (pull request, closed): PR #6882: Enhance raise_for_status() to include response content
+- `fresh2-prsearch-067` PASS | 'In psf/requests, which issue is about: "how can i pass gmail\'s cookie to requests session?"? Give its number.'
+  - 3624  Details from the search results: - #3624 (issue, closed): Issue #3624: how can I pass gmail's cookie to requests session?
+- `fresh2-prsearch-068` PASS | 'In psf/requests, which issue is about: "rfe: please provide support for latest `urllib3`"? Give its number.'
+  - 6278  Details from the search results: - #6278 (issue, closed): Issue #6278: RFE: please provide support for latest `urllib3`
+- `fresh2-refs-055` PASS | 'Which other PRs or issues does #7339 in psf/requests mention in its title or body?'
+  - - 6990
+- `fresh2-refs-058` PASS | 'Which PRs or issues in psf/requests mention #1847 in their title or body?'
+  - - 1850
+- `fresh2-refs-057` PASS | 'Which PRs or issues in psf/requests mention #1750 in their title or body?'
+  - - 5671
+- `fresh2-refs-056` PASS | 'Which other PRs or issues does #7251 in psf/requests mention in its title or body?'
+  - - 7228
+

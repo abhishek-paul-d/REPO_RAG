@@ -1,0 +1,77 @@
+{"n": 3249, "sha": "aa0f78b740b6098f29594242b6b923113d0659b3", "verdict": "ok", "reason": ""}
+{"n": 3250, "sha": "aa1461b68aa73e2f6ec0e78c8853b635c76fd099", "verdict": "ok", "reason": ""}
+{"n": 3251, "sha": "aa31b6b4dd199ba733b5e03226a8019a2b9c7c66", "verdict": "cannot_tell", "reason": "The duplicate return sites are deleted, but the excerpt cuts off before the resulting dispatch and redirect code can be checked for consistent behavior."}
+{"n": 3252, "sha": "aa3347b2a3a13d5f807ff98b81cabcc5fc9f89fc", "verdict": "ok", "reason": ""}
+{"n": 3253, "sha": "aa39fb0c80f3b5aeb82785288bf351ddae7c4ed5", "verdict": "ok", "reason": ""}
+{"n": 3254, "sha": "aa42318395ee6ecdaeb651a28a63e4bbdb95d003", "verdict": "filler", "reason": "The release note records the hook change, but the excerpt does not give any observed error-handling benefit."}
+{"n": 3255, "sha": "aa4cc78627bcf8ff87b73422ec06748d833c7a15", "verdict": "ok", "reason": ""}
+{"n": 3256, "sha": "aa5e47723621d86e249884c083b2d51d87135f47", "verdict": "ok", "reason": ""}
+{"n": 3257, "sha": "aa60b8ea5b570d2873c72e642f44eefe5286a096", "verdict": "filler", "reason": "The edit adopts pytest assertions and exception context managers, but the excerpt does not establish a previous compatibility problem."}
+{"n": 3258, "sha": "aac32ac56e60ac220a15c33d207306806c193d1b", "verdict": "ok", "reason": ""}
+{"n": 3259, "sha": "aad27218d58e82637c43f92c85237fa90f0178c6", "verdict": "filler", "reason": "Header arguments and the _build_url call are shown, but no generated-command test verifies that the output faithfully represents every request."}
+{"n": 3260, "sha": "aad828704d1772138dc52a3bebc5964defe8a1e6", "verdict": "ok", "reason": ""}
+{"n": 3261, "sha": "aae78010e987a414c176bddbf474cd554505219c", "verdict": "ok", "reason": ""}
+{"n": 3262, "sha": "aae7e39a56d9116c19d51eb086d655892c5adce3", "verdict": "ok", "reason": ""}
+{"n": 3263, "sha": "aafca7acdc52331dbfb76fb30c2836fd504b2025", "verdict": "ok", "reason": ""}
+{"n": 3264, "sha": "ab0714ce9cfe477f4e6777daf9bdf3cea0bc7442", "verdict": "filler", "reason": "The badge switches to develop, but the excerpt does not identify the repository's active development branch or verify current build status."}
+{"n": 3265, "sha": "ab0f063d85d01a707516c84881c0a698edc526cd", "verdict": "ok", "reason": ""}
+{"n": 3266, "sha": "ab19b793754091c60892f754e4fbb1357fff90e6", "verdict": "wrong", "reason": "The change removes the image's alternative text, and a title does not serve as an equivalent accessible replacement."}
+{"n": 3267, "sha": "ab1a6a4d0057e8eb1ccd70c580d78a8bac3506ea", "verdict": "ok", "reason": ""}
+{"n": 3268, "sha": "ab22b3ea5fc7340eb8daf21f45974372030a1b7d", "verdict": "ok", "reason": ""}
+{"n": 3269, "sha": "ab23536b1b084bb5dd901aa05dd638075351af47", "verdict": "ok", "reason": ""}
+{"n": 3270, "sha": "ab27027aa8916e6e199bbb35083beb5d6339f6aa", "verdict": "wrong", "reason": "The deleted file is a .orig copy, and it contains both Python 2 and Python 3 compatibility definitions."}
+{"n": 3271, "sha": "ab3200b4cc1fd2bec915a47aafa48a9d1a4774ed", "verdict": "ok", "reason": ""}
+{"n": 3272, "sha": "ab38e2c72608b95b047b05ccfaca833edb9db1b1", "verdict": "ok", "reason": ""}
+{"n": 3273, "sha": "ab3c21cf969fcde73458fac6041f54492b7e60cd", "verdict": "filler", "reason": "The empty commit is explicit, but the excerpt does not say that it acts as a placeholder or marker."}
+{"n": 3274, "sha": "ab4c03adc343a7e97575bd02e57bdbf82cea9d86", "verdict": "ok", "reason": ""}
+{"n": 3275, "sha": "ab56e4a9f170c2c951d443853466f27b31dcc256", "verdict": "ok", "reason": ""}
+{"n": 3276, "sha": "ab64052642f8de84873e2b449e06c96363a0afad", "verdict": "ok", "reason": ""}
+{"n": 3277, "sha": "ab84f9be5740d4649d734e73b84f17f85e52ffc9", "verdict": "wrong", "reason": "The changed expression calls dumps on the same json object that the previous code passed as the serialization input, so the claim of unchanged behavior is unsupported."}
+{"n": 3278, "sha": "ab8e43a19677dd04f86d51250770efe65987b914", "verdict": "filler", "reason": "The job link and badge image are corrected, but the excerpt does not identify the new URL as protected or verify the rendered badge."}
+{"n": 3279, "sha": "ab916a8a8d38c01c264a90995e5ed6829b4be296", "verdict": "wrong", "reason": "The requirements edit adds unittest, while the test import switches to the differently named unittest2 package."}
+{"n": 3280, "sha": "abaeeb8807fe8f3cfdac656a992c08c096fe8f5d", "verdict": "filler", "reason": "The new Pipenv links are shown, but no existing layout problem or improvement is established."}
+{"n": 3281, "sha": "abc38cf17f4e7149cff2da96fa364e4a5d39a632", "verdict": "ok", "reason": ""}
+{"n": 3282, "sha": "abc5e279319425e226121165d15052542acfaa9a", "verdict": "wrong", "reason": "The patch defines a configuration value without showing any session or redirect logic enforcing it."}
+{"n": 3283, "sha": "abcf81e2a8cd5497080fad7fb4ac6b6a87eacd6c", "verdict": "ok", "reason": ""}
+{"n": 3284, "sha": "abe02ed89fa7f575877a882cb5ba337290eb27d1", "verdict": "ok", "reason": ""}
+{"n": 3285, "sha": "abe22b1da6c2b3397a59e33c071daa1aec2d0844", "verdict": "ok", "reason": ""}
+{"n": 3286, "sha": "abe33f0ef4b9ea9588eca01f902a534f0acd0cde", "verdict": "ok", "reason": ""}
+{"n": 3287, "sha": "abe950cfd3ee437279ca23866da6571571b637a6", "verdict": "ok", "reason": ""}
+{"n": 3288, "sha": "abf33ba11cc0cfb9f978789f9f452bc9f0fadf69", "verdict": "ok", "reason": ""}
+{"n": 3289, "sha": "abf96670cea9b9b9e4699323f25c9d92d3a397f2", "verdict": "ok", "reason": ""}
+{"n": 3290, "sha": "ac0a7ed152d370a2cc25d86cdb9ef4925ad13982", "verdict": "ok", "reason": ""}
+{"n": 3291, "sha": "ac34e3b346aa22d16a34bf869be1343d0d4236f1", "verdict": "ok", "reason": ""}
+{"n": 3292, "sha": "ac44b482971d93cf5e7d4985a0b3fff52b3d2059", "verdict": "wrong", "reason": "The new cycle check applies to traversal of the cached redirect URLs, and does not generally guarantee that a network request terminates."}
+{"n": 3293, "sha": "ac4e05874a1a983ca126185a0e4d4e74915f792e", "verdict": "ok", "reason": ""}
+{"n": 3294, "sha": "ac82fa47a0f3fb290cb23ca80dfb26235203a428", "verdict": "ok", "reason": ""}
+{"n": 3295, "sha": "ac944b7439009ffbf7a10dfee35202f1ac090e76", "verdict": "ok", "reason": ""}
+{"n": 3296, "sha": "ac9a3e53206e7f059c4a232aa7780ba42c232d7b", "verdict": "ok", "reason": ""}
+{"n": 3297, "sha": "ac9f0d7c978528615183598377144186295025b1", "verdict": "ok", "reason": ""}
+{"n": 3298, "sha": "aca91e06f2c83da1553ea8b39814c5c78cb3c433", "verdict": "ok", "reason": ""}
+{"n": 3299, "sha": "acd2645444d280ac0c5d2d227fdd222cb1ac609c", "verdict": "ok", "reason": ""}
+{"n": 3300, "sha": "ace0c200f4a35f4f98a2672b46b03b89a53c50d9", "verdict": "filler", "reason": "The test checks that the copied policy is an instance of the custom class, but the excerpt does not establish data-loss prevention."}
+{"n": 3301, "sha": "ad18d9ddd6b6534421905845dfcbd51c369b4277", "verdict": "ok", "reason": ""}
+{"n": 3302, "sha": "ad1aff52a03209bec66c932bc7c3739f6c52696c", "verdict": "wrong", "reason": "The warning adds valid bold markup for Python 3, but the single underscores around highly are not reStructuredText emphasis syntax."}
+{"n": 3303, "sha": "ad311497fa100a7f4b11ca3df9c7a84b6084602e", "verdict": "filler", "reason": "The Charade update is supported by the title and file list, but the excerpt contains no evidence of improved detection accuracy."}
+{"n": 3304, "sha": "ad6a8d53d6ceb22ceb20afb2458b7977e01a9ec6", "verdict": "ok", "reason": ""}
+{"n": 3305, "sha": "ad761abcdd2f1b5e4fcba549676b2ea52bd325cd", "verdict": "ok", "reason": ""}
+{"n": 3306, "sha": "ad9400ecfe75cfb704a7440f2a28055f50a550ca", "verdict": "wrong", "reason": "TestPreparingURLs is the test class, and the helper is scoped to one of its methods."}
+{"n": 3307, "sha": "ad959acfcfa77c3d9360a5f62df4a4789eed0fb3", "verdict": "ok", "reason": ""}
+{"n": 3308, "sha": "ada98899f87a9118b026a547ee5d5ecda47bcfe8", "verdict": "ok", "reason": ""}
+{"n": 3309, "sha": "adceafd79d215b197360e44432d70da1a0582204", "verdict": "wrong", "reason": "The reproduction and system details are prompts in the bug template, and the excerpt does not show required fields for all issues."}
+{"n": 3310, "sha": "aded42f23247e86495654ddd85ae9e000bbe9c1e", "verdict": "ok", "reason": ""}
+{"n": 3311, "sha": "adf475ef82cbd29f63814c0626f64926deb2355b", "verdict": "ok", "reason": ""}
+{"n": 3312, "sha": "ae0a497b0c8506f6187167da8d181fa400fd08f8", "verdict": "filler", "reason": "The URL replacement is visible, but the excerpt does not say the old URL was broken or verify the new destination."}
+{"n": 3313, "sha": "ae1ac2d4e075fddf67b81e9aa19fbaf6e2c40941", "verdict": "ok", "reason": ""}
+{"n": 3314, "sha": "ae41c733eae4323ac9fb45591d6516fd17ea7149", "verdict": "ok", "reason": ""}
+{"n": 3315, "sha": "ae4e85f11c39d0b2786a6b9df81c16cbfbe2a6e4", "verdict": "filler", "reason": "Pool-manager wiring replaces the single-connection argument, but the excerpt does not establish a performance outcome."}
+{"n": 3316, "sha": "ae5419db170c20d7bad1cac1e78f9f5ab2f03b84", "verdict": "ok", "reason": ""}
+{"n": 3317, "sha": "ae6144599a773e5c28670886cb9914c62a2ca604", "verdict": "ok", "reason": ""}
+{"n": 3318, "sha": "ae7c28eb8e8df89555b50d766b77dc922c1500ce", "verdict": "ok", "reason": ""}
+{"n": 3319, "sha": "ae8230007347ff6e14c23f293857720be4735332", "verdict": "wrong", "reason": "The command selects a reachable tag by Git description, which does not guarantee the most recent release or that the tag is stable."}
+{"n": 3320, "sha": "ae83352bbdb31af5545a479fe91efba91d9a8ec2", "verdict": "wrong", "reason": "The edit affects the release-history source file and does not touch the README."}
+{"n": 3321, "sha": "ae9cdf1a478bebc1a5e0afc49ebb81d2ca3aa544", "verdict": "wrong", "reason": "The history bullet contains a typo for HTTP OPTIONS, rather than describing a distinct method named OPTION."}
+{"n": 3322, "sha": "aed5bf7cc7440ff1676e14e132f9a1064f2694c9", "verdict": "wrong", "reason": "The deletion occurs after setup(), so it does not keep the variable unset during the build."}
+{"n": 3323, "sha": "aeda65bbe57ac5edbcc2d80db85d010befb7d419", "verdict": "ok", "reason": ""}
+{"n": 3324, "sha": "af0febe8ad9a48c491aec1df1dc08a95ffb0baed", "verdict": "ok", "reason": ""}
+{"n": 3325, "sha": "af1b542e200047c1285f74192e3977c616d9e72f", "verdict": "cannot_tell", "reason": "The data is split into segment functions in the visible hunks, but the excerpt ends before their call site, so lazy loading and its memory impact cannot be confirmed."}

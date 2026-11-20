@@ -1,0 +1,94 @@
+{"n": 2267, "sha": "75a9a981b58dc4866acaa2b95b08a8c2ffa914d9", "verdict": "wrong", "reason": "The deletions remove test infrastructure and an editor swap file, and the excerpt lists no tests among them."}
+{"n": 2268, "sha": "75b0c4be1b71831768e44517b63258f68b04792e", "verdict": "wrong", "reason": "Latin-1 supports only a subset of non-ASCII text, so the code cannot ensure general non-ASCII credentials are handled."}
+{"n": 2269, "sha": "75b499dd046060021db0c7a772dd34df9374a30b", "verdict": "ok", "reason": ""}
+{"n": 2270, "sha": "75bd9d0e9446dd9819142848fb26c6b8ae8c3532", "verdict": "ok", "reason": ""}
+{"n": 2271, "sha": "75c1776bde6398489c1b6722cf4f612b0061bfc1", "verdict": "ok", "reason": ""}
+{"n": 2272, "sha": "75c57985b02b98c897994e81afcf88b69b33f528", "verdict": "ok", "reason": ""}
+{"n": 2273, "sha": "75c7e5f1c310b19a0b66f75be5e72f4a0ef5821f", "verdict": "ok", "reason": ""}
+{"n": 2274, "sha": "75dc012f41d26c2eb8348cae319b26721ec4f410", "verdict": "ok", "reason": ""}
+{"n": 2275, "sha": "75f062dcefa741c7b79e7a5fdc95f4aed1513644", "verdict": "ok", "reason": ""}
+{"n": 2276, "sha": "7618dbef01d333f23ba4b9c4d97397b06dd89cb6", "verdict": "filler", "reason": "The action version changes as stated, but the excerpt does not establish what hardening features it adds or that they are the latest."}
+{"n": 2277, "sha": "761e39b443b615b18a3b13f1bdd92d23e7cff204", "verdict": "ok", "reason": ""}
+{"n": 2278, "sha": "762042260b2918d4a496b6d03b95ba3d487fb373", "verdict": "wrong", "reason": "The title names the README, but the supplied file list is empty and contains no README edit or evidence of its topic."}
+{"n": 2279, "sha": "7647e52943ad15da6bc7e52df3dfb744aa949bf8", "verdict": "ok", "reason": ""}
+{"n": 2280, "sha": "7671e3878cbb0f68ed9d1fabb96560227c2df31d", "verdict": "ok", "reason": ""}
+{"n": 2281, "sha": "7675468068d81455a3006af45fd3d67c408f1b9c", "verdict": "ok", "reason": ""}
+{"n": 2282, "sha": "767751599e4d4d7bcf0c5bee3751cbec6ef1fb7f", "verdict": "filler", "reason": "The release history mentions an OAuthlib URL parameters fix, but it does not establish that URL parameters generally are now correct."}
+{"n": 2283, "sha": "767f758aacba8f70721fc1abbeb1d8ad929a084c", "verdict": "wrong", "reason": "The conversion uses local time even though the input format carries GMT, so the assertion of correct expiry is too broad."}
+{"n": 2284, "sha": "7687746c7c1691946f24e414c065025f895104e6", "verdict": "ok", "reason": ""}
+{"n": 2285, "sha": "76a0d3fcb9a826435e938e0c268083b014375aaa", "verdict": "ok", "reason": ""}
+{"n": 2286, "sha": "76a66c41d68570b197a4a3febf958b438bc10ef8", "verdict": "ok", "reason": ""}
+{"n": 2287, "sha": "76a89c3c9b973034b3f615b10615f172e631c743", "verdict": "ok", "reason": ""}
+{"n": 2288, "sha": "76b8afee9476b38af6af1249565eda5ba48b0774", "verdict": "filler", "reason": "The endpoint is changed and the suite marked splittable, but the excerpt does not verify that the replacement service is correct."}
+{"n": 2289, "sha": "76be17b00ac8e6f16e0a7e987a15b5d36e6bab01", "verdict": "ok", "reason": ""}
+{"n": 2290, "sha": "76bf523a1f5d20de70e7ff5ddf2a681bea8987f8", "verdict": "wrong", "reason": "The select.poll statement is in the history entry, and no shown polling operation is removed from iter_content."}
+{"n": 2291, "sha": "76c09e7076f156c85f339185845ac9b2bf65dc49", "verdict": "ok", "reason": ""}
+{"n": 2292, "sha": "76cf1fa21416d9263a81f61c753375795ebf2e72", "verdict": "filler", "reason": "The URL is lowercased, but the excerpt does not establish that the original failed or that the new one resolves."}
+{"n": 2293, "sha": "76dacaf231f9ad8d4a46e2b55ea00faec4ebaeff", "verdict": "ok", "reason": ""}
+{"n": 2294, "sha": "76f90054f9ee5813921b3232519915dd88fc7b0c", "verdict": "ok", "reason": ""}
+{"n": 2295, "sha": "7700ecae14930fd078e28e35425661d46778bfa9", "verdict": "ok", "reason": ""}
+{"n": 2296, "sha": "773630b0109c7671930b7ab38bb71c22ac8a94c5", "verdict": "ok", "reason": ""}
+{"n": 2297, "sha": "773e730d80aa5e590ca0fb0fa079a9b4f11d6403", "verdict": "ok", "reason": ""}
+{"n": 2298, "sha": "773eeff1a2531904a7e7ba4dd95e58428c5fc26c", "verdict": "wrong", "reason": "The two names are inserted under the current heading before the newly introduced previous-keepers heading."}
+{"n": 2299, "sha": "774a0b837a194ee885d4fdd9ca947900cc3daf71", "verdict": "ok", "reason": ""}
+{"n": 2300, "sha": "775813aae79e91d0e26f1389a96a45235b15e3e3", "verdict": "wrong", "reason": "The two images are repositioned, but each keeps its existing source URL."}
+{"n": 2301, "sha": "775b6f6f0098ffa9edd3874b1af4b98378377211", "verdict": "ok", "reason": ""}
+{"n": 2302, "sha": "775cde0914265d7dab2bc2501ed7abe6b85c4bae", "verdict": "ok", "reason": ""}
+{"n": 2303, "sha": "775d19ee052ecd89b6527f5e833cf936fb9dfbc6", "verdict": "ok", "reason": ""}
+{"n": 2304, "sha": "77677eb71d41f20d657254b7d88c17337369e600", "verdict": "ok", "reason": ""}
+{"n": 2305, "sha": "77687de5099b6b65cde5901a29a3b1c5e751b8a2", "verdict": "wrong", "reason": "The revert removes the None guard and restores the unconditional loop."}
+{"n": 2306, "sha": "77909f1d4999dcc988acdae043da406031dd5903", "verdict": "ok", "reason": ""}
+{"n": 2307, "sha": "779c001e44ed436a805a6fea5b4d2895b381d7b3", "verdict": "wrong", "reason": "Only the GET example changes to HTTPS, while the POST endpoint keeps HTTP and receives a quote-style edit."}
+{"n": 2308, "sha": "779fd6e7f31604f74bfb3b2a88bafc2a21144dbd", "verdict": "ok", "reason": ""}
+{"n": 2309, "sha": "77a57c0e7e669173241a56670ba4d096a303c75e", "verdict": "ok", "reason": ""}
+{"n": 2310, "sha": "77aa42943ea65b50acc31f627ed1e3486da90a4d", "verdict": "ok", "reason": ""}
+{"n": 2311, "sha": "77b068bb9eb4364ad8c30bedf7654a0d77ebf9ff", "verdict": "ok", "reason": ""}
+{"n": 2312, "sha": "77b37687b69ef21262e04c60401e0bcf712f0357", "verdict": "ok", "reason": ""}
+{"n": 2313, "sha": "77cf9951656c84a02213a23d384f6c11327cdb74", "verdict": "ok", "reason": ""}
+{"n": 2314, "sha": "77e5443f71f29f30c997dc0e6645ee57f40ef4eb", "verdict": "cannot_tell", "reason": "The diff shows that trust_env gates the fallback branches, but omits the existing bodies that would identify the exact sources used for authentication."}
+{"n": 2315, "sha": "77f4b8a75e804b83cca7c917a16bec93fdd6b302", "verdict": "wrong", "reason": "The context manager implements only timeout, and a shared cache lets nested contexts overwrite the value the outer context needs to restore."}
+{"n": 2316, "sha": "780ce3902eccc7f7087e195211daf4c592cb28fb", "verdict": "ok", "reason": ""}
+{"n": 2317, "sha": "7815953cb41450992e487aa300080064999c4e99", "verdict": "ok", "reason": ""}
+{"n": 2318, "sha": "782e94d141cddb57400f444341b7f68c2211c66f", "verdict": "ok", "reason": ""}
+{"n": 2319, "sha": "7832f2ae7e3915c2fe238b0f648176328909395a", "verdict": "ok", "reason": ""}
+{"n": 2320, "sha": "7836536459b6a15796c004440d3f927281808455", "verdict": "ok", "reason": ""}
+{"n": 2321, "sha": "783e540d6dc63c3fdebdcc94d163a05a54127dd6", "verdict": "ok", "reason": ""}
+{"n": 2322, "sha": "784b6715591acbec35c6a5b20d57cec9c5b448e8", "verdict": "ok", "reason": ""}
+{"n": 2323, "sha": "784fe8bbdbe4510bf2471b39234a61a5965229c6", "verdict": "filler", "reason": "The added logo asset is shown, but the title calls it a working logo and does not establish official status."}
+{"n": 2324, "sha": "785c733415d605e332ca608cbabcb9dfe0442f88", "verdict": "ok", "reason": ""}
+{"n": 2325, "sha": "786255613bd92f87c9c8f066c4271aab1b9eeaad", "verdict": "wrong", "reason": "Only a Makefile comment changes, and the commit does not change the interpreters used by the test runner."}
+{"n": 2326, "sha": "786dfdd7e5fd169bdbbc0ca89cd073be9a249e73", "verdict": "ok", "reason": ""}
+{"n": 2327, "sha": "786fe94ac43eacc580d93442097cd3fc64090ffd", "verdict": "ok", "reason": ""}
+{"n": 2328, "sha": "787110c8535fcd04faff6bbd197858d8c84e2ff5", "verdict": "ok", "reason": ""}
+{"n": 2329, "sha": "7875a12617ae38f3432779b29e0fdbc93febd408", "verdict": "ok", "reason": ""}
+{"n": 2330, "sha": "787c1e8c6ef5390a020173b7d2fc787224e32891", "verdict": "ok", "reason": ""}
+{"n": 2331, "sha": "7881aaa759ce05fa944a1530db8ba889ffaf68e4", "verdict": "wrong", "reason": "The debug print lines were already commented out and had no executable role."}
+{"n": 2332, "sha": "789f21807d4cc0eb939181494fea8399dfc5206a", "verdict": "wrong", "reason": "Both versions are syntactically valid string literals, and the compatibility change concerns runtime substitution."}
+{"n": 2333, "sha": "78b5d9ed45d3f969e38e6772501da446db1efd59", "verdict": "ok", "reason": ""}
+{"n": 2334, "sha": "78d12bbbe9a1a5ddf0a50aa793dc0579798ff7bd", "verdict": "ok", "reason": ""}
+{"n": 2335, "sha": "78d6d316978f13661f376446883454371e30a8e1", "verdict": "filler", "reason": "The license text and its own redistribution conditions are visible, but the broad compliance outcome for open-source distribution is not established."}
+{"n": 2336, "sha": "78dbb5bfbe41ba511387956f63dac72fc730708f", "verdict": "ok", "reason": ""}
+{"n": 2337, "sha": "78e5262dbd8a09ccf185c2ad181a15a69ecdf280", "verdict": "wrong", "reason": "The only function signature edit is in the example, and no implementation is changed or compared."}
+{"n": 2338, "sha": "78f48aef8f494f9e85f747a9c1045e7fb78ffc67", "verdict": "filler", "reason": "The README recommendation changes to master, but the author describes the development workflow itself as an assumption."}
+{"n": 2339, "sha": "78fdf4dd92bd1e12806ae36e22229149e0b45a4a", "verdict": "ok", "reason": ""}
+{"n": 2340, "sha": "7908ad3af981a424f36aab4357b03a38f2b8ee18", "verdict": "ok", "reason": ""}
+{"n": 2341, "sha": "7929bb91be414a798cf6fa386adc7639976c26fd", "verdict": "ok", "reason": ""}
+{"n": 2342, "sha": "795106c1885f19c84cefe037914a12d37ddd6248", "verdict": "filler", "reason": "Invoking Codecov through Pipenv is shown, but the excerpt does not identify an environment conflict."}
+{"n": 2343, "sha": "795f18560b881a6872805668200750cf57515b7d", "verdict": "ok", "reason": ""}
+{"n": 2344, "sha": "7962c12451b761ad23d9db9d48af0d8d023dcad6", "verdict": "ok", "reason": ""}
+{"n": 2345, "sha": "79675a0638190560fb4d4afa26452f9118574daa", "verdict": "filler", "reason": "The version pins are explicit, but there is no evidence that the goal was compatibility with the latest tools or that the new pins were current."}
+{"n": 2346, "sha": "796d3225ddf08a9ebaa429209b9d077c3a8f99b8", "verdict": "ok", "reason": ""}
+{"n": 2347, "sha": "79727abb32a3d149f788cc605afb62824d97f8ec", "verdict": "ok", "reason": ""}
+{"n": 2348, "sha": "798a1ffdec682fe8b9e0c3386f445ab6e1fd801c", "verdict": "wrong", "reason": "The test compares response and request URLs for equality, and the added conflict marker prevents the file from parsing as shown."}
+{"n": 2349, "sha": "798dc4ae1d7033b178dc8fa3cc63cba1c985959e", "verdict": "ok", "reason": ""}
+{"n": 2350, "sha": "79992579c9289144ce0bb690c15b7f658f530768", "verdict": "wrong", "reason": "The deleted status test covers a specific 404 case with danger_mode, with no assertion about every non-200 status."}
+{"n": 2351, "sha": "799bf116fe7e4149ef119bb5e241e77749190278", "verdict": "ok", "reason": ""}
+{"n": 2352, "sha": "79aa9edde1bba39a433475929970dd519fecfdf3", "verdict": "filler", "reason": "The platform-aware path construction is shown, but correct discovery on all operating systems is not established."}
+{"n": 2353, "sha": "79b43b2b6e076d10831176317557fdd565695559", "verdict": "ok", "reason": ""}
+{"n": 2354, "sha": "79bb9ee1417afe2231972c1331308500104e5dc7", "verdict": "wrong", "reason": "The change adds a helper for extracting credentials without wiring up automatic authentication on requests."}
+{"n": 2355, "sha": "79c4a017fe341fb989d3a7876cf4e44b87601b58", "verdict": "wrong", "reason": "A populated value from either environment variable remains an override, so the previous problem did not occur whenever just one variable was unset."}
+{"n": 2356, "sha": "79d53d3b8acf021203853e12e8fe0eeb0b742b51", "verdict": "ok", "reason": ""}
+{"n": 2357, "sha": "79f2ec3acc4e24fef6e6ce31ad7b1d4e2f77be31", "verdict": "ok", "reason": ""}
+{"n": 2358, "sha": "79f3e69f5eecdcd2dc09b234d72305a180f149d3", "verdict": "wrong", "reason": "The commit names a specific underlying exception and does not show a prior silent failure or generic exception."}
+{"n": 2359, "sha": "79f4df84cf77a2fee873809821dfbd786de05b97", "verdict": "filler", "reason": "The version bump is proven, but the excerpt does not establish latest stable release status."}
+{"n": 2360, "sha": "79f56e2e7e9cf1828da8287735751a998269a5f1", "verdict": "ok", "reason": ""}

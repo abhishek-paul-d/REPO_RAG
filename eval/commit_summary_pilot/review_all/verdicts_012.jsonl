@@ -1,0 +1,89 @@
+{"n": 954, "sha": "3235766d67aecc8db3b343f40d190e9d4752c071", "verdict": "wrong", "reason": "Removing a root does not make connections that depend on trusting that root succeed, and the excerpt does not identify it as expired."}
+{"n": 955, "sha": "324336e7f6e45ef3d97a2e64be95b5e604b393d3", "verdict": "wrong", "reason": "The summary reverses which version of the data overrode the other."}
+{"n": 956, "sha": "3246b1fe172ca3d4f098e85467234ded2f833b31", "verdict": "ok", "reason": ""}
+{"n": 957, "sha": "324c572b6496f2f39cf0f266012df1f9f4930568", "verdict": "ok", "reason": ""}
+{"n": 958, "sha": "32548e2bb67f5645785554a5762e42603e09985c", "verdict": "ok", "reason": ""}
+{"n": 959, "sha": "325ea7b7e209de2cd895e3275bde8378a183c7e7", "verdict": "ok", "reason": ""}
+{"n": 960, "sha": "326a22e8880c1dba52698a479eb7b6038d5b2e87", "verdict": "ok", "reason": ""}
+{"n": 961, "sha": "326f77d57c3fdb45bf1d263a8b4ecef781f39850", "verdict": "wrong", "reason": "The test checks prepared header values and does not inspect the encoded body."}
+{"n": 962, "sha": "327512f5ef9eea79a0cb324ba47e7eabf6967b3a", "verdict": "ok", "reason": ""}
+{"n": 963, "sha": "32799067374744e420cc5b2284203b8bda27c878", "verdict": "filler", "reason": "The corrected path lets the setup command find the test file, but successful execution of the whole suite is not established."}
+{"n": 964, "sha": "327a54d29d2c7fd09a137919e41a47f48848793b", "verdict": "ok", "reason": ""}
+{"n": 965, "sha": "327b9eab87a7e6198acf9b551d24373f566d0ac3", "verdict": "ok", "reason": ""}
+{"n": 966, "sha": "327d923ce673a13c170446911ceec50529a9253c", "verdict": "wrong", "reason": "The visible new code writes headers to a different name and refers to the misspelled self.paams, so correct execution across the claimed inputs is not established."}
+{"n": 967, "sha": "3288426f2bb4fc52f58ea6422444bc013ce31a8c", "verdict": "ok", "reason": ""}
+{"n": 968, "sha": "328cff252d1652c66b536387ad97152663a4543e", "verdict": "ok", "reason": ""}
+{"n": 969, "sha": "3293c0e8f4e23206e81f01f2d6332c401da53f8c", "verdict": "filler", "reason": "The initialization and Python 2.5 purpose are supported, but the excerpt does not establish that the failure occurred during construction."}
+{"n": 970, "sha": "3299771e3497199adda6ad6354f78742806cd320", "verdict": "filler", "reason": "The excerpt supports reuse and URL assignment, but it does not identify the claimed request state issue."}
+{"n": 971, "sha": "329a5cfdd4500fb1ce405a3242ef95f9197d24ba", "verdict": "wrong", "reason": "The former code already encoded standard strings for base64, and the diff does not show a failure specific to string input."}
+{"n": 972, "sha": "329af44f351eaea251601cabcafcd70a62521af5", "verdict": "ok", "reason": ""}
+{"n": 973, "sha": "329efcae6e93e992582f0f3e01f4a7ed31b54979", "verdict": "ok", "reason": ""}
+{"n": 974, "sha": "32a6d07036f567ef331033368995d166734d223f", "verdict": "ok", "reason": ""}
+{"n": 975, "sha": "32a861b2eddcfd73049f245984a12b88b364dadd", "verdict": "wrong", "reason": "The visible code clears the socket's recv attribute and calls the underlying response's close method, with no explicit socket release or direct file close."}
+{"n": 976, "sha": "32aa3eb0129ddce47cef3ffcecadfb15b970fcca", "verdict": "ok", "reason": ""}
+{"n": 977, "sha": "32bcd4b3bf87abba4396e039a9d8c1b031ed7035", "verdict": "ok", "reason": ""}
+{"n": 978, "sha": "32cc197a81502c30715c9e164006dce6debcd1bf", "verdict": "ok", "reason": ""}
+{"n": 979, "sha": "32e26af3afafb50930e64765ee37be18774d481c", "verdict": "ok", "reason": ""}
+{"n": 980, "sha": "32f600b0836a86596aa3edc98aaa6827f6fe4644", "verdict": "ok", "reason": ""}
+{"n": 981, "sha": "32f75585adf97ec4bb9c3b39de409deb5c2795e3", "verdict": "ok", "reason": ""}
+{"n": 982, "sha": "3323e65e96dd294aaf796f82d1e19e5bbbf29bf2", "verdict": "ok", "reason": ""}
+{"n": 983, "sha": "332f55e552326323e205dd5069a1726439cca3cd", "verdict": "ok", "reason": ""}
+{"n": 984, "sha": "3331e2aecdbf575dd60abef4df79c52d78610a83", "verdict": "ok", "reason": ""}
+{"n": 985, "sha": "333ac101baffd01c6eca1c4c61b1d620e4d8ca70", "verdict": "ok", "reason": ""}
+{"n": 986, "sha": "333fa874899a8ff8dcc0a001477c35d387686531", "verdict": "ok", "reason": ""}
+{"n": 987, "sha": "333fa8d3f201f68b82d9e8f26be4987e869fd3bf", "verdict": "ok", "reason": ""}
+{"n": 988, "sha": "3346ad1134bbf50e9d9ad36ddd396536c18fe6bc", "verdict": "ok", "reason": ""}
+{"n": 989, "sha": "335bf7018d7b073ff9fe3ab68fa92dd12a4c57b8", "verdict": "ok", "reason": ""}
+{"n": 990, "sha": "33619268f986b7d6452fdab43e70096401c5b361", "verdict": "ok", "reason": ""}
+{"n": 991, "sha": "3369d87da96e38772faa773b755189320ab5b81c", "verdict": "cannot_tell", "reason": "The condition now also matches GET, but the excerpt omits the branch body needed to determine whether that changes the resulting redirect behavior."}
+{"n": 992, "sha": "33735480f77891754304e7f13e3cdf83aaaa76aa", "verdict": "ok", "reason": ""}
+{"n": 993, "sha": "337b338187af83933a441141892bb32bc1e9837d", "verdict": "wrong", "reason": "Jonathan Wong's entry already exists on the old side of the diff."}
+{"n": 994, "sha": "3385c789991197d9b08da1de203615f6f40c2738", "verdict": "ok", "reason": ""}
+{"n": 995, "sha": "339323230400970717e369e42635be5a97a73c37", "verdict": "wrong", "reason": "The periods and sentence boundaries are unchanged, so no sentence is split."}
+{"n": 996, "sha": "3393dc822135cb1a08fa4e88dcb883267e3b5716", "verdict": "ok", "reason": ""}
+{"n": 997, "sha": "339e950dc70718104d82ea635252cababa1a276b", "verdict": "ok", "reason": ""}
+{"n": 998, "sha": "33a74f1787fd9b55defa3f7afdd2cd1463dae7b4", "verdict": "ok", "reason": ""}
+{"n": 999, "sha": "33b25176b86efcfa79bc93bae9be8e4affc48262", "verdict": "ok", "reason": ""}
+{"n": 1000, "sha": "33b29be8cf93572870415b04c21a895ca3edf3ce", "verdict": "ok", "reason": ""}
+{"n": 1001, "sha": "33b41c7880a02166d12915ca9c4cfc13de2d9fb7", "verdict": "filler", "reason": "The deleted snippet is commented out, but the excerpt does not establish why it was obsolete."}
+{"n": 1002, "sha": "33cf965f7271ab4978ed551754db37865c4085db", "verdict": "ok", "reason": ""}
+{"n": 1003, "sha": "33d2ba961bb8c39d307476851f50d26eab08026b", "verdict": "ok", "reason": ""}
+{"n": 1004, "sha": "33d448eb21bbbf643cc1f61493b0b606d8352aea", "verdict": "ok", "reason": ""}
+{"n": 1005, "sha": "33dec52b8eb4eb6ddc2677981bb5d5cf70ada59b", "verdict": "wrong", "reason": "The request hunk adds a parameter description, but the summary says it removes one there."}
+{"n": 1006, "sha": "33df9d1bf2cf24bf46af0d079a3f4884816dd9e6", "verdict": "ok", "reason": ""}
+{"n": 1007, "sha": "33e402b21f7a644df115c0c11206a19aef89ea1b", "verdict": "ok", "reason": ""}
+{"n": 1008, "sha": "33ee7320822fae90e6a90c2c7241bd6412b68f66", "verdict": "ok", "reason": ""}
+{"n": 1009, "sha": "33f10875848021071cf4328280fd5114fe8dc151", "verdict": "ok", "reason": ""}
+{"n": 1010, "sha": "33f41b8a137157f014c5b1c2e02c3e775b64613b", "verdict": "ok", "reason": ""}
+{"n": 1011, "sha": "340902153f49a2ed9316cbe1f44c67032dcc8376", "verdict": "wrong", "reason": "The former test already unpickled the request, beyond merely checking that it could be dumped."}
+{"n": 1012, "sha": "340931ba8edbbfcd3bc7def1bebc989650b6d05d", "verdict": "ok", "reason": ""}
+{"n": 1013, "sha": "340f7a0733b6b023c2bec18bb0f91e8f1052a84d", "verdict": "wrong", "reason": "The digest function is a stub and never attaches a header."}
+{"n": 1014, "sha": "3415e6de0b4584e9e0ff27f346aac498a8c506b2", "verdict": "wrong", "reason": "The replacement is invalid Python syntax and cannot raise the described ValueError."}
+{"n": 1015, "sha": "341ac9fe8a9112ba8d263528e0dc26c84263f908", "verdict": "filler", "reason": "The larger breakpoint is shown, but correct layout on tablets and larger phones is not established."}
+{"n": 1016, "sha": "341bed9e17be5d8cf22378450bc95a36f9119efb", "verdict": "ok", "reason": ""}
+{"n": 1017, "sha": "3423b5174851d0b9704da83532ebde4235d891a5", "verdict": "ok", "reason": ""}
+{"n": 1018, "sha": "34268b16c397682be38f4147aa181f3ebf112e42", "verdict": "ok", "reason": ""}
+{"n": 1019, "sha": "3440fca2e8ef4ab7d80ee1c0cfd75c92bb3f2b74", "verdict": "ok", "reason": ""}
+{"n": 1020, "sha": "3443c177a3b8279b6c5b5ce9c1643689d8983521", "verdict": "ok", "reason": ""}
+{"n": 1021, "sha": "3443ede52a74ea1c3bc0bb9a1d835a106448d0de", "verdict": "ok", "reason": ""}
+{"n": 1022, "sha": "344b51327caccca6fd02b28e46495b3d2f02173f", "verdict": "ok", "reason": ""}
+{"n": 1023, "sha": "3458e6a905b543f499aea95e463bb653114ffb1c", "verdict": "filler", "reason": "The message and file list establish a vendored update, but no revision or change details establish latest upstream status or improvements."}
+{"n": 1024, "sha": "3462d9c87b92bd6813006ee8eb31d7b8f7b4335e", "verdict": "filler", "reason": "The preference and fallback are explicit, but the excerpt does not establish a performance improvement."}
+{"n": 1025, "sha": "3475399a472ad0813a18d0b1fbeaec773f6cdeab", "verdict": "ok", "reason": ""}
+{"n": 1026, "sha": "347a52aa5ced6ff3fec8723ccfb8531fdbcf8d9c", "verdict": "filler", "reason": "The proxy pooling change is visible, but no evidence identifies proxy_from_url as deprecated."}
+{"n": 1027, "sha": "3483bae24f0fc5f18f7466fffa83584068474a59", "verdict": "wrong", "reason": "The index reports installations, which the summary initially labels as downloads."}
+{"n": 1028, "sha": "3488f3ade7819c79f3628ef2c87aff6e0f2f3946", "verdict": "ok", "reason": ""}
+{"n": 1029, "sha": "348d2a2d51dd7b175f0c81fa408bd75f950092f9", "verdict": "ok", "reason": ""}
+{"n": 1030, "sha": "34917618d80580fafec98641b213c453d7f3fb39", "verdict": "filler", "reason": "The old and new copyright years are shown, but the excerpt does not establish that 2013 was current when the edit was made."}
+{"n": 1031, "sha": "34a583b8217a1eaf65131958cec0ad659e85fb52", "verdict": "ok", "reason": ""}
+{"n": 1032, "sha": "34af72c87d79bd8852e8564c050dd7711c6a08d6", "verdict": "wrong", "reason": "The new passthrough condition excludes non-HTTP schemes but does not exclude URLs without a colon from the usual preparation path."}
+{"n": 1033, "sha": "34ca692c9cee4b9d146b8cd276d00ca4a7df8cb1", "verdict": "ok", "reason": ""}
+{"n": 1034, "sha": "34e3c7b68febd3b320544e77037676a3a6f35f63", "verdict": "ok", "reason": ""}
+{"n": 1035, "sha": "34ea836d77f342d4c6f74569288fd1288815f596", "verdict": "wrong", "reason": "The summary treats a one-word message about underline characters as a project name."}
+{"n": 1036, "sha": "34f6088c8f3f2bac942c84ce2ffa92dfdee5aa4e", "verdict": "ok", "reason": ""}
+{"n": 1037, "sha": "3501ea463432400c77479dddedab3b7af967b618", "verdict": "ok", "reason": ""}
+{"n": 1038, "sha": "35045e851a75b23d3d4e50853dfc1c5555110895", "verdict": "ok", "reason": ""}
+{"n": 1039, "sha": "35056b1de6687e97ea1e84f2f4b8dc4d3e1f1ff8", "verdict": "filler", "reason": "The NOTICE gains license text and attribution, but that alone does not establish compliance with all license terms."}
+{"n": 1040, "sha": "350be4a5496d10fab85b03fde65597e3a618abdf", "verdict": "ok", "reason": ""}
+{"n": 1041, "sha": "351a711ce9a9771f61555b5057d4f249d9afc423", "verdict": "ok", "reason": ""}
+{"n": 1042, "sha": "351ec982bb38a069a6b236b8d77dc09f26c2f444", "verdict": "ok", "reason": ""}
